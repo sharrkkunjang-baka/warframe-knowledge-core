@@ -18,6 +18,10 @@
     "normalize:text": "node scripts/normalize-user-facing-text.js",
     "sync:official": "node scripts/sync-official-mods.js",
     "check:official": "node scripts/sync-official-mods.js --check",
+    "sync:mods": "node scripts/sync-mods.js",
+    "check:mods": "node scripts/sync-mods.js --check",
+    "maintain": "npm run sync:mods && npm run sync:official && npm run validate && npm test && npm run build",
+    "check:all": "npm run check:mods && npm run check:official && npm run validate && npm test",
     "validate": "node scripts/validate.js",
     "test": "node --test",
     "prepublishOnly": "npm run build && npm test"

@@ -111,6 +111,10 @@ function createKnowledgeCore(options = {}) {
     mod.status === 'missing'
     && (!filter.categoryId || mod.officialCategoryIds.includes(filter.categoryId))
     && (!filter.localizationStatus || mod.localizationStatus === filter.localizationStatus));
+  const listStubOfficialMods = (filter = {}) => officialMods.filter(mod =>
+    mod.status === 'stub'
+    && (!filter.categoryId || mod.officialCategoryIds.includes(filter.categoryId))
+    && (!filter.localizationStatus || mod.localizationStatus === filter.localizationStatus));
   const listMissingOfficialCategories = (filter = {}) => listOfficialCategories({ ...filter, status: 'missing' });
   const getCategory = query => searchCategories(query)[0] || null;
   const getCategoryDetail = query => {
@@ -123,7 +127,16 @@ function createKnowledgeCore(options = {}) {
     return { query: String(query || '').trim(), category, entries };
   };
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
-  const expandMethodRefs = entry => (entry.methodRefs || []).map(id => data.knowledge.find(item => item.module === 'gameplay' && item.id === id)).filter(Boolean);
+  const expandMethodRefs = entry => {
+    const explicitRefs = entry.methodRefs || [];
+    const inheritedRefs = explicitRefs.length
+      ? []
+      : (entry.subject?.categoryRefs || [])
+        .flatMap(id => getCategory(id)?.defaultMethodRefs || []);
+    return [...new Set([...explicitRefs, ...inheritedRefs])]
+      .map(id => data.knowledge.find(item => item.module === 'gameplay' && item.id === id))
+      .filter(Boolean);
+  };
   const getAcquisitionDescription = entry => {
     if (entry.summary || entry.content) return entry.summary || entry.content;
     const primaryCategory = getCategory(entry.subject?.categoryRefs?.[0]);
@@ -181,6 +194,7 @@ function createKnowledgeCore(options = {}) {
     searchOfficialMods,
     listOfficialCategories,
     listMissingOfficialMods,
+    listStubOfficialMods,
     listMissingOfficialCategories,
     buildWikiContext
   };

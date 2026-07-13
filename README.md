@@ -1,5 +1,16 @@
 # Warframe Knowledge Core
 
+> [!IMPORTANT]
+> ## 上游 Mod 数据更新后必须执行
+>
+> ```powershell
+> npm run maintain
+> ```
+>
+> 该命令会依次同步全量 Mod 空壳、重建 `official.json`、校验、测试并构建。  
+> 只想检查仓库是否遗漏同步时执行 `npm run check:all`。  
+> **禁止只更新 `warframe-items` 后直接提交，否则 Mod 空壳和官方覆盖状态会过期。**
+
 面向中文玩家和开发者的可审核 Warframe 共享知识核心。目标是“一套数据、一套解析、多端复用”：QQ Bot、网页、Discord Bot 和 Agent 均可消费同一构建产物。
 
 ## 数据分层
@@ -31,9 +42,9 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 ## 维护流程
 
 1. 在 `facts/` 或 `knowledge/` 新建/修改 JSON 条目。
-2. 新增内容默认设为 `approved` 并直接进入生产构建，同时必须保留来源和维护者信息。
-3. 只有明确需要暂缓上线的内容才使用 `draft` 或 `review`。
-4. 上游 Mod 数据变化时执行 `npm run sync:official`，平时可用 `npm run check:official` 检查漂移。
+2. 人工新增内容默认设为 `approved` 并直接进入生产构建，同时必须保留来源和维护者信息。
+3. `npm run sync:mods` 生成的未补刷法 Mod 空壳固定为 `draft` + `acquisitionStatus: stub`，不会进入生产构建。
+4. 上游 Mod 数据变化时先执行 `npm run sync:mods`，再执行 `npm run sync:official`；平时可分别用 `npm run check:mods` 和 `npm run check:official` 检查漂移。
 5. 执行 `npm run validate && npm test && npm run build`。
 6. 合并 PR 后发布构建产物。
 
@@ -45,7 +56,8 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 
 覆盖状态完全由本地分类和 `knowledge/acquisition/` 自动计算：
 
-- `covered`：已关联至少一个本地分类或刷取词条。
+- `covered`：已关联至少一个具有完整刷法的本地词条。
+- `stub`：已有名称、效果和分类 JSON，但刷法尚未补完。
 - `missing`：官方已有，但本地尚未建立对应内容。
 
 维护工具或 Skill 应调用 `listMissingOfficialMods()`、`listMissingOfficialCategories()` 获取待处理项，再创建默认 `approved` 的普通分类或刷取内容。不得直接编辑 `official.json`，也不得把生成快照当成本地中文解释；无法确认的数据应显式降为 `review`。
@@ -60,7 +72,7 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 
 `我想刷电妹`、`哪里刷电妹`、`如何刷电妹`、`刷电妹`不会触发。命令路由先调用 `parseAcquisitionCommand()`，再由 `getAcquisition()` 复用与 `/买` 相同的统一名称解析器；解析得到 canonical 后，仅按 `subject.canonical` 精确关联刷取文件。刷取文件不定义 `aliases`。
 
-刷取词条需要额外提供 `module`、`subject`、`summary`、`prerequisites` 和 `methodRefs`。`subject.category` 保存基础类型，`subject.categoryRefs` 可引用多个 `categories/<id>.json` 细分类。目录只表达主要维护归档，例如所有堕落 Mod 放在 `knowledge/acquisition/mod/4kmod/`；目录不会限制分类。一张提供精准度的堕落 Mod 可同时引用 `4kmod`、`accuracy4kmod` 和通用 `accuracymod`，分别表达“堕落 Mod”“精准堕落 Mod”“精准 Mod”。这样 Exilus + Set Mod 等交叉分类也可同时表达，分类还可继续嵌套。Mod 刷取条目还必须用 `maxRank` 和 `effects` 保存官方满级效果，不能只写在描述文本中。`4kmod` 的官方依据为英文 Wiki 的 `Corrupted Mods`。分类可独立保存 `aliases`，供未来 `/分类 4k卡`、`/分类 精准卡` 等入口使用，但不会进入 `/买` 或 `/刷` 的物品名称索引。`methodRefs` 只保存 `gameplay.*` ID，调用 `getAcquisition()` 时自动展开对应玩法。
+刷取词条需要额外提供 `module`、`subject`、`prerequisites` 和 `methodRefs`。`subject.category` 保存基础类型，`subject.categoryRefs` 可引用多个 `categories/<id>.json` 细分类。目录只表达主要维护归档，例如所有堕落 Mod 放在 `knowledge/acquisition/mod/4kmod/`；目录不会限制分类。一张提供精准度的堕落 Mod 可同时引用 `4kmod`、`accuracy4kmod` 和通用 `accuracymod`，分别表达“堕落 Mod”“精准堕落 Mod”“精准 Mod”。Mod 刷取条目必须用 `maxRank` 配合结构化 `effects` 或完整 `effectDetails` 保存官方满级效果。自动生成的普通、Prime 与残缺 Mod 空壳分别归档到 `standardmod/`、`primemod/` 与 `flawedmod/`，再按装备类型分层。空壳的 `methodRefs` 允许为空；补齐刷法并审核后才能改为完整状态。分类可独立保存 `aliases`，供 `/分类` 使用，但不会进入物品名称索引。完整词条的 `methodRefs` 只保存 `gameplay.*` ID，调用 `getAcquisition()` 时自动展开对应玩法。
 
 玩法可使用严格指令 `/玩法 <玩法名称>`；若玩法定义了 `acquisitionQuery`，还可通过明确刷取命令打开，例如 `刷 4k`。具体物品可省略重复的 `summary` 和 `content`，改由第一项主分类的 `modDescription` 模板统一生成描述；模板必须包含 `{name}`，共享核心会替换为物品展示名。具体物品回复只显示生成后的来源结论和结构化效果，不展开 `prerequisites`、玩法步骤、注意事项或来源链接。`getGameplay()` 返回与刷取引用相同的 `steps` 和 `notes`，确保详细流程只维护一份。
 

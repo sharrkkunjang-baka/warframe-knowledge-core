@@ -1,5 +1,16 @@
 # 贡献指南
 
+> [!CAUTION]
+> ## 提交前不要漏掉自动维护
+>
+> 更新 `warframe-items` 或任何 Mod 分类、空壳后，必须执行：
+>
+> ```powershell
+> npm run maintain
+> ```
+>
+> 普通改动至少执行 `npm run check:all`。不要手改 `categories/official.json`。
+
 - 一个 JSON 文件可以包含同主题的多个词条，但每个 `id` 必须全仓库唯一。
 - 基础事实必须提供可靠来源；优先官方 Wiki、官方语言文件和 Digital Extremes 公告。
 - 社区经验必须明确写成经验或建议，不能伪装成官方规则。
@@ -12,9 +23,9 @@
 `categories/official.json` 是生成产物，不接受手工修改。它的数据来源和 `warframe-items` 版本由 `package-lock.json` 固定；需要更新时：
 
 1. 更新依赖并检查上游变更。
-2. 执行 `npm run sync:official` 重新生成快照。
+2. 执行 `npm run maintain`，同步 Mod 空壳并重新生成快照。
 3. 查看新增、删除、变更 Mod 以及覆盖数量。
-4. 执行 `npm run check:official && npm run validate && npm test && npm run build`。
+4. 确认命令已完成校验、测试与构建。
 
 普通 `categories/*.json` 继续保存本地语义分类。官方快照中的 `officialCategories` 表示上游可归纳的类型、适用对象和特征；`localCategories` 只是生成时记录的关联结果，不能替代普通分类文件。
 

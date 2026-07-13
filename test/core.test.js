@@ -113,13 +113,16 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.equal(narrow.entry.subject.displayName, '心志偏狭');
   assert.equal(narrow.description, '心志偏狭是火卫二 Orokin 宝库的堕落 Mod（4k Mod）其一\n输入“刷 4k”可了解刷取要求/小知识');
   assert.equal(narrow.entry.subject.category, 'mod');
-  assert.deepEqual(narrow.entry.subject.categoryRefs, ['4kmod', 'duration4kmod', 'durationmod']);
+  assert.deepEqual(narrow.entry.subject.categoryRefs.slice(0, 3), ['4kmod', 'duration4kmod', 'durationmod']);
+  assert.ok(narrow.entry.subject.categoryRefs.includes('warframemod'));
+  assert.ok(narrow.entry.subject.categoryRefs.includes('standardmod'));
   assert.equal(narrow.categories[0].canonical, 'Corrupted Mods');
   assert.equal(narrow.categories[0].parent, 'mod');
   assert.equal(narrow.categories[1].parent, '4kmod');
   assert.equal(narrow.categories[2].parent, 'mod');
   const taintedShell = reviewCore.getAcquisition('Tainted Shell');
-  assert.deepEqual(taintedShell.entry.subject.categoryRefs, ['4kmod', 'accuracy4kmod', 'accuracymod']);
+  assert.deepEqual(taintedShell.entry.subject.categoryRefs.slice(0, 3), ['4kmod', 'accuracy4kmod', 'accuracymod']);
+  assert.ok(taintedShell.entry.subject.categoryRefs.includes('shotgunmod'));
   assert.equal(taintedShell.entry.summary, undefined);
   assert.equal(taintedShell.entry.content, undefined);
   assert.equal(taintedShell.description, '污秽弹药是火卫二 Orokin 宝库的堕落 Mod（4k Mod）其一\n输入“刷 4k”可了解刷取要求/小知识');

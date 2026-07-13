@@ -13,6 +13,7 @@
     "gameVersion": { "type": "string", "minLength": 1 },
     "updatedAt": { "type": "string", "format": "date" },
     "reviewStatus": { "enum": ["draft", "review", "approved", "rejected"] },
+    "acquisitionStatus": { "enum": ["stub", "complete"] },
     "reviewedBy": { "type": "array", "items": { "type": "string" } },
     "kind": { "enum": ["fact", "knowledge"] },
     "module": { "enum": ["acquisition", "gameplay"] },
@@ -39,6 +40,17 @@
     "pvpSlot": { "type": "string", "minLength": 1 },
     "conclaveTier": { "type": "string", "minLength": 1 },
     "tradable": { "type": "boolean" },
+    "rarity": { "type": ["string", "null"] },
+    "polarity": { "type": ["string", "null"] },
+    "generator": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
     "effectDetails": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "effects": {
       "type": "array",
@@ -56,7 +68,7 @@
     },
     "summary": { "type": "string", "minLength": 1 },
     "prerequisites": { "type": "array", "items": { "type": "string", "minLength": 1 } },
-    "methodRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^gameplay\\." }, "uniqueItems": true },
+    "methodRefs": { "type": "array", "items": { "type": "string", "pattern": "^gameplay\\." }, "uniqueItems": true },
     "acquisitionQuery": { "type": "string", "minLength": 1, "description": "允许通过“刷 <值>”直接打开此玩法" },
     "steps": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "rewardGroups": {

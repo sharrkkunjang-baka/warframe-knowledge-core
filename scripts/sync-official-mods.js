@@ -66,6 +66,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const acquisitionEntries = readEntryDirectory(path.join(root, 'knowledge', 'acquisition'));
   const acquisitionsByCanonical = new Map();
   const acquisitionsByUniqueName = new Map();
+  const acquisitionById = new Map(acquisitionEntries.map(entry => [entry.id, entry]));
 
   for (const entry of acquisitionEntries) {
     const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
@@ -102,6 +103,10 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         ...(acquisitionsByUniqueName.get(item.uniqueName) || []),
         ...(acquisitionsByCanonical.get(normalize(item.name)) || [])
       ])].sort();
+      const hasCompleteEntry = localEntryIds.some(id => {
+        const entry = acquisitionById.get(id);
+        return entry && entry.acquisitionStatus !== 'stub' && entry.methodRefs?.length;
+      });
       return {
         uniqueName: item.uniqueName,
         canonical: item.name,
@@ -130,7 +135,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         officialCategoryIds,
         wiki: item.wikiaUrl ? { available: item.wikiAvailable !== false, url: item.wikiaUrl } : { available: false, url: null },
         localEntryIds,
-        status: localEntryIds.length ? 'covered' : 'missing'
+        status: hasCompleteEntry ? 'covered' : localEntryIds.length ? 'stub' : 'missing'
       };
     });
 
@@ -160,6 +165,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
     });
 
   const coveredMods = mods.filter(mod => mod.status === 'covered').length;
+  const stubMods = mods.filter(mod => mod.status === 'stub').length;
   const coveredCategories = officialCategories.filter(category => category.status === 'covered').length;
   const missingChineseNames = mods.filter(mod => mod.localizationStatus === 'missing-zh').length;
 
@@ -183,7 +189,8 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       officialCategories: officialCategories.length,
       localCategories: localCategorySnapshot.length,
       coveredMods,
-      missingMods: mods.length - coveredMods,
+      stubMods,
+      missingMods: mods.length - coveredMods - stubMods,
       coveredOfficialCategories: coveredCategories,
       missingOfficialCategories: officialCategories.length - coveredCategories,
       missingChineseNames

@@ -32,6 +32,7 @@ const manifest = {
     categories: data.categories.length,
     officialMods: data.officialCatalog.counts.mods,
     officialCategories: data.officialCatalog.counts.officialCategories,
+    stubOfficialMods: data.officialCatalog.counts.stubMods,
     missingOfficialMods: data.officialCatalog.counts.missingMods,
     missingOfficialCategories: data.officialCatalog.counts.missingOfficialCategories
   },

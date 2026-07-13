@@ -35,6 +35,7 @@ for (const category of categories) {
   }
   if (!baseCategoryIds.has(category.parent) && !categoryIds.has(category.parent)) errors.push(`${category.id}: 父分类不存在 ${category.parent}`);
   if (category.modDescription !== undefined && (typeof category.modDescription !== 'string' || !category.modDescription.includes('{name}'))) errors.push(`${category.id}: modDescription 必须是包含 {name} 的字符串`);
+  if (category.defaultMethodRefs !== undefined && (!Array.isArray(category.defaultMethodRefs) || !category.defaultMethodRefs.length || new Set(category.defaultMethodRefs).size !== category.defaultMethodRefs.length)) errors.push(`${category.id}: defaultMethodRefs 必须是非空唯一数组`);
   if (!Array.isArray(category.sources) || !category.sources.length) errors.push(`${category.id}: 分类至少需要一个来源`);
   for (const source of category.sources || []) {
     try { new URL(source.url); } catch (_) { errors.push(`${category.id}: 分类来源 URL 无效`); }
@@ -78,7 +79,9 @@ for (const entry of entries) {
       else if (!categoryReachesBase(ref)) errors.push(`${entry.id}: 细分类 ${ref} 的祖先链未归属基础分类 ${entry.subject.category}`);
     }
     if (entry.subject?.category === 'mod') {
-      if (!Number.isInteger(entry.maxRank) || !Array.isArray(entry.effects) || !entry.effects.length) errors.push(`${entry.id}: Mod 条目缺少 maxRank/effects`);
+      const hasStructuredEffects = Array.isArray(entry.effects) && entry.effects.length > 0;
+      const hasEffectDetails = Array.isArray(entry.effectDetails) && entry.effectDetails.length > 0;
+      if (!Number.isInteger(entry.maxRank) || (!hasStructuredEffects && !hasEffectDetails)) errors.push(`${entry.id}: Mod 条目缺少 maxRank 或有效效果`);
       for (const effect of entry.effects || []) {
         if (!effect.stat || !effect.displayName || typeof effect.value !== 'number' || typeof effect.unit !== 'string') errors.push(`${entry.id}: effects 字段格式错误`);
         if (invalidUserTextPattern.test(effect.displayName || '')) errors.push(`${entry.id}: effects.displayName 含未清理的标记或换行转义`);
@@ -91,7 +94,8 @@ for (const entry of entries) {
     const primaryCategory = categories.find(category => category.id === entry.subject?.categoryRefs?.[0]);
     if (!entry.summary && !entry.content && !primaryCategory?.modDescription) errors.push(`${entry.id}: acquisition 缺少自身描述，主分类也没有 modDescription`);
     if (primaryCategory?.modDescription && !primaryCategory.modDescription.includes('{name}')) errors.push(`${primaryCategory.id}: modDescription 必须包含 {name} 变量`);
-    if (!Array.isArray(entry.prerequisites) || !Array.isArray(entry.methodRefs) || !entry.methodRefs.length) errors.push(`${entry.id}: acquisition 缺少 prerequisites/methodRefs`);
+    if (!Array.isArray(entry.prerequisites) || !Array.isArray(entry.methodRefs)) errors.push(`${entry.id}: acquisition 缺少 prerequisites/methodRefs 数组`);
+    if (entry.acquisitionStatus === 'stub' && (entry.reviewStatus !== 'draft' || entry.methodRefs?.length)) errors.push(`${entry.id}: stub 必须保持 draft 且刷法为空`);
   }
   if (entry.module === 'gameplay') {
     if (entry.kind !== 'knowledge') errors.push(`${entry.id}: gameplay 必须属于 knowledge`);
@@ -122,10 +126,13 @@ for (const [alias, owners] of aliasOwners) if (owners.size > 1) errors.push(`词
 
 const gameplayIds = new Set(entries.filter(entry => entry.module === 'gameplay').map(entry => entry.id));
 const gameplayById = new Map(entries.filter(entry => entry.module === 'gameplay').map(entry => [entry.id, entry]));
+for (const category of categories) {
+  for (const ref of category.defaultMethodRefs || []) if (!gameplayIds.has(ref)) errors.push(`${category.id}: 默认玩法不存在 ${ref}`);
+}
 for (const entry of entries.filter(entry => entry.module === 'acquisition')) {
   for (const ref of entry.methodRefs || []) if (!gameplayIds.has(ref)) errors.push(`${entry.id}: 引用了不存在的玩法 ${ref}`);
   const primaryCategory = categories.find(category => category.id === entry.subject?.categoryRefs?.[0]);
-  if (primaryCategory?.modDescription?.includes('{acquisitionQuery}')) {
+  if (entry.methodRefs?.length && primaryCategory?.modDescription?.includes('{acquisitionQuery}')) {
     const methods = (entry.methodRefs || []).map(ref => gameplayById.get(ref)).filter(Boolean);
     if (!entry.acquisitionQuery && !methods.some(method => method.acquisitionQuery || method.aliases?.length)) errors.push(`${entry.id}: 分类模板需要 acquisitionQuery，但条目及玩法均未提供`);
   }
@@ -164,10 +171,13 @@ if (!officialCatalog) {
     if (!Number.isInteger(mod.maxRank) || !Array.isArray(mod.maxRankEffects) || !Array.isArray(mod.maxRankEffectsZh)) errors.push(`${mod.uniqueName}: 最高等级或满级效果格式错误`);
     for (const id of mod.officialCategoryIds || []) if (!officialCategoryKeys.has(id)) errors.push(`${mod.uniqueName}: 官方分类引用不存在 ${id}`);
     for (const id of mod.localEntryIds || []) if (!acquisitionIds.has(id)) errors.push(`${mod.uniqueName}: 本地刷取引用不存在 ${id}`);
-    if ((mod.status === 'covered') !== Boolean(mod.localEntryIds?.length)) errors.push(`${mod.uniqueName}: Mod 覆盖状态与引用不一致`);
+    if (!['covered', 'stub', 'missing'].includes(mod.status)) errors.push(`${mod.uniqueName}: Mod 覆盖状态无效`);
+    if (mod.status === 'missing' && mod.localEntryIds?.length) errors.push(`${mod.uniqueName}: missing Mod 不应包含本地引用`);
+    if (mod.status !== 'missing' && !mod.localEntryIds?.length) errors.push(`${mod.uniqueName}: 已收录 Mod 缺少本地引用`);
   }
 
   if (officialCatalog.counts?.coveredMods !== officialMods.filter(mod => mod.status === 'covered').length) errors.push('official.json: coveredMods 计数不一致');
+  if (officialCatalog.counts?.stubMods !== officialMods.filter(mod => mod.status === 'stub').length) errors.push('official.json: stubMods 计数不一致');
   if (officialCatalog.counts?.missingMods !== officialMods.filter(mod => mod.status === 'missing').length) errors.push('official.json: missingMods 计数不一致');
   if (officialCatalog.counts?.coveredOfficialCategories !== officialCategories.filter(category => category.status === 'covered').length) errors.push('official.json: coveredOfficialCategories 计数不一致');
   if (officialCatalog.counts?.missingOfficialCategories !== officialCategories.filter(category => category.status === 'missing').length) errors.push('official.json: missingOfficialCategories 计数不一致');
