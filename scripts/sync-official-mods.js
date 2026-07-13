@@ -28,6 +28,8 @@ function getTraitCategories(item) {
   const traits = [];
   const isCorrupted = (item.drops || []).some(drop =>
     drop.location === 'Derelict Vault' && drop.type === item.name);
+  const isNightmare = (item.drops || []).some(drop =>
+    /^Nightmare Mode Rewards/.test(drop.location) && drop.type === item.name);
   if (item.isPrime) traits.push(['trait.prime', 'Prime Mods']);
   if (item.isAugment) traits.push(['trait.augment', 'Augment Mods']);
   if (item.isExilus) traits.push(['trait.exilus', 'Exilus Mods']);
@@ -38,6 +40,7 @@ function getTraitCategories(item) {
   if (item.type === 'Stance Mod') traits.push(['trait.stance', 'Stance Mods']);
   if (item.type === 'Posture Mod') traits.push(['trait.posture', 'Posture Mods']);
   if (isCorrupted) traits.push(['trait.corrupted', 'Corrupted Mods']);
+  if (isNightmare) traits.push(['trait.nightmare', 'Nightmare Mode Mods']);
   return traits;
 }
 

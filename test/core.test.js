@@ -166,6 +166,22 @@ test('4k Mod 与本地分类和刷取条目建立覆盖关联', () => {
   assert.equal(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }).some(mod => mod.uniqueName === narrow.uniqueName), false);
 });
 
+test('噩梦 Mod 完整关联分类、玩法与官方目录', () => {
+  const detail = core.getCategoryDetail('噩梦卡');
+  assert.equal(detail.category.id, 'nightmaremod');
+  assert.equal(detail.entries.length, 19);
+  const blaze = core.getAcquisition('Blaze', {
+    resolveOptions: { candidates: [{ alias: 'Blaze', canonical: 'Blaze', category: 'official' }] }
+  });
+  assert.deepEqual(blaze.entry.effects.map(effect => effect.value), [60, 60]);
+  assert.equal(blaze.methods[0].id, 'gameplay.nightmare-mode');
+  assert.equal(core.getGameplay('噩梦').entry.id, 'gameplay.nightmare-mode');
+  const official = core.listOfficialCategories().find(category => category.id === 'trait.nightmare');
+  assert.equal(official.count, 19);
+  assert.deepEqual(official.localCategoryIds, ['nightmaremod']);
+  assert.equal(official.status, 'covered');
+});
+
 test('官方目录加载为只读对象', () => {
   assert.equal(Object.isFrozen(core.officialCatalog), true);
   assert.equal(Object.isFrozen(core.officialCatalog.mods), true);
