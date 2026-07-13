@@ -94,7 +94,7 @@ test('official-generated indexes resolve new Prime variants and quest series', (
   assert.notEqual(prime, acquisition.resolveWarframe('水妹'));
   const renderedPrime = acquisition.renderAcquisition({
     frame: prime,
-    prime: acquisition.getPrimeRelics(prime, null, require('../cache/warframe-export-rewards.json')),
+    prime: acquisition.getPrimeRelics(prime, null, {}),
     materials: { available: false }
   });
   assert.match(renderedPrime, /总图：.*前纪 D8（银）/);
