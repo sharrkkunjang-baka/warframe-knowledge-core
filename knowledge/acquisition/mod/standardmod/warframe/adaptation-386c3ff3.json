@@ -3,7 +3,7 @@
     "id": "knowledge.acquisition.mod.adaptation-386c3ff3",
     "kind": "knowledge",
     "module": "acquisition",
-    "title": "适应",
+    "title": "适应获取方式",
     "subject": {
       "canonical": "Adaptation",
       "displayName": "适应",
@@ -21,7 +21,9 @@
     "rarity": "Rare",
     "polarity": "vazarin",
     "tradable": true,
-    "prerequisites": [],
+    "prerequisites": [
+      "解锁仲裁（完成冥王星至阋神星接合点任务要求）"
+    ],
     "tips": [],
     "tipKeywords": [
       "本质机制",
@@ -30,24 +32,43 @@
       "与同类效果的叠加方式",
       "适用限制"
     ],
-    "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "methodRefs": [
+      "gameplay.arbitrations"
+    ],
+    "summary": "适应在仲裁任务进行中从敌人身上随机掉落，类似艾亚坦雕塑的掉落方式，无法从仲裁荣誉商店购买。",
+    "content": "适应只能通过仲裁任务（任意节点）进行中直接从敌人掉落获得，掉落方式类似艾亚坦雕塑——任务进行中随机出现在场地上。该 Mod 不在仲裁荣誉商店出售，只能靠刷仲裁任务积累。由于仲裁是精英模式（无法使用复活），建议配置具备一定生存能力的阵容。",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Adaptation",
         "label": "Warframe Wiki - Adaptation"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Arbitrations",
+        "label": "Warframe Wiki - Arbitrations"
+      },
+      {
+        "url": "https://www.reddit.com/r/Warframe/comments/j9t523/where_do_i_get_rolling_guard_and_adaptation",
+        "label": "Reddit - Rolling Guard and Adaptation acquisition"
+      },
+      {
+        "url": "https://www.reddit.com/r/Warframe/comments/1i5po2d/how_do_i_get_the_adaptation_warframe_mod",
+        "label": "Reddit - Adaptation drop location confirmed"
       }
     ],
-    "gameVersion": "warframe-items@1.1269.87",
+    "gameVersion": "current",
     "updatedAt": "2026-07-13",
     "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewedBy": [
+      "wf-knowledge-expander"
+    ],
     "tags": [
       "acquisition",
       "mod",
       "standard-mod",
-      "warframe-mod"
+      "warframe-mod",
+      "arbitrations"
     ],
+    "acquisitionStatus": "complete",
     "generator": {
       "name": "sync-mods",
       "version": 1
