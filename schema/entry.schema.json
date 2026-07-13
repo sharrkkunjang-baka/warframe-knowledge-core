@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sharrkkunjang-baka/warframe-knowledge-core/schema/entry.schema.json",
+  "title": "Warframe knowledge entry",
+  "type": "object",
+  "required": ["id", "title", "aliases", "content", "sources", "gameVersion", "updatedAt", "reviewStatus", "reviewedBy"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$" },
+    "title": { "type": "string", "minLength": 1 },
+    "aliases": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "content": { "type": "string", "minLength": 1 },
+    "sources": { "type": "array", "items": { "type": "object", "required": ["url", "label"], "properties": { "url": { "type": "string", "format": "uri" }, "label": { "type": "string" } } },
+    "gameVersion": { "type": "string", "minLength": 1 },
+    "updatedAt": { "type": "string", "format": "date" },
+    "reviewStatus": { "enum": ["draft", "review", "approved", "rejected"] },
+    "reviewedBy": { "type": "array", "items": { "type": "string" } },
+    "kind": { "enum": ["fact", "knowledge"] },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

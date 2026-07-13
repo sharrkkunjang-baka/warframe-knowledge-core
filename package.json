@@ -1,0 +1,18 @@
+{
+  "name": "warframe-knowledge-core",
+  "version": "0.1.0",
+  "description": "可审核、可复用的 Warframe 中文事实与社区知识核心",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "files": ["src", "facts", "knowledge", "schema", "dist"],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "validate": "node scripts/validate.js",
+    "test": "node --test",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": ["warframe", "knowledge-base", "zh-cn"],
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "dependencies": { "pinyin-pro": "^3.28.1" }
+}
