@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/warframe-knowledge-core/official.schema.json",
+  "title": "Warframe Official Mod Catalog",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "source",
+    "counts",
+    "officialCategories",
+    "localCategories",
+    "mods"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "required": ["package", "version", "repository", "upstream"],
+      "additionalProperties": false,
+      "properties": {
+        "package": { "const": "warframe-items" },
+        "version": { "type": "string", "minLength": 1 },
+        "repository": { "type": "string", "format": "uri" },
+        "upstream": { "type": "string", "minLength": 1 }
+      }
+    },
+    "counts": {
+      "type": "object"
+    },
+    "officialCategories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "dimension", "canonical", "count", "localCategoryIds", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "dimension": { "enum": ["type", "compatibility", "trait"] },
+          "canonical": { "type": "string" },
+          "count": { "type": "integer", "minimum": 1 },
+          "localCategoryIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "status": { "enum": ["covered", "missing"] }
+        }
+      }
+    },
+    "localCategories": {
+      "type": "array"
+    },
+    "mods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "uniqueName",
+          "canonical",
+          "displayName",
+          "localizationStatus",
+          "type",
+          "maxRank",
+          "maxRankEffects",
+          "maxRankEffectsZh",
+          "officialCategoryIds",
+          "localEntryIds",
+          "status"
+        ],
+        "properties": {
+          "uniqueName": { "type": "string", "minLength": 1 },
+          "canonical": { "type": "string", "minLength": 1 },
+          "displayName": { "type": "string", "minLength": 1 },
+          "localizationStatus": { "enum": ["official-zh", "missing-zh"] },
+          "maxRank": { "type": "integer", "minimum": 0 },
+          "maxRankEffects": { "type": "array", "items": { "type": "string" } },
+          "maxRankEffectsZh": { "type": "array", "items": { "type": "string" } },
+          "officialCategoryIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "localEntryIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "status": { "enum": ["covered", "missing"] }
+        }
+      }
+    }
+  }
+}
