@@ -123,8 +123,8 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.equal(reviewCore.getAcquisition('氩晶获取'), null);
 });
 
-test('生产核心不加载尚未人工批准的刷取样本', () => {
-  assert.equal(core.getAcquisition('电妹'), null);
+test('默认批准的刷取知识直接进入生产核心', () => {
+  assert.equal(core.getAcquisition('电妹').entry.id, 'knowledge.acquisition.gyre');
 });
 
 test('官方 Mod 快照包含完整且唯一的 1733 条记录', () => {

@@ -29,8 +29,8 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 ## 维护流程
 
 1. 在 `facts/` 或 `knowledge/` 新建/修改 JSON 条目。
-2. Agent 或人工均可提交草稿，但必须保留来源并设为 `draft` 或 `review`。
-3. 人工确认准确后改为 `approved`，并填写 `reviewedBy`。
+2. 新增内容默认设为 `approved` 并直接进入生产构建，同时必须保留来源和维护者信息。
+3. 只有明确需要暂缓上线的内容才使用 `draft` 或 `review`。
 4. 上游 Mod 数据变化时执行 `npm run sync:official`，平时可用 `npm run check:official` 检查漂移。
 5. 执行 `npm run validate && npm test && npm run build`。
 6. 合并 PR 后发布构建产物。
@@ -46,7 +46,7 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 - `covered`：已关联至少一个本地分类或刷取词条。
 - `missing`：官方已有，但本地尚未建立对应内容。
 
-维护工具或 Skill 应调用 `listMissingOfficialMods()`、`listMissingOfficialCategories()` 获取待处理项，再创建普通分类或 `review` 刷取草稿。不得直接编辑 `official.json`，不得自动批准内容，也不得把生成快照当成本地中文解释。
+维护工具或 Skill 应调用 `listMissingOfficialMods()`、`listMissingOfficialCategories()` 获取待处理项，再创建默认 `approved` 的普通分类或刷取内容。不得直接编辑 `official.json`，也不得把生成快照当成本地中文解释；无法确认的数据应显式降为 `review`。
 
 ## 刷取模块
 

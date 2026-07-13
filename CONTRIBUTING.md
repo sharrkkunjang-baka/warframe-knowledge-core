@@ -4,7 +4,7 @@
 - 基础事实必须提供可靠来源；优先官方 Wiki、官方语言文件和 Digital Extremes 公告。
 - 社区经验必须明确写成经验或建议，不能伪装成官方规则。
 - 不得提交 API 密钥、QQ/游戏账号绑定、用户日志、代理、运行缓存或实时价格快照。
-- Agent 可以整理和生成草稿，但不能自行将 `reviewStatus` 设置为 `approved`。
+- 新增知识默认使用 `reviewStatus: "approved"` 并进入生产构建；只有来源或结论尚不能确认时才使用 `review`。
 - 修改别名时需补充回归测试，歧义别名宁可返回多个候选，不强行命中。
 
 ## 维护官方 Mod 快照
@@ -18,7 +18,7 @@
 
 普通 `categories/*.json` 继续保存本地语义分类。官方快照中的 `officialCategories` 表示上游可归纳的类型、适用对象和特征；`localCategories` 只是生成时记录的关联结果，不能替代普通分类文件。
 
-未来维护 Skill 只能通过 `listMissingOfficialMods()` 和 `listMissingOfficialCategories()` 读取待办，并在普通目录创建草稿。Skill 不得修改生成快照、删除现有人工内容、伪造官方中文名或把新条目直接设为 `approved`。
+未来维护 Skill 只能通过 `listMissingOfficialMods()` 和 `listMissingOfficialCategories()` 读取待办，并在普通目录创建默认批准的内容。Skill 不得修改生成快照、删除现有人工内容或伪造官方中文名；遇到缺失来源、名称冲突或无法确认的结论时必须改用 `review`。
 
 ## 提交刷取攻略
 

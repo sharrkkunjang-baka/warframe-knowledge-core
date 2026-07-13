@@ -30,4 +30,4 @@
 20. `covered` 只表示存在本地分类或刷取词条，不代表内容已批准、准确或完整；对应本地内容仍需按正常规则人工审核。
 21. 同步差异中的新增、删除和变更符合上游版本变化，`npm run check:official`、校验、测试和构建全部通过。
 
-确认后将 `reviewStatus` 设为 `approved` 并在 `reviewedBy` 中写入审核者 GitHub ID。构建器和生产核心只加载已审核条目；`review` 样本仅供测试和人工审阅。
+新增内容默认将 `reviewStatus` 设为 `approved`，并在 `reviewedBy` 中记录维护者 GitHub ID。只有明确标记为 `draft` 或 `review` 的条目不会进入生产核心；这两个状态用于暂缓上线存在疑问的内容。
