@@ -4,6 +4,8 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'));
 const WARFRAMES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Warframes.json'));
+const QUESTS = require(path.join(ITEMS_ROOT, 'data', 'json', 'Quests.json'));
+const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
 
 const root = path.join(__dirname, '..');
 const generated = path.join(root, 'generated');
@@ -12,7 +14,9 @@ const check = process.argv.includes('--check');
 const sources = {
   warframes: 'https://browse.wf/warframe-public-export-plus/ExportWarframes.json',
   recipes: 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json',
-  rewards: 'https://browse.wf/warframe-public-export-plus/ExportRewards.json'
+  rewards: 'https://browse.wf/warframe-public-export-plus/ExportRewards.json',
+  relics: 'https://browse.wf/warframe-public-export-plus/ExportRelics.json',
+  quests: 'https://browse.wf/warframe-public-export-plus/ExportKeys.json'
 };
 const overrides = { '/Lotus/Powersuits/Sentient/CalibanPrime': 'Caliban Prime' };
 function inferName(uniqueName) {
@@ -25,7 +29,7 @@ async function fetchJson(url) {
   return response.json();
 }
 (async () => {
-  const [warframes, recipes, rewards] = await Promise.all(Object.values(sources).map(fetchJson));
+  const [warframes, recipes, rewards, relics, officialQuests] = await Promise.all(Object.values(sources).map(fetchJson));
   const packageByUniqueName = new Map(WARFRAMES.map(frame => [frame.uniqueName, frame]));
   const frames = Object.entries(warframes)
     .filter(([, frame]) => frame.productCategory === 'Suits')
@@ -34,9 +38,61 @@ async function fetchJson(url) {
       name: packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName),
       isPrime: frame.variantType === 'VT_PRIME',
       productCategory: frame.productCategory,
-      introducedAt: frame.introducedAt || null
+      introducedAt: frame.introducedAt || null,
+      components: ['Blueprint', 'Neuroptics', 'Chassis', 'Systems'].map(part => ({
+        part,
+        uniqueName: `/Lotus/Types/Recipes/WarframeRecipes/${(packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName)).replace(/\s+/g, '')}${part === 'Blueprint' ? '' : part === 'Neuroptics' ? 'Helmet' : part}${part === 'Blueprint' ? 'Blueprint' : 'Component'}`
+      }))
     }))
     .sort((a, b) => a.name.localeCompare(b.name, 'en'));
+  const questCatalog = QUESTS.map(quest => ({
+    uniqueName: quest.uniqueName,
+    name: quest.name,
+    zhName: I18N[quest.uniqueName]?.zh?.name || null,
+    officialExportPresent: Object.prototype.hasOwnProperty.call(officialQuests, quest.uniqueName)
+  })).sort((a, b) => a.name.localeCompare(b.name, 'en'));
+  const questByEnglish = Object.fromEntries(questCatalog.filter(quest => quest.zhName).map(quest => [quest.name, quest.zhName]));
+  const frameQuestSeries = {};
+  for (const frame of WARFRAMES.filter(frame => !frame.isPrime)) {
+    for (const component of frame.components || []) {
+      const part = component.name === 'Blueprint' ? 'Blueprint' : component.name === 'Neuroptics' ? 'Neuroptics' : component.name === 'Chassis' ? 'Chassis' : component.name === 'Systems' ? 'Systems' : null;
+      if (!part) continue;
+      const simaris = (component.drops || []).map(drop => String(drop.location || '').match(/^Cephalon Simaris,\s*Complete\s+(.+)$/i)).find(Boolean);
+      if (!simaris) continue;
+      frameQuestSeries[frame.name] ||= { quest: simaris[1], parts: {} };
+      frameQuestSeries[frame.name].parts[part] = { type: 'quest-first-completion-simaris-repurchase', quest: simaris[1] };
+    }
+  }
+  frameQuestSeries.Yareli = {
+    quest: 'The Waverider',
+    parts: {
+      Blueprint: { type: 'quest-first-completion-simaris-repurchase', quest: 'The Waverider' },
+      Neuroptics: { type: 'dojo-research', room: 'Ventkids Bash Lab' },
+      Chassis: { type: 'dojo-research', room: 'Ventkids Bash Lab' },
+      Systems: { type: 'dojo-research', room: 'Ventkids Bash Lab' }
+    }
+  };
+  const primeRelics = {};
+  const partBySuffix = { Blueprint: 'Blueprint', HelmetBlueprint: 'Neuroptics', ChassisBlueprint: 'Chassis', SystemsBlueprint: 'Systems' };
+  for (const frame of frames.filter(frame => frame.isPrime)) {
+    const compact = frame.name.replace(/\s+/g, '');
+    const byPart = Object.fromEntries(Object.values(partBySuffix).map(part => [part, []]));
+    for (const [relicPath, relic] of Object.entries(relics)) {
+      if (!/VPQ_BRONZE$/.test(relic.quality || '')) continue;
+      const rewardGroups = rewards[relic.rewardManifest] || [];
+      for (const reward of rewardGroups.flat()) {
+        const match = String(reward.type || '').match(new RegExp(`/WarframeRecipes/${compact}(Blueprint|HelmetBlueprint|ChassisBlueprint|SystemsBlueprint)$`, 'i'));
+        if (!match) continue;
+        byPart[partBySuffix[match[1]]].push({
+          name: `${relic.era} ${relic.category}`,
+          uniqueName: relicPath,
+          rarity: String(reward.rarity || '').replace(/^./, char => char.toUpperCase()).toLowerCase().replace(/^./, char => char.toUpperCase())
+        });
+      }
+    }
+    primeRelics[frame.name] = byPart;
+  }
+
   const output = {
     schemaVersion: 1,
     source: sources.warframes,
@@ -60,6 +116,9 @@ async function fetchJson(url) {
   fs.writeFileSync(target, text);
   fs.writeFileSync(path.join(cache, 'warframe-export-recipes.json'), JSON.stringify(recipes));
   fs.writeFileSync(path.join(cache, 'warframe-export-rewards.json'), JSON.stringify(rewards));
-  fs.writeFileSync(path.join(generated, 'official-frame-sources.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, sources, sha256: { warframes: crypto.createHash('sha256').update(JSON.stringify(warframes)).digest('hex'), recipes: crypto.createHash('sha256').update(JSON.stringify(recipes)).digest('hex'), rewards: crypto.createHash('sha256').update(JSON.stringify(rewards)).digest('hex') } }, null, 2)}\n`);
+  fs.writeFileSync(path.join(generated, 'official-quests.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, count: questCatalog.length, quests: questCatalog, byEnglish: questByEnglish }, null, 2)}\n`);
+  fs.writeFileSync(path.join(generated, 'official-frame-quest-series.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: frameQuestSeries }, null, 2)}\n`);
+  fs.writeFileSync(path.join(generated, 'official-prime-relics.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: primeRelics }, null, 2)}\n`);
+  fs.writeFileSync(path.join(generated, 'official-frame-sources.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, sources, sha256: { warframes: crypto.createHash('sha256').update(JSON.stringify(warframes)).digest('hex'), recipes: crypto.createHash('sha256').update(JSON.stringify(recipes)).digest('hex'), rewards: crypto.createHash('sha256').update(JSON.stringify(rewards)).digest('hex'), relics: crypto.createHash('sha256').update(JSON.stringify(relics)).digest('hex'), quests: crypto.createHash('sha256').update(JSON.stringify(officialQuests)).digest('hex') } }, null, 2)}\n`);
   console.log(`已同步 ${frames.length} 个官方战甲；第三方包缺少：${output.packageMissing.join('、') || '无'}`);
 })().catch(error => { console.error(error.stack || error); process.exit(1); });

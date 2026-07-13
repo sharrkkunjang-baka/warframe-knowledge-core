@@ -9,6 +9,10 @@ const WARFRAMES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Warframes.json'
 const RELICS = require(path.join(ITEMS_ROOT, 'data', 'json', 'Relics.json'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
 const ALIASES = require(path.join(CORE_ROOT, 'facts', 'aliases.json'));
+const OFFICIAL_FRAMES = require(path.join(CORE_ROOT, 'generated', 'official-warframes.json'));
+const OFFICIAL_QUESTS = require(path.join(CORE_ROOT, 'generated', 'official-quests.json'));
+const OFFICIAL_PRIME_RELICS = require(path.join(CORE_ROOT, 'generated', 'official-prime-relics.json'));
+const OFFICIAL_FRAME_QUEST_SERIES = require(path.join(CORE_ROOT, 'generated', 'official-frame-quest-series.json'));
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -98,25 +102,12 @@ const FRAME_SOURCE_OVERRIDES = Object.freeze({
   }
 });
 
-const QUEST_SOURCE_ZH = Object.freeze({
-  'The Jordas Precept': 'Jordas 枢律',
-  'The New Strange': '新疑谜团',
-  "Saya's Vigil": '萨娅的守夜',
-  'Vox Solaris (Quest)': '索拉里斯之声',
-  'Vox Solaris': '索拉里斯之声',
-  'The Glast Gambit': 'Glast 的千钧一策',
-  'Mask of the Revenant': 'Revenant 的面具',
-  'Heart of Deimos': '惊惧之心',
-  'The Limbo Theorem': 'Limbo 定理',
-  'Hidden Messages': '被隐藏的信息',
-  'The Silver Grove': '落银树庭',
-  'Sands of Inaros': 'Inaros 之沙',
-  "Octavia's Anthem": 'Octavia 的赞歌',
-  'Chains of Harrow': 'Harrow 的枷锁',
-  'The Deadlock Protocol': '僵局协议',
-  'Call of the Tempestarii': '风暴的呼唤',
-  'The Waverider': '驭浪者'
-});
+const QUEST_SOURCE_ZH = Object.freeze(OFFICIAL_QUESTS.byEnglish || {});
+function localizeQuestName(name) {
+  const raw = String(name || '').trim();
+  const withoutQualifier = raw.replace(/\s*\(Quest\)$/i, '');
+  return QUEST_SOURCE_ZH[raw] || QUEST_SOURCE_ZH[withoutQualifier] || translateLocation(withoutQualifier);
+}
 
 const FRAME_ACQUISITION_NOTES = Object.freeze({
   Caliban: '合一众赏金在完成《新纪之战》后开放，每 150 分钟更换一批奖励，部件按“系统 → 机体 → 头 → 重复”轮换。希图斯白天找孔祝接取；希图斯夜晚则去福尔图娜找尤迪科。接任务前先看奖励预览，出现缺少的部件再刷。'
@@ -152,7 +143,11 @@ for (const frame of WARFRAMES) {
   }
 }
 
-const ALL_WARFRAMES = [...WARFRAMES, CALIBAN_PRIME];
+const PACKAGE_FRAME_NAMES = new Set(WARFRAMES.map(frame => frame.name));
+const GENERATED_WARFRAMES = (OFFICIAL_FRAMES.frames || [])
+  .filter(frame => !PACKAGE_FRAME_NAMES.has(frame.name) && frame.name !== CALIBAN_PRIME.name)
+  .map(frame => ({ ...frame, type: 'Warframe', components: (frame.components || []).map(component => ({ ...component, name: component.part, drops: [] })) }));
+const ALL_WARFRAMES = [...WARFRAMES.filter(frame => frame.name !== CALIBAN_PRIME.name), CALIBAN_PRIME, ...GENERATED_WARFRAMES];
 const FRAME_INDEX = new Map();
 const FRAME_ALIASES = [];
 function addFrameAlias(key, frame) {
@@ -167,9 +162,10 @@ for (const frame of ALL_WARFRAMES) {
 }
 for (const [baseName, names] of Object.entries(ALIASES.frames || {})) {
   const corrected = baseName === 'Sirus & Orion' ? SIRIUS_ORION : ALL_WARFRAMES.find(frame => frame.name === baseName);
+  if (!corrected) continue;
   for (const alias of names || []) addFrameAlias(alias, corrected);
 }
-for (const base of WARFRAMES.filter(frame => !frame.isPrime)) {
+for (const base of ALL_WARFRAMES.filter(frame => !frame.isPrime && !frame.override)) {
   const prime = ALL_WARFRAMES.find(frame => frame.name === `${base.name} Prime`);
   if (!prime) continue;
   const baseAliases = [...FRAME_ALIASES].filter(alias => alias.frame === base).map(alias => alias.text);
@@ -266,7 +262,7 @@ function dropSourceLabel(drop) {
   const bounty = bountySourceLabel(raw);
   if (bounty) return bounty;
   const simaris = raw.match(/^Cephalon Simaris,\s*Complete\s+(.+)$/i);
-  if (simaris) return `在中枢 Simaris 处购买；首次完成《${QUEST_SOURCE_ZH[simaris[1]] || translateLocation(simaris[1])}》获得`;
+  if (simaris) return `首次完成《${localizeQuestName(simaris[1])}》获得该蓝图；之后可在中枢 Simaris 处回购`;
   return translateLocation(raw);
 }
 function formatDropSource(drop) {
@@ -397,11 +393,20 @@ function getPrimeRelics(frameOrName, varziaManifest, missionRewards) {
     const byPart = Object.fromEntries(PARTS.map(part => [part, (frame.relics[part] || []).map(relic => ({ ...relic, part }))]));
     return { status: '当前出库', relics: Object.values(byPart).flat(), byPart, realtimeAvailable: true, rotationAvailable: true };
   }
-  const expected = new Map(PARTS.map(part => [part, `${frame.name}${part === 'Blueprint' ? '' : ` ${part}`} Blueprint`]));
-  const all = [];
-  for (const relic of RELICS.filter(item => / Intact$/i.test(item.name))) {
-    for (const reward of relic.rewards || []) for (const [part, itemName] of expected) {
-      if (reward.item?.name === itemName) all.push({ part, name: relicBaseName(relic.name), uniqueName: relic.uniqueName, vaulted: Boolean(relic.vaulted), chance: reward.chance, rarity: reward.rarity });
+  const generatedByPart = OFFICIAL_PRIME_RELICS.frames?.[frame.name];
+  let all;
+  if (generatedByPart) {
+    all = PARTS.flatMap(part => (generatedByPart[part] || []).map(relic => {
+      const packaged = RELICS.find(item => normalizeRelicPath(item.uniqueName) === normalizeRelicPath(relic.uniqueName));
+      return { ...relic, part, vaulted: Boolean(packaged?.vaulted) };
+    }));
+  } else {
+    const expected = new Map(PARTS.map(part => [part, `${frame.name}${part === 'Blueprint' ? '' : ` ${part}`} Blueprint`]));
+    all = [];
+    for (const relic of RELICS.filter(item => / Intact$/i.test(item.name))) {
+      for (const reward of relic.rewards || []) for (const [part, itemName] of expected) {
+        if (reward.item?.name === itemName) all.push({ part, name: relicBaseName(relic.name), uniqueName: relic.uniqueName, vaulted: Boolean(relic.vaulted), chance: reward.chance, rarity: reward.rarity });
+      }
     }
   }
   const activePaths = activeRelicPaths(missionRewards);
@@ -420,7 +425,7 @@ function getPrimeRelics(frameOrName, varziaManifest, missionRewards) {
 function getFrameAbilities(frameOrName) {
   const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
   if (!frame || frame.override) return [];
-  const abilityFrame = frame.isPrime ? (WARFRAMES.find(item => item.name === frame.name.replace(/ Prime$/, '')) || frame) : frame;
+  const abilityFrame = frame.isPrime ? (ALL_WARFRAMES.find(item => item.name === frame.name.replace(/ Prime$/, '')) || frame) : frame;
   const localizedAbilities = I18N[abilityFrame.uniqueName]?.zh?.abilities || [];
   return (abilityFrame.abilities || []).map((ability, index) => {
     const localized = localizedAbilities.find(item => item.abilityUniqueName === ability.uniqueName) || localizedAbilities[index] || {};
@@ -436,7 +441,7 @@ function resolveWarframeAbilityQuery(input) {
   let rest = raw;
   const escaped = alias.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   rest = rest.replace(new RegExp(`^\\s*${escaped}\\s*`, 'i'), '').trim();
-  const abilityFrame = alias.frame.isPrime ? (WARFRAMES.find(frame => frame.name === alias.frame.name.replace(/ Prime$/, '')) || alias.frame) : alias.frame;
+  const abilityFrame = alias.frame.isPrime ? (ALL_WARFRAMES.find(frame => frame.name === alias.frame.name.replace(/ Prime$/, '')) || alias.frame) : alias.frame;
   const abilities = getFrameAbilities(alias.frame);
   let selected = null;
   const number = rest.match(/^([1-4])(?:\s+|$)/);
@@ -483,7 +488,21 @@ async function loadMissionRewards(options = {}) {
   if (options.rewards) return options.rewards;
   return loadExport(options, REWARDS_URL, DEFAULT_REWARDS_CACHE, 'ExportRewards');
 }
+function renderSeriesPartSource(frame, part) {
+  const series = OFFICIAL_FRAME_QUEST_SERIES.frames?.[frame.name];
+  const relation = series?.parts?.[part];
+  if (!relation) return null;
+  if (relation.type === 'quest-first-completion-simaris-repurchase') {
+    return `首次完成《${localizeQuestName(relation.quest || series.quest)}》获得该蓝图；之后可在中枢 Simaris 处回购`;
+  }
+  if (relation.type === 'dojo-research' && relation.room === 'Ventkids Bash Lab') {
+    return '在氏族道场的通风小子实验室完成研究后复制该部件蓝图';
+  }
+  return null;
+}
 function componentSourceText(frame, part, drops) {
+  const seriesSource = renderSeriesPartSource(frame, part);
+  if (seriesSource) return seriesSource;
   const override = FRAME_SOURCE_OVERRIDES[frame.name];
   const audited = override?.[part] || override?.all;
   if (audited) return audited;
@@ -525,7 +544,7 @@ function renderAcquisition(data) {
 }
 
 module.exports = {
-  RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
+  RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
-  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, componentSourceText, translateLocation, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier
+  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier
 };

@@ -72,10 +72,10 @@ test('bounty frames show vendor and tier without stage probabilities or backend 
 
 test('Chroma sources split Simaris purchase from one-time quest rewards', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Chroma'), materials: { available: false } });
-  assert.match(rendered, /总图：在中枢 Simaris 处购买；首次完成《新疑谜团》获得/);
-  assert.match(rendered, /头：在中枢 Simaris 处购买；首次完成《天王星接合点》获得/);
-  assert.match(rendered, /机体：在中枢 Simaris 处购买；首次完成《海王星接合点》获得/);
-  assert.match(rendered, /系统：在中枢 Simaris 处购买；首次完成《冥王星接合点》获得/);
+  assert.match(rendered, /总图：首次完成《新疑谜团》获得该蓝图；之后可在中枢 Simaris 处回购/);
+  assert.match(rendered, /头：首次完成《天王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
+  assert.match(rendered, /机体：首次完成《海王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
+  assert.match(rendered, /系统：首次完成《冥王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
   assert.doesNotMatch(rendered, /100%|Complete|Junction/);
 });
 
@@ -85,6 +85,25 @@ test('quest acquisition uses official Chinese names', () => {
   const nidus = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Nidus'), materials: { available: false } });
   assert.match(nidus, /《Glast 的千钧一策》/);
   assert.doesNotMatch(`${gara}\n${nidus}`, /Saya|Glast Gambit|沙娅|千篇一律/);
+});
+
+test('official-generated indexes resolve new Prime variants and quest series', () => {
+  const prime = acquisition.resolveWarframe('水妹p');
+  assert.equal(prime?.name, 'Yareli Prime');
+  assert.equal(prime?.isPrime, true);
+  assert.notEqual(prime, acquisition.resolveWarframe('水妹'));
+  const renderedPrime = acquisition.renderAcquisition({
+    frame: prime,
+    prime: acquisition.getPrimeRelics(prime, null, require('../cache/warframe-export-rewards.json')),
+    materials: { available: false }
+  });
+  assert.match(renderedPrime, /总图：前纪 D8（银）/);
+  assert.match(renderedPrime, /头：后纪 Y3（金）/);
+
+  const yareli = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('水妹'), materials: { available: false } });
+  assert.match(yareli, /总图：首次完成《驭浪者》获得该蓝图；之后可在中枢 Simaris 处回购/);
+  assert.match(yareli, /头：在氏族道场的通风小子实验室完成研究后复制该部件蓝图/);
+  assert.doesNotMatch(yareli, /The Waverider|官方结构化数据缺少/);
 });
 
 test('fixed-system frames never render empty drop placeholders', () => {
