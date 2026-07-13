@@ -10,6 +10,11 @@ const entries = [...readEntryDirectory(path.join(root, 'facts')), ...readEntryDi
 const categories = readCategoryDirectory(path.join(root, 'categories'));
 const officialPath = path.join(root, 'categories', 'official.json');
 const officialCatalog = fs.existsSync(officialPath) ? JSON.parse(fs.readFileSync(officialPath, 'utf8')) : null;
+const officialItemsPath = path.join(root, 'generated', 'official-items.json');
+const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
+const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
+const entityNames = ['locations', 'vendors', 'currencies'];
+const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(root, 'entities', `${name}.json`), 'utf8'))]));
 const required = ['id', 'title', 'sources', 'gameVersion', 'updatedAt', 'reviewStatus', 'reviewedBy'];
 const ids = new Set();
 const errors = [];
@@ -189,8 +194,54 @@ if (!officialCatalog) {
   if (serialize(regenerated) !== serialize(officialCatalog)) errors.push('official.json: 与当前数据源或本地覆盖状态不一致，请运行 npm run sync:official');
 }
 
+if (!officialItems) errors.push('generated/official-items.json: 统一物品目录不存在');
+else {
+  const uniqueNames = new Set();
+  if (officialItems.schemaVersion !== 1 || officialItems.counts?.items !== officialItems.items?.length) errors.push('official-items.json: schemaVersion 或计数无效');
+  if (officialItems.counts?.input !== officialItems.counts?.items + officialItems.counts?.excluded || !officialItems.counts?.excludedByReason) errors.push('official-items.json: 输入/纳入/排除计数无效');
+  for (const item of officialItems.items || []) {
+    if (!item.uniqueName?.startsWith('/Lotus/') || uniqueNames.has(item.uniqueName)) errors.push(`official-items.json: uniqueName 无效或重复 ${item.uniqueName}`);
+    uniqueNames.add(item.uniqueName);
+    if (!item.canonical || !item.displayName || !Array.isArray(item.semanticKinds) || !Array.isArray(item.drops) || !Array.isArray(item.recipes) || !Array.isArray(item.recipeVariants)) errors.push(`${item.uniqueName}: 统一物品字段不完整`);
+  }
+  const forbiddenCatalogObjects = [
+    ['Captura/场景', item => item.semanticKinds?.includes('captura') || /Photobooth|PhotoBooth|\bScene\b/i.test(`${item.uniqueName} ${item.canonical}`)],
+    ['显赫武器', item => /\/Powersuits\/.*(?:Weapon|Sword|Pistols|Claws|Melee|Bow)/i.test(item.uniqueName)],
+    ['飞船或组件', item => /\/(?:Items\/Ships|Ship\/|Game\/CrewShip\/Ships)\//i.test(item.uniqueName)],
+    ['Fusion/Reward Bundle', item => /FusionBundles?|RewardBundles?/i.test(`${item.uniqueName} ${item.canonical}`)],
+    ['StoreItems 镜像', item => /\/StoreItems\//i.test(item.uniqueName)],
+    ['内部占位名', item => /^(?:Arcane|Photoboothtile|Dangerroomtile|Shipfeatureitem|Plantitem|Dogtag|Tnwarchonitembase)$/i.test(item.canonical)]
+  ];
+  for (const [label, predicate] of forbiddenCatalogObjects) {
+    const matches = officialItems.items.filter(predicate);
+    if (matches.length) errors.push(`official-items.json: 不得包含${label}：${matches.slice(0, 3).map(item => item.uniqueName).join(', ')}`);
+  }
+  for (const canonical of ['Cipher', 'Elemental Vice', 'Amp Arcane Adapter', 'Melee Arcane Adapter', 'Orokin Reactor', 'Orokin Catalyst', 'Forma']) if (!officialItems.items.some(item => item.canonical === canonical)) errors.push(`official-items.json: 缺少目标道具 ${canonical}`);
+  const cipher = officialItems.items.find(item => item.canonical === 'Cipher');
+  const hundred = cipher?.recipeVariants?.find(variant => variant.id === 'cipher.100x');
+  if (!hundred?.pendingWikiEvidence || hundred.recipeId !== null) errors.push('Cipher: 100x 变体必须保持待 Wiki 证据且不得伪造 recipeId');
+  const { buildOfficialItems, serialize: serializeItems } = require('./sync-official-items');
+  const sources = fs.existsSync(officialItemSourcesPath) ? JSON.parse(fs.readFileSync(officialItemSourcesPath, 'utf8')) : null;
+  if (!sources?.policy?.semanticKindAllowlist || !sources?.counts?.excludedByReason || sources.counts.excluded !== officialItems.counts.excluded) errors.push('official-item-sources.json: 缺少 allowlist 或排除原因计数');
+  const regenerated = buildOfficialItems(officialItems.generatedAt);
+  if (serializeItems(regenerated.catalog) !== serializeItems(officialItems) || serializeItems(regenerated.sources) !== serializeItems(sources)) errors.push('官方物品目录与当前 warframe-items 不一致，请运行 npm run sync:items');
+}
+
+const entityIds = new Set(Object.values(entities).flat().map(entity => entity.id));
+for (const [name, values] of Object.entries(entities)) {
+  const seen = new Set();
+  for (const entity of values) {
+    if (!entity.id || seen.has(entity.id) || !entity.canonical || !entity.displayName || !entity.kind || !Array.isArray(entity.aliases)) errors.push(`entities/${name}.json: 实体字段无效或 id 重复 ${entity.id}`);
+    seen.add(entity.id);
+    if (entity.parentId && !entityIds.has(entity.parentId)) errors.push(`${entity.id}: parentId 不存在 ${entity.parentId}`);
+    if (entity.locationId && !entityIds.has(entity.locationId)) errors.push(`${entity.id}: locationId 不存在 ${entity.locationId}`);
+  }
+}
+if (entities.locations.find(item => item.canonical === 'Cetus')?.id === entities.locations.find(item => item.canonical === 'Plains of Eidolon')?.id) errors.push('地点实体必须区分 Cetus 与 Plains of Eidolon');
+if (entities.locations.find(item => item.canonical === 'Fortuna')?.id === entities.locations.find(item => item.canonical === 'Orb Vallis')?.id) errors.push('地点实体必须区分 Fortuna 与 Orb Vallis');
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log(`校验通过：${entries.length} 条词条，${ids.size} 个唯一 ID，${categories.length} 个细分类，${officialCatalog.mods.length} 个官方 Mod`);
+console.log(`校验通过：${entries.length} 条词条，${ids.size} 个唯一 ID，${categories.length} 个细分类，${officialCatalog.mods.length} 个官方 Mod，${officialItems.items.length} 个统一物品`);

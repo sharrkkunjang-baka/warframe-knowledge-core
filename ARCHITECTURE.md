@@ -1,215 +1,124 @@
-# Warframe 共享知识核心架构
+# Warframe Knowledge Core 架构
 
-当前目标是“一套数据、一套解析、多端复用”。知识数据、公共接口和名称解析入口已经统一：QQ Bot 的 Market、Wiki、赏金与紫卡都通过共享核心的 `resolveName()` 解析名称；实时数据仍由各业务模块按需获取。
+本文描述仓库当前实际实现。字段级契约见 [REFERENCE.md](REFERENCE.md)。
 
-## 总体分层
+## 边界与统一模型
 
-```mermaid
-flowchart LR
-  Sources["来源与动态数据\n官方 Wiki / 语言文件 / Market / Worldstate"]
-  Data["审核数据层\nfacts / knowledge / aliases"]
-  Core["共享核心\n名称解析 / 术语归一化 / 知识检索"]
-  API["稳定接口\nresolveName / searchFacts / searchKnowledge / getAcquisition / buildWikiContext"]
-  Consumers["消费端\nQQ Bot / Web / Discord / Agent"]
+核心目标是让 Bot、网页和其他消费端共享同一套静态事实、实体 ID、名称解析和获取结果。仓库不保存 Market 挂单、世界状态等实时快照；这类数据由消费端实时查询。
 
-  Sources -->|"结构化、翻译、人工加工"| Data
-  Data -->|"仅加载 approved"| Core
-  Core --> API
-  API --> Consumers
-  Sources -.->|"价格与轮换实时查询"| Consumers
-```
+当前统一入口是 `createKnowledgeCore()`。它加载审核知识、官方 Mod 目录、统一 `ItemCatalog`、实体 registry，并暴露查询与 DTO 构造器：
 
-核心边界：静态事实和二次知识进入 GitHub；挂单、价格、赏金、裂缝和轮换不固化到仓库，由消费端实时请求。
+- **ItemCatalog**：`generated/official-items.json`，从 `warframe-items` 的 Resources、Gear、Misc、Arcanes 生成；每个物品以 `uniqueName` 为稳定主键，统一描述、掉落、配方、材料及配方变体。
+- **AcquisitionEvidence**：一条可审计获取证据，携带证据类型、来源、实体引用、概率、数量和核验状态。
+- **AcquisitionResult**：一次物品获取查询的统一结果，包含物品、证据、配方变体、状态和说明。
+- **RenderResult**：展示层统一返回容器，包含文本、获取结果、分段和警告。
 
-## QQ Bot 当前查询链路
+三个 DTO 由 `src/acquisition-dto.js` 创建并递归冻结。消费端应通过构造器创建对象，不应修改返回值。
 
-```mermaid
-flowchart TD
-  User[用户消息]
-  Router[命令与意图路由]
-  Shared[共享知识核心]
-  Direct[固定知识直接输出]
-  LocalWiki[本地 Wiki SQLite / FTS]
-  OnlineWiki[在线 Warframe Wiki]
-  Context[有来源的回答上下文]
-  LLM[LLM 基于资料回答]
-  Legacy[旧固定资料兼容回退]
+## 数据分层与所有权
 
-  User --> Router
-  Router --> Shared
-  Shared -->|精确词条| Direct
-  Shared -->|共享核心不可用| Legacy
-  Shared -->|未命中或需详细正文| LocalWiki
-  LocalWiki -->|未命中| OnlineWiki
-  LocalWiki -->|命中| Context
-  OnlineWiki --> Context
-  Context --> LLM
-```
+- `facts/`：带来源的基础事实与名称映射。
+- `knowledge/`：人工或生成的加工知识；`module=acquisition` 表示刷取对象，`module=gameplay` 表示可复用玩法。
+- `categories/`：人工语义分类；`categories/official.json` 是官方 Mod 生成快照。
+- `entities/`：地点、商人和货币 registry，使用稳定 ID 建立跨数据引用。
+- `generated/`：从锁定依赖或官方导出生成的目录、来源元数据、战甲和遗物数据。
+- `cache/`：战甲配方与奖励导出的运行缓存，不是公共知识源。
+- `dist/`：仅含已审核知识及生成目录的发布产物，并带 manifest 与 SHA-256。
+- QQ Bot 的 Wiki SQLite：由 `qq-bot` 爬虫维护的派生证据库，不属于本包的发布数据，也不由核心直接加载。
 
-Bot 接入点位于 `qq-bot/bot.js` 的 `wfSharedCore` 与 `matchWarframeReference()`。共享核心加载失败时会回退旧资料，避免线上功能中断。
+`createKnowledgeCore({ approvedOnly: true })` 默认只把 `reviewStatus=approved` 的 facts/knowledge 放入公开搜索。为读取 Mod 提示，内部另加载未过滤知识，但仅由 `getModTips()` 和 `getModTipKeywords()` 按精确对象使用。
 
-## 名称解析链路
+## ItemCatalog 与实体 registry
 
-```mermaid
-flowchart TD
-  Query[用户输入]
-  Normalize[NFKC、大小写、空格与间隔符归一化]
-  Exact[精确正式名与社区别名]
-  Pinyin[加权拼音评分]
-  Unique{最佳候选分差足够吗}
-  Result[返回唯一 canonical 名称]
-  Ambiguous[返回歧义候选]
-  Miss[不命中]
+`sync-official-items.js` 对四个上游文件执行允许列表和显式排除策略，按 `uniqueName` 去重并生成 ItemCatalog。`description.display` 优先使用官方简中本地化，否则回退英文；`localizationStatus` 明示该状态。掉落与配方来自锁定版本 `warframe-items`，不会推测缺失值。
 
-  Query --> Normalize
-  Normalize --> Exact
-  Exact -->|命中| Result
-  Exact -->|未命中| Pinyin
-  Pinyin --> Unique
-  Unique -->|是| Result
-  Unique -->|否且有多个候选| Ambiguous
-  Pinyin -->|低于阈值| Miss
-```
+配方材料仍使用上游 `uniqueName`，因为并非每个材料都一定进入 ItemCatalog。引用时先按 ItemCatalog `uniqueName` 解析；未命中时保留上游路径和 canonical 文本，不应伪造本地实体。
 
-本地完整版加权维度包括：最长公共子序列、查询覆盖率、候选覆盖率、开头连续匹配、最长连续片段、缺失音节惩罚和额外音节惩罚。
+`locations`、`vendors`、`currencies` registry 加载后递归冻结，分别暴露 `values/get/search`。registry 的 `id` 是跨对象引用主键；`canonical`、`displayName`、`aliases` 只用于查找和展示。父地点使用 `parentId`，商人所在地使用 `locationId`，证据使用 `locationId/vendorId/currencyId`。
 
-## 数据所有权
+## 获取查询的优先级与降级
 
-| 资产 | 内容 | 维护方式 | 性质 |
-|---|---|---|---|
-| `facts/` | 官方译名、机制事实、必要摘录 | GitHub PR + 人工审核 | 静态 |
-| `knowledge/` | 萌新答疑、黑话、攻略、评级 | GitHub PR + 人工审核 | 静态 |
-| `knowledge/acquisition/<类别>/<对象>.json` | 一个对象一文件，保存刷取前置与玩法引用 | GitHub PR + 人工审核 | 静态 |
-| `knowledge/gameplay/<玩法>.json` | 一个玩法一文件，保存可复用步骤与注意事项 | GitHub PR + 人工审核 | 静态 |
-| `facts/aliases.json` | 战甲别称、固定映射、术语修正 | 回归测试保护 | 静态 |
-| Market / Worldstate | 挂单、价格、裂缝、赏金轮换 | 消费端实时 API | 动态 |
-| Wiki SQLite | 页面和章节全文索引 | 同步器构建、Release 发布 | 派生 |
-| Bot 配置与缓存 | 密钥、QQ 绑定、群号、运行状态 | 仅部署环境 | 私有 |
+`resolveItem()` 的当前顺序是：
 
-## 审核与发布流水线
+1. ItemCatalog 精确匹配：`uniqueName`、`canonical`、`displayName` 或配方变体 alias。
+2. 官方 Mod 精确匹配。
+3. 战甲兼容解析器精确匹配。
+4. ItemCatalog 模糊搜索；唯一候选即返回，多候选返回 `ambiguous`。
+5. 无候选返回 `null`。
 
-```mermaid
-flowchart LR
-  Entry["新增内容\n默认 approved"]
-  Validate["自动校验\nSchema / ID / 来源 / 敏感信息"]
-  Review["疑问内容\n显式 review"]
-  Human["人工复核"]
-  Approved["approved 词条"]
-  Build["构建 dist + manifest"]
-  Release["GitHub Release / 固定版本"]
-  Clients["Bot 与其他客户端"]
+`getItemAcquisition()` 在上述解析结果上构造 `AcquisitionResult`：
 
-  Entry --> Validate
-  Validate --> Approved
-  Review --> Human --> Approved
-  Approved --> Build
-  Build --> Release
-  Release --> Clients
-```
+- ItemCatalog：掉落转为 `type=drop` 证据，配方转为 `type=recipe` 证据；若命中的配方变体标记 `pendingWikiEvidence`，不会把普通配方误当成该变体证据，并把变体说明放入 `notes`。
+- Mod：兼容调用原有 `getAcquisition()`，命中本地刷取知识时产生 `type=knowledge` 证据；没有本地刷取知识也保持官方 Mod 已解析状态。
+- 战甲：产生 `type=warframe` 证据，详细部件、遗物和材料仍由 `frameAcquisition` 适配层提供。
+- 歧义：`status=ambiguous`，候选展示名写入 `notes`。
+- 未命中：`status=not-found`。
 
-CI 流程：`npm ci` → `npm run validate` → `npm test` → `npm run build`。
+这套顺序保证新 ItemCatalog 优先，同时保留现有 Mod/战甲调用方。它并不把 Mod 或战甲强行改造成 ItemCatalog item；`AcquisitionResult.item` 因此是兼容联合类型，调用方应结合解析结果的 `kind` 或对象字段判断。
 
-## 当前完成度
+## Mod 与战甲兼容适配
 
-- 基础事实：3 条（已批准）。
-- 加工知识：全部 55 条已批准，包含 45 条刷取对象和 4 条共享玩法。
-- 本地回归测试：20/20 通过。
-- QQ Bot：Market、Wiki、赏金和紫卡已统一接入 `resolveWarframeName()` → 共享核心 `resolveName()`。
-- GitHub：公开仓库、Schema、CI 和 Release 工作流已建立。
-- 动态 API：继续由 Bot 实时请求，没有写入知识库。
-- 刷取模块：递归读取分类目录，一个对象一个文件；名称完全复用 `/买` 的统一索引，通过 `subject.canonical` 精确关联，并自动展开 `methodRefs`。
-- 玩法模块：已增加严格的 `/玩法` 路由、`searchGameplay()` 和 `getGameplay()`；刷取与玩法命令共用同一份步骤和注意事项。
+Mod 仍由 `categories/official.json` 提供官方目录，并由 `knowledge/acquisition` 提供审核刷法。统一名称解析器会把官方 Mod 名称候选补入 alias resolver；`getAcquisition()` 再按 `subject.canonical` 精确关联知识条目，并通过 `methodRefs` 展开 gameplay。分类默认玩法只在条目未显式提供 `methodRefs` 时继承。
 
-## 刷取命令链路
+战甲适配位于 `src/frame-acquisition.js`。它合并 `warframe-items`、官方 Public Export 生成文件、少量显式审计覆盖及实体地点翻译。普通战甲返回部件来源和制造材料；Prime 战甲根据官方生成遗物、任务奖励活动状态和可选 Varzia manifest 判断“当前出库 / Prime 重生 / 已入库”。网络加载先用新鲜缓存，失败时回退旧缓存；网络和缓存均不可用才抛错。`WF_EXPORT_CACHE_DIR` 可改变默认缓存目录。
+
+## Wiki SQLite 证据库
+
+QQ Bot 的 `systems/warframe_wiki_sync.js` 通过独立 Chrome CDP 会话访问 MediaWiki API，抽取页面、章节、别名和分类，写入 SQLCipher/SQLite。存储包含 `pages`、`sections`、`aliases`、`categories`、`recent_changes`、`sync_state` 及页面/章节 FTS5 索引。
+
+它是详细正文证据和核心未命中时的补充层，不是 ItemCatalog 的隐式覆盖源。Wiki 中尚未被结构化接入的证据必须保持“待证据”状态；例如 100x Cipher 只存在变体解析和 `pendingWikiEvidence`，当前核心不会从 SQLite 自动补材料。
+
+同步器支持 full 和 incremental：全量按 `allpages` 分页并保存 continuation/cursor；增量按 `recentchanges` 保存时间戳和 cursor。`.sync.lock` 防止并行任务，状态写入 `sync_state`。已确认的环境变量、状态键、字段和计划任务见 REFERENCE。
+
+## Bot 与爬虫数据流
 
 ```mermaid
 flowchart TD
-  Message[用户消息]
-  Command{是否严格匹配刷取命令}
-  Usage[返回用法]
-  Resolve[统一 resolveName]
-  Acquisition[查询 acquisition 加工知识]
-  Direct[结构化直出]
-  Miss[提示尚未收录并引导 Wiki]
-  Normal[继续普通聊天流程]
+  U[用户查询] --> R[Bot 路由]
+  R --> C[createKnowledgeCore]
+  C --> I[ItemCatalog]
+  C --> M[官方 Mod + acquisition/gameplay]
+  C --> F[frameAcquisition]
+  I --> A[AcquisitionResult]
+  M --> A
+  F --> A
+  A --> O[Bot 渲染]
+  C -->|未命中或需正文| W[(Wiki SQLite / FTS)]
+  W -->|本地无证据| N[在线 Wiki 查询]
+  W --> X[带来源上下文]
+  N --> X
+  X --> O
 
-  Message --> Command
-  Command -->|/刷 且无参数| Usage
-  Command -->|/刷 名称、刷 空格 名称、怎么刷名称| Resolve
-  Command -->|我想刷、哪里刷、如何刷等| Normal
-  Resolve --> Acquisition
-  Acquisition -->|命中 approved| Expand[按 methodRefs 展开 approved 玩法]
-  Expand --> Direct
-  Acquisition -->|未命中| Miss
+  T[Warframe Wiki API] --> P[CDP 爬虫]
+  P --> E[页面/章节抽取]
+  E --> W
+  P --> S[(sync_state)]
 ```
 
-这里是命令解析，不是开放式意图分类。刷取只接受 `/刷`、`/刷 xxx`、`刷 xxx`、`怎么刷xxx` 和 `怎么刷 xxx`；玩法只接受 `/玩法` 和 `/玩法 xxx`。普通对话不会被抢占。
+共享核心加载失败时，Bot 可按自身旧实现降级；Wiki 本地索引未命中时可查询在线 Wiki。架构要求降级结果显式保留来源和警告，不把缺失证据包装成确定事实。
 
-## 刷取对象与玩法复用
+## 名称、ID 与引用规则
 
-```mermaid
-flowchart LR
-  ItemA[心志偏狭刷取\ncategory: mod\ncategoryRefs: 4kmod]
-  ItemB[盲怒刷取\ncategory: mod\ncategoryRefs: 4kmod]
-  Category[4kmod 分类\nCorrupted Mods\nparent: mod]
-  SubCategory[duration4kmod\n持续 4k Mod\nparent: 4kmod]
-  RefA[methodRefs]
-  Gameplay[火卫二 Orokin 宝库玩法\nsteps + notes]
-  GameplayCommand[/玩法 火卫二 Orokin 宝库]
-  AcquisitionCommand[/刷 心志偏狭]
+- 官方物品主键：`/Lotus/...` `uniqueName`；canonical/displayName/variant aliases 用于解析。
+- 知识主键：全仓唯一 `entry.id`；玩法 ID 使用 `gameplay.<slug>`。
+- `methodRefs`：只引用 gameplay entry ID；显式引用优先于分类 `defaultMethodRefs`。
+- 分类引用：`subject.categoryRefs[]` 引用 category `id`，第一项也是描述模板的主分类。
+- 实体引用：只能保存 registry `id`；展示名和别名不得作为外键。
+- 配方引用：`recipeVariant.recipeId` 引用同一 item 的 recipe `id`；`null` 表示当前无结构化配方证据。
 
-  ItemA --> Category
-  ItemA --> SubCategory --> Category
-  ItemB --> Category
-  ItemA --> RefA --> Gameplay
-  ItemB --> RefA
-  GameplayCommand --> Gameplay
-  AcquisitionCommand --> ItemA
-```
+## 来源优先级
 
-刷取对象只说明“刷什么、基础类型和多个细分类、前置是什么、引用哪些玩法”；玩法独立说明“具体怎么做”。细分类也采用一个文件一个对象，并允许形成层级，例如 `duration4kmod → 4kmod → mod`。Mod 对象额外保存结构化 `maxRank` 与 `effects`，便于各端统一展示官方满级数值。多个对象可引用同一分类和同一玩法，校验器会阻止悬空引用。
+1. 锁定版本官方 Public Export / 官方掉落表及其生成来源元数据。
+2. 官方简中本地化；缺失时保留英文并标记 fallback。
+3. 经审核的 facts/knowledge 与显式人工审计覆盖。
+4. Wiki SQLite 中带 revision/timestamp 的正文证据。
+5. 在线 Wiki 临时查询。
+6. 旧缓存或消费端兼容资料。
 
-别名所有权也严格分离：刷取对象不保存 `aliases`，由 `/买` 共用的官方词典与社区名称索引解析到 `subject.canonical`；分类自行维护仅供分类查询使用的 `aliases`（如 `4k卡`），玩法也自行维护玩法别名。分类和玩法别名均不会进入物品名称索引。
+较低优先级只能补缺，不能静默覆盖较高优先级的稳定 ID 或已核验结构化值。实时轮换状态可比静态快照更新，但必须与静态身份、配方数据分开处理。
 
-## 当前风险
+## 构建、校验与发布
 
-### 1. 历史解析代码尚待物理清理
+`npm run validate` 校验 schema、ID 和引用；`npm test` 执行回归测试；`npm run build` 仅发布 approved facts/knowledge，并将生成目录和实体 registry 写入 `dist/`。`manifest.json` 记录数量、来源及每个文件的 SHA-256。
 
-运行时名称解析已经收口到共享核心。`bot.js` 中仍保留一段不可达的旧 WFM 评分实现，作为本次迁移后的短期对照；它不会参与运行，待线上回归稳定后可以直接删除。翻译输出表与实时 API 适配属于业务展示和数据获取，不再承担名称消歧。
-
-### 2. 本地与 GitHub 版本可能漂移
-
-Bot 当前使用部署目录中的复制版本，而不是锁定 Git tag、Release 或 npm 版本。手动复制会造成“本地完整版、GitHub 版、VPS 版”出现差异。
-
-### 3. 疑问内容需要显式降级
-
-知识默认批准上线；来源缺失、译名冲突或结论无法确认时，维护者必须主动把条目改为 `review`，避免不确定内容混入生产输出。
-
-### 4. 事实时效需要更精确
-
-`gameVersion: current` 方便但不可审计。高风险机制应保存明确版本、上游页面 revision 和最后验证日期。
-
-## 后续优先级
-
-### P0：建立唯一发布版本
-
-- GitHub 成为唯一可信源码。
-- Bot 锁定 Git tag、Release 或包版本。
-- 部署时校验 `manifest.json` 和 SHA-256。
-- 禁止继续手动复制未经标记的核心目录。
-
-### P1：清理迁移遗留并扩大回归集
-
-- 删除 `bot.js` 中已经不可达的旧 WFM 评分实现。
-- 继续把仅用于翻译展示的映射与名称解析数据明确分离。
-- 将所有历史错误查询加入共享回归测试。
-
-### P2：Wiki 大索引产品化
-
-- 同步器在受控环境生成 SQLite/JSONL。
-- 作为 GitHub Release 派生产物发布，不进入 Git 历史。
-- 消费端按版本下载，并在同步失败时继续使用旧索引。
-
-## 总评
-
-方向正确：事实与加工知识分层、人工审核、动态 API 隔离和统一解析入口都已落地。刷取攻略作为加工知识的结构化子模块扩展，不另造名称体系；命令解析与知识内容也保持分离。当前名称解析已完成运行时收口；剩余重点是人工审核首批刷取样本、删除迁移遗留、扩大回归集，并让 Bot 锁定 GitHub Release 或包版本以消除部署副本漂移。
+上游发生变化时使用 `npm run maintain` 完整同步；只检查漂移使用 `npm run check:all`。脚本和参数见 REFERENCE。

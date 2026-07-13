@@ -13,6 +13,8 @@ const OFFICIAL_FRAMES = require(path.join(CORE_ROOT, 'generated', 'official-warf
 const OFFICIAL_QUESTS = require(path.join(CORE_ROOT, 'generated', 'official-quests.json'));
 const OFFICIAL_PRIME_RELICS = require(path.join(CORE_ROOT, 'generated', 'official-prime-relics.json'));
 const OFFICIAL_FRAME_QUEST_SERIES = require(path.join(CORE_ROOT, 'generated', 'official-frame-quest-series.json'));
+const { loadEntityRegistries } = require('./entities');
+const LOCATION_REGISTRY = loadEntityRegistries(CORE_ROOT).locations;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -27,7 +29,7 @@ const STABLE_LOCATION_ZH = {
   Assassination: '刺杀', Defense: '防御', Survival: '生存', Capture: '捕获', Rescue: '救援',
   Spy: '间谍', Disruption: '中断', Exterminate: '歼灭', Interception: '拦截', Excavation: '挖掘',
   'Cephalon Simaris': '中枢 Simaris', 'The New Strange': '新疑谜团', Junction: '接合点', Complete: '完成',
-  Cetus: '希图斯', 'Orb Vallis': '奥布山谷'
+  ...Object.fromEntries(LOCATION_REGISTRY.values.map(location => [location.canonical, location.displayName]))
 };
 
 const CALIBAN_PRIME = Object.freeze({
@@ -445,7 +447,7 @@ function resolveWarframeAbilityQuery(input) {
   const abilityFrame = alias.frame.isPrime ? (ALL_WARFRAMES.find(frame => frame.name === alias.frame.name.replace(/ Prime$/, '')) || alias.frame) : alias.frame;
   const abilities = getFrameAbilities(alias.frame);
   let selected = null;
-  const number = rest.match(/^([1-4])(?:\s+|$)/);
+  const number = rest.match(/^([1-4])(?:\s*技能)?(?:\s+|(?=[\u4e00-\u9fff])|$)/);
   if (number) { selected = abilities[Number(number[1]) - 1]; rest = rest.slice(number[0].length).trim(); }
   if (!selected) {
     selected = abilities.find(ability => [ability.zhName, ability.name].filter(Boolean).some(name => normalize(rest).startsWith(normalize(name))));

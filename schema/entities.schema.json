@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/warframe-knowledge-core/entities.schema.json",
+  "title": "Location, vendor and currency registry",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "canonical", "displayName", "kind", "aliases"],
+    "properties": {
+      "id": {"type":"string","pattern":"^[a-z0-9][a-z0-9.-]+$"},
+      "canonical": {"type":"string","minLength":1},
+      "displayName": {"type":"string","minLength":1},
+      "kind": {"type":"string","minLength":1},
+      "aliases": {"type":"array","items":{"type":"string"},"uniqueItems":true},
+      "parentId": {"type":["string","null"]},
+      "locationId": {"type":["string","null"]}
+    }
+  }
+}

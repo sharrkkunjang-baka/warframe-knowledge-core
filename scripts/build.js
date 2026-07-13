@@ -15,6 +15,11 @@ const outputs = {
   'knowledge.json': data.knowledge,
   'categories.json': data.categories,
   'official.json': data.officialCatalog,
+  'official-items.json': data.officialItems,
+  'official-item-sources.json': data.officialItemSources,
+  'locations.json': data.locations.values,
+  'vendors.json': data.vendors.values,
+  'currencies.json': data.currencies.values,
   'aliases.json': data.aliases
 };
 const files = {};
@@ -32,11 +37,16 @@ const manifest = {
     categories: data.categories.length,
     officialMods: data.officialCatalog.counts.mods,
     officialCategories: data.officialCatalog.counts.officialCategories,
+    officialItems: data.officialItems.counts.items,
+    locations: data.locations.values.length,
+    vendors: data.vendors.values.length,
+    currencies: data.currencies.values.length,
     stubOfficialMods: data.officialCatalog.counts.stubMods,
     missingOfficialMods: data.officialCatalog.counts.missingMods,
     missingOfficialCategories: data.officialCatalog.counts.missingOfficialCategories
   },
   officialSource: data.officialCatalog.source,
+  officialItemSource: data.officialItems.source,
   files
 };
 fs.writeFileSync(path.join(dist, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);

@@ -4,6 +4,7 @@ const path = require('path');
 const { loadData } = require('./loader');
 const { createResolver, normalize } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
+const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -32,6 +33,7 @@ function createKnowledgeCore(options = {}) {
   const data = loadData(root, { approvedOnly: options.approvedOnly !== false });
   const allKnowledge = options.approvedOnly === false ? data.knowledge : loadData(root, { approvedOnly: false }).knowledge;
   const officialMods = data.officialCatalog?.mods || [];
+  const officialItems = data.officialItems?.items || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
   const officialNameCandidates = officialMods.flatMap(mod =>
     [mod.canonical, mod.displayName]
@@ -102,10 +104,42 @@ function createKnowledgeCore(options = {}) {
     if (!q) return [];
     return data.categories.filter(category => [category.id, category.canonical, category.displayName, ...(category.aliases || [])].some(name => normalize(name) === q));
   };
+  const itemAliases = item => [item.uniqueName, item.canonical, item.displayName, ...(item.recipeVariants || []).flatMap(variant => variant.aliases || [])];
+  const getOfficialItem = query => {
+    const q = normalize(query);
+    if (!q) return null;
+    return officialItems.find(item => itemAliases(item).some(value => normalize(value) === q)) || null;
+  };
+  const searchOfficialItems = (query, searchOptions = {}) => {
+    const q = normalize(query);
+    if (!q) return [];
+    return officialItems.map(item => {
+      const names = itemAliases(item).map(normalize);
+      const score = names.some(name => name === q) ? 100 : names.some(name => name.includes(q) || q.includes(name)) ? 70 : 0;
+      return { item, score };
+    }).filter(result => result.score > 0)
+      .sort((a, b) => b.score - a.score || a.item.canonical.localeCompare(b.item.canonical))
+      .slice(0, searchOptions.limit || 20).map(result => result.item);
+  };
   const getOfficialMod = query => {
     const q = normalize(query);
     if (!q) return null;
     return officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q)) || null;
+  };
+  const resolveItem = query => {
+    const officialItem = getOfficialItem(query);
+    if (officialItem) {
+      const q = normalize(query);
+      const recipeVariant = officialItem.recipeVariants?.find(variant => (variant.aliases || []).some(alias => normalize(alias) === q)) || null;
+      return { kind: 'official-item', item: officialItem, recipeVariant };
+    }
+    const mod = getOfficialMod(query);
+    if (mod) return { kind: 'mod', item: mod, recipeVariant: null };
+    const frame = frameAcquisition.resolveWarframe(query);
+    if (frame) return { kind: 'warframe', item: frame, recipeVariant: null };
+    const officialMatches = searchOfficialItems(query, { limit: 20 });
+    if (officialMatches.length > 1) return { kind: 'ambiguous', item: null, recipeVariant: null, candidates: officialMatches };
+    return officialMatches.length === 1 ? { kind: 'official-item', item: officialMatches[0], recipeVariant: null } : null;
   };
   const getModTips = query => {
     const q = normalize(query);
@@ -239,6 +273,24 @@ function createKnowledgeCore(options = {}) {
       alternatives: []
     };
   };
+  const getItemAcquisition = (query, acquisitionOptions = {}) => {
+    const resolved = resolveItem(query);
+    if (!resolved) return createAcquisitionResult({ query, status: 'not-found' });
+    if (resolved.kind === 'ambiguous') return createAcquisitionResult({ query, status: 'ambiguous', notes: resolved.candidates.map(item => item.displayName) });
+    if (resolved.kind === 'official-item') {
+      const evidence = [
+        ...(resolved.item.drops || []).map(drop => createAcquisitionEvidence({ type: 'drop', source: drop.location || 'Warframe Public Export', chance: drop.chance ?? null })),
+        ...(!resolved.recipeVariant?.pendingWikiEvidence ? (resolved.item.recipes || []).map(recipe => createAcquisitionEvidence({ type: 'recipe', source: resolved.item.sourceFile, sourceId: recipe.id, quantity: recipe.outputQuantity })) : [])
+      ];
+      const notes = resolved.recipeVariant?.pendingWikiEvidence ? [resolved.recipeVariant.note] : [];
+      return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: resolved.recipeVariant ? [resolved.recipeVariant] : resolved.item.recipeVariants, notes });
+    }
+    if (resolved.kind === 'mod') {
+      const local = getAcquisition(query, acquisitionOptions);
+      return createAcquisitionResult({ query, item: resolved.item, evidence: local ? [createAcquisitionEvidence({ type: 'knowledge', source: local.entry?.id || 'official-mod-catalog' })] : [], status: 'resolved' });
+    }
+    return createAcquisitionResult({ query, item: resolved.item, evidence: [createAcquisitionEvidence({ type: 'warframe', source: resolved.item.uniqueName })], status: 'resolved' });
+  };
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
     if (!raw) return null;
@@ -289,6 +341,10 @@ function createKnowledgeCore(options = {}) {
     getGameplay,
     getAcquisition,
     getAcquisitionCollection,
+    resolveItem,
+    searchOfficialItems,
+    getOfficialItem,
+    getItemAcquisition,
     getOfficialMod,
     getModTips,
     getModTipKeywords,
@@ -298,6 +354,15 @@ function createKnowledgeCore(options = {}) {
     listStubOfficialMods,
     listMissingOfficialCategories,
     buildWikiContext,
+    getLocation: data.locations.get,
+    searchLocations: data.locations.search,
+    getVendor: data.vendors.get,
+    searchVendors: data.vendors.search,
+    getCurrency: data.currencies.get,
+    searchCurrencies: data.currencies.search,
+    createAcquisitionEvidence,
+    createAcquisitionResult,
+    createRenderResult,
     frameAcquisition
   };
 }

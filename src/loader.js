@@ -49,9 +49,15 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const categories = readCategoryDirectory(categoriesDirectory);
   const officialPath = path.join(categoriesDirectory, 'official.json');
   const officialCatalog = fs.existsSync(officialPath) ? deepFreeze(readJson(officialPath)) : null;
+  const officialItemsPath = path.join(root, 'generated', 'official-items.json');
+  const officialItems = fs.existsSync(officialItemsPath) ? deepFreeze(readJson(officialItemsPath)) : null;
+  const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
+  const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
   const aliasesPath = path.join(root, 'facts', 'aliases.json');
   const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, terms: {}, normalization: {} };
-  return { facts, knowledge, categories, officialCatalog, aliases };
+  const { loadEntityRegistries } = require('./entities');
+  const registries = loadEntityRegistries(root);
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, ...registries };
 }
 
-module.exports = { loadData, readEntryDirectory, readObjectDirectory, readCategoryDirectory };
+module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };
