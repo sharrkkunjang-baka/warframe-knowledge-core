@@ -79,6 +79,14 @@ test('Chroma sources split Simaris purchase from one-time quest rewards', () => 
   assert.doesNotMatch(rendered, /100%|Complete|Junction/);
 });
 
+test('quest acquisition uses official Chinese names', () => {
+  const gara = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Gara'), materials: { available: false } });
+  assert.match(gara, /《萨娅的守夜》/);
+  const nidus = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Nidus'), materials: { available: false } });
+  assert.match(nidus, /《Glast 的千钧一策》/);
+  assert.doesNotMatch(`${gara}\n${nidus}`, /Saya|Glast Gambit|沙娅|千篇一律/);
+});
+
 test('fixed-system frames never render empty drop placeholders', () => {
   const volt = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Volt'), materials: { available: false } });
   assert.match(volt, /Tenno 实验室完成研究后复制蓝图/);
@@ -99,8 +107,10 @@ test('Caliban Prime uses audited current relics when npm data lags', () => {
   assert.equal(frame.name, 'Caliban Prime');
   const prime = acquisition.getPrimeRelics(frame, null, null);
   assert.equal(prime.status, '当前出库');
-  assert.match(acquisition.renderAcquisition({ frame, prime, materials: frame.materials }), /总图：古纪 V11 11%；前纪 V13 11%；前纪 V15 11%/);
-  assert.match(acquisition.renderAcquisition({ frame, prime, materials: frame.materials }), /头：中纪 C7 2%/);
+  assert.match(acquisition.renderAcquisition({ frame, prime, materials: frame.materials }), /总图：古纪 V11（银）；前纪 V13（银）；前纪 V15（银）/);
+  const rendered = acquisition.renderAcquisition({ frame, prime, materials: frame.materials });
+  assert.match(rendered, /头：中纪 C7（金）/);
+  assert.doesNotMatch(rendered, /2%|11%|25\.33%/);
 });
 
 test('Prime state selects current, resurgence, or vaulted category only', () => {
