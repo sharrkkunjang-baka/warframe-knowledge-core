@@ -16,7 +16,8 @@ const sources = {
   recipes: 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json',
   rewards: 'https://browse.wf/warframe-public-export-plus/ExportRewards.json',
   relics: 'https://browse.wf/warframe-public-export-plus/ExportRelics.json',
-  quests: 'https://browse.wf/warframe-public-export-plus/ExportKeys.json'
+  quests: 'https://browse.wf/warframe-public-export-plus/ExportKeys.json',
+  dropTables: 'https://www.warframe.com/droptables'
 };
 const overrides = { '/Lotus/Powersuits/Sentient/CalibanPrime': 'Caliban Prime' };
 function inferName(uniqueName) {
@@ -28,8 +29,18 @@ async function fetchJson(url) {
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
   return response.json();
 }
+async function fetchText(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+  if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+  return response.text();
+}
 (async () => {
-  const [warframes, recipes, rewards, relics, officialQuests] = await Promise.all(Object.values(sources).map(fetchJson));
+  const [warframes, recipes, rewards, relics, officialQuests, dropTablesText] = await Promise.all([
+    fetchJson(sources.warframes), fetchJson(sources.recipes), fetchJson(sources.rewards),
+    fetchJson(sources.relics), fetchJson(sources.quests), fetchText(sources.dropTables)
+  ]);
+  const missionDropSection = dropTablesText.split(/(?:<h3[^>]*>|###\s*)Relics:/i)[0];
+  const activeRelicNames = new Set([...missionDropSection.matchAll(/\b(Lith|Meso|Neo|Axi)\s+([A-Z]\d+)\s+Relic\b/gi)].map(match => `${match[1][0].toUpperCase()}${match[1].slice(1).toLowerCase()} ${match[2].toUpperCase()}`));
   const packageByUniqueName = new Map(WARFRAMES.map(frame => [frame.uniqueName, frame]));
   const frames = Object.entries(warframes)
     .filter(([, frame]) => frame.productCategory === 'Suits')
@@ -86,7 +97,8 @@ async function fetchJson(url) {
         byPart[partBySuffix[match[1]]].push({
           name: `${relic.era} ${relic.category}`,
           uniqueName: relicPath,
-          rarity: String(reward.rarity || '').replace(/^./, char => char.toUpperCase()).toLowerCase().replace(/^./, char => char.toUpperCase())
+          rarity: String(reward.rarity || '').replace(/^./, char => char.toUpperCase()).toLowerCase().replace(/^./, char => char.toUpperCase()),
+          active: activeRelicNames.has(`${relic.era} ${relic.category}`)
         });
       }
     }
@@ -119,6 +131,6 @@ async function fetchJson(url) {
   fs.writeFileSync(path.join(generated, 'official-quests.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, count: questCatalog.length, quests: questCatalog, byEnglish: questByEnglish }, null, 2)}\n`);
   fs.writeFileSync(path.join(generated, 'official-frame-quest-series.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: frameQuestSeries }, null, 2)}\n`);
   fs.writeFileSync(path.join(generated, 'official-prime-relics.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: primeRelics }, null, 2)}\n`);
-  fs.writeFileSync(path.join(generated, 'official-frame-sources.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, sources, sha256: { warframes: crypto.createHash('sha256').update(JSON.stringify(warframes)).digest('hex'), recipes: crypto.createHash('sha256').update(JSON.stringify(recipes)).digest('hex'), rewards: crypto.createHash('sha256').update(JSON.stringify(rewards)).digest('hex'), relics: crypto.createHash('sha256').update(JSON.stringify(relics)).digest('hex'), quests: crypto.createHash('sha256').update(JSON.stringify(officialQuests)).digest('hex') } }, null, 2)}\n`);
-  console.log(`已同步 ${frames.length} 个官方战甲；第三方包缺少：${output.packageMissing.join('、') || '无'}`);
+  fs.writeFileSync(path.join(generated, 'official-frame-sources.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, sources, sha256: { warframes: crypto.createHash('sha256').update(JSON.stringify(warframes)).digest('hex'), recipes: crypto.createHash('sha256').update(JSON.stringify(recipes)).digest('hex'), rewards: crypto.createHash('sha256').update(JSON.stringify(rewards)).digest('hex'), relics: crypto.createHash('sha256').update(JSON.stringify(relics)).digest('hex'), quests: crypto.createHash('sha256').update(JSON.stringify(officialQuests)).digest('hex'), dropTables: crypto.createHash('sha256').update(dropTablesText).digest('hex') } }, null, 2)}\n`);
+  console.log(`已同步 ${frames.length} 个官方战甲、${activeRelicNames.size} 个当前遗物；第三方包缺少：${output.packageMissing.join('、') || '无'}`);
 })().catch(error => { console.error(error.stack || error); process.exit(1); });

@@ -97,8 +97,9 @@ test('official-generated indexes resolve new Prime variants and quest series', (
     prime: acquisition.getPrimeRelics(prime, null, require('../cache/warframe-export-rewards.json')),
     materials: { available: false }
   });
-  assert.match(renderedPrime, /总图：前纪 D8（银）/);
-  assert.match(renderedPrime, /头：后纪 Y3（金）/);
+  assert.match(renderedPrime, /总图：.*前纪 D8（银）/);
+  assert.match(renderedPrime, /系统：中纪 Y1（金）/);
+  assert.doesNotMatch(renderedPrime, /系统：后纪 Y1/);
 
   const yareli = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('水妹'), materials: { available: false } });
   assert.match(yareli, /总图：首次完成《驭浪者》获得该蓝图；之后可在中枢 Simaris 处回购/);
@@ -144,13 +145,11 @@ test('Prime state selects current, resurgence, or vaulted category only', () => 
   assert.ok(resurgence.relics.every(relic => relic.name === 'Axi L4'));
 });
 
-test('official mission rewards determine currently obtainable Prime relics', () => {
-  const relics = require(require('node:path').join(require('node:path').dirname(require.resolve('warframe-items')), 'data', 'json', 'Relics.json'));
-  const active = relics.find(relic => relic.name === 'Axi L4 Intact');
-  const rewards = { table: [[{ type: active.uniqueName, probability: 0.1 }]] };
-  const volt = acquisition.getPrimeRelics('Volt Prime', null, rewards);
-  assert.equal(volt.status, '当前出库');
-  assert.ok(volt.relics.every(relic => relic.name === 'Axi L4'));
+test('official drop table determines currently obtainable Prime relics', () => {
+  const yareli = acquisition.getPrimeRelics('Yareli Prime', null, {});
+  assert.equal(yareli.status, '当前出库');
+  assert.deepEqual(yareli.byPart.Systems.map(relic => relic.name), ['Neo Y1']);
+  assert.ok(yareli.relics.every(relic => relic.active));
 });
 
 test('Chroma materials keep other frame parts atomic and exclude own parts', () => {

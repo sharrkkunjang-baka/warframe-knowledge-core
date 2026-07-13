@@ -410,7 +410,8 @@ function getPrimeRelics(frameOrName, varziaManifest, missionRewards) {
     }
   }
   const activePaths = activeRelicPaths(missionRewards);
-  const current = all.filter(relic => activePaths.has(normalizeRelicPath(relic.uniqueName)));
+  const generatedHasActivity = generatedByPart && all.some(relic => typeof relic.active === 'boolean');
+  const current = all.filter(relic => generatedHasActivity ? relic.active : activePaths.has(normalizeRelicPath(relic.uniqueName)));
   const manifest = normalizeVarziaManifest(varziaManifest);
   const resurgence = all.filter(relic => relic.vaulted && manifest.has(normalize(relic.name)));
   const status = current.length ? '当前出库' : resurgence.length ? 'Prime 重生' : '已入库';
