@@ -191,6 +191,10 @@ function createSyncPlan(options = {}) {
       gameVersion: `warframe-items@${packageVersion}`,
       updatedAt: stableUpdatedAt
     })
+    if (oldEntry) {
+      entry.tips = Array.isArray(oldEntry.tips) ? oldEntry.tips : []
+      entry.tipKeywords = Array.isArray(oldEntry.tipKeywords) ? oldEntry.tipKeywords : entry.tipKeywords
+    }
 
     if (oldEntry
       && JSON.stringify(withoutUpdatedAt(oldEntry)) !== JSON.stringify(withoutUpdatedAt(entry))) {
@@ -198,6 +202,10 @@ function createSyncPlan(options = {}) {
         gameVersion: `warframe-items@${packageVersion}`,
         updatedAt: today
       })
+      if (oldEntry) {
+        entry.tips = Array.isArray(oldEntry.tips) ? oldEntry.tips : []
+        entry.tipKeywords = Array.isArray(oldEntry.tipKeywords) ? oldEntry.tipKeywords : entry.tipKeywords
+      }
     }
 
     const content = serialize([entry])

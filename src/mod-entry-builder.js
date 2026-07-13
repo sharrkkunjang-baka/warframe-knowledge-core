@@ -125,6 +125,8 @@ function buildModEntry(item, localized = {}, options = {}) {
     polarity: item.polarity || null,
     tradable: Boolean(item.tradable),
     prerequisites: [],
+    tips: [],
+    tipKeywords: ['本质机制', '具体计算公式', '加成层级', '与同类效果的叠加方式', '适用限制'],
     methodRefs: [],
     acquisitionStatus: hasDefaultAcquisition ? 'complete' : 'stub',
     sources: [getWikiSource(item)],

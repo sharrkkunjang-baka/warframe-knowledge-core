@@ -95,6 +95,9 @@ for (const entry of entries) {
     if (!entry.summary && !entry.content && !primaryCategory?.modDescription) errors.push(`${entry.id}: acquisition 缺少自身描述，主分类也没有 modDescription`);
     if (primaryCategory?.modDescription && !primaryCategory.modDescription.includes('{name}')) errors.push(`${primaryCategory.id}: modDescription 必须包含 {name} 变量`);
     if (!Array.isArray(entry.prerequisites) || !Array.isArray(entry.methodRefs)) errors.push(`${entry.id}: acquisition 缺少 prerequisites/methodRefs 数组`);
+    if (entry.subject?.category === 'mod' && (!Array.isArray(entry.tips) || entry.tips.some(tip => typeof tip !== 'string' || !tip.trim()))) errors.push(`${entry.id}: tips 必须是字符串数组，且每项不能为空`);
+    if (entry.subject?.category === 'mod' && (!Array.isArray(entry.tipKeywords) || entry.tipKeywords.some(keyword => typeof keyword !== 'string' || !keyword.trim()))) errors.push(`${entry.id}: tipKeywords 必须是字符串数组，且每项不能为空`);
+    if (entry.subject?.category === 'mod' && entry.tips?.some(tip => invalidUserTextPattern.test(tip))) errors.push(`${entry.id}: tips 含未清理的标记或换行转义`);
     if (entry.acquisitionStatus === 'stub' && (entry.reviewStatus !== 'draft' || entry.methodRefs?.length)) errors.push(`${entry.id}: stub 必须保持 draft 且刷法为空`);
   }
   if (entry.module === 'gameplay') {

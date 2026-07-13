@@ -3,7 +3,7 @@
 const { pinyin } = require('pinyin-pro');
 
 const normalize = value => {
-  let result = String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[\s·・‧•_-]+/g, '');
+  let result = String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[‘’`´]/g, "'").replace(/[\s·・‧•_-]+/g, '');
   if (/[^a-z]p$/.test(result)) result = `${result.slice(0, -1)}prime`;
   return result;
 };

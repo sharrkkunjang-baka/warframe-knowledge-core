@@ -3,6 +3,7 @@
 const path = require('path');
 const { loadData } = require('./loader');
 const { createResolver, normalize } = require('./resolver');
+const frameAcquisition = require('./frame-acquisition');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -29,6 +30,7 @@ function searchEntries(query, entries, options = {}) {
 function createKnowledgeCore(options = {}) {
   const root = options.root || path.join(__dirname, '..');
   const data = loadData(root, { approvedOnly: options.approvedOnly !== false });
+  const allKnowledge = options.approvedOnly === false ? data.knowledge : loadData(root, { approvedOnly: false }).knowledge;
   const officialMods = data.officialCatalog?.mods || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
   const officialNameCandidates = officialMods.flatMap(mod =>
@@ -104,6 +106,22 @@ function createKnowledgeCore(options = {}) {
     const q = normalize(query);
     if (!q) return null;
     return officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q)) || null;
+  };
+  const getModTips = query => {
+    const q = normalize(query);
+    if (!q) return [];
+    const official = officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q));
+    const canonical = official?.canonical || query;
+    const entry = allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
+    return Array.isArray(entry?.tips) ? entry.tips : [];
+  };
+  const getModTipKeywords = query => {
+    const q = normalize(query);
+    if (!q) return [];
+    const official = officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q));
+    const canonical = official?.canonical || query;
+    const entry = allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
+    return Array.isArray(entry?.tipKeywords) ? entry.tipKeywords : [];
   };
   const searchOfficialMods = (query, searchOptions = {}) => {
     const q = normalize(query);
@@ -272,13 +290,16 @@ function createKnowledgeCore(options = {}) {
     getAcquisition,
     getAcquisitionCollection,
     getOfficialMod,
+    getModTips,
+    getModTipKeywords,
     searchOfficialMods,
     listOfficialCategories,
     listMissingOfficialMods,
     listStubOfficialMods,
     listMissingOfficialCategories,
-    buildWikiContext
+    buildWikiContext,
+    frameAcquisition
   };
 }
 
-module.exports = { createKnowledgeCore, searchEntries };
+module.exports = { createKnowledgeCore, searchEntries, frameAcquisition };

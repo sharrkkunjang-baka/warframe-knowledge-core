@@ -262,3 +262,11 @@ test('官方目录加载为只读对象', () => {
   assert.equal(Object.isFrozen(core.officialCatalog.mods), true);
   assert.equal(Object.isFrozen(core.getOfficialMod('Narrow Minded')), true);
 });
+
+
+test('科研脉冲问题命中固定事实', () => {
+  const context = core.buildWikiContext('科研的脉冲次数是如何计算的');
+  assert.equal(context.facts[0].id, 'fact.search-pulse.weekly-consumption');
+  assert.match(context.text, /每周固定刷新 5 次/);
+  assert.match(context.text, /深层科研消耗 2 次/);
+});
