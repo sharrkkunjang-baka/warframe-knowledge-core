@@ -18,6 +18,8 @@ const baseCategoryIds = new Set(['frame', 'weapon', 'mod', 'resource', 'companio
 const categoryIds = new Set();
 const categoryNames = new Map();
 const gameplayAcquisitionQueries = new Map();
+const acquisitionUniqueNames = new Map();
+const invalidUserTextPattern = /<[^>]+>|\\n/;
 
 for (const category of categories) {
   if (!/^[a-z0-9][a-z0-9._-]*$/.test(category.id || '')) errors.push(`${category.id || '<unknown category>'}: 分类 id 格式错误`);
@@ -56,6 +58,11 @@ for (const entry of entries) {
     if (!entry.subject?.canonical || !entry.subject?.displayName || !entry.subject?.category) errors.push(`${entry.id}: acquisition 缺少完整 subject`);
     if (entry.subject?.category && !baseCategoryIds.has(entry.subject.category)) errors.push(`${entry.id}: 基础分类无效 ${entry.subject.category}`);
     if (entry.subject?.categoryRefs !== undefined && (!Array.isArray(entry.subject.categoryRefs) || new Set(entry.subject.categoryRefs).size !== entry.subject.categoryRefs.length)) errors.push(`${entry.id}: subject.categoryRefs 必须是唯一数组`);
+    const officialUniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
+    if (officialUniqueName) {
+      const owner = acquisitionUniqueNames.get(officialUniqueName);
+      if (owner && owner !== entry.id) errors.push(`官方 uniqueName 冲突 ${officialUniqueName}: ${owner}, ${entry.id}`); else acquisitionUniqueNames.set(officialUniqueName, entry.id);
+    }
     const categoryReachesBase = ref => {
       const visited = new Set();
       let current = categories.find(item => item.id === ref);
@@ -72,8 +79,15 @@ for (const entry of entries) {
     }
     if (entry.subject?.category === 'mod') {
       if (!Number.isInteger(entry.maxRank) || !Array.isArray(entry.effects) || !entry.effects.length) errors.push(`${entry.id}: Mod 条目缺少 maxRank/effects`);
-      for (const effect of entry.effects || []) if (!effect.stat || !effect.displayName || typeof effect.value !== 'number' || typeof effect.unit !== 'string') errors.push(`${entry.id}: effects 字段格式错误`);
+      for (const effect of entry.effects || []) {
+        if (!effect.stat || !effect.displayName || typeof effect.value !== 'number' || typeof effect.unit !== 'string') errors.push(`${entry.id}: effects 字段格式错误`);
+        if (invalidUserTextPattern.test(effect.displayName || '')) errors.push(`${entry.id}: effects.displayName 含未清理的标记或换行转义`);
+      }
+      if (entry.effectDetails !== undefined && (!Array.isArray(entry.effectDetails) || entry.effectDetails.some(detail => typeof detail !== 'string' || !detail.trim()))) errors.push(`${entry.id}: effectDetails 必须是非空字符串数组`);
+      if (entry.effectDetails?.some(detail => invalidUserTextPattern.test(detail))) errors.push(`${entry.id}: effectDetails 含未清理的标记或换行转义`);
     }
+    if (entry.rewardTier !== undefined && !['A', 'B', 'C'].includes(entry.rewardTier)) errors.push(`${entry.id}: rewardTier 必须是 A、B 或 C`);
+    if (entry.subject?.categoryRefs?.includes('nightmaremod') && !['A', 'B', 'C'].includes(entry.rewardTier)) errors.push(`${entry.id}: 噩梦 Mod 必须提供 rewardTier`);
     const primaryCategory = categories.find(category => category.id === entry.subject?.categoryRefs?.[0]);
     if (!entry.summary && !entry.content && !primaryCategory?.modDescription) errors.push(`${entry.id}: acquisition 缺少自身描述，主分类也没有 modDescription`);
     if (primaryCategory?.modDescription && !primaryCategory.modDescription.includes('{name}')) errors.push(`${primaryCategory.id}: modDescription 必须包含 {name} 变量`);
@@ -81,7 +95,10 @@ for (const entry of entries) {
   }
   if (entry.module === 'gameplay') {
     if (entry.kind !== 'knowledge') errors.push(`${entry.id}: gameplay 必须属于 knowledge`);
-    if (!Array.isArray(entry.aliases) || !entry.aliases.length || !entry.summary || !Array.isArray(entry.steps) || !entry.steps.length || !Array.isArray(entry.notes)) errors.push(`${entry.id}: gameplay 缺少 aliases/summary/steps/notes`);
+    if (!Array.isArray(entry.aliases) || !entry.aliases.length || !entry.summary || !Array.isArray(entry.steps) || !Array.isArray(entry.notes)) errors.push(`${entry.id}: gameplay 缺少 aliases/summary/steps/notes`);
+    for (const [tier, group] of Object.entries(entry.rewardGroups || {})) {
+      if (!['A', 'B', 'C'].includes(tier) || !Array.isArray(group.planets) || !group.planets.length) errors.push(`${entry.id}: rewardGroups.${tier} 缺少有效星球列表`);
+    }
     if (entry.acquisitionQuery !== undefined) {
       const query = String(entry.acquisitionQuery).normalize('NFKC').trim().toLowerCase();
       if (!query) errors.push(`${entry.id}: acquisitionQuery 不能为空`);
@@ -104,8 +121,14 @@ for (const entry of entries) for (const alias of [entry.title, ...(entry.aliases
 for (const [alias, owners] of aliasOwners) if (owners.size > 1) errors.push(`词条别名冲突 ${alias}: ${[...owners].join(', ')}`);
 
 const gameplayIds = new Set(entries.filter(entry => entry.module === 'gameplay').map(entry => entry.id));
+const gameplayById = new Map(entries.filter(entry => entry.module === 'gameplay').map(entry => [entry.id, entry]));
 for (const entry of entries.filter(entry => entry.module === 'acquisition')) {
   for (const ref of entry.methodRefs || []) if (!gameplayIds.has(ref)) errors.push(`${entry.id}: 引用了不存在的玩法 ${ref}`);
+  const primaryCategory = categories.find(category => category.id === entry.subject?.categoryRefs?.[0]);
+  if (primaryCategory?.modDescription?.includes('{acquisitionQuery}')) {
+    const methods = (entry.methodRefs || []).map(ref => gameplayById.get(ref)).filter(Boolean);
+    if (!entry.acquisitionQuery && !methods.some(method => method.acquisitionQuery || method.aliases?.length)) errors.push(`${entry.id}: 分类模板需要 acquisitionQuery，但条目及玩法均未提供`);
+  }
 }
 
 if (!officialCatalog) {

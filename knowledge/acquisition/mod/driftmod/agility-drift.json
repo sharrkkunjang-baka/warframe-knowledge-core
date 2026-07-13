@@ -1,0 +1,46 @@
+[
+  {
+    "id": "knowledge.acquisition.agility-drift",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "矫捷窜升",
+    "subject": {
+      "canonical": "Agility Drift",
+      "displayName": "矫捷窜升",
+      "category": "mod",
+      "categoryRefs": ["driftmod", "exilusmod"]
+    },
+    "maxRank": 5,
+    "effects": [
+      {
+        "stat": "airborne-damage-reduction",
+        "displayName": "空中伤害减免",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "stat": "enemy-accuracy",
+        "displayName": "敌人瞄准战甲时的精准度",
+        "value": -6,
+        "unit": "%"
+      }
+    ],
+    "prerequisites": ["完成《第二场梦》并解锁月球", "找到并完成矫捷试炼"],
+    "methodRefs": ["gameplay.lua-halls-of-ascension"],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Agility_Drift",
+        "label": "Warframe Wiki - Agility Drift"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Drift_Mods",
+        "label": "Warframe Wiki - Drift Mods"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-13",
+    "reviewStatus": "approved",
+    "reviewedBy": ["sharrkkunjang-baka"],
+    "tags": ["acquisition", "mod", "drift-mod", "exilus-mod", "lua", "agility-test"]
+  }
+]

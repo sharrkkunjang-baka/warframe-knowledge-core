@@ -1,0 +1,46 @@
+[
+  {
+    "id": "knowledge.acquisition.stealth-drift",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "匿踪窜升",
+    "subject": {
+      "canonical": "Stealth Drift",
+      "displayName": "匿踪窜升",
+      "category": "mod",
+      "categoryRefs": ["driftmod", "exilusmod"]
+    },
+    "maxRank": 5,
+    "effects": [
+      {
+        "stat": "enemy-radar",
+        "displayName": "侦敌雷达",
+        "value": 18,
+        "unit": "m"
+      },
+      {
+        "stat": "aim-glide-wall-latch-duration",
+        "displayName": "飞身瞄准/壁面攀附持续时间",
+        "value": 12,
+        "unit": "%"
+      }
+    ],
+    "prerequisites": ["完成《第二场梦》并解锁月球", "找到并完成匿踪试炼"],
+    "methodRefs": ["gameplay.lua-halls-of-ascension"],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Stealth_Drift",
+        "label": "Warframe Wiki - Stealth Drift"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Drift_Mods",
+        "label": "Warframe Wiki - Drift Mods"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-13",
+    "reviewStatus": "approved",
+    "reviewedBy": ["sharrkkunjang-baka"],
+    "tags": ["acquisition", "mod", "drift-mod", "exilus-mod", "lua", "stealth-test"]
+  }
+]

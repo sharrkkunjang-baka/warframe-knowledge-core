@@ -149,14 +149,14 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  ItemA[心智偏狭刷取\ncategory: mod\ncategoryRefs: 4kmod]
+  ItemA[心志偏狭刷取\ncategory: mod\ncategoryRefs: 4kmod]
   ItemB[盲怒刷取\ncategory: mod\ncategoryRefs: 4kmod]
   Category[4kmod 分类\nCorrupted Mods\nparent: mod]
   SubCategory[duration4kmod\n持续 4k Mod\nparent: 4kmod]
   RefA[methodRefs]
   Gameplay[火卫二 Orokin 宝库玩法\nsteps + notes]
   GameplayCommand[/玩法 火卫二 Orokin 宝库]
-  AcquisitionCommand[/刷 心智偏狭]
+  AcquisitionCommand[/刷 心志偏狭]
 
   ItemA --> Category
   ItemA --> SubCategory --> Category

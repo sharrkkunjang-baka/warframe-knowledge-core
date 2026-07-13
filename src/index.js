@@ -60,8 +60,23 @@ function createKnowledgeCore(options = {}) {
   const getGameplay = query => {
     const raw = String(query || '').trim();
     if (!raw) return null;
-    const entries = searchGameplay(raw, { limit: 8 });
-    return entries.length ? { query: raw, entry: entries[0], alternatives: entries.slice(1) } : null;
+    let entries = [];
+    let rewardTier = null;
+    const optionMatch = raw.match(/^(.+?)\s+(\S+)$/);
+    if (optionMatch) {
+      const baseEntries = searchGameplay(optionMatch[1], { limit: 8 });
+      if (baseEntries[0]?.rewardGroups) {
+        rewardTier = optionMatch[2].toUpperCase();
+        if (!['A', 'B', 'C'].includes(rewardTier)) return null;
+        entries = baseEntries;
+      }
+    }
+    if (!entries.length) entries = searchGameplay(raw, { limit: 8 });
+    if (!entries.length) return null;
+    const entry = entries[0];
+    const rewardGroup = rewardTier ? entry.rewardGroups?.[rewardTier] : null;
+    if (rewardTier && !rewardGroup) return null;
+    return { query: raw, entry, rewardTier, rewardGroup, alternatives: entries.slice(1) };
   };
   const searchCategories = query => {
     const q = normalize(query);
@@ -108,14 +123,24 @@ function createKnowledgeCore(options = {}) {
     return { query: String(query || '').trim(), category, entries };
   };
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
+  const expandMethodRefs = entry => (entry.methodRefs || []).map(id => data.knowledge.find(item => item.module === 'gameplay' && item.id === id)).filter(Boolean);
   const getAcquisitionDescription = entry => {
     if (entry.summary || entry.content) return entry.summary || entry.content;
     const primaryCategory = getCategory(entry.subject?.categoryRefs?.[0]);
+    const methods = expandMethodRefs(entry);
+    const acquisitionQuery = entry.acquisitionQuery
+      || methods.find(method => method.acquisitionQuery)?.acquisitionQuery
+      || methods[0]?.aliases?.[0]
+      || primaryCategory?.displayName
+      || '';
     return primaryCategory?.modDescription
-      ? renderTemplate(primaryCategory.modDescription, { name: entry.subject?.displayName || entry.title })
+      ? renderTemplate(primaryCategory.modDescription, {
+        name: entry.subject?.displayName || entry.title,
+        rewardTierSuffix: entry.rewardTier ? ` ${String(entry.rewardTier).toLowerCase()}` : '',
+        acquisitionQuery
+      })
       : null;
   };
-  const expandMethodRefs = entry => (entry.methodRefs || []).map(id => data.knowledge.find(item => item.module === 'gameplay' && item.id === id)).filter(Boolean);
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
     if (!raw) return null;

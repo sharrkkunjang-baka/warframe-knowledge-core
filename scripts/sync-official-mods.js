@@ -30,6 +30,9 @@ function getTraitCategories(item) {
     drop.location === 'Derelict Vault' && drop.type === item.name);
   const isNightmare = (item.drops || []).some(drop =>
     /^Nightmare Mode Rewards/.test(drop.location) && drop.type === item.name);
+  const isPvp = /\/PvPMods\//.test(item.uniqueName || '') || /PvPAugmentCard/.test(item.uniqueName || '');
+  const isArchon = /^Archon /.test(item.name || '');
+  const isDrift = /\/OrokinChallenge\//.test(item.uniqueName || '') && / Drift$/.test(item.name || '');
   if (item.isPrime) traits.push(['trait.prime', 'Prime Mods']);
   if (item.isAugment) traits.push(['trait.augment', 'Augment Mods']);
   if (item.isExilus) traits.push(['trait.exilus', 'Exilus Mods']);
@@ -41,6 +44,9 @@ function getTraitCategories(item) {
   if (item.type === 'Posture Mod') traits.push(['trait.posture', 'Posture Mods']);
   if (isCorrupted) traits.push(['trait.corrupted', 'Corrupted Mods']);
   if (isNightmare) traits.push(['trait.nightmare', 'Nightmare Mode Mods']);
+  if (isPvp) traits.push(['trait.pvp', 'PvP Mods']);
+  if (isArchon) traits.push(['trait.archon', 'Archon Mods']);
+  if (isDrift) traits.push(['trait.drift', 'Drift Mods']);
   return traits;
 }
 
@@ -59,8 +65,16 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const localCategories = readCategoryDirectory(path.join(root, 'categories'));
   const acquisitionEntries = readEntryDirectory(path.join(root, 'knowledge', 'acquisition'));
   const acquisitionsByCanonical = new Map();
+  const acquisitionsByUniqueName = new Map();
 
   for (const entry of acquisitionEntries) {
+    const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
+    if (uniqueName) {
+      const ids = acquisitionsByUniqueName.get(uniqueName) || [];
+      ids.push(entry.id);
+      acquisitionsByUniqueName.set(uniqueName, ids);
+      continue;
+    }
     const key = normalize(entry.subject?.canonical);
     if (!key) continue;
     const ids = acquisitionsByCanonical.get(key) || [];
@@ -84,7 +98,10 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       if (item.compatName) officialCategoryIds.push(`compat.${slug(item.compatName)}`);
       officialCategoryIds.push(...getTraitCategories(item).map(([id]) => id));
       for (const id of officialCategoryIds) officialCategoryMap.get(id).count += 1;
-      const localEntryIds = [...(acquisitionsByCanonical.get(normalize(item.name)) || [])].sort();
+      const localEntryIds = [...new Set([
+        ...(acquisitionsByUniqueName.get(item.uniqueName) || []),
+        ...(acquisitionsByCanonical.get(normalize(item.name)) || [])
+      ])].sort();
       return {
         uniqueName: item.uniqueName,
         canonical: item.name,
@@ -104,7 +121,10 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
           exilus: Boolean(item.isExilus),
           utility: Boolean(item.isUtility),
           set: Boolean(item.modSet),
-          riven: /Riven Mod$/.test(item.type || '')
+          riven: /Riven Mod$/.test(item.type || ''),
+          pvp: /\/PvPMods\//.test(item.uniqueName || '') || /PvPAugmentCard/.test(item.uniqueName || ''),
+          archon: /^Archon /.test(item.name || ''),
+          drift: /\/OrokinChallenge\//.test(item.uniqueName || '') && / Drift$/.test(item.name || '')
         },
         modSet: item.modSet || null,
         officialCategoryIds,

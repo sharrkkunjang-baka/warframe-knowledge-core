@@ -1,0 +1,46 @@
+[
+  {
+    "id": "knowledge.acquisition.speed-drift",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "速度窜升",
+    "subject": {
+      "canonical": "Speed Drift",
+      "displayName": "速度窜升",
+      "category": "mod",
+      "categoryRefs": ["driftmod", "exilusmod"]
+    },
+    "maxRank": 5,
+    "effects": [
+      {
+        "stat": "sprint-speed",
+        "displayName": "冲刺速度",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "stat": "casting-speed",
+        "displayName": "施放速度",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "prerequisites": ["完成《第二场梦》并解锁月球", "找到并完成速度试炼"],
+    "methodRefs": ["gameplay.lua-halls-of-ascension"],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Speed_Drift",
+        "label": "Warframe Wiki - Speed Drift"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Drift_Mods",
+        "label": "Warframe Wiki - Drift Mods"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-13",
+    "reviewStatus": "approved",
+    "reviewedBy": ["sharrkkunjang-baka"],
+    "tags": ["acquisition", "mod", "drift-mod", "exilus-mod", "lua", "speed-test"]
+  }
+]

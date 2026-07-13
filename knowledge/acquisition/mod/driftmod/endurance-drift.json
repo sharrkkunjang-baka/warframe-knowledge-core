@@ -1,0 +1,46 @@
+[
+  {
+    "id": "knowledge.acquisition.endurance-drift",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "坚忍窜升",
+    "subject": {
+      "canonical": "Endurance Drift",
+      "displayName": "坚忍窜升",
+      "category": "mod",
+      "categoryRefs": ["driftmod", "exilusmod"]
+    },
+    "maxRank": 5,
+    "effects": [
+      {
+        "stat": "energy-max",
+        "displayName": "最大能量",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "stat": "parkour-velocity",
+        "displayName": "跑酷速度",
+        "value": 12,
+        "unit": "%"
+      }
+    ],
+    "prerequisites": ["完成《第二场梦》并解锁月球", "找到并完成坚忍试炼"],
+    "methodRefs": ["gameplay.lua-halls-of-ascension"],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Endurance_Drift",
+        "label": "Warframe Wiki - Endurance Drift"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Drift_Mods",
+        "label": "Warframe Wiki - Drift Mods"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-13",
+    "reviewStatus": "approved",
+    "reviewedBy": ["sharrkkunjang-baka"],
+    "tags": ["acquisition", "mod", "drift-mod", "exilus-mod", "lua", "endurance-test"]
+  }
+]

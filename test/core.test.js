@@ -110,6 +110,8 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.equal(reviewCore.getAcquisition('电妹').entry.id, 'knowledge.acquisition.gyre');
   const narrow = reviewCore.getAcquisition('心智狭');
   assert.equal(narrow.entry.id, 'knowledge.acquisition.narrow-minded');
+  assert.equal(narrow.entry.subject.displayName, '心志偏狭');
+  assert.equal(narrow.description, '心志偏狭是火卫二 Orokin 宝库的堕落 Mod（4k Mod）其一\n输入“刷 4k”可了解刷取要求/小知识');
   assert.equal(narrow.entry.subject.category, 'mod');
   assert.deepEqual(narrow.entry.subject.categoryRefs, ['4kmod', 'duration4kmod', 'durationmod']);
   assert.equal(narrow.categories[0].canonical, 'Corrupted Mods');
@@ -176,10 +178,50 @@ test('噩梦 Mod 完整关联分类、玩法与官方目录', () => {
   assert.deepEqual(blaze.entry.effects.map(effect => effect.value), [60, 60]);
   assert.equal(blaze.methods[0].id, 'gameplay.nightmare-mode');
   assert.equal(core.getGameplay('噩梦').entry.id, 'gameplay.nightmare-mode');
+  const constitution = core.getAcquisition('Constitution', {
+    resolveOptions: { candidates: [{ alias: 'Constitution', canonical: 'Constitution', category: 'official' }] }
+  });
+  assert.equal(constitution.entry.rewardTier, 'C');
+  assert.equal(constitution.description, '百折不挠是噩梦模式任务奖励中的噩梦 Mod\n输入“刷 噩梦 c”可了解刷取要求/小知识');
+  assert.deepEqual(
+    Object.fromEntries(['A', 'B', 'C'].map(tier => [tier, detail.entries.filter(entry => entry.rewardTier === tier).length])),
+    { A: 7, B: 6, C: 6 }
+  );
+  const tierB = core.getGameplay('噩梦 b');
+  assert.equal(tierB.rewardTier, 'B');
+  assert.deepEqual(tierB.rewardGroup.planets, ['火卫一', '谷神星', '木星', '欧罗巴', '虚空', '月球', '赤毒要塞', '火卫二', '土星']);
+  assert.equal(core.getGameplay('噩梦 d'), null);
   const official = core.listOfficialCategories().find(category => category.id === 'trait.nightmare');
   assert.equal(official.count, 19);
   assert.deepEqual(official.localCategoryIds, ['nightmaremod']);
   assert.equal(official.status, 'covered');
+});
+
+test('新增 Mod 系列完整关联分类、玩法与官方目录', () => {
+  assert.equal(core.getCategoryDetail('武形秘仪').entries.length, 152);
+  assert.equal(core.getCategoryDetail('组合卡').entries.length, 72);
+  assert.equal(core.getCategoryDetail('光环卡').entries.length, 36);
+  assert.equal(core.getCategoryDetail('功能槽').entries.length, 51);
+  assert.equal(core.getCategoryDetail('窜升').entries.length, 7);
+  assert.equal(core.getCategoryDetail('执刑官卡').entries.length, 5);
+  assert.equal(core.getCategoryDetail('怪奇').entries.length, 3);
+
+  const pvp = core.getAcquisition('Air Martial');
+  assert.equal(pvp.entry.subject.displayName, '空中武术');
+  assert.equal(pvp.methods[0].id, 'gameplay.conclave-offerings');
+  assert.equal(core.getGameplay('精英圣殿').entry.id, 'gameplay.elite-sanctuary-onslaught');
+  assert.equal(core.getAcquisition('Peculiar Growth').entry.rewardTier, 'B');
+
+  const officialPvp = core.listOfficialCategories().find(category => category.id === 'trait.pvp');
+  assert.equal(officialPvp.count, 152);
+  assert.deepEqual(officialPvp.localCategoryIds, ['pvpmod']);
+  assert.equal(officialPvp.status, 'covered');
+});
+
+test('仲裁使用当前接合点解锁条件', () => {
+  const arbitration = core.getGameplay('仲裁').entry;
+  assert.match(arbitration.steps[0], /冥王星至阋神星接合点/);
+  assert.doesNotMatch(arbitration.steps.join(''), /解锁全部星图|完成全部星图|清完星图/);
 });
 
 test('官方目录加载为只读对象', () => {

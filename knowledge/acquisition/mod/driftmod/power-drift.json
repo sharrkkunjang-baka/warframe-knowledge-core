@@ -1,0 +1,46 @@
+[
+  {
+    "id": "knowledge.acquisition.power-drift",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "力量窜升",
+    "subject": {
+      "canonical": "Power Drift",
+      "displayName": "力量窜升",
+      "category": "mod",
+      "categoryRefs": ["driftmod", "exilusmod", "strengthmod"]
+    },
+    "maxRank": 5,
+    "effects": [
+      {
+        "stat": "ability-strength",
+        "displayName": "技能强度",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "stat": "knockdown-resistance-chance",
+        "displayName": "抵抗击倒几率",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "prerequisites": ["完成《第二场梦》并解锁月球", "找到并完成力量试炼"],
+    "methodRefs": ["gameplay.lua-halls-of-ascension"],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Power_Drift",
+        "label": "Warframe Wiki - Power Drift"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Drift_Mods",
+        "label": "Warframe Wiki - Drift Mods"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-13",
+    "reviewStatus": "approved",
+    "reviewedBy": ["sharrkkunjang-baka"],
+    "tags": ["acquisition", "mod", "drift-mod", "exilus-mod", "lua", "power-test"]
+  }
+]

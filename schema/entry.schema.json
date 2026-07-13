@@ -23,10 +23,23 @@
         "canonical": { "type": "string", "minLength": 1 },
         "displayName": { "type": "string", "minLength": 1 },
         "category": { "enum": ["frame", "weapon", "mod", "resource", "companion", "other"], "description": "对象的基础类型" },
-        "categoryRefs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }, "uniqueItems": true, "description": "引用 categories/<id>.json，可同时属于多个细分类" }
+        "categoryRefs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }, "uniqueItems": true, "description": "引用 categories/<id>.json，可同时属于多个细分类" },
+        "officialUniqueName": { "type": "string", "minLength": 1 },
+        "setFamily": { "type": "string", "minLength": 1 },
+        "pvpKind": { "enum": ["pool", "augment"] },
+        "pvpSlot": { "type": "string", "minLength": 1 },
+        "conclaveTier": { "type": "string", "minLength": 1 }
       }
     },
     "maxRank": { "type": "integer", "minimum": 0 },
+    "rewardTier": { "enum": ["A", "B", "C"], "description": "对象所属的 A/B/C 奖励梯级" },
+    "officialUniqueName": { "type": "string", "minLength": 1 },
+    "setFamily": { "type": "string", "minLength": 1 },
+    "pvpKind": { "enum": ["pool", "augment"] },
+    "pvpSlot": { "type": "string", "minLength": 1 },
+    "conclaveTier": { "type": "string", "minLength": 1 },
+    "tradable": { "type": "boolean" },
+    "effectDetails": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "effects": {
       "type": "array",
       "minItems": 1,
@@ -45,7 +58,18 @@
     "prerequisites": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "methodRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^gameplay\\." }, "uniqueItems": true },
     "acquisitionQuery": { "type": "string", "minLength": 1, "description": "允许通过“刷 <值>”直接打开此玩法" },
-    "steps": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "steps": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "rewardGroups": {
+      "type": "object",
+      "propertyNames": { "enum": ["A", "B", "C"] },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["planets"],
+        "properties": {
+          "planets": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+        }
+      }
+    },
     "notes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "tags": { "type": "array", "items": { "type": "string" } }
   },
