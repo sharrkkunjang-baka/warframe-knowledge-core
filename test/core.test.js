@@ -77,6 +77,14 @@ test('玩法模块只响应明确的斜杠命令', () => {
   assert.equal(reviewCore.parseGameplayCommand('我想玩火卫二宝库'), null);
 });
 
+test('分类模块只响应明确命令句式', () => {
+  assert.deepEqual(core.parseCategoryCommand('/分类'), { intent: 'category', query: '' });
+  assert.deepEqual(core.parseCategoryCommand('/分类 4k卡'), { intent: 'category', query: '4k卡' });
+  assert.deepEqual(core.parseCategoryCommand('分类 4k卡'), { intent: 'category', query: '4k卡' });
+  assert.equal(core.parseCategoryCommand('分类4k卡'), null);
+  assert.equal(core.parseCategoryCommand('这是什么分类 4k卡'), null);
+});
+
 test('玩法查询支持别名并返回结构化步骤', () => {
   const result = reviewCore.getGameplay('火卫二orikon 宝库');
   assert.equal(result.entry.id, 'gameplay.deimos-orokin-vault');
@@ -92,6 +100,10 @@ test('分类别名独立解析且不进入物品名称索引', () => {
   assert.equal(reviewCore.getCategory('4k卡').id, '4kmod');
   assert.equal(reviewCore.getCategory('堕落卡').id, '4kmod');
   assert.equal(reviewCore.resolveName('4k卡'), null);
+  const detail = core.getCategoryDetail('4k卡');
+  assert.equal(detail.category.id, '4kmod');
+  assert.equal(detail.entries.length, 24);
+  assert.ok(detail.entries.some(entry => entry.id === 'knowledge.acquisition.narrow-minded'));
 });
 
 test('刷取查询只通过统一名称索引关联 canonical', () => {

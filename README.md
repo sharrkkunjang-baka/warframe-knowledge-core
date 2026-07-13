@@ -22,6 +22,8 @@ console.log(core.resolveName('心智狭'));
 console.log(core.searchKnowledge('九重天'));
 console.log(core.parseAcquisitionCommand('/刷 电妹'));
 console.log(core.getAcquisition('电妹')); 
+console.log(core.parseCategoryCommand('/分类 4k卡'));
+console.log(core.getCategoryDetail('4k卡'));
 console.log(core.getOfficialMod('Narrow Minded'));
 console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 ```
@@ -61,6 +63,8 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 刷取词条需要额外提供 `module`、`subject`、`summary`、`prerequisites` 和 `methodRefs`。`subject.category` 保存基础类型，`subject.categoryRefs` 可引用多个 `categories/<id>.json` 细分类。目录只表达主要维护归档，例如所有堕落 Mod 放在 `knowledge/acquisition/mod/4kmod/`；目录不会限制分类。一张提供精准度的堕落 Mod 可同时引用 `4kmod`、`accuracy4kmod` 和通用 `accuracymod`，分别表达“堕落 Mod”“精准堕落 Mod”“精准 Mod”。这样 Exilus + Set Mod 等交叉分类也可同时表达，分类还可继续嵌套。Mod 刷取条目还必须用 `maxRank` 和 `effects` 保存官方满级效果，不能只写在描述文本中。`4kmod` 的官方依据为英文 Wiki 的 `Corrupted Mods`。分类可独立保存 `aliases`，供未来 `/分类 4k卡`、`/分类 精准卡` 等入口使用，但不会进入 `/买` 或 `/刷` 的物品名称索引。`methodRefs` 只保存 `gameplay.*` ID，调用 `getAcquisition()` 时自动展开对应玩法。
 
 玩法可使用严格指令 `/玩法 <玩法名称>`；若玩法定义了 `acquisitionQuery`，还可通过明确刷取命令打开，例如 `刷 4k`。具体物品可省略重复的 `summary` 和 `content`，改由第一项主分类的 `modDescription` 模板统一生成描述；模板必须包含 `{name}`，共享核心会替换为物品展示名。具体物品回复只显示生成后的来源结论和结构化效果，不展开 `prerequisites`、玩法步骤、注意事项或来源链接。`getGameplay()` 返回与刷取引用相同的 `steps` 和 `notes`，确保详细流程只维护一份。
+
+分类命令支持 `/分类 <分类名称>` 和 `分类 <分类名称>`，不响应没有空格的 `分类xxx`。分类名称通过分类自身的 `id`、`canonical`、`displayName` 和 `aliases` 精确解析；`getCategoryDetail()` 会同时返回分类说明和所有直接引用该分类的已收录刷取对象。
 
 目录示例：
 

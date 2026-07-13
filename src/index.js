@@ -50,6 +50,11 @@ function createKnowledgeCore(options = {}) {
     const match = raw.match(/^\/玩法(?:\s+(.+))?$/i);
     return match ? { intent: 'gameplay', query: String(match[1] || '').trim() } : null;
   };
+  const parseCategoryCommand = text => {
+    const raw = String(text || '').trim();
+    const match = raw.match(/^\/分类(?:\s+(.+))?$/i) || raw.match(/^分类\s+(.+)$/i);
+    return match ? { intent: 'category', query: String(match[1] || '').trim() } : null;
+  };
   const searchAcquisition = (query, searchOptions = {}) => searchEntries(query, data.knowledge.filter(entry => entry.module === 'acquisition'), searchOptions);
   const searchGameplay = (query, searchOptions = {}) => searchEntries(query, data.knowledge.filter(entry => entry.module === 'gameplay'), searchOptions);
   const getGameplay = query => {
@@ -93,6 +98,15 @@ function createKnowledgeCore(options = {}) {
     && (!filter.localizationStatus || mod.localizationStatus === filter.localizationStatus));
   const listMissingOfficialCategories = (filter = {}) => listOfficialCategories({ ...filter, status: 'missing' });
   const getCategory = query => searchCategories(query)[0] || null;
+  const getCategoryDetail = query => {
+    const category = getCategory(query);
+    if (!category) return null;
+    const entries = data.knowledge
+      .filter(entry => entry.module === 'acquisition'
+        && (entry.subject?.category === category.id || entry.subject?.categoryRefs?.includes(category.id)))
+      .sort((a, b) => String(a.subject?.displayName || a.title).localeCompare(String(b.subject?.displayName || b.title), 'zh-CN'));
+    return { query: String(query || '').trim(), category, entries };
+  };
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
   const getAcquisitionDescription = entry => {
     if (entry.summary || entry.content) return entry.summary || entry.content;
@@ -128,12 +142,14 @@ function createKnowledgeCore(options = {}) {
     normalizeTerms,
     parseAcquisitionCommand,
     parseGameplayCommand,
+    parseCategoryCommand,
     searchFacts,
     searchKnowledge,
     searchAcquisition,
     searchGameplay,
     searchCategories,
     getCategory,
+    getCategoryDetail,
     getGameplay,
     getAcquisition,
     getOfficialMod,
