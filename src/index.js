@@ -29,7 +29,24 @@ function searchEntries(query, entries, options = {}) {
 function createKnowledgeCore(options = {}) {
   const root = options.root || path.join(__dirname, '..');
   const data = loadData(root, { approvedOnly: options.approvedOnly !== false });
-  const resolveName = createResolver(data.aliases);
+  const officialMods = data.officialCatalog?.mods || [];
+  const officialCategories = data.officialCatalog?.officialCategories || [];
+  const officialNameCandidates = officialMods.flatMap(mod =>
+    [mod.canonical, mod.displayName]
+      .filter(Boolean)
+      .map(alias => ({ alias, canonical: mod.canonical, category: 'official' })));
+  const baseResolveName = createResolver(data.aliases);
+  const resolveName = (query, resolveOptions = {}) => {
+    const suppliedCandidates = resolveOptions.candidates || [];
+    const suppliedAliases = new Set(suppliedCandidates.map(candidate => normalize(candidate.alias)));
+    return baseResolveName(query, {
+      ...resolveOptions,
+      candidates: [
+        ...suppliedCandidates,
+        ...officialNameCandidates.filter(candidate => !suppliedAliases.has(normalize(candidate.alias)))
+      ]
+    });
+  };
   const normalizeTerms = text => {
     let output = String(text || '');
     for (const key of Object.keys(data.aliases.normalization || {}).sort((a, b) => b.length - a.length)) output = output.split(key).join(data.aliases.normalization[key]);
@@ -83,8 +100,6 @@ function createKnowledgeCore(options = {}) {
     if (!q) return [];
     return data.categories.filter(category => [category.id, category.canonical, category.displayName, ...(category.aliases || [])].some(name => normalize(name) === q));
   };
-  const officialMods = data.officialCatalog?.mods || [];
-  const officialCategories = data.officialCatalog?.officialCategories || [];
   const getOfficialMod = query => {
     const q = normalize(query);
     if (!q) return null;
@@ -137,6 +152,26 @@ function createKnowledgeCore(options = {}) {
       .map(id => data.knowledge.find(item => item.module === 'gameplay' && item.id === id))
       .filter(Boolean);
   };
+  const aggregateAcquisitionMethods = entries => {
+    const methods = [];
+    const seen = new Set();
+    for (const entry of entries) {
+      for (const method of expandMethodRefs(entry)) {
+        if (seen.has(method.id)) continue;
+        seen.add(method.id);
+        methods.push(method);
+      }
+    }
+    return {
+      methods,
+      sourceOptions: methods.map(method => ({
+        id: method.id,
+        title: method.title,
+        query: method.acquisitionQuery || method.aliases?.[0] || method.title
+      }))
+    };
+  };
+  const getAcquisitionSourceOptions = entry => aggregateAcquisitionMethods([entry]).sourceOptions;
   const getAcquisitionDescription = entry => {
     if (entry.summary || entry.content) return entry.summary || entry.content;
     const primaryCategory = getCategory(entry.subject?.categoryRefs?.[0]);
@@ -154,14 +189,59 @@ function createKnowledgeCore(options = {}) {
       })
       : null;
   };
+  const acquisitionCollections = [
+    {
+      id: 'parkour-mods',
+      title: '跑酷 Mod',
+      description: '收录效果中明确包含跑酷速度的已审核 Mod，并汇总这些 Mod 的全部获取来源。',
+      aliases: ['跑酷mod', '跑酷 Mod', '跑酷卡'],
+      matches: entry => (entry.effects || []).some(effect => String(effect.displayName || '').includes('跑酷速度'))
+        || (entry.effectDetails || []).some(detail => String(detail || '').includes('跑酷速度'))
+    }
+  ];
+  const getAcquisitionCollection = query => {
+    const raw = String(query || '').trim();
+    if (!raw) return null;
+    const definition = acquisitionCollections.find(collection => collection.aliases.some(alias => normalize(alias) === normalize(raw)));
+    if (!definition) return null;
+    const entries = data.knowledge.filter(entry => entry.module === 'acquisition' && definition.matches(entry));
+    const { methods, sourceOptions } = aggregateAcquisitionMethods(entries);
+    return {
+      query: raw,
+      resolution: null,
+      entry: null,
+      collection: {
+        id: definition.id,
+        title: definition.title,
+        description: definition.description
+      },
+      entries,
+      methods,
+      sourceOptions,
+      alternatives: []
+    };
+  };
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
     if (!raw) return null;
+    const collection = getAcquisitionCollection(raw);
+    if (collection) return collection;
     const resolution = resolveName(raw, searchOptions.resolveOptions || {});
-    if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], alternatives: [] };
+    if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
     const canonical = resolution?.canonical || raw;
     const entry = data.knowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
-    return entry ? { query: raw, resolution, entry, description: getAcquisitionDescription(entry), categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean), methods: expandMethodRefs(entry), alternatives: [] } : null;
+    if (!entry) return getAcquisitionCollection(raw);
+    const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
+    return {
+      query: raw,
+      resolution,
+      entry,
+      description: getAcquisitionDescription(entry),
+      categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
+      methods,
+      sourceOptions,
+      alternatives: []
+    };
   };
   const buildWikiContext = query => {
     const resolution = resolveName(query);
@@ -190,6 +270,7 @@ function createKnowledgeCore(options = {}) {
     getCategoryDetail,
     getGameplay,
     getAcquisition,
+    getAcquisitionCollection,
     getOfficialMod,
     searchOfficialMods,
     listOfficialCategories,

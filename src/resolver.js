@@ -2,7 +2,11 @@
 
 const { pinyin } = require('pinyin-pro');
 
-const normalize = value => String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[\s·・‧•_-]+/g, '');
+const normalize = value => {
+  let result = String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[\s·・‧•_-]+/g, '');
+  if (/[^a-z]p$/.test(result)) result = `${result.slice(0, -1)}prime`;
+  return result;
+};
 const pinyinTokens = value => pinyin(String(value || ''), { toneType: 'none', type: 'array' }).filter(Boolean);
 
 function textScore(query, candidate) {

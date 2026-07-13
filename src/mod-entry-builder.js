@@ -104,6 +104,7 @@ function buildModEntry(item, localized = {}, options = {}) {
   const canonical = getCanonical(item)
   const displayName = getDisplayName(item, localized)
   const variant = getModVariant(item)
+  const hasDefaultAcquisition = variant === 'prime'
   const identity = getGeneratedIdentity(item)
   const effectDetails = getEffectDetails(item, localized)
   const entry = {
@@ -125,12 +126,12 @@ function buildModEntry(item, localized = {}, options = {}) {
     tradable: Boolean(item.tradable),
     prerequisites: [],
     methodRefs: [],
-    acquisitionStatus: 'stub',
+    acquisitionStatus: hasDefaultAcquisition ? 'complete' : 'stub',
     sources: [getWikiSource(item)],
     gameVersion: options.gameVersion || 'warframe-items',
     updatedAt: options.updatedAt || new Date().toISOString().slice(0, 10),
-    reviewStatus: 'draft',
-    reviewedBy: [],
+    reviewStatus: hasDefaultAcquisition ? 'approved' : 'draft',
+    reviewedBy: hasDefaultAcquisition ? ['category-default:primemod'] : [],
     tags: ['acquisition', 'mod', `${variant}-mod`, `${getTypeFolder(item)}-mod`],
     generator: {
       name: GENERATOR_NAME,

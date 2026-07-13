@@ -140,6 +140,36 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.equal(reviewCore.getAcquisition('氩晶获取'), null);
 });
 
+test('跑酷 Mod 泛类查询聚合成员与全部来源', () => {
+  const result = core.getAcquisition('跑酷mod');
+  assert.equal(result.entry, null);
+  assert.equal(result.collection.id, 'parkour-mods');
+  const memberNames = result.entries.map(entry => entry.subject.displayName);
+  assert.ok(memberNames.includes('全面驱动'));
+  assert.ok(memberNames.includes('剧毒飞腾'));
+  const methodIds = result.methods.map(method => method.id);
+  assert.deepEqual(methodIds, [
+    'gameplay.lua-halls-of-ascension',
+    'gameplay.duviri-endless',
+    'gameplay.uranus-caches',
+    'gameplay.enemy-and-mission-drops',
+    'gameplay.narmer-bounty'
+  ]);
+  assert.equal(new Set(methodIds).size, methodIds.length);
+  assert.equal(new Set(result.sourceOptions.map(source => source.id)).size, result.sourceOptions.length);
+  for (const alias of ['跑酷 Mod', '跑酷卡']) {
+    assert.equal(core.getAcquisition(alias).collection.id, 'parkour-mods');
+  }
+
+  const mobilize = core.getAcquisition('全面驱动');
+  assert.equal(mobilize.collection, undefined);
+  assert.equal(mobilize.entry.subject.displayName, '全面驱动');
+  assert.deepEqual(mobilize.methods.map(method => method.id), [
+    'gameplay.duviri-endless',
+    'gameplay.uranus-caches',
+    'gameplay.enemy-and-mission-drops'
+  ]);
+});
 test('默认批准的刷取知识直接进入生产核心', () => {
   assert.equal(core.getAcquisition('电妹').entry.id, 'knowledge.acquisition.gyre');
 });

@@ -49,7 +49,7 @@ for (const [id, canonical, displayName, aliases, description] of definitions) {
   };
   if (id === 'primemod') {
     category.defaultMethodRefs = ['gameplay.baro-ki-teer'];
-    category.modDescription = '{name}通常由虚空商人的轮换库存出售\n输入“刷 奸商”可了解兑换准备与轮换规则';
+    category.modDescription = '{name} 通常由虚空商人的轮换库存出售\n输入“刷 奸商”可了解兑换准备与轮换规则';
   }
   fs.writeFileSync(path.join(categoriesDirectory, `${id}.json`), `${JSON.stringify(category, null, 2)}\n`);
 }

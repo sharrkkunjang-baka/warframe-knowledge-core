@@ -72,6 +72,8 @@ console.log(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }));
 
 `我想刷电妹`、`哪里刷电妹`、`如何刷电妹`、`刷电妹`不会触发。命令路由先调用 `parseAcquisitionCommand()`，再由 `getAcquisition()` 复用与 `/买` 相同的统一名称解析器；解析得到 canonical 后，仅按 `subject.canonical` 精确关联刷取文件。刷取文件不定义 `aliases`。
 
+`getAcquisition()` 优先返回精确匹配的单物品；单物品未命中时会尝试已定义的泛类集合（例如“跑酷mod”“跑酷卡”）。返回结果中的 `entry` 与 `collection` 二选一：单物品结果提供 `entry`，集合结果提供 `collection`、动态筛选出的 `entries`，以及按首次出现顺序去重聚合的 `methods` / `sourceOptions`。调用方也可直接使用 `getAcquisitionCollection()` 查询集合。集合标题、说明、成员名和来源均为中文玩家输出。
+
 刷取词条需要额外提供 `module`、`subject`、`prerequisites` 和 `methodRefs`。`subject.category` 保存基础类型，`subject.categoryRefs` 可引用多个 `categories/<id>.json` 细分类。目录只表达主要维护归档，例如所有堕落 Mod 放在 `knowledge/acquisition/mod/4kmod/`；目录不会限制分类。一张提供精准度的堕落 Mod 可同时引用 `4kmod`、`accuracy4kmod` 和通用 `accuracymod`，分别表达“堕落 Mod”“精准堕落 Mod”“精准 Mod”。Mod 刷取条目必须用 `maxRank` 配合结构化 `effects` 或完整 `effectDetails` 保存官方满级效果。自动生成的普通、Prime 与残缺 Mod 空壳分别归档到 `standardmod/`、`primemod/` 与 `flawedmod/`，再按装备类型分层。空壳的 `methodRefs` 允许为空；补齐刷法并审核后才能改为完整状态。分类可独立保存 `aliases`，供 `/分类` 使用，但不会进入物品名称索引。完整词条的 `methodRefs` 只保存 `gameplay.*` ID，调用 `getAcquisition()` 时自动展开对应玩法。
 
 玩法可使用严格指令 `/玩法 <玩法名称>`；若玩法定义了 `acquisitionQuery`，还可通过明确刷取命令打开，例如 `刷 4k`。具体物品可省略重复的 `summary` 和 `content`，改由第一项主分类的 `modDescription` 模板统一生成描述；模板必须包含 `{name}`，共享核心会替换为物品展示名。具体物品回复只显示生成后的来源结论和结构化效果，不展开 `prerequisites`、玩法步骤、注意事项或来源链接。`getGameplay()` 返回与刷取引用相同的 `steps` 和 `notes`，确保详细流程只维护一份。
