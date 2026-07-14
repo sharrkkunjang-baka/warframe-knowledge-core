@@ -15,7 +15,9 @@ const OFFICIAL_PRIME_RELICS = require(path.join(CORE_ROOT, 'generated', 'officia
 const OFFICIAL_FRAME_QUEST_SERIES = require(path.join(CORE_ROOT, 'generated', 'official-frame-quest-series.json'));
 const OFFICIAL_RAILJACK_NODES = require(path.join(CORE_ROOT, 'generated', 'official-railjack-nodes.json'));
 const { loadEntityRegistries } = require('./entities');
-const LOCATION_REGISTRY = loadEntityRegistries(CORE_ROOT).locations;
+const ENTITY_REGISTRIES = loadEntityRegistries(CORE_ROOT);
+const LOCATION_REGISTRY = ENTITY_REGISTRIES.locations;
+const CURRENCY_REGISTRY = ENTITY_REGISTRIES.currencies;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -39,12 +41,15 @@ const FRAME_KNOWLEDGE_DIR = path.join(CORE_ROOT, 'knowledge', 'acquisition', 'wa
 const FRAME_KNOWLEDGE = fs.readdirSync(FRAME_KNOWLEDGE_DIR, { withFileTypes: true })
   .filter(entry => entry.isFile() && entry.name.endsWith('.json'))
   .sort((a, b) => a.name.localeCompare(b.name, 'en'))
-  .flatMap(entry => require(path.join(FRAME_KNOWLEDGE_DIR, entry.name)));
+  .flatMap(entry => require(path.join(FRAME_KNOWLEDGE_DIR, entry.name)))
+  .filter(entry => entry.reviewStatus === 'approved');
 const FRAME_KNOWLEDGE_INDEX = new Map(FRAME_KNOWLEDGE.map(entry => [entry.subject.canonical, entry]));
-const FRAME_SOURCE_OVERRIDES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => entry.frameAcquisition?.sources).map(entry => [entry.subject.canonical, entry.frameAcquisition.sources])));
-const FRAME_ACQUISITION_NOTES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => entry.frameAcquisition?.note).map(entry => [entry.subject.canonical, entry.frameAcquisition.note])));
-const CALIBAN_PRIME_DATA = FRAME_KNOWLEDGE_INDEX.get('Caliban Prime').frameAcquisition.specialFrame;
-const SIRIUS_ORION_DATA = FRAME_KNOWLEDGE_INDEX.get('Sirius & Orion').frameAcquisition.specialFrame;
+const manualOf = entry => entry?.frameAcquisition?.manual || {};
+const FRAME_SOURCE_OVERRIDES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).sources).map(entry => [entry.subject.canonical, manualOf(entry).sources])));
+const FRAME_ACQUISITION_NOTES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).note).map(entry => [entry.subject.canonical, manualOf(entry).note])));
+const FRAME_DEPENDENCIES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).dependencies?.length).map(entry => [entry.subject.canonical, manualOf(entry).dependencies])));
+const CALIBAN_PRIME_DATA = manualOf(FRAME_KNOWLEDGE_INDEX.get('Caliban Prime')).specialFrame;
+const SIRIUS_ORION_DATA = manualOf(FRAME_KNOWLEDGE_INDEX.get('Sirius & Orion')).specialFrame;
 const CALIBAN_PRIME = Object.freeze({ ...CALIBAN_PRIME_DATA, components: PARTS.map(part => ({ part, name: part, drops: [] })) });
 const SIRIUS_ORION = Object.freeze({ ...SIRIUS_ORION_DATA, components: PARTS.map(part => ({ part, drops: [{ ...SIRIUS_ORION_DATA.drop, type: `Sirius & Orion ${part} Blueprint` }] })) });
 const QUEST_SOURCE_ZH = Object.freeze(OFFICIAL_QUESTS.byEnglish || {});
@@ -71,9 +76,13 @@ for (const frame of WARFRAMES) {
 }
 
 const PACKAGE_FRAME_NAMES = new Set(WARFRAMES.map(frame => frame.name));
+const PUBLIC_FRAME_BY_UNIQUE_NAME = new Map(FRAME_KNOWLEDGE.map(entry => [entry.subject.officialUniqueName, entry]));
 const GENERATED_WARFRAMES = (OFFICIAL_FRAMES.frames || [])
-  .filter(frame => !PACKAGE_FRAME_NAMES.has(frame.name) && frame.name !== CALIBAN_PRIME.name)
-  .map(frame => ({ ...frame, type: 'Warframe', components: (frame.components || []).map(component => ({ ...component, name: component.part, drops: [] })) }));
+  .filter(frame => PUBLIC_FRAME_BY_UNIQUE_NAME.has(frame.uniqueName) && !PACKAGE_FRAME_NAMES.has(frame.name) && frame.name !== CALIBAN_PRIME.name)
+  .map(frame => {
+    const knowledge = PUBLIC_FRAME_BY_UNIQUE_NAME.get(frame.uniqueName);
+    return { ...frame, name: knowledge.subject.canonical, zhName: knowledge.subject.displayName, type: 'Warframe', components: (frame.components || []).map(component => ({ ...component, name: component.part, drops: [] })) };
+  });
 const ALL_WARFRAMES = [...WARFRAMES.filter(frame => frame.name !== CALIBAN_PRIME.name), CALIBAN_PRIME, ...GENERATED_WARFRAMES];
 const FRAME_INDEX = new Map();
 const FRAME_ALIASES = [];
@@ -432,15 +441,44 @@ function renderSeriesPartSource(frame, part) {
   return null;
 }
 function componentSourceText(frame, part, drops) {
-  const seriesSource = renderSeriesPartSource(frame, part);
-  if (seriesSource) return seriesSource;
   const override = FRAME_SOURCE_OVERRIDES[frame.name];
   const audited = override?.[part] || override?.all;
   if (audited) return audited;
+  const seriesSource = renderSeriesPartSource(frame, part);
+  if (seriesSource) return seriesSource;
   if (drops?.length) return formatDropSources(drops);
   // 官方物品数据的 bpCost 表示普通战甲总图可直接在商店用现金购买。
   if (part === 'Blueprint' && Number(frame.bpCost) > 0) return `商店购买（${Number(frame.bpCost)} 现金）`;
   return '官方结构化数据缺少该蓝图的获取来源';
+}
+
+function renderAcquisitionDependencies(frame) {
+  const dependencies = FRAME_DEPENDENCIES[frame.name] || [];
+  const seen = new Set();
+  const lines = [];
+  for (const reference of dependencies) {
+    const entity = reference.currencyId ? CURRENCY_REGISTRY.get(reference.currencyId) : null;
+    const dependency = entity?.acquisitionDependency ? { ...entity.acquisitionDependency, ...reference } : reference;
+    const key = reference.currencyId || dependency.canonical || dependency.displayName;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    const amount = dependency.amount == null ? '' : `（需要 ${dependency.amount}）`;
+    const review = dependency.reviewStatus === 'pending' ? '【待人工审核】' : '';
+    lines.push(`${dependency.displayName || entity?.displayName || dependency.canonical}${amount}：${dependency.acquisitionSummary}${review}`);
+  }
+  return lines;
+}
+function listWarframes() {
+  return FRAME_KNOWLEDGE.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, isPrime: Boolean(entry.frameAcquisition.generated?.isPrime) }));
+}
+function getWarframeKnowledge(query) {
+  const frame = resolveWarframe(query);
+  return frame ? FRAME_KNOWLEDGE_INDEX.get(frame.name) || null : null;
+}
+function getWarframeMaintenanceReport() {
+  const official = OFFICIAL_FRAMES.frames || [];
+  const covered = new Set(FRAME_KNOWLEDGE.map(entry => entry.subject.officialUniqueName));
+  return { officialCount: official.length, publicCount: FRAME_KNOWLEDGE.length, excluded: official.filter(frame => !covered.has(frame.uniqueName)).map(frame => ({ name: frame.name, officialUniqueName: frame.uniqueName })), pendingDependencies: FRAME_KNOWLEDGE.flatMap(entry => (manualOf(entry).dependencies || []).filter(item => item.reviewStatus === 'pending').map(item => ({ frame: entry.subject.canonical, dependency: item.canonical }))) };
 }
 
 function renderAcquisition(data) {
@@ -464,6 +502,8 @@ function renderAcquisition(data) {
   if (prime && !prime.realtimeAvailable && prime.status !== '当前出库') lines.push('Prime 重生实时状态暂不可用');
   if (frame.override) lines.push(`补充：${frame.acquisition.quest}；${frame.acquisition.vendor}`);
   if (FRAME_ACQUISITION_NOTES[frame.name]) lines.push(`说明：${FRAME_ACQUISITION_NOTES[frame.name]}`);
+  const dependencyLines = renderAcquisitionDependencies(frame);
+  if (dependencyLines.length) lines.push('兑换道具怎么刷：', ...dependencyLines);
   const materials = data.materials || frame.materials;
   lines.push('材料统计：');
   if (!materials?.available && !materials?.resources) lines.push(materials?.reason || '制造材料数据暂不可用');
@@ -477,5 +517,6 @@ function renderAcquisition(data) {
 module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
-  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier
+  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
+  listWarframes, getWarframeKnowledge, getWarframeMaintenanceReport
 };

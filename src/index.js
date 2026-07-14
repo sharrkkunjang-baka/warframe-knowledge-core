@@ -363,6 +363,9 @@ function createKnowledgeCore(options = {}) {
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,
+    listWarframes: frameAcquisition.listWarframes,
+    getWarframeKnowledge: frameAcquisition.getWarframeKnowledge,
+    getWarframeMaintenanceReport: frameAcquisition.getWarframeMaintenanceReport,
     frameAcquisition
   };
 }

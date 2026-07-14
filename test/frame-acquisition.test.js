@@ -208,6 +208,37 @@ test('ability query resolves number, official Chinese ability and Prime base ski
   assert.equal(prime.ability.index, 4);
 });
 
+test('frame knowledge covers public official suits and excludes internal placeholders', () => {
+  const frames = acquisition.listWarframes();
+  assert.equal(frames.length, 116);
+  assert.ok(frames.some(frame => frame.canonical === 'Sirius & Orion' && frame.officialUniqueName.endsWith('/SiriusSuit')));
+  assert.ok(!frames.some(frame => /Demon Frame|Inkblot/.test(frame.canonical)));
+  assert.ok(frames.some(frame => frame.canonical === 'Follie' && frame.officialUniqueName.endsWith('/Inkblot')));
+  assert.equal(acquisition.resolveWarframe('Demon Frame'), null);
+  assert.equal(acquisition.resolveWarframe('Inkblot'), null);
+  assert.equal(acquisition.resolveWarframe('墨水').name, 'Follie');
+});
+
+test('manual overrides and recursive exchange dependencies render before generic data', () => {
+  const dagath = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Dagath'), materials: { available: false } });
+  assert.match(dagath, /兑换道具怎么刷：\n浮华荆棘（需要 102）：使用深渊信标进入谷神星深渊区歼灭任务/);
+  const kullervo = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Kullervo'), materials: { available: false } });
+  assert.match(kullervo, /恐惧、愤怒或悲伤心情阶段/);
+  assert.match(kullervo, /击败 Kullervo.*击败奥金魇龙后结算获得/);
+  const sirius = acquisition.renderAcquisition(acquisition.resolveWarframe('红绿'));
+  assert.match(sirius, /翡翠天赋（需要 545）：完成天王星比邻星域 The Kuva Wytch/);
+  assert.match(sirius, /绯红天赋（需要 545）：完成天王星比邻星域 Scoria's Angel/);
+  const follie = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('墨水'), materials: { available: false } });
+  assert.match(follie, /Atramentum（需要 2400）：完成《Harrow 的枷锁》后刷金星维斯佩中继站/);
+});
+
+test('frame maintenance report exposes exclusions without publishing them', () => {
+  const report = acquisition.getWarframeMaintenanceReport();
+  assert.equal(report.publicCount, 116);
+  assert.deepEqual(report.excluded.map(item => item.name).sort(), ['Demon Frame']);
+  assert.equal(acquisition.getWarframeKnowledge('Dagath').frameAcquisition.manual.dependencies[0].currencyId, 'currency.vainthorn');
+});
+
 test('recipe loader caches network data and falls back on failure', async () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'wf-acq-'));
   const cachePath = path.join(directory, 'recipes.json');

@@ -12,6 +12,8 @@ const officialPath = path.join(root, 'categories', 'official.json');
 const officialCatalog = fs.existsSync(officialPath) ? JSON.parse(fs.readFileSync(officialPath, 'utf8')) : null;
 const officialItemsPath = path.join(root, 'generated', 'official-items.json');
 const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
+const officialWarframesPath = path.join(root, 'generated', 'official-warframes.json');
+const officialWarframes = fs.existsSync(officialWarframesPath) ? JSON.parse(fs.readFileSync(officialWarframesPath, 'utf8')) : null;
 const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
 const entityNames = ['locations', 'vendors', 'currencies'];
 const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(root, 'entities', `${name}.json`), 'utf8'))]));
@@ -65,6 +67,17 @@ for (const entry of entries) {
     if (entry.subject?.category && !baseCategoryIds.has(entry.subject.category)) errors.push(`${entry.id}: 基础分类无效 ${entry.subject.category}`);
     if (entry.subject?.categoryRefs !== undefined && (!Array.isArray(entry.subject.categoryRefs) || new Set(entry.subject.categoryRefs).size !== entry.subject.categoryRefs.length)) errors.push(`${entry.id}: subject.categoryRefs 必须是唯一数组`);
     const officialUniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
+    if (entry.subject?.category === 'frame' && entry.id?.startsWith('knowledge.acquisition.warframe.')) {
+      if (!entry.frameAcquisition?.generated || !entry.frameAcquisition?.manual) errors.push(`${entry.id}: 战甲必须分离 frameAcquisition.generated/manual`);
+      for (const key of ['sources', 'note', 'specialFrame', 'costs', 'dependencies']) if (entry.frameAcquisition?.[key] !== undefined) errors.push(`${entry.id}: 人工字段 ${key} 必须位于 frameAcquisition.manual`);
+      if (entry.frameAcquisition?.generated?.officialUniqueName !== officialUniqueName) errors.push(`${entry.id}: generated.officialUniqueName 与 subject 不一致`);
+      for (const dependency of entry.frameAcquisition?.manual?.dependencies || []) {
+        if (dependency.currencyId) {
+          const currency = entities.currencies.find(item => item.id === dependency.currencyId);
+          if (!currency?.acquisitionDependency) errors.push(`${entry.id}: acquisition dependency 货币不存在或缺少刷法 ${dependency.currencyId}`);
+        } else if (!dependency.canonical || !dependency.displayName || !dependency.acquisitionSummary || !Array.isArray(dependency.sourceRefs)) errors.push(`${entry.id}: acquisition dependency 字段不完整`);
+      }
+    }
     if (officialUniqueName) {
       const owner = acquisitionUniqueNames.get(officialUniqueName);
       if (owner && owner !== entry.id) errors.push(`官方 uniqueName 冲突 ${officialUniqueName}: ${owner}, ${entry.id}`); else acquisitionUniqueNames.set(officialUniqueName, entry.id);
@@ -225,6 +238,21 @@ else {
   if (!sources?.policy?.semanticKindAllowlist || !sources?.counts?.excludedByReason || sources.counts.excluded !== officialItems.counts.excluded) errors.push('official-item-sources.json: 缺少 allowlist 或排除原因计数');
   const regenerated = buildOfficialItems(officialItems.generatedAt);
   if (serializeItems(regenerated.catalog) !== serializeItems(officialItems) || serializeItems(regenerated.sources) !== serializeItems(sources)) errors.push('官方物品目录与当前 warframe-items 不一致，请运行 npm run sync:items');
+}
+
+if (!officialWarframes) errors.push('generated/official-warframes.json: 官方战甲快照不存在');
+else {
+  const excluded = new Set(['/Lotus/Powersuits/DemonFrame/DemonFrame']);
+  const publicFrames = (officialWarframes.frames || []).filter(frame => !excluded.has(frame.uniqueName));
+  const frameEntries = entries.filter(entry => entry.id?.startsWith('knowledge.acquisition.warframe.'));
+  const covered = new Set(frameEntries.map(entry => entry.subject.officialUniqueName));
+  for (const frame of publicFrames) if (!covered.has(frame.uniqueName)) errors.push(`公开战甲未覆盖：${frame.name} (${frame.uniqueName})`);
+  for (const uniqueName of excluded) if (covered.has(uniqueName)) errors.push(`内部战甲不得公开：${uniqueName}`);
+  if (frameEntries.some(entry => /Demon Frame|Inkblot/.test(entry.subject?.canonical || ''))) errors.push('内部占位名称进入公开知识');
+  const follie = frameEntries.filter(entry => entry.subject?.officialUniqueName === '/Lotus/Powersuits/Inkblot/Inkblot');
+  if (follie.length !== 1 || follie[0].subject.canonical !== 'Follie') errors.push('Inkblot 必须唯一映射为 Follie');
+  const sirius = frameEntries.filter(entry => entry.subject?.officialUniqueName === '/Lotus/Powersuits/SiriusOrion/SiriusSuit');
+  if (sirius.length !== 1 || sirius[0].subject.canonical !== 'Sirius & Orion') errors.push('Sirius Suit 必须唯一映射为 Sirius & Orion');
 }
 
 const entityIds = new Set(Object.values(entities).flat().map(entity => entity.id));

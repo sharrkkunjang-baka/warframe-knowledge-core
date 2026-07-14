@@ -1,6 +1,128 @@
 [
-  {"id":"currency.credits","canonical":"Credits","displayName":"现金","kind":"standard","aliases":["星币"]},
-  {"id":"currency.platinum","canonical":"Platinum","displayName":"白金","kind":"premium","aliases":["铂金"]},
-  {"id":"currency.standing.ostron","canonical":"Ostron Standing","displayName":"奥斯唐声望","kind":"standing","aliases":[]},
-  {"id":"currency.standing.solaris-united","canonical":"Solaris United Standing","displayName":"索拉里斯联盟声望","kind":"standing","aliases":[]}
+  {
+    "id": "currency.credits",
+    "canonical": "Credits",
+    "displayName": "现金",
+    "kind": "standard",
+    "aliases": [
+      "星币"
+    ]
+  },
+  {
+    "id": "currency.platinum",
+    "canonical": "Platinum",
+    "displayName": "白金",
+    "kind": "premium",
+    "aliases": [
+      "铂金"
+    ]
+  },
+  {
+    "id": "currency.standing.ostron",
+    "canonical": "Ostron Standing",
+    "displayName": "奥斯唐声望",
+    "kind": "standing",
+    "aliases": []
+  },
+  {
+    "id": "currency.standing.solaris-united",
+    "canonical": "Solaris United Standing",
+    "displayName": "索拉里斯联盟声望",
+    "kind": "standing",
+    "aliases": []
+  },
+  {
+    "id": "currency.vainthorn",
+    "canonical": "Vainthorn",
+    "displayName": "浮华荆棘",
+    "kind": "exchange-token",
+    "aliases": [],
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/DagathAbyssItem",
+    "acquisitionDependency": {
+      "canonical": "Vainthorn",
+      "displayName": "浮华荆棘",
+      "acquisitionSummary": "使用深渊信标进入谷神星深渊区歼灭任务，完成任务结算获得",
+      "sourceRefs": [
+        "https://wiki.warframe.com/w/Vainthorn"
+      ],
+      "reviewStatus": "approved"
+    }
+  },
+  {
+    "id": "currency.kullervos-bane",
+    "canonical": "Kullervo's Bane",
+    "displayName": "Kullervo 的灾刃",
+    "kind": "exchange-token",
+    "aliases": [
+      "灾刃"
+    ],
+    "officialUniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriKullervoDropItem",
+    "acquisitionDependency": {
+      "canonical": "Kullervo's Bane",
+      "displayName": "Kullervo 的灾刃",
+      "acquisitionSummary": "在恐惧、愤怒或悲伤心情阶段的双衍王境中前往库尔沃之灾，击败 Kullervo，并在同一轮任务中击败奥金魇龙后结算获得",
+      "sourceRefs": [
+        "https://wiki.warframe.com/w/Kullervo%27s_Bane"
+      ],
+      "reviewStatus": "approved"
+    }
+  },
+  {
+    "id": "currency.jade-talent",
+    "canonical": "Jade Talent",
+    "displayName": "翡翠天赋",
+    "kind": "exchange-token",
+    "aliases": [
+      "绿"
+    ],
+    "reviewStatus": "approved",
+    "acquisitionDependency": {
+      "canonical": "Emerald Talent",
+      "displayName": "翡翠天赋",
+      "acquisitionSummary": "完成天王星比邻星域 The Kuva Wytch：普通难度结算 12-16 个，钢铁之路 18-22 个；转场阶段击落全部目标还能获得额外数量",
+      "sourceRefs": [
+        "https://wiki.warframe.com/w/Emerald_Talent",
+        "https://www.warframe.com/patch-notes/switch/43-0-0"
+      ],
+      "reviewStatus": "approved"
+    }
+  },
+  {
+    "id": "currency.crimson-talent",
+    "canonical": "Crimson Talent",
+    "displayName": "绯红天赋",
+    "kind": "exchange-token",
+    "aliases": [
+      "红"
+    ],
+    "reviewStatus": "approved",
+    "acquisitionDependency": {
+      "canonical": "Crimson Talent",
+      "displayName": "绯红天赋",
+      "acquisitionSummary": "完成天王星比邻星域 Scoria's Angel：普通难度结算 12-16 个，钢铁之路 18-22 个；转场阶段击落全部目标还能获得额外数量",
+      "sourceRefs": [
+        "https://wiki.warframe.com/w/Crimson_Talent",
+        "https://www.warframe.com/patch-notes/switch/43-0-0"
+      ],
+      "reviewStatus": "approved"
+    }
+  },
+  {
+    "id": "currency.atramentum",
+    "canonical": "Atramentum",
+    "displayName": "Atramentum",
+    "kind": "exchange-token",
+    "aliases": [],
+    "reviewStatus": "approved",
+    "acquisitionDependency": {
+      "canonical": "Atramentum",
+      "displayName": "Atramentum",
+      "acquisitionSummary": "完成《Harrow 的枷锁》后刷金星维斯佩中继站的“Follie 的狩猎”：普通难度结算 15 个、钢铁之路 25 个；任务中的 Atramentum 气球、敌人也会掉落",
+      "sourceRefs": [
+        "https://wiki.warframe.com/w/Atramentum",
+        "https://wiki.warframe.com/w/Follie%27s_Hunt"
+      ],
+      "reviewStatus": "approved"
+    }
+  }
 ]
