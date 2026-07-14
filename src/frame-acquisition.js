@@ -465,18 +465,10 @@ function componentSourceText(frame, part, drops) {
 }
 
 function entityName(registry, id) { return registry.get(id)?.displayName || id; }
-function renderStructuredSpecialAcquisition(frame) {
+function renderAdditionalAcquisitionMethods(frame) {
   const acquisition = frame.acquisition || {};
   const lines = [];
-  if (acquisition.questReward) {
-    const quest = entityName(QUEST_REGISTRY, acquisition.questReward.questId);
-    lines.push(`首次完成《${quest}》获得${PART_ZH[acquisition.questReward.part] || acquisition.questReward.part}`);
-  }
-  if (acquisition.dropReward) {
-    const missions = (acquisition.dropReward.locationIds || []).map(id => entityName(LOCATION_REGISTRY, id)).join('或');
-    const parts = (acquisition.dropReward.parts || []).map(part => PART_ZH[part] || part).join('、');
-    lines.push(`天王星比邻星域的${missions}，${acquisition.dropReward.rotation}轮掉落${parts}，每张蓝图 ${formatChance(acquisition.dropReward.chance)}`);
-  }
+  // questReward 与 dropReward 已由蓝图来源行表达，这里只渲染尚未展示的替代获取方式。
   if (acquisition.vendorExchange) {
     const vendor = entityName(VENDOR_REGISTRY, acquisition.vendorExchange.vendorId);
     const location = entityName(LOCATION_REGISTRY, acquisition.vendorExchange.locationId);
@@ -484,7 +476,7 @@ function renderStructuredSpecialAcquisition(frame) {
     const costs = Object.entries(acquisition.vendorExchange.costs || {}).map(([part, amount]) => `${PART_ZH[part] || part} ${amount}`).join('；');
     lines.push(`在${location}向 ${vendor} 使用${currencies}兑换：${costs}；总计 ${acquisition.vendorExchange.total}`);
   }
-  return lines.join('；');
+  return lines;
 }
 
 function renderAcquisitionDependencies(frame) {
@@ -559,7 +551,7 @@ function renderAcquisition(data) {
   lines.push(...groupedPartSourceLines(partSources));
   if (prime && !prime.rotationAvailable) lines.push('当前遗物轮换数据暂不可用');
   if (prime && !prime.realtimeAvailable && prime.status !== '当前出库') lines.push('Prime 重生实时状态暂不可用');
-  if (frame.override) { const supplement = renderStructuredSpecialAcquisition(frame); if (supplement) lines.push(`补充：${supplement}`); }
+  if (frame.override) { const additional = renderAdditionalAcquisitionMethods(frame); lines.push(...additional.map(text => `兑换：${text}`)); }
   if (FRAME_ACQUISITION_NOTES[frame.name]) lines.push(`说明：${FRAME_ACQUISITION_NOTES[frame.name]}`);
   const dependencyLines = renderAcquisitionDependencies(frame);
   if (dependencyLines.length) lines.push('兑换道具怎么刷：', ...dependencyLines);
@@ -576,6 +568,6 @@ function renderAcquisition(data) {
 module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
-  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
+  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
   listWarframes, getWarframeKnowledge, getWarframeMaintenanceReport
 };
