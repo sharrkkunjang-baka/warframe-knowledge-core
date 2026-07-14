@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Vome_Invocation",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,104 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Grimoire/VomeStrikeMod",
+          "canonical": "Vome Invocation",
+          "displayName": "Vome 神祈",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "secondary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Vome Invocation",
+            "pageId": 1582109,
+            "revisionId": 2792484,
+            "pageTimestamp": "2026-07-10T23:00:51Z",
+            "compiledAt": "2026-07-14T05:59:12.936Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 5,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Munio",
+                  "nodeEntityId": "node.SolNode719",
+                  "nodeDisplayName": "墓垒",
+                  "planetCanonical": "Deimos",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Vome Invocation",
+                "pageId": 1582109,
+                "revisionId": 2792484,
+                "section": "Mission Drop Tables",
+                "excerpt": "Mirror Defense | Deimos Entrati Mirror Defense | C | 5% | 1 | 0.05 Munio , Deimos | | Munio , Deimos"
+              },
+              "missionTypeCanonical": "Mirror Defense",
+              "sourceCanonical": "Deimos Entrati Mirror Defense"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Vome Invocation",
+                "pageId": 1582109,
+                "revisionId": 2792484,
+                "section": "Acquisition",
+                "excerpt": "Available as part of the Essential Tome Mod Bundle for 140 Platinum 140 on the Market ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vome Invocation",
+                  "pageId": 1582109,
+                  "revisionId": 2792484,
+                  "section": "Notes",
+                  "excerpt": "All stacks of the buff expire simultaneously at the end of the duration. Applying a new stack refreshes the buff duration."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Mirror Defense"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

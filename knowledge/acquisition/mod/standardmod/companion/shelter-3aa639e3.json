@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Shelter",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,177 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/KubrowPetPrecepts/KubrowSanctuary",
+          "canonical": "Shelter",
+          "displayName": "庇护",
+          "maxRank": 10,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Shelter",
+            "pageId": 712379,
+            "revisionId": 2696146,
+            "pageTimestamp": "2025-09-01T14:33:29Z",
+            "compiledAt": "2026-07-14T05:59:08.811Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.69,
+              "chance": 0.1107,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shelter",
+                "pageId": 712379,
+                "revisionId": 2696146,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Drahk | 3% | 3.69% | 0.1107% | 903 | 1 | 0.001107"
+              },
+              "sourceCanonical": "Corrupted Drahk"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.69,
+              "chance": 0.1107,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shelter",
+                "pageId": 712379,
+                "revisionId": 2696146,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Drahk | 3% | 3.69% | 0.1107% | 903 | 1 | 0.001107"
+              },
+              "sourceCanonical": "Drahk",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CombatKubrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.69,
+              "chance": 0.1107,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shelter",
+                "pageId": 712379,
+                "revisionId": 2696146,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kubrow | 3% | 3.69% | 0.1107% | 903 | 1 | 0.001107"
+              },
+              "sourceCanonical": "Kubrow",
+              "sourceEntityId": "enemy./Lotus/Types/NeutralCreatures/Kubrow/KubrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.69,
+              "chance": 0.1107,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shelter",
+                "pageId": 712379,
+                "revisionId": 2696146,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Drahk | 3% | 3.69% | 0.1107% | 903 | 1 | 0.001107"
+              },
+              "sourceCanonical": "Kuva Drahk"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shelter",
+                  "pageId": 712379,
+                  "revisionId": 2696146,
+                  "section": "Notes",
+                  "excerpt": "There is a ten-second cooldown period when the shield is destroyed."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shelter",
+                  "pageId": 712379,
+                  "revisionId": 2696146,
+                  "section": "Notes",
+                  "excerpt": "Not effective against Infested ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shelter",
+                  "pageId": 712379,
+                  "revisionId": 2696146,
+                  "section": "Notes",
+                  "excerpt": "Does not block AoE damage such as the attacks from Napalms or Bombards ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shelter",
+                  "pageId": 712379,
+                  "revisionId": 2696146,
+                  "section": "Notes",
+                  "excerpt": "It is currently unknown whether the mod stacks with the Kubrow's shields, with the Link Redirection mod, as its Sentinel counterpart Sanctuary does."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Drahk"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Drahk"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kubrow"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Drahk"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

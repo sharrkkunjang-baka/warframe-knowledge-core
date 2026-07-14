@@ -16,7 +16,7 @@
 9. 轮换、概率、材料和衰减机制已对照当前来源；无法确认的样本说明不得伪装成最终结论。
 10. `subject.canonical` 能被 `/买` 共用的统一名称解析器关联，且刷取对象自身没有 `aliases`；需要新增物品别称时，应修改共享名称索引。
 11. `summary` 适合直接发送，`methodRefs` 指向的玩法包含网页、Discord 和 Agent 可复用的结构化细节。
-12. 每个刷取对象独占一个文件，并按其基础/父分类放置；`subject.categoryRefs` 中的每个细分类 ID 都必须存在对应的 `categories/<id>.json`，其 `parent` 必须等于 `subject.category`，且该文件的 `canonical`、`parent` 和英文 Wiki 来源准确。分类 `aliases` 应是稳定分类俗称、互不冲突，且不得进入物品名称索引。细分类允许多级嵌套，但祖先链必须最终归属 `subject.category`。
+12. 每个刷取对象独占一个文件，并按其基础/父分类放置；`subject.categoryRefs` 中的每个细分类 ID 都必须存在对应的 `knowledge/categories/<id>.json`，其 `parent` 必须等于 `subject.category`，且该文件的 `canonical`、`parent` 和英文 Wiki 来源准确。分类 `aliases` 应是稳定分类俗称、互不冲突，且不得进入物品名称索引。细分类允许多级嵌套，但祖先链必须最终归属 `subject.category`。
 13. Mod 的 `maxRank` 和 `effects` 必须与官方页面最高 Rank 一致，正面效果使用正值、负面效果使用负值。
 14. 每个 `methodRefs` 都存在，且玩法本身也已完成审核；刷取条目与玩法应一起批准，避免生产端引用被过滤掉。
 15. 玩法中的 `steps` 和 `notes` 可独立通过 `/玩法` 输出，不依赖某个具体物品才能读懂。
@@ -24,7 +24,7 @@
 
 官方 Mod 快照还需要确认：
 
-17. `categories/official.json` 只由 `npm run sync:official` 生成，没有手工调整记录或覆盖状态。
+17. `knowledge/categories/official.json` 只由 `npm run sync:official` 生成，没有手工调整记录或覆盖状态。
 18. `source.version` 与锁定的 `warframe-items` 版本一致，1733 个 `uniqueName` 唯一，官方分类引用均存在。
 19. `localizationStatus` 正确表达官方简中名是否可用；缺少简中名时保留英文回退，不得由 Agent 猜译。
 20. `covered` 只表示存在本地分类或刷取词条，不代表内容已批准、准确或完整；对应本地内容仍需按正常规则人工审核。

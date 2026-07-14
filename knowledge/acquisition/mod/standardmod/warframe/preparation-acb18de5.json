@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,181 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarSpawnEnergyMod",
+          "canonical": "Preparation",
+          "displayName": "有备而来",
+          "maxRank": 10,
+          "variant": "standard",
+          "typeFolder": "warframe"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Preparation",
+            "pageId": 1488214,
+            "revisionId": 2772551,
+            "pageTimestamp": "2026-04-30T01:35:19Z",
+            "compiledAt": "2026-07-14T05:59:14.894Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Preparation",
+                "pageId": 1488214,
+                "revisionId": 2772551,
+                "section": "Acquisition",
+                "excerpt": "Obtainable from the Arbitrations vendor in the Arbiters of Hexis room in Relays for 30 Vitus Essence ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "The bonus only applies to the Starting Energy of a Warframe when entering a mission and respawning/reviving from death ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Starting Energy = Initial Energy + (5 × Free Mod Capacity) + (Total Energy × Mod Multiplier)"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Example: A rank 30 Wisp equipped with Primed Flow has a Total Energy pool of 850 and a preset Initial Energy of 150 . Let's say she has 9 Free (or available) Mod Capacity. When equipped with a rank 4 Preparation mod ( +45% , or x0.45 ), the Warframe will have 150 + (5 * 9) + (850 * 0.45) = 577.5 Starting Energy."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Example 2: The same setup but with a rank 8 Preparation mod ( +82% , or x0.82 ), the Warframe will have 150 + (5 * 9) + (850 * 0.82) = 892 Starting Energy. In this example, the surplus is effectively lost as it surpasses the 850 Max Energy cap."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "As per the second example, higher ranks of this mod are redundant."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Between rank 4 and rank 6 of this mod, the increase seems to be around 9.5% instead of the linear 9% from other ranks. This makes a rank 5 Preparation actually grant a 54.5% bonus from Total Energy."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "This is because the max effect of this mod (100% of energy capacity filled) is not evenly divisible by 11 mod ranks. Mods do not display values in the decimal places."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "As Harrow already spawns into missions with 100% starting energy because of his Passive, he has no need for this mod."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Triggers on every entry into Sevagoth's Shadow ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Does not work on Arenas (Index, Rathuum), not even when re-spawning after death."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "Falling out of bounds and reappearing does not count as spawning for the purposes of this mod."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Preparation",
+                  "pageId": 1488214,
+                  "revisionId": 2772551,
+                  "section": "Notes",
+                  "excerpt": "If equipped on your Warframe the mod will apply to your Archwing's initial energy during Archwing missions."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "unresolved"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

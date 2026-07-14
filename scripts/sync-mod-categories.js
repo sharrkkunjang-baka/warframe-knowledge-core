@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const categoriesDirectory = path.join(root, 'categories');
+const categoriesDirectory = path.join(root, 'knowledge', 'categories');
 const updatedAt = '2026-07-13';
 const source = {
   url: 'https://wiki.warframe.com/w/Category:Mods',

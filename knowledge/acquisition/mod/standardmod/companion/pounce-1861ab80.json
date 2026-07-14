@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Pounce",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,113 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/CatbrowPetPrecepts/CatbrowPouncePrecept",
+          "canonical": "Pounce",
+          "displayName": "猛扑",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Pounce",
+            "pageId": 1016782,
+            "revisionId": 2696195,
+            "pageTimestamp": "2025-09-01T14:46:56Z",
+            "compiledAt": "2026-07-14T05:59:08.507Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 30.56,
+              "chance": 6.112,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pounce",
+                "pageId": 1016782,
+                "revisionId": 2696195,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kavat | 20% | 30.56% | 6.112% | 16 | 1 | 0.06112"
+              },
+              "sourceCanonical": "Kavat",
+              "sourceEntityId": "enemy./Lotus/Types/NeutralCreatures/Catbrow/CatbrowAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pounce",
+                  "pageId": 1016782,
+                  "revisionId": 2696195,
+                  "section": "Notes",
+                  "excerpt": "Stun lasts 3.5 seconds and opens enemy to a Finisher ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pounce",
+                  "pageId": 1016782,
+                  "revisionId": 2696195,
+                  "section": "Notes",
+                  "excerpt": "Open to Finisher for ~3.3 seconds with ~0.2 second recovery animation."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pounce",
+                  "pageId": 1016782,
+                  "revisionId": 2696195,
+                  "section": "Notes",
+                  "excerpt": "Can stun multiple enemies at once if they are within ~1 meter of each other."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pounce",
+                  "pageId": 1016782,
+                  "revisionId": 2696195,
+                  "section": "Notes",
+                  "excerpt": "Does not affect enemies with Overguard ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Kavat"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

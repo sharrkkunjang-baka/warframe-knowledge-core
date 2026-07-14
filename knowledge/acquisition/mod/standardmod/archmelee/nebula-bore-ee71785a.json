@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Nebula_Bore",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,189 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingDualStatPunctureStatusMeleeMod",
+          "canonical": "Nebula Bore",
+          "displayName": "星云钻孔",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "archmelee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Nebula Bore",
+            "pageId": 1020059,
+            "revisionId": 2645206,
+            "pageTimestamp": "2024-11-12T14:14:01Z",
+            "compiledAt": "2026-07-14T05:59:07.318Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 3.76,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Erpo",
+                  "nodeEntityId": "node.SolNode903",
+                  "planetCanonical": "Earth",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
+                },
+                {
+                  "nodeCanonical": "Salacia",
+                  "nodeEntityId": "node.SolNode908",
+                  "planetCanonical": "Neptune",
+                  "planetEntityId": "location.neptune",
+                  "planetDisplayName": "海王星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nebula Bore",
+                "pageId": 1020059,
+                "revisionId": 2645206,
+                "section": "Mission Drop Tables",
+                "excerpt": "Mobile Defense | Archwing Mobile Defense | A | 3.76% | 1 | 0.0376 Erpo , Earth | | Erpo , Earth Salacia , Neptune"
+              },
+              "missionTypeCanonical": "Mobile Defense",
+              "sourceCanonical": "Archwing Mobile Defense"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 7.52,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Kepler",
+                  "nodeEntityId": "node.SettlementNode10",
+                  "planetCanonical": "Phobos",
+                  "planetEntityId": "location.phobos",
+                  "planetDisplayName": "火卫一"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nebula Bore",
+                "pageId": 1020059,
+                "revisionId": 2645206,
+                "section": "Mission Drop Tables",
+                "excerpt": "Rush | Archwing Rush | C | 7.52% | 1 | 0.0752 Kepler , Phobos | | Kepler , Phobos"
+              },
+              "missionTypeCanonical": "Rush",
+              "sourceCanonical": "Archwing Rush"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 3.76,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Galilea",
+                  "nodeEntityId": "node.SolNode905",
+                  "planetCanonical": "Jupiter",
+                  "planetEntityId": "location.jupiter",
+                  "planetDisplayName": "木星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nebula Bore",
+                "pageId": 1020059,
+                "revisionId": 2645206,
+                "section": "Mission Drop Tables",
+                "excerpt": "Sabotage | Archwing Sabotage | A | 3.76% | 1 | 0.0376 Galilea , Jupiter | | Galilea , Jupiter"
+              },
+              "missionTypeCanonical": "Sabotage",
+              "sourceCanonical": "Archwing Sabotage"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nebula Bore",
+                "pageId": 1020059,
+                "revisionId": 2645206,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Blite Captain | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Blite Captain"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nebula Bore",
+                "pageId": 1020059,
+                "revisionId": 2645206,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Glacik Commander | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Glacik Commander"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Mobile Defense"
+            },
+            {
+              "kind": "missionType",
+              "canonical": "Rush"
+            },
+            {
+              "kind": "missionType",
+              "canonical": "Sabotage"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Blite Captain"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Glacik Commander"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

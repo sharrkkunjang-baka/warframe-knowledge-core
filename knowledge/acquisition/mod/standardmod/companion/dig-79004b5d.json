@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Dig",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,249 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/KubrowPetPrecepts/KubrowDigPrecept",
+          "canonical": "Dig",
+          "displayName": "挖掘",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Dig",
+            "pageId": 510260,
+            "revisionId": 2768443,
+            "pageTimestamp": "2026-04-19T19:32:47Z",
+            "compiledAt": "2026-07-14T05:59:08.021Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.22,
+              "chance": 0.0066,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Dig",
+                "pageId": 510260,
+                "revisionId": 2768443,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Drahk | 3% | 0.22% | 0.0066% | 15152 | 1 | 6.6e-05"
+              },
+              "sourceCanonical": "Corrupted Drahk"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.22,
+              "chance": 0.0066,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Dig",
+                "pageId": 510260,
+                "revisionId": 2768443,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Drahk | 3% | 0.22% | 0.0066% | 15152 | 1 | 6.6e-05"
+              },
+              "sourceCanonical": "Drahk",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CombatKubrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.22,
+              "chance": 0.0066,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Dig",
+                "pageId": 510260,
+                "revisionId": 2768443,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kubrow | 3% | 0.22% | 0.0066% | 15152 | 1 | 6.6e-05"
+              },
+              "sourceCanonical": "Kubrow",
+              "sourceEntityId": "enemy./Lotus/Types/NeutralCreatures/Kubrow/KubrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.22,
+              "chance": 0.0066,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Dig",
+                "pageId": 510260,
+                "revisionId": 2768443,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Drahk | 3% | 0.22% | 0.0066% | 15152 | 1 | 6.6e-05"
+              },
+              "sourceCanonical": "Kuva Drahk"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Dig",
+                "pageId": 510260,
+                "revisionId": 2768443,
+                "section": "Acquisition",
+                "excerpt": "Dig is automatically acquired upon obtaining a Sahasa Kubrow ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "Has a cooldown of 14 seconds starting after the dig animation ends, effectively completing one Dig every ~20 seconds."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "At max rank, the listed 270% success chance means that the Kubrow will always dig up two items, with a 70% chance of a third item."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "When in use, the Kubrow will bark twice to notify the player, stop at a location and paw along the ground for 5 seconds, before barking twice to alert players of its find."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "The mods that may occasionally be dug up are taken from the same mod list used by Void containers."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "Kubrow prioritize items depending on its master's needs: if their master needs energy, Energy Orbs are retrieved, if they need ammunition, the relevant ammo type is retrieved, etc."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "The threshold values for energy and health orb prioritization seem to be 80% (or lower) of total energy/health capacity."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "Ammo is retrieved upon not having full reserves."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "The type of resources dug up is determined at the very end of the digging animation."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "As of Update 37 , the sahasa kubrow can dig in the middle of combat as long as its health isn't critically low."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dig",
+                  "pageId": 510260,
+                  "revisionId": 2768443,
+                  "section": "Notes",
+                  "excerpt": "Kubrow can dig even in places on tilesets where normally finding such items in the floor/ground should not be possible. (i.e. Corpus Ship , Grineer Galleon , Orokin Tower , etc.)"
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Drahk"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Drahk"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kubrow"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Drahk"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

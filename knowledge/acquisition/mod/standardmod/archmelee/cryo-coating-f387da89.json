@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cryo_Coating",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,147 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventColdStatusMeleeMod",
+          "canonical": "Cryo Coating",
+          "displayName": "冷冻包覆",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "archmelee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Cryo Coating",
+            "pageId": 1366468,
+            "revisionId": 2641710,
+            "pageTimestamp": "2024-10-10T03:17:18Z",
+            "compiledAt": "2026-07-14T05:59:07.281Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 5,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cryo Coating",
+                "pageId": 1366468,
+                "revisionId": 2641710,
+                "section": "Mission Drop Tables",
+                "excerpt": "Fomorian Sabotage | Fomorian Sabotage | A | 5% | 1 | 0.05 Near Relay that is being attacked during Fomorian Sabotage event | | Near Relay that is being attacked during Fomorian Sabotage event"
+              },
+              "missionTypeCanonical": "Fomorian Sabotage",
+              "sourceCanonical": "Fomorian Sabotage"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 5,
+              "chance": 5,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cryo Coating",
+                "pageId": 1366468,
+                "revisionId": 2641710,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Balor Fomorian | 100% | 5% | 5% | 20 | 1 | 0.05"
+              },
+              "sourceCanonical": "Balor Fomorian"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cryo Coating",
+                "pageId": 1366468,
+                "revisionId": 2641710,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Glacik Commander | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Glacik Commander"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cryo Coating",
+                "pageId": 1366468,
+                "revisionId": 2641710,
+                "section": "Acquisition",
+                "excerpt": "This mod is available as a potential end of mission reward during a Fomorian Sabotage encounter."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cryo Coating",
+                  "pageId": 1366468,
+                  "revisionId": 2641710,
+                  "section": "Notes",
+                  "excerpt": "Cryo Coating is additive with similar mods. For example, a Kaszas with a max rank Cryo Coating and Sudden Impact will have a 15% × (1 + 60% + 60%) = 33% status chance ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cryo Coating",
+                  "pageId": 1366468,
+                  "revisionId": 2641710,
+                  "section": "Notes",
+                  "excerpt": "Can be stacked with Glacial Edge for a total of 180% Cold damage."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Fomorian Sabotage"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Balor Fomorian"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Glacik Commander"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

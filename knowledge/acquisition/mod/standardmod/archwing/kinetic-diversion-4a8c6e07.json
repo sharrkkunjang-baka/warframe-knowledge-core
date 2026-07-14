@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Kinetic_Diversion",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,168 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingDamageToEnergyMod",
+          "canonical": "Kinetic Diversion",
+          "displayName": "动力转移",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "archwing"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Kinetic Diversion",
+            "pageId": 1224066,
+            "revisionId": 2614353,
+            "pageTimestamp": "2024-04-10T20:18:19Z",
+            "compiledAt": "2026-07-14T05:59:07.417Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 0.5,
+              "chance": 0.5,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Kinetic Diversion",
+                "pageId": 1224066,
+                "revisionId": 2614353,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Aerial Commander | 100% | 0.5% | 0.5% | 200 | 1 | 0.005"
+              },
+              "sourceCanonical": "Aerial Commander",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Eidolon/Vip/Avatars/EidolonVipPilotAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.68,
+              "chance": 0.084,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Kinetic Diversion",
+                "pageId": 1224066,
+                "revisionId": 2614353,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exo Gokstad Officer | 5% | 1.68% | 0.084% | 1190 | 1 | 0.00084"
+              },
+              "sourceCanonical": "Exo Gokstad Officer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.68,
+              "chance": 0.084,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Kinetic Diversion",
+                "pageId": 1224066,
+                "revisionId": 2614353,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exo Gokstad Pilot | 5% | 1.68% | 0.084% | 1190 | 1 | 0.00084"
+              },
+              "sourceCanonical": "Exo Gokstad Pilot"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 12.5,
+              "chance": 1.875,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Kinetic Diversion",
+                "pageId": 1224066,
+                "revisionId": 2614353,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Narmer Thumper Doma | 15% | 12.5% | 1.875% | 53 | 1 | 0.01875"
+              },
+              "sourceCanonical": "Narmer Thumper Doma"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 12.5,
+              "chance": 1.875,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Kinetic Diversion",
+                "pageId": 1224066,
+                "revisionId": 2614353,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Tusk Thumper Doma | 15% | 12.5% | 1.875% | 53 | 1 | 0.01875"
+              },
+              "sourceCanonical": "Tusk Thumper Doma",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Thumper/ThumperLargeAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Kinetic Diversion",
+                  "pageId": 1224066,
+                  "revisionId": 2614353,
+                  "section": "Notes",
+                  "excerpt": "Applies to Status Effects that deal damage over time and damage that bypasses shields."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Aerial Commander"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exo Gokstad Officer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exo Gokstad Pilot"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Narmer Thumper Doma"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Tusk Thumper Doma"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

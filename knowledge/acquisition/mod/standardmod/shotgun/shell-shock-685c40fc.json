@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Shell_Shock",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,101 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/ElectEventShotgunMod",
+          "canonical": "Shell Shock",
+          "displayName": "电冲弹药",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Shell Shock",
+            "pageId": 398932,
+            "revisionId": 2717558,
+            "pageTimestamp": "2025-12-22T23:39:17Z",
+            "compiledAt": "2026-07-14T05:59:13.314Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 4.51,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Naeglar",
+                  "nodeEntityId": "node.SolNode175",
+                  "planetCanonical": "Eris",
+                  "planetEntityId": "location.eris",
+                  "planetDisplayName": "阋神星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shell Shock",
+                "pageId": 398932,
+                "revisionId": 2717558,
+                "section": "Mission Drop Tables",
+                "excerpt": "Sabotage | Hive Sabotage Resource Caches | C | 4.51% | 1 | 0.0451 Naeglar , Eris | | Naeglar , Eris"
+              },
+              "missionTypeCanonical": "Sabotage",
+              "sourceCanonical": "Hive Sabotage Resource Caches"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shell Shock",
+                  "pageId": 398932,
+                  "revisionId": 2717558,
+                  "section": "Notes",
+                  "excerpt": "Shell Shock is additive with similar mods. For example, a Strun with a max rank Shell Shock and Shotgun Savvy will have a 20% × (1 + 60% + 90%) = 50% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shell Shock",
+                  "pageId": 398932,
+                  "revisionId": 2717558,
+                  "section": "Notes",
+                  "excerpt": "This mod can be combined with Toxic Barrage , Frigid Blast and Scattering Inferno to achieve a combined status chance bonus of 240%. With Shotgun Savvy , this bonus can be increased to 330%"
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Sabotage"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

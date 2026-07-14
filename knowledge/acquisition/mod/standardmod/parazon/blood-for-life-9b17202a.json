@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Blood_For_Life",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,94 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Assassin/OnExecutionHealthDropMod",
+          "canonical": "Blood For Life",
+          "displayName": "血易生命",
+          "maxRank": 0,
+          "variant": "standard",
+          "typeFolder": "parazon"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Blood For Life",
+            "pageId": 1457184,
+            "revisionId": 2610432,
+            "pageTimestamp": "2024-03-09T10:41:20Z",
+            "compiledAt": "2026-07-14T05:59:09.799Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 37.94,
+              "chance": 37.94,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Blood For Life",
+                "pageId": 1457184,
+                "revisionId": 2610432,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Councilor Vay Hek | 100% | 37.94% | 37.94% | 3 | 1 | 0.3794"
+              },
+              "sourceCanonical": "Councilor Vay Hek",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/Hek/HekDroneAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 37.94,
+              "chance": 37.94,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Blood For Life",
+                "pageId": 1457184,
+                "revisionId": 2610432,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Vay Hek Terra Frame | 100% | 37.94% | 37.94% | 3 | 1 | 0.3794"
+              },
+              "sourceCanonical": "Vay Hek Terra Frame",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/Hek/HekBipedAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Councilor Vay Hek"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Vay Hek Terra Frame"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

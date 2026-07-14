@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Quasar_Drill",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,159 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod",
+          "canonical": "Quasar Drill",
+          "displayName": "类星钻体",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "archgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Quasar Drill",
+            "pageId": 1022346,
+            "revisionId": 2645207,
+            "pageTimestamp": "2024-11-12T14:14:58Z",
+            "compiledAt": "2026-07-14T05:59:07.233Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 3.76,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Erpo",
+                  "nodeEntityId": "node.SolNode903",
+                  "planetCanonical": "Earth",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
+                },
+                {
+                  "nodeCanonical": "Salacia",
+                  "nodeEntityId": "node.SolNode908",
+                  "planetCanonical": "Neptune",
+                  "planetEntityId": "location.neptune",
+                  "planetDisplayName": "海王星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Quasar Drill",
+                "pageId": 1022346,
+                "revisionId": 2645207,
+                "section": "Mission Drop Tables",
+                "excerpt": "Mobile Defense | Archwing Mobile Defense | A | 3.76% | 1 | 0.0376 Erpo , Earth | | Erpo , Earth Salacia , Neptune"
+              },
+              "missionTypeCanonical": "Mobile Defense",
+              "sourceCanonical": "Archwing Mobile Defense"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 3.76,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Galilea",
+                  "nodeEntityId": "node.SolNode905",
+                  "planetCanonical": "Jupiter",
+                  "planetEntityId": "location.jupiter",
+                  "planetDisplayName": "木星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Quasar Drill",
+                "pageId": 1022346,
+                "revisionId": 2645207,
+                "section": "Mission Drop Tables",
+                "excerpt": "Sabotage | Archwing Sabotage | A | 3.76% | 1 | 0.0376 Galilea , Jupiter | | Galilea , Jupiter"
+              },
+              "missionTypeCanonical": "Sabotage",
+              "sourceCanonical": "Archwing Sabotage"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Quasar Drill",
+                "pageId": 1022346,
+                "revisionId": 2645207,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Lektro Commander | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Lektro Commander"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Quasar Drill",
+                "pageId": 1022346,
+                "revisionId": 2645207,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Pyr Captain | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Pyr Captain"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Mobile Defense"
+            },
+            {
+              "kind": "missionType",
+              "canonical": "Sabotage"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Lektro Commander"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Pyr Captain"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

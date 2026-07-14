@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Scavenge",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,157 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/KubrowPetPrecepts/KubrowThiefPrecept",
+          "canonical": "Scavenge",
+          "displayName": "搜集",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Scavenge",
+            "pageId": 510265,
+            "revisionId": 2728531,
+            "pageTimestamp": "2026-02-02T08:30:32Z",
+            "compiledAt": "2026-07-14T05:59:08.750Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 25.29,
+              "chance": 0.7587,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Scavenge",
+                "pageId": 510265,
+                "revisionId": 2728531,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Drahk | 3% | 25.29% | 0.7587% | 132 | 1 | 0.007587"
+              },
+              "sourceCanonical": "Corrupted Drahk"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 25.29,
+              "chance": 0.7587,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Scavenge",
+                "pageId": 510265,
+                "revisionId": 2728531,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Drahk | 3% | 25.29% | 0.7587% | 132 | 1 | 0.007587"
+              },
+              "sourceCanonical": "Drahk",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CombatKubrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 25.29,
+              "chance": 0.7587,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Scavenge",
+                "pageId": 510265,
+                "revisionId": 2728531,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kubrow | 3% | 25.29% | 0.7587% | 132 | 1 | 0.007587"
+              },
+              "sourceCanonical": "Kubrow",
+              "sourceEntityId": "enemy./Lotus/Types/NeutralCreatures/Kubrow/KubrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 25.29,
+              "chance": 0.7587,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Scavenge",
+                "pageId": 510265,
+                "revisionId": 2728531,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Drahk | 3% | 25.29% | 0.7587% | 132 | 1 | 0.007587"
+              },
+              "sourceCanonical": "Kuva Drahk"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Scavenge",
+                  "pageId": 510265,
+                  "revisionId": 2728531,
+                  "section": "Notes",
+                  "excerpt": "When a Kubrow or Kavat fails, the locker goes from red (lock) to off (black) and cannot be unlocked anymore."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Scavenge",
+                  "pageId": 510265,
+                  "revisionId": 2728531,
+                  "section": "Notes",
+                  "excerpt": "Lockers that Master Thief fails to unlock cannot be tried by your Kubrow or Kavat."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Drahk"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Drahk"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kubrow"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Drahk"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

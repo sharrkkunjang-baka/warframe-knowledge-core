@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Finishing_Touch",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,145 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponMeleeFinisherDamageMod",
+          "canonical": "Finishing Touch",
+          "displayName": "画龙点睛",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Finishing Touch",
+            "pageId": 195510,
+            "revisionId": 2658150,
+            "pageTimestamp": "2025-01-31T15:48:47Z",
+            "compiledAt": "2026-07-14T05:59:09.391Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Finishing Touch",
+                "pageId": 195510,
+                "revisionId": 2658150,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 1 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 1 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Finishing Touch",
+                "pageId": 195510,
+                "revisionId": 2658150,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 3 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 3 The Circuit (Normal)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 5.53,
+              "chance": 0.1659,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Finishing Touch",
+                "pageId": 195510,
+                "revisionId": 2658150,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Butcher | 3% | 5.53% | 0.1659% | 603 | 1 | 0.001659"
+              },
+              "sourceCanonical": "Corrupted Butcher",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/OrokinBladeSawmanAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 5.53,
+              "chance": 0.1659,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Finishing Touch",
+                "pageId": 195510,
+                "revisionId": 2658150,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Lancer | 3% | 5.53% | 0.1659% | 603 | 1 | 0.001659"
+              },
+              "sourceCanonical": "Corrupted Lancer",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/RifleLancerAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Finishing Touch",
+                  "pageId": 195510,
+                  "revisionId": 2658150,
+                  "section": "Notes",
+                  "excerpt": "The 60% damage increase applies to the total damage dealt by the relevant maneuvers."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Butcher"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Lancer"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

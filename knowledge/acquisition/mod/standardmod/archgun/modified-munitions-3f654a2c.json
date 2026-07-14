@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Modified_Munitions",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,177 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRifleStatusChanceMod",
+          "canonical": "Modified Munitions",
+          "displayName": "弹药改良",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "archgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Modified Munitions",
+            "pageId": 572346,
+            "revisionId": 2606752,
+            "pageTimestamp": "2024-01-14T01:54:23Z",
+            "compiledAt": "2026-07-14T05:59:07.229Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 2.51,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Caelus",
+                  "nodeEntityId": "node.SolNode907",
+                  "planetCanonical": "Uranus",
+                  "planetEntityId": "location.uranus",
+                  "planetDisplayName": "天王星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Modified Munitions",
+                "pageId": 572346,
+                "revisionId": 2606752,
+                "section": "Mission Drop Tables",
+                "excerpt": "Interception | Archwing Interception | A | 2.51% | 1 | 0.0251 Caelus , Uranus | | Caelus , Uranus"
+              },
+              "missionTypeCanonical": "Interception",
+              "sourceCanonical": "Archwing Interception"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.28,
+              "chance": 0.3384,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Modified Munitions",
+                "pageId": 572346,
+                "revisionId": 2606752,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Cannon Battery (2) | 3% | 11.28% | 0.3384% | 296 | 1 | 0.003384"
+              },
+              "sourceCanonical": "Cannon Battery (2)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.37,
+              "chance": 0.2211,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Modified Munitions",
+                "pageId": 572346,
+                "revisionId": 2606752,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Dargyn | 3% | 7.37% | 0.2211% | 452 | 1 | 0.002211"
+              },
+              "sourceCanonical": "Dargyn",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/SpaceBattles/Grineer/Skiffs/GrineerSpaceMarineAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.28,
+              "chance": 0.3384,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Modified Munitions",
+                "pageId": 572346,
+                "revisionId": 2606752,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Turret | 3% | 11.28% | 0.3384% | 296 | 1 | 0.003384"
+              },
+              "sourceCanonical": "Turret"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Modified Munitions",
+                "pageId": 572346,
+                "revisionId": 2606752,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Zeplen | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Zeplen",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/SpaceBattles/Grineer/GrineerMissilePlatAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Modified Munitions",
+                  "pageId": 572346,
+                  "revisionId": 2606752,
+                  "section": "Notes",
+                  "excerpt": "Modified Munitions is additive with similar mods. For example, an Imperator with a max rank Modified Munitions and Magma Chamber will have a 5% × (1 + 60% + 60%) = 11% status chance."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Interception"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Cannon Battery (2)"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Dargyn"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Turret"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Zeplen"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

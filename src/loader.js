@@ -43,17 +43,18 @@ function readCategoryDirectory(dir) {
 function loadData(root = path.join(__dirname, '..'), options = {}) {
   const approvedOnly = options.approvedOnly !== false;
   const keep = entry => !approvedOnly || entry.reviewStatus === 'approved';
-  const facts = readEntryDirectory(path.join(root, 'facts')).filter(keep);
-  const knowledge = readEntryDirectory(path.join(root, 'knowledge')).filter(keep);
-  const categoriesDirectory = path.join(root, 'categories');
+  const knowledgeDirectory = path.join(root, 'knowledge');
+  const facts = readEntryDirectory(path.join(knowledgeDirectory, 'facts')).filter(entry => entry.kind === 'fact').filter(keep);
+  const knowledge = readEntryDirectory(knowledgeDirectory).filter(entry => entry.kind === 'knowledge').filter(keep);
+  const categoriesDirectory = path.join(knowledgeDirectory, 'categories');
   const categories = readCategoryDirectory(categoriesDirectory);
   const officialPath = path.join(categoriesDirectory, 'official.json');
   const officialCatalog = fs.existsSync(officialPath) ? deepFreeze(readJson(officialPath)) : null;
-  const officialItemsPath = path.join(root, 'generated', 'official-items.json');
+  const officialItemsPath = path.join(knowledgeDirectory, 'generated', 'official-items.json');
   const officialItems = fs.existsSync(officialItemsPath) ? deepFreeze(readJson(officialItemsPath)) : null;
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
   const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
-  const aliasesPath = path.join(root, 'facts', 'aliases.json');
+  const aliasesPath = path.join(knowledgeDirectory, 'facts', 'aliases.json');
   const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, terms: {}, normalization: {} };
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);

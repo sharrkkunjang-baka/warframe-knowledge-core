@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Opportunity's_Reach",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,81 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/PerfectReach",
+          "canonical": "Opportunity's Reach",
+          "displayName": "机遇所至",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Opportunity's Reach",
+            "pageId": 1582120,
+            "revisionId": 2652476,
+            "pageTimestamp": "2024-12-28T17:38:41Z",
+            "compiledAt": "2026-07-14T05:59:09.561Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 12,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambire",
+                  "nodeEntityId": "node.SolNode718",
+                  "nodeDisplayName": "异化区",
+                  "planetCanonical": "Deimos",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Opportunity's Reach",
+                "pageId": 1582120,
+                "revisionId": 2652476,
+                "section": "Mission Drop Tables",
+                "excerpt": "Alchemy | Deimos Entrati Alchemy | C | 12% | 1 | 0.12 Cambire , Deimos | | Cambire , Deimos"
+              },
+              "missionTypeCanonical": "Alchemy",
+              "sourceCanonical": "Deimos Entrati Alchemy"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Alchemy"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

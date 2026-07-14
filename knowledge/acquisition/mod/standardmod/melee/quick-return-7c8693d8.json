@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Quick_Return",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,105 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponGlaiveReflectionDecreaseMod",
+          "canonical": "Quick Return",
+          "displayName": "快速收回",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Quick Return",
+            "pageId": 195518,
+            "revisionId": 2695212,
+            "pageTimestamp": "2025-08-26T17:02:32Z",
+            "compiledAt": "2026-07-14T05:59:09.571Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 32.47,
+              "chance": 0.9741,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Quick Return",
+                "pageId": 195518,
+                "revisionId": 2695212,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Crewman | 3% | 32.47% | 0.9741% | 103 | 1 | 0.009741"
+              },
+              "sourceCanonical": "Corrupted Crewman",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/RifleSpacemanAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 37.94,
+              "chance": 37.94,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Quick Return",
+                "pageId": 195518,
+                "revisionId": 2695212,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Lephantis | 100% | 37.94% | 37.94% | 3 | 1 | 0.3794"
+              },
+              "sourceCanonical": "Lephantis",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Infested/Vip/Avatars/GolemFullAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Quick Return",
+                  "pageId": 195518,
+                  "revisionId": 2695212,
+                  "section": "Notes",
+                  "excerpt": "Seems to have a faster return speed after bouncing off a surface at max rank."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Crewman"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Lephantis"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

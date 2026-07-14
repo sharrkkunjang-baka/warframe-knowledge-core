@@ -8,7 +8,7 @@ const QUESTS = require(path.join(ITEMS_ROOT, 'data', 'json', 'Quests.json'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
 
 const root = path.join(__dirname, '..');
-const generated = path.join(root, 'generated');
+const knowledgeGenerated = path.join(root, 'knowledge', 'generated');
 const cache = path.join(root, 'cache');
 const check = process.argv.includes('--check');
 const sources = {
@@ -114,23 +114,23 @@ async function fetchText(url) {
     frames
   };
   const text = `${JSON.stringify(output, null, 2)}\n`;
-  const target = path.join(generated, 'official-warframes.json');
+  const target = path.join(knowledgeGenerated, 'official-warframes.json');
   if (check) {
-    if (!fs.existsSync(target)) throw new Error('generated/official-warframes.json 不存在，请运行 npm run sync:frames');
+    if (!fs.existsSync(target)) throw new Error('knowledge/generated/official-warframes.json 不存在，请运行 npm run sync:frames');
     const current = JSON.parse(fs.readFileSync(target, 'utf8'));
     const comparable = value => JSON.stringify({ ...value, generatedAt: '<ignored>' });
     if (comparable(current) !== comparable(output)) throw new Error('官方战甲目录已漂移，请运行 npm run sync:frames');
     console.log(`官方战甲目录无漂移：${frames.length} 个战甲`);
     return;
   }
-  fs.mkdirSync(generated, { recursive: true });
+  fs.mkdirSync(knowledgeGenerated, { recursive: true });
   fs.mkdirSync(cache, { recursive: true });
   fs.writeFileSync(target, text);
   fs.writeFileSync(path.join(cache, 'warframe-export-recipes.json'), JSON.stringify(recipes));
   fs.writeFileSync(path.join(cache, 'warframe-export-rewards.json'), JSON.stringify(rewards));
-  fs.writeFileSync(path.join(generated, 'official-quests.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, count: questCatalog.length, quests: questCatalog, byEnglish: questByEnglish }, null, 2)}\n`);
-  fs.writeFileSync(path.join(generated, 'official-frame-quest-series.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: frameQuestSeries }, null, 2)}\n`);
-  fs.writeFileSync(path.join(generated, 'official-prime-relics.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: primeRelics }, null, 2)}\n`);
-  fs.writeFileSync(path.join(generated, 'official-frame-sources.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, sources, sha256: { warframes: crypto.createHash('sha256').update(JSON.stringify(warframes)).digest('hex'), recipes: crypto.createHash('sha256').update(JSON.stringify(recipes)).digest('hex'), rewards: crypto.createHash('sha256').update(JSON.stringify(rewards)).digest('hex'), relics: crypto.createHash('sha256').update(JSON.stringify(relics)).digest('hex'), quests: crypto.createHash('sha256').update(JSON.stringify(officialQuests)).digest('hex'), dropTables: crypto.createHash('sha256').update(dropTablesText).digest('hex') } }, null, 2)}\n`);
+  fs.writeFileSync(path.join(knowledgeGenerated, 'official-quests.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, count: questCatalog.length, quests: questCatalog, byEnglish: questByEnglish }, null, 2)}\n`);
+  fs.writeFileSync(path.join(knowledgeGenerated, 'official-frame-quest-series.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: frameQuestSeries }, null, 2)}\n`);
+  fs.writeFileSync(path.join(knowledgeGenerated, 'official-prime-relics.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, frames: primeRelics }, null, 2)}\n`);
+  fs.writeFileSync(path.join(root, 'generated', 'official-frame-sources.json'), `${JSON.stringify({ schemaVersion: 1, generatedAt: output.generatedAt, sources, sha256: { warframes: crypto.createHash('sha256').update(JSON.stringify(warframes)).digest('hex'), recipes: crypto.createHash('sha256').update(JSON.stringify(recipes)).digest('hex'), rewards: crypto.createHash('sha256').update(JSON.stringify(rewards)).digest('hex'), relics: crypto.createHash('sha256').update(JSON.stringify(relics)).digest('hex'), quests: crypto.createHash('sha256').update(JSON.stringify(officialQuests)).digest('hex'), dropTables: crypto.createHash('sha256').update(dropTablesText).digest('hex') } }, null, 2)}\n`);
   console.log(`已同步 ${frames.length} 个官方战甲、${activeRelicNames.size} 个当前遗物；第三方包缺少：${output.packageMissing.join('、') || '无'}`);
 })().catch(error => { console.error(error.stack || error); process.exit(1); });

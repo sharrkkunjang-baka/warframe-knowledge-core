@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Medi-Ray",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,123 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/Events/ProjectNightwatch/SentinelHealthRegenPreceptNightwatchMod",
+          "canonical": "Medi-Ray",
+          "displayName": "医疗射线",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Medi-Ray",
+            "pageId": 980222,
+            "revisionId": 2768426,
+            "pageTimestamp": "2026-04-19T18:56:19Z",
+            "compiledAt": "2026-07-14T05:59:08.361Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 11.11,
+              "chance": 11.11,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Medi-Ray",
+                "pageId": 980222,
+                "revisionId": 2768426,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kela De Thaym | 100% | 11.11% | 11.11% | 9 | 1 | 0.1111"
+              },
+              "sourceCanonical": "Kela De Thaym",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/KelaDeThaym/KelaDeThaymAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Medi-Ray",
+                  "pageId": 980222,
+                  "revisionId": 2768426,
+                  "section": "Notes",
+                  "excerpt": "This ability has a 60 second cooldown"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Medi-Ray",
+                  "pageId": 980222,
+                  "revisionId": 2768426,
+                  "section": "Notes",
+                  "excerpt": "The total healing is based on your Warframe's maximum health, including mods. For example, with 300 maximum health, you will regenerate 36 health. With 600 health using Vitality , you will regenerate 72 health."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Medi-Ray",
+                  "pageId": 980222,
+                  "revisionId": 2768426,
+                  "section": "Notes",
+                  "excerpt": "Since the full heal takes four seconds to complete, this mod regenerates 1/4 of the listed percentage per second."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Medi-Ray",
+                  "pageId": 980222,
+                  "revisionId": 2768426,
+                  "section": "Notes",
+                  "excerpt": "As the health restored is percentage-based, this mod will have a more noticeable effect on Warframes with higher health pools such as Inaros ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Medi-Ray",
+                  "pageId": 980222,
+                  "revisionId": 2768426,
+                  "section": "Notes",
+                  "excerpt": "At least 2 copies of the mod are needed in order to trade one of them."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Kela De Thaym"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

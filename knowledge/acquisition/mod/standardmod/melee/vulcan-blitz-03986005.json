@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Vulcan_Blitz",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,133 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/Event/ProjectNightwatch/JatKittagNightwatchMod",
+          "canonical": "Vulcan Blitz",
+          "displayName": "火神闪击",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Vulcan Blitz",
+            "pageId": 980104,
+            "revisionId": 2719938,
+            "pageTimestamp": "2026-01-03T13:07:43Z",
+            "compiledAt": "2026-07-14T05:59:09.665Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 11.11,
+              "chance": 11.11,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Vulcan Blitz",
+                "pageId": 980104,
+                "revisionId": 2719938,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kela De Thaym | 100% | 11.11% | 11.11% | 9 | 1 | 0.1111"
+              },
+              "sourceCanonical": "Kela De Thaym",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/KelaDeThaym/KelaDeThaymAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vulcan Blitz",
+                  "pageId": 980104,
+                  "revisionId": 2719938,
+                  "section": "Notes",
+                  "excerpt": "Explosion has linear damage falloff from 100% to 0% from the central enemy."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vulcan Blitz",
+                  "pageId": 980104,
+                  "revisionId": 2719938,
+                  "section": "Notes",
+                  "excerpt": "Explosion requires Line of Sight ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vulcan Blitz",
+                  "pageId": 980104,
+                  "revisionId": 2719938,
+                  "section": "Notes",
+                  "excerpt": "Explosion damage is affected by Faction Damage Mods and stealth 's 8x damage bonus"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vulcan Blitz",
+                  "pageId": 980104,
+                  "revisionId": 2719938,
+                  "section": "Notes",
+                  "excerpt": "Explosion radius cannot be modified outside of increasing Vulcan Blitz's mod rank."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vulcan Blitz",
+                  "pageId": 980104,
+                  "revisionId": 2719938,
+                  "section": "Notes",
+                  "excerpt": "The explosion is silent , though nearby enemies that survive the explosion will be alerted to your presence."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Vulcan Blitz",
+                  "pageId": 980104,
+                  "revisionId": 2719938,
+                  "section": "Notes",
+                  "excerpt": "The explosion's colors will use the Jat Kittag's energy color, and thus can be modified."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Kela De Thaym"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

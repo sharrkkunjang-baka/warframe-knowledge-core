@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Equilibrium",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,214 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarPickupBonusMod",
+          "canonical": "Equilibrium",
+          "displayName": "均衡点",
+          "maxRank": 10,
+          "variant": "standard",
+          "typeFolder": "warframe"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Equilibrium",
+            "pageId": 179823,
+            "revisionId": 2790182,
+            "pageTimestamp": "2026-07-01T08:33:54Z",
+            "compiledAt": "2026-07-14T05:59:14.399Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Equilibrium",
+                "pageId": 179823,
+                "revisionId": 2790182,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 1 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 1 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Equilibrium",
+                "pageId": 179823,
+                "revisionId": 2790182,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 3 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 3 The Circuit (Normal)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 7.52,
+              "chance": 7.52,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Equilibrium",
+                "pageId": 179823,
+                "revisionId": 2790182,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Lephantis (Head) | 100% | 7.52% | 7.52% | 13 | 1 | 0.0752"
+              },
+              "sourceCanonical": "Lephantis (Head)"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Equilibrium",
+                "pageId": 179823,
+                "revisionId": 2790182,
+                "section": "Drop Locations",
+                "excerpt": "An unranked Equilibrium is given upon completion of The Teacher Quest."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "Allows for the pickup of orbs while the associated resource pool is full, for the purpose of conversion. For example, if Health is full but Energy is not, a Health Orb will be picked up and converted to energy."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "The final converted restoration is rounded down. For example, with a rank 10 Equilibrium, collecting a small Energy Orb worth 25 Energy will restore 27 Health, rather than 27.5 Health."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "Health converted from Energy Orbs will not heal Companions ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "The effects of Arcane Energize and Energy Pulse do not apply to energy from converted health orbs. Likewise, Arcane Pulse does not apply to health from converted energy orbs."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "Increased Health and/or Energy Orb Effectiveness from Amber Archon Shard , Restorative Bond , or Dagath 's Passive is not taken into account and will only use the orb's base values."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "As of Hotfix 13.9.3.1 (2014-07-11), Equilibrium can be acquired from Mod Packs and Transmutation ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "Equilibrium stacks with Equinox 's passive ability, which converts 10% of Health Orbs into Energy and vice versa, up to a total of 120% efficiency."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "This effect is additive with the Violet Archon Shard bonus of Health pickups give +20% (+30%) Energy. Energy pickups give +20% (+30%) Health."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Equilibrium",
+                  "pageId": 179823,
+                  "revisionId": 2790182,
+                  "section": "Notes",
+                  "excerpt": "Equilibrium (and Violet Archon Shards, by extension) does work with Universal Orbs , adding a bonus replenishment of Health and Energy."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Lephantis (Head)"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

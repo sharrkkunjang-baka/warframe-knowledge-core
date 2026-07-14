@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Homing_Fang",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,145 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/DaggerCmbOneMeleeTree",
+          "canonical": "Homing Fang",
+          "displayName": "连牙追袭",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "stance"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Homing Fang",
+            "pageId": 430395,
+            "revisionId": 2719523,
+            "pageTimestamp": "2025-12-31T12:19:07Z",
+            "compiledAt": "2026-07-14T05:59:13.441Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 2.27,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Homing Fang",
+                "pageId": 430395,
+                "revisionId": 2719523,
+                "section": "Mission Drop Tables",
+                "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
+              },
+              "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "sourceCanonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.06,
+              "chance": 0.3318,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Homing Fang",
+                "pageId": 430395,
+                "revisionId": 2719523,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Nauseous Crawler | 3% | 11.06% | 0.3318% | 301 | 1 | 0.003318"
+              },
+              "sourceCanonical": "Nauseous Crawler",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Infested/AiWeek/Crawlers/GraspingCrawlerAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Homing Fang",
+                  "pageId": 430395,
+                  "revisionId": 2719523,
+                  "section": "Notes",
+                  "excerpt": "Certain attacks have either a Puncture or Slash damage multiplier."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Homing Fang",
+                  "pageId": 430395,
+                  "revisionId": 2719523,
+                  "section": "Notes",
+                  "excerpt": "The second attack of Cutting Arches has a 2x Slash damage multiplier."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Homing Fang",
+                  "pageId": 430395,
+                  "revisionId": 2719523,
+                  "section": "Notes",
+                  "excerpt": "The first attack of Life Eater has a 2x Puncture damage multiplier."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Homing Fang",
+                  "pageId": 430395,
+                  "revisionId": 2719523,
+                  "section": "Notes",
+                  "excerpt": "The first hit of Cutting Arches' first attack only generates 1 combo instead of 2 ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Homing Fang",
+                  "pageId": 430395,
+                  "revisionId": 2719523,
+                  "section": "Notes",
+                  "excerpt": "First attack of Butterfly Slash will open enemies up for finishers"
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Nauseous Crawler"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

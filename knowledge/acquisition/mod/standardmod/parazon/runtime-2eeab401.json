@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Runtime",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,98 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Cipher/OnHackSprintSpeedMod",
+          "canonical": "Runtime",
+          "displayName": "溜之大吉",
+          "maxRank": 0,
+          "variant": "standard",
+          "typeFolder": "parazon"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Runtime",
+            "pageId": 1456968,
+            "revisionId": 2645849,
+            "pageTimestamp": "2024-11-19T20:24:32Z",
+            "compiledAt": "2026-07-14T05:59:10.402Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "B",
+              "chance": 10,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Pago",
+                  "nodeEntityId": "node.SolNode747",
+                  "planetCanonical": "Kuva Fortress",
+                  "planetEntityId": "location.kuva-fortress",
+                  "planetDisplayName": "赤毒要塞"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Runtime",
+                "pageId": 1456968,
+                "revisionId": 2645849,
+                "section": "Mission Drop Tables",
+                "excerpt": "Spy | Kuva Fortress Spy | B | 10% | 1 | 0.1 Pago , Kuva Fortress | | Pago , Kuva Fortress"
+              },
+              "missionTypeCanonical": "Spy",
+              "missionTypeEntityId": "mission-type.spy",
+              "missionTypeDisplayName": "间谍",
+              "sourceCanonical": "Kuva Fortress Spy"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Runtime",
+                  "pageId": 1456968,
+                  "revisionId": 2645849,
+                  "section": "Notes",
+                  "excerpt": "Successfully hacking a console while the speed buff is already active will refresh the buff timer."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Runtime",
+                  "pageId": 1456968,
+                  "revisionId": 2645849,
+                  "section": "Notes",
+                  "excerpt": "Useful for spy missions for when you need to travel from one vault to another with the vaults usually being so far away."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "complete"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

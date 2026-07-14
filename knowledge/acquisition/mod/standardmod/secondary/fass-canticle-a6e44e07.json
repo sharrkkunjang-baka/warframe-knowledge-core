@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Fass_Canticle",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,114 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Grimoire/FassAuraMod",
+          "canonical": "Fass Canticle",
+          "displayName": "Fass 颂歌",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "secondary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Fass Canticle",
+            "pageId": 1582103,
+            "revisionId": 2792475,
+            "pageTimestamp": "2026-07-10T22:56:25Z",
+            "compiledAt": "2026-07-14T05:59:12.468Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 5,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Munio",
+                  "nodeEntityId": "node.SolNode719",
+                  "nodeDisplayName": "墓垒",
+                  "planetCanonical": "Deimos",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fass Canticle",
+                "pageId": 1582103,
+                "revisionId": 2792475,
+                "section": "Mission Drop Tables",
+                "excerpt": "Mirror Defense | Deimos Entrati Mirror Defense | C | 5% | 1 | 0.05 Munio , Deimos | | Munio , Deimos"
+              },
+              "missionTypeCanonical": "Mirror Defense",
+              "sourceCanonical": "Deimos Entrati Mirror Defense"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fass Canticle",
+                "pageId": 1582103,
+                "revisionId": 2792475,
+                "section": "Acquisition",
+                "excerpt": "Available as part of the Essential Tome Mod Bundle for 140 Platinum 140 on the Market ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Fass Canticle",
+                  "pageId": 1582103,
+                  "revisionId": 2792475,
+                  "section": "Notes",
+                  "excerpt": "Cannot be equipped alongside Jahu Canticle , Khra Canticle , and Lohk Canticle ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Fass Canticle",
+                  "pageId": 1582103,
+                  "revisionId": 2792475,
+                  "section": "Notes",
+                  "excerpt": "Tome Mods with on-kill conditions do not require the Grimoire to make the killing blow. The Grimoire has to damage the enemy at least once to mark it with Tome effects and be equipped as the held weapon when the marked enemy is killed by other sources, such as Warframe abilities."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Mirror Defense"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

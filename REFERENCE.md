@@ -8,7 +8,7 @@
 - `Recipe.id` 由 `${item.uniqueName}#recipe-${outputQuantity}` 生成；`RecipeVariant.recipeId` 只引用同一 item 的 recipe ID。
 - `Entity.id` 使用带命名空间的小写稳定 ID，如 `planet.earth`、`vendor.konzu`、`currency.credits`。
 - `KnowledgeEntry.id` 全仓唯一；`methodRefs[]` 只引用 `module="gameplay"` 且 ID 为 `gameplay.*` 的条目。
-- `subject.categoryRefs[]` 引用 `categories/<id>.json` 的 `id`，不是目录名或展示名。
+- `subject.categoryRefs[]` 引用 `knowledge/categories/<id>.json` 的 `id`，不是目录名或展示名。
 - 引用解析优先级：稳定 ID/uniqueName → canonical → displayName → aliases。持久化引用必须保存稳定 ID，不能保存别名。
 - 事实来源优先级：官方导出/官方掉落表 → 官方本地化 → approved 本地知识/审计覆盖 → Wiki SQLite → 在线 Wiki → 旧缓存或消费端兼容资料。
 
@@ -299,8 +299,8 @@ Core 同时包含 `loadData()` 的字段：`facts[]`、`knowledge[]`、`categori
 package scripts：
 
 - `npm run sync:mods` / `check:mods`：同步/检查 Mod acquisition 空壳；`--check` 不写入。
-- `npm run sync:official` / `check:official`：生成/检查 `categories/official.json`。
-- `npm run sync:items` / `check:items`：生成/检查 `generated/official-items.json` 与来源元数据。
+- `npm run sync:official` / `check:official`：生成/检查 `knowledge/categories/official.json`。
+- `npm run sync:items` / `check:items`：生成/检查 `knowledge/generated/official-items.json` 与 `generated/` 下的来源元数据。
 - `npm run sync:frames` / `check:frames`：联网生成/检查战甲、任务、Prime 遗物和来源文件；非 check 同时写 recipes/rewards cache。
 - `npm run sync:pvp`：同步 PvP Mod 数据。
 - `npm run normalize:text`：规范用户可见文本。

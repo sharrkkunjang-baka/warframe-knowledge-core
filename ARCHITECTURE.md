@@ -8,7 +8,7 @@
 
 当前统一入口是 `createKnowledgeCore()`。它加载审核知识、官方 Mod 目录、统一 `ItemCatalog`、实体 registry，并暴露查询与 DTO 构造器：
 
-- **ItemCatalog**：`generated/official-items.json`，从 `warframe-items` 的 Resources、Gear、Misc、Arcanes 生成；每个物品以 `uniqueName` 为稳定主键，统一描述、掉落、配方、材料及配方变体。
+- **ItemCatalog**：`knowledge/generated/official-items.json`，从 `warframe-items` 的 Resources、Gear、Misc、Arcanes 生成；每个物品以 `uniqueName` 为稳定主键，统一描述、掉落、配方、材料及配方变体。
 - **AcquisitionEvidence**：一条可审计获取证据，携带证据类型、来源、实体引用、概率、数量和核验状态。
 - **AcquisitionResult**：一次物品获取查询的统一结果，包含物品、证据、配方变体、状态和说明。
 - **RenderResult**：展示层统一返回容器，包含文本、获取结果、分段和警告。
@@ -17,11 +17,12 @@
 
 ## 数据分层与所有权
 
-- `facts/`：带来源的基础事实与名称映射。
-- `knowledge/`：人工或生成的加工知识；`module=acquisition` 表示刷取对象，`module=gameplay` 表示可复用玩法。
-- `categories/`：人工语义分类；`categories/official.json` 是官方 Mod 生成快照。
-- `entities/`：地点、商人和货币 registry，使用稳定 ID 建立跨数据引用。
-- `generated/`：从锁定依赖或官方导出生成的目录、来源元数据、战甲和遗物数据。
+- `knowledge/facts/`：带来源的基础事实与名称映射。
+- `knowledge/acquisition/` 与 `knowledge/gameplay/`：加工知识；前者表示刷取对象，后者表示可复用玩法。
+- `knowledge/categories/`：人工语义分类及官方 Mod 生成快照。
+- `knowledge/entities/`：地点、商人、货币和任务 registry，使用稳定 ID 建立跨数据引用。
+- `knowledge/generated/`：从锁定依赖或官方导出生成、供查询使用的物品、战甲、任务、遗物和节点目录。
+- `generated/`：来源哈希、生成报告等维护元数据，不作为信息查询文本数据。
 - `cache/`：战甲配方与奖励导出的运行缓存，不是公共知识源。
 - `dist/`：仅含已审核知识及生成目录的发布产物，并带 manifest 与 SHA-256。
 - QQ Bot 的 Wiki SQLite：由 `qq-bot` 爬虫维护的派生证据库，不属于本包的发布数据，也不由核心直接加载。
@@ -58,7 +59,7 @@
 
 ## Mod 与战甲兼容适配
 
-Mod 仍由 `categories/official.json` 提供官方目录，并由 `knowledge/acquisition` 提供审核刷法。统一名称解析器会把官方 Mod 名称候选补入 alias resolver；`getAcquisition()` 再按 `subject.canonical` 精确关联知识条目，并通过 `methodRefs` 展开 gameplay。分类默认玩法只在条目未显式提供 `methodRefs` 时继承。
+Mod 仍由 `knowledge/categories/official.json` 提供官方目录，并由 `knowledge/acquisition` 提供审核刷法。统一名称解析器会把官方 Mod 名称候选补入 alias resolver；`getAcquisition()` 再按 `subject.canonical` 精确关联知识条目，并通过 `methodRefs` 展开 gameplay。分类默认玩法只在条目未显式提供 `methodRefs` 时继承。
 
 战甲适配位于 `src/frame-acquisition.js`。它合并 `warframe-items`、官方 Public Export 生成文件、少量显式审计覆盖及实体地点翻译。普通战甲返回部件来源和制造材料；Prime 战甲根据官方生成遗物、任务奖励活动状态和可选 Varzia manifest 判断“当前出库 / Prime 重生 / 已入库”。网络加载先用新鲜缓存，失败时回退旧缓存；网络和缓存均不可用才抛错。`WF_EXPORT_CACHE_DIR` 可改变默认缓存目录。
 

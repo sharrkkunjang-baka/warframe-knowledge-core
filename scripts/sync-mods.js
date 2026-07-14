@@ -15,7 +15,8 @@ const {
   getCategoryRefs,
   getGeneratedIdentity,
   getMaxRank,
-  isGeneratedModEntry
+  isGeneratedModEntry,
+  mergeModEntry
 } = require('../src/mod-entry-builder')
 
 const root = path.resolve(__dirname, '..')
@@ -187,25 +188,17 @@ function createSyncPlan(options = {}) {
     const file = match?.file || defaultFile
     const oldEntry = match?.entry
     const stableUpdatedAt = oldEntry?.updatedAt || today
-    let entry = buildModEntry(item, localized, {
+    let entry = mergeModEntry(buildModEntry(item, localized, {
       gameVersion: `warframe-items@${packageVersion}`,
       updatedAt: stableUpdatedAt
-    })
-    if (oldEntry) {
-      entry.tips = Array.isArray(oldEntry.tips) ? oldEntry.tips : []
-      entry.tipKeywords = Array.isArray(oldEntry.tipKeywords) ? oldEntry.tipKeywords : entry.tipKeywords
-    }
+    }), oldEntry)
 
     if (oldEntry
       && JSON.stringify(withoutUpdatedAt(oldEntry)) !== JSON.stringify(withoutUpdatedAt(entry))) {
-      entry = buildModEntry(item, localized, {
+      entry = mergeModEntry(buildModEntry(item, localized, {
         gameVersion: `warframe-items@${packageVersion}`,
         updatedAt: today
-      })
-      if (oldEntry) {
-        entry.tips = Array.isArray(oldEntry.tips) ? oldEntry.tips : []
-        entry.tipKeywords = Array.isArray(oldEntry.tipKeywords) ? oldEntry.tipKeywords : entry.tipKeywords
-      }
+      }), oldEntry)
     }
 
     const content = serialize([entry])

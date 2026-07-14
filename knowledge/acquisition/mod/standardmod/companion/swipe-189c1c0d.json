@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Swipe",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,124 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/CatbrowPetPrecepts/CatbrowSwipePrecept",
+          "canonical": "Swipe",
+          "displayName": "挥击",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Swipe",
+            "pageId": 1016789,
+            "revisionId": 2696203,
+            "pageTimestamp": "2025-09-01T14:47:40Z",
+            "compiledAt": "2026-07-14T05:59:08.868Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 45.83,
+              "chance": 9.166,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Swipe",
+                "pageId": 1016789,
+                "revisionId": 2696203,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Hyekka | 20% | 45.83% | 9.166% | 11 | 1 | 0.09166"
+              },
+              "sourceCanonical": "Hyekka",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CombatCatbrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 45.83,
+              "chance": 9.166,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Swipe",
+                "pageId": 1016789,
+                "revisionId": 2696203,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Hyekka | 20% | 45.83% | 9.166% | 11 | 1 | 0.09166"
+              },
+              "sourceCanonical": "Kuva Hyekka"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Swipe",
+                  "pageId": 1016789,
+                  "revisionId": 2696203,
+                  "section": "Notes",
+                  "excerpt": "When Kavats normally attack, they can only target a couple enemies at a time."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Swipe",
+                  "pageId": 1016789,
+                  "revisionId": 2696203,
+                  "section": "Notes",
+                  "excerpt": "Swipe also allows Pounce to hit multiple enemies at once."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Swipe",
+                  "pageId": 1016789,
+                  "revisionId": 2696203,
+                  "section": "Notes",
+                  "excerpt": "Does not allow Sharpened Claws to deal bonus damage and remove armor to more than one target at a time."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Hyekka"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Hyekka"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

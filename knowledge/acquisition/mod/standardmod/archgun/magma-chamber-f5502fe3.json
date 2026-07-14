@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Magma_Chamber",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,148 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventFireStatusRifleMod",
+          "canonical": "Magma Chamber",
+          "displayName": "熔岩弹膛",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "archgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Magma Chamber",
+            "pageId": 617478,
+            "revisionId": 2656270,
+            "pageTimestamp": "2025-01-15T18:47:47Z",
+            "compiledAt": "2026-07-14T05:59:07.191Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 1.01,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Magma Chamber",
+                "pageId": 617478,
+                "revisionId": 2656270,
+                "section": "Mission Drop Tables",
+                "excerpt": "Razorback Armada | Razorback Armada | A | 1.01% | 1 | 0.0101 Near Relay that is being attacked during Razorback Armada event | | Near Relay that is being attacked during Razorback Armada event"
+              },
+              "missionTypeCanonical": "Razorback Armada",
+              "sourceCanonical": "Razorback Armada"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 2.56,
+              "chance": 2.56,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Magma Chamber",
+                "pageId": 617478,
+                "revisionId": 2656270,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Profit-Taker Orb | 100% | 2.56% | 2.56% | 39 | 1 | 0.0256"
+              },
+              "sourceCanonical": "Profit-Taker Orb",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Corpus/Vip/Arachnoid/ArachnoidCamperAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Magma Chamber",
+                "pageId": 617478,
+                "revisionId": 2656270,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Pyr Captain | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Pyr Captain"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Magma Chamber",
+                "pageId": 617478,
+                "revisionId": 2656270,
+                "section": "Drop Locations",
+                "excerpt": "It is available as a potential end of mission reward during a Razorback Armada encounter."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magma Chamber",
+                  "pageId": 617478,
+                  "revisionId": 2656270,
+                  "section": "Notes",
+                  "excerpt": "Magma Chamber is additive with similar mods. For example, an Imperator with a max rank Magma Chamber and Modified Munitions will have a 5% × (1 + 60% + 60%) = 11% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magma Chamber",
+                  "pageId": 617478,
+                  "revisionId": 2656270,
+                  "section": "Notes",
+                  "excerpt": "Can be stacked with Combustion Rounds for a total of 180% Heat damage."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Razorback Armada"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Profit-Taker Orb"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Pyr Captain"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Sharpened_Claws",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,154 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/CatbrowPetPrecepts/CatbrowShredPrecept",
+          "canonical": "Sharpened Claws",
+          "displayName": "磨锋之爪",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Sharpened Claws",
+            "pageId": 1017119,
+            "revisionId": 2698908,
+            "pageTimestamp": "2025-10-06T16:00:48Z",
+            "compiledAt": "2026-07-14T05:59:08.809Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 45.83,
+              "chance": 9.166,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sharpened Claws",
+                "pageId": 1017119,
+                "revisionId": 2698908,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Hyekka | 20% | 45.83% | 9.166% | 11 | 1 | 0.09166"
+              },
+              "sourceCanonical": "Hyekka",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CombatCatbrowAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 45.83,
+              "chance": 9.166,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sharpened Claws",
+                "pageId": 1017119,
+                "revisionId": 2698908,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Hyekka | 20% | 45.83% | 9.166% | 11 | 1 | 0.09166"
+              },
+              "sourceCanonical": "Kuva Hyekka"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sharpened Claws",
+                  "pageId": 1017119,
+                  "revisionId": 2698908,
+                  "section": "Notes",
+                  "excerpt": "Damage multiplier is multiplicative to all other damage increases."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sharpened Claws",
+                  "pageId": 1017119,
+                  "revisionId": 2698908,
+                  "section": "Notes",
+                  "excerpt": "Cooldown of 4 seconds."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sharpened Claws",
+                  "pageId": 1017119,
+                  "revisionId": 2698908,
+                  "section": "Notes",
+                  "excerpt": "When combined with Swipe only a single enemy will take bonus damage and lose its armor. Other enemies beyond the first will take damage as though from a normal attack, and will not take the extra damage, nor lose armor."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sharpened Claws",
+                  "pageId": 1017119,
+                  "revisionId": 2698908,
+                  "section": "Notes",
+                  "excerpt": "Armor Reduction stacks additively with Corrosive Projection but only applies 1 time per target. Therefore, with 1 max rank Corrosive Projection active, a Kavat with a rank 2 Sharpened Claws will already remove enemy armor entirely. With a rank 1 Sharpened Claws 22% enemy armor will remain."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sharpened Claws",
+                  "pageId": 1017119,
+                  "revisionId": 2698908,
+                  "section": "Notes",
+                  "excerpt": "Currently can also be equipped on Vulpaphyla pets, but not Predasites ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sharpened Claws",
+                  "pageId": 1017119,
+                  "revisionId": 2698908,
+                  "section": "Notes",
+                  "excerpt": "Cannot armor strip Kuva Liches ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Hyekka"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Hyekka"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

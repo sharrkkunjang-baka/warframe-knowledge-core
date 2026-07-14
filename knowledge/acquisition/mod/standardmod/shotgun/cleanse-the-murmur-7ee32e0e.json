@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cleanse_The_Murmur",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,113 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageMurmurs",
+          "canonical": "Cleanse The Murmur",
+          "displayName": "净化低语者",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Cleanse The Murmur",
+            "pageId": 1582102,
+            "revisionId": 2687226,
+            "pageTimestamp": "2025-06-27T19:16:31Z",
+            "compiledAt": "2026-07-14T05:59:13.159Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 1.5,
+              "itemChance": 4.17,
+              "chance": 0.06255,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cleanse The Murmur",
+                "pageId": 1582102,
+                "revisionId": 2687226,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Lumbering Fragment | 1.5% | 4.17% | 0.06255% | 1599 | 1 | 0.0006255"
+              },
+              "sourceCanonical": "Lumbering Fragment"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 20.27,
+              "chance": 0.6081,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cleanse The Murmur",
+                "pageId": 1582102,
+                "revisionId": 2687226,
+                "section": "Enemy Drop Tables",
+                "excerpt": "The Hollow Vein | 3% | 20.27% | 0.6081% | 164 | 1 | 0.006081"
+              },
+              "sourceCanonical": "The Hollow Vein"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cleanse The Murmur",
+                  "pageId": 1582102,
+                  "revisionId": 2687226,
+                  "section": "Notes",
+                  "excerpt": "Despite being listed as a multiplier, it will stack additively with other sources of Faction Damage Bonus to The Murmur."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cleanse The Murmur",
+                  "pageId": 1582102,
+                  "revisionId": 2687226,
+                  "section": "Notes",
+                  "excerpt": "For example, combining Rhino 's Roar (+50% faction damage bonus to all factions) and a max rank Cleanse The Murmur with x1.3 damage to The Murmur, you would have a 1 + 0.5 + 0.3 = x1.8 multiplier for damage against The Murmur."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Lumbering Fragment"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "The Hollow Vein"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

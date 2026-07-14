@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Coolant_Leak",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,145 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/CoolantLeak",
+          "canonical": "Coolant Leak",
+          "displayName": "冷却液外泄",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Coolant Leak",
+            "pageId": 197049,
+            "revisionId": 2696089,
+            "pageTimestamp": "2025-09-01T14:22:27Z",
+            "compiledAt": "2026-07-14T05:59:07.949Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.67,
+              "chance": 0.0201,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Coolant Leak",
+                "pageId": 197049,
+                "revisionId": 2696089,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orokin Drone | 3% | 0.67% | 0.0201% | 4975 | 1 | 0.000201"
+              },
+              "sourceCanonical": "Orokin Drone",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/OrokinShieldDroneAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.67,
+              "chance": 0.0201,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Coolant Leak",
+                "pageId": 197049,
+                "revisionId": 2696089,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orokin Spectator | 3% | 0.67% | 0.0201% | 4975 | 1 | 0.000201"
+              },
+              "sourceCanonical": "Orokin Spectator",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CameraDroneAvatarOrokin"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coolant Leak",
+                  "pageId": 197049,
+                  "revisionId": 2696089,
+                  "section": "Notes",
+                  "excerpt": "There must be at least 2 enemies within 10 meters for the mod to activate."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coolant Leak",
+                  "pageId": 197049,
+                  "revisionId": 2696089,
+                  "section": "Notes",
+                  "excerpt": "Unalerted enemies that fall under the effect of this mod will become alerted."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coolant Leak",
+                  "pageId": 197049,
+                  "revisionId": 2696089,
+                  "section": "Notes",
+                  "excerpt": "Cannot be used for Transmutation , although it will appear in the codex entry."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coolant Leak",
+                  "pageId": 197049,
+                  "revisionId": 2696089,
+                  "section": "Notes",
+                  "excerpt": "Coolant Leak cannot be traded unless the player offering the item owns more than one copy."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coolant Leak",
+                  "pageId": 197049,
+                  "revisionId": 2696089,
+                  "section": "Notes",
+                  "excerpt": "In Capture Missions, this mod's effect can be applied to the capture target, slowing their escape when they run away and making it easier to capture them."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Orokin Drone"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Orokin Spectator"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

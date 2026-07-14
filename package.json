@@ -6,11 +6,8 @@
   "type": "commonjs",
   "files": [
     "src",
-    "facts",
     "knowledge",
-    "categories",
     "schema",
-    "entities",
     "generated",
     "dist"
   ],
@@ -24,6 +21,8 @@
     "check:items": "node scripts/sync-official-items.js --check",
     "sync:mods": "node scripts/sync-mods.js",
     "check:mods": "node scripts/sync-mods.js --check",
+    "sync:mod-wiki": "node scripts/sync-mod-wiki.js",
+    "check:mod-wiki": "node scripts/sync-mod-wiki.js --check",
     "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:locations && npm run sync:frames && npm run sync:frame-knowledge && npm run validate && npm test && npm run build",
     "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:locations && npm run check:frames && npm run check:frame-knowledge && npm run validate && npm test",
     "validate": "node scripts/validate.js",
@@ -46,6 +45,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "better-sqlite3": "^12.11.1",
     "pinyin-pro": "^3.28.1",
     "warframe-items": "1.1269.87"
   }

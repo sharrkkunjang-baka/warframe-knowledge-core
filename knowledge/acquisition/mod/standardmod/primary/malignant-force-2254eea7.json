@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Malignant_Force",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,127 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/PoisonEventRifleMod",
+          "canonical": "Malignant Force",
+          "displayName": "致命火力",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "primary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Malignant Force",
+            "pageId": 321333,
+            "revisionId": 2745034,
+            "pageTimestamp": "2026-03-22T21:06:18Z",
+            "compiledAt": "2026-07-14T05:59:11.567Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 25,
+              "chance": 25,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malignant Force",
+                "pageId": 321333,
+                "revisionId": 2745034,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Vor | 100% | 25% | 25% | 4 | 1 | 0.25"
+              },
+              "sourceCanonical": "Corrupted Vor",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/VorTwo/VorTwoBossAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malignant Force",
+                "pageId": 321333,
+                "revisionId": 2745034,
+                "section": "Acquisition",
+                "excerpt": "Can be acquired as a possible drop by killing Corrupted Vor in Orokin Void missions level ≥40 such as Mithra and Mot"
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malignant Force",
+                "pageId": 321333,
+                "revisionId": 2745034,
+                "section": "Acquisition",
+                "excerpt": "25% drop chance; it has 100% drop, but shares this with its counterparts - Pistol Pestilence , Virulent Scourge , Toxic Barrage"
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malignant Force",
+                "pageId": 321333,
+                "revisionId": 2745034,
+                "section": "Acquisition",
+                "excerpt": "It was also acquired as a drop from Razorback Armada via killing the Razorback; however, this is no longer possible."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Malignant Force",
+                  "pageId": 321333,
+                  "revisionId": 2745034,
+                  "section": "Notes",
+                  "excerpt": "Malignant Force is additive with similar mods. For example, a Snipetron with a max rank Malignant Force and Rifle Aptitude will have a 20% × (1 + 60% + 90%) = 50% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Malignant Force",
+                  "pageId": 321333,
+                  "revisionId": 2745034,
+                  "section": "Notes",
+                  "excerpt": "This mod can be combined with High Voltage , Thermite Rounds and Rime Rounds to achieve a combined status chance bonus of 240%. With Rifle Aptitude and Hammer Shot , this bonus can be increased to 410%, more than quintupling the weapon's status chance."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Vor"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

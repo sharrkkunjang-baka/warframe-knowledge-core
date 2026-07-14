@@ -4,8 +4,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const OFFICIAL_PATH = path.join(ROOT, 'generated', 'official-warframes.json');
-const KNOWLEDGE_DIR = path.join(ROOT, 'knowledge', 'acquisition', 'warframe');
+const KNOWLEDGE_ROOT = path.join(ROOT, 'knowledge');
+const OFFICIAL_PATH = path.join(KNOWLEDGE_ROOT, 'generated', 'official-warframes.json');
+const KNOWLEDGE_DIR = path.join(KNOWLEDGE_ROOT, 'acquisition', 'warframe');
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
 const EXCLUDED = Object.freeze({

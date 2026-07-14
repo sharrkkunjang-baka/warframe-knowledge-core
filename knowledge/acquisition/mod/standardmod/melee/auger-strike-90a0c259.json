@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Auger_Strike",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,127 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponEventPunctureDamageMod",
+          "canonical": "Auger Strike",
+          "displayName": "螺钻打击",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Auger Strike",
+            "pageId": 597890,
+            "revisionId": 2587326,
+            "pageTimestamp": "2023-06-03T13:24:48Z",
+            "compiledAt": "2026-07-14T05:59:09.242Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 5.53,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Auger Strike",
+                "pageId": 597890,
+                "revisionId": 2587326,
+                "section": "Mission Drop Tables",
+                "excerpt": "Razorback Armada | Razorback Armada | A | 5.53% | 1 | 0.0553 Near Relay that is being attacked during Razorback Armada event | | Near Relay that is being attacked during Razorback Armada event"
+              },
+              "missionTypeCanonical": "Razorback Armada",
+              "sourceCanonical": "Razorback Armada"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 0.84,
+              "chance": 0.84,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Auger Strike",
+                "pageId": 597890,
+                "revisionId": 2587326,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Eidolon Gantulyst | 100% | 0.84% | 0.84% | 119 | 1 | 0.0084"
+              },
+              "sourceCanonical": "Eidolon Gantulyst",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Sentients/Eidolon/SentientTeralystBigAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Auger Strike",
+                "pageId": 597890,
+                "revisionId": 2587326,
+                "section": "Acquisition",
+                "excerpt": "This mod was previously acquired by surviving for 30 minutes or longer in the Operation: Mutalist Incursions Event, and again later in the Divine Will Tactical Alert as a rare drop from completing its Razorback assassination mission."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Auger Strike",
+                  "pageId": 597890,
+                  "revisionId": 2587326,
+                  "section": "Notes",
+                  "excerpt": "Can be combined with Sundering Strike and Rending Strike to provide a 290% increase to Puncture damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Auger Strike",
+                  "pageId": 597890,
+                  "revisionId": 2587326,
+                  "section": "Notes",
+                  "excerpt": "Compared to a base elemental mod (+90%) in terms of raw damage, Auger Strike becomes more effective when a weapon's Puncture damage exceeds 75% of total weapon damage. This does not take damage type multipliers into consideration."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Razorback Armada"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Eidolon Gantulyst"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

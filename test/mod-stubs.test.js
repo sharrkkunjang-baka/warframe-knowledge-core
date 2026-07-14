@@ -10,7 +10,9 @@ const {
   getCanonical,
   isFlawedMod
 } = require('../src/playable-mod-filter');
+const fs = require('node:fs');
 const { createSyncPlan } = require('../scripts/sync-mods');
+const { buildPlan: buildWikiPlan } = require('../scripts/sync-mod-wiki');
 const { createKnowledgeCore } = require('../src');
 
 const root = path.join(__dirname, '..');
@@ -39,7 +41,7 @@ test('普通、残缺与 Prime 代表 Mod 保持独立身份', () => {
   assert.equal(playable.some(item => item.name === 'Pathogen Rounds' && isFlawedMod(item)), true);
 });
 
-test('全量 Mod 空壳幂等且刷法保持为空', () => {
+test('全量 Mod 官方身份同步幂等且人工字段保持不变', () => {
   const plan = createSyncPlan({ today: '2026-07-13' });
   assert.equal(plan.expectedFiles.filter(file => file.current !== file.content).length, 0);
   assert.equal(plan.counts.playable, playable.length);
@@ -56,9 +58,10 @@ test('全量 Mod 空壳幂等且刷法保持为空', () => {
   for (const entry of [pressurePoint, flawedPressurePoint]) {
     assert.ok(entry);
     assert.equal(entry.reviewStatus, 'draft');
-    assert.equal(entry.acquisitionStatus, 'stub');
+    assert.ok(['stub', 'partial', 'complete'].includes(entry.acquisitionStatus));
     assert.deepEqual(entry.prerequisites, []);
     assert.deepEqual(entry.methodRefs, []);
+    assert.deepEqual(entry.modAcquisition.manual.methodRefs, []);
     assert.ok(entry.effectDetails.length);
   }
   assert.equal(primedPressurePoint.reviewStatus, 'approved');
@@ -68,6 +71,26 @@ test('全量 Mod 空壳幂等且刷法保持为空', () => {
   assert.deepEqual(pressurePoint.subject.categoryRefs.slice(0, 2), ['meleemod', 'standardmod']);
   assert.deepEqual(flawedPressurePoint.subject.categoryRefs.slice(0, 2), ['flawedmod', 'meleemod']);
   assert.deepEqual(primedPressurePoint.subject.categoryRefs.slice(0, 2), ['primemod', 'meleemod']);
+});
+
+test('Wiki 编译幂等且样本表格解析可靠', () => {
+  const db = process.env.WF_WIKI_DB || path.resolve(root, '..', 'qq-bot', 'data', 'warframe-wiki.sqlite.download');
+  if (!fs.existsSync(db)) return;
+  const plan = buildWikiPlan({ db });
+  assert.equal(plan.counts.changed, 0);
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const growing = core.getAcquisition('Growing Power');
+  assert.equal(growing.entry.reviewStatus, 'approved');
+  assert.deepEqual(growing.entry.methodRefs, ['gameplay.silver-grove-specters']);
+  assert.deepEqual(growing.entry.modAcquisition.manual.methodRefs, growing.entry.methodRefs);
+  const condition = core.getAcquisition('Condition Overload');
+  assert.ok(condition.structuredMethods.some(method => method.type === 'circuit-reward' && method.chance === 1.49));
+  assert.ok(condition.structuredMethods.some(method => method.type === 'enemy-drop' && method.sourceCanonical === 'Kuva Bombard'));
+  assert.ok(condition.mechanicsEvidence.notes.length > 0);
+  const frostbite = core.getAcquisition('Frostbite');
+  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'C' && method.chance === 8.6 && method.nodes.length === 4));
+  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'B' && method.chance === 10));
+  assert.equal(frostbite.structuredMethods.some(method => method.type === 'enemy-drop'), false);
 });
 
 test('官方目录区分空壳、完整刷法与缺失状态', () => {

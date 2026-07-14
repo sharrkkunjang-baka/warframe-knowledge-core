@@ -46,7 +46,7 @@
       }
     ],
     "gameVersion": "current",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "approved",
     "reviewedBy": [
       "sharrkkunjang-baka"
@@ -64,6 +64,142 @@
       "加成层级",
       "与同类效果的叠加方式",
       "适用限制"
-    ]
+    ],
+    "modAcquisition": {
+      "generated": {
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Stunning Speed",
+            "pageId": 110784,
+            "revisionId": 2588304,
+            "pageTimestamp": "2023-06-03T14:17:14Z",
+            "compiledAt": "2026-07-14T05:59:05.599Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 18.97,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Stunning Speed",
+                "pageId": 110784,
+                "revisionId": 2588304,
+                "section": "Mission Drop Tables",
+                "excerpt": "Nightmare Mode | Nightmare Mode Missions | A | 18.97% | 1 | 0.1897 See in-game World State Window for active Nightmare Mode nodes | | See in-game World State Window for active Nightmare Mode nodes"
+              },
+              "missionTypeCanonical": "Nightmare Mode",
+              "sourceCanonical": "Nightmare Mode Missions"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 18.97,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Stunning Speed",
+                "pageId": 110784,
+                "revisionId": 2588304,
+                "section": "Mission Drop Tables",
+                "excerpt": "Nightmare Mode | Nightmare Mode Rescue | A | 18.97% | 1 | 0.1897 See in-game World State Window for active Nightmare Mode nodes | | See in-game World State Window for active Nightmare Mode nodes"
+              },
+              "missionTypeCanonical": "Nightmare Mode",
+              "sourceCanonical": "Nightmare Mode Rescue"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Stunning Speed",
+                  "pageId": 110784,
+                  "revisionId": 2588304,
+                  "section": "Notes",
+                  "excerpt": "Stunning Speed is additive with similar mods. For example, a Sicarus with a max rank Stunning Speed and Sure Shot will have a 6% × (1 + 30% + 90%) = 13.2% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Stunning Speed",
+                  "pageId": 110784,
+                  "revisionId": 2588304,
+                  "section": "Notes",
+                  "excerpt": "This mod doesn't directly reduce reload times; it increases reload speed. The calculations are far different, and that can cause some confusion."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Stunning Speed",
+                  "pageId": 110784,
+                  "revisionId": 2588304,
+                  "section": "Notes",
+                  "excerpt": "The calculation of reload time using reload speed as a variable is almost the same with melee charge speed, which is Base Reload Time÷(1+ Reload Speed Bonus) ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Stunning Speed",
+                  "pageId": 110784,
+                  "revisionId": 2588304,
+                  "section": "Notes",
+                  "excerpt": "The 40% reload speed bonus at max rank equates to a ~29% reduction to reload times. You can calculate the reduction as 1-(1÷(1+s)), where s is your total reload speed bonus."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Stunning Speed",
+                  "pageId": 110784,
+                  "revisionId": 2588304,
+                  "section": "Notes",
+                  "excerpt": "Stacking this with Quickdraw should reduce reload times by 47%."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Nightmare Mode"
+            }
+          ],
+          "status": "partial"
+        },
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/StunningSpeedMod",
+          "canonical": "Stunning Speed",
+          "displayName": "慑人神速",
+          "maxRank": 3
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [
+          "gameplay.nightmare-mode"
+        ],
+        "overrides": {},
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "sharrkkunjang-baka"
+        ]
+      }
+    }
   }
 ]

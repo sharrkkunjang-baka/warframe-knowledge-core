@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Seismic_Wave",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,206 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponMeleeSlamDamageMod",
+          "canonical": "Seismic Wave",
+          "displayName": "震波",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Seismic Wave",
+            "pageId": 774180,
+            "revisionId": 2722604,
+            "pageTimestamp": "2026-01-14T15:05:22Z",
+            "compiledAt": "2026-07-14T05:59:09.590Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Seismic Wave",
+                "pageId": 774180,
+                "revisionId": 2722604,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 1 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 1 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Seismic Wave",
+                "pageId": 774180,
+                "revisionId": 2722604,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 3 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 3 The Circuit (Normal)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.06,
+              "chance": 0.3318,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Seismic Wave",
+                "pageId": 774180,
+                "revisionId": 2722604,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Bailiff | 3% | 11.06% | 0.3318% | 301 | 1 | 0.003318"
+              },
+              "sourceCanonical": "Bailiff",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/GrineerChargerAvatarLeader"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.06,
+              "chance": 0.3318,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Seismic Wave",
+                "pageId": 774180,
+                "revisionId": 2722604,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Bailiff Defector | 3% | 11.06% | 0.3318% | 301 | 1 | 0.003318"
+              },
+              "sourceCanonical": "Bailiff Defector"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.06,
+              "chance": 0.3318,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Seismic Wave",
+                "pageId": 774180,
+                "revisionId": 2722604,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Tusk Reaver | 3% | 11.06% | 0.3318% | 301 | 1 | 0.003318"
+              },
+              "sourceCanonical": "Tusk Reaver",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Eidolon/Avatars/EidolonJetpackMeleeAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Seismic Wave",
+                  "pageId": 774180,
+                  "revisionId": 2722604,
+                  "section": "Notes",
+                  "excerpt": "Nira's Set bonus is additive to Seismic Wave ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Seismic Wave",
+                  "pageId": 774180,
+                  "revisionId": 2722604,
+                  "section": "Notes",
+                  "excerpt": "Slam damage is multiplicative to base damage (e.g., Pressure Point , Arcane Fury )."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Seismic Wave",
+                  "pageId": 774180,
+                  "revisionId": 2722604,
+                  "section": "Notes",
+                  "excerpt": "Seismic Wave and Nira's Set also increases the damage dealt by slam attacks performed via Stance Combos ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Seismic Wave",
+                  "pageId": 774180,
+                  "revisionId": 2722604,
+                  "section": "Notes",
+                  "excerpt": "Works with Wukong 's Primal Fury ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Seismic Wave",
+                  "pageId": 774180,
+                  "revisionId": 2722604,
+                  "section": "Notes",
+                  "excerpt": "It is currently the only mod capable of increasing the explosion effect damage of the Jat Kusar 's Heavy Attack ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Bailiff"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Bailiff Defector"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Tusk Reaver"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

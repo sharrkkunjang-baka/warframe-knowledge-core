@@ -194,8 +194,19 @@ function createKnowledgeCore(options = {}) {
     return { query: String(query || '').trim(), category, entries };
   };
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
+  const generatedAcquisitionMethods = entry => entry?.modAcquisition?.generated?.wiki?.methods || [];
+  const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
+  const mergeStructuredMethods = entry => {
+    const methods = [...manualAcquisitionMethods(entry)];
+    const identities = new Set(methods.map(method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, rotation: method.rotation, chance: method.chance })));
+    for (const method of generatedAcquisitionMethods(entry)) {
+      const key = JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, rotation: method.rotation, chance: method.chance });
+      if (!identities.has(key)) { methods.push(method); identities.add(key); }
+    }
+    return methods;
+  };
   const expandMethodRefs = entry => {
-    const explicitRefs = entry.methodRefs || [];
+    const explicitRefs = entry.modAcquisition?.manual?.methodRefs || entry.methodRefs || [];
     const inheritedRefs = explicitRefs.length
       ? []
       : (entry.subject?.categoryRefs || [])
@@ -270,6 +281,8 @@ function createKnowledgeCore(options = {}) {
       entries,
       methods,
       sourceOptions,
+      structuredMethods: entries.flatMap(mergeStructuredMethods),
+      wikiEvidence: entries.flatMap(entry => entry.modAcquisition?.generated?.wiki?.evidence || []),
       alternatives: []
     };
   };
@@ -299,7 +312,7 @@ function createKnowledgeCore(options = {}) {
     const resolution = resolveName(raw, searchOptions.resolveOptions || {});
     if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
     const canonical = resolution?.canonical || raw;
-    const entry = data.knowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
+    const entry = allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
     return {
@@ -310,6 +323,9 @@ function createKnowledgeCore(options = {}) {
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
       sourceOptions,
+      structuredMethods: mergeStructuredMethods(entry),
+      wikiEvidence: entry.modAcquisition?.generated?.wiki?.evidence || [],
+      mechanicsEvidence: entry.modAcquisition?.generated?.wiki?.mechanicsEvidence || null,
       alternatives: []
     };
   };

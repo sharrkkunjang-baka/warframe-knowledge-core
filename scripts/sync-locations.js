@@ -4,7 +4,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 
 const root = path.join(__dirname, '..');
-const outputPath = path.join(root, 'generated', 'official-railjack-nodes.json');
+const outputPath = path.join(root, 'knowledge', 'generated', 'official-railjack-nodes.json');
 const check = process.argv.includes('--check');
 const sources = {
  regions: 'https://browse.wf/warframe-public-export-plus/ExportRegions.json',
@@ -44,7 +44,7 @@ async function fetchJson(url) {
   nodes
  };
  if (check) {
-  if (!fs.existsSync(outputPath)) throw new Error('generated/official-railjack-nodes.json 不存在，请运行 npm run sync:locations');
+  if (!fs.existsSync(outputPath)) throw new Error('knowledge/generated/official-railjack-nodes.json 不存在，请运行 npm run sync:locations');
   const current = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
   const comparable = value => JSON.stringify({ ...value, generatedAt: '<ignored>' });
   if (comparable(current) !== comparable(output)) throw new Error('官方九重天节点目录已漂移，请运行 npm run sync:locations');

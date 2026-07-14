@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Melee_Elementalist",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,92 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/MeleeStatusDamageDuoMod",
+          "canonical": "Melee Elementalist",
+          "displayName": "近战元素师",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Melee Elementalist",
+            "pageId": 1585466,
+            "revisionId": 2737404,
+            "pageTimestamp": "2026-03-02T19:05:31Z",
+            "compiledAt": "2026-07-14T05:59:09.492Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 14.29,
+              "chance": 0.4287,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Melee Elementalist",
+                "pageId": 1585466,
+                "revisionId": 2737404,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Juno Sapper MOA | 3% | 14.29% | 0.4287% | 233 | 1 | 0.004287"
+              },
+              "sourceCanonical": "Juno Sapper MOA"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Melee Elementalist",
+                  "pageId": 1585466,
+                  "revisionId": 2737404,
+                  "section": "Notes",
+                  "excerpt": "Status Damage increase is multiplicative to other types of bonus damage, like Bane of Grineer and Roar ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Melee Elementalist",
+                  "pageId": 1585466,
+                  "revisionId": 2737404,
+                  "section": "Notes",
+                  "excerpt": "This mod's Status Damage is additive with other sources of increased status damage such as the \" Toxin Status Effects deal +30% (+45%) more damage\" bonus from the Emerald Archon Shard and the bonus Status Damage from Boreal's Contempt ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Juno Sapper MOA"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

@@ -6,7 +6,8 @@ const Items = require('warframe-items');
 const { readCategoryDirectory, readEntryDirectory } = require('../src/loader');
 
 const root = path.join(__dirname, '..');
-const outputPath = path.join(root, 'categories', 'official.json');
+const knowledgeRoot = path.join(root, 'knowledge');
+const outputPath = path.join(knowledgeRoot, 'categories', 'official.json');
 const packagePath = path.join(path.dirname(require.resolve('warframe-items')), 'package.json');
 
 function normalize(value) {
@@ -62,7 +63,7 @@ function findLocalCategoryMatches(officialCategory, localCategories) {
 function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const packageInfo = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
   const items = new Items({ category: ['Mods'], i18n: ['zh'] });
-  const localCategories = readCategoryDirectory(path.join(root, 'categories'));
+  const localCategories = readCategoryDirectory(path.join(knowledgeRoot, 'categories'));
   const acquisitionEntries = readEntryDirectory(path.join(root, 'knowledge', 'acquisition'));
   const acquisitionsByCanonical = new Map();
   const acquisitionsByUniqueName = new Map();

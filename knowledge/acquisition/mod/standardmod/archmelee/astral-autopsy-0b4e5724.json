@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Astral_Autopsy",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,92 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeScanOnKillMod",
+          "canonical": "Astral Autopsy",
+          "displayName": "星界剖解",
+          "maxRank": 0,
+          "variant": "standard",
+          "typeFolder": "archmelee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Astral Autopsy",
+            "pageId": 1116749,
+            "revisionId": 2693642,
+            "pageTimestamp": "2025-08-13T18:23:38Z",
+            "compiledAt": "2026-07-14T05:59:07.245Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 2.01,
+              "chance": 0.1005,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Astral Autopsy",
+                "pageId": 1116749,
+                "revisionId": 2693642,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kosma Gokstad Officer | 5% | 2.01% | 0.1005% | 995 | 1 | 0.001005"
+              },
+              "sourceCanonical": "Kosma Gokstad Officer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 2.01,
+              "chance": 0.1005,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Astral Autopsy",
+                "pageId": 1116749,
+                "revisionId": 2693642,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kosma Gokstad Pilot | 5% | 2.01% | 0.1005% | 995 | 1 | 0.001005"
+              },
+              "sourceCanonical": "Kosma Gokstad Pilot"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Kosma Gokstad Officer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kosma Gokstad Pilot"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

@@ -7,12 +7,13 @@
 
 ## 目录
 
-- `facts/`：基础事实、来源和名称映射。
+- `knowledge/facts/`：基础事实、来源和名称映射。
 - `knowledge/acquisition/`：结构化刷取对象，一个对象一个文件。
 - `knowledge/gameplay/`：可被多个刷取对象引用的玩法。
-- `categories/`：人工语义分类；`official.json` 是生成的官方 Mod 快照。
-- `entities/`：locations、vendors、currencies 稳定实体 registry。
-- `generated/`：统一 official-items、来源元数据、战甲、任务和遗物生成数据。
+- `knowledge/categories/`：人工语义分类；`official.json` 是生成的官方 Mod 快照。
+- `knowledge/entities/`：locations、vendors、currencies、quests 稳定实体 registry。
+- `knowledge/generated/`：统一 official-items、战甲、任务、遗物和节点等可查询生成数据。
+- `generated/`：生成过程的来源元数据与维护报告，不作为查询文本数据。
 - `schema/`：知识、实体和官方目录 schema。
 - `src/`：加载、解析、获取 DTO、实体 registry 和战甲适配。
 - `scripts/`：同步、校验和构建脚本。

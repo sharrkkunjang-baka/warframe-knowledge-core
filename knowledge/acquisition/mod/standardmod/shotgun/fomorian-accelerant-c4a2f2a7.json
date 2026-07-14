@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Fomorian_Accelerant",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,72 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/Event/ProjectNightwatch/DrakgoonNightwatchMod",
+          "canonical": "Fomorian Accelerant",
+          "displayName": "巨人促进剂",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Fomorian Accelerant",
+            "pageId": 980194,
+            "revisionId": 2658640,
+            "pageTimestamp": "2025-01-31T15:59:35Z",
+            "compiledAt": "2026-07-14T05:59:13.209Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 11.11,
+              "chance": 11.11,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fomorian Accelerant",
+                "pageId": 980194,
+                "revisionId": 2658640,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kela De Thaym | 100% | 11.11% | 11.11% | 9 | 1 | 0.1111"
+              },
+              "sourceCanonical": "Kela De Thaym",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/KelaDeThaym/KelaDeThaymAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Kela De Thaym"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

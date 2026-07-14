@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Breach_Loader",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,148 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponEventPunctureDamageMod",
+          "canonical": "Breach Loader",
+          "displayName": "破裂填装",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Breach Loader",
+            "pageId": 597892,
+            "revisionId": 2610500,
+            "pageTimestamp": "2024-03-09T16:57:07Z",
+            "compiledAt": "2026-07-14T05:59:13.123Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 5.53,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Breach Loader",
+                "pageId": 597892,
+                "revisionId": 2610500,
+                "section": "Mission Drop Tables",
+                "excerpt": "Razorback Armada | Razorback Armada | A | 5.53% | 1 | 0.0553 Near Relay that is being attacked during Razorback Armada event | | Near Relay that is being attacked during Razorback Armada event"
+              },
+              "missionTypeCanonical": "Razorback Armada",
+              "sourceCanonical": "Razorback Armada"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 0.84,
+              "chance": 0.84,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Breach Loader",
+                "pageId": 597892,
+                "revisionId": 2610500,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Eidolon Gantulyst | 100% | 0.84% | 0.84% | 119 | 1 | 0.0084"
+              },
+              "sourceCanonical": "Eidolon Gantulyst",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Sentients/Eidolon/SentientTeralystBigAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Breach Loader",
+                "pageId": 597892,
+                "revisionId": 2610500,
+                "section": "Acquisition",
+                "excerpt": "This mod was acquired by surviving at least 30 minutes in the Operation: Mutalist Incursions Event."
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Breach Loader",
+                "pageId": 597892,
+                "revisionId": 2610500,
+                "section": "Acquisition",
+                "excerpt": "Can also be obtained in the Tactical Alert ( Divine Will ) as a rare drop from completing the Razorback assassination mission."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Breach Loader",
+                  "pageId": 597892,
+                  "revisionId": 2610500,
+                  "section": "Notes",
+                  "excerpt": "Can be combined with Accelerated Blast and Flechette to provide a 270% increase to Puncture damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Breach Loader",
+                  "pageId": 597892,
+                  "revisionId": 2610500,
+                  "section": "Notes",
+                  "excerpt": "This is best suited for the Cedo due to its primary fire's base of entirely Puncture damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Breach Loader",
+                  "pageId": 597892,
+                  "revisionId": 2610500,
+                  "section": "Notes",
+                  "excerpt": "When calculating total raw damage, a weapon will require a Puncture damage percentage equal to 75% of its total base damage to equal the raw damage increase provided by a standard elemental mod (which increases corresponding elemental damages by 90%). The higher the Puncture damage percentage over 75%, the more viable this mod will be as opposed to an elemental mod, and vice versa for lower values. These calculations only pertain to raw damage and do not take into consideration enemy armor/flesh/shield damage multipliers."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Razorback Armada"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Eidolon Gantulyst"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

@@ -6,17 +6,18 @@ const { readEntryDirectory, readCategoryDirectory } = require('../src/loader');
 const { buildOfficialCatalog, serialize } = require('./sync-official-mods');
 
 const root = path.join(__dirname, '..');
-const entries = [...readEntryDirectory(path.join(root, 'facts')), ...readEntryDirectory(path.join(root, 'knowledge'))];
-const categories = readCategoryDirectory(path.join(root, 'categories'));
-const officialPath = path.join(root, 'categories', 'official.json');
+const knowledgeRoot = path.join(root, 'knowledge');
+const entries = readEntryDirectory(knowledgeRoot).filter(entry => entry.kind === 'fact' || entry.kind === 'knowledge');
+const categories = readCategoryDirectory(path.join(knowledgeRoot, 'categories'));
+const officialPath = path.join(knowledgeRoot, 'categories', 'official.json');
 const officialCatalog = fs.existsSync(officialPath) ? JSON.parse(fs.readFileSync(officialPath, 'utf8')) : null;
-const officialItemsPath = path.join(root, 'generated', 'official-items.json');
+const officialItemsPath = path.join(knowledgeRoot, 'generated', 'official-items.json');
 const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
-const officialWarframesPath = path.join(root, 'generated', 'official-warframes.json');
+const officialWarframesPath = path.join(knowledgeRoot, 'generated', 'official-warframes.json');
 const officialWarframes = fs.existsSync(officialWarframesPath) ? JSON.parse(fs.readFileSync(officialWarframesPath, 'utf8')) : null;
 const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
 const entityNames = ['locations', 'vendors', 'currencies', 'quests'];
-const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(root, 'entities', `${name}.json`), 'utf8'))]));
+const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(knowledgeRoot, 'entities', `${name}.json`), 'utf8'))]));
 const required = ['id', 'title', 'sources', 'gameVersion', 'updatedAt', 'reviewStatus', 'reviewedBy'];
 const ids = new Set();
 const errors = [];
@@ -100,6 +101,16 @@ for (const entry of entries) {
       const hasStructuredEffects = Array.isArray(entry.effects) && entry.effects.length > 0;
       const hasEffectDetails = Array.isArray(entry.effectDetails) && entry.effectDetails.length > 0;
       if (!Number.isInteger(entry.maxRank) || (!hasStructuredEffects && !hasEffectDetails)) errors.push(`${entry.id}: Mod 条目缺少 maxRank 或有效效果`);
+      if (!entry.modAcquisition?.generated || !entry.modAcquisition?.manual) errors.push(`${entry.id}: Mod 必须分离 modAcquisition.generated/manual`);
+      const manual = entry.modAcquisition?.manual;
+      if (manual && (!Array.isArray(manual.methods) || !Array.isArray(manual.methodRefs) || !manual.overrides || !Array.isArray(manual.reviewedBy))) errors.push(`${entry.id}: modAcquisition.manual 字段不完整`);
+      if (manual && JSON.stringify(manual.methodRefs || []) !== JSON.stringify(entry.methodRefs || [])) errors.push(`${entry.id}: manual.methodRefs 必须与兼容顶层 methodRefs 一致`);
+      const wiki = entry.modAcquisition?.generated?.wiki;
+      if (wiki && (!['complete', 'partial', 'unresolved'].includes(wiki.status) || !Array.isArray(wiki.methods) || !Array.isArray(wiki.evidence) || !wiki.mechanicsEvidence || !Array.isArray(wiki.unresolvedEntities))) errors.push(`${entry.id}: generated.wiki 字段不完整`);
+      for (const method of wiki?.methods || []) {
+        if (!method.type || !method.provenance?.pageTitle || !method.provenance?.revisionId || !method.provenance?.section || !method.provenance?.excerpt) errors.push(`${entry.id}: Wiki method 缺少类型或 provenance`);
+        if (method.reviewStatus !== 'draft') errors.push(`${entry.id}: 自动 Wiki method 禁止标记为非 draft`);
+      }
       for (const effect of entry.effects || []) {
         if (!effect.stat || !effect.displayName || typeof effect.value !== 'number' || typeof effect.unit !== 'string') errors.push(`${entry.id}: effects 字段格式错误`);
         if (invalidUserTextPattern.test(effect.displayName || '')) errors.push(`${entry.id}: effects.displayName 含未清理的标记或换行转义`);
@@ -117,6 +128,7 @@ for (const entry of entries) {
     if (entry.subject?.category === 'mod' && (!Array.isArray(entry.tipKeywords) || entry.tipKeywords.some(keyword => typeof keyword !== 'string' || !keyword.trim()))) errors.push(`${entry.id}: tipKeywords 必须是字符串数组，且每项不能为空`);
     if (entry.subject?.category === 'mod' && entry.tips?.some(tip => invalidUserTextPattern.test(tip))) errors.push(`${entry.id}: tips 含未清理的标记或换行转义`);
     if (entry.acquisitionStatus === 'stub' && (entry.reviewStatus !== 'draft' || entry.methodRefs?.length)) errors.push(`${entry.id}: stub 必须保持 draft 且刷法为空`);
+    if (entry.subject?.category === 'mod' && entry.reviewStatus === 'approved' && entry.modAcquisition?.manual?.reviewStatus !== 'approved') errors.push(`${entry.id}: approved Mod 的 manual 层必须 approved`);
   }
   if (entry.module === 'gameplay') {
     if (entry.kind !== 'knowledge') errors.push(`${entry.id}: gameplay 必须属于 knowledge`);
@@ -160,7 +172,7 @@ for (const entry of entries.filter(entry => entry.module === 'acquisition')) {
 }
 
 if (!officialCatalog) {
-  errors.push('categories/official.json: 官方 Mod 快照不存在');
+  errors.push('knowledge/categories/official.json: 官方 Mod 快照不存在');
 } else {
   const officialMods = officialCatalog.mods || [];
   const officialCategories = officialCatalog.officialCategories || [];
@@ -207,7 +219,7 @@ if (!officialCatalog) {
   if (serialize(regenerated) !== serialize(officialCatalog)) errors.push('official.json: 与当前数据源或本地覆盖状态不一致，请运行 npm run sync:official');
 }
 
-if (!officialItems) errors.push('generated/official-items.json: 统一物品目录不存在');
+if (!officialItems) errors.push('knowledge/generated/official-items.json: 统一物品目录不存在');
 else {
   const uniqueNames = new Set();
   if (officialItems.schemaVersion !== 1 || officialItems.counts?.items !== officialItems.items?.length) errors.push('official-items.json: schemaVersion 或计数无效');
@@ -240,7 +252,7 @@ else {
   if (serializeItems(regenerated.catalog) !== serializeItems(officialItems) || serializeItems(regenerated.sources) !== serializeItems(sources)) errors.push('官方物品目录与当前 warframe-items 不一致，请运行 npm run sync:items');
 }
 
-if (!officialWarframes) errors.push('generated/official-warframes.json: 官方战甲快照不存在');
+if (!officialWarframes) errors.push('knowledge/generated/official-warframes.json: 官方战甲快照不存在');
 else {
   const excluded = new Set(['/Lotus/Powersuits/DemonFrame/DemonFrame']);
   const publicFrames = (officialWarframes.frames || []).filter(frame => !excluded.has(frame.uniqueName));
@@ -264,7 +276,7 @@ const entityIds = new Set(Object.values(entities).flat().map(entity => entity.id
 for (const [name, values] of Object.entries(entities)) {
   const seen = new Set();
   for (const entity of values) {
-    if (!entity.id || seen.has(entity.id) || !entity.canonical || !entity.displayName || !entity.kind || !Array.isArray(entity.aliases)) errors.push(`entities/${name}.json: 实体字段无效或 id 重复 ${entity.id}`);
+    if (!entity.id || seen.has(entity.id) || !entity.canonical || !entity.displayName || !entity.kind || !Array.isArray(entity.aliases)) errors.push(`knowledge/entities/${name}.json: 实体字段无效或 id 重复 ${entity.id}`);
     seen.add(entity.id);
     if (entity.parentId && !entityIds.has(entity.parentId)) errors.push(`${entity.id}: parentId 不存在 ${entity.parentId}`);
     if (entity.locationId && !entityIds.has(entity.locationId)) errors.push(`${entity.id}: locationId 不存在 ${entity.locationId}`);

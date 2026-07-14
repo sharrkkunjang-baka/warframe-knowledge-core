@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Contagious_Spread",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,164 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponToxinDamageMod",
+          "canonical": "Contagious Spread",
+          "displayName": "传染蔓延",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Contagious Spread",
+            "pageId": 284317,
+            "revisionId": 2685865,
+            "pageTimestamp": "2025-06-21T01:00:25Z",
+            "compiledAt": "2026-07-14T05:59:13.163Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "B",
+              "chance": 5.64,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Naeglar",
+                  "nodeEntityId": "node.SolNode175",
+                  "planetCanonical": "Eris",
+                  "planetEntityId": "location.eris",
+                  "planetDisplayName": "阋神星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contagious Spread",
+                "pageId": 284317,
+                "revisionId": 2685865,
+                "section": "Mission Drop Tables",
+                "excerpt": "Sabotage | Hive Sabotage Resource Caches | B | 5.64% | 1 | 0.0564 Naeglar , Eris | | Naeglar , Eris"
+              },
+              "missionTypeCanonical": "Sabotage",
+              "sourceCanonical": "Hive Sabotage Resource Caches"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contagious Spread",
+                "pageId": 284317,
+                "revisionId": 2685865,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 3 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 3 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contagious Spread",
+                "pageId": 284317,
+                "revisionId": 2685865,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 1 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 1 The Circuit (Normal)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 5.53,
+              "chance": 0.1659,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contagious Spread",
+                "pageId": 284317,
+                "revisionId": 2685865,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Electric Crawler | 3% | 5.53% | 0.1659% | 603 | 1 | 0.001659"
+              },
+              "sourceCanonical": "Electric Crawler",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Infested/AiWeek/Crawlers/LightningAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 11.28,
+              "chance": 0.3384,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contagious Spread",
+                "pageId": 284317,
+                "revisionId": 2685865,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Scavenger Drone | 3% | 11.28% | 0.3384% | 296 | 1 | 0.003384"
+              },
+              "sourceCanonical": "Scavenger Drone",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Corpus/Drones/AIWeek/VacDroneAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Sabotage"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Electric Crawler"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Scavenger Drone"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

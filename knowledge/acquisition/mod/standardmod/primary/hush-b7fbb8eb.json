@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Hush",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,145 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponNoiseReductionMod",
+          "canonical": "Hush",
+          "displayName": "消音器",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "primary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Hush",
+            "pageId": 195536,
+            "revisionId": 2587761,
+            "pageTimestamp": "2023-06-03T13:50:28Z",
+            "compiledAt": "2026-07-14T05:59:11.519Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 25.29,
+              "chance": 0.7587,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Hush",
+                "pageId": 195536,
+                "revisionId": 2587761,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orokin Drone | 3% | 25.29% | 0.7587% | 132 | 1 | 0.007587"
+              },
+              "sourceCanonical": "Orokin Drone",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/OrokinShieldDroneAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 25.29,
+              "chance": 0.7587,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Hush",
+                "pageId": 195536,
+                "revisionId": 2587761,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orokin Spectator | 3% | 25.29% | 0.7587% | 132 | 1 | 0.007587"
+              },
+              "sourceCanonical": "Orokin Spectator",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CameraDroneAvatarOrokin"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Hush",
+                  "pageId": 195536,
+                  "revisionId": 2587761,
+                  "section": "Notes",
+                  "excerpt": "Added in Update 10.0 (2013-09-13)."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Hush",
+                  "pageId": 195536,
+                  "revisionId": 2587761,
+                  "section": "Notes",
+                  "excerpt": "This Mod reduces or eliminates firing noise. Enemies that are not killed quick enough will still be alerted."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Hush",
+                  "pageId": 195536,
+                  "revisionId": 2587761,
+                  "section": "Notes",
+                  "excerpt": "Shooting a silent Weapon within 6 meters of an enemy or at the terrain near an enemy will cause them to stop and look around, but will not change their actual alert state."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Hush",
+                  "pageId": 195536,
+                  "revisionId": 2587761,
+                  "section": "Notes",
+                  "excerpt": "Applying this Mod on a high damage Weapon (such as the Latron Prime ) will make it suitable for stealth combat, making it a decent alternative to a bow."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Hush",
+                  "pageId": 195536,
+                  "revisionId": 2587761,
+                  "section": "Notes",
+                  "excerpt": "At max rank, Hush will allow Ivara to stay invisible while Prowl is active."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Orokin Drone"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Orokin Spectator"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

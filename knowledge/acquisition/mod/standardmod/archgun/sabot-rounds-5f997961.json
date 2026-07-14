@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Sabot_Rounds",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,157 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRiflePunchthroughMod",
+          "canonical": "Sabot Rounds",
+          "displayName": "覆壳弹药",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "archgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Sabot Rounds",
+            "pageId": 1377188,
+            "revisionId": 2730840,
+            "pageTimestamp": "2026-02-15T22:47:54Z",
+            "compiledAt": "2026-07-14T05:59:07.240Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 1.25,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Fortuna",
+                  "nodeEntityId": "hub.fortuna",
+                  "nodeDisplayName": "福尔图娜",
+                  "planetCanonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sabot Rounds",
+                "pageId": 1377188,
+                "revisionId": 2730840,
+                "section": "Mission Drop Tables",
+                "excerpt": "Profit-Taker Bounty | Profit-Taker Orb Bounty Phase 3 | A | 1.25% | 1 | 0.0125 Fortuna , Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access | | Fortuna , Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+              },
+              "missionTypeCanonical": "Profit-Taker Bounty",
+              "sourceCanonical": "Profit-Taker Orb Bounty Phase 3"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 2.01,
+              "chance": 0.1005,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sabot Rounds",
+                "pageId": 1377188,
+                "revisionId": 2730840,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Gyre Raider | 5% | 2.01% | 0.1005% | 995 | 1 | 0.001005"
+              },
+              "sourceCanonical": "Gyre Raider"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 2.01,
+              "chance": 0.1005,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sabot Rounds",
+                "pageId": 1377188,
+                "revisionId": 2730840,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Gyre Raider Carver | 5% | 2.01% | 0.1005% | 995 | 1 | 0.001005"
+              },
+              "sourceCanonical": "Gyre Raider Carver"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 2.01,
+              "chance": 0.1005,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sabot Rounds",
+                "pageId": 1377188,
+                "revisionId": 2730840,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Gyre Raider Eviscerator | 5% | 2.01% | 0.1005% | 995 | 1 | 0.001005"
+              },
+              "sourceCanonical": "Gyre Raider Eviscerator"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Sabot Rounds",
+                  "pageId": 1377188,
+                  "revisionId": 2730840,
+                  "section": "Notes",
+                  "excerpt": "Does little benefit to Archguns with infinite punch through such as the Fluctus and the Cortege , save for the bonus damage."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Profit-Taker Bounty"
+            },
+            {
+              "kind": "location",
+              "canonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Gyre Raider"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Gyre Raider Carver"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Gyre Raider Eviscerator"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]
