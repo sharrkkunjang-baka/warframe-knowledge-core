@@ -479,9 +479,14 @@ function renderAdditionalAcquisitionMethods(frame) {
   return lines;
 }
 
+function acquisitionRuleKey(acquisition) {
+  if (!acquisition || acquisition.type !== 'mission-completion') return null;
+  return JSON.stringify({ type: acquisition.type, normalAmount: acquisition.normalAmount, steelPathAmount: acquisition.steelPathAmount, bonus: acquisition.bonus });
+}
 function renderAcquisitionDependencies(frame) {
   const dependencies = FRAME_DEPENDENCIES[frame.name] || [];
   const seen = new Set();
+  const renderedRuleKeys = new Set();
   const lines = [];
   for (const reference of dependencies) {
     const entity = reference.currencyId ? CURRENCY_REGISTRY.get(reference.currencyId) : null;
@@ -492,12 +497,17 @@ function renderAcquisitionDependencies(frame) {
     const amount = dependency.amount == null ? '' : `（需要 ${dependency.amount}）`;
     const review = dependency.reviewStatus === 'pending' ? '【待人工审核】' : '';
     let summary = dependency.acquisitionSummary;
+    const ruleKey = acquisitionRuleKey(dependency.acquisition);
     if (!summary && dependency.acquisition?.type === 'mission-completion') {
       const mission = entityName(LOCATION_REGISTRY, dependency.acquisition.locationId);
-      const normal = dependency.acquisition.normalAmount;
-      const steel = dependency.acquisition.steelPathAmount;
-      summary = `完成天王星比邻星域${mission}：普通难度结算 ${normal.min}-${normal.max} 个，钢铁之路 ${steel.min}-${steel.max} 个；${dependency.acquisition.bonus}`;
+      if (ruleKey && renderedRuleKeys.has(ruleKey)) summary = `完成天王星比邻星域${mission}；数量与额外获取规则同上`;
+      else {
+        const normal = dependency.acquisition.normalAmount;
+        const steel = dependency.acquisition.steelPathAmount;
+        summary = `完成天王星比邻星域${mission}：普通难度结算 ${normal.min}-${normal.max} 个，钢铁之路 ${steel.min}-${steel.max} 个；${dependency.acquisition.bonus}`;
+      }
     }
+    if (ruleKey) renderedRuleKeys.add(ruleKey);
     lines.push(`${dependency.displayName || entity?.displayName || dependency.canonical}${amount}：${summary}${review}`);
   }
   return lines;
@@ -568,6 +578,6 @@ function renderAcquisition(data) {
 module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
-  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
+  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
   listWarframes, getWarframeKnowledge, getWarframeMaintenanceReport
 };

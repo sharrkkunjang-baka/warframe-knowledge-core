@@ -231,7 +231,9 @@ test('manual overrides and recursive exchange dependencies render before generic
   assert.match(sirius, /兑换：在边界之塔向 Hunhow 使用翠绿天赋或猩红天赋兑换/);
   assert.doesNotMatch(sirius, /补充：|A轮掉落总图、头、机体、系统/);
   assert.match(sirius, /翠绿天赋（需要 545）：完成天王星比邻星域赤毒女巫号/);
-  assert.match(sirius, /猩红天赋（需要 545）：完成天王星比邻星域火山石天使号/);
+  assert.match(sirius, /猩红天赋（需要 545）：完成天王星比邻星域火山石天使号；数量与额外获取规则同上/);
+  assert.equal((sirius.match(/普通难度结算 12-16 个/g) || []).length, 1);
+  assert.equal((sirius.match(/钢铁之路 18-22 个/g) || []).length, 1);
   assert.doesNotMatch(sirius, /Jade Shadows: Constellations|The Kuva Wytch|Scoria's Angel/);
   const follie = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('墨水'), materials: { available: false } });
   assert.match(follie, /全部蓝图：先完成[^\n]+\n兑换道具怎么刷：\nAtramentum（需要 2400）：完成《Harrow 的枷锁》后刷金星维斯佩中继站/);
