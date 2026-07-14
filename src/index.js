@@ -219,11 +219,15 @@ function createKnowledgeCore(options = {}) {
       return renderTemplate(definition.sourceTemplate, { factionName: faction.displayName });
     });
     const effectText = (entry.effectDetails || []).join('；').replace(/[。；]+$/, '');
-    const category = getCategory(entry.subject?.categoryRefs?.[0]);
+    const functionalCategory = getCategory(entry.subject?.categoryRefs?.[0]);
+    const equipmentCategory = (entry.subject?.categoryRefs || []).map(getCategory).find(category => / Mod$/.test(category?.canonical || '') && category.id !== 'syndicatemod');
+    if (!functionalCategory?.displayName || !equipmentCategory?.displayName) throw new Error(`${entry.subject?.canonical} 缺少功能分类或装备分类变量`);
+    const equipmentCategoryText = equipmentCategory.displayName.replace(/\s*Mod$/i, '').trim();
     const header = renderTemplate(definition.headerTemplate, {
       modName: entry.subject?.displayName || entry.title,
       effectText,
-      categoryText: category?.displayName ? `{${category.displayName}}` : ''
+      functionalCategoryText: `{${functionalCategory.displayName}}`,
+      equipmentCategoryText
     });
     return [header, `${definition.sourcesHeader}\n${sourceLines.join('\n')}`].join('\n\n');
   };
