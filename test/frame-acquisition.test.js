@@ -110,7 +110,7 @@ test('official-generated indexes resolve new Prime variants and quest series', (
 
   const yareli = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('水妹'), materials: { available: false } });
   assert.match(yareli, /总图：首次完成《驭浪者》获得该蓝图；之后可在中枢 Simaris 处回购/);
-  assert.match(yareli, /头：在氏族道场的通风小子实验室完成研究后复制该部件蓝图/);
+  assert.match(yareli, /部件蓝图：在氏族道场的通风小子实验室完成研究后复制该部件蓝图/);
   assert.doesNotMatch(yareli, /The Waverider|官方结构化数据缺少/);
 });
 
@@ -221,7 +221,7 @@ test('frame knowledge covers public official suits and excludes internal placeho
 
 test('manual overrides and recursive exchange dependencies render before generic data', () => {
   const dagath = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Dagath'), materials: { available: false } });
-  assert.match(dagath, /兑换道具怎么刷：\n浮华荆棘（需要 102）：使用深渊信标进入谷神星深渊区歼灭任务/);
+  assert.match(dagath, /全部蓝图：[^\n]+\n兑换道具怎么刷：\n浮华荆棘（需要 102）：使用深渊信标进入谷神星深渊区歼灭任务/);
   const kullervo = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Kullervo'), materials: { available: false } });
   assert.match(kullervo, /恐惧、愤怒或悲伤心情阶段/);
   assert.match(kullervo, /击败 Kullervo.*击败奥金魇龙后结算获得/);
@@ -233,7 +233,7 @@ test('manual overrides and recursive exchange dependencies render before generic
   assert.match(sirius, /猩红天赋（需要 545）：完成天王星比邻星域火山石天使号/);
   assert.doesNotMatch(sirius, /Jade Shadows: Constellations|The Kuva Wytch|Scoria's Angel/);
   const follie = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('墨水'), materials: { available: false } });
-  assert.match(follie, /Atramentum（需要 2400）：完成《Harrow 的枷锁》后刷金星维斯佩中继站/);
+  assert.match(follie, /全部蓝图：先完成[^\n]+\n兑换道具怎么刷：\nAtramentum（需要 2400）：完成《Harrow 的枷锁》后刷金星维斯佩中继站/);
 });
 
 test('frame maintenance report exposes exclusions without publishing them', () => {

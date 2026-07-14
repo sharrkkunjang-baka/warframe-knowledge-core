@@ -523,13 +523,29 @@ function getWarframeMaintenanceReport() {
   return { officialCount: official.length, publicCount: FRAME_KNOWLEDGE.length, excluded: official.filter(frame => !covered.has(frame.uniqueName)).map(frame => ({ name: frame.name, officialUniqueName: frame.uniqueName })), pendingDependencies: FRAME_KNOWLEDGE.flatMap(entry => (manualOf(entry).dependencies || []).filter(item => item.reviewStatus === 'pending').map(item => ({ frame: entry.subject.canonical, dependency: item.canonical }))) };
 }
 
+function groupedPartSourceLines(partSources) {
+  const groups = new Map();
+  for (const { part, text } of partSources) {
+    if (!groups.has(text)) groups.set(text, []);
+    groups.get(text).push(part);
+  }
+  return [...groups].map(([text, parts]) => {
+    const partSet = new Set(parts);
+    let label;
+    if (parts.length === PARTS.length) label = '全部蓝图';
+    else if (parts.length === 3 && ['Neuroptics', 'Chassis', 'Systems'].every(part => partSet.has(part))) label = '部件蓝图';
+    else label = parts.map(part => PART_ZH[part]).join('、');
+    return `${label}：${text}`;
+  });
+}
+
 function renderAcquisition(data) {
   const frame = data.frame || data;
   const drops = data.drops || getComponentDrops(frame);
   const prime = data.prime || null;
   const lines = [];
   if (prime) lines.push(`状态：${prime.status}`);
-  for (const part of PARTS) {
+  const partSources = PARTS.map(part => {
     let text;
     if (prime) {
       const relics = prime.byPart?.[part] || [];
@@ -538,8 +554,9 @@ function renderAcquisition(data) {
       const entries = drops.find(entry => entry.part === part)?.drops || [];
       text = componentSourceText(frame, part, entries);
     }
-    lines.push(`${PART_ZH[part]}：${text}`);
-  }
+    return { part, text };
+  });
+  lines.push(...groupedPartSourceLines(partSources));
   if (prime && !prime.rotationAvailable) lines.push('当前遗物轮换数据暂不可用');
   if (prime && !prime.realtimeAvailable && prime.status !== '当前出库') lines.push('Prime 重生实时状态暂不可用');
   if (frame.override) { const supplement = renderStructuredSpecialAcquisition(frame); if (supplement) lines.push(`补充：${supplement}`); }
@@ -559,6 +576,6 @@ function renderAcquisition(data) {
 module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
-  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
+  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
   listWarframes, getWarframeKnowledge, getWarframeMaintenanceReport
 };
