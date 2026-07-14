@@ -35,107 +35,19 @@ const STABLE_LOCATION_ZH = {
   ...Object.fromEntries(LOCATION_REGISTRY.values.map(location => [location.canonical, location.displayName]))
 };
 
-const CALIBAN_PRIME = Object.freeze({
-  name: 'Caliban Prime', zhName: 'Caliban Prime', uniqueName: '/Lotus/Powersuits/Sentient/CalibanPrime',
-  isPrime: true, auditedPrime: true, productCategory: 'Suits', type: 'Warframe',
-  components: PARTS.map(part => ({ part, name: part, drops: [] })),
-  relics: {
-    Blueprint: [
-      { name: 'Lith V11', chance: 11, rarity: 'Uncommon' }, { name: 'Meso V13', chance: 11, rarity: 'Uncommon' }, { name: 'Meso V15', chance: 11, rarity: 'Uncommon' }
-    ],
-    Neuroptics: [{ name: 'Neo C7', chance: 2, rarity: 'Rare' }],
-    Chassis: [
-      { name: 'Axi P10', chance: 25.33, rarity: 'Common' }, { name: 'Lith K12', chance: 25.33, rarity: 'Common' }, { name: 'Meso V15', chance: 25.33, rarity: 'Common' }
-    ],
-    Systems: [{ name: 'Neo C8', chance: 2, rarity: 'Rare' }]
-  },
-  materials: {
-    available: true,
-    resources: [
-      { name: 'Orokin 电池', count: 5 }, { name: '神经元', count: 4 }, { name: '电路', count: 1750 },
-      { name: '塑胶块', count: 450 }, { name: '纳米孢子', count: 4750 }, { name: '泥炭萃取物', count: 2 },
-      { name: '控制模块', count: 10 }, { name: '红化结晶', count: 1600 }, { name: '回收金属', count: 7800 },
-      { name: '氩结晶', count: 2 }, { name: '神经传感器', count: 5 }, { name: '聚合物束', count: 1775 },
-      { name: '铁氧体', count: 4000 }
-    ],
-    manufacturedParts: [], credits: { name: '现金', count: 70000 }
-  }
-});
-
-const FRAME_SOURCE_OVERRIDES = Object.freeze({
-  Volt: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Banshee: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Nezha: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Wukong: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Zephyr: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Oberon: {
-    Blueprint: '商店购买（30000 现金）；或在轮换到该战甲时通过普通回廊第 10 阶获得',
-    Neuroptics: '完成地球比邻星域任务中的前哨站额外目标：10%；或在轮换到该战甲时通过普通回廊第 2 阶获得',
-    Chassis: '完成土星比邻星域任务中的前哨站额外目标：10%；或在轮换到该战甲时通过普通回廊第 5 阶获得',
-    Systems: '完成地球比邻星域任务中的前哨站额外目标：10%；或在轮换到该战甲时通过普通回廊第 8 阶获得'
-  },  Caliban: {
-    Blueprint: '商店购买（50000 现金）',
-    Neuroptics: '合一众赏金（当前奖励预览出现头部蓝图时刷）',
-    Chassis: '合一众赏金（当前奖励预览出现机体蓝图时刷）',
-    Systems: '合一众赏金（当前奖励预览出现系统蓝图时刷）'
-  },
-  Vauban: {
-    Blueprint: '商店购买（35000 现金）；或在轮换到该战甲时通过普通回廊第 10 阶获得',
-    Neuroptics: '午夜电波贡品兑换（25 午夜电波货币）；或在轮换到该战甲时通过普通回廊第 2 阶获得',
-    Chassis: '午夜电波贡品兑换（25 午夜电波货币）；或在轮换到该战甲时通过普通回廊第 5 阶获得',
-    Systems: '午夜电波贡品兑换（25 午夜电波货币）；或在轮换到该战甲时通过普通回廊第 8 阶获得'
-  },
-  Dagath: {
-    all: "在氏族道场建造 Dagath 的空阁后获取蓝图（无需研究）；三个部件共需 102 浮华荆棘"
-  },
-  Grendel: {
-    Blueprint: '商店购买（35000 现金）',
-    Neuroptics: '在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Archaeo-freighter 生存任务后获得',
-    Chassis: '在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Icefields of Riddah 防御任务后获得',
-    Systems: '在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Mines of Karishh 挖掘任务后获得'
-  },
-  Kullervo: {
-    Blueprint: "在言录使处用 15 Kullervo 的灾刃兑换",
-    Neuroptics: "在言录使处用 9 Kullervo 的灾刃兑换",
-    Chassis: "在言录使处用 9 Kullervo 的灾刃兑换",
-    Systems: "在言录使处用 9 Kullervo 的灾刃兑换"
-  }
-});
-
+const FRAME_KNOWLEDGE = require(path.join(CORE_ROOT, 'knowledge', 'acquisition', 'warframe', 'audited-sources.json'));
+const FRAME_AUDIT = FRAME_KNOWLEDGE.find(entry => entry.id === 'acquisition.warframe.audited-sources')?.frameAcquisition || {};
+const FRAME_SOURCE_OVERRIDES = Object.freeze(FRAME_AUDIT.sources || {});
+const FRAME_ACQUISITION_NOTES = Object.freeze(FRAME_AUDIT.notes || {});
+const SPECIAL_FRAMES = FRAME_AUDIT.specialFrames || {};
+const CALIBAN_PRIME = Object.freeze({ ...SPECIAL_FRAMES.calibanPrime, components: PARTS.map(part => ({ part, name: part, drops: [] })) });
+const SIRIUS_ORION = Object.freeze({ ...SPECIAL_FRAMES.siriusOrion, components: PARTS.map(part => ({ part, drops: [{ ...SPECIAL_FRAMES.siriusOrion.drop, type: `Sirius & Orion ${part} Blueprint` }] })) });
 const QUEST_SOURCE_ZH = Object.freeze(OFFICIAL_QUESTS.byEnglish || {});
 function localizeQuestName(name) {
   const raw = String(name || '').trim();
   const withoutQualifier = raw.replace(/\s*\(Quest\)$/i, '');
   return QUEST_SOURCE_ZH[raw] || QUEST_SOURCE_ZH[withoutQualifier] || translateLocation(withoutQualifier);
 }
-
-const FRAME_ACQUISITION_NOTES = Object.freeze({
-  Caliban: '合一众赏金在完成《新纪之战》后开放，每 150 分钟更换一批奖励，部件按“系统 → 机体 → 头 → 重复”轮换。希图斯白天找孔祝接取；希图斯夜晚则去福尔图娜找尤迪科。接任务前先看奖励预览，出现缺少的部件再刷。'
-});
-
-const SIRIUS_ORION = Object.freeze({
-  name: 'Sirius & Orion', zhName: 'Sirius & Orion', isPrime: false, override: true,
-  materials: { available: false, reason: '制造材料数据暂不可用' },
-  acquisition: {
-    quest: '完成《Jade Shadows: Constellations》获得总图',
-    drops: "天王星比邻星 The Kuva Wytch 或 Scoria's Angel，A轮，四张蓝图各 14.29%",
-    vendor: '边界之塔向 Hunhow 兑换（翡翠天赋或绯红天赋）：总图 275；头/机体/系统各 90；总计 545'
-  },
-  components: PARTS.map(part => ({
-    part,
-    drops: [{ chance: 14.29, location: `Uranus Proxima/The Kuva Wytch or Scoria's Angel (Rotation A)`, type: `Sirius & Orion ${part} Blueprint` }]
-  }))
-});
 
 function normalize(value) {
   return String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase('en-US').replace(/[\s_\-·'’]+/g, '');
