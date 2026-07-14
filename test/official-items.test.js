@@ -63,7 +63,8 @@ test('地点、商人和货币注册表准确区分开放世界与城镇', () =>
   assert.notEqual(core.getLocation('Cetus').id, core.getLocation('Plains of Eidolon').id);
   assert.equal(core.getLocation('Fortuna').id, 'hub.fortuna');
   assert.equal(core.getLocation('Orb Vallis').id, 'landscape.orb-vallis');
-  assert.equal(core.getVendor('孔祝').locationId, 'hub.cetus');
+  assert.equal(core.getNpc('孔祝').locationId, 'hub.cetus');
+  assert.ok(core.getNpc('孔祝').roles.includes('bounty-provider'));
   assert.equal(core.getCurrency('星币').id, 'currency.credits');
   assert.equal(core.frameAcquisition.translateLocation('Earth/Cetus and Venus/Orb Vallis'), '地球/希图斯 and 金星/奥布山谷');
 });

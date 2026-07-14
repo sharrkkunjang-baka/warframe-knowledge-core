@@ -20,10 +20,10 @@ const { loadEntityRegistries } = require('./entities');
 const ENTITY_REGISTRIES = loadEntityRegistries(CORE_ROOT);
 const LOCATION_REGISTRY = ENTITY_REGISTRIES.locations;
 const CURRENCY_REGISTRY = ENTITY_REGISTRIES.currencies;
-const VENDOR_REGISTRY = ENTITY_REGISTRIES.vendors;
 const QUEST_REGISTRY = ENTITY_REGISTRIES.quests;
 const FACTION_REGISTRY = ENTITY_REGISTRIES.factions;
 const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
+const ENEMY_REGISTRY = ENTITY_REGISTRIES.enemies;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -483,7 +483,7 @@ function renderAdditionalAcquisitionMethods(frame) {
   const lines = [];
   // questReward 与 dropReward 已由蓝图来源行表达，这里只渲染尚未展示的替代获取方式。
   if (acquisition.vendorExchange) {
-    const vendor = entityName(VENDOR_REGISTRY, acquisition.vendorExchange.vendorId);
+    const vendor = entityName(NPC_REGISTRY, acquisition.vendorExchange.npcId);
     const location = entityName(LOCATION_REGISTRY, acquisition.vendorExchange.locationId);
     const currencies = (acquisition.vendorExchange.currencyIds || []).map(id => entityName(CURRENCY_REGISTRY, id)).join('或');
     const costs = Object.entries(acquisition.vendorExchange.costs || {}).map(([part, amount]) => `${PART_ZH[part] || part} ${amount}`).join('；');
@@ -532,6 +532,16 @@ function getWarframeKnowledge(query) {
   const frame = resolveWarframe(query);
   return frame ? FRAME_KNOWLEDGE_INDEX.get(frame.name) || null : null;
 }
+function renderAssassinationRoute(variables) {
+  if (!variables?.locationId || !variables?.enemyId) return null;
+  return `${entityName(LOCATION_REGISTRY, variables.locationId)}刺杀 ${entityName(ENEMY_REGISTRY, variables.enemyId)} 刷取部件`;
+}
+function renderQuestRoute(variables) {
+  const npc = entityName(NPC_REGISTRY, variables?.npcId);
+  const quest = entityName(QUEST_REGISTRY, variables?.questId);
+  if (!npc || !quest) return null;
+  return `首次完成《${quest}》获得部件蓝图；之后可在 ${npc} 处回购`;
+}
 function renderBountyRoute(variables) {
   const faction = variables?.factionId ? entityName(FACTION_REGISTRY, variables.factionId) : '';
   const hubs = (variables?.hubs || []).map(hub => ({ location: entityName(LOCATION_REGISTRY, hub.locationId), npc: entityName(NPC_REGISTRY, hub.npcId) }));
@@ -563,7 +573,11 @@ function renderRoutedAcquisition(frameOrName) {
   }
   const componentLine = route.componentCategory === 'frame-bounty'
     ? renderBountyRoute(routing.componentVariables || {})
-    : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
+    : route.componentCategory === 'frame-quest'
+      ? renderQuestRoute(routing.componentVariables || {})
+      : route.componentCategory === 'frame-assassination' && routing.componentVariables?.enemyId
+        ? renderAssassinationRoute(routing.componentVariables || {})
+        : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
   if (componentLine) lines.push(componentLine);
   else {
     const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
@@ -632,5 +646,5 @@ module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
-  listWarframes, getWarframeKnowledge, renderBountyRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
+  listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
 };

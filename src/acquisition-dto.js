@@ -14,7 +14,7 @@ function createAcquisitionEvidence(input = {}) {
     source: input.source,
     sourceId: input.sourceId || null,
     locationId: input.locationId || null,
-    vendorId: input.vendorId || null,
+    npcId: input.npcId || null,
     currencyId: input.currencyId || null,
     chance: input.chance ?? null,
     quantity: input.quantity ?? null,

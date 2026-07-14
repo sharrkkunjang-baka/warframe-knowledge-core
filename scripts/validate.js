@@ -16,8 +16,9 @@ const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sour
 const officialWarframesPath = path.join(knowledgeRoot, 'generated', 'official-warframes.json');
 const officialWarframes = fs.existsSync(officialWarframesPath) ? JSON.parse(fs.readFileSync(officialWarframesPath, 'utf8')) : null;
 const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
-const entityNames = ['locations', 'vendors', 'currencies', 'quests', 'factions'];
-const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(knowledgeRoot, 'entities', `${name}.json`), 'utf8'))]));
+const { readIndexedEntries } = require('../src/entities');
+const entityDirectories = { locations: 'locations', currencies: 'curreicies', quests: 'quests', factions: 'factions', enemies: 'enemies' };
+const entities = Object.fromEntries(Object.entries(entityDirectories).map(([name, directory]) => [name, readIndexedEntries(root, directory)]));
 const npcCategoriesPath = path.join(knowledgeRoot, 'npc', 'categories.json');
 const npcCategories = fs.existsSync(npcCategoriesPath) ? JSON.parse(fs.readFileSync(npcCategoriesPath, 'utf8')) : null;
 const required = ['id', 'title', 'sources', 'gameVersion', 'updatedAt', 'reviewStatus', 'reviewedBy'];
@@ -34,6 +35,21 @@ const frameRoot = path.join(knowledgeRoot, 'acquisition', 'warframe');
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
 const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
+
+for (const [name, directory] of Object.entries(entityDirectories)) {
+  const indexPath = path.join(knowledgeRoot, directory, 'categories.json');
+  if (!fs.existsSync(indexPath)) { errors.push(`${directory}/categories.json: 实体分类索引不存在`); continue; }
+  const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+  const variables = index.variables || [];
+  if (index.count !== variables.length || index.count !== entities[name].length) errors.push(`${directory}/categories.json: count 与变量数量不一致`);
+  if (new Set(variables.map(item => item.id)).size !== variables.length) errors.push(`${directory}/categories.json: 变量 ID 重复`);
+  for (const item of variables) {
+    const file = path.join(knowledgeRoot, directory, ...String(item.file || '').split('/'));
+    if (!fs.existsSync(file)) errors.push(`${item.id}: 实体文件不存在 ${directory}/${item.file}`);
+    const entry = entities[name].find(value => value.id === item.id);
+    if (!entry || entry.canonical !== item.canonical || entry.category !== item.category) errors.push(`${item.id}: 实体索引与文件不一致`);
+  }
+}
 
 for (const category of categories) {
   if (!/^[a-z0-9][a-z0-9._-]*$/.test(category.id || '')) errors.push(`${category.id || '<unknown category>'}: 分类 id 格式错误`);
@@ -102,8 +118,13 @@ for (const entry of entries) {
         if (JSON.stringify(entry.frameAcquisition?.generated?.routing?.blueprintCategory ?? null) !== JSON.stringify(route.blueprintCategory ?? null)) errors.push(`${entry.id}: 总图分类与 categories.json 不一致`);
         if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText) errors.push(`${entry.id}: 特定任务战甲必须提供独立获取文本`);
       }
-      const factionId = entry.frameAcquisition?.generated?.routing?.componentVariables?.factionId;
+      const variables = entry.frameAcquisition?.generated?.routing?.componentVariables || {};
+      const factionId = variables.factionId;
       if (factionId && !entities.factions.some(item => item.id === factionId)) errors.push(`${entry.id}: 路由引用不存在的阵营 ${factionId}`);
+      if (variables.questId && !entities.quests.some(item => item.id === variables.questId)) errors.push(`${entry.id}: 路由引用不存在的任务 ${variables.questId}`);
+      if (variables.enemyId && !entities.enemies.some(item => item.id === variables.enemyId)) errors.push(`${entry.id}: 路由引用不存在的敌人 ${variables.enemyId}`);
+      if (variables.locationId && !entities.locations.some(item => item.id === variables.locationId)) errors.push(`${entry.id}: 路由引用不存在的地点 ${variables.locationId}`);
+      if (variables.vendorId || JSON.stringify(variables).includes('vendor.')) errors.push(`${entry.id}: 禁止引用已删除 vendor 变量`);
       for (const dependency of entry.frameAcquisition?.manual?.dependencies || []) {
         if (dependency.currencyId) {
           const currency = entities.currencies.find(item => item.id === dependency.currencyId);
@@ -318,7 +339,7 @@ else {
   if (sirius.length === 1) {
     const special = sirius[0].frameAcquisition?.manual?.specialFrame?.acquisition;
     for (const key of ['quest', 'drops', 'vendor']) if (typeof special?.[key] === 'string') errors.push(`Sirius & Orion 的 ${key} 不得使用整句硬编码`);
-    if (!special?.questReward?.questId || !special?.dropReward?.locationIds?.length || !special?.vendorExchange?.vendorId || !special?.vendorExchange?.currencyIds?.length) errors.push('Sirius & Orion 获取来源必须使用任务/地点/商人/货币实体引用');
+    if (!special?.questReward?.questId || !special?.dropReward?.locationIds?.length || !special?.vendorExchange?.npcId || !special?.vendorExchange?.currencyIds?.length) errors.push('Sirius & Orion 获取来源必须使用任务/地点/NPC/货币实体引用');
   }
 }
 
@@ -326,7 +347,7 @@ const entityIds = new Set(Object.values(entities).flat().map(entity => entity.id
 for (const [name, values] of Object.entries(entities)) {
   const seen = new Set();
   for (const entity of values) {
-    if (!entity.id || seen.has(entity.id) || !entity.canonical || !entity.displayName || !entity.kind || !Array.isArray(entity.aliases)) errors.push(`knowledge/entities/${name}.json: 实体字段无效或 id 重复 ${entity.id}`);
+    if (!entity.id || seen.has(entity.id) || !entity.canonical || typeof entity.displayName !== 'string' || !entity.kind || !Array.isArray(entity.aliases)) errors.push(`knowledge/${entityDirectories[name]}: 实体字段无效或 id 重复 ${entity.id}`);
     seen.add(entity.id);
     if (entity.parentId && !entityIds.has(entity.parentId)) errors.push(`${entity.id}: parentId 不存在 ${entity.parentId}`);
     if (entity.locationId && !entityIds.has(entity.locationId)) errors.push(`${entity.id}: locationId 不存在 ${entity.locationId}`);

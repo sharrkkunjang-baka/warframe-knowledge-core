@@ -15,11 +15,12 @@ const CATEGORY_PAGES = Object.freeze({
 })
 const ROOT_NPCS = Object.freeze(['Lotus','Ordis'])
 // 仅收录能确认的官方简中；空字符串表示未核验，运行时必须回退 canonical，禁止猜译。
-const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲' })
+const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', 'Cephalon Simaris': '中枢 Simaris' })
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') }
 function npcId(name) { return `npc.${slug(name)}` }
 function sourceFor(db, name) { const page = db.getPage(name); return page ? { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId } : { pageTitle: name, missing: true } }
-function buildNpc(db, name, category, locationId) { return { id: npcId(name), canonical: name, displayName: AUDITED_ZH[name] || '', kind: 'npc', aliases: [], category, locationId, factionId: null, source: sourceFor(db, name), localization: { status: AUDITED_ZH[name] ? 'official-audited' : 'unresolved', rule: 'empty-displayName-falls-back-to-canonical' } } }
+const NPC_ROLES = Object.freeze({ Konzu: ['bounty-provider'], Eudico: ['bounty-provider'], Mother: ['bounty-provider'], Hunhow: ['exchange-provider'] })
+function buildNpc(db, name, category, locationId) { return { id: npcId(name), canonical: name, displayName: AUDITED_ZH[name] || '', kind: 'npc', aliases: [], ...(NPC_ROLES[name] ? { roles: NPC_ROLES[name] } : {}), category, locationId, factionId: null, source: sourceFor(db, name), localization: { status: AUDITED_ZH[name] ? 'official-audited' : 'unresolved', rule: 'empty-displayName-falls-back-to-canonical' } } }
 function listCharacterPages(resolved) {
   const raw = new Database(resolved, { readonly: true, fileMustExist: true })
   try { return raw.prepare("SELECT p.title FROM pages p JOIN categories c ON c.page_id=p.page_id WHERE c.category='Characters' ORDER BY p.title COLLATE NOCASE").all().map(row => row.title).filter(title => title !== 'Characters' && !title.includes('/')) }
@@ -51,4 +52,4 @@ function run(argv=process.argv.slice(2)) {
   console.log(`已同步 ${plan.records.length} 个 NPC，${plan.categories.length} 个地区分类；写入 ${changes.length} 项`);return plan
 }
 if(require.main===module){try{run()}catch(error){console.error(error.stack||error);process.exit(1)}}
-module.exports={CATEGORY_PAGES,ROOT_NPCS,AUDITED_ZH,listCharacterPages,buildPlan,run}
+module.exports={CATEGORY_PAGES,ROOT_NPCS,AUDITED_ZH,NPC_ROLES,listCharacterPages,buildPlan,run}

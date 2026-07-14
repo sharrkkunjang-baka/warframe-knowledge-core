@@ -15,7 +15,7 @@ function createWarframeMcpServer(options = {}) {
   const mods = createModEffectResolver(core);
   const server = new McpServer({ name: 'warframe-combat-simulator', version: '0.1.0' });
   server.registerTool('resolve_entity_variables', {
-    description: '按需解析 Warframe NPC、地点与阵营变量。输出时必须使用 displayName；localized=false 时保留 canonical 英文，禁止自行翻译或音译。',
+    description: '按需解析 Warframe NPC、地点、阵营、任务、货币与敌人变量。输出时必须使用 displayName；localized=false 时保留 canonical 英文，禁止自行翻译或音译。',
     inputSchema: { query: z.string().min(1) }
   }, async ({ query }) => jsonResult({ query, variables: core.resolveEntityVariables(query), usageRule: '仅在回答需要提及实体时使用；displayName 为空时保留 canonical 英文，禁止猜译。' }));
   server.registerTool('resolve_mod_effects', {

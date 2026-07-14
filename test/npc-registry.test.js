@@ -29,9 +29,12 @@ test('未审核 NPC 中文为空，查询上下文保留英文且禁止猜译', 
   assert.match(context.text, /禁止自行翻译、音译或补中文/)
 })
 
-test('地点与阵营均可作为按需实体变量查询', () => {
+test('地点、阵营、任务、货币与敌人均可作为按需实体变量查询', () => {
   const core = createKnowledgeCore({ root })
   assert.equal(core.getLocation('Sanctum Anatomica').displayName, '解剖圣所')
   assert.equal(core.getFaction('Narmer').displayName, '合一众')
   assert.ok(core.resolveEntityVariables('Narmer').some(item => item.id === 'faction.narmer'))
+  assert.ok(core.resolveEntityVariables('The Limbo Theorem').some(item => item.id === 'quest.the-limbo-theorem'))
+  assert.ok(core.resolveEntityVariables('Credits').some(item => item.id === 'currency.credits'))
+  assert.ok(core.resolveEntityVariables('Mutalist Alad V').some(item => item.id === 'enemy.mutalist-alad-v'))
 })

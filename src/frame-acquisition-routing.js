@@ -48,7 +48,7 @@ const ASSASSINATION_SOURCES = Object.freeze({
   'Neptune/Psamathe': { planetName: '海王星', enemyName: '鬣狗群' },
   'Pluto/Hades': { planetName: '冥王星', enemyName: 'Ambulas' },
   'Sedna/Merrow': { planetName: '赛德娜', enemyName: '凯拉·德·赛姆' },
-  'Eris/Mutalist Alad V Assassinate': { planetName: '阋神星', enemyName: '异融 Alad V' },
+  'Eris/Mutalist Alad V Assassinate': { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v' },
   'Deimos/Magnacidium': { planetName: '火卫二', enemyName: 'Lephantis' }
 })
 
@@ -89,6 +89,7 @@ function classifyBlueprint(frame, componentCategory, page) {
   return { category: 'unresolved', variables: {}, source: 'unresolved' }
 }
 function assassinationVariables(frame) {
+  if (frame.name === 'Mesa') return { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v', sourceCanonical: 'Eris/Mutalist Alad V Assassinate' }
   const location = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).find(value => /Assassination/i.test(value)) || ''
   const key = Object.keys(ASSASSINATION_SOURCES).find(source => location.startsWith(source))
   return key ? { ...ASSASSINATION_SOURCES[key], sourceCanonical: location } : { sourceCanonical: location }
@@ -105,9 +106,17 @@ function bountyVariables(frame, page) {
   const level = [...sources, evidence].map(source => source.match(/Level\s*(\d+)\s*-\s*(\d+)/i) || source.match(/Lvl\s*(\d+)\s*-\s*(\d+)/i)).find(Boolean)
   return { factionId, hubs, levelRange: level ? { min: Number(level[1]), max: Number(level[2]) } : null, sourceCanonical: [...new Set(sources)] }
 }
+function questVariables(frame) {
+  const sources = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).filter(Boolean)
+  const match = sources.map(source => source.match(/^Cephalon Simaris,\s*Complete\s+(.+?)(?:\s*\(Quest\))?$/i)).find(Boolean)
+  if (!match) return { sourceCanonical: [...new Set(sources)] }
+  const questCanonical = match[1].trim()
+  return { npcId: 'npc.cephalon-simaris', questId: `quest.${questCanonical.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`, sourceCanonical: [...new Set(sources)] }
+}
 function componentVariables(frame, componentCategory, page) {
   if (componentCategory === 'frame-assassination') return assassinationVariables(frame)
   if (componentCategory === 'frame-bounty') return bountyVariables(frame, page)
+  if (componentCategory === 'frame-quest') return questVariables(frame)
   const sources = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).filter(Boolean)
   return { sourceText: [...new Set(sources)].join('；') }
 }

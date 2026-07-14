@@ -53,6 +53,19 @@ test('指定战甲主分类正确且特定任务从独立 JSON 回退', () => {
   }
 })
 
+test('任务、NPC、地点和刺杀目标均通过实体变量渲染', () => {
+  const limbo = entry('Limbo').frameAcquisition.generated.routing.componentVariables
+  assert.deepEqual({ npcId: limbo.npcId, questId: limbo.questId }, { npcId: 'npc.cephalon-simaris', questId: 'quest.the-limbo-theorem' })
+  assert.equal(frameAcquisition.renderRoutedAcquisition('Limbo').lines.join('\n'), '商城购买总图\n首次完成《Limbo 定理》获得部件蓝图；之后可在 中枢 Simaris 处回购')
+  const mesa = entry('Mesa').frameAcquisition.generated.routing.componentVariables
+  assert.deepEqual({ locationId: mesa.locationId, enemyId: mesa.enemyId }, { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v' })
+  assert.equal(frameAcquisition.renderRoutedAcquisition('女枪').lines.join('\n'), '商城购买总图\n阋神星刺杀 异融 Alad V 刷取部件')
+  const gyre = entry('Gyre').frameAcquisition.generated.routing.componentVariables
+  assert.equal(gyre.hubs[0].locationId, 'hub.zariman')
+  assert.equal(gyre.hubs[0].npcId, 'npc.quinn')
+  assert.equal(frameAcquisition.renderRoutedAcquisition('电妹').lines.at(-1), '在扎里曼号找奎因接取赏金刷取部件')
+})
+
 test('Narmer 赏金通过 faction 注册表自动显示为合一众', () => {
   const caliban = entry('Caliban')
   assert.equal(caliban.frameAcquisition.generated.routing.componentVariables.factionId, 'faction.narmer')
