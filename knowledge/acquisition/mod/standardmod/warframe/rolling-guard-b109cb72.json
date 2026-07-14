@@ -3,7 +3,7 @@
     "id": "knowledge.acquisition.mod.rolling-guard-b109cb72",
     "kind": "knowledge",
     "module": "acquisition",
-    "title": "翻滚防护",
+    "title": "翻滚防护获取方式",
     "subject": {
       "canonical": "Rolling Guard",
       "displayName": "翻滚防护",
@@ -21,7 +21,9 @@
     "rarity": "Rare",
     "polarity": "vazarin",
     "tradable": true,
-    "prerequisites": [],
+    "prerequisites": [
+      "解锁仲裁（完成冥王星至阋神星接合点任务要求）"
+    ],
     "tips": [],
     "tipKeywords": [
       "本质机制",
@@ -30,24 +32,44 @@
       "与同类效果的叠加方式",
       "适用限制"
     ],
-    "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "methodRefs": [
+      "gameplay.arbitrations"
+    ],
+    "summary": "翻滚防护通过仲裁荣誉商店用 20 生息精华兑换，或直接在仲裁任务中从轮次奖励掉落。",
+    "content": "主要获取方式：前往中继站均衡仲裁者房间，在仲裁荣誉商店（Arbitration Honors）用 20 生息精华直接兑换。生息精华从仲裁任务轮次掉落积累。此外，仲裁任务中也有概率从任务轮次直接掉落翻滚防护本体。",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Rolling_Guard",
         "label": "Warframe Wiki - Rolling Guard"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Arbitrations",
+        "label": "Warframe Wiki - Arbitrations"
+      },
+      {
+        "url": "https://www.destructoid.com/how-to-get-the-rolling-guard-mod-warframe",
+        "label": "Destructoid - How to get Rolling Guard"
+      },
+      {
+        "url": "https://www.reddit.com/r/Warframe/comments/j9t523/where_do_i_get_rolling_guard_and_adaptation",
+        "label": "Reddit - Rolling Guard and Adaptation acquisition"
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
     "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewedBy": [
+      "wf-knowledge-expander"
+    ],
     "tags": [
       "acquisition",
       "mod",
       "standard-mod",
-      "warframe-mod"
+      "warframe-mod",
+      "arbitrations",
+      "vitus-essence"
     ],
+    "acquisitionStatus": "complete",
     "generator": {
       "name": "sync-mods",
       "version": 2
@@ -220,10 +242,14 @@
       },
       "manual": {
         "methods": [],
-        "methodRefs": [],
+        "methodRefs": [
+          "gameplay.arbitrations"
+        ],
         "overrides": {},
         "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewedBy": [
+          "wf-knowledge-expander"
+        ]
       }
     }
   }
