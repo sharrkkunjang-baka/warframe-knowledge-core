@@ -13,6 +13,7 @@ const OFFICIAL_FRAMES = require(path.join(CORE_ROOT, 'generated', 'official-warf
 const OFFICIAL_QUESTS = require(path.join(CORE_ROOT, 'generated', 'official-quests.json'));
 const OFFICIAL_PRIME_RELICS = require(path.join(CORE_ROOT, 'generated', 'official-prime-relics.json'));
 const OFFICIAL_FRAME_QUEST_SERIES = require(path.join(CORE_ROOT, 'generated', 'official-frame-quest-series.json'));
+const OFFICIAL_RAILJACK_NODES = require(path.join(CORE_ROOT, 'generated', 'official-railjack-nodes.json'));
 const { loadEntityRegistries } = require('./entities');
 const LOCATION_REGISTRY = loadEntityRegistries(CORE_ROOT).locations;
 
@@ -22,13 +23,15 @@ const DEFAULT_CACHE = path.join(process.env.WF_EXPORT_CACHE_DIR || path.join(COR
 const DEFAULT_REWARDS_CACHE = path.join(process.env.WF_EXPORT_CACHE_DIR || path.join(CORE_ROOT, 'cache'), 'warframe-export-rewards.json');
 const PARTS = ['Blueprint', 'Neuroptics', 'Chassis', 'Systems'];
 const PART_ZH = { Blueprint: '总图', Neuroptics: '头', Chassis: '机体', Systems: '系统' };
+const RAILJACK_NODE_ZH = Object.fromEntries(OFFICIAL_RAILJACK_NODES.nodes.flatMap(node => [[node.canonical, node.displayName], [node.regionCanonical, node.regionDisplayName]]));
 const STABLE_LOCATION_ZH = {
   Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一',
   Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星',
   Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二',
   Assassination: '刺杀', Defense: '防御', Survival: '生存', Capture: '捕获', Rescue: '救援',
   Spy: '间谍', Disruption: '中断', Exterminate: '歼灭', Interception: '拦截', Excavation: '挖掘',
-  'Cephalon Simaris': '中枢 Simaris', 'The New Strange': '新疑谜团', Junction: '接合点', Complete: '完成',
+  'Cephalon Simaris': '中枢 Simaris', 'The New Strange': '新疑谜团', Junction: '接合点', Complete: '完成', Caches: '任务缓存',
+  ...RAILJACK_NODE_ZH,
   ...Object.fromEntries(LOCATION_REGISTRY.values.map(location => [location.canonical, location.displayName]))
 };
 
@@ -239,10 +242,13 @@ function formatChance(chance) {
 }
 function translateLocation(location) {
   let output = String(location || '未知来源');
+  const railjackNode = OFFICIAL_RAILJACK_NODES.nodes.find(node => output.includes(node.canonical));
+  if (railjackNode) output = output.replace(new RegExp('^' + railjackNode.regionCanonical.split(' ')[0] + '/', 'i'), railjackNode.regionDisplayName + '/');
   for (const [english, chinese] of Object.entries(STABLE_LOCATION_ZH)) output = output.replace(new RegExp(`\\b${english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), chinese);
   output = output
     .replace(/\s*\(Level\s*(\d+)\s*-\s*(\d+)\s*(?:希图斯|奥布山谷)\s*Bounty\)/gi, '（$1-$2 级赏金）')
-    .replace(/,?\s*Rotation\s*([A-Z])/gi, '，$1轮');
+    .replace(/,?\s*Rotation\s*([A-Z])/gi, '，$1轮')
+    .replace(/\s*\(任务缓存\)/g, '任务中的白色储藏箱');
   return output.replace(/([\u4e00-\u9fff])\s+(接合点)/g, (_match, left, junction) => left + junction);
 }
 

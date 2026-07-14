@@ -24,13 +24,15 @@
     "check:items": "node scripts/sync-official-items.js --check",
     "sync:mods": "node scripts/sync-mods.js",
     "check:mods": "node scripts/sync-mods.js --check",
-    "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:frames && npm run validate && npm test && npm run build",
-    "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:frames && npm run validate && npm test",
+    "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:locations && npm run sync:frames && npm run validate && npm test && npm run build",
+    "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:locations && npm run check:frames && npm run validate && npm test",
     "validate": "node scripts/validate.js",
     "test": "node --test",
     "prepublishOnly": "npm run build && npm test",
     "sync:frames": "node scripts/sync-frames.js",
-    "check:frames": "node scripts/sync-frames.js --check"
+    "check:frames": "node scripts/sync-frames.js --check",
+    "sync:locations": "node scripts/sync-locations.js",
+    "check:locations": "node scripts/sync-locations.js --check"
   },
   "keywords": [
     "warframe",
