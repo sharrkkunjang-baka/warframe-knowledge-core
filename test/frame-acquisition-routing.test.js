@@ -86,7 +86,9 @@ test('Jade 使用任务节点、NPC 与货币变量展示掉落和保底兑换',
     '完成《翠玉之影》获得总图',
     '在天王星的布鲁图斯（扬升）刷取，部件蓝图掉率 4.63%',
     '也可在 Ordis 处使用残存微粒兑换：部件蓝图每张 150，总图 450',
-    '前往漂泊者营地找Ordis兑换',
+    '前往漂泊者营地找Ordis，使用残存微粒兑换',
+    '货币获取：',
+    '- 残存微粒（全套需要 900）：完成天王星布鲁图斯的扬升任务结算获得，任务中的帕尔沃斯姐妹也会额外掉落',
     '资源数量加成：不吃'
   ])
 })
@@ -98,7 +100,9 @@ test('Dante 使用节点、任务类型、NPC 与兑换货币变量', () => {
   assert.equal(routing.exchange.currencyId, 'currency.vessel-capillaries')
   assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Dante').lines, [
     '在火卫二的卫城区（中断） C 轮刷取部件蓝图\n也可在 洛德 处使用承载体毛细血管兑换：部件蓝图每张 90，总图 270，全套共 540\n承载体毛细血管怎么刷：在火卫二的卫城区（中断）击败爆破使，普通每只掉落 2-4，钢铁之路每只 5-7',
-    '前往殁世幽都找洛德兑换',
+    '前往解剖圣所找洛德，使用承载体毛细血管兑换',
+    '货币获取：',
+    '- 承载体毛细血管（全套需要 540）：在火卫二的卫城区（中断）击败爆破使获得，普通每只 2-4，钢铁之路每只 5-7',
     '资源数量加成：不吃'
   ])
 })
@@ -154,11 +158,18 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
     const result = createKnowledgeCore().getAcquisition(name)
     assert.equal(result.description.split('\n').at(-1), '资源数量加成：不吃', name)
   }
-  assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.loid', isBuffuseless: true })
-  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /前往殁世幽都找洛德兑换\n资源数量加成：不吃$/)
-  assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.nightcap', isBuffuseless: true })
-  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /前往福尔图娜找夜帽兑换\n资源数量加成：不吃$/)
-  assert.deepEqual(entry('Dagath').frameAcquisition.generated.routing.require, { type: 'currency', isBuffuseless: true })
+  assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currencyIds: ['currency.vessel-capillaries'], currencyAmounts: { 'currency.vessel-capillaries': 540 }, isBuffuseless: true })
+  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /前往解剖圣所找洛德，使用承载体毛细血管兑换[\s\S]*资源数量加成：不吃$/)
+  assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyIds: ['currency.fergolyte'], currencyAmounts: { 'currency.fergolyte': 720 }, isBuffuseless: true })
+  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /前往气密舱找夜帽，使用铁离石兑换[\s\S]*资源数量加成：不吃$/)
+  const dagath = entry('Dagath').frameAcquisition.generated.routing.require
+  assert.deepEqual(dagath, { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currencyIds: ['currency.vainthorn'], currencyAmounts: { 'currency.vainthorn': 102 }, isBuffuseless: true })
+  assert.equal(createKnowledgeCore().getAcquisition('Dagath').description, [
+    '在氏族道场的 Dagath 空阁获取蓝图；制作全套需要102 浮华荆棘',
+    '货币获取：',
+    '- 浮华荆棘（全套需要 102）：使用深渊信标进入谷神星深渊区歼灭任务，完成任务结算获得',
+    '资源数量加成：不吃'
+  ].join('\n'))
   const baruuk = entry('Baruuk').frameAcquisition.generated.routing.require
   assert.deepEqual(baruuk, { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' })
   assert.equal(createKnowledgeCore().getAcquisition('Baruuk').description, '福尔图娜的Little Duck：总图需要 2级声望，部件蓝图需要 3级声望兑换')
@@ -167,6 +178,20 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
   assert.equal(createKnowledgeCore().getAcquisition('Hildryn').description, '击败剥削者圆蛛刷取部件蓝图\n福尔图娜的Little Duck 2级声望兑换')
   assert.equal(entry('Mag').frameAcquisition.generated.routing.require.type, 'none')
   assert.doesNotMatch(createKnowledgeCore().getAcquisition('Mag').description, /资源数量加成|声望兑换/)
+})
+
+test('全部 currency require 都有地点、货币、数量和获取方式', () => {
+  const core = createKnowledgeCore()
+  for (const item of INDEX.frames) {
+    const routing = entry(item.canonical).frameAcquisition.generated.routing
+    if (routing.require.type !== 'currency') continue
+    assert.ok(routing.require.locationId, item.canonical)
+    assert.ok(routing.require.currencyIds.length, item.canonical)
+    for (const currencyId of routing.require.currencyIds) assert.ok(Number.isFinite(routing.require.currencyAmounts[currencyId]), `${item.canonical}: ${currencyId}`)
+    const description = core.getAcquisition(item.canonical).description
+    assert.match(description, /货币获取：/, item.canonical)
+    assert.match(description, /资源数量加成：(吃|不吃)$/, item.canonical)
+  }
 })
 
 test('method 模板与编译路由可自动发布', () => {

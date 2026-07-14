@@ -11,17 +11,17 @@ const FRAME_CURRENCIES = Object.freeze([
   { canonical: 'Fergolyte', displayName: '铁离石', kind: 'resource-token', officialSource: 'Warframe Update 40 official zh-hans patch notes', acquisitionDependency: { type: 'bounty-completion-or-compost', questId: 'quest.the-new-war', locationId: 'hub.fortuna-airlock', npcId: 'npc.nightcap', bountyName: '深矿赏金', normalAmount: { min: 11, max: 15 }, steelPathAmount: { min: 15, max: 19 }, compostAmount: 1, source: 'Warframe Update 40 official zh-hans patch notes' } },
   { canonical: 'Vessel Capillaries', kind: 'resource-token', acquisitionDependency: { type: 'mission-enemy-drop', missionNodeId: 'mission-node.armatus', missionTypeId: 'mission-type.disruption', enemyRole: 'Demolisher', normalAmount: { min: 2, max: 4 }, steelPathAmount: { min: 5, max: 7 }, source: 'Dante Wiki Acquisition' } },
   { canonical: 'Stock', kind: 'exchange-token' },
-  { canonical: 'Belric Crystal Fragment', kind: 'resource-token' },
-  { canonical: 'Rania Crystal Fragment', kind: 'resource-token' },
+  { canonical: 'Belric Crystal Fragment', kind: 'resource-token', acquisitionDependency: { acquisitionSummary: '在火星 Tyana Pass 镜像防御中收集水晶残留，并通过轮次结算获得', sourceRefs: ['https://wiki.warframe.com/w/Crystal_Fragment'], reviewStatus: 'approved' } },
+  { canonical: 'Rania Crystal Fragment', kind: 'resource-token', acquisitionDependency: { acquisitionSummary: '在火星 Tyana Pass 镜像防御中收集水晶残留，并通过轮次结算获得', sourceRefs: ['https://wiki.warframe.com/w/Crystal_Fragment'], reviewStatus: 'approved' } },
   { canonical: 'Fate Pearl', kind: 'resource-token' },
   { canonical: 'Lua Thrax Plasm', kind: 'resource-token' },
   { canonical: 'Vainthorn', kind: 'exchange-token' },
-  { canonical: 'Vestigial Motes', kind: 'resource-token' },
+  { canonical: 'Vestigial Motes', kind: 'resource-token', acquisitionDependency: { acquisitionSummary: '完成天王星布鲁图斯的扬升任务结算获得，任务中的帕尔沃斯姐妹也会额外掉落', sourceRefs: ['https://wiki.warframe.com/w/Vestigial_Motes'], reviewStatus: 'approved' } },
   { canonical: 'Beating Heartstrings', kind: 'resource-token' },
   { canonical: 'Vitus Essence', kind: 'exchange-token' },
   { canonical: 'Mother Token', kind: 'exchange-token' },
   { canonical: 'Orokin Ducats', kind: 'standard' },
-  { canonical: "Nora's Mix Vol. 8 Cred", kind: 'seasonal-token' },
+  { canonical: "Nora's Mix Vol. 8 Cred", kind: 'seasonal-token', acquisitionDependency: { acquisitionSummary: '完成午夜电波行动并提升午夜电波等级，从等级奖励中获得', sourceRefs: ['https://www.warframe.com/news/nightwave-guide'], reviewStatus: 'approved' } },
   { canonical: "Kullervo's Bane", kind: 'exchange-token', aliases: ['灾刃'], acquisitionDependency: { canonical: "Kullervo's Bane", displayName: 'Kullervo 的灾刃', acquisitionSummary: '在恐惧、愤怒或悲伤心情阶段的双衍王境中前往库尔沃之灾，击败 Kullervo，并在同一轮任务中击败奥金魇龙后结算获得', sourceRefs: ['https://wiki.warframe.com/w/Kullervo%27s_Bane'], reviewStatus: 'approved' } }
 ])
 const ID_OVERRIDES = Object.freeze({ "Kullervo's Bane": 'currency.kullervos-bane' })

@@ -70,16 +70,16 @@ const COMPONENT_OVERRIDES = Object.freeze({
 // 自动解析地点和集团等级；currency 的 isBuffuseless 默认 true。
 const REQUIRE_OVERRIDES = Object.freeze({
   Baruuk: { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' },
-  Citrine: { type: 'currency', npcId: 'npc.otak' },
-  Dagath: { type: 'currency' },
-  Dante: { type: 'currency', npcId: 'npc.loid' },
-  Follie: { type: 'currency', npcId: 'npc.aspirant-zorba' },
+  Citrine: { type: 'currency', npcId: 'npc.otak', locationId: 'hub.necralisk', currencyIds: ['currency.belric-crystal-fragment', 'currency.rania-crystal-fragment'], currencyAmounts: { 'currency.belric-crystal-fragment': 1500, 'currency.rania-crystal-fragment': 1550 } },
+  Dagath: { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currencyIds: ['currency.vainthorn'], currencyAmounts: { 'currency.vainthorn': 102 } },
+  Dante: { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currencyIds: ['currency.vessel-capillaries'], currencyAmounts: { 'currency.vessel-capillaries': 540 } },
+  Follie: { type: 'currency', npcId: 'npc.aspirant-zorba', locationId: 'hub.any-relay', currencyIds: ['currency.atramentum'], currencyAmounts: { 'currency.atramentum': 2400 } },
   Hildryn: { type: 'standing', npcId: 'npc.little-duck', rank: 2, rankName: 'Agent' },
-  Jade: { type: 'currency', npcId: 'npc.ordis' },
-  Kullervo: { type: 'currency', npcId: 'npc.acrithis' },
-  Nokko: { type: 'currency', npcId: 'npc.nightcap' },
-  'Sirius & Orion': { type: 'currency', npcId: 'npc.hunhow' },
-  Vauban: { type: 'currency' }
+  Jade: { type: 'currency', npcId: 'npc.ordis', locationId: 'hub.drifters-camp', currencyIds: ['currency.vestigial-motes'], currencyAmounts: { 'currency.vestigial-motes': 900 } },
+  Kullervo: { type: 'currency', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currencyIds: ['currency.kullervos-bane'], currencyAmounts: { 'currency.kullervos-bane': 42 } },
+  Nokko: { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyIds: ['currency.fergolyte'], currencyAmounts: { 'currency.fergolyte': 720 } },
+  'Sirius & Orion': { type: 'currency', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currencyIds: ['currency.jade-talent', 'currency.crimson-talent'], currencyAmounts: { 'currency.jade-talent': 545, 'currency.crimson-talent': 545 } },
+  Vauban: { type: 'currency', locationId: 'interface.nightwave', currencyIds: ['currency.nora-s-mix-vol-8-cred'], currencyAmounts: { 'currency.nora-s-mix-vol-8-cred': 75 } }
 })
 
 function categoryDirectory(categoryId) { return CATEGORY_DIRS[categoryId] || null }

@@ -27,7 +27,9 @@ function generatedEntries() {
     { id: 'hub.fortuna-airlock', canonical: 'The Airlock', displayName: '气密舱', kind: 'hub', aliases: [], parentId: 'hub.fortuna', officialSource: 'Warframe Update 40 official zh-hans patch notes' },
     { id: 'hub.drifters-camp', canonical: "Drifter's Camp", displayName: '漂泊者营地', kind: 'hub', aliases: [], parentId: 'planet.earth', officialSource: 'audited-official-zh' },
     { id: 'hub.dormizone', canonical: 'Dormizone', displayName: '宿舍', kind: 'hub', aliases: [], parentId: 'hub.zariman', officialSource: 'audited-official-zh' },
-    { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' }
+    { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' },
+    { id: 'hub.clan-dojo', canonical: 'Clan Dojo', displayName: '氏族道场的 Dagath 空阁', kind: 'hub', aliases: [], officialSource: 'Warframe Wiki - Dagath' },
+    { id: 'interface.nightwave', canonical: 'Nightwave Cred Offerings', displayName: '午夜电波贡品界面', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki - Vauban' }
   )
   for (const frame of WARFRAMES.filter(item => !item.isPrime)) for (const component of frame.components || []) for (const drop of component.drops || []) {
     const raw = String(drop.location || '').trim()
