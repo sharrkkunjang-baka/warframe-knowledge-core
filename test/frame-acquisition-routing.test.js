@@ -31,6 +31,16 @@ test('总图第二分类仅在不同来源时显示', () => {
   assert.equal(route('Volt').blueprintCategory, null)
 })
 
+test('道场战甲输出可操作的三步复制指引', () => {
+  assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Wukong').lines, [
+    'ESC → 通讯 → 氏族，进入氏族道场\n移动至 Tenno 实验室\n与操作台交互并复制蓝图'
+  ])
+})
+
+test('Prime 战甲不使用预编译历史遗物路由', () => {
+  assert.equal(frameAcquisition.renderRoutedAcquisition('Wukong Prime'), null)
+})
+
 test('刷磁妹走商城总图与刺杀模板', () => {
   const routed = frameAcquisition.renderRoutedAcquisition('磁妹')
   assert.deepEqual(routed.lines, ['商城购买总图', '火卫一刺杀 军士 刷取部件'])
@@ -126,4 +136,44 @@ test('method 模板与编译路由可自动发布', () => {
   assert.equal(core.frameCategories.count, 116)
   assert.ok(core.frameMethods.some(item => item.scope === 'components' && item.category === 'frame-assassination'))
   assert.ok(core.frameMethods.some(item => item.scope === 'blueprint' && item.category === 'market'))
+})
+
+test('method JSON 是全部分类句式的单一权威源', () => {
+  const routing = require('../src/frame-acquisition-routing')
+  const definitions = routing.loadMethodDefinitions()
+  const componentCategories = new Set(INDEX.frames.map(item => item.componentCategory))
+  const blueprintCategories = new Set(INDEX.frames.map(item => item.blueprintCategory).filter(Boolean))
+  for (const category of componentCategories) assert.ok(definitions.components[category], `缺少 ${category}`)
+  for (const category of blueprintCategories) assert.ok(definitions.blueprints[category], `缺少 ${category}`)
+  assert.equal(routing.methodTemplate('components', 'frame-dojo'), JSON.parse(fs.readFileSync(path.join(FRAME_ROOT, 'method', 'components', 'dojo.json'), 'utf8')).template)
+  assert.equal(routing.methodTemplate('components', 'frame-bounty', 'hubTemplate'), '在{locationName}找{npcName}')
+  assert.equal(routing.methodTemplate('components', 'frame-specific-mission', 'exchangeTemplate'), '也可在 {npcName} 处使用{currencyName}兑换：部件蓝图每张 {componentCost}，总图 {blueprintCost}')
+  assert.equal(routing.methodTemplate('components', 'frame-prime-relic', 'vaultedTemplate'), '当前已入库，没有可刷取的遗物')
+})
+
+test('所有非 Prime 分类路由都不会意外回退到旧详情渲染', () => {
+  for (const item of INDEX.frames.filter(frame => !/ Prime$/.test(frame.canonical))) {
+    const rendered = frameAcquisition.renderRoutedAcquisition(item.canonical)
+    assert.ok(rendered, item.canonical)
+    assert.ok(['category-method', 'frame-json'].includes(rendered.source), `${item.canonical}: ${rendered.source}`)
+    assert.ok(rendered.lines.length, item.canonical)
+  }
+})
+
+test('核心查询对全部普通战甲强制返回分类 method 路由', () => {
+  const core = createKnowledgeCore()
+  for (const item of INDEX.frames.filter(frame => !/ Prime$/.test(frame.canonical))) {
+    const result = core.getAcquisition(item.canonical)
+    assert.ok(result.frameRoute, item.canonical)
+    assert.equal(result.description, result.frameRoute.lines.join('\n'), item.canonical)
+  }
+})
+
+test('同步计划原样保留 method JSON 的人工扩展模板', () => {
+  const sync = require('../scripts/sync-frame-acquisition-categories')
+  const methods = sync.methodDocuments().map(item => item.value)
+  const bounty = methods.find(item => item.scope === 'components' && item.category === 'frame-bounty')
+  const prime = methods.find(item => item.scope === 'components' && item.category === 'frame-prime-relic')
+  assert.equal(bounty.hubTemplate, '在{locationName}找{npcName}')
+  assert.equal(prime.vaultedTemplate, '当前已入库，没有可刷取的遗物')
 })

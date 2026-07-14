@@ -58,6 +58,15 @@ test('近分候选返回统一歧义结构', () => {
   assert.deepEqual(result.ambiguous.map(item => item.canonical), ['Growing Power', 'Growth Badge']);
 });
 
+test('精确 Prime 战甲获取不会降级为普通战甲', () => {
+  for (const query of ['Wukong Prime', 'wukong prime']) {
+    const result = reviewCore.getAcquisition(query);
+    assert.equal(result.entry.subject.canonical, 'Wukong Prime', query);
+    assert.equal(result.entry.subject.categoryRefs[0], 'frame-prime-relic', query);
+    assert.equal(result.frameRoute, null, query);
+  }
+});
+
 test('刷取模块只响应明确命令句式', () => {
   assert.deepEqual(reviewCore.parseAcquisitionCommand('/刷'), { intent: 'acquisition', query: '' });
   assert.deepEqual(reviewCore.parseAcquisitionCommand('/刷 电妹'), { intent: 'acquisition', query: '电妹' });

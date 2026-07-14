@@ -4,7 +4,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { ReadonlyWikiDatabase, resolveWikiDatabase, sha256File } = require('../src/wiki-db')
 const { CATEGORY_DEFINITIONS, classifyFrameAcquisition } = require('../src/frame-acquisition-categories')
-const { CATEGORY_DIRS, METHOD_TEMPLATES, categoryDirectory, buildRouting } = require('../src/frame-acquisition-routing')
+const { CATEGORY_DIRS, METHOD_DEFINITIONS, categoryDirectory, buildRouting } = require('../src/frame-acquisition-routing')
 const syncFrames = require('./sync-frame-knowledge')
 
 const ROOT = path.resolve(__dirname, '..')
@@ -26,8 +26,8 @@ function walkJson(dir) {
 }
 function methodDocuments() {
   return [
-    ...Object.entries(METHOD_TEMPLATES.components).map(([category, template]) => ({ path: path.join(METHOD_DIR, 'components', `${categoryDirectory(category)}.json`), value: { schemaVersion: 1, kind: 'frame-acquisition-method', scope: 'components', category, template } })),
-    ...Object.entries(METHOD_TEMPLATES.blueprints).map(([category, template]) => ({ path: path.join(METHOD_DIR, 'blueprints', `${category}.json`), value: { schemaVersion: 1, kind: 'frame-acquisition-method', scope: 'blueprint', category, template } }))
+    ...Object.entries(METHOD_DEFINITIONS.components).map(([category, value]) => ({ path: path.join(METHOD_DIR, 'components', `${categoryDirectory(category)}.json`), value })),
+    ...Object.entries(METHOD_DEFINITIONS.blueprints).map(([category, value]) => ({ path: path.join(METHOD_DIR, 'blueprints', `${category}.json`), value }))
   ]
 }
 function buildPlan(dbPath) {

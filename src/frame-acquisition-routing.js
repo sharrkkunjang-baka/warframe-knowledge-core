@@ -1,5 +1,8 @@
 'use strict'
 
+const fs = require('node:fs')
+const path = require('node:path')
+
 const CATEGORY_DIRS = Object.freeze({
   'frame-prime-relic': 'prime-relic',
   'frame-assassination': 'assassination',
@@ -12,28 +15,23 @@ const CATEGORY_DIRS = Object.freeze({
 })
 
 const BLUEPRINT_CATEGORIES = Object.freeze(['market', 'quest', 'dojo', 'bounty', 'vendor', 'relic', 'specific-mission', 'mixed-missions', 'assassination', 'unresolved'])
+const METHOD_ROOT = path.join(__dirname, '..', 'knowledge', 'acquisition', 'warframe', 'method')
+function loadMethodDefinitions(root = METHOD_ROOT) {
+  return Object.freeze(Object.fromEntries(['components', 'blueprints'].map(scope => {
+    const directory = path.join(root, scope)
+    const definitions = Object.fromEntries(fs.readdirSync(directory).filter(file => file.endsWith('.json')).map(file => {
+      const document = JSON.parse(fs.readFileSync(path.join(directory, file), 'utf8'))
+      return [document.category, Object.freeze(document)]
+    }))
+    return [scope, Object.freeze(definitions)]
+  })))
+}
+const METHOD_DEFINITIONS = loadMethodDefinitions()
 const METHOD_TEMPLATES = Object.freeze({
-  components: {
-    'frame-prime-relic': '{sourceText}',
-    'frame-assassination': '{planetName}刺杀 {enemyName} 刷取部件',
-    'frame-quest': '{sourceText}',
-    'frame-mixed-missions': '{sourceText} 刷取部件',
-    'frame-bounty': '{sourceText} 刷取部件',
-    'frame-dojo': '氏族道场复制部件蓝图',
-    'frame-vendor': '{sourceText}兑换部件蓝图'
-  },
-  blueprints: {
-    market: '商城购买总图',
-    quest: '完成《{questName}》获得总图',
-    dojo: '氏族道场复制总图',
-    bounty: '{sourceText}获取总图',
-    vendor: '{sourceText}兑换总图',
-    relic: '{sourceText}',
-    'specific-mission': '{sourceText}',
-    'mixed-missions': '{sourceText}获取总图',
-    assassination: '{sourceText}获取总图'
-  }
+  components: Object.freeze(Object.fromEntries(Object.entries(METHOD_DEFINITIONS.components).map(([category, definition]) => [category, definition.template]))),
+  blueprints: Object.freeze(Object.fromEntries(Object.entries(METHOD_DEFINITIONS.blueprints).map(([category, definition]) => [category, definition.template])))
 })
+function methodTemplate(scope, category, name = 'template') { return METHOD_DEFINITIONS[scope]?.[category]?.[name] || null }
 
 const ASSASSINATION_SOURCES = Object.freeze({
   'Earth/Everest': { planetName: '地球', enemyName: '巨型豺狼' },
@@ -158,10 +156,10 @@ function applyTemplate(template, variables) {
   if (!template) return null
   let missing = false
   const text = String(template).replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (_, key) => {
-    if (variables?.[key] == null || variables[key] === '') { missing = true; return '' }
+    if (variables?.[key] == null) { missing = true; return '' }
     return variables[key]
   })
   return missing ? null : text
 }
 
-module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, bountyVariables, buildRouting, applyTemplate }
+module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_ROOT, METHOD_DEFINITIONS, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, loadMethodDefinitions, methodTemplate, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, bountyVariables, buildRouting, applyTemplate }

@@ -35,6 +35,7 @@ const frameRoot = path.join(knowledgeRoot, 'acquisition', 'warframe');
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
 const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
+const BLUEPRINT_CATEGORIES_FOR_VALIDATION = new Set(['market', 'quest', 'dojo', 'bounty', 'vendor', 'relic', 'specific-mission', 'mixed-missions', 'assassination']);
 
 for (const [name, directory] of Object.entries(entityDirectories)) {
   const indexPath = path.join(knowledgeRoot, directory, 'categories.json');
@@ -82,9 +83,19 @@ for (const route of frameIndex?.frames || []) {
   const expectedDir = String(route.componentCategory || '').replace(/^frame-/, '');
   if (route.file && !route.file.startsWith(`${expectedDir}/`)) errors.push(`warframe/categories.json: 路径与主分类不一致 ${route.canonical}`);
 }
-const methodKeys = new Set(frameMethods.map(item => `${item.scope}:${item.category}`));
+const methodKeys = new Set();
+for (const method of frameMethods) {
+  const key = `${method.scope}:${method.category}`;
+  if (methodKeys.has(key)) errors.push(`warframe/method: 重复方法 ${key}`); else methodKeys.add(key);
+  if (method.schemaVersion !== 1 || typeof method.template !== 'string' || !method.template.trim()) errors.push(`warframe/method: ${key} 缺少有效 template`);
+  if (method.scope === 'components' && !/^frame-/.test(method.category || '')) errors.push(`warframe/method: 部件分类格式错误 ${method.category}`);
+  if (method.scope === 'blueprint' && !BLUEPRINT_CATEGORIES_FOR_VALIDATION.has(method.category)) errors.push(`warframe/method: 总图分类无效 ${method.category}`);
+  for (const [name, value] of Object.entries(method)) {
+    if ((name === 'template' || name.endsWith('Template')) && (typeof value !== 'string' || !value.trim())) errors.push(`warframe/method: ${key}.${name} 必须是非空字符串`);
+  }
+}
 for (const route of frameIndex?.frames || []) {
-  if (route.componentCategory !== 'frame-specific-mission' && !methodKeys.has(`components:${route.componentCategory}`)) errors.push(`warframe/categories.json: 缺少部件 method ${route.componentCategory}`);
+  if (!methodKeys.has(`components:${route.componentCategory}`)) errors.push(`warframe/categories.json: 缺少部件 method ${route.componentCategory}`);
   if (route.blueprintCategory && !methodKeys.has(`blueprint:${route.blueprintCategory}`)) errors.push(`warframe/categories.json: 缺少总图 method ${route.blueprintCategory}`);
 }
 

@@ -310,13 +310,22 @@ function createKnowledgeCore(options = {}) {
     if (!raw) return null;
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;
-    const resolution = resolveName(raw, searchOptions.resolveOptions || {});
+    // 战甲规范名已经由命令层完成解析时必须精确锁定；通用别名解析可能把
+    // "Wukong Prime" 之类的名称再次降级为普通 "Wukong"。
+    const exactFrameEntry = allKnowledge.find(item => item.module === 'acquisition'
+      && item.subject?.category === 'frame'
+      && normalize(item.subject?.canonical) === normalize(raw));
+    const resolution = exactFrameEntry ? { canonical: exactFrameEntry.subject.canonical, exact: true } : resolveName(raw, searchOptions.resolveOptions || {});
     if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
-    const canonical = resolution?.canonical || raw;
-    const entry = allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
+    const canonical = exactFrameEntry?.subject?.canonical || resolution?.canonical || raw;
+    const entry = exactFrameEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
-    const frameRoute = entry.subject?.category === 'frame' ? frameAcquisition.renderRoutedAcquisition(canonical) : null;
+    const isFrame = entry.subject?.category === 'frame';
+    const frameRoute = isFrame ? frameAcquisition.renderRoutedAcquisition(canonical) : null;
+    if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
+      throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
+    }
     return {
       query: raw,
       resolution,

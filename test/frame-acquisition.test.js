@@ -144,6 +144,9 @@ test('Prime state selects current, resurgence, or vaulted category only', () => 
   const vaulted = acquisition.getPrimeRelics('Volt Prime', null, {});
   assert.equal(vaulted.status, '已入库');
   assert.deepEqual(vaulted.relics, []);
+  const vaultedText = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Volt Prime'), prime: vaulted, materials: { available: false } });
+  assert.match(vaultedText, /^当前已入库，没有可刷取的遗物/m);
+  assert.doesNotMatch(vaultedText, /Axi|Lith|Meso|Neo|古纪|前纪|中纪|后纪/);
   const axiL4 = require(require('node:path').join(require('node:path').dirname(require.resolve('warframe-items')), 'data', 'json', 'Relics.json')).find(relic => relic.name === 'Axi L4 Intact');
   const itemType = axiL4.uniqueName.replace('/Lotus/', '/Lotus/StoreItems/');
   const resurgence = acquisition.getPrimeRelics('Volt Prime', { Manifest: [{ ItemType: itemType }] }, {});
