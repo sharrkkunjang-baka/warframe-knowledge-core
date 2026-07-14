@@ -4,6 +4,10 @@
   "scope": "components",
   "category": "frame-bounty",
   "template": "{hubsText}接取{factionName}赏金刷取部件",
-  "hubTemplate": "在{locationName}找{npcName}",
+  "detailedTemplate": "{prerequisiteText}{hubsText}接取{bountyName}刷取全部蓝图",
+  "hubTemplate": "在{locationName}{subLocationText}找{npcName}",
+  "prerequisiteTemplate": "完成《{questName}》后，",
+  "exchangeTemplate": "也可在{exchangeLocationName}向{npcName}使用{currencyName}兑换：部件蓝图每张 {componentCost}，总图 {blueprintCost}，全套共 {totalCost}；需要夜帽 {rank} 级“{rankName}”",
+  "currencyDependencyTemplate": "{currencyName}：完成{bountyName}普通难度结算 {normalMin}-{normalMax} 个，钢铁之路结算 {steelMin}-{steelMax} 个；完整分析一种蘑菇后，每个多余样本可堆肥获得 {compostAmount} 个",
   "hubSeparator": "，或"
 }

@@ -71,6 +71,7 @@ for (const category of categories) {
   }
   if (!baseCategoryIds.has(category.parent) && !categoryIds.has(category.parent)) errors.push(`${category.id}: 父分类不存在 ${category.parent}`);
   if (category.modDescription !== undefined && (typeof category.modDescription !== 'string' || !category.modDescription.includes('{name}'))) errors.push(`${category.id}: modDescription 必须是包含 {name} 的字符串`);
+  if (category.id === 'syndicatemod' && (typeof category.displayTemplate !== 'string' || !category.displayTemplate.includes('{equipmentPositionText}') || !category.displayTemplate.includes('{modTypeText}') || typeof category.modTypeText !== 'string' || !category.modTypeText.trim())) errors.push('syndicatemod: 必须由装备位置和 Mod 类型变量生成显示文本');
   if (category.defaultMethodRefs !== undefined && (!Array.isArray(category.defaultMethodRefs) || !category.defaultMethodRefs.length || new Set(category.defaultMethodRefs).size !== category.defaultMethodRefs.length)) errors.push(`${category.id}: defaultMethodRefs 必须是非空唯一数组`);
   if (!Array.isArray(category.sources) || !category.sources.length) errors.push(`${category.id}: 分类至少需要一个来源`);
   for (const source of category.sources || []) {

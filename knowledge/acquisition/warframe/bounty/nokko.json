@@ -10,7 +10,7 @@
       "category": "frame",
       "officialUniqueName": "/Lotus/Powersuits/Nokko/Nokko",
       "categoryRefs": [
-        "frame-specific-mission"
+        "frame-bounty"
       ]
     },
     "prerequisites": [],
@@ -43,7 +43,7 @@
         ],
         "acquisitionCategories": {
           "categoryRefs": [
-            "frame-specific-mission"
+            "frame-bounty"
           ],
           "status": "classified",
           "source": {
@@ -57,14 +57,34 @@
           }
         },
         "routing": {
-          "componentCategory": "frame-specific-mission",
+          "componentCategory": "frame-bounty",
           "blueprintCategory": null,
           "componentVariables": {
-            "sourceCanonical": [],
-            "unresolvedSources": []
+            "prerequisiteQuestId": "quest.the-new-war",
+            "hubs": [
+              {
+                "locationId": "hub.fortuna",
+                "subLocationId": "hub.fortuna-airlock",
+                "npcId": "npc.nightcap"
+              }
+            ],
+            "bountyName": "深矿赏金",
+            "exchange": {
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna-airlock",
+              "currencyId": "currency.fergolyte",
+              "componentCost": 160,
+              "blueprintCost": 240,
+              "totalCost": 720,
+              "rankName": "园丁",
+              "rank": 4
+            },
+            "sourceCanonical": [
+              "Deepmines Bounties"
+            ]
           },
           "blueprintVariables": {},
-          "blueprintSource": "same-as-components"
+          "blueprintSource": "manual-override"
         }
       },
       "manual": {

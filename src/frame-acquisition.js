@@ -554,10 +554,33 @@ function renderBountyRoute(variables) {
   const separator = methodTemplate('components', 'frame-bounty', 'hubSeparator') || '';
   const hubsText = (variables?.hubs || []).map(hub => applyTemplate(hubTemplate, {
     locationName: entityName(LOCATION_REGISTRY, hub.locationId),
+    subLocationText: hub.subLocationId ? entityName(LOCATION_REGISTRY, hub.subLocationId) : '',
     npcName: entityName(NPC_REGISTRY, hub.npcId)
   })).filter(Boolean).join(separator);
   if (!hubsText) return null;
-  return applyTemplate(methodTemplate('components', 'frame-bounty'), { hubsText, factionName });
+  if (!variables.bountyName) return applyTemplate(methodTemplate('components', 'frame-bounty'), { hubsText, factionName });
+  const questName = variables.prerequisiteQuestId ? entityName(QUEST_REGISTRY, variables.prerequisiteQuestId) : '';
+  const prerequisiteText = questName ? applyTemplate(methodTemplate('components', 'frame-bounty', 'prerequisiteTemplate'), { questName }) : '';
+  const lines = [applyTemplate(methodTemplate('components', 'frame-bounty', 'detailedTemplate'), { prerequisiteText, hubsText, bountyName: variables.bountyName })].filter(Boolean);
+  const exchange = variables.exchange;
+  if (exchange?.npcId && exchange?.currencyId) {
+    const currencyEntity = CURRENCY_REGISTRY.get(exchange.currencyId);
+    const currencyName = entityName(CURRENCY_REGISTRY, exchange.currencyId);
+    const exchangeLine = applyTemplate(methodTemplate('components', 'frame-bounty', 'exchangeTemplate'), {
+      exchangeLocationName: entityName(LOCATION_REGISTRY, exchange.locationId), npcName: entityName(NPC_REGISTRY, exchange.npcId), currencyName,
+      componentCost: exchange.componentCost, blueprintCost: exchange.blueprintCost, totalCost: exchange.totalCost, rank: exchange.rank, rankName: exchange.rankName
+    });
+    if (exchangeLine) lines.push(exchangeLine);
+    const dependency = currencyEntity?.acquisitionDependency;
+    if (dependency?.type === 'bounty-completion-or-compost') {
+      const dependencyLine = applyTemplate(methodTemplate('components', 'frame-bounty', 'currencyDependencyTemplate'), {
+        currencyName, bountyName: dependency.bountyName, normalMin: dependency.normalAmount.min, normalMax: dependency.normalAmount.max,
+        steelMin: dependency.steelPathAmount.min, steelMax: dependency.steelPathAmount.max, compostAmount: dependency.compostAmount
+      });
+      if (dependencyLine) lines.push(dependencyLine);
+    }
+  }
+  return lines.join('\n');
 }
 
 function renderMissionSource(source) {

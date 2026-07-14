@@ -221,13 +221,16 @@ function createKnowledgeCore(options = {}) {
     const effectText = (entry.effectDetails || []).join('；').replace(/[。；]+$/, '');
     const functionalCategory = getCategory(entry.subject?.categoryRefs?.[0]);
     const equipmentCategory = (entry.subject?.categoryRefs || []).map(getCategory).find(category => / Mod$/.test(category?.canonical || '') && category.id !== 'syndicatemod');
-    if (!functionalCategory?.displayName || !equipmentCategory?.displayName) throw new Error(`${entry.subject?.canonical} 缺少功能分类或装备分类变量`);
-    const equipmentCategoryText = equipmentCategory.displayName.replace(/\s*Mod$/i, '').trim();
+    if (functionalCategory?.id !== 'syndicatemod' || !functionalCategory.displayTemplate || !functionalCategory.modTypeText || !equipmentCategory?.displayName) throw new Error(`${entry.subject?.canonical} 缺少集团功能分类显示模板或装备位置变量`);
+    const equipmentPositionText = equipmentCategory.displayName.replace(/\s*Mod$/i, '').trim();
+    const categoryDisplayText = renderTemplate(functionalCategory.displayTemplate, {
+      equipmentPositionText,
+      modTypeText: functionalCategory.modTypeText
+    });
     const header = renderTemplate(definition.headerTemplate, {
       modName: entry.subject?.displayName || entry.title,
       effectText,
-      functionalCategoryText: `{${functionalCategory.displayName}}`,
-      equipmentCategoryText
+      categoryDisplayText
     });
     return [header, `${definition.sourcesHeader}\n${sourceLines.join('\n')}`].join('\n\n');
   };

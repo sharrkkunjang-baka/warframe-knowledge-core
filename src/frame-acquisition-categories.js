@@ -19,7 +19,7 @@ const MANUAL_OVERRIDES = Object.freeze({
   Garuda: ['frame-bounty'],
   Jade: ['frame-specific-mission'],
   Lavos: ['frame-specific-mission'],
-  Nokko: ['frame-specific-mission'],
+  Nokko: ['frame-bounty'],
   Octavia: ['frame-mixed-missions'],
   Volt: ['frame-dojo'],
   Xaku: ['frame-bounty']

@@ -122,6 +122,16 @@ test('批准战甲的自动路由不再保存用户文案 sourceText', () => {
   }
 })
 
+test('Nokko 通过赏金、NPC、地点、任务和铁离石变量渲染', () => {
+  const result = createKnowledgeCore().getAcquisition('Nokko')
+  assert.equal(result.frameRoute.route.componentCategory, 'frame-bounty')
+  assert.equal(result.frameRoute.route.blueprintCategory, null)
+  assert.match(result.description, /完成《新纪之战》后，在福尔图娜气密舱找夜帽接取深矿赏金刷取全部蓝图/)
+  assert.match(result.description, /铁离石兑换：部件蓝图每张 160，总图 240，全套共 720/)
+  assert.match(result.description, /普通难度结算 11-15 个，钢铁之路结算 15-19 个/)
+  assert.doesNotMatch(result.description, /官方结构化数据缺少|Deepmines|Nightcap|Fergolyte/)
+})
+
 test('Narmer 赏金通过 faction 注册表自动显示为合一众', () => {
   const caliban = entry('Caliban')
   assert.equal(caliban.frameAcquisition.generated.routing.componentVariables.factionId, 'faction.narmer')
@@ -146,7 +156,7 @@ test('method JSON 是全部分类句式的单一权威源', () => {
   for (const category of componentCategories) assert.ok(definitions.components[category], `缺少 ${category}`)
   for (const category of blueprintCategories) assert.ok(definitions.blueprints[category], `缺少 ${category}`)
   assert.equal(routing.methodTemplate('components', 'frame-dojo'), JSON.parse(fs.readFileSync(path.join(FRAME_ROOT, 'method', 'components', 'dojo.json'), 'utf8')).template)
-  assert.equal(routing.methodTemplate('components', 'frame-bounty', 'hubTemplate'), '在{locationName}找{npcName}')
+  assert.equal(routing.methodTemplate('components', 'frame-bounty', 'hubTemplate'), '在{locationName}{subLocationText}找{npcName}')
   assert.equal(routing.methodTemplate('components', 'frame-specific-mission', 'exchangeTemplate'), '也可在 {npcName} 处使用{currencyName}兑换：部件蓝图每张 {componentCost}，总图 {blueprintCost}')
   assert.equal(routing.methodTemplate('components', 'frame-prime-relic', 'vaultedTemplate'), '当前已入库，没有可刷取的遗物')
 })
@@ -174,6 +184,6 @@ test('同步计划原样保留 method JSON 的人工扩展模板', () => {
   const methods = sync.methodDocuments().map(item => item.value)
   const bounty = methods.find(item => item.scope === 'components' && item.category === 'frame-bounty')
   const prime = methods.find(item => item.scope === 'components' && item.category === 'frame-prime-relic')
-  assert.equal(bounty.hubTemplate, '在{locationName}找{npcName}')
+  assert.equal(bounty.hubTemplate, '在{locationName}{subLocationText}找{npcName}')
   assert.equal(prime.vaultedTemplate, '当前已入库，没有可刷取的遗物')
 })

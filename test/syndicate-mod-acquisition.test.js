@@ -14,7 +14,7 @@ test('电击奇兵通过集团变量和 method JSON 渲染双来源', () => {
   assert.equal(result.structuredMethods.length, 2)
   assert.deepEqual(result.entry.subject.categoryRefs, ['syndicatemod', 'warframemod', 'standardmod'])
   assert.equal(result.description, [
-    '电击奇兵：电击强化：对队友施展技能，能使 15 米范围内队友的攻击增加 100% 电击伤害，持续 40 秒{集团卡}的战甲强化MOD',
+    '电击奇兵：电击强化：对队友施展技能，能使 15 米范围内队友的攻击增加 100% 电击伤害，持续 40 秒的战甲强化MOD',
     '',
     '获取来源：',
     '- 在均衡仲裁者达到最高等级后使用声望兑换',
@@ -38,7 +38,8 @@ test('全部已发布集团 Mod 都能渲染且不泄露英文集团名', () => 
   for (const entry of entries) {
     assert.equal(entry.subject.categoryRefs[0], 'syndicatemod', entry.subject.canonical)
     const result = core.getAcquisition(entry.subject.canonical)
-    assert.match(result.description, /\{集团卡\}的.+强化MOD/)
+    assert.match(result.description, /的.+强化MOD/)
+    assert.doesNotMatch(result.description, /\{集团卡\}/)
     assert.match(result.description, /获取来源：/)
     assert.doesNotMatch(result.description, /Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence/)
   }

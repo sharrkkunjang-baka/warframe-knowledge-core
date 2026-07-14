@@ -8,6 +8,7 @@ const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'knowledge', 'curreicies')
 const OFFICIAL_ITEMS = path.join(ROOT, 'knowledge', 'generated', 'official-items.json')
 const FRAME_CURRENCIES = Object.freeze([
+  { canonical: 'Fergolyte', displayName: '铁离石', kind: 'resource-token', officialSource: 'Warframe Update 40 official zh-hans patch notes', acquisitionDependency: { type: 'bounty-completion-or-compost', questId: 'quest.the-new-war', locationId: 'hub.fortuna-airlock', npcId: 'npc.nightcap', bountyName: '深矿赏金', normalAmount: { min: 11, max: 15 }, steelPathAmount: { min: 15, max: 19 }, compostAmount: 1, source: 'Warframe Update 40 official zh-hans patch notes' } },
   { canonical: 'Vessel Capillaries', kind: 'resource-token', acquisitionDependency: { type: 'mission-enemy-drop', missionNodeId: 'mission-node.armatus', missionTypeId: 'mission-type.disruption', enemyRole: 'Demolisher', normalAmount: { min: 2, max: 4 }, steelPathAmount: { min: 5, max: 7 }, source: 'Dante Wiki Acquisition' } },
   { canonical: 'Stock', kind: 'exchange-token' },
   { canonical: 'Belric Crystal Fragment', kind: 'resource-token' },
@@ -31,11 +32,11 @@ function build() {
   const official = officialByCanonical()
   for (const definition of FRAME_CURRENCIES) {
     const item = official.get(definition.canonical)
-    if (!item || item.localizationStatus !== 'official-zh') throw new Error(`${definition.canonical}: 官方物品目录缺少官方中文`)
+    if ((!item || item.localizationStatus !== 'official-zh') && !definition.displayName) throw new Error(`${definition.canonical}: 官方物品目录缺少官方中文`)
     const id = ID_OVERRIDES[definition.canonical] || `currency.${definition.canonical.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
     for (const [existingId, existing] of byId) if (existing.canonical === definition.canonical && existingId !== id) byId.delete(existingId)
     const previous = byId.get(id) || {}
-    byId.set(id, { id, canonical: definition.canonical, displayName: item.displayName, kind: definition.kind, aliases: definition.aliases || [], officialUniqueName: item.uniqueName, officialSource: 'knowledge/generated/official-items.json', ...previous, ...(definition.acquisitionDependency ? { acquisitionDependency: definition.acquisitionDependency } : {}) })
+    byId.set(id, { id, canonical: definition.canonical, displayName: definition.displayName || item.displayName, kind: definition.kind, aliases: definition.aliases || [], ...(item?.uniqueName ? { officialUniqueName: item.uniqueName } : {}), officialSource: definition.officialSource || 'knowledge/generated/official-items.json', ...previous, ...(definition.acquisitionDependency ? { acquisitionDependency: definition.acquisitionDependency } : {}) })
   }
   return [...byId.values()]
 }

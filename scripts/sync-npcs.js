@@ -15,11 +15,11 @@ const CATEGORY_PAGES = Object.freeze({
 })
 const ROOT_NPCS = Object.freeze(['Lotus','Ordis'])
 // 仅收录能确认的官方简中；空字符串表示未核验，运行时必须回退 canonical，禁止猜译。
-const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', 'Cephalon Simaris': '中枢 Simaris' })
+const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', 'Cephalon Simaris': '中枢 Simaris', Nightcap: '夜帽' })
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') }
 function npcId(name) { return `npc.${slug(name)}` }
 function sourceFor(db, name) { const page = db.getPage(name); return page ? { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId } : { pageTitle: name, missing: true } }
-const NPC_ROLES = Object.freeze({ Konzu: ['bounty-provider'], Eudico: ['bounty-provider'], Mother: ['bounty-provider'], Hunhow: ['exchange-provider'] })
+const NPC_ROLES = Object.freeze({ Konzu: ['bounty-provider'], Eudico: ['bounty-provider'], Mother: ['bounty-provider'], Nightcap: ['bounty-provider', 'exchange-provider'], Hunhow: ['exchange-provider'] })
 function buildNpc(db, name, category, locationId) { return { id: npcId(name), canonical: name, displayName: AUDITED_ZH[name] || '', kind: 'npc', aliases: [], ...(NPC_ROLES[name] ? { roles: NPC_ROLES[name] } : {}), category, locationId, factionId: null, source: sourceFor(db, name), localization: { status: AUDITED_ZH[name] ? 'official-audited' : 'unresolved', rule: 'empty-displayName-falls-back-to-canonical' } } }
 function listCharacterPages(resolved) {
   const raw = new Database(resolved, { readonly: true, fileMustExist: true })
