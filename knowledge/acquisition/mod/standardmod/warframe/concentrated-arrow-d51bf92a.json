@@ -9,6 +9,7 @@
       "displayName": "集中箭矢",
       "category": "mod",
       "categoryRefs": [
+        "syndicatemod",
         "warframemod",
         "standardmod"
       ]
@@ -31,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Concentrated_Arrow",
@@ -40,8 +41,10 @@
     ],
     "gameVersion": "warframe-items@1.1269.87",
     "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "official-sync:syndicate-exchange"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -50,7 +53,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 2
+      "version": 3
     },
     "modAcquisition": {
       "generated": {
@@ -68,13 +71,34 @@
             "pageId": 1290734,
             "revisionId": 2729748,
             "pageTimestamp": "2026-02-12T21:10:09Z",
-            "compiledAt": "2026-07-14T05:59:14.151Z",
+            "compiledAt": "2026-07-14T16:14:27.650Z",
             "sourceDatabase": {
               "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.cephalon-suda",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "Cephalon Suda"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.the-perrin-sequence",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "The Perrin Sequence"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -255,15 +279,17 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
+          "status": "complete"
         }
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "official-sync:syndicate-exchange"
+        ]
       }
     }
   }

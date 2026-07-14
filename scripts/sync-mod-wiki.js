@@ -54,6 +54,11 @@ function buildPlan(options = {}) {
         generatedWiki = compileModWikiPage(page, sourceInfo(report), compiledAt)
         counts.compiled += 1
       }
+      const officialMethods = (entry.modAcquisition?.generated?.wiki?.methods || []).filter(method => method.type === 'syndicate-exchange')
+      if (officialMethods.length) {
+        generatedWiki.methods = [...officialMethods, ...(generatedWiki.methods || []).filter(method => method.type !== 'syndicate-exchange')]
+        if (generatedWiki.status === 'unresolved') generatedWiki.status = 'complete'
+      }
       counts[generatedWiki.status] += 1
       for (const item of generatedWiki.unresolvedEntities || []) unresolved.push({ mod: canonical, ...item, pageTitle: generatedWiki.wiki?.pageTitle || null, revisionId: generatedWiki.wiki?.revisionId || null })
       const nextEntry = JSON.parse(JSON.stringify(entry))

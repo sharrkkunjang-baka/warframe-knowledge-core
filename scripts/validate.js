@@ -36,6 +36,7 @@ const resourceRoot = path.join(knowledgeRoot, 'acquisition', 'resource');
 const resourceIndexPath = path.join(resourceRoot, 'categories.json');
 const resourceIndex = fs.existsSync(resourceIndexPath) ? JSON.parse(fs.readFileSync(resourceIndexPath, 'utf8')) : null;
 const resourceMethods = fs.existsSync(path.join(resourceRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(resourceRoot, 'method')).filter(item => item.kind === 'resource-acquisition-method') : [];
+const modMethods = require('../src/loader').readObjectDirectory(path.join(knowledgeRoot, 'acquisition', 'mod', 'method')).filter(item => item.kind === 'mod-acquisition-method');
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
 const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
@@ -109,6 +110,12 @@ for (const method of resourceMethods) {
   if (!/^resource-/.test(method.category || '') || typeof method.template !== 'string' || !method.template.trim()) errors.push(`resource/method: 无效方法 ${method.category}`);
   for (const [name, value] of Object.entries(method)) if ((name === 'template' || name.endsWith('Template')) && (typeof value !== 'string' || !value.trim())) errors.push(`resource/method: ${method.category}.${name} 必须是非空字符串`);
 }
+for (const method of modMethods) {
+  if (method.schemaVersion !== 1 || !method.category || typeof method.headerTemplate !== 'string' || typeof method.sourceTemplate !== 'string' || typeof method.sourcesHeader !== 'string') errors.push(`mod/method: 无效方法 ${method.category || '<unknown>'}`);
+}
+const modMethodKeys = new Set(modMethods.map(method => method.category));
+const factionIds = new Set(entities.factions.map(faction => faction.id));
+
 for (const item of resourceIndex?.resources || []) {
   if (!resourceMethodKeys.has(item.category)) errors.push(`${item.canonical}: 缺少资源 method ${item.category}`);
   if (!fs.existsSync(path.join(resourceRoot, item.file))) errors.push(`${item.canonical}: 资源文件不存在 ${item.file}`);
@@ -127,6 +134,12 @@ for (const entry of entries) {
   }
   if (entry.reviewStatus === 'approved' && (!Array.isArray(entry.reviewedBy) || !entry.reviewedBy.length)) errors.push(`${entry.id}: approved 条目必须有人审核`);
   if (entry.module === 'acquisition') {
+    for (const method of entry.modAcquisition?.generated?.wiki?.methods || []) {
+      if (method.type === 'syndicate-exchange') {
+        if (!modMethodKeys.has(method.type)) errors.push(`${entry.id}: 缺少 Mod method ${method.type}`);
+        if (!factionIds.has(method.factionId)) errors.push(`${entry.id}: 集团变量不存在 ${method.factionId}`);
+      }
+    }
     if (entry.kind !== 'knowledge') errors.push(`${entry.id}: acquisition 必须属于 knowledge`);
     if (!entry.subject?.canonical || !entry.subject?.displayName || !entry.subject?.category) errors.push(`${entry.id}: acquisition 缺少完整 subject`);
     if (entry.subject?.category && !baseCategoryIds.has(entry.subject.category)) errors.push(`${entry.id}: 基础分类无效 ${entry.subject.category}`);
@@ -211,6 +224,10 @@ for (const entry of entries) {
       const wiki = entry.modAcquisition?.generated?.wiki;
       if (wiki && (!['complete', 'partial', 'unresolved'].includes(wiki.status) || !Array.isArray(wiki.methods) || !Array.isArray(wiki.evidence) || !wiki.mechanicsEvidence || !Array.isArray(wiki.unresolvedEntities))) errors.push(`${entry.id}: generated.wiki 字段不完整`);
       for (const method of wiki?.methods || []) {
+        if (method.type === 'syndicate-exchange') {
+          if (method.provenance?.source !== 'warframe-items' || !method.provenance?.canonical) errors.push(`${entry.id}: 集团 method 缺少官方 provenance`);
+          continue;
+        }
         if (!method.type || !method.provenance?.pageTitle || !method.provenance?.revisionId || !method.provenance?.section || !method.provenance?.excerpt) errors.push(`${entry.id}: Wiki method 缺少类型或 provenance`);
         if (method.reviewStatus !== 'draft') errors.push(`${entry.id}: 自动 Wiki method 禁止标记为非 draft`);
       }

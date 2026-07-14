@@ -1,6 +1,7 @@
 'use strict'
 
 const crypto = require('node:crypto')
+const path = require('node:path')
 const {
   getCanonical,
   getDisplayName,
@@ -10,7 +11,12 @@ const {
 } = require('./playable-mod-filter')
 
 const GENERATOR_NAME = 'sync-mods'
-const GENERATOR_VERSION = 2
+const GENERATOR_VERSION = 3
+const SYNDICATE_IDS = Object.freeze({ 'Arbiters of Hexis': 'faction.arbiters-of-hexis', 'Red Veil': 'faction.red-veil', 'Steel Meridian': 'faction.steel-meridian', 'Cephalon Suda': 'faction.cephalon-suda', 'New Loka': 'faction.new-loka', 'The Perrin Sequence': 'faction.the-perrin-sequence' })
+const RAW_MOD_DROPS_BY_UNIQUE_NAME = require(path.join(path.dirname(require.resolve('warframe-items')), 'data', 'json', 'Mods.json')).reduce((index, mod) => {
+  index.set(mod.uniqueName, [...(index.get(mod.uniqueName) || []), ...(mod.drops || [])])
+  return index
+}, new Map())
 const USER_FACING_REPLACEMENTS = new Map([
   ['Atlas', '阿特拉斯'],
   ['Mesa', '梅萨'],
@@ -83,6 +89,7 @@ function getCategoryRefs(item) {
   const typeCategory = getTypeCategory(item)
   if (variant === 'prime') return ['primemod', typeCategory]
   if (variant === 'flawed') return ['flawedmod', typeCategory]
+  if (getSyndicateMethods(item).length) return ['syndicatemod', typeCategory, 'standardmod']
   return [typeCategory, 'standardmod']
 }
 
@@ -100,11 +107,18 @@ function getWikiSource(item) {
   }
 }
 
+function getSyndicateMethods(item) {
+  const drops = RAW_MOD_DROPS_BY_UNIQUE_NAME.get(item.uniqueName) || item.drops || []
+  return [...new Set(drops.map(drop => String(drop.location || '').split(',')[0].trim()).filter(name => SYNDICATE_IDS[name]))]
+    .map(name => ({ type: 'syndicate-exchange', factionId: SYNDICATE_IDS[name], rankRequirement: 'max', currencyType: 'standing', provenance: { source: 'warframe-items', canonical: name } }))
+}
+
 function buildModEntry(item, localized = {}, options = {}) {
   const canonical = getCanonical(item)
   const displayName = getDisplayName(item, localized)
   const variant = getModVariant(item)
-  const hasDefaultAcquisition = variant === 'prime'
+  const syndicateMethods = getSyndicateMethods(item)
+  const hasDefaultAcquisition = variant === 'prime' || syndicateMethods.length > 0
   const identity = getGeneratedIdentity(item)
   const effectDetails = getEffectDetails(item, localized)
   const entry = {
@@ -138,14 +152,14 @@ function buildModEntry(item, localized = {}, options = {}) {
           variant,
           typeFolder: getTypeFolder(item)
         },
-        wiki: null
+        wiki: syndicateMethods.length ? { status: 'complete', methods: syndicateMethods, evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] } : null
       },
       manual: {
         methods: [],
         methodRefs: [],
         overrides: {},
         reviewStatus: hasDefaultAcquisition ? 'approved' : 'draft',
-        reviewedBy: hasDefaultAcquisition ? ['category-default:primemod'] : []
+        reviewedBy: syndicateMethods.length ? ['official-sync:syndicate-exchange'] : hasDefaultAcquisition ? ['category-default:primemod'] : []
       }
     },
     acquisitionStatus: hasDefaultAcquisition ? 'complete' : 'stub',
@@ -153,7 +167,7 @@ function buildModEntry(item, localized = {}, options = {}) {
     gameVersion: options.gameVersion || 'warframe-items',
     updatedAt: options.updatedAt || new Date().toISOString().slice(0, 10),
     reviewStatus: hasDefaultAcquisition ? 'approved' : 'draft',
-    reviewedBy: hasDefaultAcquisition ? ['category-default:primemod'] : [],
+    reviewedBy: syndicateMethods.length ? ['official-sync:syndicate-exchange'] : hasDefaultAcquisition ? ['category-default:primemod'] : [],
     tags: ['acquisition', 'mod', `${variant}-mod`, `${getTypeFolder(item)}-mod`],
     generator: {
       name: GENERATOR_NAME,
@@ -179,6 +193,18 @@ function migrateManualModData(entry = {}) {
   }
 }
 
+function mergeGeneratedWiki(generatedWiki, oldWiki) {
+  if (!generatedWiki) return oldWiki || null
+  if (!oldWiki) return generatedWiki
+  const officialMethods = (generatedWiki.methods || []).filter(method => method.type === 'syndicate-exchange')
+  if (!officialMethods.length) return oldWiki
+  return {
+    ...oldWiki,
+    methods: [...officialMethods, ...(oldWiki.methods || []).filter(method => method.type !== 'syndicate-exchange')],
+    status: oldWiki.status === 'unresolved' ? 'complete' : oldWiki.status
+  }
+}
+
 function mergeModEntry(generatedEntry, oldEntry) {
   if (!oldEntry) return generatedEntry
   const next = { ...oldEntry, ...generatedEntry }
@@ -189,9 +215,17 @@ function mergeModEntry(generatedEntry, oldEntry) {
   next.modAcquisition = {
     generated: {
       ...generatedEntry.modAcquisition.generated,
-      wiki: oldEntry.modAcquisition?.generated?.wiki || null
+      wiki: mergeGeneratedWiki(generatedEntry.modAcquisition.generated.wiki, oldEntry.modAcquisition?.generated?.wiki)
     },
     manual: migrateManualModData(oldEntry)
+  }
+  const hasSyndicateRoute = next.modAcquisition.generated.wiki?.methods?.some(method => method.type === 'syndicate-exchange')
+  if (hasSyndicateRoute && next.modAcquisition.manual.reviewStatus !== 'rejected') {
+    next.modAcquisition.manual.reviewStatus = 'approved'
+    next.modAcquisition.manual.reviewedBy = [...new Set([...(next.modAcquisition.manual.reviewedBy || []), 'official-sync:syndicate-exchange'])]
+    next.acquisitionStatus = 'complete'
+    next.reviewStatus = 'approved'
+    next.reviewedBy = [...new Set([...(next.reviewedBy || []), 'official-sync:syndicate-exchange'])]
   }
   return next
 }
@@ -205,7 +239,10 @@ module.exports = {
   getEffectDetails,
   getGeneratedIdentity,
   getMaxRank,
+  getSyndicateMethods,
+  SYNDICATE_IDS,
   isGeneratedModEntry,
+  mergeGeneratedWiki,
   mergeModEntry,
   migrateManualModData,
   slugify

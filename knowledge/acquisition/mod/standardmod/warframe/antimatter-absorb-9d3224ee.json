@@ -9,6 +9,7 @@
       "displayName": "反物质吸收",
       "category": "mod",
       "categoryRefs": [
+        "syndicatemod",
         "warframemod",
         "standardmod"
       ]
@@ -31,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Antimatter_Absorb",
@@ -40,8 +41,10 @@
     ],
     "gameVersion": "warframe-items@1.1269.87",
     "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "official-sync:syndicate-exchange"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -50,7 +53,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 2
+      "version": 3
     },
     "modAcquisition": {
       "generated": {
@@ -64,7 +67,28 @@
         },
         "wiki": {
           "wiki": null,
-          "methods": [],
+          "methods": [
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.cephalon-suda",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "Cephalon Suda"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.steel-meridian",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "Steel Meridian"
+              }
+            }
+          ],
           "evidence": [],
           "mechanicsEvidence": {
             "status": "draft",
@@ -77,15 +101,17 @@
               "canonical": "Antimatter Absorb"
             }
           ],
-          "status": "unresolved"
+          "status": "complete"
         }
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "official-sync:syndicate-exchange"
+        ]
       }
     }
   }

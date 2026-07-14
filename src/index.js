@@ -196,16 +196,36 @@ function createKnowledgeCore(options = {}) {
     return { query: String(query || '').trim(), category, entries };
   };
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
+  const modMethodDefinitions = new Map((data.modMethods || []).map(method => [method.category, method]));
   const generatedAcquisitionMethods = entry => entry?.modAcquisition?.generated?.wiki?.methods || [];
   const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
   const mergeStructuredMethods = entry => {
     const methods = [...manualAcquisitionMethods(entry)];
-    const identities = new Set(methods.map(method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, rotation: method.rotation, chance: method.chance })));
+    const identities = new Set(methods.map(method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, factionId: method.factionId, rotation: method.rotation, chance: method.chance })));
     for (const method of generatedAcquisitionMethods(entry)) {
-      const key = JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, rotation: method.rotation, chance: method.chance });
+      const key = JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, factionId: method.factionId, rotation: method.rotation, chance: method.chance });
       if (!identities.has(key)) { methods.push(method); identities.add(key); }
     }
     return methods;
+  };
+  const renderModAcquisition = entry => {
+    const syndicateMethods = mergeStructuredMethods(entry).filter(method => method.type === 'syndicate-exchange');
+    if (!syndicateMethods.length) return null;
+    const definition = modMethodDefinitions.get('syndicate-exchange');
+    if (!definition) throw new Error('缺少 Mod 集团兑换 method 定义');
+    const sourceLines = syndicateMethods.map(method => {
+      const faction = data.factions.get(method.factionId);
+      if (!faction?.displayName) throw new Error(`未注册集团变量 ${method.factionId}`);
+      return renderTemplate(definition.sourceTemplate, { factionName: faction.displayName });
+    });
+    const effectText = (entry.effectDetails || []).join('；').replace(/[。；]+$/, '');
+    const category = getCategory(entry.subject?.categoryRefs?.[0]);
+    const header = renderTemplate(definition.headerTemplate, {
+      modName: entry.subject?.displayName || entry.title,
+      effectText,
+      categoryText: category?.displayName ? `{${category.displayName}}` : ''
+    });
+    return [header, `${definition.sourcesHeader}\n${sourceLines.join('\n')}`].join('\n\n');
   };
   const expandMethodRefs = entry => {
     const explicitRefs = entry.modAcquisition?.manual?.methodRefs || entry.methodRefs || [];
@@ -337,7 +357,7 @@ function createKnowledgeCore(options = {}) {
       query: raw,
       resolution,
       entry,
-      description: frameRoute?.lines?.join('\n') || getAcquisitionDescription(entry),
+      description: frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry),
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,

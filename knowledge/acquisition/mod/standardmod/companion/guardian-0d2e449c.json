@@ -9,6 +9,7 @@
       "displayName": "守护者",
       "category": "mod",
       "categoryRefs": [
+        "syndicatemod",
         "companionmod",
         "standardmod"
       ]
@@ -31,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Guardian",
@@ -40,8 +41,10 @@
     ],
     "gameVersion": "warframe-items@1.1269.87",
     "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "official-sync:syndicate-exchange"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -50,7 +53,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 2
+      "version": 3
     },
     "modAcquisition": {
       "generated": {
@@ -68,13 +71,33 @@
             "pageId": 22923,
             "revisionId": 2768427,
             "pageTimestamp": "2026-04-19T18:56:41Z",
-            "compiledAt": "2026-07-14T05:59:08.209Z",
+            "compiledAt": "2026-07-14T16:14:21.900Z",
             "sourceDatabase": {
               "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
               "size": 2317266944
             }
           },
           "methods": [
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.cephalon-suda",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "Cephalon Suda"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.the-perrin-sequence",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "The Perrin Sequence"
+              }
+            },
             {
               "type": "enemy-drop",
               "dropTableChance": 3,
@@ -228,8 +251,10 @@
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "official-sync:syndicate-exchange"
+        ]
       }
     }
   }

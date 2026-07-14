@@ -60,9 +60,10 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const frameCategoriesPath = path.join(frameDirectory, 'categories.json');
   const frameCategories = fs.existsSync(frameCategoriesPath) ? deepFreeze(readJson(frameCategoriesPath)) : null;
   const frameMethods = deepFreeze(readObjectDirectory(path.join(frameDirectory, 'method')).filter(item => item.kind === 'frame-acquisition-method'));
+  const modMethods = deepFreeze(readObjectDirectory(path.join(knowledgeDirectory, 'acquisition', 'mod', 'method')).filter(item => item.kind === 'mod-acquisition-method'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, frameCategories, frameMethods, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, frameCategories, frameMethods, modMethods, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

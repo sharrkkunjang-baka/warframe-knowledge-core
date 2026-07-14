@@ -9,6 +9,7 @@
       "displayName": "镀金真相",
       "category": "mod",
       "categoryRefs": [
+        "syndicatemod",
         "primarymod",
         "standardmod"
       ]
@@ -32,7 +33,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Gilded_Truth",
@@ -41,8 +42,10 @@
     ],
     "gameVersion": "warframe-items@1.1269.87",
     "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "official-sync:syndicate-exchange"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -51,7 +54,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 2
+      "version": 3
     },
     "modAcquisition": {
       "generated": {
@@ -69,13 +72,24 @@
             "pageId": 573239,
             "revisionId": 2654942,
             "pageTimestamp": "2025-01-06T03:46:24Z",
-            "compiledAt": "2026-07-14T05:59:11.489Z",
+            "compiledAt": "2026-07-14T16:14:25.031Z",
             "sourceDatabase": {
               "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.arbiters-of-hexis",
+              "rankRequirement": "max",
+              "currencyType": "standing",
+              "provenance": {
+                "source": "warframe-items",
+                "canonical": "Arbiters of Hexis"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -106,15 +120,17 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
+          "status": "complete"
         }
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "official-sync:syndicate-exchange"
+        ]
       }
     }
   }
