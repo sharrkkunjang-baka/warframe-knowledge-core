@@ -46,12 +46,12 @@ test('Wisp exposes four blueprint drops and decimal probabilities', () => {
   assert.equal(acquisition.formatChance(22.56), '22.56%');
 });
 
-test('Oberon Railjack cache sources use official Chinese node names', () => {
+test('Oberon summarizes audited Proxima outpost rewards without node or cache mistranslation', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Oberon'), materials: { available: false } });
-  assert.match(rendered, /头：地球比邻星域\/本达尔星团任务中的白色储藏箱 10%/);
-  assert.match(rendered, /机体：土星比邻星域\/卡希欧安息处任务中的白色储藏箱 10%/);
-  assert.match(rendered, /系统：.*地球比邻星域\/虚无神殿任务中的白色储藏箱 10%/);
-  assert.doesNotMatch(rendered, /Bendar|Kasio|Iota Temple|Caches/);
+  assert.match(rendered, /头：完成地球比邻星域任务中的前哨站额外目标：10%/);
+  assert.match(rendered, /机体：完成土星比邻星域任务中的前哨站额外目标：10%/);
+  assert.match(rendered, /系统：完成地球比邻星域任务中的前哨站额外目标：10%/);
+  assert.doesNotMatch(rendered, /Bendar|Kasio|Iota Temple|Caches|白色储藏箱|虚空风暴/);
 });
 test('Caliban explains Narmer bounty rotation without backend letters or probabilities', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Caliban'), materials: { available: false } });
