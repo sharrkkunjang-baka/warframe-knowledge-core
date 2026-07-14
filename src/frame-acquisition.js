@@ -35,13 +35,18 @@ const STABLE_LOCATION_ZH = {
   ...Object.fromEntries(LOCATION_REGISTRY.values.map(location => [location.canonical, location.displayName]))
 };
 
-const FRAME_KNOWLEDGE = require(path.join(CORE_ROOT, 'knowledge', 'acquisition', 'warframe', 'audited-sources.json'));
-const FRAME_AUDIT = FRAME_KNOWLEDGE.find(entry => entry.id === 'acquisition.warframe.audited-sources')?.frameAcquisition || {};
-const FRAME_SOURCE_OVERRIDES = Object.freeze(FRAME_AUDIT.sources || {});
-const FRAME_ACQUISITION_NOTES = Object.freeze(FRAME_AUDIT.notes || {});
-const SPECIAL_FRAMES = FRAME_AUDIT.specialFrames || {};
-const CALIBAN_PRIME = Object.freeze({ ...SPECIAL_FRAMES.calibanPrime, components: PARTS.map(part => ({ part, name: part, drops: [] })) });
-const SIRIUS_ORION = Object.freeze({ ...SPECIAL_FRAMES.siriusOrion, components: PARTS.map(part => ({ part, drops: [{ ...SPECIAL_FRAMES.siriusOrion.drop, type: `Sirius & Orion ${part} Blueprint` }] })) });
+const FRAME_KNOWLEDGE_DIR = path.join(CORE_ROOT, 'knowledge', 'acquisition', 'warframe');
+const FRAME_KNOWLEDGE = fs.readdirSync(FRAME_KNOWLEDGE_DIR, { withFileTypes: true })
+  .filter(entry => entry.isFile() && entry.name.endsWith('.json'))
+  .sort((a, b) => a.name.localeCompare(b.name, 'en'))
+  .flatMap(entry => require(path.join(FRAME_KNOWLEDGE_DIR, entry.name)));
+const FRAME_KNOWLEDGE_INDEX = new Map(FRAME_KNOWLEDGE.map(entry => [entry.subject.canonical, entry]));
+const FRAME_SOURCE_OVERRIDES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => entry.frameAcquisition?.sources).map(entry => [entry.subject.canonical, entry.frameAcquisition.sources])));
+const FRAME_ACQUISITION_NOTES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => entry.frameAcquisition?.note).map(entry => [entry.subject.canonical, entry.frameAcquisition.note])));
+const CALIBAN_PRIME_DATA = FRAME_KNOWLEDGE_INDEX.get('Caliban Prime').frameAcquisition.specialFrame;
+const SIRIUS_ORION_DATA = FRAME_KNOWLEDGE_INDEX.get('Sirius & Orion').frameAcquisition.specialFrame;
+const CALIBAN_PRIME = Object.freeze({ ...CALIBAN_PRIME_DATA, components: PARTS.map(part => ({ part, name: part, drops: [] })) });
+const SIRIUS_ORION = Object.freeze({ ...SIRIUS_ORION_DATA, components: PARTS.map(part => ({ part, drops: [{ ...SIRIUS_ORION_DATA.drop, type: `Sirius & Orion ${part} Blueprint` }] })) });
 const QUEST_SOURCE_ZH = Object.freeze(OFFICIAL_QUESTS.byEnglish || {});
 function localizeQuestName(name) {
   const raw = String(name || '').trim();
