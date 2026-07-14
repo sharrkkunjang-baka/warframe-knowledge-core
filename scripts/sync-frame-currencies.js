@@ -16,6 +16,7 @@ const FRAME_CURRENCIES = Object.freeze([
   { canonical: 'Fate Pearl', kind: 'resource-token' },
   { canonical: 'Lua Thrax Plasm', kind: 'resource-token' },
   { canonical: 'Vainthorn', kind: 'exchange-token' },
+  { canonical: 'Scuttler Husks', displayName: '急行蛛外壳', kind: 'exchange-token', officialSource: 'Warframe Update 39 official zh-hans patch notes', acquisitionDependency: { acquisitionSummary: '完成双衍王境织屿人节点的复眠螺旋，在结尾击败接肢怪后获得：普通模式 3-5 个，钢铁之路 5-8 个', sourceRefs: ['https://www.warframe.com/zh-hans/patch-notes/pc/39-0-0'], reviewStatus: 'approved' } },
   { canonical: 'Vestigial Motes', kind: 'resource-token', acquisitionDependency: { acquisitionSummary: '完成天王星布鲁图斯的扬升任务结算获得，任务中的帕尔沃斯姐妹也会额外掉落', sourceRefs: ['https://wiki.warframe.com/w/Vestigial_Motes'], reviewStatus: 'approved' } },
   { canonical: 'Beating Heartstrings', kind: 'resource-token' },
   { canonical: 'Vitus Essence', kind: 'exchange-token' },

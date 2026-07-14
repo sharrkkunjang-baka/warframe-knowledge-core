@@ -63,23 +63,25 @@ const COMPONENT_OVERRIDES = Object.freeze({
   Vauban: {},
   Nokko: { prerequisiteQuestId: 'quest.the-new-war', hubs: [{ locationId: 'hub.fortuna', subLocationId: 'hub.fortuna-airlock', npcId: 'npc.nightcap' }], bountyName: '深矿赏金', exchange: { npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyId: 'currency.fergolyte', componentCost: 160, blueprintCost: 240, totalCost: 720, rankName: '园丁', rank: 4 }, sourceCanonical: ['Deepmines Bounties'] },
   Dante: { sources: [{ type: 'mission-node', locationId: 'planet.deimos', missionNodeId: 'mission-node.armatus', rotation: 'C' }], exchange: { npcId: 'npc.loid', currencyId: 'currency.vessel-capillaries', componentCost: 90, blueprintCost: 270, totalCost: 540 }, sourceCanonical: ['Deimos/Armatus (Disruption), Rotation C'] },
-  Jade: { locationId: 'planet.uranus', missionNodeId: 'mission-node.brutus', dropChance: 4.63, exchange: { npcId: 'npc.ordis', currencyId: 'currency.vestigial-motes', componentCost: 150, blueprintCost: 450 }, sourceCanonical: 'Uranus/Brutus (Ascension)' }
+  Jade: { locationId: 'planet.uranus', missionNodeId: 'mission-node.brutus', dropChance: 4.63, exchange: { npcId: 'npc.ordis', currencyId: 'currency.vestigial-motes', componentCost: 150, blueprintCost: 450 }, sourceCanonical: 'Uranus/Brutus (Ascension)' },
+  Oraxia: { prerequisiteQuestId: 'quest.the-hex', locationId: 'landscape.duviri', missionNodeId: 'mission-node.isleweaver', dropChance: 7.69, exchange: { npcId: 'npc.acrithis', locationId: 'hub.dormizone', currencyId: 'currency.scuttler-husks', componentCost: 20, blueprintCost: 60, totalCost: 120 }, sourceCanonical: 'Duviri/Isleweaver' }
 })
 
 // require 是互斥的获取门槛变量。none 为默认值；standing 通过 NPC 变量
 // 自动解析地点和集团等级；currency 的 isBuffuseless 默认 true。
 const REQUIRE_OVERRIDES = Object.freeze({
   Baruuk: { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' },
-  Citrine: { type: 'currency', npcId: 'npc.otak', locationId: 'hub.necralisk', currencyIds: ['currency.belric-crystal-fragment', 'currency.rania-crystal-fragment'], currencyAmounts: { 'currency.belric-crystal-fragment': 1500, 'currency.rania-crystal-fragment': 1550 } },
-  Dagath: { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currencyIds: ['currency.vainthorn'], currencyAmounts: { 'currency.vainthorn': 102 } },
-  Dante: { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currencyIds: ['currency.vessel-capillaries'], currencyAmounts: { 'currency.vessel-capillaries': 540 } },
-  Follie: { type: 'currency', npcId: 'npc.aspirant-zorba', locationId: 'hub.any-relay', currencyIds: ['currency.atramentum'], currencyAmounts: { 'currency.atramentum': 2400 } },
+  Citrine: { type: 'currency', npcId: 'npc.otak', locationId: 'hub.necralisk', currency: [{ currencyId: 'currency.belric-crystal-fragment', amount: 1500 }, { currencyId: 'currency.rania-crystal-fragment', amount: 1550 }] },
+  Dagath: { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currency: [{ currencyId: 'currency.vainthorn', amount: 102 }] },
+  Dante: { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.vessel-capillaries', amount: 540 }] },
+  Follie: { type: 'currency', npcId: 'npc.aspirant-zorba', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.atramentum', amount: 2400 }] },
   Hildryn: { type: 'standing', npcId: 'npc.little-duck', rank: 2, rankName: 'Agent' },
-  Jade: { type: 'currency', npcId: 'npc.ordis', locationId: 'hub.drifters-camp', currencyIds: ['currency.vestigial-motes'], currencyAmounts: { 'currency.vestigial-motes': 900 } },
-  Kullervo: { type: 'currency', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currencyIds: ['currency.kullervos-bane'], currencyAmounts: { 'currency.kullervos-bane': 42 } },
-  Nokko: { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyIds: ['currency.fergolyte'], currencyAmounts: { 'currency.fergolyte': 720 } },
-  'Sirius & Orion': { type: 'currency', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currencyIds: ['currency.jade-talent', 'currency.crimson-talent'], currencyAmounts: { 'currency.jade-talent': 545, 'currency.crimson-talent': 545 } },
-  Vauban: { type: 'currency', locationId: 'interface.nightwave', currencyIds: ['currency.nora-s-mix-vol-8-cred'], currencyAmounts: { 'currency.nora-s-mix-vol-8-cred': 75 } }
+  Jade: { type: 'currency', npcId: 'npc.ordis', locationId: 'hub.drifters-camp', currency: [{ currencyId: 'currency.vestigial-motes', amount: 900 }] },
+  Kullervo: { type: 'currency', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currency: [{ currencyId: 'currency.kullervos-bane', amount: 42 }] },
+  Nokko: { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currency: [{ currencyId: 'currency.fergolyte', amount: 720 }] },
+  Oraxia: { type: 'currency', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currency: [{ currencyId: 'currency.scuttler-husks', amount: 120 }] },
+  'Sirius & Orion': { type: 'currency', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currency: [{ currencyId: 'currency.jade-talent', amount: 545 }, { currencyId: 'currency.crimson-talent', amount: 545 }] },
+  Vauban: { type: 'currency', locationId: 'interface.nightwave', currency: [{ currencyId: 'currency.nora-s-mix-vol-8-cred', amount: 75 }] }
 })
 
 function categoryDirectory(categoryId) { return CATEGORY_DIRS[categoryId] || null }

@@ -10,7 +10,7 @@
       "category": "frame",
       "officialUniqueName": "/Lotus/Powersuits/Oraxia/Oraxia",
       "categoryRefs": [
-        "frame-quest"
+        "frame-specific-mission"
       ]
     },
     "prerequisites": [],
@@ -43,7 +43,7 @@
         ],
         "acquisitionCategories": {
           "categoryRefs": [
-            "frame-quest"
+            "frame-specific-mission"
           ],
           "status": "classified",
           "source": {
@@ -57,15 +57,36 @@
           }
         },
         "routing": {
-          "componentCategory": "frame-quest",
+          "componentCategory": "frame-specific-mission",
           "blueprintCategory": null,
           "componentVariables": {
-            "sourceCanonical": []
+            "prerequisiteQuestId": "quest.the-hex",
+            "locationId": "landscape.duviri",
+            "missionNodeId": "mission-node.isleweaver",
+            "dropChance": 7.69,
+            "exchange": {
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "currencyId": "currency.scuttler-husks",
+              "componentCost": 20,
+              "blueprintCost": 60,
+              "totalCost": 120
+            },
+            "sourceCanonical": "Duviri/Isleweaver"
           },
           "blueprintVariables": {},
           "blueprintSource": "same-as-components",
           "require": {
-            "type": "none"
+            "type": "currency",
+            "npcId": "npc.acrithis",
+            "locationId": "hub.dormizone",
+            "currency": [
+              {
+                "currencyId": "currency.scuttler-husks",
+                "amount": 120
+              }
+            ],
+            "isBuffuseless": true
           }
         }
       },

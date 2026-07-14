@@ -29,7 +29,9 @@ function generatedEntries() {
     { id: 'hub.dormizone', canonical: 'Dormizone', displayName: '宿舍', kind: 'hub', aliases: [], parentId: 'hub.zariman', officialSource: 'audited-official-zh' },
     { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' },
     { id: 'hub.clan-dojo', canonical: 'Clan Dojo', displayName: '氏族道场的 Dagath 空阁', kind: 'hub', aliases: [], officialSource: 'Warframe Wiki - Dagath' },
-    { id: 'interface.nightwave', canonical: 'Nightwave Cred Offerings', displayName: '午夜电波贡品界面', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki - Vauban' }
+    { id: 'interface.nightwave', canonical: 'Nightwave Cred Offerings', displayName: '午夜电波贡品界面', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki - Vauban' },
+    { id: 'landscape.duviri', canonical: 'Duviri', displayName: '双衍王境', kind: 'landscape', aliases: [], officialSource: 'Warframe Update 39 official zh-hans patch notes' },
+    { id: 'mission-node.isleweaver', canonical: 'Isleweaver', displayName: '织屿人', kind: 'mission-node', aliases: [], parentId: 'landscape.duviri', officialSource: 'Warframe Update 39 official zh-hans patch notes' }
   )
   for (const frame of WARFRAMES.filter(item => !item.isPrime)) for (const component of frame.components || []) for (const drop of component.drops || []) {
     const raw = String(drop.location || '').trim()

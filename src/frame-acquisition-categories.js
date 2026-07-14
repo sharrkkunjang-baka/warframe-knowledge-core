@@ -21,13 +21,14 @@ const MANUAL_OVERRIDES = Object.freeze({
   Lavos: ['frame-specific-mission'],
   Nokko: ['frame-bounty'],
   Octavia: ['frame-mixed-missions'],
+  Oraxia: ['frame-specific-mission'],
   Volt: ['frame-dojo'],
   Xaku: ['frame-bounty']
 })
 const QUEST_SIGNAL = /\bquest\b|during Awakening/i
 const DOJO_SIGNAL = /Clan Dojo|Tenno Lab|Dagath's Hollow|Ventkids Bash Lab|dojo research/i
 const ASSASSINATION_SIGNAL = /\bAssassination\b|component blueprints (?:can be |are )?obtained from defeating/i
-const SPECIFIC_SIGNAL = /Kullervo's Hold|Kullervo's Bane|Orowyrm|Empyrean|Railjack|Sanctuary Onslaught|Granum Void|Mirror Defense|Conjunction Survival|Tyana Pass|Isolation Vault|Albrecht'?s Laboratories|Ascension|Abyssal Zone|Shrine Defense|Scoria's Angel|The Kuva Wytch|Follie's Hunt|Void Cascade|Void Flood|Armageddon/i
+const SPECIFIC_SIGNAL = /Kullervo's Hold|Kullervo's Bane|Orowyrm|Isleweaver|Triumph of Dust|Empyrean|Railjack|Sanctuary Onslaught|Granum Void|Mirror Defense|Conjunction Survival|Tyana Pass|Isolation Vault|Albrecht'?s Laboratories|Ascension|Abyssal Zone|Shrine Defense|Scoria's Angel|The Kuva Wytch|Follie's Hunt|Void Cascade|Void Flood|Armageddon/i
 const BOUNTY_SIGNAL = /\bBount(?:y|ies)\b/i
 const STANDARD_MISSION_SIGNAL = /\b(?:Spy|Defense|Survival|Disruption|Excavation|Exterminate|Capture|Rescue|Sabotage|Interception|Defection|Infested Salvage)\b/i
 const VENDOR_SIGNAL = /purchased from|offerings|Standing|Nightwave Cred|Little Duck|Entrati Syndicate/i

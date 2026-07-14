@@ -165,12 +165,13 @@ for (const entry of entries) {
       if (requirement?.type === 'currency' && typeof requirement.isBuffuseless !== 'boolean') errors.push(`${entry.id}: currency require.isBuffuseless 必须是布尔值`);
       if (requirement?.usage !== undefined && !['exchange', 'crafting'].includes(requirement.usage)) errors.push(`${entry.id}: currency require.usage 只能是 exchange 或 crafting`);
       if (requirement?.type === 'currency' && (!requirement.locationId || !entities.locations.some(item => item.id === requirement.locationId))) errors.push(`${entry.id}: currency require 必须提供有效 locationId`);
-      if (requirement?.type === 'currency' && (!Array.isArray(requirement.currencyIds) || !requirement.currencyIds.length)) errors.push(`${entry.id}: currency require 必须提供 currencyIds`);
-      for (const currencyId of requirement?.currencyIds || []) {
+      if (requirement?.type === 'currency' && (!Array.isArray(requirement.currency) || !requirement.currency.length)) errors.push(`${entry.id}: currency require 必须提供 currency 子选项`);
+      for (const currencyRequirement of requirement?.currency || []) {
+        const currencyId = currencyRequirement?.currencyId;
         const currency = entities.currencies.find(item => item.id === currencyId);
         if (!currency) errors.push(`${entry.id}: currency require 引用不存在的货币 ${currencyId}`);
         else if (!currency.acquisitionDependency) errors.push(`${entry.id}: 货币缺少获取方式 ${currencyId}`);
-        if (!Number.isFinite(requirement.currencyAmounts?.[currencyId])) errors.push(`${entry.id}: currency require 缺少全套数量 ${currencyId}`);
+        if (!Number.isFinite(currencyRequirement?.amount)) errors.push(`${entry.id}: currency require 缺少全套数量 ${currencyId}`);
       }
       if (requirement?.type !== 'currency' && Object.hasOwn(requirement || {}, 'isBuffuseless')) errors.push(`${entry.id}: isBuffuseless 只能作为 currency require 的子选项`);
       if (requirement?.type === 'standing' && (!requirement.npcId || !Number.isInteger(requirement.rank))) errors.push(`${entry.id}: standing require 必须提供 npcId 和整数 rank`);

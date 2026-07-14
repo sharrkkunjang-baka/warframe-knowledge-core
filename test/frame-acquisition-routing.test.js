@@ -150,7 +150,7 @@ test('Narmer 赏金通过 faction 注册表自动显示为合一众', () => {
 })
 
 test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
-  const currencyFrames = ['Citrine', 'Dagath', 'Dante', 'Follie', 'Jade', 'Kullervo', 'Nokko', 'Sirius & Orion', 'Vauban']
+  const currencyFrames = ['Citrine', 'Dagath', 'Dante', 'Follie', 'Jade', 'Kullervo', 'Nokko', 'Oraxia', 'Sirius & Orion', 'Vauban']
   for (const name of currencyFrames) {
     const requirement = entry(name).frameAcquisition.generated.routing.require
     assert.equal(requirement.type, 'currency', name)
@@ -158,12 +158,12 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
     const result = createKnowledgeCore().getAcquisition(name)
     assert.equal(result.description.split('\n').at(-1), '资源数量加成：不吃', name)
   }
-  assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currencyIds: ['currency.vessel-capillaries'], currencyAmounts: { 'currency.vessel-capillaries': 540 }, isBuffuseless: true })
+  assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.vessel-capillaries', amount: 540 }], isBuffuseless: true })
   assert.match(createKnowledgeCore().getAcquisition('Dante').description, /前往解剖圣所找洛德，使用承载体毛细血管兑换[\s\S]*资源数量加成：不吃$/)
-  assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyIds: ['currency.fergolyte'], currencyAmounts: { 'currency.fergolyte': 720 }, isBuffuseless: true })
+  assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currency: [{ currencyId: 'currency.fergolyte', amount: 720 }], isBuffuseless: true })
   assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /前往气密舱找夜帽，使用铁离石兑换[\s\S]*资源数量加成：不吃$/)
   const dagath = entry('Dagath').frameAcquisition.generated.routing.require
-  assert.deepEqual(dagath, { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currencyIds: ['currency.vainthorn'], currencyAmounts: { 'currency.vainthorn': 102 }, isBuffuseless: true })
+  assert.deepEqual(dagath, { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currency: [{ currencyId: 'currency.vainthorn', amount: 102 }], isBuffuseless: true })
   assert.equal(createKnowledgeCore().getAcquisition('Dagath').description, [
     '在氏族道场的 Dagath 空阁获取蓝图；制作全套需要102 浮华荆棘',
     '货币获取：',
@@ -186,12 +186,28 @@ test('全部 currency require 都有地点、货币、数量和获取方式', ()
     const routing = entry(item.canonical).frameAcquisition.generated.routing
     if (routing.require.type !== 'currency') continue
     assert.ok(routing.require.locationId, item.canonical)
-    assert.ok(routing.require.currencyIds.length, item.canonical)
-    for (const currencyId of routing.require.currencyIds) assert.ok(Number.isFinite(routing.require.currencyAmounts[currencyId]), `${item.canonical}: ${currencyId}`)
+    assert.ok(routing.require.currency.length, item.canonical)
+    for (const currency of routing.require.currency) assert.ok(currency.currencyId && Number.isFinite(currency.amount), `${item.canonical}: ${currency.currencyId}`)
     const description = core.getAcquisition(item.canonical).description
     assert.match(description, /货币获取：/, item.canonical)
     assert.match(description, /资源数量加成：(吃|不吃)$/, item.canonical)
   }
+})
+
+test('Oraxia 蜘蛛别名通过织屿人独立任务与急行蛛外壳路由', () => {
+  const core = createKnowledgeCore()
+  const route = entry('Oraxia').frameAcquisition.generated.routing
+  assert.equal(route.componentCategory, 'frame-specific-mission')
+  assert.deepEqual(route.require.currency, [{ currencyId: 'currency.scuttler-husks', amount: 120 }])
+  assert.equal(core.getAcquisition('蜘蛛').entry.subject.canonical, 'Oraxia')
+  assert.equal(core.getAcquisition('蜘蛛').description, [
+    '在双衍王境的织屿人刷取，部件蓝图掉率 7.69%',
+    '也可在 言录使 处使用急行蛛外壳兑换：部件蓝图每张 20，总图 60',
+    '前往宿舍找言录使，使用急行蛛外壳兑换',
+    '货币获取：',
+    '- 急行蛛外壳（全套需要 120）：完成双衍王境织屿人节点的复眠螺旋，在结尾击败接肢怪后获得：普通模式 3-5 个，钢铁之路 5-8 个',
+    '资源数量加成：不吃'
+  ].join('\n'))
 })
 
 test('method 模板与编译路由可自动发布', () => {

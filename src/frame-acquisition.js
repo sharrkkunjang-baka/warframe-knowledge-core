@@ -686,16 +686,15 @@ function requirementLines(routing) {
   const locationName = locationId ? entityName(LOCATION_REGISTRY, locationId) : null;
   const npcName = npc ? entityName(NPC_REGISTRY, requirement.npcId) : null;
   if (requirement.type === 'currency') {
-    const currencyEntities = (requirement.currencyIds || []).map(id => CURRENCY_REGISTRY.get(id)).filter(Boolean);
-    const currenciesText = currencyEntities.map(entity => entity.displayName || entity.canonical).join('和');
-    const currenciesWithAmountsText = currencyEntities.map(entity => `${requirement.currencyAmounts?.[entity.id] ?? ''} ${entity.displayName || entity.canonical}`.trim()).join('和');
+    const currencies = (requirement.currency || []).map(item => ({ ...item, entity: CURRENCY_REGISTRY.get(item.currencyId) })).filter(item => item.entity);
+    const currenciesText = currencies.map(item => item.entity.displayName || item.entity.canonical).join('和');
+    const currenciesWithAmountsText = currencies.map(item => `${item.amount} ${item.entity.displayName || item.entity.canonical}`).join('和');
     const lines = [];
     const routeTemplate = requirement.usage === 'crafting' ? 'currencyCraftingTemplate' : npcName ? 'currencyNpcTemplate' : 'currencyLocationTemplate';
     lines.push(applyTemplate(methodTemplate('components', 'frame-vendor', routeTemplate), { locationName, npcName, currenciesText, currenciesWithAmountsText }));
-    const dependencies = currencyEntities.map(entity => {
+    const dependencies = currencies.map(({ entity, amount }) => {
       const summary = currencyAcquisitionSummary(entity);
-      const amount = requirement.currencyAmounts?.[entity.id];
-      return summary ? applyTemplate(methodTemplate('components', 'frame-vendor', 'currencyDependencyTemplate'), { currencyName: entity.displayName || entity.canonical, amountText: amount == null ? '' : `（全套需要 ${amount}）`, acquisitionSummary: summary }) : null;
+      return summary ? applyTemplate(methodTemplate('components', 'frame-vendor', 'currencyDependencyTemplate'), { currencyName: entity.displayName || entity.canonical, amountText: `（全套需要 ${amount}）`, acquisitionSummary: summary }) : null;
     }).filter(Boolean);
     if (dependencies.length) lines.push(methodTemplate('components', 'frame-vendor', 'currencyDependencyHeader'), ...dependencies);
     lines.push(requirement.isBuffuseless ? methodTemplate('components', 'frame-vendor', 'buffUselessTemplate') : methodTemplate('components', 'frame-vendor', 'buffUsefulTemplate'));
