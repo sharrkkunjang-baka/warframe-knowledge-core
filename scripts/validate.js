@@ -16,8 +16,10 @@ const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sour
 const officialWarframesPath = path.join(knowledgeRoot, 'generated', 'official-warframes.json');
 const officialWarframes = fs.existsSync(officialWarframesPath) ? JSON.parse(fs.readFileSync(officialWarframesPath, 'utf8')) : null;
 const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
-const entityNames = ['locations', 'vendors', 'currencies', 'quests'];
+const entityNames = ['locations', 'vendors', 'currencies', 'quests', 'factions'];
 const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(knowledgeRoot, 'entities', `${name}.json`), 'utf8'))]));
+const npcCategoriesPath = path.join(knowledgeRoot, 'npc', 'categories.json');
+const npcCategories = fs.existsSync(npcCategoriesPath) ? JSON.parse(fs.readFileSync(npcCategoriesPath, 'utf8')) : null;
 const required = ['id', 'title', 'sources', 'gameVersion', 'updatedAt', 'reviewStatus', 'reviewedBy'];
 const ids = new Set();
 const errors = [];
@@ -28,6 +30,10 @@ const categoryNames = new Map();
 const gameplayAcquisitionQueries = new Map();
 const acquisitionUniqueNames = new Map();
 const invalidUserTextPattern = /<[^>]+>|\\n/;
+const frameRoot = path.join(knowledgeRoot, 'acquisition', 'warframe');
+const frameIndexPath = path.join(frameRoot, 'categories.json');
+const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
+const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
 
 for (const category of categories) {
   if (!/^[a-z0-9][a-z0-9._-]*$/.test(category.id || '')) errors.push(`${category.id || '<unknown category>'}: 分类 id 格式错误`);
@@ -50,6 +56,22 @@ for (const category of categories) {
   }
 }
 
+if (!frameIndex || frameIndex.count !== 116 || frameIndex.frames?.length !== 116) errors.push('warframe/categories.json: 必须包含 116 个公开战甲');
+const frameRoutes = new Map();
+for (const route of frameIndex?.frames || []) {
+  if (frameRoutes.has(route.officialUniqueName)) errors.push(`warframe/categories.json: 重复战甲 ${route.officialUniqueName}`); else frameRoutes.set(route.officialUniqueName, route);
+  if (!route.file || !fs.existsSync(path.join(frameRoot, route.file))) errors.push(`warframe/categories.json: 文件不存在 ${route.file}`);
+  if (!/^frame-/.test(route.componentCategory || '')) errors.push(`warframe/categories.json: 主分类无效 ${route.canonical}`);
+  if (route.blueprintCategory === 'unresolved') errors.push(`warframe/categories.json: 总图分类未解析 ${route.canonical}`);
+  const expectedDir = String(route.componentCategory || '').replace(/^frame-/, '');
+  if (route.file && !route.file.startsWith(`${expectedDir}/`)) errors.push(`warframe/categories.json: 路径与主分类不一致 ${route.canonical}`);
+}
+const methodKeys = new Set(frameMethods.map(item => `${item.scope}:${item.category}`));
+for (const route of frameIndex?.frames || []) {
+  if (route.componentCategory !== 'frame-specific-mission' && !methodKeys.has(`components:${route.componentCategory}`)) errors.push(`warframe/categories.json: 缺少部件 method ${route.componentCategory}`);
+  if (route.blueprintCategory && !methodKeys.has(`blueprint:${route.blueprintCategory}`)) errors.push(`warframe/categories.json: 缺少总图 method ${route.blueprintCategory}`);
+}
+
 for (const entry of entries) {
   for (const key of required) if (!(key in entry)) errors.push(`${entry.id || entry.title || '<unknown>'}: 缺少 ${key}`);
   if (!/^[a-z0-9][a-z0-9._-]+$/.test(entry.id || '')) errors.push(`${entry.id}: id 格式错误`);
@@ -70,8 +92,18 @@ for (const entry of entries) {
     const officialUniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
     if (entry.subject?.category === 'frame' && entry.id?.startsWith('knowledge.acquisition.warframe.')) {
       if (!entry.frameAcquisition?.generated || !entry.frameAcquisition?.manual) errors.push(`${entry.id}: 战甲必须分离 frameAcquisition.generated/manual`);
+      if (entry.subject?.categoryRefs?.length !== 1) errors.push(`${entry.id}: 战甲必须且只能有一个获取分类`);
       for (const key of ['sources', 'note', 'specialFrame', 'costs', 'dependencies']) if (entry.frameAcquisition?.[key] !== undefined) errors.push(`${entry.id}: 人工字段 ${key} 必须位于 frameAcquisition.manual`);
       if (entry.frameAcquisition?.generated?.officialUniqueName !== officialUniqueName) errors.push(`${entry.id}: generated.officialUniqueName 与 subject 不一致`);
+      const route = frameRoutes.get(officialUniqueName);
+      if (!route) errors.push(`${entry.id}: categories.json 缺少路由`);
+      else {
+        if (route.componentCategory !== entry.subject.categoryRefs[0]) errors.push(`${entry.id}: 主分类与 categories.json 不一致`);
+        if (JSON.stringify(entry.frameAcquisition?.generated?.routing?.blueprintCategory ?? null) !== JSON.stringify(route.blueprintCategory ?? null)) errors.push(`${entry.id}: 总图分类与 categories.json 不一致`);
+        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText) errors.push(`${entry.id}: 特定任务战甲必须提供独立获取文本`);
+      }
+      const factionId = entry.frameAcquisition?.generated?.routing?.componentVariables?.factionId;
+      if (factionId && !entities.factions.some(item => item.id === factionId)) errors.push(`${entry.id}: 路由引用不存在的阵营 ${factionId}`);
       for (const dependency of entry.frameAcquisition?.manual?.dependencies || []) {
         if (dependency.currencyId) {
           const currency = entities.currencies.find(item => item.id === dependency.currencyId);
@@ -168,6 +200,24 @@ for (const entry of entries.filter(entry => entry.module === 'acquisition')) {
   if (entry.methodRefs?.length && primaryCategory?.modDescription?.includes('{acquisitionQuery}')) {
     const methods = (entry.methodRefs || []).map(ref => gameplayById.get(ref)).filter(Boolean);
     if (!entry.acquisitionQuery && !methods.some(method => method.acquisitionQuery || method.aliases?.length)) errors.push(`${entry.id}: 分类模板需要 acquisitionQuery，但条目及玩法均未提供`);
+  }
+}
+
+if (!npcCategories) errors.push('knowledge/npc/categories.json: NPC 分类索引不存在');
+else {
+  const npcIds = new Set();
+  if (npcCategories.count !== npcCategories.npcs?.length) errors.push('NPC categories.json: count 与 npcs 数量不一致');
+  for (const npc of npcCategories.npcs || []) {
+    if (!npc.id || npcIds.has(npc.id)) errors.push(`NPC categories.json: id 缺失或重复 ${npc.id}`); else npcIds.add(npc.id);
+    const file = path.join(knowledgeRoot, 'npc', ...String(npc.file || '').split('/'));
+    if (!fs.existsSync(file)) errors.push(`${npc.id}: NPC 文件不存在 ${npc.file}`);
+    else {
+      const entry = JSON.parse(fs.readFileSync(file, 'utf8'));
+      if (entry.id !== npc.id || entry.canonical !== npc.canonical) errors.push(`${npc.id}: NPC 索引与文件不一致`);
+      if (entry.localization?.status === 'unresolved' && entry.displayName !== '') errors.push(`${npc.id}: 未审核中文名必须为空字符串`);
+      if (entry.locationId && !entities.locations.some(location => location.id === entry.locationId)) errors.push(`${npc.id}: locationId 不存在 ${entry.locationId}`);
+      if (entry.factionId && !entities.factions.some(faction => faction.id === entry.factionId)) errors.push(`${npc.id}: factionId 不存在 ${entry.factionId}`);
+    }
   }
 }
 

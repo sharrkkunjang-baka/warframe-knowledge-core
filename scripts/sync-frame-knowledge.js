@@ -20,12 +20,15 @@ const CANONICAL_OVERRIDES = Object.freeze({
 function slugify(value) {
   return String(value).normalize('NFKD').toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
-function readEntries() {
+function readEntries(directory = KNOWLEDGE_DIR) {
   const entries = [];
-  if (!fs.existsSync(KNOWLEDGE_DIR)) return entries;
-  for (const name of fs.readdirSync(KNOWLEDGE_DIR).filter(name => name.endsWith('.json')).sort()) {
-    const parsed = JSON.parse(fs.readFileSync(path.join(KNOWLEDGE_DIR, name), 'utf8'));
-    for (const entry of Array.isArray(parsed) ? parsed : []) entries.push({ entry, file: name });
+  if (!fs.existsSync(directory)) return entries;
+  for (const item of fs.readdirSync(directory, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+    const target = path.join(directory, item.name);
+    if (item.isDirectory()) { if (item.name !== 'method') entries.push(...readEntries(target)); continue; }
+    if (!item.isFile() || !item.name.endsWith('.json') || item.name === 'categories.json') continue;
+    const parsed = JSON.parse(fs.readFileSync(target, 'utf8'));
+    for (const entry of Array.isArray(parsed) ? parsed : []) entries.push({ entry, file: path.relative(KNOWLEDGE_DIR, target) });
   }
   return entries;
 }
@@ -53,7 +56,7 @@ function generatedData(frame) {
 }
 function buildEntry(frame, existing) {
   const canonical = CANONICAL_OVERRIDES[frame.uniqueName] || frame.name;
-  const generated = generatedData(frame);
+  const generated = { ...(existing?.frameAcquisition?.generated || {}), ...generatedData(frame) };
   const manual = migrateManual(existing);
   const old = existing || {};
   return {
@@ -102,18 +105,21 @@ function run(argv = process.argv.slice(2)) {
   const dryRun = argv.includes('--dry-run');
   const report = argv.includes('--report-unclassified');
   const plan = buildPlan();
+  const indexPath = path.join(KNOWLEDGE_DIR, 'categories.json');
+  const routingIndex = fs.existsSync(indexPath) ? JSON.parse(fs.readFileSync(indexPath, 'utf8')) : { frames: [] };
+  const routes = new Map((routingIndex.frames || []).map(item => [item.officialUniqueName, item.file]));
   const expectedFiles = new Set();
   const changes = [];
   for (const { entry } of plan.included) {
-    const file = `${slugify(entry.subject.canonical)}.json`;
-    expectedFiles.add(file);
+    const file = routes.get(entry.subject.officialUniqueName) || `${slugify(entry.subject.canonical)}.json`;
+    expectedFiles.add(path.normalize(file).toLowerCase());
     const target = path.join(KNOWLEDGE_DIR, file);
     const next = comparable([entry]);
     const current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
     if (current !== next) changes.push({ type: current == null ? 'create' : 'update', file, target, next });
   }
-  for (const name of fs.existsSync(KNOWLEDGE_DIR) ? fs.readdirSync(KNOWLEDGE_DIR).filter(name => name.endsWith('.json')) : []) {
-    if (!expectedFiles.has(name)) changes.push({ type: 'remove', file: name, target: path.join(KNOWLEDGE_DIR, name) });
+  for (const item of readEntries()) {
+    if (!expectedFiles.has(path.normalize(item.file).toLowerCase())) changes.push({ type: 'remove', file: item.file, target: path.join(KNOWLEDGE_DIR, item.file) });
   }
   if (report) {
     console.log(`公开：${plan.included.length}`);
@@ -133,7 +139,7 @@ function run(argv = process.argv.slice(2)) {
   fs.mkdirSync(KNOWLEDGE_DIR, { recursive: true });
   for (const change of changes) {
     if (change.type === 'remove') fs.unlinkSync(change.target);
-    else fs.writeFileSync(change.target, change.next);
+    else { fs.mkdirSync(path.dirname(change.target), { recursive: true }); fs.writeFileSync(change.target, change.next); }
   }
   console.log(`已同步 ${plan.included.length} 个公开战甲知识条目；写入 ${changes.length} 项；隔离 ${plan.excluded.length} 个内部对象`);
   return plan;

@@ -100,6 +100,34 @@
         }
       }
     },
+    "frameAcquisition": {
+      "type": "object",
+      "properties": {
+        "generated": {
+          "type": "object",
+          "properties": {
+            "routing": {
+              "type": "object",
+              "required": ["componentCategory", "blueprintCategory", "componentVariables", "blueprintVariables", "blueprintSource"],
+              "properties": {
+                "componentCategory": { "type": "string", "pattern": "^frame-" },
+                "blueprintCategory": { "type": ["string", "null"] },
+                "componentVariables": { "type": "object" },
+                "blueprintVariables": { "type": "object" },
+                "blueprintSource": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        },
+        "manual": {
+          "type": "object",
+          "properties": {
+            "routingOverride": { "type": "object" },
+            "acquisitionText": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
     "summary": { "type": "string", "minLength": 1 },
     "prerequisites": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "methodRefs": { "type": "array", "items": { "type": "string", "pattern": "^gameplay\\." }, "uniqueItems": true },

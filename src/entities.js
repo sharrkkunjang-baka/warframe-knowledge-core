@@ -36,10 +36,27 @@ function createRegistry(entries) {
   });
 }
 
+function readNpcEntries(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    const target = path.join(dir, entry.name);
+    if (entry.isDirectory()) return readNpcEntries(target);
+    if (!entry.isFile() || !entry.name.endsWith('.json') || entry.name === 'categories.json') return [];
+    const value = readJson(target);
+    return value && value.kind === 'npc' ? [value] : [];
+  });
+}
+
+function displayEntityName(entry) {
+  if (!entry) return '';
+  return typeof entry.displayName === 'string' && entry.displayName.trim() ? entry.displayName : entry.canonical;
+}
+
 function loadEntityRegistries(root = path.join(__dirname, '..')) {
   const entitiesDirectory = path.join(root, 'knowledge', 'entities');
   const load = name => createRegistry(readJson(path.join(entitiesDirectory, `${name}.json`)));
-  return deepFreeze({ locations: load('locations'), vendors: load('vendors'), currencies: load('currencies'), quests: load('quests') });
+  const npcs = createRegistry(readNpcEntries(path.join(root, 'knowledge', 'npc')));
+  return deepFreeze({ locations: load('locations'), vendors: load('vendors'), currencies: load('currencies'), quests: load('quests'), factions: load('factions'), npcs });
 }
 
-module.exports = { normalizeEntityName: normalize, createRegistry, loadEntityRegistries };
+module.exports = { normalizeEntityName: normalize, createRegistry, loadEntityRegistries, displayEntityName };

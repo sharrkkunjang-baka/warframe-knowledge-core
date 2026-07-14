@@ -20,7 +20,11 @@ const outputs = {
   'locations.json': data.locations.values,
   'vendors.json': data.vendors.values,
   'currencies.json': data.currencies.values,
-  'aliases.json': data.aliases
+  'factions.json': data.factions.values,
+  'npcs.json': data.npcs.values,
+  'aliases.json': data.aliases,
+  'frame-categories.json': data.frameCategories,
+  'frame-methods.json': data.frameMethods
 };
 const files = {};
 for (const [name, value] of Object.entries(outputs)) {
@@ -41,6 +45,10 @@ const manifest = {
     locations: data.locations.values.length,
     vendors: data.vendors.values.length,
     currencies: data.currencies.values.length,
+    factions: data.factions.values.length,
+    npcs: data.npcs.values.length,
+    frameCategories: data.frameCategories?.count || 0,
+    frameMethods: data.frameMethods.length,
     stubOfficialMods: data.officialCatalog.counts.stubMods,
     missingOfficialMods: data.officialCatalog.counts.missingMods,
     missingOfficialCategories: data.officialCatalog.counts.missingOfficialCategories

@@ -1,0 +1,159 @@
+[
+  {
+    "id": "knowledge.acquisition.warframe.sirius-and-orion",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "Sirius & Orion",
+    "subject": {
+      "canonical": "Sirius & Orion",
+      "displayName": "Sirius & Orion",
+      "category": "frame",
+      "officialUniqueName": "/Lotus/Powersuits/SiriusOrion/SiriusSuit",
+      "categoryRefs": [
+        "frame-specific-mission"
+      ]
+    },
+    "prerequisites": [],
+    "methodRefs": [],
+    "frameAcquisition": {
+      "generated": {
+        "officialUniqueName": "/Lotus/Powersuits/SiriusOrion/SiriusSuit",
+        "canonical": "Sirius & Orion",
+        "displayName": "Sirius & Orion",
+        "isPrime": false,
+        "productCategory": "Suits",
+        "introducedAt": null,
+        "components": [
+          {
+            "part": "Blueprint",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/SiriusSuitBlueprint"
+          },
+          {
+            "part": "Neuroptics",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/SiriusSuitHelmetComponent"
+          },
+          {
+            "part": "Chassis",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/SiriusSuitChassisComponent"
+          },
+          {
+            "part": "Systems",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/SiriusSuitSystemsComponent"
+          }
+        ],
+        "acquisitionCategories": {
+          "categoryRefs": [
+            "frame-specific-mission"
+          ],
+          "status": "classified",
+          "source": {
+            "type": "wiki-page",
+            "pageTitle": "Sirius & Orion",
+            "pageId": 1639920,
+            "revisionId": 2785808,
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+            }
+          }
+        },
+        "routing": {
+          "componentCategory": "frame-specific-mission",
+          "blueprintCategory": "quest",
+          "componentVariables": {
+            "sourceText": ""
+          },
+          "blueprintVariables": {
+            "questName": "翠玉之影：星座"
+          },
+          "blueprintSource": "manual-override"
+        }
+      },
+      "manual": {
+        "specialFrame": {
+          "name": "Sirius & Orion",
+          "zhName": "Sirius & Orion",
+          "isPrime": false,
+          "override": true,
+          "materials": {
+            "available": false,
+            "reason": "制造材料数据暂不可用"
+          },
+          "acquisition": {
+            "questReward": {
+              "questId": "quest.jade-shadows-constellations",
+              "part": "Blueprint"
+            },
+            "dropReward": {
+              "locationIds": [
+                "mission.the-kuva-wytch",
+                "mission.scorias-angel"
+              ],
+              "rotation": "A",
+              "chance": 14.29,
+              "parts": [
+                "Blueprint",
+                "Neuroptics",
+                "Chassis",
+                "Systems"
+              ]
+            },
+            "vendorExchange": {
+              "vendorId": "vendor.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currencyIds": [
+                "currency.jade-talent",
+                "currency.crimson-talent"
+              ],
+              "costs": {
+                "Blueprint": 275,
+                "Neuroptics": 90,
+                "Chassis": 90,
+                "Systems": 90
+              },
+              "total": 545
+            }
+          },
+          "drop": {
+            "chance": 14.29,
+            "locationIds": [
+              "mission.the-kuva-wytch",
+              "mission.scorias-angel"
+            ],
+            "rotation": "A"
+          }
+        },
+        "dependencies": [
+          {
+            "currencyId": "currency.jade-talent",
+            "amount": 545
+          },
+          {
+            "currencyId": "currency.crimson-talent",
+            "amount": 545
+          }
+        ],
+        "acquisitionText": "全部蓝图：官方结构化数据缺少该蓝图的获取来源\n兑换道具怎么刷：\n翠绿天赋（需要 545）：完成天王星比邻星域赤毒女巫号：普通难度结算 12-16 个，钢铁之路 18-22 个；转场阶段击落全部目标可获得额外数量\n猩红天赋（需要 545）：完成天王星比邻星域火山石天使号；数量与额外获取规则同上"
+      }
+    },
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Sirius_%26_Orion",
+        "label": "Warframe Wiki - Sirius & Orion"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-14",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "sharrkkunjang-baka"
+    ],
+    "tags": [
+      "acquisition",
+      "warframe",
+      "audited",
+      "special-frame",
+      "official-generated"
+    ],
+    "summary": "经审核的 Sirius & Orion 获取来源修正。"
+  }
+]

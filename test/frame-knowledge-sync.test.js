@@ -7,8 +7,9 @@ const sync = require('../scripts/sync-frame-knowledge');
 const root = path.resolve(__dirname, '..');
 const knowledgeDir = path.join(root, 'knowledge', 'acquisition', 'warframe');
 
-function snapshot() {
-  return new Map(fs.readdirSync(knowledgeDir).filter(name => name.endsWith('.json')).sort().map(name => [name, fs.readFileSync(path.join(knowledgeDir, name), 'utf8')]));
+function snapshot(directory = knowledgeDir) {
+  const files = fs.readdirSync(directory, { withFileTypes: true }).flatMap(item => item.isDirectory() ? snapshot(path.join(directory, item.name)) : item.name.endsWith('.json') ? [[path.relative(knowledgeDir, path.join(directory, item.name)), fs.readFileSync(path.join(directory, item.name), 'utf8')]] : []);
+  return directory === knowledgeDir ? new Map(files.sort(([a], [b]) => a.localeCompare(b))) : files;
 }
 
 test('frame knowledge sync is idempotent and check does not write', () => {
@@ -22,7 +23,7 @@ test('frame knowledge sync is idempotent and check does not write', () => {
 });
 
 test('sync keeps manual fields while regenerating official fields', () => {
-  const entry = JSON.parse(fs.readFileSync(path.join(knowledgeDir, 'dagath.json'), 'utf8'))[0];
+  const entry = JSON.parse(fs.readFileSync(path.join(knowledgeDir, 'dojo', 'dagath.json'), 'utf8'))[0];
   const rebuilt = sync.buildEntry(sync.buildPlan().included.find(item => item.frame.name === 'Dagath').frame, entry);
   assert.deepEqual(rebuilt.frameAcquisition.manual, entry.frameAcquisition.manual);
   assert.equal(rebuilt.frameAcquisition.generated.officialUniqueName, '/Lotus/Powersuits/Dagath/Dagath');

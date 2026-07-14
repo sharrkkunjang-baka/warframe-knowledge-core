@@ -56,9 +56,13 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
   const aliasesPath = path.join(knowledgeDirectory, 'facts', 'aliases.json');
   const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, terms: {}, normalization: {} };
+  const frameDirectory = path.join(knowledgeDirectory, 'acquisition', 'warframe');
+  const frameCategoriesPath = path.join(frameDirectory, 'categories.json');
+  const frameCategories = fs.existsSync(frameCategoriesPath) ? deepFreeze(readJson(frameCategoriesPath)) : null;
+  const frameMethods = deepFreeze(readObjectDirectory(path.join(frameDirectory, 'method')).filter(item => item.kind === 'frame-acquisition-method'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, frameCategories, frameMethods, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

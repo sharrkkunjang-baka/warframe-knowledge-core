@@ -107,7 +107,7 @@ test('分类别名独立解析且不进入物品名称索引', () => {
 });
 
 test('刷取查询只通过统一名称索引关联 canonical', () => {
-  assert.equal(reviewCore.getAcquisition('电妹').entry.id, 'knowledge.acquisition.gyre');
+  assert.equal(reviewCore.getAcquisition('电妹').entry.id, 'knowledge.acquisition.warframe.gyre');
   const narrow = reviewCore.getAcquisition('心智狭');
   assert.equal(narrow.entry.id, 'knowledge.acquisition.narrow-minded');
   assert.equal(narrow.entry.subject.displayName, '心志偏狭');
@@ -171,7 +171,7 @@ test('跑酷 Mod 泛类查询聚合成员与全部来源', () => {
   ]);
 });
 test('默认批准的刷取知识直接进入生产核心', () => {
-  assert.equal(core.getAcquisition('电妹').entry.id, 'knowledge.acquisition.gyre');
+  assert.equal(core.getAcquisition('电妹').entry.id, 'knowledge.acquisition.warframe.gyre');
 });
 
 test('官方 Mod 快照包含完整且唯一的 1733 条记录', () => {

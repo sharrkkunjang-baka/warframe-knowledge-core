@@ -5,6 +5,7 @@ const { loadData } = require('./loader');
 const { createResolver, normalize } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
+const { displayEntityName } = require('./entities');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -315,11 +316,13 @@ function createKnowledgeCore(options = {}) {
     const entry = allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
+    const frameRoute = entry.subject?.category === 'frame' ? frameAcquisition.renderRoutedAcquisition(canonical) : null;
     return {
       query: raw,
       resolution,
       entry,
-      description: getAcquisitionDescription(entry),
+      description: frameRoute?.lines?.join('\n') || getAcquisitionDescription(entry),
+      frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
       sourceOptions,
@@ -329,16 +332,29 @@ function createKnowledgeCore(options = {}) {
       alternatives: []
     };
   };
+  const resolveEntityVariables = query => {
+    const sources = [
+      ['npc', data.npcs], ['location', data.locations], ['faction', data.factions]
+    ];
+    const seen = new Set();
+    return sources.flatMap(([type, registry]) => registry.search(query).slice(0, 8).map(entry => ({
+      type, id: entry.id, canonical: entry.canonical, displayName: displayEntityName(entry),
+      localized: Boolean(entry.displayName && entry.displayName.trim()), locationId: entry.locationId || null,
+      factionId: entry.factionId || null
+    }))).filter(variable => !seen.has(variable.id) && seen.add(variable.id));
+  };
   const buildWikiContext = query => {
     const resolution = resolveName(query);
     const facts = searchFacts(query);
     const knowledge = searchKnowledge(query);
-    if (!facts.length && !knowledge.length && !resolution) return null;
+    const entityVariables = resolveEntityVariables(query);
+    if (!facts.length && !knowledge.length && !resolution && !entityVariables.length) return null;
     const sections = [];
     if (resolution && !resolution.ambiguous) sections.push(`名称解析：${query} → ${resolution.canonical}`);
+    if (entityVariables.length) sections.push(`实体变量（NPC/地点/阵营）：\n${entityVariables.map(item => `${item.id} = ${item.displayName} [canonical: ${item.canonical}]`).join('\n')}\n输出规则：需要提及这些实体时必须使用变量的 displayName；localized=false 表示没有已审核官方中文，只能保留 canonical 英文，禁止自行翻译、音译或补中文。不要输出未被当前问题需要的变量。`);
     if (facts.length) sections.push(`基础事实：\n${facts.map(item => `【${item.title}】\n${item.content}\n来源：${item.sources.map(source => `${source.label} ${source.url}`).join('、')}`).join('\n\n')}`);
     if (knowledge.length) sections.push(`加工知识：\n${knowledge.map(item => `【${item.title}】\n${item.content}`).join('\n\n')}`);
-    return { query, resolution, facts, knowledge, text: sections.join('\n\n') };
+    return { query, resolution, facts, knowledge, entityVariables, text: sections.join('\n\n') };
   };
   return {
     ...data,
@@ -376,6 +392,11 @@ function createKnowledgeCore(options = {}) {
     searchVendors: data.vendors.search,
     getCurrency: data.currencies.get,
     searchCurrencies: data.currencies.search,
+    getFaction: data.factions.get,
+    searchFactions: data.factions.search,
+    getNpc: data.npcs.get,
+    searchNpcs: data.npcs.search,
+    resolveEntityVariables,
     getQuest: data.quests.get,
     searchQuests: data.quests.search,
     createAcquisitionEvidence,

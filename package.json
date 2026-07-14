@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "可审核、可复用的 Warframe 中文事实与社区知识核心",
   "main": "src/index.js",
+  "bin": {
+    "warframe-combat-mcp": "src/mcp-server.js"
+  },
   "type": "commonjs",
   "files": [
     "src",
@@ -13,6 +16,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "mcp": "node src/mcp-server.js",
+    "test:mcp": "node --test test/combat-mod-effects.test.js test/mcp-server.test.js",
     "sync:pvp": "node scripts/sync-pvp-mods.js",
     "normalize:text": "node scripts/normalize-user-facing-text.js",
     "sync:official": "node scripts/sync-official-mods.js",
@@ -23,15 +28,21 @@
     "check:mods": "node scripts/sync-mods.js --check",
     "sync:mod-wiki": "node scripts/sync-mod-wiki.js",
     "check:mod-wiki": "node scripts/sync-mod-wiki.js --check",
-    "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:locations && npm run sync:frames && npm run sync:frame-knowledge && npm run validate && npm test && npm run build",
-    "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:locations && npm run check:frames && npm run check:frame-knowledge && npm run validate && npm test",
+    "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:locations && npm run sync:factions && npm run sync:npcs && npm run sync:frames && npm run sync:frame-knowledge && npm run validate && npm test && npm run build",
+    "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:locations && npm run check:factions && npm run check:npcs && npm run check:frames && npm run check:frame-knowledge && npm run validate && npm test",
     "validate": "node scripts/validate.js",
     "test": "node --test",
     "prepublishOnly": "npm run build && npm test",
     "sync:frames": "node scripts/sync-frames.js",
     "check:frames": "node scripts/sync-frames.js --check",
     "sync:frame-knowledge": "node scripts/sync-frame-knowledge.js",
+    "sync:frame-categories": "node scripts/sync-frame-acquisition-categories.js",
+    "check:frame-categories": "node scripts/sync-frame-acquisition-categories.js --check",
     "check:frame-knowledge": "node scripts/sync-frame-knowledge.js --check",
+    "sync:factions": "node scripts/sync-factions.js",
+    "check:factions": "node scripts/sync-factions.js --check",
+    "sync:npcs": "node scripts/sync-npcs.js",
+    "check:npcs": "node scripts/sync-npcs.js --check",
     "sync:locations": "node scripts/sync-locations.js",
     "check:locations": "node scripts/sync-locations.js --check"
   },
@@ -45,8 +56,10 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "better-sqlite3": "^12.11.1",
     "pinyin-pro": "^3.28.1",
-    "warframe-items": "1.1269.87"
+    "warframe-items": "1.1269.87",
+    "zod": "^4.4.3"
   }
 }

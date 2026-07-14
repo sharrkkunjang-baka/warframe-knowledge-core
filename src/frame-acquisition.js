@@ -22,6 +22,8 @@ const LOCATION_REGISTRY = ENTITY_REGISTRIES.locations;
 const CURRENCY_REGISTRY = ENTITY_REGISTRIES.currencies;
 const VENDOR_REGISTRY = ENTITY_REGISTRIES.vendors;
 const QUEST_REGISTRY = ENTITY_REGISTRIES.quests;
+const FACTION_REGISTRY = ENTITY_REGISTRIES.factions;
+const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -42,11 +44,20 @@ const STABLE_LOCATION_ZH = {
 };
 
 const FRAME_KNOWLEDGE_DIR = path.join(CORE_ROOT, 'knowledge', 'acquisition', 'warframe');
-const FRAME_KNOWLEDGE = fs.readdirSync(FRAME_KNOWLEDGE_DIR, { withFileTypes: true })
-  .filter(entry => entry.isFile() && entry.name.endsWith('.json'))
-  .sort((a, b) => a.name.localeCompare(b.name, 'en'))
-  .flatMap(entry => require(path.join(FRAME_KNOWLEDGE_DIR, entry.name)))
-  .filter(entry => entry.reviewStatus === 'approved');
+const FRAME_ROUTING_PATH = path.join(FRAME_KNOWLEDGE_DIR, 'categories.json');
+const FRAME_ROUTING = fs.existsSync(FRAME_ROUTING_PATH) ? require(FRAME_ROUTING_PATH) : { frames: [] };
+const { METHOD_TEMPLATES, applyTemplate } = require('./frame-acquisition-routing');
+function readFrameKnowledge(dir = FRAME_KNOWLEDGE_DIR) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'en')).flatMap(entry => {
+    const target = path.join(dir, entry.name);
+    if (entry.isDirectory()) return entry.name === 'method' ? [] : readFrameKnowledge(target);
+    if (!entry.isFile() || !entry.name.endsWith('.json') || entry.name === 'categories.json') return [];
+    const parsed = require(target);
+    return Array.isArray(parsed) ? parsed : [];
+  });
+}
+const FRAME_KNOWLEDGE = readFrameKnowledge().filter(entry => entry.reviewStatus === 'approved');
 const FRAME_KNOWLEDGE_INDEX = new Map(FRAME_KNOWLEDGE.map(entry => [entry.subject.canonical, entry]));
 const manualOf = entry => entry?.frameAcquisition?.manual || {};
 const FRAME_SOURCE_OVERRIDES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).sources).map(entry => [entry.subject.canonical, manualOf(entry).sources])));
@@ -466,7 +477,7 @@ function componentSourceText(frame, part, drops) {
   return '官方结构化数据缺少该蓝图的获取来源';
 }
 
-function entityName(registry, id) { return registry.get(id)?.displayName || id; }
+function entityName(registry, id) { const entry = registry.get(id); return entry ? (entry.displayName || entry.canonical) : id; }
 function renderAdditionalAcquisitionMethods(frame) {
   const acquisition = frame.acquisition || {};
   const lines = [];
@@ -521,6 +532,46 @@ function getWarframeKnowledge(query) {
   const frame = resolveWarframe(query);
   return frame ? FRAME_KNOWLEDGE_INDEX.get(frame.name) || null : null;
 }
+function renderBountyRoute(variables) {
+  const faction = variables?.factionId ? entityName(FACTION_REGISTRY, variables.factionId) : '';
+  const hubs = (variables?.hubs || []).map(hub => ({ location: entityName(LOCATION_REGISTRY, hub.locationId), npc: entityName(NPC_REGISTRY, hub.npcId) }));
+  const locationText = hubs.map(hub => `在${hub.location}找${hub.npc}`).join('，或');
+  if (!locationText) return null;
+  return `${locationText}接取${faction}赏金刷取部件`;
+}
+
+function renderRoutedAcquisition(frameOrName) {
+  const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
+  if (!frame) return null;
+  const route = FRAME_ROUTING.frames.find(item => item.canonical === frame.name);
+  const knowledge = FRAME_KNOWLEDGE_INDEX.get(frame.name);
+  if (!route || !knowledge) return null;
+  const routing = knowledge.frameAcquisition?.manual?.routingOverride || knowledge.frameAcquisition?.generated?.routing;
+  if (!routing) return null;
+  if (route.componentCategory === 'frame-specific-mission') {
+    const text = knowledge.frameAcquisition?.manual?.acquisitionText;
+    return text ? { route, lines: String(text).split('\n').filter(Boolean), source: 'frame-json' } : null;
+  }
+  const lines = [];
+  if (route.blueprintCategory) {
+    const blueprintLine = applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {});
+    if (blueprintLine) lines.push(blueprintLine);
+    else {
+      const fallback = componentSourceText(frame, 'Blueprint', getComponentDrops(frame)?.find(item => item.part === 'Blueprint')?.drops || []);
+      if (fallback && !/缺少/.test(fallback)) lines.push(`总图：${fallback}`);
+    }
+  }
+  const componentLine = route.componentCategory === 'frame-bounty'
+    ? renderBountyRoute(routing.componentVariables || {})
+    : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
+  if (componentLine) lines.push(componentLine);
+  else {
+    const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
+    lines.push(...fallback);
+  }
+  return lines.length ? { route, lines, source: 'category-method' } : null;
+}
+
 function getWarframeMaintenanceReport() {
   const official = OFFICIAL_FRAMES.frames || [];
   const covered = new Set(FRAME_KNOWLEDGE.map(entry => entry.subject.officialUniqueName));
@@ -581,5 +632,5 @@ module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
-  listWarframes, getWarframeKnowledge, getWarframeMaintenanceReport
+  listWarframes, getWarframeKnowledge, renderBountyRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
 };
