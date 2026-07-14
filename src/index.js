@@ -4,6 +4,7 @@ const path = require('path');
 const { loadData } = require('./loader');
 const { createResolver, normalize } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
+const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
 
@@ -310,6 +311,12 @@ function createKnowledgeCore(options = {}) {
     if (!raw) return null;
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;
+    const resourceResult = resourceAcquisition.getResourceAcquisition(raw);
+    if (resourceResult) return {
+      query: raw, resolution: { canonical: resourceResult.entry.subject.canonical, exact: true }, entry: resourceResult.entry,
+      description: resourceResult.text, resourceRoute: { text: resourceResult.routeText, tips: resourceResult.tips, source: 'resource-method' },
+      categories: [], methods: [], sourceOptions: [], structuredMethods: [], alternatives: []
+    };
     // 战甲规范名已经由命令层完成解析时必须精确锁定；通用别名解析可能把
     // "Wukong Prime" 之类的名称再次降级为普通 "Wukong"。
     const exactFrameEntry = allKnowledge.find(item => item.module === 'acquisition'
@@ -383,6 +390,8 @@ function createKnowledgeCore(options = {}) {
     getGameplay,
     getAcquisition,
     getAcquisitionCollection,
+    getResourceAcquisition: resourceAcquisition.getResourceAcquisition,
+    listResources: resourceAcquisition.listResources,
     resolveItem,
     searchOfficialItems,
     getOfficialItem,
@@ -417,8 +426,9 @@ function createKnowledgeCore(options = {}) {
     listWarframes: frameAcquisition.listWarframes,
     getWarframeKnowledge: frameAcquisition.getWarframeKnowledge,
     getWarframeMaintenanceReport: frameAcquisition.getWarframeMaintenanceReport,
-    frameAcquisition
+    frameAcquisition,
+    resourceAcquisition
   };
 }
 
-module.exports = { createKnowledgeCore, searchEntries, frameAcquisition };
+module.exports = { createKnowledgeCore, searchEntries, frameAcquisition, resourceAcquisition };

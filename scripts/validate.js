@@ -32,6 +32,10 @@ const gameplayAcquisitionQueries = new Map();
 const acquisitionUniqueNames = new Map();
 const invalidUserTextPattern = /<[^>]+>|\\n/;
 const frameRoot = path.join(knowledgeRoot, 'acquisition', 'warframe');
+const resourceRoot = path.join(knowledgeRoot, 'acquisition', 'resource');
+const resourceIndexPath = path.join(resourceRoot, 'categories.json');
+const resourceIndex = fs.existsSync(resourceIndexPath) ? JSON.parse(fs.readFileSync(resourceIndexPath, 'utf8')) : null;
+const resourceMethods = fs.existsSync(path.join(resourceRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(resourceRoot, 'method')).filter(item => item.kind === 'resource-acquisition-method') : [];
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
 const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
@@ -97,6 +101,17 @@ for (const method of frameMethods) {
 for (const route of frameIndex?.frames || []) {
   if (!methodKeys.has(`components:${route.componentCategory}`)) errors.push(`warframe/categories.json: 缺少部件 method ${route.componentCategory}`);
   if (route.blueprintCategory && !methodKeys.has(`blueprint:${route.blueprintCategory}`)) errors.push(`warframe/categories.json: 缺少总图 method ${route.blueprintCategory}`);
+}
+
+const resourceMethodKeys = new Set(resourceMethods.map(method => method.category));
+if (!resourceIndex || resourceIndex.count !== resourceIndex.resources?.length) errors.push('resource/categories.json: count 与资源数量不一致');
+for (const method of resourceMethods) {
+  if (!/^resource-/.test(method.category || '') || typeof method.template !== 'string' || !method.template.trim()) errors.push(`resource/method: 无效方法 ${method.category}`);
+  for (const [name, value] of Object.entries(method)) if ((name === 'template' || name.endsWith('Template')) && (typeof value !== 'string' || !value.trim())) errors.push(`resource/method: ${method.category}.${name} 必须是非空字符串`);
+}
+for (const item of resourceIndex?.resources || []) {
+  if (!resourceMethodKeys.has(item.category)) errors.push(`${item.canonical}: 缺少资源 method ${item.category}`);
+  if (!fs.existsSync(path.join(resourceRoot, item.file))) errors.push(`${item.canonical}: 资源文件不存在 ${item.file}`);
 }
 
 for (const entry of entries) {
@@ -173,6 +188,17 @@ for (const entry of entries) {
     for (const ref of entry.subject?.categoryRefs || []) {
       if (!categoryIds.has(ref)) errors.push(`${entry.id}: 引用了不存在的细分类 ${ref}`);
       else if (!categoryReachesBase(ref)) errors.push(`${entry.id}: 细分类 ${ref} 的祖先链未归属基础分类 ${entry.subject.category}`);
+    }
+    if (entry.subject?.category === 'resource') {
+      const generated = entry.resourceAcquisition?.generated;
+      const manual = entry.resourceAcquisition?.manual;
+      if (!generated || !manual) errors.push(`${entry.id}: 资源必须分离 resourceAcquisition.generated/manual`);
+      if (!Array.isArray(manual?.tips) || !Array.isArray(manual?.tipKeywords) || !Array.isArray(manual?.reviewedBy)) errors.push(`${entry.id}: 资源人工层缺少 tips/tipKeywords/reviewedBy`);
+      if (manual?.tips?.some(tip => typeof tip !== 'string' || !tip.trim()) || manual?.tipKeywords?.some(keyword => typeof keyword !== 'string' || !keyword.trim())) errors.push(`${entry.id}: 资源技巧必须是非空字符串`);
+      if (entry.reviewStatus === 'approved' && generated?.routing?.category === 'resource-unresolved' && !manual?.routingOverride) errors.push(`${entry.id}: 未解析资源禁止 approved`);
+      const category = manual?.routingOverride?.category || generated?.routing?.category;
+      if (category && !resourceMethodKeys.has(category)) errors.push(`${entry.id}: 资源路由缺少 method ${category}`);
+      for (const locationId of (manual?.routingOverride?.variables?.locationIds || generated?.routing?.variables?.locationIds || [])) if (!entities.locations.some(item => item.id === locationId)) errors.push(`${entry.id}: 资源路由引用不存在地点 ${locationId}`);
     }
     if (entry.subject?.category === 'mod') {
       const hasStructuredEffects = Array.isArray(entry.effects) && entry.effects.length > 0;

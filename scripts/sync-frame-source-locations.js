@@ -10,7 +10,7 @@ const TARGET = path.join(ROOT, 'knowledge', 'locations')
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'))
 const WARFRAMES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Warframes.json'))
 
-const PLANET_ZH = Object.freeze({ Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一', Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', 'Kuva Fortress': '赤毒要塞', Höllvania: '霍瓦尼亚' })
+const PLANET_ZH = Object.freeze({ Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一', Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', Void: '虚空', 'Kuva Fortress': '赤毒要塞', Höllvania: '霍瓦尼亚' })
 const NODE_ZH = Object.freeze({ Armatus: '卫城区', 'Solstice Square': '至日广场', Brutus: '布鲁图斯' })
 const MISSION_ZH = Object.freeze({ Assassination: '刺杀', Defense: '防御', Survival: '生存', Capture: '捕获', Rescue: '救援', Spy: '间谍', Disruption: '中断', Exterminate: '歼灭', Interception: '拦截', Excavation: '挖掘', Defection: '叛逃', Skirmish: '前哨战', Caches: '任务缓存', 'Infested Salvage': 'INFESTED 资源回收', Ascension: '扬升', 'Shrine Defense': '神龛防御' })
 const SPECIAL_ZH = Object.freeze({ 'Void Fissure Corrupted Enemy': '虚空裂缝中的堕落敌人', 'Orokin Storage Container': '奥罗金存储容器', 'Void Storm (Neptune)': '海王星比邻星域虚空风暴', 'Void Storm (Pluto)': '冥王星比邻星域虚空风暴', 'Void Storm (Veil Proxima)': '面纱比邻星域虚空风暴', "Kahl's Garrison (Chipper), Fort": '在卡尔驻军向 Chipper 以堡垒等级兑换', "Kahl's Garrison (Chipper), Settlement": '在卡尔驻军向 Chipper 以定居地等级兑换', "Kahl's Garrison (Chipper), Encampment": '在卡尔驻军向 Chipper 以营地等级兑换', "Kahl's Garrison (Chipper), Home": '在卡尔驻军向 Chipper 以家园等级兑换', 'Cephalon Simaris, Complete Uranus Junction': '首次完成天王星接合点后可在中枢 Simaris 处回购', 'Cephalon Simaris, Complete Neptune Junction': '首次完成海王星接合点后可在中枢 Simaris 处回购', 'Cephalon Simaris, Complete Pluto Junction': '首次完成冥王星接合点后可在中枢 Simaris 处回购' })
@@ -22,7 +22,7 @@ function parseSource(value) {
   return { location: match[1].trim(), node: match[2].trim(), missionType: (match[3] || '').trim() }
 }
 function generatedEntries() {
-  const entries = []
+  const entries = Object.entries(PLANET_ZH).map(([canonical, displayName]) => ({ id: `planet.${slug(canonical)}`, canonical, displayName, kind: 'planet', aliases: [], officialSource: 'audited-official-zh' }))
   for (const frame of WARFRAMES.filter(item => !item.isPrime)) for (const component of frame.components || []) for (const drop of component.drops || []) {
     const raw = String(drop.location || '').trim()
     const parsed = parseSource(raw)
