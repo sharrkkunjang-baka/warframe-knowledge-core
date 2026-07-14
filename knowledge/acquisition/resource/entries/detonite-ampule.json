@@ -1,0 +1,77 @@
+{
+  "id": "knowledge.acquisition.resource.detonite-ampule",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Detonite Ampule",
+  "subject": {
+    "canonical": "Detonite Ampule",
+    "displayName": "爆燃安瓿",
+    "category": "resource",
+    "officialUniqueName": "/Lotus/Types/Items/Research/ChemFragment",
+    "categoryRefs": [
+      "resource-location"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "/Lotus/Types/Items/Research/ChemFragment",
+      "canonical": "Detonite Ampule",
+      "displayName": "爆燃安瓿",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "droppable",
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "raw-official-drop",
+          "canonical": "Earth/Cervantes (Caches), Rotation B",
+          "chance": 0.1218,
+          "rarity": "Uncommon",
+          "reviewStatus": "pending"
+        }
+      ],
+      "routing": {
+        "category": "resource-location",
+        "variables": {
+          "resourceName": "爆燃安瓿",
+          "locationIds": [
+            "planet.venus",
+            "planet.earth",
+            "planet.lua",
+            "planet.ceres",
+            "planet.saturn",
+            "planet.sedna"
+          ]
+        },
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / Warframe Public Export"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-14",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
+  "summary": "爆燃安瓿的资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "official-generated"
+  ]
+}
