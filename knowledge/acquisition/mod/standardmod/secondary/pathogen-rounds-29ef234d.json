@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Pathogen_Rounds",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,374 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponToxinDamageMod",
+          "canonical": "Pathogen Rounds",
+          "displayName": "病原弹头",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "secondary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Pathogen Rounds",
+            "pageId": 281861,
+            "revisionId": 2608772,
+            "pageTimestamp": "2024-02-14T20:12:59Z",
+            "compiledAt": "2026-07-14T05:59:12.700Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "B",
+              "chance": 5.64,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Naeglar",
+                  "nodeEntityId": "node.SolNode175",
+                  "planetCanonical": "Eris",
+                  "planetEntityId": "location.eris",
+                  "planetDisplayName": "阋神星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Mission Drop Tables",
+                "excerpt": "Sabotage | Hive Sabotage Resource Caches | B | 5.64% | 1 | 0.0564 Naeglar , Eris | | Naeglar , Eris"
+              },
+              "missionTypeCanonical": "Sabotage",
+              "sourceCanonical": "Hive Sabotage Resource Caches"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 3 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 3 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 1 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 1 The Circuit (Normal)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Anti MOA | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Anti MOA"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Axio Disc MOA | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Axio Disc MOA"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 4.51,
+              "chance": 4.51,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exploiter Orb | 100% | 4.51% | 4.51% | 22 | 1 | 0.0451"
+              },
+              "sourceCanonical": "Exploiter Orb",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Corpus/Vip/Arachnoid/ArachnoidCamperTerraAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 22.92,
+              "chance": 4.584,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Larvling | 20% | 22.92% | 4.584% | 22 | 1 | 0.04584"
+              },
+              "sourceCanonical": "Kuva Larvling"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orm Disc MOA | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Orm Disc MOA"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 22.92,
+              "chance": 4.584,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Saturn Six Fugitive | 20% | 22.92% | 4.584% | 22 | 1 | 0.04584"
+              },
+              "sourceCanonical": "Saturn Six Fugitive",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/SpecialEvents/WolfGangsterAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Taro Disc MOA | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Taro Disc MOA"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Vapos Anti MOA | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Vapos Anti MOA"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 7.52,
+              "chance": 0.2256,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Vorac Disc MOA | 3% | 7.52% | 0.2256% | 443 | 1 | 0.002256"
+              },
+              "sourceCanonical": "Vorac Disc MOA"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 22.92,
+              "chance": 4.584,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Zealot Baptizer | 20% | 22.92% | 4.584% | 22 | 1 | 0.04584"
+              },
+              "sourceCanonical": "Zealot Baptizer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 22.92,
+              "chance": 4.584,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Zealot Herald | 20% | 22.92% | 4.584% | 22 | 1 | 0.04584"
+              },
+              "sourceCanonical": "Zealot Herald"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 22.92,
+              "chance": 4.584,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pathogen Rounds",
+                "pageId": 281861,
+                "revisionId": 2608772,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Zealot Proselytizer | 20% | 22.92% | 4.584% | 22 | 1 | 0.04584"
+              },
+              "sourceCanonical": "Zealot Proselytizer"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Sabotage"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Anti MOA"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Axio Disc MOA"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exploiter Orb"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Larvling"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Orm Disc MOA"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Saturn Six Fugitive"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Taro Disc MOA"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Vapos Anti MOA"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Vorac Disc MOA"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Zealot Baptizer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Zealot Herald"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Zealot Proselytizer"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

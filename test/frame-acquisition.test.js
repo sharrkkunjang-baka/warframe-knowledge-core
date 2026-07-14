@@ -46,6 +46,13 @@ test('Wisp exposes four blueprint drops and decimal probabilities', () => {
   assert.equal(acquisition.formatChance(22.56), '22.56%');
 });
 
+test('Oberon summarizes audited Proxima outpost rewards without node or cache mistranslation', () => {
+  const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Oberon'), materials: { available: false } });
+  assert.match(rendered, /头：完成地球比邻星域任务中的前哨站额外目标：10%/);
+  assert.match(rendered, /机体：完成土星比邻星域任务中的前哨站额外目标：10%/);
+  assert.match(rendered, /系统：完成地球比邻星域任务中的前哨站额外目标：10%/);
+  assert.doesNotMatch(rendered, /Bendar|Kasio|Iota Temple|Caches|白色储藏箱|虚空风暴/);
+});
 test('Caliban explains Narmer bounty rotation without backend letters or probabilities', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Caliban'), materials: { available: false } });
   assert.match(rendered, /当前奖励预览出现头部蓝图时刷/);
@@ -103,7 +110,7 @@ test('official-generated indexes resolve new Prime variants and quest series', (
 
   const yareli = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('水妹'), materials: { available: false } });
   assert.match(yareli, /总图：首次完成《驭浪者》获得该蓝图；之后可在中枢 Simaris 处回购/);
-  assert.match(yareli, /头：在氏族道场的通风小子实验室完成研究后复制该部件蓝图/);
+  assert.match(yareli, /部件蓝图：在氏族道场的通风小子实验室完成研究后复制该部件蓝图/);
   assert.doesNotMatch(yareli, /The Waverider|官方结构化数据缺少/);
 });
 
@@ -137,6 +144,9 @@ test('Prime state selects current, resurgence, or vaulted category only', () => 
   const vaulted = acquisition.getPrimeRelics('Volt Prime', null, {});
   assert.equal(vaulted.status, '已入库');
   assert.deepEqual(vaulted.relics, []);
+  const vaultedText = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Volt Prime'), prime: vaulted, materials: { available: false } });
+  assert.match(vaultedText, /^当前已入库，没有可刷取的遗物/m);
+  assert.doesNotMatch(vaultedText, /Axi|Lith|Meso|Neo|古纪|前纪|中纪|后纪/);
   const axiL4 = require(require('node:path').join(require('node:path').dirname(require.resolve('warframe-items')), 'data', 'json', 'Relics.json')).find(relic => relic.name === 'Axi L4 Intact');
   const itemType = axiL4.uniqueName.replace('/Lotus/', '/Lotus/StoreItems/');
   const resurgence = acquisition.getPrimeRelics('Volt Prime', { Manifest: [{ ItemType: itemType }] }, {});
@@ -199,6 +209,44 @@ test('ability query resolves number, official Chinese ability and Prime base ski
   const prime = acquisition.resolveWarframeAbilityQuery('Volt Prime 4 强度有什么用');
   assert.equal(prime.frame.name, 'Volt Prime');
   assert.equal(prime.ability.index, 4);
+});
+
+test('frame knowledge covers public official suits and excludes internal placeholders', () => {
+  const frames = acquisition.listWarframes();
+  assert.equal(frames.length, 116);
+  assert.ok(frames.some(frame => frame.canonical === 'Sirius & Orion' && frame.officialUniqueName.endsWith('/SiriusSuit')));
+  assert.ok(!frames.some(frame => /Demon Frame|Inkblot/.test(frame.canonical)));
+  assert.ok(frames.some(frame => frame.canonical === 'Follie' && frame.officialUniqueName.endsWith('/Inkblot')));
+  assert.equal(acquisition.resolveWarframe('Demon Frame'), null);
+  assert.equal(acquisition.resolveWarframe('Inkblot'), null);
+  assert.equal(acquisition.resolveWarframe('墨水').name, 'Follie');
+});
+
+test('manual overrides and recursive exchange dependencies render before generic data', () => {
+  const dagath = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Dagath'), materials: { available: false } });
+  assert.match(dagath, /全部蓝图：[^\n]+\n兑换道具怎么刷：\n浮华荆棘（需要 102）：使用深渊信标进入谷神星深渊区歼灭任务/);
+  const kullervo = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Kullervo'), materials: { available: false } });
+  assert.match(kullervo, /恐惧、愤怒或悲伤心情阶段/);
+  assert.match(kullervo, /击败 Kullervo.*击败奥金魇龙后结算获得/);
+  const sirius = acquisition.renderAcquisition(acquisition.resolveWarframe('红绿'));
+  assert.match(sirius, /总图：首次完成《Jade 之影：众星》获得；或刷天王星比邻星域的赤毒女巫号或火山石天使号/);
+  assert.match(sirius, /部件蓝图：天王星比邻星域的赤毒女巫号或火山石天使号/);
+  assert.match(sirius, /兑换：在边界之塔向 Hunhow 使用翠绿天赋或猩红天赋兑换/);
+  assert.doesNotMatch(sirius, /补充：|A轮掉落总图、头、机体、系统/);
+  assert.match(sirius, /翠绿天赋（需要 545）：完成天王星比邻星域赤毒女巫号/);
+  assert.match(sirius, /猩红天赋（需要 545）：完成天王星比邻星域火山石天使号；数量与额外获取规则同上/);
+  assert.equal((sirius.match(/普通难度结算 12-16 个/g) || []).length, 1);
+  assert.equal((sirius.match(/钢铁之路 18-22 个/g) || []).length, 1);
+  assert.doesNotMatch(sirius, /Jade Shadows: Constellations|The Kuva Wytch|Scoria's Angel/);
+  const follie = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('墨水'), materials: { available: false } });
+  assert.match(follie, /全部蓝图：先完成[^\n]+\n兑换道具怎么刷：\nAtramentum（需要 2400）：完成《Harrow 的枷锁》后刷金星维斯佩中继站/);
+});
+
+test('frame maintenance report exposes exclusions without publishing them', () => {
+  const report = acquisition.getWarframeMaintenanceReport();
+  assert.equal(report.publicCount, 116);
+  assert.deepEqual(report.excluded.map(item => item.name).sort(), ['Demon Frame']);
+  assert.equal(acquisition.getWarframeKnowledge('Dagath').frameAcquisition.manual.dependencies[0].currencyId, 'currency.vainthorn');
 });
 
 test('recipe loader caches network data and falls back on failure', async () => {

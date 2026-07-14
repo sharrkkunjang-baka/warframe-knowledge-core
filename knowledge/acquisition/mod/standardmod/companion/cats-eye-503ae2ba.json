@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cat's_Eye",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,175 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Types/Friendly/Pets/CatbrowPetPrecepts/CatbrowCatsEyePrecept",
+          "canonical": "Cat's Eye",
+          "displayName": "猫眼",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Cat's Eye",
+            "pageId": 1016527,
+            "revisionId": 2793263,
+            "pageTimestamp": "2026-07-13T14:57:16Z",
+            "compiledAt": "2026-07-14T05:59:07.896Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 4.17,
+              "chance": 0.834,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cat's Eye",
+                "pageId": 1016527,
+                "revisionId": 2793263,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kavat | 20% | 4.17% | 0.834% | 120 | 1 | 0.00834"
+              },
+              "sourceCanonical": "Kavat",
+              "sourceEntityId": "enemy./Lotus/Types/NeutralCreatures/Catbrow/CatbrowAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Cat's Eye",
+                "pageId": 1016527,
+                "revisionId": 2793263,
+                "section": "Acquisition",
+                "excerpt": "Cat's Eye is automatically acquired upon obtaining a Adarza Kavat ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "Despite its description, Cat's Eye adds 60 percentage points to a weapon's critical chance after other bonuses, similar to Arcane Avenger . This type of buff is commonly referred to as an absolute or final bonus."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "Cat's Eye stacks additively with other percentage point bonuses, such as Arcane Avenger . For example, an Atterax with a max rank True Steel , Blood Rush at a 4.0x combo multiplier, Cat's Eye , and Arcane Avenger will have a 25% × (1 + 120% + 40%×(4 - 1)) + 60% + 45% = 190% critical chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "Highly effective with weapons with high critical damage multipliers."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "Emplaced turrets (i.e. the Grineer Rampart ) gain the ability to critically strike while under the effect of Cat's Eye."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "While this also applies to weapons that cannot critically strike, these weapons often have a critical multiplier of 1.0x which yields no change in damage dealt."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "Multiple instances of Cat's Eye do not stack."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "The ability triggers when an enemy is within at least 25 meters."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "The cooldown of 20 seconds starts when Cat's Eye's duration stops. This leads to an effective uptime of 10 ÷ (10 + 20) = 33.33% ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Cat's Eye",
+                  "pageId": 1016527,
+                  "revisionId": 2793263,
+                  "section": "Notes",
+                  "excerpt": "The effective uptime with Tek Enhance will be (10 × (1+30%)) ÷ (10 × (1+30%) + 20) = 39.39% ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Kavat"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

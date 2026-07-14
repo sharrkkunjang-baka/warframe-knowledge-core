@@ -1,17 +1,17 @@
 # 贡献指南
 
 > [!CAUTION]
-> 更新 `warframe-items`、Mod 分类或生成空壳后必须执行 `npm run maintain`。普通改动至少执行 `npm run check:all`。不要手改 `categories/official.json`、`generated/*.json` 或 `dist/`。
+> 更新 `warframe-items`、Mod 分类或生成空壳后必须执行 `npm run maintain`。普通改动至少执行 `npm run check:all`。不要手改 `knowledge/categories/official.json`、`knowledge/generated/*.json`、`generated/*.json` 或 `dist/`。
 
 字段和 API 的正式定义见 [REFERENCE.md](REFERENCE.md)，架构与来源优先级见 [ARCHITECTURE.md](ARCHITECTURE.md)。
 
 ## 目录与所有权
 
-- `facts/`：带可靠来源的基础事实。
+- `knowledge/facts/`：带可靠来源的基础事实。
 - `knowledge/acquisition/<基础类别>/<来源或系列>/`：一个刷取对象一个 JSON。
 - `knowledge/gameplay/`：一个可复用玩法一个 JSON。
-- `categories/`：一个人工语义分类一个 JSON；`official.json` 除外，它由脚本生成。
-- `entities/locations.json`、`vendors.json`、`currencies.json`：稳定实体 registry。
+- `knowledge/categories/`：一个人工语义分类一个 JSON；`official.json` 除外，它由脚本生成。
+- `knowledge/entities/locations.json`、`vendors.json`、`currencies.json`、`quests.json`：稳定实体 registry。
 - `generated/`：脚本生成的 ItemCatalog、来源、战甲、任务和遗物数据。
 - `schema/`：数据约束；新增公共字段时同步更新 schema 与 REFERENCE。
 - `src/`：公共运行时代码。
@@ -30,7 +30,7 @@
 
 ## official-items 与实体
 
-`generated/official-items.json` 由 `npm run sync:items` 从锁定版本 `warframe-items` 生成。不要手工添加 item、drop、recipe 或 ingredient。上游缺失数据应保留为空或待证据状态，不能按经验补写。
+`knowledge/generated/official-items.json` 由 `npm run sync:items` 从锁定版本 `warframe-items` 生成。不要手工添加 item、drop、recipe 或 ingredient。上游缺失数据应保留为空或待证据状态，不能按经验补写。
 
 若确需新增配方变体适配，应同时满足：
 
@@ -84,7 +84,7 @@ Mod 完整条目应提供 `maxRank` 和结构化 `effects`，每项包含稳定 
 ## 维护官方 Mod 与战甲生成数据
 
 - `npm run sync:mods`：同步 acquisition Mod 空壳。
-- `npm run sync:official`：重建 `categories/official.json`。
+- `npm run sync:official`：重建 `knowledge/categories/official.json`。
 - `npm run sync:items`：重建 ItemCatalog 与来源元数据。
 - `npm run sync:frames`：联网重建战甲、任务、Prime 遗物和导出缓存。
 - 对应 `check:*` 只检查漂移；`sync:frames --check` 仍会访问上游。

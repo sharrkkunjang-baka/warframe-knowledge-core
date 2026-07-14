@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Bane_of_The_Murmur",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,134 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFactionDamageMurmurs",
+          "canonical": "Bane Of The Murmur",
+          "displayName": "灭亡低语者",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "primary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Bane of The Murmur",
+            "pageId": 1582099,
+            "revisionId": 2687222,
+            "pageTimestamp": "2025-06-27T19:15:51Z",
+            "compiledAt": "2026-07-14T05:59:11.296Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 1.5,
+              "itemChance": 4.17,
+              "chance": 0.06255,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Bane of The Murmur",
+                "pageId": 1582099,
+                "revisionId": 2687222,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Lumbering Fragment | 1.5% | 4.17% | 0.06255% | 1599 | 1 | 0.0006255"
+              },
+              "sourceCanonical": "Lumbering Fragment"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 20.41,
+              "chance": 0.6123,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Bane of The Murmur",
+                "pageId": 1582099,
+                "revisionId": 2687222,
+                "section": "Enemy Drop Tables",
+                "excerpt": "The Anatomizer | 3% | 20.41% | 0.6123% | 163 | 1 | 0.006123"
+              },
+              "sourceCanonical": "The Anatomizer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 20.41,
+              "chance": 0.6123,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Bane of The Murmur",
+                "pageId": 1582099,
+                "revisionId": 2687222,
+                "section": "Enemy Drop Tables",
+                "excerpt": "The Unseeing Herald | 3% | 20.41% | 0.6123% | 163 | 1 | 0.006123"
+              },
+              "sourceCanonical": "The Unseeing Herald"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Bane of The Murmur",
+                  "pageId": 1582099,
+                  "revisionId": 2687222,
+                  "section": "Notes",
+                  "excerpt": "Despite being listed as a multiplier, it will stack additively with other sources of Faction Damage Bonus to The Murmur."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Bane of The Murmur",
+                  "pageId": 1582099,
+                  "revisionId": 2687222,
+                  "section": "Notes",
+                  "excerpt": "For example, combining Rhino 's Roar (+50% faction damage bonus to all factions) and a max rank Bane of The Murmur with x1.3 damage to The Murmur, you would have a 1 + 0.5 + 0.3 = x1.8 multiplier for damage against The Murmur."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Lumbering Fragment"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "The Anatomizer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "The Unseeing Herald"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

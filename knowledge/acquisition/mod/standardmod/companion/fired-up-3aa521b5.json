@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Fired_Up",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,157 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Sentinel/SentinelOverheatDamageMod",
+          "canonical": "Fired Up",
+          "displayName": "过热射击",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Fired Up",
+            "pageId": 195521,
+            "revisionId": 2731403,
+            "pageTimestamp": "2026-02-21T20:13:37Z",
+            "compiledAt": "2026-07-14T05:59:08.178Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.86,
+              "chance": 0.0258,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fired Up",
+                "pageId": 195521,
+                "revisionId": 2731403,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Crewman | 3% | 0.86% | 0.0258% | 3876 | 1 | 0.000258"
+              },
+              "sourceCanonical": "Corrupted Crewman",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/RifleSpacemanAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.67,
+              "chance": 0.0201,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fired Up",
+                "pageId": 195521,
+                "revisionId": 2731403,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orokin Drone | 3% | 0.67% | 0.0201% | 4975 | 1 | 0.000201"
+              },
+              "sourceCanonical": "Orokin Drone",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/OrokinShieldDroneAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.67,
+              "chance": 0.0201,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fired Up",
+                "pageId": 195521,
+                "revisionId": 2731403,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Orokin Spectator | 3% | 0.67% | 0.0201% | 4975 | 1 | 0.000201"
+              },
+              "sourceCanonical": "Orokin Spectator",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/CameraDroneAvatarOrokin"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Fired Up",
+                  "pageId": 195521,
+                  "revisionId": 2731403,
+                  "section": "Notes",
+                  "excerpt": "Heat element applied by this mod counts for Manifold Bond , since it is applied to the weapon."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Fired Up",
+                  "pageId": 195521,
+                  "revisionId": 2731403,
+                  "section": "Notes",
+                  "excerpt": "Despite adding heat damage only to weapon hits, heat procs from Manifold Bond benefit from the increased damage for the Heat Inherit mechanic."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Fired Up",
+                  "pageId": 195521,
+                  "revisionId": 2731403,
+                  "section": "Notes",
+                  "excerpt": "Heat element applied by this mod will combine with elements already present in the weapon."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Fired Up",
+                  "pageId": 195521,
+                  "revisionId": 2731403,
+                  "section": "Notes",
+                  "excerpt": "Clones created by Duplex Bond do not benefit from Fired Up and do not contribute to stacking it."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Crewman"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Orokin Drone"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Orokin Spectator"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

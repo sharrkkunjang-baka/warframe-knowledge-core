@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Nano-Applicator",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,146 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/Event/StatusProcWhileAimingShotgunMod",
+          "canonical": "Nano-Applicator",
+          "displayName": "纳米涂覆",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Nano-Applicator",
+            "pageId": 907902,
+            "revisionId": 2658229,
+            "pageTimestamp": "2025-01-31T15:50:20Z",
+            "compiledAt": "2026-07-14T05:59:13.276Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 40,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambion Drift / Necralisk",
+                  "planetCanonical": "Deimos ; talk to Mother"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nano-Applicator",
+                "pageId": 907902,
+                "revisionId": 2658229,
+                "section": "Mission Drop Tables",
+                "excerpt": "Necralisk Bounty | Necralisk Bounty Lvl 15-25 Final Stage | A | 40% | 1 | 0.4 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
+              },
+              "missionTypeCanonical": "Necralisk Bounty",
+              "sourceCanonical": "Necralisk Bounty Lvl 15-25 Final Stage"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 1.49,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nano-Applicator",
+                "pageId": 907902,
+                "revisionId": 2658229,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 4 The Circuit (Normal) | A | 1.49% | 1 | 0.0149 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 4 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 1.03,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Nano-Applicator",
+                "pageId": 907902,
+                "revisionId": 2658229,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 6 The Circuit (Normal) | A | 1.03% | 1 | 0.0103 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 6 The Circuit (Normal)"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Nano-Applicator",
+                  "pageId": 907902,
+                  "revisionId": 2658229,
+                  "section": "Notes",
+                  "excerpt": "Nano-Applicator is additive with similar mods. For example, a Strun with a max rank Nano-Applicator and Shotgun Savvy will have a 7.5% × (1 + 90% + 90%) = 21% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Nano-Applicator",
+                  "pageId": 907902,
+                  "revisionId": 2658229,
+                  "section": "Notes",
+                  "excerpt": "Triggering the effect multiple times only resets the buff duration."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Necralisk Bounty"
+            },
+            {
+              "kind": "node",
+              "canonical": "Cambion Drift / Necralisk"
+            },
+            {
+              "kind": "location",
+              "canonical": "Deimos ; talk to Mother"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

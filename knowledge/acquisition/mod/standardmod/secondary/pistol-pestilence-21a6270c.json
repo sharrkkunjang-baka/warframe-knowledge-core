@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Pistol_Pestilence",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,127 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/PoisonEventPistolMod",
+          "canonical": "Pistol Pestilence",
+          "displayName": "瘟疫手枪",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "secondary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Pistol Pestilence",
+            "pageId": 321329,
+            "revisionId": 2679850,
+            "pageTimestamp": "2025-04-27T18:22:11Z",
+            "compiledAt": "2026-07-14T05:59:12.764Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 25,
+              "chance": 25,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pistol Pestilence",
+                "pageId": 321329,
+                "revisionId": 2679850,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Vor | 100% | 25% | 25% | 4 | 1 | 0.25"
+              },
+              "sourceCanonical": "Corrupted Vor",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Vip/VorTwo/VorTwoBossAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pistol Pestilence",
+                "pageId": 321329,
+                "revisionId": 2679850,
+                "section": "Acquisition",
+                "excerpt": "Can be acquired as a possible drop by killing Corrupted Vor in Orokin Void missions level ≥40 such as Mithra and Mot"
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pistol Pestilence",
+                "pageId": 321329,
+                "revisionId": 2679850,
+                "section": "Acquisition",
+                "excerpt": "25% drop chance; it has 100% drop, but shares this with its counterparts - Malignant Force , Virulent Scourge , Toxic Barrage"
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pistol Pestilence",
+                "pageId": 321329,
+                "revisionId": 2679850,
+                "section": "Acquisition",
+                "excerpt": "It was also acquired as a drop from Razorback Armada ; however, this is no longer possible."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pistol Pestilence",
+                  "pageId": 321329,
+                  "revisionId": 2679850,
+                  "section": "Notes",
+                  "excerpt": "Pistol Pestilence is additive with similar mods. For example, a Sicarus with a max rank Pistol Pestilence and Sure Shot will have a 6% × (1 + 60% + 90%) = 15% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pistol Pestilence",
+                  "pageId": 321329,
+                  "revisionId": 2679850,
+                  "section": "Notes",
+                  "excerpt": "This mod can be combined with Jolt , Frostbite and Scorch to achieve a combined status chance bonus of 240%. With Sure Shot and Stunning Speed , this bonus can be increased to 360%. With Saxum Spittle , Jugulus Spines , and Carnis Stinger , this bonus can be increased to 540%."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Vor"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

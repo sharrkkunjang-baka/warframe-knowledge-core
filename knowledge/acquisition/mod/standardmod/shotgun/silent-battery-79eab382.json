@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Silent_Battery",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,113 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/Event/ProjectNightwatch/WeaponNoiseReductionMod",
+          "canonical": "Silent Battery",
+          "displayName": "寂静炮组",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Silent Battery",
+            "pageId": 1005829,
+            "revisionId": 2588243,
+            "pageTimestamp": "2023-06-03T14:12:05Z",
+            "compiledAt": "2026-07-14T05:59:13.359Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 20,
+              "itemChance": 45.83,
+              "chance": 9.166,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Silent Battery",
+                "pageId": 1005829,
+                "revisionId": 2588243,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Executioner Dhurnam | 20% | 45.83% | 9.166% | 11 | 1 | 0.09166"
+              },
+              "sourceCanonical": "Executioner Dhurnam",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/GrineerChampions/GrineerChampionHeavyAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Silent Battery",
+                  "pageId": 1005829,
+                  "revisionId": 2588243,
+                  "section": "Notes",
+                  "excerpt": "This Mod only reduces or eliminates firing noise. Any corpses, returning fire or enemies that are not killed quick enough will still cause an alert."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Silent Battery",
+                  "pageId": 1005829,
+                  "revisionId": 2588243,
+                  "section": "Notes",
+                  "excerpt": "Shooting a silent Weapon within 6 meters of an enemy or at the terrain near an enemy will cause them to stop and look around, but will not change their actual alert state."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Silent Battery",
+                  "pageId": 1005829,
+                  "revisionId": 2588243,
+                  "section": "Notes",
+                  "excerpt": "This Mod does not work correctly on the Sweeper Prime (and assuming regular Sweeper ). It may reduce sound range but the shot is not silent."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Silent Battery",
+                  "pageId": 1005829,
+                  "revisionId": 2588243,
+                  "section": "Notes",
+                  "excerpt": "A rank 3 Silent Battery Mod (100% Noise reduction) will allow Ivara to stay invisible while Prowl is active."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Executioner Dhurnam"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

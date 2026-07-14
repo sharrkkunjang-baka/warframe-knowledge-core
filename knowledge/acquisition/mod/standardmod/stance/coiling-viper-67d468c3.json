@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Coiling_Viper",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,153 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/WhipCmbTwoMeleeTree",
+          "canonical": "Coiling Viper",
+          "displayName": "毒蛇螺旋",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "stance"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Coiling Viper",
+            "pageId": 430593,
+            "revisionId": 2698972,
+            "pageTimestamp": "2025-10-08T01:46:33Z",
+            "compiledAt": "2026-07-14T05:59:13.402Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 37.94,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Pavlov",
+                  "nodeEntityId": "node.SolNode306",
+                  "planetCanonical": "Lua",
+                  "planetEntityId": "location.lua",
+                  "planetDisplayName": "月球"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Coiling Viper",
+                "pageId": 430593,
+                "revisionId": 2698972,
+                "section": "Mission Drop Tables",
+                "excerpt": "Spy | Lua Spy | C | 37.94% | 1 | 0.3794 Pavlov , Lua | | Pavlov , Lua"
+              },
+              "missionTypeCanonical": "Spy",
+              "missionTypeEntityId": "mission-type.spy",
+              "missionTypeDisplayName": "间谍",
+              "sourceCanonical": "Lua Spy"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 2.27,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Coiling Viper",
+                "pageId": 430593,
+                "revisionId": 2698972,
+                "section": "Mission Drop Tables",
+                "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
+              },
+              "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "sourceCanonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 0.86,
+              "chance": 0.0258,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Coiling Viper",
+                "pageId": 430593,
+                "revisionId": 2698972,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Crewman | 3% | 0.86% | 0.0258% | 3876 | 1 | 0.000258"
+              },
+              "sourceCanonical": "Corrupted Crewman",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/RifleSpacemanAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coiling Viper",
+                  "pageId": 430593,
+                  "revisionId": 2698972,
+                  "section": "Notes",
+                  "excerpt": "Certain attacks have damage multipliers for Impact , Electricity , and Toxin damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coiling Viper",
+                  "pageId": 430593,
+                  "revisionId": 2698972,
+                  "section": "Notes",
+                  "excerpt": "The first attack of Tumbling King has a 1.25x damage multiplier for Impact , Electricity , and Toxin damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Coiling Viper",
+                  "pageId": 430593,
+                  "revisionId": 2698972,
+                  "section": "Notes",
+                  "excerpt": "The second attack of Tumbling King has a 1.25x damage multiplier for Electricity and Toxin damage."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Crewman"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

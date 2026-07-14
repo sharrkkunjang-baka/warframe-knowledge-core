@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Dreamer's_Wrath",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,112 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/FocusedAttack",
+          "canonical": "Dreamer's Wrath",
+          "displayName": "梦者之怒",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Dreamer's Wrath",
+            "pageId": 1582118,
+            "revisionId": 2651940,
+            "pageTimestamp": "2024-12-27T17:33:16Z",
+            "compiledAt": "2026-07-14T05:59:09.369Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 6,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambire",
+                  "nodeEntityId": "node.SolNode718",
+                  "nodeDisplayName": "异化区",
+                  "planetCanonical": "Deimos",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Dreamer's Wrath",
+                "pageId": 1582118,
+                "revisionId": 2651940,
+                "section": "Mission Drop Tables",
+                "excerpt": "Alchemy | Deimos Entrati Alchemy | C | 6% | 1 | 0.06 Cambire , Deimos | | Cambire , Deimos"
+              },
+              "missionTypeCanonical": "Alchemy",
+              "sourceCanonical": "Deimos Entrati Alchemy"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dreamer's Wrath",
+                  "pageId": 1582118,
+                  "revisionId": 2651940,
+                  "section": "Notes",
+                  "excerpt": "Tennokai opportunity chance is a multiplicative bonus, at max rank the chance to proc Tennokai is increased to 22.5% ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dreamer's Wrath",
+                  "pageId": 1582118,
+                  "revisionId": 2651940,
+                  "section": "Notes",
+                  "excerpt": "The critical damage is additive to mods such as Organ Shatter ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Dreamer's Wrath",
+                  "pageId": 1582118,
+                  "revisionId": 2651940,
+                  "section": "Notes",
+                  "excerpt": "Affects only tennokai heavy attacks."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Alchemy"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

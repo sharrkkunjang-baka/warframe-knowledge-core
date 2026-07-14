@@ -7,12 +7,13 @@
 
 ## 目录
 
-- `facts/`：基础事实、来源和名称映射。
+- `knowledge/facts/`：基础事实、来源和名称映射。
 - `knowledge/acquisition/`：结构化刷取对象，一个对象一个文件。
 - `knowledge/gameplay/`：可被多个刷取对象引用的玩法。
-- `categories/`：人工语义分类；`official.json` 是生成的官方 Mod 快照。
-- `entities/`：locations、vendors、currencies 稳定实体 registry。
-- `generated/`：统一 official-items、来源元数据、战甲、任务和遗物生成数据。
+- `knowledge/categories/`：人工语义分类；`official.json` 是生成的官方 Mod 快照。
+- `knowledge/entities/`：locations、vendors、currencies、quests 稳定实体 registry。
+- `knowledge/generated/`：统一 official-items、战甲、任务、遗物和节点等可查询生成数据。
+- `generated/`：生成过程的来源元数据与维护报告，不作为查询文本数据。
 - `schema/`：知识、实体和官方目录 schema。
 - `src/`：加载、解析、获取 DTO、实体 registry 和战甲适配。
 - `scripts/`：同步、校验和构建脚本。
@@ -68,6 +69,31 @@ const rendered = core.createRenderResult({ text: '获取信息', acquisition: re
 ## 数据与降级
 
 物品解析顺序为 ItemCatalog 精确匹配、官方 Mod、战甲、ItemCatalog 唯一模糊候选。详细获取数据缺失时保留明确状态或说明，不推测配方。战甲导出优先新鲜缓存和网络，网络失败后可回退旧缓存；Wiki 证据由 QQ Bot 的 SQLite/FTS 补充，不会静默覆盖核心结构化数据。
+
+## Warframe 战斗模拟 MCP
+
+MCP 使用 stdio，直接接入本知识库并自动解析中英文 Mod 满级词条：
+
+```json
+{
+  "command": "node",
+  "args": ["D:/Minecraft/warframe-knowledge-core/src/mcp-server.js"]
+}
+```
+
+启动：
+
+```powershell
+npm run mcp
+```
+
+工具：
+
+- `resolve_mod_effects`：解析 Mod 名称、结构化满级词条、来源与不支持警告。
+- `calculate_torid_incarnon_stats`：计算托里德灵化面板和各乘区。
+- `simulate_torid_incarnon`：从 0 层异常、0 层主要·霜冻和 20% 射线升温开始逐 Tick 模拟。
+
+动态击杀层必须由调用方显式传入；无法完整解析的 Mod 会拒绝实战模拟，不会猜值。
 
 ## 维护
 

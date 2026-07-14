@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Blood_For_Ammo",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,113 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Assassin/OnExecutionAmmoMod",
+          "canonical": "Blood For Ammo",
+          "displayName": "血易弹药",
+          "maxRank": 0,
+          "variant": "standard",
+          "typeFolder": "parazon"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Blood For Ammo",
+            "pageId": 1457180,
+            "revisionId": 2694433,
+            "pageTimestamp": "2025-08-20T09:50:13Z",
+            "compiledAt": "2026-07-14T05:59:09.795Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 77.44,
+              "chance": 77.44,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Blood For Ammo",
+                "pageId": 1457180,
+                "revisionId": 2694433,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Phorid | 100% | 77.44% | 77.44% | 1 | 1 | 0.7744"
+              },
+              "sourceCanonical": "Phorid",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Infested/Vip/Avatars/QuadrupedVIPAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Blood For Ammo",
+                  "pageId": 1457180,
+                  "revisionId": 2694433,
+                  "section": "Notes",
+                  "excerpt": "It only replenishes the magazine of the weapon and not the reserve ammo pool."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Blood For Ammo",
+                  "pageId": 1457180,
+                  "revisionId": 2694433,
+                  "section": "Notes",
+                  "excerpt": "Unlike Blood Forge , the magazine will not draw ammo from the reserve ammo pool upon performing a Mercy kill, so it essentially grants additional ammo."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Blood For Ammo",
+                  "pageId": 1457180,
+                  "revisionId": 2694433,
+                  "section": "Notes",
+                  "excerpt": "It does not work on Heavy weapons summoned by the Archgun Deployer ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Blood For Ammo",
+                  "pageId": 1457180,
+                  "revisionId": 2694433,
+                  "section": "Notes",
+                  "excerpt": "It does not work on the Incarnon Transmutation gauge."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Phorid"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

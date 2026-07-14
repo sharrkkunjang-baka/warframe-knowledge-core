@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Shrapnel_Shot",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,147 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/Event/CritDamageWhileAimingShotgunMod",
+          "canonical": "Shrapnel Shot",
+          "displayName": "破片射击",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Shrapnel Shot",
+            "pageId": 907901,
+            "revisionId": 2791342,
+            "pageTimestamp": "2026-07-05T18:18:21Z",
+            "compiledAt": "2026-07-14T05:59:13.354Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "B",
+              "chance": 7.35,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambion Drift / Necralisk",
+                  "planetCanonical": "Deimos ; talk to Mother"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shrapnel Shot",
+                "pageId": 907901,
+                "revisionId": 2791342,
+                "section": "Mission Drop Tables",
+                "excerpt": "Necralisk Bounty | Necralisk Bounty Lvl 15-25 Stage 2 | B | 7.35% | 1 | 0.0735 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
+              },
+              "missionTypeCanonical": "Necralisk Bounty",
+              "sourceCanonical": "Necralisk Bounty Lvl 15-25 Stage 2"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "B",
+              "chance": 13.16,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambion Drift / Necralisk",
+                  "planetCanonical": "Deimos ; talk to Mother"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shrapnel Shot",
+                "pageId": 907901,
+                "revisionId": 2791342,
+                "section": "Mission Drop Tables",
+                "excerpt": "Necralisk Bounty | Necralisk Bounty Lvl 15-25 Stage 1 | B | 13.16% | 1 | 0.1316 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
+              },
+              "missionTypeCanonical": "Necralisk Bounty",
+              "sourceCanonical": "Necralisk Bounty Lvl 15-25 Stage 1"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 12.18,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Pavlov",
+                  "nodeEntityId": "node.SolNode306",
+                  "planetCanonical": "Lua",
+                  "planetEntityId": "location.lua",
+                  "planetDisplayName": "月球"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shrapnel Shot",
+                "pageId": 907901,
+                "revisionId": 2791342,
+                "section": "Mission Drop Tables",
+                "excerpt": "Spy | Lua Spy | A | 12.18% | 1 | 0.1218 Pavlov , Lua | | Pavlov , Lua"
+              },
+              "missionTypeCanonical": "Spy",
+              "missionTypeEntityId": "mission-type.spy",
+              "missionTypeDisplayName": "间谍",
+              "sourceCanonical": "Lua Spy"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shrapnel Shot",
+                  "pageId": 907901,
+                  "revisionId": 2791342,
+                  "section": "Notes",
+                  "excerpt": "The +99% Critical Damage buff applies additively with other Critical Damage mods. Meaning, a base 2x crit multiplier with maxed Ravage and Shrapnel Shot will become 5.18x."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Necralisk Bounty"
+            },
+            {
+              "kind": "node",
+              "canonical": "Cambion Drift / Necralisk"
+            },
+            {
+              "kind": "location",
+              "canonical": "Deimos ; talk to Mother"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

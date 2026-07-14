@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Contamination_Casing",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,169 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventToxinStatusRifleMod",
+          "canonical": "Contamination Casing",
+          "displayName": "毒染套管",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "archgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Contamination Casing",
+            "pageId": 1366475,
+            "revisionId": 2641708,
+            "pageTimestamp": "2024-10-10T03:16:01Z",
+            "compiledAt": "2026-07-14T05:59:07.177Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 5,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contamination Casing",
+                "pageId": 1366475,
+                "revisionId": 2641708,
+                "section": "Mission Drop Tables",
+                "excerpt": "Fomorian Sabotage | Fomorian Sabotage | A | 5% | 1 | 0.05 Near Relay that is being attacked during Fomorian Sabotage event | | Near Relay that is being attacked during Fomorian Sabotage event"
+              },
+              "missionTypeCanonical": "Fomorian Sabotage",
+              "sourceCanonical": "Fomorian Sabotage"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 5,
+              "chance": 5,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contamination Casing",
+                "pageId": 1366475,
+                "revisionId": 2641708,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Balor Fomorian | 100% | 5% | 5% | 20 | 1 | 0.05"
+              },
+              "sourceCanonical": "Balor Fomorian"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 15,
+              "itemChance": 20,
+              "chance": 3,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contamination Casing",
+                "pageId": 1366475,
+                "revisionId": 2641708,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Blite Captain | 15% | 20% | 3% | 33 | 1 | 0.03"
+              },
+              "sourceCanonical": "Blite Captain"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 2.56,
+              "chance": 2.56,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contamination Casing",
+                "pageId": 1366475,
+                "revisionId": 2641708,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Profit-Taker Orb | 100% | 2.56% | 2.56% | 39 | 1 | 0.0256"
+              },
+              "sourceCanonical": "Profit-Taker Orb",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Corpus/Vip/Arachnoid/ArachnoidCamperAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Contamination Casing",
+                "pageId": 1366475,
+                "revisionId": 2641708,
+                "section": "Acquisition",
+                "excerpt": "This mod is available as a potential end of mission reward during a Fomorian Sabotage encounter."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Contamination Casing",
+                  "pageId": 1366475,
+                  "revisionId": 2641708,
+                  "section": "Notes",
+                  "excerpt": "Contamination Casing is additive with similar mods. For example, an Imperator with a max rank Contamination Casing and Modified Munitions will have a 5% × (1 + 60% + 60%) = 11% status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Contamination Casing",
+                  "pageId": 1366475,
+                  "revisionId": 2641708,
+                  "section": "Notes",
+                  "excerpt": "Can be stacked with Venomous Clip for a total of 180% Toxin damage."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Fomorian Sabotage"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Balor Fomorian"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Blite Captain"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Profit-Taker Orb"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

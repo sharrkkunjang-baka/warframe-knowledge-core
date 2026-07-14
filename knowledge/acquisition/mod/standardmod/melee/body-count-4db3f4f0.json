@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Body_Count",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,149 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/Event/ComboDurationMod",
+          "canonical": "Body Count",
+          "displayName": "杀伤计数",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Body Count",
+            "pageId": 907911,
+            "revisionId": 2589357,
+            "pageTimestamp": "2023-06-13T05:54:13Z",
+            "compiledAt": "2026-07-14T05:59:09.253Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 7.35,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambion Drift / Necralisk",
+                  "planetCanonical": "Deimos ; talk to Mother"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Body Count",
+                "pageId": 907911,
+                "revisionId": 2589357,
+                "section": "Mission Drop Tables",
+                "excerpt": "Necralisk Bounty | Necralisk Bounty Lvl 15-25 Stage 2 | C | 7.35% | 1 | 0.0735 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
+              },
+              "missionTypeCanonical": "Necralisk Bounty",
+              "sourceCanonical": "Necralisk Bounty Lvl 15-25 Stage 2"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 13.16,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambion Drift / Necralisk",
+                  "planetCanonical": "Deimos ; talk to Mother"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Body Count",
+                "pageId": 907911,
+                "revisionId": 2589357,
+                "section": "Mission Drop Tables",
+                "excerpt": "Necralisk Bounty | Necralisk Bounty Lvl 15-25 Stage 1 | C | 13.16% | 1 | 0.1316 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
+              },
+              "missionTypeCanonical": "Necralisk Bounty",
+              "sourceCanonical": "Necralisk Bounty Lvl 15-25 Stage 1"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Body Count",
+                  "pageId": 907911,
+                  "revisionId": 2589357,
+                  "section": "Notes",
+                  "excerpt": "Body Count increases the total melee combo duration (base: 5 seconds) to 17 seconds at max rank."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Body Count",
+                  "pageId": 907911,
+                  "revisionId": 2589357,
+                  "section": "Notes",
+                  "excerpt": "With Drifting Contact and Gladiator Rush , the combo duration can be further increased to 33 seconds."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Body Count",
+                  "pageId": 907911,
+                  "revisionId": 2589357,
+                  "section": "Notes",
+                  "excerpt": "Body Count does not affect ability summoned melee weapons such as Exalted Blade , Hysteria and Primal Fury . Summoned melee weapons use their own summoned weapon combo counter. The melee combo counter stays present in the background and decreases with time as normal."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Body Count",
+                  "pageId": 907911,
+                  "revisionId": 2589357,
+                  "section": "Notes",
+                  "excerpt": "Body Count does, however, benefit non-channeled melee abilities such as Slash Dash , Landslide and Blade Storm ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Necralisk Bounty"
+            },
+            {
+              "kind": "node",
+              "canonical": "Cambion Drift / Necralisk"
+            },
+            {
+              "kind": "location",
+              "canonical": "Deimos ; talk to Mother"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

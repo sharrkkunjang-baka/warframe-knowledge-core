@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Collision_Force",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,127 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponEventMeleeImpactDamageMod",
+          "canonical": "Collision Force",
+          "displayName": "冲击巨力",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Collision Force",
+            "pageId": 712968,
+            "revisionId": 2610494,
+            "pageTimestamp": "2024-03-09T14:09:12Z",
+            "compiledAt": "2026-07-14T05:59:09.281Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 8.33,
+              "chance": 8.33,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Collision Force",
+                "pageId": 712968,
+                "revisionId": 2610494,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Eidolon Teralyst | 100% | 8.33% | 8.33% | 12 | 1 | 0.0833"
+              },
+              "sourceCanonical": "Eidolon Teralyst",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Sentients/Eidolon/SentientTeralystAvatar"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Collision Force",
+                "pageId": 712968,
+                "revisionId": 2610494,
+                "section": "Acquisition",
+                "excerpt": "This mod can be obtained by killing the Eidolon Teralyst ."
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Collision Force",
+                "pageId": 712968,
+                "revisionId": 2610494,
+                "section": "Acquisition",
+                "excerpt": "It is now offered as a periodic item for sale by Baro Ki'Teer , costing 400 400 and 250,000 Credits 250,000 to purchase. Note that Baro Ki'Teer's stock changes with each appearance, and this mod may not be available on a succeeding appearance."
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Collision Force",
+                "pageId": 712968,
+                "revisionId": 2610494,
+                "section": "Acquisition",
+                "excerpt": "This mod was previously acquired by amassing 1000 Points in the Operation: False Profit Event."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Collision Force",
+                  "pageId": 712968,
+                  "revisionId": 2610494,
+                  "section": "Notes",
+                  "excerpt": "Can be combined with Primed Heavy Trauma to provide a 285% total increase to Impact damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Collision Force",
+                  "pageId": 712968,
+                  "revisionId": 2610494,
+                  "section": "Notes",
+                  "excerpt": "Compared to a base elemental mod (+90%) in terms of raw damage, Collision Force becomes more effective when a weapon's Impact damage exceeds 75% of total weapon damage. This does not take damage type multipliers into consideration."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Eidolon Teralyst"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

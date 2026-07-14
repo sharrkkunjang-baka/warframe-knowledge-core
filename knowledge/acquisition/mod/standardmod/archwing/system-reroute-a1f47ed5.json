@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/System_Reroute",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,334 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitAbilityEfficiencyMod",
+          "canonical": "System Reroute",
+          "displayName": "系统重划",
+          "maxRank": 10,
+          "variant": "standard",
+          "typeFolder": "archwing"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "System Reroute",
+            "pageId": 573439,
+            "revisionId": 2597625,
+            "pageTimestamp": "2023-10-09T20:34:09Z",
+            "compiledAt": "2026-07-14T05:59:07.421Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 3.16,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Pandora",
+                  "nodeEntityId": "node.SolNode906",
+                  "planetCanonical": "Saturn",
+                  "planetEntityId": "location.saturn",
+                  "planetDisplayName": "土星"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Mission Drop Tables",
+                "excerpt": "Pursuit | Archwing Pursuit | A | 3.16% | 1 | 0.0316 Pandora , Saturn | | Pandora , Saturn"
+              },
+              "missionTypeCanonical": "Pursuit",
+              "sourceCanonical": "Archwing Pursuit"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "B",
+              "chance": 3.76,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Kepler",
+                  "nodeEntityId": "node.SettlementNode10",
+                  "planetCanonical": "Phobos",
+                  "planetEntityId": "location.phobos",
+                  "planetDisplayName": "火卫一"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Mission Drop Tables",
+                "excerpt": "Rush | Archwing Rush | B | 3.76% | 1 | 0.0376 Kepler , Phobos | | Kepler , Phobos"
+              },
+              "missionTypeCanonical": "Rush",
+              "sourceCanonical": "Archwing Rush"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.75,
+              "chance": 0.0875,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Gyre Gokstad Officer | 5% | 1.75% | 0.0875% | 1143 | 1 | 0.000875"
+              },
+              "sourceCanonical": "Gyre Gokstad Officer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.75,
+              "chance": 0.0875,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Gyre Gokstad Pilot | 5% | 1.75% | 0.0875% | 1143 | 1 | 0.000875"
+              },
+              "sourceCanonical": "Gyre Gokstad Pilot"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.75,
+              "chance": 0.0875,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Gyre Roller Sentry | 5% | 1.75% | 0.0875% | 1143 | 1 | 0.000875"
+              },
+              "sourceCanonical": "Gyre Roller Sentry"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 12.5,
+              "itemChance": 2.01,
+              "chance": 0.25125,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Hellion Dargyn | 12.5% | 2.01% | 0.25125% | 398 | 1 | 0.0025125"
+              },
+              "sourceCanonical": "Hellion Dargyn",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/SpaceBattles/Grineer/Skiffs/MissileSkiffAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 12.5,
+              "itemChance": 2.01,
+              "chance": 0.25125,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Dargyn | 12.5% | 2.01% | 0.25125% | 398 | 1 | 0.0025125"
+              },
+              "sourceCanonical": "Kuva Dargyn",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Fortress/Avatars/FortressSkiffAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 25,
+              "itemChance": 1.01,
+              "chance": 0.2525,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Ogma | 25% | 1.01% | 0.2525% | 396 | 1 | 0.002525"
+              },
+              "sourceCanonical": "Ogma",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/SpaceBattles/Grineer/Pods/CombatPodAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 25,
+              "itemChance": 1.01,
+              "chance": 0.2525,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Ogma Elite | 25% | 1.01% | 0.2525% | 396 | 1 | 0.002525"
+              },
+              "sourceCanonical": "Ogma Elite"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 12.5,
+              "itemChance": 2.01,
+              "chance": 0.25125,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Tusk Command Dargyn | 12.5% | 2.01% | 0.25125% | 398 | 1 | 0.0025125"
+              },
+              "sourceCanonical": "Tusk Command Dargyn",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Eidolon/Vip/Avatars/EidolonVipSkiffAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 12.5,
+              "itemChance": 2.01,
+              "chance": 0.25125,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Tusk Dargyn | 12.5% | 2.01% | 0.25125% | 398 | 1 | 0.0025125"
+              },
+              "sourceCanonical": "Tusk Dargyn",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Eidolon/GrineerSkiff/GrineerSkiffUnmannedAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 12.5,
+              "itemChance": 2.01,
+              "chance": 0.25125,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "System Reroute",
+                "pageId": 573439,
+                "revisionId": 2597625,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Tusk Shield Dargyn | 12.5% | 2.01% | 0.25125% | 398 | 1 | 0.0025125"
+              },
+              "sourceCanonical": "Tusk Shield Dargyn",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Eidolon/GrineerSkiff/GrineerSkiffShieldUnmannedAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Pursuit"
+            },
+            {
+              "kind": "missionType",
+              "canonical": "Rush"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Gyre Gokstad Officer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Gyre Gokstad Pilot"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Gyre Roller Sentry"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Hellion Dargyn"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Dargyn"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Ogma"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Ogma Elite"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Tusk Command Dargyn"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Tusk Dargyn"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Tusk Shield Dargyn"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Archwing Mods Edit"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Archwing | | Argon Plating • Auxiliary Power • Efficient Transferral • Energy Amplifier • Energy Inversion • Enhanced Durability • Hyperion Thrusters • Kinetic Diversion • Morphic Transformer ( Primed ) • Superior Defenses • System Reroute"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

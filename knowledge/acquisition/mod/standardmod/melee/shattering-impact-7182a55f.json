@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Shattering_Impact",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,183 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponMeleeArmorShatterMod",
+          "canonical": "Shattering Impact",
+          "displayName": "碎裂冲击",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Shattering Impact",
+            "pageId": 775238,
+            "revisionId": 2719902,
+            "pageTimestamp": "2026-01-03T05:58:58Z",
+            "compiledAt": "2026-07-14T05:59:09.591Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 18.97,
+              "chance": 0.5691,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Shattering Impact",
+                "pageId": 775238,
+                "revisionId": 2719902,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Drekar Butcher | 3% | 18.97% | 0.5691% | 176 | 1 | 0.005691"
+              },
+              "sourceCanonical": "Drekar Butcher",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/SeaLab/Avatars/BladeSawmanAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Due to the nature of in-game Damage Quantization , some melee weapons have such a low base Impact value that it is rounded to 0 damage, causing Shattering Impact to not apply. However, for the examples below, each weapon coincidentally deals pure Impact on slam hits, allowing certain attacks to reduce armor anyways."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Destreza"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Galatine"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Galatine Prime"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Shattering Impact takes effect on every melee hit from weapons with any Impact damage. It has no effect if the melee weapon's Impact damage is zero (for example ranged attacks of Redeemer ). Note that it is not necessary to proc the Impact status effect to trigger the armor reduction."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "The amount of armor reduction per hit is a flat, constant value, independent of the amount of Impact damage inflicted. Since the reduction is applied to the target's base armor, for a given enemy type it will always take the same number of hits to completely drain the enemy's armor, regardless of its level."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Shattering Impact is applied before percentage-based base armor strips, such as Corrosive Projection , and so the number of shots required to fully strip will be unaffected."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Compared to Corrosive status effect, Shattering Impact has the ability to reduce a target's armor to 0 permanently, instead of just by 80% for the duration of the status effect. Corrosive, however, only needs 10 stacks of the status effect to achieve this, while Shattering Impact from weapons (other than certain Gunblades which are able to strip armor very quickly - in 2-4 ranged shots) may require a substantially higher amount of hits for the same effect on enemies with high base armor."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Shattering Impact is not considered a status effect and hence is able to affect status effect-immune enemies, such as bosses."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "Shattering Impact does not affect Archons or Commandeered Primes ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Shattering Impact",
+                  "pageId": 775238,
+                  "revisionId": 2719902,
+                  "section": "Notes",
+                  "excerpt": "As of Hotfix 18.1.4 (2015-12-21) Shattering Impact doesn't reduce enemy armor when used with the charge attacks of thrown weapons. The charge attack from a Blade and Whip type weapon will however reduce enemy armor."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Drekar Butcher"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

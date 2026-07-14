@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Discipline's_Merit",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,162 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/CertainStrike",
+          "canonical": "Discipline's Merit",
+          "displayName": "纪律之功",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Discipline's Merit",
+            "pageId": 1582117,
+            "revisionId": 2651937,
+            "pageTimestamp": "2024-12-27T17:25:27Z",
+            "compiledAt": "2026-07-14T05:59:09.340Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 6,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambire",
+                  "nodeEntityId": "node.SolNode718",
+                  "nodeDisplayName": "异化区",
+                  "planetCanonical": "Deimos",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Discipline's Merit",
+                "pageId": 1582117,
+                "revisionId": 2651937,
+                "section": "Mission Drop Tables",
+                "excerpt": "Alchemy | Deimos Entrati Alchemy | C | 6% | 1 | 0.06 Cambire , Deimos | | Cambire , Deimos"
+              },
+              "missionTypeCanonical": "Alchemy",
+              "sourceCanonical": "Deimos Entrati Alchemy"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Makes Tennokai trigger after 4 melee inputs that hit an enemy."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Additional enemies hit beyond the first do not count as additional hits."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Gunblade shots are an exception to this."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Multi-strike attacks do not count as additional hits."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Gunblade shots are an exception to this; attacks that fire two shots in succession will count as two hits. Multishot does not count."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Heavy attacks do not count as a hit."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Performing a Heavy Slide is considered a hit."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Discipline's Merit",
+                  "pageId": 1582117,
+                  "revisionId": 2651937,
+                  "section": "Notes",
+                  "excerpt": "Remaining hits to Tennokai trigger are shown on the buff UI."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Alchemy"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

@@ -18,9 +18,15 @@ const outputs = {
   'official-items.json': data.officialItems,
   'official-item-sources.json': data.officialItemSources,
   'locations.json': data.locations.values,
-  'vendors.json': data.vendors.values,
+  'quests.json': data.quests.values,
+  'enemies.json': data.enemies.values,
+  'mission-types.json': data.missionTypes.values,
   'currencies.json': data.currencies.values,
-  'aliases.json': data.aliases
+  'factions.json': data.factions.values,
+  'npcs.json': data.npcs.values,
+  'aliases.json': data.aliases,
+  'frame-categories.json': data.frameCategories,
+  'frame-methods.json': data.frameMethods
 };
 const files = {};
 for (const [name, value] of Object.entries(outputs)) {
@@ -39,8 +45,14 @@ const manifest = {
     officialCategories: data.officialCatalog.counts.officialCategories,
     officialItems: data.officialItems.counts.items,
     locations: data.locations.values.length,
-    vendors: data.vendors.values.length,
+    quests: data.quests.values.length,
+    enemies: data.enemies.values.length,
+    missionTypes: data.missionTypes.values.length,
     currencies: data.currencies.values.length,
+    factions: data.factions.values.length,
+    npcs: data.npcs.values.length,
+    frameCategories: data.frameCategories?.count || 0,
+    frameMethods: data.frameMethods.length,
     stubOfficialMods: data.officialCatalog.counts.stubMods,
     missingOfficialMods: data.officialCatalog.counts.missingMods,
     missingOfficialCategories: data.officialCatalog.counts.missingOfficialCategories

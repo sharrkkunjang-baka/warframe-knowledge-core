@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Final_Harbinger",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,146 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/RegorSwordShieldMeleeTree",
+          "canonical": "Final Harbinger",
+          "displayName": "最终先驱",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "stance"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Final Harbinger",
+            "pageId": 774758,
+            "revisionId": 2658343,
+            "pageTimestamp": "2025-01-31T15:52:42Z",
+            "compiledAt": "2026-07-14T05:59:13.411Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 0.34,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Nakki",
+                  "nodeEntityId": "node.SolNode190",
+                  "planetCanonical": "Sedna",
+                  "planetEntityId": "location.sedna",
+                  "planetDisplayName": "赛德娜"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Final Harbinger",
+                "pageId": 774758,
+                "revisionId": 2658343,
+                "section": "Mission Drop Tables",
+                "excerpt": "Rathuum | Tier 1 Rathuum | A | 0.34% | 1 | 0.0034 Nakki , Sedna | | Nakki , Sedna"
+              },
+              "missionTypeCanonical": "Rathuum",
+              "sourceCanonical": "Tier 1 Rathuum"
+            },
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 2.27,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Final Harbinger",
+                "pageId": 774758,
+                "revisionId": 2658343,
+                "section": "Mission Drop Tables",
+                "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
+              },
+              "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "sourceCanonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 5.53,
+              "chance": 0.1659,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Final Harbinger",
+                "pageId": 774758,
+                "revisionId": 2658343,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Drekar Manic | 3% | 5.53% | 0.1659% | 603 | 1 | 0.001659"
+              },
+              "sourceCanonical": "Drekar Manic",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/SeaLab/Avatars/SeaLabManicGrineerAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 36.36,
+              "chance": 36.36,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Final Harbinger",
+                "pageId": 774758,
+                "revisionId": 2658343,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Feyarch Specter | 100% | 36.36% | 36.36% | 3 | 1 | 0.3636"
+              },
+              "sourceCanonical": "Feyarch Specter",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/TennoReplicants/FairyQuest/FairyQuestPaladinAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Rathuum"
+            },
+            {
+              "kind": "missionType",
+              "canonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Drekar Manic"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Feyarch Specter"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

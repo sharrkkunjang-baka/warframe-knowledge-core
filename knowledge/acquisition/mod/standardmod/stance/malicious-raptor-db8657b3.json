@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Malicious_Raptor",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,168 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ClawCmbOneMeleeTree",
+          "canonical": "Malicious Raptor",
+          "displayName": "恶毒猛禽",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "stance"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Malicious Raptor",
+            "pageId": 500215,
+            "revisionId": 2719529,
+            "pageTimestamp": "2025-12-31T12:27:49Z",
+            "compiledAt": "2026-07-14T05:59:13.443Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 2.27,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malicious Raptor",
+                "pageId": 500215,
+                "revisionId": 2719529,
+                "section": "Mission Drop Tables",
+                "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
+              },
+              "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "sourceCanonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 1.01,
+              "chance": 0.0303,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malicious Raptor",
+                "pageId": 500215,
+                "revisionId": 2719529,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Kuva Powerclaw | 3% | 1.01% | 0.0303% | 3300 | 1 | 0.000303"
+              },
+              "sourceCanonical": "Kuva Powerclaw",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Fortress/Avatars/FortressPistonSawmanAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 1.01,
+              "chance": 0.0303,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malicious Raptor",
+                "pageId": 500215,
+                "revisionId": 2719529,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Narmer Powerfist | 3% | 1.01% | 0.0303% | 3300 | 1 | 0.000303"
+              },
+              "sourceCanonical": "Narmer Powerfist"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 1.01,
+              "chance": 0.0303,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Malicious Raptor",
+                "pageId": 500215,
+                "revisionId": 2719529,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Powerfist | 3% | 1.01% | 0.0303% | 3300 | 1 | 0.000303"
+              },
+              "sourceCanonical": "Powerfist",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/PistonSawmanAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Malicious Raptor",
+                  "pageId": 500215,
+                  "revisionId": 2719529,
+                  "section": "Notes",
+                  "excerpt": "The first attack of Jagged Gash does 100% bonus Puncture Damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Malicious Raptor",
+                  "pageId": 500215,
+                  "revisionId": 2719529,
+                  "section": "Notes",
+                  "excerpt": "Certain attacks have bonus status chance . Status chance bonus is multiplicative to modded status chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Malicious Raptor",
+                  "pageId": 500215,
+                  "revisionId": 2719529,
+                  "section": "Notes",
+                  "excerpt": "The first and second attacks of Three Lessons have 50% bonus status chance."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Weekly Conclave Challenge Reward"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Kuva Powerclaw"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Narmer Powerfist"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Powerfist"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

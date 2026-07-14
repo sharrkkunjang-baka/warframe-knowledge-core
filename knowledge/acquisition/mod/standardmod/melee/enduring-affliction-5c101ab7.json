@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Enduring_Affliction",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,166 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/Channel/ChannelProcTimeExtendOnHitMod",
+          "canonical": "Enduring Affliction",
+          "displayName": "长时苦难",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "melee"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Enduring Affliction",
+            "pageId": 1090047,
+            "revisionId": 2745768,
+            "pageTimestamp": "2026-03-23T21:19:09Z",
+            "compiledAt": "2026-07-14T05:59:09.382Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Enduring Affliction",
+                "pageId": 1090047,
+                "revisionId": 2745768,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 1 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 1 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 0.67,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Enduring Affliction",
+                "pageId": 1090047,
+                "revisionId": 2745768,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 3 The Circuit (Normal) | A | 0.67% | 1 | 0.0067 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 3 The Circuit (Normal)"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.69,
+              "chance": 0.1107,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Enduring Affliction",
+                "pageId": 1090047,
+                "revisionId": 2745768,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Aurax Baculus | 3% | 3.69% | 0.1107% | 903 | 1 | 0.001107"
+              },
+              "sourceCanonical": "Aurax Baculus"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 10,
+              "itemChance": 3.69,
+              "chance": 0.369,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Enduring Affliction",
+                "pageId": 1090047,
+                "revisionId": 2745768,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Ghoul Devourer | 10% | 3.69% | 0.369% | 271 | 1 | 0.00369"
+              },
+              "sourceCanonical": "Ghoul Devourer",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/Ghouls/GhoulDevourerAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.69,
+              "chance": 0.1107,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Enduring Affliction",
+                "pageId": 1090047,
+                "revisionId": 2745768,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Guardsman | 3% | 3.69% | 0.1107% | 903 | 1 | 0.001107"
+              },
+              "sourceCanonical": "Guardsman",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Grineer/AIWeek/Avatars/GrineerMeleeStaffAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Enduring Affliction",
+                  "pageId": 1090047,
+                  "revisionId": 2745768,
+                  "section": "Notes",
+                  "excerpt": "Stacks additively with status chance bonuses such as Melee Prowess ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Aurax Baculus"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Ghoul Devourer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Guardsman"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

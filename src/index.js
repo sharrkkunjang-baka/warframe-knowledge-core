@@ -5,6 +5,7 @@ const { loadData } = require('./loader');
 const { createResolver, normalize } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
+const { displayEntityName } = require('./entities');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -194,8 +195,19 @@ function createKnowledgeCore(options = {}) {
     return { query: String(query || '').trim(), category, entries };
   };
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
+  const generatedAcquisitionMethods = entry => entry?.modAcquisition?.generated?.wiki?.methods || [];
+  const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
+  const mergeStructuredMethods = entry => {
+    const methods = [...manualAcquisitionMethods(entry)];
+    const identities = new Set(methods.map(method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, rotation: method.rotation, chance: method.chance })));
+    for (const method of generatedAcquisitionMethods(entry)) {
+      const key = JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, rotation: method.rotation, chance: method.chance });
+      if (!identities.has(key)) { methods.push(method); identities.add(key); }
+    }
+    return methods;
+  };
   const expandMethodRefs = entry => {
-    const explicitRefs = entry.methodRefs || [];
+    const explicitRefs = entry.modAcquisition?.manual?.methodRefs || entry.methodRefs || [];
     const inheritedRefs = explicitRefs.length
       ? []
       : (entry.subject?.categoryRefs || [])
@@ -270,6 +282,8 @@ function createKnowledgeCore(options = {}) {
       entries,
       methods,
       sourceOptions,
+      structuredMethods: entries.flatMap(mergeStructuredMethods),
+      wikiEvidence: entries.flatMap(entry => entry.modAcquisition?.generated?.wiki?.evidence || []),
       alternatives: []
     };
   };
@@ -296,33 +310,61 @@ function createKnowledgeCore(options = {}) {
     if (!raw) return null;
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;
-    const resolution = resolveName(raw, searchOptions.resolveOptions || {});
+    // 战甲规范名已经由命令层完成解析时必须精确锁定；通用别名解析可能把
+    // "Wukong Prime" 之类的名称再次降级为普通 "Wukong"。
+    const exactFrameEntry = allKnowledge.find(item => item.module === 'acquisition'
+      && item.subject?.category === 'frame'
+      && normalize(item.subject?.canonical) === normalize(raw));
+    const resolution = exactFrameEntry ? { canonical: exactFrameEntry.subject.canonical, exact: true } : resolveName(raw, searchOptions.resolveOptions || {});
     if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
-    const canonical = resolution?.canonical || raw;
-    const entry = data.knowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
+    const canonical = exactFrameEntry?.subject?.canonical || resolution?.canonical || raw;
+    const entry = exactFrameEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
+    const isFrame = entry.subject?.category === 'frame';
+    const frameRoute = isFrame ? frameAcquisition.renderRoutedAcquisition(canonical) : null;
+    if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
+      throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
+    }
     return {
       query: raw,
       resolution,
       entry,
-      description: getAcquisitionDescription(entry),
+      description: frameRoute?.lines?.join('\n') || getAcquisitionDescription(entry),
+      frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
       sourceOptions,
+      structuredMethods: mergeStructuredMethods(entry),
+      wikiEvidence: entry.modAcquisition?.generated?.wiki?.evidence || [],
+      mechanicsEvidence: entry.modAcquisition?.generated?.wiki?.mechanicsEvidence || null,
       alternatives: []
     };
+  };
+  const resolveEntityVariables = query => {
+    const sources = [
+      ['npc', data.npcs], ['location', data.locations], ['faction', data.factions],
+      ['quest', data.quests], ['currency', data.currencies], ['enemy', data.enemies], ['mission-type', data.missionTypes]
+    ];
+    const seen = new Set();
+    return sources.flatMap(([type, registry]) => registry.search(query).slice(0, 8).map(entry => ({
+      type, id: entry.id, canonical: entry.canonical, displayName: displayEntityName(entry),
+      localized: Boolean(entry.displayName && entry.displayName.trim()), locationId: entry.locationId || null,
+      factionId: entry.factionId || null
+    }))).filter(variable => !seen.has(variable.id) && seen.add(variable.id));
   };
   const buildWikiContext = query => {
     const resolution = resolveName(query);
     const facts = searchFacts(query);
     const knowledge = searchKnowledge(query);
-    if (!facts.length && !knowledge.length && !resolution) return null;
+    const entityVariables = resolveEntityVariables(query);
+    if (!facts.length && !knowledge.length && !resolution && !entityVariables.length) return null;
     const sections = [];
     if (resolution && !resolution.ambiguous) sections.push(`名称解析：${query} → ${resolution.canonical}`);
+    if (entityVariables.length) sections.push(`实体变量（NPC/地点/阵营/任务/货币/敌人/任务类型）：\n${entityVariables.map(item => `${item.id} = ${item.displayName} [canonical: ${item.canonical}]`).join('\n')}\n输出规则：需要提及这些实体时必须使用变量的 displayName；localized=false 表示没有已审核官方中文，只能保留 canonical 英文，禁止自行翻译、音译或补中文。不要输出未被当前问题需要的变量。`);
     if (facts.length) sections.push(`基础事实：\n${facts.map(item => `【${item.title}】\n${item.content}\n来源：${item.sources.map(source => `${source.label} ${source.url}`).join('、')}`).join('\n\n')}`);
     if (knowledge.length) sections.push(`加工知识：\n${knowledge.map(item => `【${item.title}】\n${item.content}`).join('\n\n')}`);
-    return { query, resolution, facts, knowledge, text: sections.join('\n\n') };
+    return { query, resolution, facts, knowledge, entityVariables, text: sections.join('\n\n') };
   };
   return {
     ...data,
@@ -356,13 +398,25 @@ function createKnowledgeCore(options = {}) {
     buildWikiContext,
     getLocation: data.locations.get,
     searchLocations: data.locations.search,
-    getVendor: data.vendors.get,
-    searchVendors: data.vendors.search,
     getCurrency: data.currencies.get,
     searchCurrencies: data.currencies.search,
+    getFaction: data.factions.get,
+    searchFactions: data.factions.search,
+    getNpc: data.npcs.get,
+    searchNpcs: data.npcs.search,
+    resolveEntityVariables,
+    getQuest: data.quests.get,
+    searchQuests: data.quests.search,
+    getEnemy: data.enemies.get,
+    searchEnemies: data.enemies.search,
+    getMissionType: data.missionTypes.get,
+    searchMissionTypes: data.missionTypes.search,
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,
+    listWarframes: frameAcquisition.listWarframes,
+    getWarframeKnowledge: frameAcquisition.getWarframeKnowledge,
+    getWarframeMaintenanceReport: frameAcquisition.getWarframeMaintenanceReport,
     frameAcquisition
   };
 }

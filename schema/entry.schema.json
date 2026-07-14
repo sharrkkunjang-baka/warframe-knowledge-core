@@ -13,7 +13,7 @@
     "gameVersion": { "type": "string", "minLength": 1 },
     "updatedAt": { "type": "string", "format": "date" },
     "reviewStatus": { "enum": ["draft", "review", "approved", "rejected"] },
-    "acquisitionStatus": { "enum": ["stub", "complete"] },
+    "acquisitionStatus": { "enum": ["stub", "partial", "complete"] },
     "reviewedBy": { "type": "array", "items": { "type": "string" } },
     "kind": { "enum": ["fact", "knowledge"] },
     "module": { "enum": ["acquisition", "gameplay"] },
@@ -24,7 +24,7 @@
         "canonical": { "type": "string", "minLength": 1 },
         "displayName": { "type": "string", "minLength": 1 },
         "category": { "enum": ["frame", "weapon", "mod", "resource", "companion", "other"], "description": "对象的基础类型" },
-        "categoryRefs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }, "uniqueItems": true, "description": "引用 categories/<id>.json，可同时属于多个细分类" },
+        "categoryRefs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }, "uniqueItems": true, "description": "引用 knowledge/categories/<id>.json，可同时属于多个细分类" },
         "officialUniqueName": { "type": "string", "minLength": 1 },
         "setFamily": { "type": "string", "minLength": 1 },
         "pvpKind": { "enum": ["pool", "augment"] },
@@ -51,6 +51,40 @@
       },
       "additionalProperties": false
     },
+    "modAcquisition": {
+      "type": "object",
+      "required": ["generated", "manual"],
+      "properties": {
+        "generated": {
+          "type": "object",
+          "required": ["identity", "wiki"],
+          "properties": {
+            "identity": { "type": "object" },
+            "wiki": {
+              "type": ["object", "null"],
+              "properties": {
+                "methods": { "type": "array" },
+                "evidence": { "type": "array" },
+                "mechanicsEvidence": { "type": "object" },
+                "unresolvedEntities": { "type": "array" },
+                "status": { "enum": ["complete", "partial", "unresolved"] }
+              }
+            }
+          }
+        },
+        "manual": {
+          "type": "object",
+          "required": ["methods", "methodRefs", "overrides", "reviewStatus", "reviewedBy"],
+          "properties": {
+            "methods": { "type": "array" },
+            "methodRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+            "overrides": { "type": "object" },
+            "reviewStatus": { "enum": ["draft", "review", "approved", "rejected"] },
+            "reviewedBy": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
     "effectDetails": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "effects": {
       "type": "array",
@@ -63,6 +97,34 @@
           "displayName": { "type": "string", "minLength": 1 },
           "value": { "type": "number" },
           "unit": { "type": "string" }
+        }
+      }
+    },
+    "frameAcquisition": {
+      "type": "object",
+      "properties": {
+        "generated": {
+          "type": "object",
+          "properties": {
+            "routing": {
+              "type": "object",
+              "required": ["componentCategory", "blueprintCategory", "componentVariables", "blueprintVariables", "blueprintSource"],
+              "properties": {
+                "componentCategory": { "type": "string", "pattern": "^frame-" },
+                "blueprintCategory": { "type": ["string", "null"] },
+                "componentVariables": { "type": "object" },
+                "blueprintVariables": { "type": "object" },
+                "blueprintSource": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        },
+        "manual": {
+          "type": "object",
+          "properties": {
+            "routingOverride": { "type": "object" },
+            "acquisitionText": { "type": "string", "minLength": 1 }
+          }
         }
       }
     },

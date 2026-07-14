@@ -5,16 +5,26 @@ const path = require('node:path');
 
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'));
 const CORE_ROOT = path.resolve(__dirname, '..');
+const KNOWLEDGE_ROOT = path.join(CORE_ROOT, 'knowledge');
+const GENERATED_KNOWLEDGE_ROOT = path.join(KNOWLEDGE_ROOT, 'generated');
 const WARFRAMES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Warframes.json'));
 const RELICS = require(path.join(ITEMS_ROOT, 'data', 'json', 'Relics.json'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
-const ALIASES = require(path.join(CORE_ROOT, 'facts', 'aliases.json'));
-const OFFICIAL_FRAMES = require(path.join(CORE_ROOT, 'generated', 'official-warframes.json'));
-const OFFICIAL_QUESTS = require(path.join(CORE_ROOT, 'generated', 'official-quests.json'));
-const OFFICIAL_PRIME_RELICS = require(path.join(CORE_ROOT, 'generated', 'official-prime-relics.json'));
-const OFFICIAL_FRAME_QUEST_SERIES = require(path.join(CORE_ROOT, 'generated', 'official-frame-quest-series.json'));
+const ALIASES = require(path.join(KNOWLEDGE_ROOT, 'facts', 'aliases.json'));
+const OFFICIAL_FRAMES = require(path.join(GENERATED_KNOWLEDGE_ROOT, 'official-warframes.json'));
+const OFFICIAL_QUESTS = require(path.join(GENERATED_KNOWLEDGE_ROOT, 'official-quests.json'));
+const OFFICIAL_PRIME_RELICS = require(path.join(GENERATED_KNOWLEDGE_ROOT, 'official-prime-relics.json'));
+const OFFICIAL_FRAME_QUEST_SERIES = require(path.join(GENERATED_KNOWLEDGE_ROOT, 'official-frame-quest-series.json'));
+const OFFICIAL_RAILJACK_NODES = require(path.join(GENERATED_KNOWLEDGE_ROOT, 'official-railjack-nodes.json'));
 const { loadEntityRegistries } = require('./entities');
-const LOCATION_REGISTRY = loadEntityRegistries(CORE_ROOT).locations;
+const ENTITY_REGISTRIES = loadEntityRegistries(CORE_ROOT);
+const LOCATION_REGISTRY = ENTITY_REGISTRIES.locations;
+const CURRENCY_REGISTRY = ENTITY_REGISTRIES.currencies;
+const QUEST_REGISTRY = ENTITY_REGISTRIES.quests;
+const FACTION_REGISTRY = ENTITY_REGISTRIES.factions;
+const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
+const ENEMY_REGISTRY = ENTITY_REGISTRIES.enemies;
+const MISSION_TYPE_REGISTRY = ENTITY_REGISTRIES.missionTypes;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -22,112 +32,48 @@ const DEFAULT_CACHE = path.join(process.env.WF_EXPORT_CACHE_DIR || path.join(COR
 const DEFAULT_REWARDS_CACHE = path.join(process.env.WF_EXPORT_CACHE_DIR || path.join(CORE_ROOT, 'cache'), 'warframe-export-rewards.json');
 const PARTS = ['Blueprint', 'Neuroptics', 'Chassis', 'Systems'];
 const PART_ZH = { Blueprint: '总图', Neuroptics: '头', Chassis: '机体', Systems: '系统' };
+const RAILJACK_NODE_ZH = Object.fromEntries(OFFICIAL_RAILJACK_NODES.nodes.flatMap(node => [[node.canonical, node.displayName], [node.regionCanonical, node.regionDisplayName]]));
 const STABLE_LOCATION_ZH = {
   Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一',
   Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星',
   Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二',
   Assassination: '刺杀', Defense: '防御', Survival: '生存', Capture: '捕获', Rescue: '救援',
   Spy: '间谍', Disruption: '中断', Exterminate: '歼灭', Interception: '拦截', Excavation: '挖掘',
-  'Cephalon Simaris': '中枢 Simaris', 'The New Strange': '新疑谜团', Junction: '接合点', Complete: '完成',
+  'Cephalon Simaris': '中枢 Simaris', 'The New Strange': '新疑谜团', Junction: '接合点', Complete: '完成', Caches: '任务缓存',
+  ...RAILJACK_NODE_ZH,
   ...Object.fromEntries(LOCATION_REGISTRY.values.map(location => [location.canonical, location.displayName]))
 };
 
-const CALIBAN_PRIME = Object.freeze({
-  name: 'Caliban Prime', zhName: 'Caliban Prime', uniqueName: '/Lotus/Powersuits/Sentient/CalibanPrime',
-  isPrime: true, auditedPrime: true, productCategory: 'Suits', type: 'Warframe',
-  components: PARTS.map(part => ({ part, name: part, drops: [] })),
-  relics: {
-    Blueprint: [
-      { name: 'Lith V11', chance: 11, rarity: 'Uncommon' }, { name: 'Meso V13', chance: 11, rarity: 'Uncommon' }, { name: 'Meso V15', chance: 11, rarity: 'Uncommon' }
-    ],
-    Neuroptics: [{ name: 'Neo C7', chance: 2, rarity: 'Rare' }],
-    Chassis: [
-      { name: 'Axi P10', chance: 25.33, rarity: 'Common' }, { name: 'Lith K12', chance: 25.33, rarity: 'Common' }, { name: 'Meso V15', chance: 25.33, rarity: 'Common' }
-    ],
-    Systems: [{ name: 'Neo C8', chance: 2, rarity: 'Rare' }]
-  },
-  materials: {
-    available: true,
-    resources: [
-      { name: 'Orokin 电池', count: 5 }, { name: '神经元', count: 4 }, { name: '电路', count: 1750 },
-      { name: '塑胶块', count: 450 }, { name: '纳米孢子', count: 4750 }, { name: '泥炭萃取物', count: 2 },
-      { name: '控制模块', count: 10 }, { name: '红化结晶', count: 1600 }, { name: '回收金属', count: 7800 },
-      { name: '氩结晶', count: 2 }, { name: '神经传感器', count: 5 }, { name: '聚合物束', count: 1775 },
-      { name: '铁氧体', count: 4000 }
-    ],
-    manufacturedParts: [], credits: { name: '现金', count: 70000 }
-  }
-});
-
-const FRAME_SOURCE_OVERRIDES = Object.freeze({
-  Volt: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Banshee: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Nezha: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Wukong: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Zephyr: {
-    all: '在氏族道场的 Tenno 实验室完成研究后复制蓝图'
-  },
-  Caliban: {
-    Blueprint: '商店购买（50000 现金）',
-    Neuroptics: '合一众赏金（当前奖励预览出现头部蓝图时刷）',
-    Chassis: '合一众赏金（当前奖励预览出现机体蓝图时刷）',
-    Systems: '合一众赏金（当前奖励预览出现系统蓝图时刷）'
-  },
-  Vauban: {
-    Blueprint: '商店购买（35000 现金）；或在轮换到该战甲时通过普通回廊第 10 阶获得',
-    Neuroptics: '午夜电波贡品兑换（25 午夜电波货币）；或在轮换到该战甲时通过普通回廊第 2 阶获得',
-    Chassis: '午夜电波贡品兑换（25 午夜电波货币）；或在轮换到该战甲时通过普通回廊第 5 阶获得',
-    Systems: '午夜电波贡品兑换（25 午夜电波货币）；或在轮换到该战甲时通过普通回廊第 8 阶获得'
-  },
-  Dagath: {
-    all: "在氏族道场建造 Dagath 的空阁后获取蓝图（无需研究）；三个部件共需 102 浮华荆棘"
-  },
-  Grendel: {
-    Blueprint: '商店购买（35000 现金）',
-    Neuroptics: '在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Archaeo-freighter 生存任务后获得',
-    Chassis: '在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Icefields of Riddah 防御任务后获得',
-    Systems: '在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Mines of Karishh 挖掘任务后获得'
-  },
-  Kullervo: {
-    Blueprint: "在言录使处用 15 Kullervo 的灾刃兑换",
-    Neuroptics: "在言录使处用 9 Kullervo 的灾刃兑换",
-    Chassis: "在言录使处用 9 Kullervo 的灾刃兑换",
-    Systems: "在言录使处用 9 Kullervo 的灾刃兑换"
-  }
-});
-
+const FRAME_KNOWLEDGE_DIR = path.join(CORE_ROOT, 'knowledge', 'acquisition', 'warframe');
+const FRAME_ROUTING_PATH = path.join(FRAME_KNOWLEDGE_DIR, 'categories.json');
+const FRAME_ROUTING = fs.existsSync(FRAME_ROUTING_PATH) ? require(FRAME_ROUTING_PATH) : { frames: [] };
+const { METHOD_TEMPLATES, methodTemplate, applyTemplate } = require('./frame-acquisition-routing');
+function readFrameKnowledge(dir = FRAME_KNOWLEDGE_DIR) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'en')).flatMap(entry => {
+    const target = path.join(dir, entry.name);
+    if (entry.isDirectory()) return entry.name === 'method' ? [] : readFrameKnowledge(target);
+    if (!entry.isFile() || !entry.name.endsWith('.json') || entry.name === 'categories.json') return [];
+    const parsed = require(target);
+    return Array.isArray(parsed) ? parsed : [];
+  });
+}
+const FRAME_KNOWLEDGE = readFrameKnowledge().filter(entry => entry.reviewStatus === 'approved');
+const FRAME_KNOWLEDGE_INDEX = new Map(FRAME_KNOWLEDGE.map(entry => [entry.subject.canonical, entry]));
+const manualOf = entry => entry?.frameAcquisition?.manual || {};
+const FRAME_SOURCE_OVERRIDES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).sources).map(entry => [entry.subject.canonical, manualOf(entry).sources])));
+const FRAME_ACQUISITION_NOTES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).note).map(entry => [entry.subject.canonical, manualOf(entry).note])));
+const FRAME_DEPENDENCIES = Object.freeze(Object.fromEntries(FRAME_KNOWLEDGE.filter(entry => manualOf(entry).dependencies?.length).map(entry => [entry.subject.canonical, manualOf(entry).dependencies])));
+const CALIBAN_PRIME_DATA = manualOf(FRAME_KNOWLEDGE_INDEX.get('Caliban Prime')).specialFrame;
+const SIRIUS_ORION_DATA = manualOf(FRAME_KNOWLEDGE_INDEX.get('Sirius & Orion')).specialFrame;
+const CALIBAN_PRIME = Object.freeze({ ...CALIBAN_PRIME_DATA, components: PARTS.map(part => ({ part, name: part, drops: [] })) });
+const SIRIUS_ORION = Object.freeze({ ...SIRIUS_ORION_DATA, components: PARTS.map(part => ({ part, drops: [{ ...SIRIUS_ORION_DATA.drop, type: `Sirius & Orion ${part} Blueprint` }] })) });
 const QUEST_SOURCE_ZH = Object.freeze(OFFICIAL_QUESTS.byEnglish || {});
 function localizeQuestName(name) {
   const raw = String(name || '').trim();
   const withoutQualifier = raw.replace(/\s*\(Quest\)$/i, '');
   return QUEST_SOURCE_ZH[raw] || QUEST_SOURCE_ZH[withoutQualifier] || translateLocation(withoutQualifier);
 }
-
-const FRAME_ACQUISITION_NOTES = Object.freeze({
-  Caliban: '合一众赏金在完成《新纪之战》后开放，每 150 分钟更换一批奖励，部件按“系统 → 机体 → 头 → 重复”轮换。希图斯白天找孔祝接取；希图斯夜晚则去福尔图娜找尤迪科。接任务前先看奖励预览，出现缺少的部件再刷。'
-});
-
-const SIRIUS_ORION = Object.freeze({
-  name: 'Sirius & Orion', zhName: 'Sirius & Orion', isPrime: false, override: true,
-  materials: { available: false, reason: '制造材料数据暂不可用' },
-  acquisition: {
-    quest: '完成《Jade Shadows: Constellations》获得总图',
-    drops: "天王星比邻星 The Kuva Wytch 或 Scoria's Angel，A轮，四张蓝图各 14.29%",
-    vendor: '边界之塔向 Hunhow 兑换（翡翠天赋或绯红天赋）：总图 275；头/机体/系统各 90；总计 545'
-  },
-  components: PARTS.map(part => ({
-    part,
-    drops: [{ chance: 14.29, location: `Uranus Proxima/The Kuva Wytch or Scoria's Angel (Rotation A)`, type: `Sirius & Orion ${part} Blueprint` }]
-  }))
-});
 
 function normalize(value) {
   return String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase('en-US').replace(/[\s_\-·'’]+/g, '');
@@ -146,9 +92,13 @@ for (const frame of WARFRAMES) {
 }
 
 const PACKAGE_FRAME_NAMES = new Set(WARFRAMES.map(frame => frame.name));
+const PUBLIC_FRAME_BY_UNIQUE_NAME = new Map(FRAME_KNOWLEDGE.map(entry => [entry.subject.officialUniqueName, entry]));
 const GENERATED_WARFRAMES = (OFFICIAL_FRAMES.frames || [])
-  .filter(frame => !PACKAGE_FRAME_NAMES.has(frame.name) && frame.name !== CALIBAN_PRIME.name)
-  .map(frame => ({ ...frame, type: 'Warframe', components: (frame.components || []).map(component => ({ ...component, name: component.part, drops: [] })) }));
+  .filter(frame => PUBLIC_FRAME_BY_UNIQUE_NAME.has(frame.uniqueName) && !PACKAGE_FRAME_NAMES.has(frame.name) && frame.name !== CALIBAN_PRIME.name)
+  .map(frame => {
+    const knowledge = PUBLIC_FRAME_BY_UNIQUE_NAME.get(frame.uniqueName);
+    return { ...frame, name: knowledge.subject.canonical, zhName: knowledge.subject.displayName, type: 'Warframe', components: (frame.components || []).map(component => ({ ...component, name: component.part, drops: [] })) };
+  });
 const ALL_WARFRAMES = [...WARFRAMES.filter(frame => frame.name !== CALIBAN_PRIME.name), CALIBAN_PRIME, ...GENERATED_WARFRAMES];
 const FRAME_INDEX = new Map();
 const FRAME_ALIASES = [];
@@ -239,10 +189,13 @@ function formatChance(chance) {
 }
 function translateLocation(location) {
   let output = String(location || '未知来源');
+  const railjackNode = OFFICIAL_RAILJACK_NODES.nodes.find(node => output.includes(node.canonical));
+  if (railjackNode) output = output.replace(new RegExp('^' + railjackNode.regionCanonical.split(' ')[0] + '/', 'i'), railjackNode.regionDisplayName + '/');
   for (const [english, chinese] of Object.entries(STABLE_LOCATION_ZH)) output = output.replace(new RegExp(`\\b${english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), chinese);
   output = output
     .replace(/\s*\(Level\s*(\d+)\s*-\s*(\d+)\s*(?:希图斯|奥布山谷)\s*Bounty\)/gi, '（$1-$2 级赏金）')
-    .replace(/,?\s*Rotation\s*([A-Z])/gi, '，$1轮');
+    .replace(/,?\s*Rotation\s*([A-Z])/gi, '，$1轮')
+    .replace(/\s*\(任务缓存\)/g, '任务中的白色储藏箱');
   return output.replace(/([\u4e00-\u9fff])\s+(接合点)/g, (_match, left, junction) => left + junction);
 }
 
@@ -504,38 +457,290 @@ function renderSeriesPartSource(frame, part) {
   return null;
 }
 function componentSourceText(frame, part, drops) {
-  const seriesSource = renderSeriesPartSource(frame, part);
-  if (seriesSource) return seriesSource;
+  if (frame.override && frame.acquisition?.dropReward) {
+    const drop = frame.acquisition.dropReward;
+    const missions = (drop.locationIds || []).map(id => entityName(LOCATION_REGISTRY, id)).join('或');
+    const dropText = `天王星比邻星域的${missions}，${drop.rotation}轮 ${formatChance(drop.chance)}`;
+    if (part === 'Blueprint' && frame.acquisition.questReward) {
+      const quest = entityName(QUEST_REGISTRY, frame.acquisition.questReward.questId);
+      return `首次完成《${quest}》获得；或刷${dropText}`;
+    }
+    return dropText;
+  }
   const override = FRAME_SOURCE_OVERRIDES[frame.name];
   const audited = override?.[part] || override?.all;
   if (audited) return audited;
+  const seriesSource = renderSeriesPartSource(frame, part);
+  if (seriesSource) return seriesSource;
   if (drops?.length) return formatDropSources(drops);
   // 官方物品数据的 bpCost 表示普通战甲总图可直接在商店用现金购买。
   if (part === 'Blueprint' && Number(frame.bpCost) > 0) return `商店购买（${Number(frame.bpCost)} 现金）`;
   return '官方结构化数据缺少该蓝图的获取来源';
 }
 
+function entityName(registry, id) { const entry = registry.get(id); return entry ? (entry.displayName || entry.canonical) : id; }
+function renderAdditionalAcquisitionMethods(frame) {
+  const acquisition = frame.acquisition || {};
+  const lines = [];
+  // questReward 与 dropReward 已由蓝图来源行表达，这里只渲染尚未展示的替代获取方式。
+  if (acquisition.vendorExchange) {
+    const vendor = entityName(NPC_REGISTRY, acquisition.vendorExchange.npcId);
+    const location = entityName(LOCATION_REGISTRY, acquisition.vendorExchange.locationId);
+    const currencies = (acquisition.vendorExchange.currencyIds || []).map(id => entityName(CURRENCY_REGISTRY, id)).join('或');
+    const costs = Object.entries(acquisition.vendorExchange.costs || {}).map(([part, amount]) => `${PART_ZH[part] || part} ${amount}`).join('；');
+    lines.push(`在${location}向 ${vendor} 使用${currencies}兑换：${costs}；总计 ${acquisition.vendorExchange.total}`);
+  }
+  return lines;
+}
+
+function acquisitionRuleKey(acquisition) {
+  if (!acquisition || acquisition.type !== 'mission-completion') return null;
+  return JSON.stringify({ type: acquisition.type, normalAmount: acquisition.normalAmount, steelPathAmount: acquisition.steelPathAmount, bonus: acquisition.bonus });
+}
+function renderAcquisitionDependencies(frame) {
+  const dependencies = FRAME_DEPENDENCIES[frame.name] || [];
+  const seen = new Set();
+  const renderedRuleKeys = new Set();
+  const lines = [];
+  for (const reference of dependencies) {
+    const entity = reference.currencyId ? CURRENCY_REGISTRY.get(reference.currencyId) : null;
+    const dependency = entity?.acquisitionDependency ? { ...entity.acquisitionDependency, ...reference } : reference;
+    const key = reference.currencyId || dependency.canonical || dependency.displayName;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    const amount = dependency.amount == null ? '' : `（需要 ${dependency.amount}）`;
+    const review = dependency.reviewStatus === 'pending' ? '【待人工审核】' : '';
+    let summary = dependency.acquisitionSummary;
+    const ruleKey = acquisitionRuleKey(dependency.acquisition);
+    if (!summary && dependency.acquisition?.type === 'mission-completion') {
+      const mission = entityName(LOCATION_REGISTRY, dependency.acquisition.locationId);
+      if (ruleKey && renderedRuleKeys.has(ruleKey)) summary = `完成天王星比邻星域${mission}；数量与额外获取规则同上`;
+      else {
+        const normal = dependency.acquisition.normalAmount;
+        const steel = dependency.acquisition.steelPathAmount;
+        summary = `完成天王星比邻星域${mission}：普通难度结算 ${normal.min}-${normal.max} 个，钢铁之路 ${steel.min}-${steel.max} 个；${dependency.acquisition.bonus}`;
+      }
+    }
+    if (ruleKey) renderedRuleKeys.add(ruleKey);
+    lines.push(`${dependency.displayName || entity?.displayName || dependency.canonical}${amount}：${summary}${review}`);
+  }
+  return lines;
+}
+function listWarframes() {
+  return FRAME_KNOWLEDGE.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, isPrime: Boolean(entry.frameAcquisition.generated?.isPrime) }));
+}
+function getWarframeKnowledge(query) {
+  const frame = resolveWarframe(query);
+  return frame ? FRAME_KNOWLEDGE_INDEX.get(frame.name) || null : null;
+}
+function renderAssassinationRoute(variables) {
+  const locationName = variables?.locationId ? entityName(LOCATION_REGISTRY, variables.locationId) : variables?.planetName;
+  const enemyName = variables?.enemyId ? entityName(ENEMY_REGISTRY, variables.enemyId) : variables?.enemyName;
+  if (!locationName || !enemyName) return null;
+  return applyTemplate(methodTemplate('components', 'frame-assassination'), { locationName, enemyName });
+}
+function renderQuestRoute(variables, itemLabel = '部件蓝图', scope = 'components') {
+  const npc = entityName(NPC_REGISTRY, variables?.npcId);
+  const quest = entityName(QUEST_REGISTRY, variables?.questId);
+  if (!npc || !quest) return null;
+  const template = scope === 'blueprints'
+    ? methodTemplate('blueprints', 'quest', 'repurchaseTemplate')
+    : methodTemplate('components', 'frame-quest');
+  return applyTemplate(template, { questName: quest, itemLabel, npcName: npc });
+}
+function renderBountyRoute(variables) {
+  const factionName = variables?.factionId ? entityName(FACTION_REGISTRY, variables.factionId) : '';
+  const hubTemplate = methodTemplate('components', 'frame-bounty', 'hubTemplate');
+  const separator = methodTemplate('components', 'frame-bounty', 'hubSeparator') || '';
+  const hubsText = (variables?.hubs || []).map(hub => applyTemplate(hubTemplate, {
+    locationName: entityName(LOCATION_REGISTRY, hub.locationId),
+    npcName: entityName(NPC_REGISTRY, hub.npcId)
+  })).filter(Boolean).join(separator);
+  if (!hubsText) return null;
+  return applyTemplate(methodTemplate('components', 'frame-bounty'), { hubsText, factionName });
+}
+
+function renderMissionSource(source) {
+  if (source?.type === 'quest-repurchase') return renderQuestRoute(source);
+  if (source?.type === 'acquisition-source') {
+    const entry = LOCATION_REGISTRY.get(source.sourceId);
+    return entry && entry.displayName ? entry.displayName : null;
+  }
+  if (source?.type !== 'mission-node') return null;
+  const location = LOCATION_REGISTRY.get(source.locationId);
+  const node = LOCATION_REGISTRY.get(source.missionNodeId);
+  if (!location || !node) return null;
+  const missionType = node.missionTypeId ? entityName(MISSION_TYPE_REGISTRY, node.missionTypeId) : '';
+  const missionTypeText = missionType ? `（${missionType}）` : '';
+  const rotationText = source.rotation ? ` ${source.rotation} 轮` : '';
+  return applyTemplate(methodTemplate('components', 'frame-mixed-missions', 'missionSourceTemplate'), {
+    locationName: entityName(LOCATION_REGISTRY, source.locationId),
+    missionNodeName: entityName(LOCATION_REGISTRY, source.missionNodeId),
+    missionTypeText,
+    rotationText
+  });
+}
+function renderMissionNodeRoute(variables) {
+  const sources = variables?.sources || (variables?.missionNodeId ? [{ type: 'mission-node', locationId: variables.locationId, missionNodeId: variables.missionNodeId, rotation: variables.rotations?.join('/') || null }] : []);
+  const rendered = sources.map(renderMissionSource);
+  if (!rendered.length || rendered.some(value => !value)) return null;
+  const unique = [...new Set(rendered)];
+  const allMissionNodes = sources.every(source => source.type === 'mission-node');
+  const separatorName = allMissionNodes ? 'missionSourceSeparator' : 'mixedSourceSeparator';
+  const templateName = allMissionNodes ? 'template' : 'mixedSourceTemplate';
+  const sourcesText = unique.join(methodTemplate('components', 'frame-mixed-missions', separatorName) || '');
+  let line = applyTemplate(methodTemplate('components', 'frame-mixed-missions', templateName), { sourcesText });
+  const exchange = variables?.exchange;
+  if (exchange?.npcId && exchange?.currencyId) {
+    const npc = entityName(NPC_REGISTRY, exchange.npcId);
+    const currencyEntity = CURRENCY_REGISTRY.get(exchange.currencyId);
+    const currency = entityName(CURRENCY_REGISTRY, exchange.currencyId);
+    const exchangeLine = applyTemplate(methodTemplate('components', 'frame-mixed-missions', 'exchangeTemplate'), {
+      npcName: npc, currencyName: currency, componentCost: exchange.componentCost,
+      blueprintCost: exchange.blueprintCost, totalCost: exchange.totalCost
+    });
+    if (exchangeLine) line += `\n${exchangeLine}`;
+    const dependency = currencyEntity?.acquisitionDependency;
+    if (dependency?.type === 'mission-enemy-drop') {
+      const node = LOCATION_REGISTRY.get(dependency.missionNodeId);
+      const missionType = MISSION_TYPE_REGISTRY.get(dependency.missionTypeId);
+      const normal = dependency.normalAmount;
+      const steel = dependency.steelPathAmount;
+      const dependencyLine = applyTemplate(methodTemplate('components', 'frame-mixed-missions', 'currencyDependencyTemplate'), {
+        currencyName: currency, locationName: entityName(LOCATION_REGISTRY, node.parentId),
+        missionNodeName: entityName(LOCATION_REGISTRY, node.id), missionTypeName: entityName(MISSION_TYPE_REGISTRY, missionType.id),
+        enemyName: dependency.enemyName || '爆破使', normalMin: normal.min, normalMax: normal.max,
+        steelMin: steel.min, steelMax: steel.max
+      });
+      if (dependencyLine) line += `\n${dependencyLine}`;
+    }
+  }
+  return line;
+}
+function renderSpecificMissionRoute(variables) {
+  const location = entityName(LOCATION_REGISTRY, variables?.locationId);
+  const node = LOCATION_REGISTRY.get(variables?.missionNodeId);
+  if (!location || !node) return null;
+  const missionType = node.missionTypeId ? entityName(MISSION_TYPE_REGISTRY, node.missionTypeId) : '';
+  const missionTypeText = missionType ? `（${missionType}）` : '';
+  const dropChanceText = Number.isFinite(Number(variables.dropChance)) ? `，部件蓝图掉率 ${Number(variables.dropChance)}%` : '';
+  const primary = applyTemplate(methodTemplate('components', 'frame-specific-mission'), {
+    locationName: location, missionNodeName: entityName(LOCATION_REGISTRY, variables.missionNodeId), missionTypeText, dropChanceText
+  });
+  const lines = primary ? [primary] : [];
+  const exchange = variables.exchange;
+  if (exchange?.npcId && exchange?.currencyId) {
+    const npc = entityName(NPC_REGISTRY, exchange.npcId);
+    const currency = entityName(CURRENCY_REGISTRY, exchange.currencyId);
+    const exchangeLine = applyTemplate(methodTemplate('components', 'frame-specific-mission', 'exchangeTemplate'), {
+      npcName: npc, currencyName: currency, componentCost: exchange.componentCost, blueprintCost: exchange.blueprintCost
+    });
+    if (exchangeLine) lines.push(exchangeLine);
+  }
+  return lines;
+}
+function renderRoutedAcquisition(frameOrName) {
+  const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
+  if (!frame) return null;
+  // Prime 的可刷状态必须由实时任务奖励与 Prime 重生数据决定，预编译历史
+  // 遗物清单只用于证据，不能直接成为用户文案。
+  if (frame.isPrime) return null;
+  const route = FRAME_ROUTING.frames.find(item => item.canonical === frame.name);
+  const knowledge = FRAME_KNOWLEDGE_INDEX.get(frame.name);
+  if (!route || !knowledge) return null;
+  const routing = knowledge.frameAcquisition?.manual?.routingOverride || knowledge.frameAcquisition?.generated?.routing;
+  if (!routing) return null;
+  if (route.componentCategory === 'frame-specific-mission') {
+    const variables = routing.componentVariables || {};
+    const structured = variables.exchange || variables.dropChance
+      ? renderSpecificMissionRoute(variables)
+      : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
+    if (structured?.length) {
+      const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
+      return { route, lines: [blueprint, ...structured].filter(Boolean), source: 'category-method' };
+    }
+    const text = knowledge.frameAcquisition?.manual?.acquisitionText;
+    return text ? { route, lines: String(text).split('\n').filter(Boolean), source: 'frame-json' } : null;
+  }
+  const lines = [];
+  if (route.blueprintCategory) {
+    const blueprintLine = route.blueprintCategory === 'quest' && routing.blueprintVariables?.questId
+      ? renderQuestRoute(routing.blueprintVariables || {}, '总图', 'blueprints')
+      : ['mixed-missions', 'specific-mission'].includes(route.blueprintCategory) && routing.blueprintVariables?.type === 'mission-node'
+        ? applyTemplate(methodTemplate('blueprints', route.blueprintCategory), { sourceText: renderMissionSource(routing.blueprintVariables) })
+        : applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {});
+    if (blueprintLine) lines.push(blueprintLine);
+    else {
+      const fallback = componentSourceText(frame, 'Blueprint', getComponentDrops(frame)?.find(item => item.part === 'Blueprint')?.drops || []);
+      if (fallback && !/缺少/.test(fallback)) lines.push(`总图：${fallback}`);
+    }
+  }
+  const componentLine = route.componentCategory === 'frame-bounty'
+    ? renderBountyRoute(routing.componentVariables || {})
+      : route.componentCategory === 'frame-quest'
+        ? renderQuestRoute(routing.componentVariables || {})
+        : route.componentCategory === 'frame-assassination'
+          ? renderAssassinationRoute(routing.componentVariables || {})
+          : route.componentCategory === 'frame-mixed-missions' && (routing.componentVariables?.sources || routing.componentVariables?.missionNodeId)
+            ? renderMissionNodeRoute(routing.componentVariables || {})
+            : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
+  if (componentLine) lines.push(componentLine);
+  else {
+    const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
+    lines.push(...fallback);
+  }
+  return lines.length ? { route, lines, source: 'category-method' } : null;
+}
+
+function getWarframeMaintenanceReport() {
+  const official = OFFICIAL_FRAMES.frames || [];
+  const covered = new Set(FRAME_KNOWLEDGE.map(entry => entry.subject.officialUniqueName));
+  return { officialCount: official.length, publicCount: FRAME_KNOWLEDGE.length, excluded: official.filter(frame => !covered.has(frame.uniqueName)).map(frame => ({ name: frame.name, officialUniqueName: frame.uniqueName })), pendingDependencies: FRAME_KNOWLEDGE.flatMap(entry => (manualOf(entry).dependencies || []).filter(item => item.reviewStatus === 'pending').map(item => ({ frame: entry.subject.canonical, dependency: item.canonical }))) };
+}
+
+function groupedPartSourceLines(partSources) {
+  const groups = new Map();
+  for (const { part, text } of partSources) {
+    if (!groups.has(text)) groups.set(text, []);
+    groups.get(text).push(part);
+  }
+  return [...groups].map(([text, parts]) => {
+    const partSet = new Set(parts);
+    let label;
+    if (parts.length === PARTS.length) label = '全部蓝图';
+    else if (parts.length === 3 && ['Neuroptics', 'Chassis', 'Systems'].every(part => partSet.has(part))) label = '部件蓝图';
+    else label = parts.map(part => PART_ZH[part]).join('、');
+    return `${label}：${text}`;
+  });
+}
+
 function renderAcquisition(data) {
   const frame = data.frame || data;
   const drops = data.drops || getComponentDrops(frame);
   const prime = data.prime || null;
+  if (prime?.status === '已入库') return methodTemplate('components', 'frame-prime-relic', 'vaultedTemplate');
   const lines = [];
-  if (prime) lines.push(`状态：${prime.status}`);
-  for (const part of PARTS) {
+  const partSources = PARTS.map(part => {
     let text;
     if (prime) {
       const relics = prime.byPart?.[part] || [];
-      text = relics.length ? relics.map(relic => `${localizeRelicName(relic.name)}（${relicRewardTier(relic)}）`).join('；') : (prime.status === '已入库' ? '当前无可新获取遗物，可交易获得部件' : '当前状态无可获得遗物');
+      const relicsText = relics.map(relic => `${localizeRelicName(relic.name)}（${relicRewardTier(relic)}）`).join('；');
+      text = relics.length
+        ? applyTemplate(methodTemplate('components', 'frame-prime-relic'), { relicsText })
+        : methodTemplate('components', 'frame-prime-relic', 'noRelicTemplate');
     } else {
       const entries = drops.find(entry => entry.part === part)?.drops || [];
       text = componentSourceText(frame, part, entries);
     }
-    lines.push(`${PART_ZH[part]}：${text}`);
-  }
-  if (prime && !prime.rotationAvailable) lines.push('当前遗物轮换数据暂不可用');
-  if (prime && !prime.realtimeAvailable && prime.status !== '当前出库') lines.push('Prime 重生实时状态暂不可用');
-  if (frame.override) lines.push(`补充：${frame.acquisition.quest}；${frame.acquisition.vendor}`);
+    return { part, text };
+  });
+  lines.push(...groupedPartSourceLines(partSources));
+  // Prime 查询只回答当前可刷遗物，不附加制造材料、历史遗物或其他状态噪音。
+  if (prime) return lines.join('\n');
+  if (frame.override) { const additional = renderAdditionalAcquisitionMethods(frame); lines.push(...additional.map(text => `兑换：${text}`)); }
   if (FRAME_ACQUISITION_NOTES[frame.name]) lines.push(`说明：${FRAME_ACQUISITION_NOTES[frame.name]}`);
+  const dependencyLines = renderAcquisitionDependencies(frame);
+  if (dependencyLines.length) lines.push('兑换道具怎么刷：', ...dependencyLines);
   const materials = data.materials || frame.materials;
   lines.push('材料统计：');
   if (!materials?.available && !materials?.resources) lines.push(materials?.reason || '制造材料数据暂不可用');
@@ -549,5 +754,6 @@ function renderAcquisition(data) {
 module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
-  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier
+  normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
+  listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
 };

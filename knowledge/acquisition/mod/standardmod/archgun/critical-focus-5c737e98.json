@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Critical_Focus",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,167 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRifleCritChanceDamageAimingMod",
+          "canonical": "Critical Focus",
+          "displayName": "关键焦点",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "archgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Critical Focus",
+            "pageId": 1376416,
+            "revisionId": 2739424,
+            "pageTimestamp": "2026-03-10T05:23:16Z",
+            "compiledAt": "2026-07-14T05:59:07.179Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "A",
+              "chance": 1.43,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Fortuna",
+                  "nodeEntityId": "hub.fortuna",
+                  "nodeDisplayName": "福尔图娜",
+                  "planetCanonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Critical Focus",
+                "pageId": 1376416,
+                "revisionId": 2739424,
+                "section": "Mission Drop Tables",
+                "excerpt": "Profit-Taker Bounty | Profit-Taker Orb Bounty Phase 4 | A | 1.43% | 1 | 0.0143 Fortuna , Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access | | Fortuna , Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+              },
+              "missionTypeCanonical": "Profit-Taker Bounty",
+              "sourceCanonical": "Profit-Taker Orb Bounty Phase 4"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.68,
+              "chance": 0.084,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Critical Focus",
+                "pageId": 1376416,
+                "revisionId": 2739424,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exo Butcher | 5% | 1.68% | 0.084% | 1190 | 1 | 0.00084"
+              },
+              "sourceCanonical": "Exo Butcher"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.68,
+              "chance": 0.084,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Critical Focus",
+                "pageId": 1376416,
+                "revisionId": 2739424,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exo Elite Lancer | 5% | 1.68% | 0.084% | 1190 | 1 | 0.00084"
+              },
+              "sourceCanonical": "Exo Elite Lancer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 5,
+              "itemChance": 1.68,
+              "chance": 0.084,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Critical Focus",
+                "pageId": 1376416,
+                "revisionId": 2739424,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exo Roller Sentry | 5% | 1.68% | 0.084% | 1190 | 1 | 0.00084"
+              },
+              "sourceCanonical": "Exo Roller Sentry"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Critical Focus",
+                  "pageId": 1376416,
+                  "revisionId": 2739424,
+                  "section": "Notes",
+                  "excerpt": "Critical Focus is additive with similar mods. For example, an Imperator with a max rank Critical Focus and Parallax Scope will have a 24% × (1 + 60% + 100%) = 62.4% critical chance."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Critical Focus",
+                  "pageId": 1376416,
+                  "revisionId": 2739424,
+                  "section": "Notes",
+                  "excerpt": "Because you cannot Zoom while using Voidrig 's Guard Mode , this mod has no effect when equipped on Arquebex ."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Profit-Taker Bounty"
+            },
+            {
+              "kind": "location",
+              "canonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exo Butcher"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exo Elite Lancer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exo Roller Sentry"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

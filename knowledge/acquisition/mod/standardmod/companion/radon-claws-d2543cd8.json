@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Radon_Claws",
@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -51,7 +51,92 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Sentinel/Kubrow/DualStat/KubrowRadiationEventMeleeMod",
+          "canonical": "Radon Claws",
+          "displayName": "辐能利爪",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "companion"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Radon Claws",
+            "pageId": 1589875,
+            "revisionId": 2696174,
+            "pageTimestamp": "2025-09-01T14:42:36Z",
+            "compiledAt": "2026-07-14T05:59:08.590Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 2,
+              "itemChance": 3.03,
+              "chance": 0.0606,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Radon Claws",
+                "pageId": 1589875,
+                "revisionId": 2696174,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Scaldra Flayer | 2% | 3.03% | 0.0606% | 1650 | 1 | 0.000606"
+              },
+              "sourceCanonical": "Scaldra Flayer"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 3.46,
+              "chance": 0.1038,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Radon Claws",
+                "pageId": 1589875,
+                "revisionId": 2696174,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Scaldra Jaeger | 3% | 3.46% | 0.1038% | 963 | 1 | 0.001038"
+              },
+              "sourceCanonical": "Scaldra Jaeger"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Scaldra Flayer"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Scaldra Jaeger"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Necramech_Aviator",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,94 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechAvatarDamageReductionInAir",
+          "canonical": "Necramech Aviator",
+          "displayName": "殁世机甲 飞行员",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "necramech"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Necramech Aviator",
+            "pageId": 1544009,
+            "revisionId": 2701050,
+            "pageTimestamp": "2025-10-21T17:26:47Z",
+            "compiledAt": "2026-07-14T05:59:09.672Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 18.97,
+              "chance": 18.97,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Necramech Aviator",
+                "pageId": 1544009,
+                "revisionId": 2701050,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Deimos Jugulus Rex | 100% | 18.97% | 18.97% | 5 | 1 | 0.1897"
+              },
+              "sourceCanonical": "Deimos Jugulus Rex"
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Necramech Aviator",
+                "pageId": 1544009,
+                "revisionId": 2701050,
+                "section": "Acquisition",
+                "excerpt": "Has a chance to drop from Deimos Jugulus Rex that spawns upon completing the Pit Monster puzzle room in Isolation Vaults ."
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Necramech Aviator",
+                "pageId": 1544009,
+                "revisionId": 2701050,
+                "section": "Acquisition",
+                "excerpt": "Can be bought from Bird 3 of Cavia for 10,000 Standing 10,000 , requiring Rank 1 - Assistant ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Deimos Jugulus Rex"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

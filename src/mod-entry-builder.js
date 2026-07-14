@@ -10,7 +10,7 @@ const {
 } = require('./playable-mod-filter')
 
 const GENERATOR_NAME = 'sync-mods'
-const GENERATOR_VERSION = 1
+const GENERATOR_VERSION = 2
 const USER_FACING_REPLACEMENTS = new Map([
   ['Atlas', '阿特拉斯'],
   ['Mesa', '梅萨'],
@@ -128,6 +128,26 @@ function buildModEntry(item, localized = {}, options = {}) {
     tips: [],
     tipKeywords: ['本质机制', '具体计算公式', '加成层级', '与同类效果的叠加方式', '适用限制'],
     methodRefs: [],
+    modAcquisition: {
+      generated: {
+        identity: {
+          officialUniqueName: item.uniqueName,
+          canonical,
+          displayName,
+          maxRank: getMaxRank(item),
+          variant,
+          typeFolder: getTypeFolder(item)
+        },
+        wiki: null
+      },
+      manual: {
+        methods: [],
+        methodRefs: [],
+        overrides: {},
+        reviewStatus: hasDefaultAcquisition ? 'approved' : 'draft',
+        reviewedBy: hasDefaultAcquisition ? ['category-default:primemod'] : []
+      }
+    },
     acquisitionStatus: hasDefaultAcquisition ? 'complete' : 'stub',
     sources: [getWikiSource(item)],
     gameVersion: options.gameVersion || 'warframe-items',
@@ -147,6 +167,35 @@ function isGeneratedModEntry(entry) {
   return entry?.generator?.name === GENERATOR_NAME
 }
 
+function migrateManualModData(entry = {}) {
+  const existing = entry.modAcquisition?.manual || {}
+  return {
+    ...existing,
+    methods: Array.isArray(existing.methods) ? existing.methods : [],
+    methodRefs: Array.isArray(existing.methodRefs) ? existing.methodRefs : [...(entry.methodRefs || [])],
+    overrides: existing.overrides || {},
+    reviewStatus: existing.reviewStatus || entry.reviewStatus || 'draft',
+    reviewedBy: Array.isArray(existing.reviewedBy) ? existing.reviewedBy : [...(entry.reviewedBy || [])]
+  }
+}
+
+function mergeModEntry(generatedEntry, oldEntry) {
+  if (!oldEntry) return generatedEntry
+  const next = { ...oldEntry, ...generatedEntry }
+  for (const key of ['effects', 'tips', 'tipKeywords', 'methodRefs', 'prerequisites', 'reviewStatus', 'reviewedBy', 'acquisitionStatus', 'summary', 'content', 'acquisitionQuery']) {
+    if (oldEntry[key] !== undefined) next[key] = oldEntry[key]
+  }
+  next.subject = { ...(oldEntry.subject || {}), ...generatedEntry.subject }
+  next.modAcquisition = {
+    generated: {
+      ...generatedEntry.modAcquisition.generated,
+      wiki: oldEntry.modAcquisition?.generated?.wiki || null
+    },
+    manual: migrateManualModData(oldEntry)
+  }
+  return next
+}
+
 module.exports = {
   GENERATOR_NAME,
   GENERATOR_VERSION,
@@ -157,5 +206,7 @@ module.exports = {
   getGeneratedIdentity,
   getMaxRank,
   isGeneratedModEntry,
+  mergeModEntry,
+  migrateManualModData,
   slugify
 }

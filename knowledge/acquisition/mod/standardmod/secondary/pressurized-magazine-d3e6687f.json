@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Pressurized_Magazine",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,166 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Pistol/Event/FireRateWhileAimingPistolMod",
+          "canonical": "Pressurized Magazine",
+          "displayName": "增压弹匣",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "secondary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Pressurized Magazine",
+            "pageId": 907908,
+            "revisionId": 2632237,
+            "pageTimestamp": "2024-07-12T21:58:39Z",
+            "compiledAt": "2026-07-14T05:59:12.770Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "rotation": "C",
+              "chance": 40,
+              "quantity": 1,
+              "nodes": [
+                {
+                  "nodeCanonical": "Cambion Drift / Necralisk",
+                  "planetCanonical": "Deimos ; talk to Mother"
+                }
+              ],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pressurized Magazine",
+                "pageId": 907908,
+                "revisionId": 2632237,
+                "section": "Mission Drop Tables",
+                "excerpt": "Necralisk Bounty | Necralisk Bounty Lvl 15-25 Final Stage | C | 40% | 1 | 0.4 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
+              },
+              "missionTypeCanonical": "Necralisk Bounty",
+              "sourceCanonical": "Necralisk Bounty Lvl 15-25 Final Stage"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 1.49,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pressurized Magazine",
+                "pageId": 907908,
+                "revisionId": 2632237,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 4 The Circuit (Normal) | A | 1.49% | 1 | 0.0149 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 4 The Circuit (Normal)"
+            },
+            {
+              "type": "circuit-reward",
+              "rotation": "A",
+              "chance": 1.03,
+              "quantity": 1,
+              "nodes": [],
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Pressurized Magazine",
+                "pageId": 907908,
+                "revisionId": 2632237,
+                "section": "Mission Drop Tables",
+                "excerpt": "The Circuit | Tier 6 The Circuit (Normal) | A | 1.03% | 1 | 0.0103 Accessed through Duviri 's The Circuit gamemode | | Accessed through Duviri 's The Circuit gamemode"
+              },
+              "missionTypeCanonical": "The Circuit",
+              "missionTypeEntityId": "mission-type.the-circuit",
+              "missionTypeDisplayName": "无尽回廊",
+              "sourceCanonical": "Tier 6 The Circuit (Normal)"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pressurized Magazine",
+                  "pageId": 907908,
+                  "revisionId": 2632237,
+                  "section": "Notes",
+                  "excerpt": "If activated, Pressurized Magazine will display an icon timer beside the player's health UI, and the Warframe will be briefly surrounded by a flashing energy ribbon."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pressurized Magazine",
+                  "pageId": 907908,
+                  "revisionId": 2632237,
+                  "section": "Notes",
+                  "excerpt": "The Fire Rate bonus is granted upon the end of the reload animation."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pressurized Magazine",
+                  "pageId": 907908,
+                  "revisionId": 2632237,
+                  "section": "Notes",
+                  "excerpt": "On event launch, Pressurized Magazine's duration was not only affected by rank, but also by the amount of Fusion energy in each rank."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Pressurized Magazine",
+                  "pageId": 907908,
+                  "revisionId": 2632237,
+                  "section": "Notes",
+                  "excerpt": "Can be combined with Gunslinger , Lethal Torrent , Anemic Agility and Arcane Velocity for a total of + 432% fire rate while aiming. This used on the Twin Grakatas will result in a fire rate of almost 173 rounds per second, making it possible to empty its entire 120-round magazine in 0.35 seconds."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "missionType",
+              "canonical": "Necralisk Bounty"
+            },
+            {
+              "kind": "node",
+              "canonical": "Cambion Drift / Necralisk"
+            },
+            {
+              "kind": "location",
+              "canonical": "Deimos ; talk to Mother"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

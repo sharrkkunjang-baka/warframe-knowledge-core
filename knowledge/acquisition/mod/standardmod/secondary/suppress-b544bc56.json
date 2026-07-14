@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Suppress",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,135 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponNoiseReductionMod",
+          "canonical": "Suppress",
+          "displayName": "消音",
+          "maxRank": 3,
+          "variant": "standard",
+          "typeFolder": "secondary"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Suppress",
+            "pageId": 195539,
+            "revisionId": 2632236,
+            "pageTimestamp": "2024-07-12T21:01:41Z",
+            "compiledAt": "2026-07-14T05:59:12.908Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 3,
+              "itemChance": 32.47,
+              "chance": 0.9741,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Suppress",
+                "pageId": 195539,
+                "revisionId": 2632236,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Corrupted Crewman | 3% | 32.47% | 0.9741% | 103 | 1 | 0.009741"
+              },
+              "sourceCanonical": "Corrupted Crewman",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Orokin/RifleSpacemanAvatar"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 100,
+              "itemChance": 38.72,
+              "chance": 38.72,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Suppress",
+                "pageId": 195539,
+                "revisionId": 2632236,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Exploiter Orb | 100% | 38.72% | 38.72% | 3 | 1 | 0.3872"
+              },
+              "sourceCanonical": "Exploiter Orb",
+              "sourceEntityId": "enemy./Lotus/Types/Enemies/Corpus/Vip/Arachnoid/ArachnoidCamperTerraAvatar"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Suppress",
+                  "pageId": 195539,
+                  "revisionId": 2632236,
+                  "section": "Notes",
+                  "excerpt": "Added in Update 10.0 (2013-09-13)."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Suppress",
+                  "pageId": 195539,
+                  "revisionId": 2632236,
+                  "section": "Notes",
+                  "excerpt": "This Mod only reduces or eliminates firing noise. Any corpses, returning fire, or enemies that are not killed quick enough will still cause an alert."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Suppress",
+                  "pageId": 195539,
+                  "revisionId": 2632236,
+                  "section": "Notes",
+                  "excerpt": "Shooting a silent Weapon within 6 meters of an enemy or at the terrain near an enemy will cause them to stop and look around, but will not change their actual alert state."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Suppress",
+                  "pageId": 195539,
+                  "revisionId": 2632236,
+                  "section": "Notes",
+                  "excerpt": "A rank 3 Suppress Mod (100% Noise reduction) will allow Ivara to stay invisible while Prowl is active."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Corrupted Crewman"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Exploiter Orb"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]

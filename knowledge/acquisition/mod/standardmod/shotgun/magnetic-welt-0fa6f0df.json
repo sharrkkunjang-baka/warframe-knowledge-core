@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "partial",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Magnetic_Welt",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-14",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,143 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 1
+      "version": 2
+    },
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponMagneticOnImpactShotgunMod",
+          "canonical": "Magnetic Welt",
+          "displayName": "磁化冲击",
+          "maxRank": 5,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Magnetic Welt",
+            "pageId": 1589882,
+            "revisionId": 2710514,
+            "pageTimestamp": "2025-12-06T09:34:12Z",
+            "compiledAt": "2026-07-14T05:59:13.267Z",
+            "sourceDatabase": {
+              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2",
+              "size": 2317266944
+            }
+          },
+          "methods": [
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 2,
+              "itemChance": 5.56,
+              "chance": 0.1112,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Magnetic Welt",
+                "pageId": 1589882,
+                "revisionId": 2710514,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Techrot Obsolyte | 2% | 5.56% | 0.1112% | 899 | 1 | 0.001112"
+              },
+              "sourceCanonical": "Techrot Obsolyte"
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 2,
+              "itemChance": 8.51,
+              "chance": 0.1702,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Magnetic Welt",
+                "pageId": 1589882,
+                "revisionId": 2710514,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Techrot Skuzzi | 2% | 8.51% | 0.1702% | 588 | 1 | 0.001702"
+              },
+              "sourceCanonical": "Techrot Skuzzi"
+            }
+          ],
+          "evidence": [],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magnetic Welt",
+                  "pageId": 1589882,
+                  "revisionId": 2710514,
+                  "section": "Notes",
+                  "excerpt": "Cannot produce multiple procs in a single instance of damage alongside any other Magnetic sources such as a weapon's innate Magnetic ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magnetic Welt",
+                  "pageId": 1589882,
+                  "revisionId": 2710514,
+                  "section": "Notes",
+                  "excerpt": "Proccing Impact more than once in a single instance of damage will not allow this mod to proc more than once, nor will it increase the chance of the mod proccing."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magnetic Welt",
+                  "pageId": 1589882,
+                  "revisionId": 2710514,
+                  "section": "Notes",
+                  "excerpt": "Hard Engage works with this mod."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magnetic Welt",
+                  "pageId": 1589882,
+                  "revisionId": 2710514,
+                  "section": "Notes",
+                  "excerpt": "Fire Rate buffs such as Gauss ' Redline , Wisp 's Haste Reservoirs , and Arcane Tempo can negatively impact this mod's performance since it may increase the weapon's fire rate past 2.5."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "pageTitle": "Magnetic Welt",
+                  "pageId": 1589882,
+                  "revisionId": 2710514,
+                  "section": "Notes",
+                  "excerpt": "If the weapon's fire rate is exactly 2.5, it will not receive the 2x bonus."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [
+            {
+              "kind": "enemy",
+              "canonical": "Techrot Obsolyte"
+            },
+            {
+              "kind": "enemy",
+              "canonical": "Techrot Skuzzi"
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
     }
   }
 ]
