@@ -60,10 +60,76 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sourceText": "Kuva Fortress/Taveuni (Survival), Rotation C；Kuva Fortress/Pago (Spy), Rotation A；Void Fissure Corrupted Enemy；Saturn/Caracol (Defection), Rotation B；Neptune/Yursa (Defection), Rotation B；Phobos/Memphis (Defection), Rotation B；Neptune/Yursa (Defection), Rotation C；Phobos/Memphis (Defection), Rotation C；Saturn/Caracol (Defection), Rotation C"
+            "sources": [
+              {
+                "type": "mission-node",
+                "locationId": "planet.kuva-fortress",
+                "missionNodeId": "mission-node.taveuni",
+                "rotation": "C"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.kuva-fortress",
+                "missionNodeId": "mission-node.pago",
+                "rotation": "A"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.void-fissure-corrupted-enemy"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.saturn",
+                "missionNodeId": "mission-node.caracol",
+                "rotation": "B"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.neptune",
+                "missionNodeId": "mission-node.yursa",
+                "rotation": "B"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.phobos",
+                "missionNodeId": "mission-node.memphis",
+                "rotation": "B"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.neptune",
+                "missionNodeId": "mission-node.yursa",
+                "rotation": "C"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.phobos",
+                "missionNodeId": "mission-node.memphis",
+                "rotation": "C"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.saturn",
+                "missionNodeId": "mission-node.caracol",
+                "rotation": "C"
+              }
+            ],
+            "sourceCanonical": [
+              "Kuva Fortress/Taveuni (Survival), Rotation C",
+              "Kuva Fortress/Pago (Spy), Rotation A",
+              "Void Fissure Corrupted Enemy",
+              "Saturn/Caracol (Defection), Rotation B",
+              "Neptune/Yursa (Defection), Rotation B",
+              "Phobos/Memphis (Defection), Rotation B",
+              "Neptune/Yursa (Defection), Rotation C",
+              "Phobos/Memphis (Defection), Rotation C",
+              "Saturn/Caracol (Defection), Rotation C"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Cephalon Simaris, Complete Chains of Harrow"
+            "type": "quest-repurchase",
+            "npcId": "npc.cephalon-simaris",
+            "questId": "quest.chains-of-harrow"
           },
           "blueprintSource": "official-component-drop"
         }

@@ -60,10 +60,30 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sourceText": "Cephalon Simaris, Complete Uranus Junction；Cephalon Simaris, Complete Neptune Junction；Cephalon Simaris, Complete Pluto Junction"
+            "sources": [
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.cephalon-simaris-complete-uranus-junction"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.cephalon-simaris-complete-neptune-junction"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.cephalon-simaris-complete-pluto-junction"
+              }
+            ],
+            "sourceCanonical": [
+              "Cephalon Simaris, Complete Uranus Junction",
+              "Cephalon Simaris, Complete Neptune Junction",
+              "Cephalon Simaris, Complete Pluto Junction"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Cephalon Simaris, Complete The New Strange"
+            "type": "quest-repurchase",
+            "npcId": "npc.cephalon-simaris",
+            "questId": "quest.the-new-strange"
           },
           "blueprintSource": "official-component-drop"
         }

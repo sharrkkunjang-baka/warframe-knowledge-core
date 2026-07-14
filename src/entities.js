@@ -50,6 +50,7 @@ function loadEntityRegistries(root = path.join(__dirname, '..')) {
     quests: load('quests'),
     factions: load('factions'),
     enemies: load('enemies'),
+    missionTypes: load('mission-types'),
     npcs: load('npc')
   });
 }

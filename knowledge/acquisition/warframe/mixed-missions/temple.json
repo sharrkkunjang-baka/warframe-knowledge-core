@@ -60,10 +60,37 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": null,
           "componentVariables": {
-            "sourceText": "Höllvania/Solstice Square (Defense), Rotation A；Höllvania/Solstice Square (Defense), Rotation B；Höllvania/Solstice Square (Defense), Rotation C"
+            "sources": [
+              {
+                "type": "mission-node",
+                "locationId": "planet.ho-llvania",
+                "missionNodeId": "mission-node.solstice-square",
+                "rotation": "A"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.ho-llvania",
+                "missionNodeId": "mission-node.solstice-square",
+                "rotation": "B"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.ho-llvania",
+                "missionNodeId": "mission-node.solstice-square",
+                "rotation": "C"
+              }
+            ],
+            "sourceCanonical": [
+              "Höllvania/Solstice Square (Defense), Rotation A",
+              "Höllvania/Solstice Square (Defense), Rotation B",
+              "Höllvania/Solstice Square (Defense), Rotation C"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Höllvania/Solstice Square (Defense), Rotation A"
+            "type": "mission-node",
+            "locationId": "planet.ho-llvania",
+            "missionNodeId": "mission-node.solstice-square",
+            "rotation": "A"
           },
           "blueprintSource": "official-component-drop"
         }

@@ -46,11 +46,11 @@ test('指定战甲主分类正确且特定任务从独立 JSON 回退', () => {
   assert.equal(route('Garuda').componentCategory, 'frame-bounty')
   assert.equal(route('Octavia').componentCategory, 'frame-mixed-missions')
   assert.equal(route('Xaku').componentCategory, 'frame-bounty')
-  for (const name of ['Jade', 'Citrine', 'Kullervo']) {
-    assert.equal(route(name).componentCategory, 'frame-specific-mission')
-    assert.ok(entry(name).frameAcquisition.manual.acquisitionText)
-    assert.equal(frameAcquisition.renderRoutedAcquisition(name).source, 'frame-json')
-  }
+  for (const name of ['Jade', 'Citrine', 'Kullervo']) assert.equal(route(name).componentCategory, 'frame-specific-mission')
+  assert.ok(entry('Kullervo').frameAcquisition.manual.acquisitionText)
+  assert.equal(frameAcquisition.renderRoutedAcquisition('Kullervo').source, 'frame-json')
+  assert.equal(frameAcquisition.renderRoutedAcquisition('Citrine').source, 'category-method')
+  assert.equal(frameAcquisition.renderRoutedAcquisition('Jade').source, 'category-method')
 })
 
 test('任务、NPC、地点和刺杀目标均通过实体变量渲染', () => {
@@ -64,6 +64,52 @@ test('任务、NPC、地点和刺杀目标均通过实体变量渲染', () => {
   assert.equal(gyre.hubs[0].locationId, 'hub.zariman')
   assert.equal(gyre.hubs[0].npcId, 'npc.quinn')
   assert.equal(frameAcquisition.renderRoutedAcquisition('电妹').lines.at(-1), '在扎里曼号找奎因接取赏金刷取部件')
+})
+
+test('Jade 使用任务节点、NPC 与货币变量展示掉落和保底兑换', () => {
+  const jade = entry('Jade').frameAcquisition.generated.routing.componentVariables
+  assert.equal(jade.locationId, 'planet.uranus')
+  assert.equal(jade.missionNodeId, 'mission-node.brutus')
+  assert.equal(jade.exchange.npcId, 'npc.ordis')
+  assert.equal(jade.exchange.currencyId, 'currency.vestigial-motes')
+  assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Jade').lines, [
+    '完成《翠玉之影》获得总图',
+    '在天王星的布鲁图斯（扬升）刷取，部件蓝图掉率 4.63%',
+    '也可在 Ordis 处使用残存微粒兑换：部件蓝图每张 150，总图 450'
+  ])
+})
+
+test('Dante 使用节点、任务类型、NPC 与兑换货币变量', () => {
+  const routing = entry('Dante').frameAcquisition.generated.routing.componentVariables
+  assert.equal(routing.sources[0].missionNodeId, 'mission-node.armatus')
+  assert.equal(routing.exchange.npcId, 'npc.loid')
+  assert.equal(routing.exchange.currencyId, 'currency.vessel-capillaries')
+  assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Dante').lines, [
+    '在火卫二的卫城区（中断） C 轮刷取部件蓝图\n也可在 洛德 处使用承载体毛细血管兑换：部件蓝图每张 90，总图 270，全套共 540\n承载体毛细血管怎么刷：在火卫二的卫城区（中断）击败爆破使，普通每只掉落 2-4，钢铁之路每只 5-7'
+  ])
+})
+
+test('Gauss、Temple 与 Nidus 均通过任务节点变量渲染', () => {
+  const cases = [
+    ['Gauss', 'mission-node.kappa', '在赛德娜的Kappa（中断） C 轮刷取部件蓝图'],
+    ['Temple', 'mission-node.solstice-square', '在霍瓦尼亚的至日广场（防御） A 轮；在霍瓦尼亚的至日广场（防御） B 轮；在霍瓦尼亚的至日广场（防御） C 轮刷取部件蓝图'],
+    ['Nidus', 'mission-node.oestrus', '在阋神星的Oestrus（INFESTED 资源回收） C 轮刷取部件蓝图']
+  ]
+  for (const [name, nodeId, expected] of cases) {
+    const routing = entry(name).frameAcquisition.generated.routing
+    assert.ok(routing.componentVariables.sources.some(source => source.missionNodeId === nodeId))
+    assert.equal(frameAcquisition.renderRoutedAcquisition(name).lines.at(-1), expected)
+  }
+  assert.equal(entry('Nidus').frameAcquisition.generated.routing.blueprintVariables.questId, 'quest.the-glast-gambit')
+})
+
+test('批准战甲的自动路由不再保存用户文案 sourceText', () => {
+  const targetCategories = new Set(['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination'])
+  for (const item of INDEX.frames.filter(frame => !/ Prime$/.test(frame.canonical) && targetCategories.has(frame.componentCategory))) {
+    const routing = entry(item.canonical).frameAcquisition.generated.routing
+    assert.equal(Object.hasOwn(routing.componentVariables || {}, 'sourceText'), false, item.canonical)
+    assert.equal(Object.hasOwn(routing.blueprintVariables || {}, 'sourceText'), false, item.canonical)
+  }
 })
 
 test('Narmer 赏金通过 faction 注册表自动显示为合一众', () => {

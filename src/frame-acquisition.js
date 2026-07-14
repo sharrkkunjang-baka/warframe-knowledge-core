@@ -24,6 +24,7 @@ const QUEST_REGISTRY = ENTITY_REGISTRIES.quests;
 const FACTION_REGISTRY = ENTITY_REGISTRIES.factions;
 const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
 const ENEMY_REGISTRY = ENTITY_REGISTRIES.enemies;
+const MISSION_TYPE_REGISTRY = ENTITY_REGISTRIES.missionTypes;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -536,11 +537,11 @@ function renderAssassinationRoute(variables) {
   if (!variables?.locationId || !variables?.enemyId) return null;
   return `${entityName(LOCATION_REGISTRY, variables.locationId)}刺杀 ${entityName(ENEMY_REGISTRY, variables.enemyId)} 刷取部件`;
 }
-function renderQuestRoute(variables) {
+function renderQuestRoute(variables, itemLabel = '部件蓝图') {
   const npc = entityName(NPC_REGISTRY, variables?.npcId);
   const quest = entityName(QUEST_REGISTRY, variables?.questId);
   if (!npc || !quest) return null;
-  return `首次完成《${quest}》获得部件蓝图；之后可在 ${npc} 处回购`;
+  return `首次完成《${quest}》获得${itemLabel}；之后可在 ${npc} 处回购`;
 }
 function renderBountyRoute(variables) {
   const faction = variables?.factionId ? entityName(FACTION_REGISTRY, variables.factionId) : '';
@@ -550,6 +551,60 @@ function renderBountyRoute(variables) {
   return `${locationText}接取${faction}赏金刷取部件`;
 }
 
+function renderMissionSource(source) {
+  if (source?.type === 'quest-repurchase') return renderQuestRoute(source);
+  if (source?.type === 'acquisition-source') {
+    const entry = LOCATION_REGISTRY.get(source.sourceId);
+    return entry && entry.displayName ? entry.displayName : null;
+  }
+  if (source?.type !== 'mission-node') return null;
+  const location = LOCATION_REGISTRY.get(source.locationId);
+  const node = LOCATION_REGISTRY.get(source.missionNodeId);
+  if (!location || !node) return null;
+  const missionType = node.missionTypeId ? entityName(MISSION_TYPE_REGISTRY, node.missionTypeId) : '';
+  const mission = missionType ? `（${missionType}）` : '';
+  const rotation = source.rotation ? ` ${source.rotation} 轮` : '';
+  return `${entityName(LOCATION_REGISTRY, source.locationId)}的${entityName(LOCATION_REGISTRY, source.missionNodeId)}${mission}${rotation}`;
+}
+function renderMissionNodeRoute(variables) {
+  const sources = variables?.sources || (variables?.missionNodeId ? [{ type: 'mission-node', locationId: variables.locationId, missionNodeId: variables.missionNodeId, rotation: variables.rotations?.join('/') || null }] : []);
+  const rendered = sources.map(renderMissionSource);
+  if (!rendered.length || rendered.some(value => !value)) return null;
+  const unique = [...new Set(rendered)];
+  let line = sources.every(source => source.type === 'mission-node') ? `在${unique.join('；在')}刷取部件蓝图` : `${unique.join('；')}获取部件蓝图`;
+  const exchange = variables?.exchange;
+  if (exchange?.npcId && exchange?.currencyId) {
+    const npc = entityName(NPC_REGISTRY, exchange.npcId);
+    const currencyEntity = CURRENCY_REGISTRY.get(exchange.currencyId);
+    const currency = entityName(CURRENCY_REGISTRY, exchange.currencyId);
+    line += `\n也可在 ${npc} 处使用${currency}兑换：部件蓝图每张 ${exchange.componentCost}，总图 ${exchange.blueprintCost}，全套共 ${exchange.totalCost}`;
+    const dependency = currencyEntity?.acquisitionDependency;
+    if (dependency?.type === 'mission-enemy-drop') {
+      const node = LOCATION_REGISTRY.get(dependency.missionNodeId);
+      const missionType = MISSION_TYPE_REGISTRY.get(dependency.missionTypeId);
+      const normal = dependency.normalAmount;
+      const steel = dependency.steelPathAmount;
+      line += `\n${currency}怎么刷：在${entityName(LOCATION_REGISTRY, node.parentId)}的${entityName(LOCATION_REGISTRY, node.id)}（${entityName(MISSION_TYPE_REGISTRY, missionType.id)}）击败爆破使，普通每只掉落 ${normal.min}-${normal.max}，钢铁之路每只 ${steel.min}-${steel.max}`;
+    }
+  }
+  return line;
+}
+function renderSpecificMissionRoute(variables) {
+  const location = entityName(LOCATION_REGISTRY, variables?.locationId);
+  const node = LOCATION_REGISTRY.get(variables?.missionNodeId);
+  if (!location || !node) return null;
+  const missionType = node.missionTypeId ? entityName(MISSION_TYPE_REGISTRY, node.missionTypeId) : '';
+  const mission = missionType ? `（${missionType}）` : '';
+  const chance = Number.isFinite(Number(variables.dropChance)) ? `，部件蓝图掉率 ${Number(variables.dropChance)}%` : '';
+  const lines = [`在${location}的${entityName(LOCATION_REGISTRY, variables.missionNodeId)}${mission}刷取${chance}`];
+  const exchange = variables.exchange;
+  if (exchange?.npcId && exchange?.currencyId) {
+    const npc = entityName(NPC_REGISTRY, exchange.npcId);
+    const currency = entityName(CURRENCY_REGISTRY, exchange.currencyId);
+    lines.push(`也可在 ${npc} 处使用${currency}兑换：部件蓝图每张 ${exchange.componentCost}，总图 ${exchange.blueprintCost}`);
+  }
+  return lines;
+}
 function renderRoutedAcquisition(frameOrName) {
   const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
   if (!frame) return null;
@@ -559,12 +614,24 @@ function renderRoutedAcquisition(frameOrName) {
   const routing = knowledge.frameAcquisition?.manual?.routingOverride || knowledge.frameAcquisition?.generated?.routing;
   if (!routing) return null;
   if (route.componentCategory === 'frame-specific-mission') {
+    const variables = routing.componentVariables || {};
+    const structured = variables.exchange || variables.dropChance
+      ? renderSpecificMissionRoute(variables)
+      : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
+    if (structured?.length) {
+      const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
+      return { route, lines: [blueprint, ...structured].filter(Boolean), source: 'category-method' };
+    }
     const text = knowledge.frameAcquisition?.manual?.acquisitionText;
     return text ? { route, lines: String(text).split('\n').filter(Boolean), source: 'frame-json' } : null;
   }
   const lines = [];
   if (route.blueprintCategory) {
-    const blueprintLine = applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {});
+    const blueprintLine = route.blueprintCategory === 'quest' && routing.blueprintVariables?.questId
+      ? renderQuestRoute(routing.blueprintVariables || {}, '总图')
+      : ['mixed-missions', 'specific-mission'].includes(route.blueprintCategory) && routing.blueprintVariables?.type === 'mission-node'
+        ? `${renderMissionSource(routing.blueprintVariables)}获取总图`
+        : applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {});
     if (blueprintLine) lines.push(blueprintLine);
     else {
       const fallback = componentSourceText(frame, 'Blueprint', getComponentDrops(frame)?.find(item => item.part === 'Blueprint')?.drops || []);
@@ -577,7 +644,9 @@ function renderRoutedAcquisition(frameOrName) {
       ? renderQuestRoute(routing.componentVariables || {})
       : route.componentCategory === 'frame-assassination' && routing.componentVariables?.enemyId
         ? renderAssassinationRoute(routing.componentVariables || {})
-        : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
+        : route.componentCategory === 'frame-mixed-missions' && (routing.componentVariables?.sources || routing.componentVariables?.missionNodeId)
+          ? renderMissionNodeRoute(routing.componentVariables || {})
+          : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
   if (componentLine) lines.push(componentLine);
   else {
     const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
@@ -646,5 +715,5 @@ module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
-  listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
+  listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
 };

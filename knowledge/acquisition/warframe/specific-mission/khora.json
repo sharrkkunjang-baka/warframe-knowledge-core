@@ -60,10 +60,29 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sourceText": "Sanctuary Onslaught, Rotation B；Sanctuary Onslaught, Rotation A；Sanctuary Onslaught, Rotation C"
+            "sources": [
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.sanctuary-onslaught-rotation-b"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.sanctuary-onslaught-rotation-a"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.sanctuary-onslaught-rotation-c"
+              }
+            ],
+            "sourceCanonical": [
+              "Sanctuary Onslaught, Rotation B",
+              "Sanctuary Onslaught, Rotation A",
+              "Sanctuary Onslaught, Rotation C"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Sanctuary Onslaught, Rotation C"
+            "type": "acquisition-source",
+            "sourceId": "source.sanctuary-onslaught-rotation-c"
           },
           "blueprintSource": "official-component-drop"
         }

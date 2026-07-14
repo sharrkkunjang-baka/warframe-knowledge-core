@@ -335,7 +335,7 @@ function createKnowledgeCore(options = {}) {
   const resolveEntityVariables = query => {
     const sources = [
       ['npc', data.npcs], ['location', data.locations], ['faction', data.factions],
-      ['quest', data.quests], ['currency', data.currencies], ['enemy', data.enemies]
+      ['quest', data.quests], ['currency', data.currencies], ['enemy', data.enemies], ['mission-type', data.missionTypes]
     ];
     const seen = new Set();
     return sources.flatMap(([type, registry]) => registry.search(query).slice(0, 8).map(entry => ({
@@ -352,7 +352,7 @@ function createKnowledgeCore(options = {}) {
     if (!facts.length && !knowledge.length && !resolution && !entityVariables.length) return null;
     const sections = [];
     if (resolution && !resolution.ambiguous) sections.push(`名称解析：${query} → ${resolution.canonical}`);
-    if (entityVariables.length) sections.push(`实体变量（NPC/地点/阵营/任务/货币/敌人）：\n${entityVariables.map(item => `${item.id} = ${item.displayName} [canonical: ${item.canonical}]`).join('\n')}\n输出规则：需要提及这些实体时必须使用变量的 displayName；localized=false 表示没有已审核官方中文，只能保留 canonical 英文，禁止自行翻译、音译或补中文。不要输出未被当前问题需要的变量。`);
+    if (entityVariables.length) sections.push(`实体变量（NPC/地点/阵营/任务/货币/敌人/任务类型）：\n${entityVariables.map(item => `${item.id} = ${item.displayName} [canonical: ${item.canonical}]`).join('\n')}\n输出规则：需要提及这些实体时必须使用变量的 displayName；localized=false 表示没有已审核官方中文，只能保留 canonical 英文，禁止自行翻译、音译或补中文。不要输出未被当前问题需要的变量。`);
     if (facts.length) sections.push(`基础事实：\n${facts.map(item => `【${item.title}】\n${item.content}\n来源：${item.sources.map(source => `${source.label} ${source.url}`).join('、')}`).join('\n\n')}`);
     if (knowledge.length) sections.push(`加工知识：\n${knowledge.map(item => `【${item.title}】\n${item.content}`).join('\n\n')}`);
     return { query, resolution, facts, knowledge, entityVariables, text: sections.join('\n\n') };
@@ -400,6 +400,8 @@ function createKnowledgeCore(options = {}) {
     searchQuests: data.quests.search,
     getEnemy: data.enemies.get,
     searchEnemies: data.enemies.search,
+    getMissionType: data.missionTypes.get,
+    searchMissionTypes: data.missionTypes.search,
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,

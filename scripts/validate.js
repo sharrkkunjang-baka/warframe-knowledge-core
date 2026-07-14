@@ -17,7 +17,7 @@ const officialWarframesPath = path.join(knowledgeRoot, 'generated', 'official-wa
 const officialWarframes = fs.existsSync(officialWarframesPath) ? JSON.parse(fs.readFileSync(officialWarframesPath, 'utf8')) : null;
 const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
 const { readIndexedEntries } = require('../src/entities');
-const entityDirectories = { locations: 'locations', currencies: 'curreicies', quests: 'quests', factions: 'factions', enemies: 'enemies' };
+const entityDirectories = { locations: 'locations', currencies: 'curreicies', quests: 'quests', factions: 'factions', enemies: 'enemies', missionTypes: 'mission-types' };
 const entities = Object.fromEntries(Object.entries(entityDirectories).map(([name, directory]) => [name, readIndexedEntries(root, directory)]));
 const npcCategoriesPath = path.join(knowledgeRoot, 'npc', 'categories.json');
 const npcCategories = fs.existsSync(npcCategoriesPath) ? JSON.parse(fs.readFileSync(npcCategoriesPath, 'utf8')) : null;
@@ -116,14 +116,27 @@ for (const entry of entries) {
       else {
         if (route.componentCategory !== entry.subject.categoryRefs[0]) errors.push(`${entry.id}: 主分类与 categories.json 不一致`);
         if (JSON.stringify(entry.frameAcquisition?.generated?.routing?.blueprintCategory ?? null) !== JSON.stringify(route.blueprintCategory ?? null)) errors.push(`${entry.id}: 总图分类与 categories.json 不一致`);
-        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText) errors.push(`${entry.id}: 特定任务战甲必须提供独立获取文本`);
+        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId) errors.push(`${entry.id}: 特定任务战甲必须提供结构化任务节点或独立获取文本`);
       }
-      const variables = entry.frameAcquisition?.generated?.routing?.componentVariables || {};
+      const routing = entry.frameAcquisition?.generated?.routing || {};
+      const variables = routing.componentVariables || {};
+      const sourceTextForbidden = !entry.frameAcquisition?.generated?.isPrime && ['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination'].includes(route?.componentCategory);
+      if (entry.reviewStatus === 'approved' && sourceTextForbidden && (Object.hasOwn(variables, 'sourceText') || Object.hasOwn(routing.blueprintVariables || {}, 'sourceText'))) errors.push(`${entry.id}: approved 战甲路由不得以 sourceText 生成用户文案`);
+      const variableSources = [...(variables.sources || []), routing.blueprintVariables || {}];
+      for (const source of variableSources) {
+        if (source.locationId && !entities.locations.some(item => item.id === source.locationId)) errors.push(`${entry.id}: 路由引用不存在的地点 ${source.locationId}`);
+        if (source.missionNodeId && !entities.locations.some(item => item.id === source.missionNodeId)) errors.push(`${entry.id}: 路由引用不存在的任务节点 ${source.missionNodeId}`);
+        if (source.sourceId && !entities.locations.some(item => item.id === source.sourceId)) errors.push(`${entry.id}: 路由引用不存在的特殊来源 ${source.sourceId}`);
+        if (source.questId && !entities.quests.some(item => item.id === source.questId)) errors.push(`${entry.id}: 路由引用不存在的任务 ${source.questId}`);
+      }
       const factionId = variables.factionId;
       if (factionId && !entities.factions.some(item => item.id === factionId)) errors.push(`${entry.id}: 路由引用不存在的阵营 ${factionId}`);
       if (variables.questId && !entities.quests.some(item => item.id === variables.questId)) errors.push(`${entry.id}: 路由引用不存在的任务 ${variables.questId}`);
       if (variables.enemyId && !entities.enemies.some(item => item.id === variables.enemyId)) errors.push(`${entry.id}: 路由引用不存在的敌人 ${variables.enemyId}`);
       if (variables.locationId && !entities.locations.some(item => item.id === variables.locationId)) errors.push(`${entry.id}: 路由引用不存在的地点 ${variables.locationId}`);
+      if (variables.missionNodeId && !entities.locations.some(item => item.id === variables.missionNodeId)) errors.push(`${entry.id}: 路由引用不存在的任务节点 ${variables.missionNodeId}`);
+      if (variables.exchange?.npcId && !npcCategories?.npcs?.some(item => item.id === variables.exchange.npcId)) errors.push(`${entry.id}: 路由引用不存在的 NPC ${variables.exchange.npcId}`);
+      if (variables.exchange?.currencyId && !entities.currencies.some(item => item.id === variables.exchange.currencyId)) errors.push(`${entry.id}: 路由引用不存在的货币 ${variables.exchange.currencyId}`);
       if (variables.vendorId || JSON.stringify(variables).includes('vendor.')) errors.push(`${entry.id}: 禁止引用已删除 vendor 变量`);
       for (const dependency of entry.frameAcquisition?.manual?.dependencies || []) {
         if (dependency.currencyId) {
@@ -351,7 +364,14 @@ for (const [name, values] of Object.entries(entities)) {
     seen.add(entity.id);
     if (entity.parentId && !entityIds.has(entity.parentId)) errors.push(`${entity.id}: parentId 不存在 ${entity.parentId}`);
     if (entity.locationId && !entityIds.has(entity.locationId)) errors.push(`${entity.id}: locationId 不存在 ${entity.locationId}`);
+    if (entity.missionTypeId && !entityIds.has(entity.missionTypeId)) errors.push(`${entity.id}: missionTypeId 不存在 ${entity.missionTypeId}`);
+    if (entity.kind === 'mission-node' && (entity.missionTypeCanonical || entity.missionTypeDisplayName)) errors.push(`${entity.id}: 任务节点不得内嵌任务类型名称，必须使用 missionTypeId`);
   }
+}
+for (const currency of entities.currencies) {
+  const dependency = currency.acquisitionDependency;
+  if (dependency?.missionNodeId && !entities.locations.some(item => item.id === dependency.missionNodeId)) errors.push(`${currency.id}: 获取依赖引用不存在的节点 ${dependency.missionNodeId}`);
+  if (dependency?.missionTypeId && !entities.missionTypes.some(item => item.id === dependency.missionTypeId)) errors.push(`${currency.id}: 获取依赖引用不存在的任务类型 ${dependency.missionTypeId}`);
 }
 if (entities.locations.find(item => item.canonical === 'Cetus')?.id === entities.locations.find(item => item.canonical === 'Plains of Eidolon')?.id) errors.push('地点实体必须区分 Cetus 与 Plains of Eidolon');
 if (entities.locations.find(item => item.canonical === 'Fortuna')?.id === entities.locations.find(item => item.canonical === 'Orb Vallis')?.id) errors.push('地点实体必须区分 Fortuna 与 Orb Vallis');

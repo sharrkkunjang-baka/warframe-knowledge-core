@@ -60,10 +60,30 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sourceText": "Lua/Yuvarium (Survival), Rotation C；Lua/Circulus (Survival), Rotation C"
+            "sources": [
+              {
+                "type": "mission-node",
+                "locationId": "planet.lua",
+                "missionNodeId": "mission-node.yuvarium",
+                "rotation": "C"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.lua",
+                "missionNodeId": "mission-node.circulus",
+                "rotation": "C"
+              }
+            ],
+            "sourceCanonical": [
+              "Lua/Yuvarium (Survival), Rotation C",
+              "Lua/Circulus (Survival), Rotation C"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Lua/Yuvarium (Survival), Rotation C"
+            "type": "mission-node",
+            "locationId": "planet.lua",
+            "missionNodeId": "mission-node.yuvarium",
+            "rotation": "C"
           },
           "blueprintSource": "official-component-drop"
         }

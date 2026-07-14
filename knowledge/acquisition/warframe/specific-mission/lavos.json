@@ -60,10 +60,29 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sourceText": "Operation: Orphix Venom, Rotation C；Operation: Orphix Venom, Rotation A；Entrati (Father), Associate"
+            "sources": [
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.operation-orphix-venom-rotation-c"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.operation-orphix-venom-rotation-a"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.entrati-father-associate"
+              }
+            ],
+            "sourceCanonical": [
+              "Operation: Orphix Venom, Rotation C",
+              "Operation: Orphix Venom, Rotation A",
+              "Entrati (Father), Associate"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Operation: Orphix Venom, Rotation C"
+            "type": "acquisition-source",
+            "sourceId": "source.operation-orphix-venom-rotation-c"
           },
           "blueprintSource": "official-component-drop"
         }

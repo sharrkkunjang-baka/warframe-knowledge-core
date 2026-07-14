@@ -58,8 +58,22 @@ const BLUEPRINT_OVERRIDES = Object.freeze({
   Jade: { category: 'quest', variables: { questName: '翠玉之影' } },
   'Sirius & Orion': { category: 'quest', variables: { questName: '翠玉之影：星座' } }
 })
+const COMPONENT_OVERRIDES = Object.freeze({
+  Dante: { sources: [{ type: 'mission-node', locationId: 'planet.deimos', missionNodeId: 'mission-node.armatus', rotation: 'C' }], exchange: { npcId: 'npc.loid', currencyId: 'currency.vessel-capillaries', componentCost: 90, blueprintCost: 270, totalCost: 540 }, sourceCanonical: ['Deimos/Armatus (Disruption), Rotation C'] },
+  Jade: { locationId: 'planet.uranus', missionNodeId: 'mission-node.brutus', dropChance: 4.63, exchange: { npcId: 'npc.ordis', currencyId: 'currency.vestigial-motes', componentCost: 150, blueprintCost: 450 }, sourceCanonical: 'Uranus/Brutus (Ascension)' }
+})
 
 function categoryDirectory(categoryId) { return CATEGORY_DIRS[categoryId] || null }
+function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') }
+function sourceEntityVariables(source) {
+  const raw = String(source || '').trim()
+  const quest = raw.match(/^Cephalon Simaris,\s*Complete\s+(.+?)(?:\s*\(Quest\))?$/i)
+  if (quest && !/Junction$/i.test(quest[1])) return { type: 'quest-repurchase', npcId: 'npc.cephalon-simaris', questId: `quest.${slug(quest[1])}` }
+  const mission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i)
+  if (mission && !/Level\s*\d+|Bount(?:y|ies)/i.test(raw)) return { type: 'mission-node', locationId: `planet.${slug(mission[1])}`, missionNodeId: `mission-node.${slug(mission[2])}`, rotation: mission[4] || null }
+  return raw ? { type: 'acquisition-source', sourceId: `source.${slug(raw)}` } : null
+}
+function structuredSources(sources) { return [...new Set(sources)].map(sourceEntityVariables).filter(Boolean) }
 function firstAcquisitionText(page) { return (page?.sections || []).filter(section => /^(?:Acquisition|Blueprints)$/i.test(String(section.title || '').trim())).map(section => section.text).join('\n') }
 function partDrops(frame, part) { return (frame.components || []).filter(component => (component.part || component.name) === part).flatMap(component => component.drops || []) }
 function sourceCategory(location) {
@@ -80,7 +94,8 @@ function classifyBlueprint(frame, componentCategory, page) {
   if (drops.length) {
     const category = sourceCategory(drops[0].location)
     const componentEquivalent = category === componentCategory.replace(/^frame-/, '')
-    return { category: componentEquivalent ? null : category, variables: { sourceText: String(drops[0].location || '') }, source: 'official-component-drop' }
+    const raw = String(drops[0].location || '')
+    return { category: componentEquivalent ? null : category, variables: sourceEntityVariables(raw) || { sourceCanonical: raw }, source: 'official-component-drop' }
   }
   const text = firstAcquisitionText(page)
   const quest = text.match(/main blueprint[^.]{0,180}(?:completion of|completing|quest)\s+(?:the\s+)?([^.;\n]+)/i) || text.match(/main blueprint[^.]{0,100}(?:awarded|acquired)[^.]{0,80}\bquest\b/i)
@@ -113,10 +128,19 @@ function questVariables(frame) {
   const questCanonical = match[1].trim()
   return { npcId: 'npc.cephalon-simaris', questId: `quest.${questCanonical.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`, sourceCanonical: [...new Set(sources)] }
 }
+function mixedMissionVariables(frame) {
+  const sources = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).filter(Boolean)
+  const unique = [...new Set(sources)]
+  const parsed = structuredSources(unique)
+  if (parsed.length === unique.length && parsed.length) return { sources: parsed, sourceCanonical: unique }
+  return { sourceCanonical: unique, unresolvedSources: unique.filter(source => !sourceEntityVariables(source)) }
+}
 function componentVariables(frame, componentCategory, page) {
+  if (COMPONENT_OVERRIDES[frame.name]) return COMPONENT_OVERRIDES[frame.name]
   if (componentCategory === 'frame-assassination') return assassinationVariables(frame)
   if (componentCategory === 'frame-bounty') return bountyVariables(frame, page)
   if (componentCategory === 'frame-quest') return questVariables(frame)
+  if (componentCategory === 'frame-mixed-missions' || componentCategory === 'frame-specific-mission') return mixedMissionVariables(frame)
   const sources = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).filter(Boolean)
   return { sourceText: [...new Set(sources)].join('；') }
 }
@@ -140,4 +164,4 @@ function applyTemplate(template, variables) {
   return missing ? null : text
 }
 
-module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, categoryDirectory, classifyBlueprint, bountyVariables, buildRouting, applyTemplate }
+module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, bountyVariables, buildRouting, applyTemplate }

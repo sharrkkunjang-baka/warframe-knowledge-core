@@ -60,7 +60,25 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "market",
           "componentVariables": {
-            "sourceText": "Granum Void, Rotation C；Extended Granum Void, Rotation C；Nightmare Granum Void, Rotation C"
+            "sources": [
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.granum-void-rotation-c"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.extended-granum-void-rotation-c"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.nightmare-granum-void-rotation-c"
+              }
+            ],
+            "sourceCanonical": [
+              "Granum Void, Rotation C",
+              "Extended Granum Void, Rotation C",
+              "Nightmare Granum Void, Rotation C"
+            ]
           },
           "blueprintVariables": {},
           "blueprintSource": "official-bp-cost"

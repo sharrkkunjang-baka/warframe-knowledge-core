@@ -47,7 +47,8 @@ async function fetchText(url) {
     .map(([uniqueName, frame]) => ({
       uniqueName,
       name: packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName),
-      isPrime: frame.variantType === 'VT_PRIME',
+      // Public Export 的旧条目并不都带可靠 variantType；包内官方对象与规范名可共同兜底。
+      isPrime: packageByUniqueName.get(uniqueName)?.isPrime === true || frame.variantType === 'VT_PRIME' || / Prime$/i.test(packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName)),
       productCategory: frame.productCategory,
       introducedAt: frame.introducedAt || null,
       components: ['Blueprint', 'Neuroptics', 'Chassis', 'Systems'].map(part => ({

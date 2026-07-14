@@ -60,10 +60,34 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sourceText": "Deimos/Terrorem (Survival), Rotation C；Orokin Storage Container；Lua/Plato (Caches), Rotation A"
+            "sources": [
+              {
+                "type": "mission-node",
+                "locationId": "planet.deimos",
+                "missionNodeId": "mission-node.terrorem",
+                "rotation": "C"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.orokin-storage-container"
+              },
+              {
+                "type": "mission-node",
+                "locationId": "planet.lua",
+                "missionNodeId": "mission-node.plato",
+                "rotation": "A"
+              }
+            ],
+            "sourceCanonical": [
+              "Deimos/Terrorem (Survival), Rotation C",
+              "Orokin Storage Container",
+              "Lua/Plato (Caches), Rotation A"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Cephalon Simaris, Complete Octavia's Anthem"
+            "type": "quest-repurchase",
+            "npcId": "npc.cephalon-simaris",
+            "questId": "quest.octavia-s-anthem"
           },
           "blueprintSource": "official-component-drop"
         }

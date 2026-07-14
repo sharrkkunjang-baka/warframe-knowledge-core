@@ -60,10 +60,30 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sourceText": "Void Storm (Neptune)；Void Storm (Pluto)；Void Storm (Veil Proxima)"
+            "sources": [
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.void-storm-neptune"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.void-storm-pluto"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.void-storm-veil-proxima"
+              }
+            ],
+            "sourceCanonical": [
+              "Void Storm (Neptune)",
+              "Void Storm (Pluto)",
+              "Void Storm (Veil Proxima)"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Cephalon Simaris, Complete Call of the Tempestarii"
+            "type": "quest-repurchase",
+            "npcId": "npc.cephalon-simaris",
+            "questId": "quest.call-of-the-tempestarii"
           },
           "blueprintSource": "official-component-drop"
         }

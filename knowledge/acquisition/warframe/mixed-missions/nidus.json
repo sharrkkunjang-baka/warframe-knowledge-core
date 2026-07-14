@@ -60,10 +60,22 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sourceText": "Eris/Oestrus (Infested Salvage), Rotation C"
+            "sources": [
+              {
+                "type": "mission-node",
+                "locationId": "planet.eris",
+                "missionNodeId": "mission-node.oestrus",
+                "rotation": "C"
+              }
+            ],
+            "sourceCanonical": [
+              "Eris/Oestrus (Infested Salvage), Rotation C"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Cephalon Simaris, Complete The Glast Gambit"
+            "type": "quest-repurchase",
+            "npcId": "npc.cephalon-simaris",
+            "questId": "quest.the-glast-gambit"
           },
           "blueprintSource": "official-component-drop"
         }

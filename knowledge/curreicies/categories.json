@@ -3,14 +3,14 @@
   "generatedAt": "2026-07-14",
   "type": "curreicies",
   "source": {
-    "migratedFrom": "knowledge/entities/currencies.json"
+    "generatedFrom": "official-items.json + audited frame exchange definitions"
   },
-  "count": 9,
+  "count": 21,
   "categories": [
     {
       "id": "exchange-token",
       "displayName": "兑换代币",
-      "count": 5
+      "count": 8
     },
     {
       "id": "premium",
@@ -18,9 +18,19 @@
       "count": 1
     },
     {
+      "id": "resource-token",
+      "displayName": "资源代币",
+      "count": 7
+    },
+    {
+      "id": "seasonal-token",
+      "displayName": "赛季代币",
+      "count": 1
+    },
+    {
       "id": "standard",
       "displayName": "通用货币",
-      "count": 1
+      "count": 2
     },
     {
       "id": "standing",
@@ -36,6 +46,28 @@
       "kind": "exchange-token",
       "category": "exchange-token",
       "file": "exchange-token/atramentum.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.beating-heartstrings",
+      "canonical": "Beating Heartstrings",
+      "displayName": "律动心弦",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/beating-heartstrings.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.belric-crystal-fragment",
+      "canonical": "Belric Crystal Fragment",
+      "displayName": "贝里克水晶碎片",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/belric-crystal-fragment.json",
       "parentId": null,
       "locationId": null,
       "factionId": null
@@ -63,6 +95,17 @@
       "factionId": null
     },
     {
+      "id": "currency.fate-pearl",
+      "canonical": "Fate Pearl",
+      "displayName": "命运之珠",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/fate-pearl.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
       "id": "currency.jade-talent",
       "canonical": "Emerald Talent",
       "displayName": "翠绿天赋",
@@ -85,12 +128,67 @@
       "factionId": null
     },
     {
+      "id": "currency.lua-thrax-plasm",
+      "canonical": "Lua Thrax Plasm",
+      "displayName": "月球凶魂浆质",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/lua-thrax-plasm.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.mother-token",
+      "canonical": "Mother Token",
+      "displayName": "“母亲”石印",
+      "kind": "exchange-token",
+      "category": "exchange-token",
+      "file": "exchange-token/mother-token.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.nora-s-mix-vol-8-cred",
+      "canonical": "Nora's Mix Vol. 8 Cred",
+      "displayName": "诺拉的混选 Vol. 8 代币",
+      "kind": "seasonal-token",
+      "category": "seasonal-token",
+      "file": "seasonal-token/nora-s-mix-vol-8-cred.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.orokin-ducats",
+      "canonical": "Orokin Ducats",
+      "displayName": "Orokin 杜卡德金币",
+      "kind": "standard",
+      "category": "standard",
+      "file": "standard/orokin-ducats.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
       "id": "currency.platinum",
       "canonical": "Platinum",
       "displayName": "白金",
       "kind": "premium",
       "category": "premium",
       "file": "premium/platinum.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.rania-crystal-fragment",
+      "canonical": "Rania Crystal Fragment",
+      "displayName": "拉尼娅水晶碎片",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/rania-crystal-fragment.json",
       "parentId": null,
       "locationId": null,
       "factionId": null
@@ -118,12 +216,56 @@
       "factionId": null
     },
     {
+      "id": "currency.stock",
+      "canonical": "Stock",
+      "displayName": "存货储备",
+      "kind": "exchange-token",
+      "category": "exchange-token",
+      "file": "exchange-token/stock.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
       "id": "currency.vainthorn",
       "canonical": "Vainthorn",
       "displayName": "浮华荆棘",
       "kind": "exchange-token",
       "category": "exchange-token",
       "file": "exchange-token/vainthorn.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.vessel-capillaries",
+      "canonical": "Vessel Capillaries",
+      "displayName": "承载体毛细血管",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/vessel-capillaries.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.vestigial-motes",
+      "canonical": "Vestigial Motes",
+      "displayName": "残存微粒",
+      "kind": "resource-token",
+      "category": "resource-token",
+      "file": "resource-token/vestigial-motes.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "currency.vitus-essence",
+      "canonical": "Vitus Essence",
+      "displayName": "生息精华",
+      "kind": "exchange-token",
+      "category": "exchange-token",
+      "file": "exchange-token/vitus-essence.json",
       "parentId": null,
       "locationId": null,
       "factionId": null

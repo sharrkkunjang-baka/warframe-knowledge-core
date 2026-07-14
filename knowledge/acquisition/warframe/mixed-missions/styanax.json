@@ -60,10 +60,29 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": null,
           "componentVariables": {
-            "sourceText": "Kahl's Garrison (Chipper), Fort；Kahl's Garrison (Chipper), Settlement；Kahl's Garrison (Chipper), Encampment"
+            "sources": [
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.kahl-s-garrison-chipper-fort"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.kahl-s-garrison-chipper-settlement"
+              },
+              {
+                "type": "acquisition-source",
+                "sourceId": "source.kahl-s-garrison-chipper-encampment"
+              }
+            ],
+            "sourceCanonical": [
+              "Kahl's Garrison (Chipper), Fort",
+              "Kahl's Garrison (Chipper), Settlement",
+              "Kahl's Garrison (Chipper), Encampment"
+            ]
           },
           "blueprintVariables": {
-            "sourceText": "Kahl's Garrison (Chipper), Home"
+            "type": "acquisition-source",
+            "sourceId": "source.kahl-s-garrison-chipper-home"
           },
           "blueprintSource": "official-component-drop"
         }

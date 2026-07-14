@@ -8,7 +8,7 @@ const { createKnowledgeCore } = require('../src')
 const { readIndexedEntries } = require('../src/entities')
 
 const root = path.resolve(__dirname, '..')
-const directories = ['curreicies', 'factions', 'quests', 'locations', 'enemies']
+const directories = ['curreicies', 'factions', 'quests', 'locations', 'enemies', 'mission-types']
 
 test('分类实体目录由 categories.json 索引独立 JSON', () => {
   for (const directory of directories) {
@@ -28,6 +28,8 @@ test('任务、货币、敌人、地点和阵营都可作为变量查询', () =>
   assert.equal(core.getEnemy('Mutalist Alad V').displayName, '异融 Alad V')
   assert.equal(core.getLocation('Zariman Ten Zero').displayName, '扎里曼号')
   assert.equal(core.getFaction('Narmer').displayName, '合一众')
+  assert.equal(core.getMissionType('Disruption').displayName, '中断')
+  assert.equal(core.getCurrency('Vessel Capillaries').displayName, '承载体毛细血管')
   assert.ok(core.resolveEntityVariables('Limbo 定理').some(item => item.id === 'quest.the-limbo-theorem'))
 })
 

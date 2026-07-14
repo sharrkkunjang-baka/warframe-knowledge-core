@@ -28,8 +28,8 @@
     "check:mods": "node scripts/sync-mods.js --check",
     "sync:mod-wiki": "node scripts/sync-mod-wiki.js",
     "check:mod-wiki": "node scripts/sync-mod-wiki.js --check",
-    "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:entities && npm run sync:locations && npm run sync:quests && npm run sync:factions && npm run sync:npcs && npm run sync:frames && npm run sync:frame-knowledge && npm run validate && npm test && npm run build",
-    "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:entities && npm run check:locations && npm run check:quests && npm run check:factions && npm run check:npcs && npm run check:frames && npm run check:frame-knowledge && npm run validate && npm test",
+    "maintain": "npm run sync:mods && npm run sync:official && npm run sync:items && npm run sync:entities && npm run sync:locations && npm run sync:mission-types && npm run sync:frame-source-locations && npm run sync:frame-currencies && npm run sync:quests && npm run sync:factions && npm run sync:npcs && npm run sync:frames && npm run sync:frame-knowledge && npm run validate && npm test && npm run build",
+    "check:all": "npm run check:mods && npm run check:official && npm run check:items && npm run check:entities && npm run check:locations && npm run check:mission-types && npm run check:frame-source-locations && npm run check:frame-currencies && npm run check:quests && npm run check:factions && npm run check:npcs && npm run check:frames && npm run check:frame-knowledge && npm run validate && npm test",
     "validate": "node scripts/validate.js",
     "test": "node --test",
     "prepublishOnly": "npm run build && npm test",
@@ -48,7 +48,13 @@
     "sync:npcs": "node scripts/sync-npcs.js",
     "check:npcs": "node scripts/sync-npcs.js --check",
     "sync:locations": "node scripts/sync-locations.js",
-    "check:locations": "node scripts/sync-locations.js --check"
+    "check:locations": "node scripts/sync-locations.js --check",
+    "sync:frame-source-locations": "node scripts/sync-frame-source-locations.js",
+    "check:frame-source-locations": "node scripts/sync-frame-source-locations.js --check",
+    "sync:mission-types": "node scripts/sync-mission-types.js",
+    "check:mission-types": "node scripts/sync-mission-types.js --check",
+    "sync:frame-currencies": "node scripts/sync-frame-currencies.js",
+    "check:frame-currencies": "node scripts/sync-frame-currencies.js --check"
   },
   "keywords": [
     "warframe",
