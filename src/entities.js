@@ -38,7 +38,7 @@ function createRegistry(entries) {
 
 function loadEntityRegistries(root = path.join(__dirname, '..')) {
   const load = name => createRegistry(readJson(path.join(root, 'entities', `${name}.json`)));
-  return deepFreeze({ locations: load('locations'), vendors: load('vendors'), currencies: load('currencies') });
+  return deepFreeze({ locations: load('locations'), vendors: load('vendors'), currencies: load('currencies'), quests: load('quests') });
 }
 
 module.exports = { normalizeEntityName: normalize, createRegistry, loadEntityRegistries };

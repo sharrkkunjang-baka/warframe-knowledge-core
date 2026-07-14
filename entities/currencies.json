@@ -69,8 +69,8 @@
   },
   {
     "id": "currency.jade-talent",
-    "canonical": "Jade Talent",
-    "displayName": "翡翠天赋",
+    "canonical": "Emerald Talent",
+    "displayName": "翠绿天赋",
     "kind": "exchange-token",
     "aliases": [
       "绿"
@@ -78,19 +78,31 @@
     "reviewStatus": "approved",
     "acquisitionDependency": {
       "canonical": "Emerald Talent",
-      "displayName": "翡翠天赋",
-      "acquisitionSummary": "完成天王星比邻星域 The Kuva Wytch：普通难度结算 12-16 个，钢铁之路 18-22 个；转场阶段击落全部目标还能获得额外数量",
+      "displayName": "翠绿天赋",
       "sourceRefs": [
         "https://wiki.warframe.com/w/Emerald_Talent",
         "https://www.warframe.com/patch-notes/switch/43-0-0"
       ],
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "acquisition": {
+        "type": "mission-completion",
+        "locationId": "mission.the-kuva-wytch",
+        "normalAmount": {
+          "min": 12,
+          "max": 16
+        },
+        "steelPathAmount": {
+          "min": 18,
+          "max": 22
+        },
+        "bonus": "转场阶段击落全部目标可获得额外数量"
+      }
     }
   },
   {
     "id": "currency.crimson-talent",
     "canonical": "Crimson Talent",
-    "displayName": "绯红天赋",
+    "displayName": "猩红天赋",
     "kind": "exchange-token",
     "aliases": [
       "红"
@@ -98,13 +110,25 @@
     "reviewStatus": "approved",
     "acquisitionDependency": {
       "canonical": "Crimson Talent",
-      "displayName": "绯红天赋",
-      "acquisitionSummary": "完成天王星比邻星域 Scoria's Angel：普通难度结算 12-16 个，钢铁之路 18-22 个；转场阶段击落全部目标还能获得额外数量",
+      "displayName": "猩红天赋",
       "sourceRefs": [
         "https://wiki.warframe.com/w/Crimson_Talent",
         "https://www.warframe.com/patch-notes/switch/43-0-0"
       ],
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "acquisition": {
+        "type": "mission-completion",
+        "locationId": "mission.scorias-angel",
+        "normalAmount": {
+          "min": 12,
+          "max": 16
+        },
+        "steelPathAmount": {
+          "min": 18,
+          "max": 22
+        },
+        "bonus": "转场阶段击落全部目标可获得额外数量"
+      }
     }
   },
   {

@@ -360,6 +360,8 @@ function createKnowledgeCore(options = {}) {
     searchVendors: data.vendors.search,
     getCurrency: data.currencies.get,
     searchCurrencies: data.currencies.search,
+    getQuest: data.quests.get,
+    searchQuests: data.quests.search,
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,

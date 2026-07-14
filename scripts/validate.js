@@ -15,7 +15,7 @@ const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sour
 const officialWarframesPath = path.join(root, 'generated', 'official-warframes.json');
 const officialWarframes = fs.existsSync(officialWarframesPath) ? JSON.parse(fs.readFileSync(officialWarframesPath, 'utf8')) : null;
 const officialItems = fs.existsSync(officialItemsPath) ? JSON.parse(fs.readFileSync(officialItemsPath, 'utf8')) : null;
-const entityNames = ['locations', 'vendors', 'currencies'];
+const entityNames = ['locations', 'vendors', 'currencies', 'quests'];
 const entities = Object.fromEntries(entityNames.map(name => [name, JSON.parse(fs.readFileSync(path.join(root, 'entities', `${name}.json`), 'utf8'))]));
 const required = ['id', 'title', 'sources', 'gameVersion', 'updatedAt', 'reviewStatus', 'reviewedBy'];
 const ids = new Set();
@@ -253,6 +253,11 @@ else {
   if (follie.length !== 1 || follie[0].subject.canonical !== 'Follie') errors.push('Inkblot 必须唯一映射为 Follie');
   const sirius = frameEntries.filter(entry => entry.subject?.officialUniqueName === '/Lotus/Powersuits/SiriusOrion/SiriusSuit');
   if (sirius.length !== 1 || sirius[0].subject.canonical !== 'Sirius & Orion') errors.push('Sirius Suit 必须唯一映射为 Sirius & Orion');
+  if (sirius.length === 1) {
+    const special = sirius[0].frameAcquisition?.manual?.specialFrame?.acquisition;
+    for (const key of ['quest', 'drops', 'vendor']) if (typeof special?.[key] === 'string') errors.push(`Sirius & Orion 的 ${key} 不得使用整句硬编码`);
+    if (!special?.questReward?.questId || !special?.dropReward?.locationIds?.length || !special?.vendorExchange?.vendorId || !special?.vendorExchange?.currencyIds?.length) errors.push('Sirius & Orion 获取来源必须使用任务/地点/商人/货币实体引用');
+  }
 }
 
 const entityIds = new Set(Object.values(entities).flat().map(entity => entity.id));

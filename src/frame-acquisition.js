@@ -18,6 +18,8 @@ const { loadEntityRegistries } = require('./entities');
 const ENTITY_REGISTRIES = loadEntityRegistries(CORE_ROOT);
 const LOCATION_REGISTRY = ENTITY_REGISTRIES.locations;
 const CURRENCY_REGISTRY = ENTITY_REGISTRIES.currencies;
+const VENDOR_REGISTRY = ENTITY_REGISTRIES.vendors;
+const QUEST_REGISTRY = ENTITY_REGISTRIES.quests;
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -441,6 +443,16 @@ function renderSeriesPartSource(frame, part) {
   return null;
 }
 function componentSourceText(frame, part, drops) {
+  if (frame.override && frame.acquisition?.dropReward) {
+    const drop = frame.acquisition.dropReward;
+    const missions = (drop.locationIds || []).map(id => entityName(LOCATION_REGISTRY, id)).join('或');
+    const dropText = `天王星比邻星域的${missions}，${drop.rotation}轮 ${formatChance(drop.chance)}`;
+    if (part === 'Blueprint' && frame.acquisition.questReward) {
+      const quest = entityName(QUEST_REGISTRY, frame.acquisition.questReward.questId);
+      return `首次完成《${quest}》获得；或刷${dropText}`;
+    }
+    return dropText;
+  }
   const override = FRAME_SOURCE_OVERRIDES[frame.name];
   const audited = override?.[part] || override?.all;
   if (audited) return audited;
@@ -450,6 +462,29 @@ function componentSourceText(frame, part, drops) {
   // 官方物品数据的 bpCost 表示普通战甲总图可直接在商店用现金购买。
   if (part === 'Blueprint' && Number(frame.bpCost) > 0) return `商店购买（${Number(frame.bpCost)} 现金）`;
   return '官方结构化数据缺少该蓝图的获取来源';
+}
+
+function entityName(registry, id) { return registry.get(id)?.displayName || id; }
+function renderStructuredSpecialAcquisition(frame) {
+  const acquisition = frame.acquisition || {};
+  const lines = [];
+  if (acquisition.questReward) {
+    const quest = entityName(QUEST_REGISTRY, acquisition.questReward.questId);
+    lines.push(`首次完成《${quest}》获得${PART_ZH[acquisition.questReward.part] || acquisition.questReward.part}`);
+  }
+  if (acquisition.dropReward) {
+    const missions = (acquisition.dropReward.locationIds || []).map(id => entityName(LOCATION_REGISTRY, id)).join('或');
+    const parts = (acquisition.dropReward.parts || []).map(part => PART_ZH[part] || part).join('、');
+    lines.push(`天王星比邻星域的${missions}，${acquisition.dropReward.rotation}轮掉落${parts}，每张蓝图 ${formatChance(acquisition.dropReward.chance)}`);
+  }
+  if (acquisition.vendorExchange) {
+    const vendor = entityName(VENDOR_REGISTRY, acquisition.vendorExchange.vendorId);
+    const location = entityName(LOCATION_REGISTRY, acquisition.vendorExchange.locationId);
+    const currencies = (acquisition.vendorExchange.currencyIds || []).map(id => entityName(CURRENCY_REGISTRY, id)).join('或');
+    const costs = Object.entries(acquisition.vendorExchange.costs || {}).map(([part, amount]) => `${PART_ZH[part] || part} ${amount}`).join('；');
+    lines.push(`在${location}向 ${vendor} 使用${currencies}兑换：${costs}；总计 ${acquisition.vendorExchange.total}`);
+  }
+  return lines.join('；');
 }
 
 function renderAcquisitionDependencies(frame) {
@@ -464,7 +499,14 @@ function renderAcquisitionDependencies(frame) {
     seen.add(key);
     const amount = dependency.amount == null ? '' : `（需要 ${dependency.amount}）`;
     const review = dependency.reviewStatus === 'pending' ? '【待人工审核】' : '';
-    lines.push(`${dependency.displayName || entity?.displayName || dependency.canonical}${amount}：${dependency.acquisitionSummary}${review}`);
+    let summary = dependency.acquisitionSummary;
+    if (!summary && dependency.acquisition?.type === 'mission-completion') {
+      const mission = entityName(LOCATION_REGISTRY, dependency.acquisition.locationId);
+      const normal = dependency.acquisition.normalAmount;
+      const steel = dependency.acquisition.steelPathAmount;
+      summary = `完成天王星比邻星域${mission}：普通难度结算 ${normal.min}-${normal.max} 个，钢铁之路 ${steel.min}-${steel.max} 个；${dependency.acquisition.bonus}`;
+    }
+    lines.push(`${dependency.displayName || entity?.displayName || dependency.canonical}${amount}：${summary}${review}`);
   }
   return lines;
 }
@@ -500,7 +542,7 @@ function renderAcquisition(data) {
   }
   if (prime && !prime.rotationAvailable) lines.push('当前遗物轮换数据暂不可用');
   if (prime && !prime.realtimeAvailable && prime.status !== '当前出库') lines.push('Prime 重生实时状态暂不可用');
-  if (frame.override) lines.push(`补充：${frame.acquisition.quest}；${frame.acquisition.vendor}`);
+  if (frame.override) { const supplement = renderStructuredSpecialAcquisition(frame); if (supplement) lines.push(`补充：${supplement}`); }
   if (FRAME_ACQUISITION_NOTES[frame.name]) lines.push(`说明：${FRAME_ACQUISITION_NOTES[frame.name]}`);
   const dependencyLines = renderAcquisitionDependencies(frame);
   if (dependencyLines.length) lines.push('兑换道具怎么刷：', ...dependencyLines);
