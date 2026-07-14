@@ -662,6 +662,23 @@ function renderSpecificMissionRoute(variables) {
   }
   return lines;
 }
+function requirementLines(routing) {
+  const requirement = routing?.require;
+  if (!requirement || requirement.type === 'none') return [];
+  const npc = requirement.npcId ? NPC_REGISTRY.get(requirement.npcId) : null;
+  const locationName = npc?.locationId ? entityName(LOCATION_REGISTRY, npc.locationId) : null;
+  const npcName = npc ? entityName(NPC_REGISTRY, requirement.npcId) : null;
+  if (requirement.type === 'currency') {
+    const lines = [];
+    if (locationName && npcName) lines.push(applyTemplate(methodTemplate('components', 'frame-vendor', 'currencyNpcTemplate'), { locationName, npcName }));
+    lines.push(requirement.isBuffuseless ? methodTemplate('components', 'frame-vendor', 'buffUselessTemplate') : methodTemplate('components', 'frame-vendor', 'buffUsefulTemplate'));
+    return lines.filter(Boolean);
+  }
+  if (requirement.type !== 'standing' || !locationName || !npcName) return [];
+  const variables = { locationName, npcName, rank: requirement.rank, blueprintRank: requirement.blueprintRank };
+  const templateName = requirement.blueprintRank && requirement.blueprintRank !== requirement.rank ? 'standingSplitTemplate' : 'standingTemplate';
+  return [applyTemplate(methodTemplate('components', 'frame-vendor', templateName), variables)].filter(Boolean);
+}
 function renderRoutedAcquisition(frameOrName) {
   const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
   if (!frame) return null;
@@ -680,10 +697,10 @@ function renderRoutedAcquisition(frameOrName) {
       : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
     if (structured?.length) {
       const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
-      return { route, lines: [blueprint, ...structured].filter(Boolean), source: 'category-method' };
+      return { route, lines: [blueprint, ...structured, ...requirementLines(routing)].filter(Boolean), source: 'category-method' };
     }
     const text = knowledge.frameAcquisition?.manual?.acquisitionText;
-    return text ? { route, lines: String(text).split('\n').filter(Boolean), source: 'frame-json' } : null;
+    return text ? { route, lines: [...String(text).split('\n').filter(Boolean), ...requirementLines(routing)].filter(Boolean), source: 'frame-json' } : null;
   }
   const lines = [];
   if (route.blueprintCategory) {
@@ -712,6 +729,7 @@ function renderRoutedAcquisition(frameOrName) {
     const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
     lines.push(...fallback);
   }
+  lines.push(...requirementLines(routing));
   return lines.length ? { route, lines, source: 'category-method' } : null;
 }
 

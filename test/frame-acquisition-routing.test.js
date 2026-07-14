@@ -85,7 +85,9 @@ test('Jade 使用任务节点、NPC 与货币变量展示掉落和保底兑换',
   assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Jade').lines, [
     '完成《翠玉之影》获得总图',
     '在天王星的布鲁图斯（扬升）刷取，部件蓝图掉率 4.63%',
-    '也可在 Ordis 处使用残存微粒兑换：部件蓝图每张 150，总图 450'
+    '也可在 Ordis 处使用残存微粒兑换：部件蓝图每张 150，总图 450',
+    '前往漂泊者营地找Ordis兑换',
+    '资源数量加成：不吃'
   ])
 })
 
@@ -95,7 +97,9 @@ test('Dante 使用节点、任务类型、NPC 与兑换货币变量', () => {
   assert.equal(routing.exchange.npcId, 'npc.loid')
   assert.equal(routing.exchange.currencyId, 'currency.vessel-capillaries')
   assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Dante').lines, [
-    '在火卫二的卫城区（中断） C 轮刷取部件蓝图\n也可在 洛德 处使用承载体毛细血管兑换：部件蓝图每张 90，总图 270，全套共 540\n承载体毛细血管怎么刷：在火卫二的卫城区（中断）击败爆破使，普通每只掉落 2-4，钢铁之路每只 5-7'
+    '在火卫二的卫城区（中断） C 轮刷取部件蓝图\n也可在 洛德 处使用承载体毛细血管兑换：部件蓝图每张 90，总图 270，全套共 540\n承载体毛细血管怎么刷：在火卫二的卫城区（中断）击败爆破使，普通每只掉落 2-4，钢铁之路每只 5-7',
+    '前往殁世幽都找洛德兑换',
+    '资源数量加成：不吃'
   ])
 })
 
@@ -139,6 +143,30 @@ test('Narmer 赏金通过 faction 注册表自动显示为合一众', () => {
   assert.equal(frameAcquisition.renderRoutedAcquisition('卡利班').lines.join('\n'), '商城购买总图\n在希图斯找孔祝，或在福尔图娜找尤迪科接取合一众赏金刷取部件')
   assert.deepEqual(caliban.frameAcquisition.generated.routing.componentVariables.levelRange, { min: 50, max: 70 })
   assert.equal(caliban.frameAcquisition.generated.routing.componentVariables.hubs[0].npcId, 'npc.konzu')
+})
+
+test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
+  const currencyFrames = ['Citrine', 'Dagath', 'Dante', 'Follie', 'Jade', 'Kullervo', 'Nokko', 'Sirius & Orion', 'Vauban']
+  for (const name of currencyFrames) {
+    const requirement = entry(name).frameAcquisition.generated.routing.require
+    assert.equal(requirement.type, 'currency', name)
+    assert.equal(requirement.isBuffuseless, true, name)
+    const result = createKnowledgeCore().getAcquisition(name)
+    assert.equal(result.description.split('\n').at(-1), '资源数量加成：不吃', name)
+  }
+  assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.loid', isBuffuseless: true })
+  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /前往殁世幽都找洛德兑换\n资源数量加成：不吃$/)
+  assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.nightcap', isBuffuseless: true })
+  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /前往福尔图娜找夜帽兑换\n资源数量加成：不吃$/)
+  assert.deepEqual(entry('Dagath').frameAcquisition.generated.routing.require, { type: 'currency', isBuffuseless: true })
+  const baruuk = entry('Baruuk').frameAcquisition.generated.routing.require
+  assert.deepEqual(baruuk, { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' })
+  assert.equal(createKnowledgeCore().getAcquisition('Baruuk').description.split('\n').at(-1), '福尔图娜的Little Duck：总图需要 2级声望，部件蓝图需要 3级声望兑换')
+  const hildryn = entry('Hildryn').frameAcquisition.generated.routing.require
+  assert.deepEqual(hildryn, { type: 'standing', npcId: 'npc.little-duck', rank: 2, rankName: 'Agent' })
+  assert.equal(createKnowledgeCore().getAcquisition('Hildryn').description.split('\n').at(-1), '福尔图娜的Little Duck 2级声望兑换')
+  assert.equal(entry('Mag').frameAcquisition.generated.routing.require.type, 'none')
+  assert.doesNotMatch(createKnowledgeCore().getAcquisition('Mag').description, /资源数量加成|声望兑换/)
 })
 
 test('method 模板与编译路由可自动发布', () => {

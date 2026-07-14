@@ -23,7 +23,12 @@ function parseSource(value) {
 }
 function generatedEntries() {
   const entries = Object.entries(PLANET_ZH).map(([canonical, displayName]) => ({ id: `planet.${slug(canonical)}`, canonical, displayName, kind: 'planet', aliases: [], officialSource: 'audited-official-zh' }))
-  entries.push({ id: 'hub.fortuna-airlock', canonical: 'The Airlock', displayName: '气密舱', kind: 'hub', aliases: [], parentId: 'hub.fortuna', officialSource: 'Warframe Update 40 official zh-hans patch notes' })
+  entries.push(
+    { id: 'hub.fortuna-airlock', canonical: 'The Airlock', displayName: '气密舱', kind: 'hub', aliases: [], parentId: 'hub.fortuna', officialSource: 'Warframe Update 40 official zh-hans patch notes' },
+    { id: 'hub.drifters-camp', canonical: "Drifter's Camp", displayName: '漂泊者营地', kind: 'hub', aliases: [], parentId: 'planet.earth', officialSource: 'audited-official-zh' },
+    { id: 'hub.dormizone', canonical: 'Dormizone', displayName: '宿舍', kind: 'hub', aliases: [], parentId: 'hub.zariman', officialSource: 'audited-official-zh' },
+    { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' }
+  )
   for (const frame of WARFRAMES.filter(item => !item.isPrime)) for (const component of frame.components || []) for (const drop of component.drops || []) {
     const raw = String(drop.location || '').trim()
     const parsed = parseSource(raw)

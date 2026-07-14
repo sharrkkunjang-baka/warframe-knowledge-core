@@ -5,7 +5,7 @@
   "source": {
     "generatedFrom": "warframe-items Warframes component drops"
   },
-  "count": 209,
+  "count": 212,
   "categories": [
     {
       "id": "acquisition-source",
@@ -15,7 +15,7 @@
     {
       "id": "hub",
       "displayName": "中继聚落",
-      "count": 7
+      "count": 10
     },
     {
       "id": "landscape",
@@ -45,12 +45,45 @@
   ],
   "variables": [
     {
+      "id": "hub.any-relay",
+      "canonical": "Any Relay",
+      "displayName": "任意中继站",
+      "kind": "hub",
+      "category": "hub",
+      "file": "hub/any-relay.json",
+      "parentId": null,
+      "locationId": null,
+      "factionId": null
+    },
+    {
       "id": "hub.cetus",
       "canonical": "Cetus",
       "displayName": "希图斯",
       "kind": "hub",
       "category": "hub",
       "file": "hub/cetus.json",
+      "parentId": "planet.earth",
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "hub.dormizone",
+      "canonical": "Dormizone",
+      "displayName": "宿舍",
+      "kind": "hub",
+      "category": "hub",
+      "file": "hub/dormizone.json",
+      "parentId": "hub.zariman",
+      "locationId": null,
+      "factionId": null
+    },
+    {
+      "id": "hub.drifters-camp",
+      "canonical": "Drifter's Camp",
+      "displayName": "漂泊者营地",
+      "kind": "hub",
+      "category": "hub",
+      "file": "hub/drifter-s-camp.json",
       "parentId": "planet.earth",
       "locationId": null,
       "factionId": null

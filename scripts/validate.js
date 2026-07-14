@@ -160,6 +160,16 @@ for (const entry of entries) {
       }
       const routing = entry.frameAcquisition?.generated?.routing || {};
       const variables = routing.componentVariables || {};
+      const requirement = routing.require;
+      if (!requirement || !['none', 'standing', 'currency'].includes(requirement.type)) errors.push(`${entry.id}: require.type 必须是 none、standing 或 currency`);
+      if (requirement?.type === 'currency' && typeof requirement.isBuffuseless !== 'boolean') errors.push(`${entry.id}: currency require.isBuffuseless 必须是布尔值`);
+      if (requirement?.type !== 'currency' && Object.hasOwn(requirement || {}, 'isBuffuseless')) errors.push(`${entry.id}: isBuffuseless 只能作为 currency require 的子选项`);
+      if (requirement?.type === 'standing' && (!requirement.npcId || !Number.isInteger(requirement.rank))) errors.push(`${entry.id}: standing require 必须提供 npcId 和整数 rank`);
+      if (requirement?.npcId) {
+        const npc = npcCategories?.npcs?.find(item => item.id === requirement.npcId);
+        if (!npc) errors.push(`${entry.id}: require 引用不存在的 NPC ${requirement.npcId}`);
+        else if (!npc.locationId || !entities.locations.some(item => item.id === npc.locationId)) errors.push(`${entry.id}: require NPC 缺少有效 locationId ${requirement.npcId}`);
+      }
       const sourceTextForbidden = !entry.frameAcquisition?.generated?.isPrime && ['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination'].includes(route?.componentCategory);
       if (entry.reviewStatus === 'approved' && sourceTextForbidden && (Object.hasOwn(variables, 'sourceText') || Object.hasOwn(routing.blueprintVariables || {}, 'sourceText'))) errors.push(`${entry.id}: approved 战甲路由不得以 sourceText 生成用户文案`);
       const variableSources = [...(variables.sources || []), routing.blueprintVariables || {}];

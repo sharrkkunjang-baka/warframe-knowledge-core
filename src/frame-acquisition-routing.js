@@ -63,6 +63,22 @@ const COMPONENT_OVERRIDES = Object.freeze({
   Jade: { locationId: 'planet.uranus', missionNodeId: 'mission-node.brutus', dropChance: 4.63, exchange: { npcId: 'npc.ordis', currencyId: 'currency.vestigial-motes', componentCost: 150, blueprintCost: 450 }, sourceCanonical: 'Uranus/Brutus (Ascension)' }
 })
 
+// require 是互斥的获取门槛变量。none 为默认值；standing 通过 NPC 变量
+// 自动解析地点和集团等级；currency 的 isBuffuseless 默认 true。
+const REQUIRE_OVERRIDES = Object.freeze({
+  Baruuk: { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' },
+  Citrine: { type: 'currency', npcId: 'npc.otak' },
+  Dagath: { type: 'currency' },
+  Dante: { type: 'currency', npcId: 'npc.loid' },
+  Follie: { type: 'currency', npcId: 'npc.aspirant-zorba' },
+  Hildryn: { type: 'standing', npcId: 'npc.little-duck', rank: 2, rankName: 'Agent' },
+  Jade: { type: 'currency', npcId: 'npc.ordis' },
+  Kullervo: { type: 'currency', npcId: 'npc.acrithis' },
+  Nokko: { type: 'currency', npcId: 'npc.nightcap' },
+  'Sirius & Orion': { type: 'currency', npcId: 'npc.hunhow' },
+  Vauban: { type: 'currency' }
+})
+
 function categoryDirectory(categoryId) { return CATEGORY_DIRS[categoryId] || null }
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') }
 function sourceEntityVariables(source) {
@@ -144,14 +160,23 @@ function componentVariables(frame, componentCategory, page) {
   const sources = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).filter(Boolean)
   return { sourceText: [...new Set(sources)].join('；') }
 }
+function acquisitionRequirement(frame, componentCategory, variables) {
+  const override = REQUIRE_OVERRIDES[frame.name]
+  if (override?.type === 'standing') return { ...override }
+  if (override?.type === 'currency') return { ...override, isBuffuseless: override.isBuffuseless ?? true }
+  if (variables?.exchange) return { type: 'currency', isBuffuseless: true }
+  return { type: 'none' }
+}
 function buildRouting(frame, componentCategory, page) {
   const blueprint = classifyBlueprint(frame, componentCategory, page)
+  const variables = componentVariables(frame, componentCategory, page)
   return {
     componentCategory,
     blueprintCategory: blueprint.category,
-    componentVariables: componentVariables(frame, componentCategory, page),
+    componentVariables: variables,
     blueprintVariables: blueprint.variables || {},
-    blueprintSource: blueprint.source
+    blueprintSource: blueprint.source,
+    require: acquisitionRequirement(frame, componentCategory, variables)
   }
 }
 function applyTemplate(template, variables) {
@@ -164,4 +189,4 @@ function applyTemplate(template, variables) {
   return missing ? null : text
 }
 
-module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_ROOT, METHOD_DEFINITIONS, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, loadMethodDefinitions, methodTemplate, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, bountyVariables, buildRouting, applyTemplate }
+module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_ROOT, METHOD_DEFINITIONS, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, REQUIRE_OVERRIDES, loadMethodDefinitions, methodTemplate, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, bountyVariables, acquisitionRequirement, buildRouting, applyTemplate }
