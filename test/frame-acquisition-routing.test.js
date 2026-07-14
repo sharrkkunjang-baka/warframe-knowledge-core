@@ -161,10 +161,10 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
   assert.deepEqual(entry('Dagath').frameAcquisition.generated.routing.require, { type: 'currency', isBuffuseless: true })
   const baruuk = entry('Baruuk').frameAcquisition.generated.routing.require
   assert.deepEqual(baruuk, { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' })
-  assert.equal(createKnowledgeCore().getAcquisition('Baruuk').description.split('\n').at(-1), '福尔图娜的Little Duck：总图需要 2级声望，部件蓝图需要 3级声望兑换')
+  assert.equal(createKnowledgeCore().getAcquisition('Baruuk').description, '福尔图娜的Little Duck：总图需要 2级声望，部件蓝图需要 3级声望兑换')
   const hildryn = entry('Hildryn').frameAcquisition.generated.routing.require
   assert.deepEqual(hildryn, { type: 'standing', npcId: 'npc.little-duck', rank: 2, rankName: 'Agent' })
-  assert.equal(createKnowledgeCore().getAcquisition('Hildryn').description.split('\n').at(-1), '福尔图娜的Little Duck 2级声望兑换')
+  assert.equal(createKnowledgeCore().getAcquisition('Hildryn').description, '击败剥削者圆蛛刷取部件蓝图\n福尔图娜的Little Duck 2级声望兑换')
   assert.equal(entry('Mag').frameAcquisition.generated.routing.require.type, 'none')
   assert.doesNotMatch(createKnowledgeCore().getAcquisition('Mag').description, /资源数量加成|声望兑换/)
 })

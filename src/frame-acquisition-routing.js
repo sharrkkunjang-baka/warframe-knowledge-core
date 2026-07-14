@@ -58,6 +58,9 @@ const BLUEPRINT_OVERRIDES = Object.freeze({
   'Sirius & Orion': { category: 'quest', variables: { questName: '翠玉之影：星座' } }
 })
 const COMPONENT_OVERRIDES = Object.freeze({
+  Baruuk: {},
+  Hildryn: { enemyName: '剥削者圆蛛' },
+  Vauban: {},
   Nokko: { prerequisiteQuestId: 'quest.the-new-war', hubs: [{ locationId: 'hub.fortuna', subLocationId: 'hub.fortuna-airlock', npcId: 'npc.nightcap' }], bountyName: '深矿赏金', exchange: { npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyId: 'currency.fergolyte', componentCost: 160, blueprintCost: 240, totalCost: 720, rankName: '园丁', rank: 4 }, sourceCanonical: ['Deepmines Bounties'] },
   Dante: { sources: [{ type: 'mission-node', locationId: 'planet.deimos', missionNodeId: 'mission-node.armatus', rotation: 'C' }], exchange: { npcId: 'npc.loid', currencyId: 'currency.vessel-capillaries', componentCost: 90, blueprintCost: 270, totalCost: 540 }, sourceCanonical: ['Deimos/Armatus (Disruption), Rotation C'] },
   Jade: { locationId: 'planet.uranus', missionNodeId: 'mission-node.brutus', dropChance: 4.63, exchange: { npcId: 'npc.ordis', currencyId: 'currency.vestigial-motes', componentCost: 150, blueprintCost: 450 }, sourceCanonical: 'Uranus/Brutus (Ascension)' }

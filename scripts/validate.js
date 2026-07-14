@@ -170,7 +170,7 @@ for (const entry of entries) {
         if (!npc) errors.push(`${entry.id}: require 引用不存在的 NPC ${requirement.npcId}`);
         else if (!npc.locationId || !entities.locations.some(item => item.id === npc.locationId)) errors.push(`${entry.id}: require NPC 缺少有效 locationId ${requirement.npcId}`);
       }
-      const sourceTextForbidden = !entry.frameAcquisition?.generated?.isPrime && ['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination'].includes(route?.componentCategory);
+      const sourceTextForbidden = !entry.frameAcquisition?.generated?.isPrime && ['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination', 'frame-vendor'].includes(route?.componentCategory);
       if (entry.reviewStatus === 'approved' && sourceTextForbidden && (Object.hasOwn(variables, 'sourceText') || Object.hasOwn(routing.blueprintVariables || {}, 'sourceText'))) errors.push(`${entry.id}: approved 战甲路由不得以 sourceText 生成用户文案`);
       const variableSources = [...(variables.sources || []), routing.blueprintVariables || {}];
       for (const source of variableSources) {

@@ -715,7 +715,11 @@ function renderRoutedAcquisition(frameOrName) {
       if (fallback && !/缺少/.test(fallback)) lines.push(`总图：${fallback}`);
     }
   }
-  const componentLine = route.componentCategory === 'frame-bounty'
+  const componentLine = route.componentCategory === 'frame-vendor' && routing.componentVariables?.enemyName
+    ? applyTemplate(methodTemplate('components', 'frame-vendor', 'componentDropTemplate'), routing.componentVariables)
+    : route.componentCategory === 'frame-vendor' && routing.require?.type === 'standing'
+      ? null
+    : route.componentCategory === 'frame-bounty'
     ? renderBountyRoute(routing.componentVariables || {})
       : route.componentCategory === 'frame-quest'
         ? renderQuestRoute(routing.componentVariables || {})
@@ -725,7 +729,7 @@ function renderRoutedAcquisition(frameOrName) {
             ? renderMissionNodeRoute(routing.componentVariables || {})
             : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
   if (componentLine) lines.push(componentLine);
-  else {
+  else if (!(route.componentCategory === 'frame-vendor' && routing.require?.type === 'standing')) {
     const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
     lines.push(...fallback);
   }
