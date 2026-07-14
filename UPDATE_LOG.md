@@ -20,3 +20,26 @@
 **新建 gameplay（1个）**：
 - gameplay.eidolon-hunt：艾多伦猎杀
 
+
+## 2026-07-15 第2轮
+
+**写入词条（8个）**：
+- Flawed Fury (残缺 狂暴) → knowledge/acquisition/mod/flawedmod/melee/flawed-fury-617a44a7.json
+- Flawed Heavy Trauma (残缺 重创) → knowledge/acquisition/mod/flawedmod/melee/flawed-heavy-trauma-288ace59.json
+- Flawed Jagged Edge (残缺 锯刃) → knowledge/acquisition/mod/flawedmod/melee/flawed-jagged-edge-2d4b7ec5.json
+- Arcane Grace (优雅赋魔) → knowledge/acquisition/arcane/arcane-grace-1da67ce2.json
+- Mesa (Mesa) → knowledge/acquisition/frame/mesa-2260b669.json
+- Saryn (Saryn) → knowledge/acquisition/frame/saryn-1f807175.json
+- Forma (Forma) → knowledge/acquisition/resource/forma-90c715a5.json
+- Aura Forma (光环Forma) → knowledge/acquisition/resource/aura-forma-33ecb77c.json
+
+**HIGH_COMPLEXITY（0个）**：无
+
+**新建 gameplay**：
+- gameplay.iron-wake-vendor：钢铁子午线·铁醒聚居地残缺Mod商店
+- gameplay.mutalist-alad-v：变异Alad V刷杀
+- gameplay.kela-de-thaym：克拉·德泰姆刷杀
+- gameplay.void-relics：虚空遗物开裂
+
+**备注**：固定顺序取3个flawedmod，热门优先取5个（Arcane Grace/Mesa/Saryn/Forma/Aura Forma）
+
