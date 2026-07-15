@@ -46,13 +46,19 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
+      "prime-relic",
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "prime-relic",
+      "status": "已入库",
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "prime-relic",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/PrimeScindoBlueprint"
         ],
@@ -63,8 +69,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PrimeScindoBlueprint"
+            ],
+            "relicCanonical": "Lith F1",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {},
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -201,7 +230,7 @@
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade",

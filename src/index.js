@@ -505,8 +505,14 @@ function createKnowledgeCore(options = {}) {
     if (weaponGap) return { query: raw, resolution: { canonical: weaponGap.canonical, exact: true }, entry: null, description: `${weaponGap.displayName}已在 DE 官方简体中文语言数据中出现，但当前 ExportWeapons 尚未提供完整 uniqueName、属性、倾向和来源结构，因此保持待审，禁止猜造获取路径。`, categories: [], methods: [], sourceOptions: [], structuredMethods: [], weaponGap, alternatives: [] };
     const weaponEntry = getWeapon(raw);
     if (weaponEntry) {
-      const structuredMethods = routesToMethods(weaponEntry.acquisition?.routes || [], data).filter(method => method.reviewStatus !== 'review-required' || method.category !== 'unresolved');
-      const acquisitionText = renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName, registries: data });
+      const allStructuredMethods = routesToMethods(weaponEntry.acquisition?.routes || [], data).filter(method => method.reviewStatus !== 'review-required' || method.category !== 'unresolved');
+      const prime = weaponEntry.acquisition?.prime;
+      const structuredMethods = prime?.kind === 'prime-relic'
+        ? (prime.status === '已入库' ? [] : allStructuredMethods.filter(method => method.type === 'relic-reward' && prime.methods.some(selected => selected.relicCanonical === method.relicCanonical)))
+        : allStructuredMethods.filter(method => method.type !== 'relic-reward');
+      const primeUnavailableParts = prime?.kind === 'prime-relic' && prime.status !== '已入库' ? (weaponEntry.acquisition?.routes || []).filter(route => ['blueprint','component'].includes(route.scope) && (route.methods || []).some(method => method.type === 'relic-reward') && !(route.methods || []).some(method => method.type === 'relic-reward' && prime.methods.some(selected => selected.relicCanonical === method.relicCanonical))).map(route => `${route.scope === 'blueprint' ? '总图' : route.variables?.partName || '部件'}：当前没有可刷取遗物`) : [];
+      const primeStatusText = prime?.kind === 'prime-relic' ? (prime.status === '已入库' ? `${weaponEntry.subject.displayName}当前已入库，官方当前掉落表中没有可刷取遗物。` : `Prime 状态：${prime.status}`) : null;
+      const acquisitionText = [primeStatusText, renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName, registries: data }), ...primeUnavailableParts].filter(Boolean).join('\n');
       const missing = (weaponEntry.acquisition?.routes || []).filter(route => route.status !== 'complete').map(route => route.scope === 'blueprint' ? '总图来源' : route.scope === 'component' ? `${route.variables?.partName || '部件'}来源` : route.scope === 'item' ? '成品来源' : route.category === 'crafting' ? '制造数据' : route.scope).filter(Boolean);
       const gapText = missing.length ? `尚未由 DE 官方结构闭环：${[...new Set(missing)].join('、')}。` : weaponEntry.coverage?.autoComplete && !weaponEntry.coverage?.auditedComplete ? 'DE 官方结构已自动闭环，但尚未完成逐项来源审计，因此保持待审。' : '';
       const officialDescription = weaponEntry.description?.localizationStatus === 'official-zh' ? weaponEntry.description.display : '官方简体中文武器描述暂缺。';

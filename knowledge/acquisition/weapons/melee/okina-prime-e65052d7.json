@@ -46,13 +46,19 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "prime-relic",
+      "official-drop",
       "crafting"
     ],
+    "prime": {
+      "kind": "prime-relic",
+      "status": "已入库",
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "prime-relic",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/OkinaPrimeBlueprint"
         ],
@@ -63,38 +69,111 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/OkinaPrimeBlueprint"
+            ],
+            "relicCanonical": "Neo O3",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {},
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeHandle"
         ],
         "variables": {
-          "partName": "OkinaPrimeHandle"
+          "partName": "翁 Prime 握柄"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeHandle"
+            ],
+            "relicCanonical": "Neo Z11",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "翁 Prime 握柄"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeBlade"
         ],
         "variables": {
-          "partName": "OkinaPrimeBlade"
+          "partName": "翁 Prime 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeBlade"
+            ],
+            "relicCanonical": "Meso T7",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "翁 Prime 刀刃"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -127,7 +206,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +224,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeHandle",
-          "canonical": "OkinaPrimeHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Okina Prime Handle",
+          "displayName": "翁 Prime 握柄",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_OkinaPrimeHandle",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeBlade",
-          "canonical": "OkinaPrimeBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Okina Prime Blade",
+          "displayName": "翁 Prime 刀刃",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_OkinaPrimeBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
@@ -197,21 +276,21 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeHandle",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/OkinaPrimeBlade",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

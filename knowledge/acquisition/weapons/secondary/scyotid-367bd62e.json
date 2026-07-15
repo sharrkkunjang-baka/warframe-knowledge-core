@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidBarrel"
         ],
         "variables": {
-          "partName": "ScyotidBarrel"
+          "partName": "镰刃刺 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidGauntlet"
         ],
         "variables": {
-          "partName": "ScyotidGauntlet"
+          "partName": "镰刃刺 拳套"
         },
         "requirements": {
           "type": "none"
@@ -127,7 +132,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +150,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidBarrel",
-          "canonical": "ScyotidBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Scyotid Barrel",
+          "displayName": "镰刃刺 枪管",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_ScyotidBarrelName",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidGauntlet",
-          "canonical": "ScyotidGauntlet",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Scyotid Gauntlet",
+          "displayName": "镰刃刺 拳套",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_ScyotidGauntletName",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
@@ -212,6 +217,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

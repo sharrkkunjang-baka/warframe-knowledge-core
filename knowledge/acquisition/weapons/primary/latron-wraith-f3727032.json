@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LatronWraithBarrel"
         ],
         "variables": {
-          "partName": "LatronWraithBarrel"
+          "partName": "拉特昂·亡魂 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LatronWraithReceiver"
         ],
         "variables": {
-          "partName": "LatronWraithReceiver"
+          "partName": "拉特昂·亡魂 枪机"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LatronWraithStock"
         ],
         "variables": {
-          "partName": "LatronWraithStock"
+          "partName": "拉特昂·亡魂 枪托"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LatronWraithBarrel",
-          "canonical": "LatronWraithBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Latron Wraith Barrel",
+          "displayName": "拉特昂·亡魂 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_LatronWraithBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LatronWraithReceiver",
-          "canonical": "LatronWraithReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Latron Wraith Receiver",
+          "displayName": "拉特昂·亡魂 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_LatronWraithReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LatronWraithStock",
-          "canonical": "LatronWraithStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Latron Wraith Stock",
+          "displayName": "拉特昂·亡魂 枪托",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_LatronWraithStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

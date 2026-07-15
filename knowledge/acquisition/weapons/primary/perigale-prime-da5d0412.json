@@ -46,13 +46,68 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "prime-relic",
+      "official-drop",
       "crafting"
     ],
+    "prime": {
+      "kind": "prime-relic",
+      "status": "当前出库",
+      "methods": [
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeReceiver"
+          ],
+          "relicCanonical": "Lith T14",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.11,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "月面狂风 Prime 枪机"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeStock"
+          ],
+          "relicCanonical": "Neo T11",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.25329999999999997,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "月面狂风 Prime 枪托"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        }
+      ]
+    },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "prime-relic",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/PerigalePrimeBlueprint"
         ],
@@ -63,53 +118,151 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PerigalePrimeBlueprint"
+            ],
+            "relicCanonical": "Meso L4",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {},
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeBarrel"
         ],
         "variables": {
-          "partName": "PerigalePrimeBarrel"
+          "partName": "月面狂风 Prime 枪管"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeBarrel"
+            ],
+            "relicCanonical": "Neo P10",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "月面狂风 Prime 枪管"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeReceiver"
         ],
         "variables": {
-          "partName": "PerigalePrimeReceiver"
+          "partName": "月面狂风 Prime 枪机"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeReceiver"
+            ],
+            "relicCanonical": "Lith T14",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "月面狂风 Prime 枪机"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeStock"
         ],
         "variables": {
-          "partName": "PerigalePrimeStock"
+          "partName": "月面狂风 Prime 枪托"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeStock"
+            ],
+            "relicCanonical": "Neo T11",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "月面狂风 Prime 枪托"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -143,7 +296,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -161,26 +314,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeBarrel",
-          "canonical": "PerigalePrimeBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Perigale Prime Barrel",
+          "displayName": "月面狂风 Prime 枪管",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_PerigalePrimeBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeReceiver",
-          "canonical": "PerigalePrimeReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Perigale Prime Receiver",
+          "displayName": "月面狂风 Prime 枪机",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_PerigalePrimeReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeStock",
-          "canonical": "PerigalePrimeStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Perigale Prime Stock",
+          "displayName": "月面狂风 Prime 枪托",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_PerigalePrimeStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -221,25 +374,25 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PerigalePrimeStock",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

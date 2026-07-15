@@ -47,9 +47,158 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "enemy-drop",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+          ],
+          "sourceCanonical": "Ghoul Expired",
+          "sourceDisplayName": "除役尸鬼",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.016665,
+          "sourceDropChance": 0.05,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+          ],
+          "sourceCanonical": "Ghoul Rictus",
+          "sourceDisplayName": "裂嘴尸鬼",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.016665,
+          "sourceDropChance": 0.05,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle"
+          ],
+          "sourceCanonical": "Ghoul Expired",
+          "sourceDisplayName": "除役尸鬼",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.016665,
+          "sourceDropChance": 0.05,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle"
+          ],
+          "sourceCanonical": "Ghoul Rictus",
+          "sourceDisplayName": "裂嘴尸鬼",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.016665,
+          "sourceDropChance": 0.05,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade"
+          ],
+          "sourceCanonical": "Ghoul Expired",
+          "sourceDisplayName": "除役尸鬼",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.016665,
+          "sourceDropChance": 0.05,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade"
+          ],
+          "sourceCanonical": "Ghoul Rictus",
+          "sourceDisplayName": "裂嘴尸鬼",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.016665,
+          "sourceDropChance": 0.05,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        }
+      ]
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -118,33 +267,131 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle"
         ],
         "variables": {
-          "partName": "GrnChainSawTonfaHandle"
+          "partName": "通卡拐刃 握柄"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle"
+            ],
+            "sourceCanonical": "Ghoul Expired",
+            "sourceDisplayName": "除役尸鬼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.016665,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle"
+            ],
+            "sourceCanonical": "Ghoul Rictus",
+            "sourceDisplayName": "裂嘴尸鬼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.016665,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade"
         ],
         "variables": {
-          "partName": "GrnChainSawTonfaBlade"
+          "partName": "通卡拐刃 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade"
+            ],
+            "sourceCanonical": "Ghoul Expired",
+            "sourceDisplayName": "除役尸鬼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.016665,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade"
+            ],
+            "sourceCanonical": "Ghoul Rictus",
+            "sourceDisplayName": "裂嘴尸鬼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.016665,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -176,7 +423,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -194,18 +441,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle",
-          "canonical": "GrnChainSawTonfaHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Tonkkatt Handle",
+          "displayName": "通卡拐刃 握柄",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_GrnChainSawTonfaHandleName",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade",
-          "canonical": "GrnChainSawTonfaBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Tonkkatt Blade",
+          "displayName": "通卡拐刃 刀刃",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_GrnChainSawTonfaBladeName",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -238,7 +485,7 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
@@ -246,13 +493,13 @@
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

@@ -26,6 +26,7 @@ const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
 const ENEMY_REGISTRY = ENTITY_REGISTRIES.enemies;
 const MISSION_TYPE_REGISTRY = ENTITY_REGISTRIES.missionTypes;
 const { renderRequirements } = require('./acquisition-protocol');
+const { localizeRelicName, relicRewardTier, classifyPrimeAcquisition } = require('./prime-acquisition');
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -292,18 +293,6 @@ function aggregateMaterials(frameOrName, recipes) {
 }
 
 function relicBaseName(name) { return String(name || '').replace(/\s+Relic$/i, '').replace(/\s+(Intact|Exceptional|Flawless|Radiant)$/i, '').trim(); }
-const RELIC_ERA_ZH = Object.freeze({ Lith: '古纪', Meso: '前纪', Neo: '中纪', Axi: '后纪' });
-function localizeRelicName(name) {
-  return relicBaseName(name).replace(/^(Lith|Meso|Neo|Axi)\b/i, era => RELIC_ERA_ZH[era[0].toUpperCase() + era.slice(1).toLowerCase()] || era);
-}
-const RELIC_REWARD_TIER_ZH = Object.freeze({ Rare: '金', Uncommon: '银', Common: '铜' });
-function relicRewardTier(relic) {
-  if (RELIC_REWARD_TIER_ZH[relic?.rarity]) return RELIC_REWARD_TIER_ZH[relic.rarity];
-  const chance = normalizeChance(relic?.chance);
-  if (chance != null && chance <= 2) return '金';
-  if (chance != null && chance <= 11) return '银';
-  return '铜';
-}
 function normalizeRelicPath(value) {
   const raw = String(value || '').trim();
   if (!raw.startsWith('/Lotus/')) return '';
@@ -370,8 +359,8 @@ function getPrimeRelics(frameOrName, varziaManifest, missionRewards) {
   const current = all.filter(relic => generatedHasActivity ? relic.active : activePaths.has(normalizeRelicPath(relic.uniqueName)));
   const manifest = normalizeVarziaManifest(varziaManifest);
   const resurgence = all.filter(relic => relic.vaulted && manifest.has(normalize(relic.name)));
-  const status = current.length ? '当前出库' : resurgence.length ? 'Prime 重生' : '已入库';
-  const selected = status === '当前出库' ? current : status === 'Prime 重生' ? resurgence : [];
+  const classified = classifyPrimeAcquisition({ isPrime: true, relicMethods: all.map(relic => ({ ...relic, active: current.includes(relic), resurgence: resurgence.includes(relic) })) });
+  const status = classified.status, selected = classified.methods;
   return {
     status, relics: selected,
     byPart: Object.fromEntries(PARTS.map(part => [part, selected.filter(relic => relic.part === part)])),

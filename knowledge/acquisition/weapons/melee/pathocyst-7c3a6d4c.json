@@ -47,9 +47,86 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "enemy-drop",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/InfBoomerangBlueprint"
+          ],
+          "sourceCanonical": "Zealoid Prelate",
+          "sourceDisplayName": "狂热主教",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.3333,
+          "sourceDropChance": 1,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangBlade"
+          ],
+          "sourceCanonical": "Zealoid Prelate",
+          "sourceDisplayName": "狂热主教",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.3333,
+          "sourceDropChance": 1,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangDisc"
+          ],
+          "sourceCanonical": "Zealoid Prelate",
+          "sourceDisplayName": "狂热主教",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": null,
+          "missionTypeId": null,
+          "chance": 0.3333,
+          "sourceDropChance": 1,
+          "conditionalChance": 0.3333,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Blueprint/Item Drops by Blueprint/Item"
+          }
+        }
+      ]
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -94,33 +171,83 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangBlade"
         ],
         "variables": {
-          "partName": "InfBoomerangBlade"
+          "partName": "病囊飞刃 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangBlade"
+            ],
+            "sourceCanonical": "Zealoid Prelate",
+            "sourceDisplayName": "狂热主教",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.3333,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangDisc"
         ],
         "variables": {
-          "partName": "InfBoomerangDisc"
+          "partName": "病囊飞刃 下皮层"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangDisc"
+            ],
+            "sourceCanonical": "Zealoid Prelate",
+            "sourceDisplayName": "狂热主教",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.3333,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -153,7 +280,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -171,18 +298,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangBlade",
-          "canonical": "InfBoomerangBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Pathocyst Blade",
+          "displayName": "病囊飞刃 刀刃",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_InfBoomerangBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangDisc",
-          "canonical": "InfBoomerangDisc",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Pathocyst Subcortex",
+          "displayName": "病囊飞刃 下皮层",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_InfBoomerangDisc",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -223,7 +350,7 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
@@ -231,13 +358,13 @@
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangDisc",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

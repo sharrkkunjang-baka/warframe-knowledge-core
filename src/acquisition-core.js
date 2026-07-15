@@ -6,7 +6,8 @@ const { displayEntityName } = require('./entities')
 function methodIdentity(method) {
   return JSON.stringify({
     scope: method.scope || 'item', type: method.type || null, category: method.category || null,
-    sourceEntityId: method.sourceEntityId || null, locationId: method.locationId || null,
+    sourceEntityId: method.sourceEntityId || null, sourceCanonical: method.sourceCanonical || null,
+    sourceDisplayName: method.sourceDisplayName || null, locationId: method.locationId || null,
     missionNodeId: method.missionNodeId || null, factionId: method.factionId || null,
     rotation: method.rotation || null, chance: method.chance ?? method.probability ?? null,
     recipeId: method.recipeId || null, partRefs: method.partRefs || []

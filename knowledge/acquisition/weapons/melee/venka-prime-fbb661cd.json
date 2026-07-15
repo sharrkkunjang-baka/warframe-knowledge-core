@@ -46,13 +46,44 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "prime-relic",
+      "official-drop",
       "crafting"
     ],
+    "prime": {
+      "kind": "prime-relic",
+      "status": "当前出库",
+      "methods": [
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsBlade"
+          ],
+          "relicCanonical": "Neo V9",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.25329999999999997,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "凯旋之爪 Prime 爪刃"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        }
+      ]
+    },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "prime-relic",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/PrimeVenkaClawsBlueprint"
         ],
@@ -63,38 +94,111 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PrimeVenkaClawsBlueprint"
+            ],
+            "relicCanonical": "Neo N4",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {},
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsGauntlet"
         ],
         "variables": {
-          "partName": "PrimeVenkaClawsGauntlet"
+          "partName": "凯旋之爪 Prime 手套"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsGauntlet"
+            ],
+            "relicCanonical": "Neo V4",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "凯旋之爪 Prime 手套"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsBlade"
         ],
         "variables": {
-          "partName": "PrimeVenkaClawsBlade"
+          "partName": "凯旋之爪 Prime 爪刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsBlade"
+            ],
+            "relicCanonical": "Neo V9",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "凯旋之爪 Prime 爪刃"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -127,7 +231,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +249,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsGauntlet",
-          "canonical": "PrimeVenkaClawsGauntlet",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Venka Prime Gauntlet",
+          "displayName": "凯旋之爪 Prime 手套",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_PrimeVenkaClawsGauntlet",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsBlade",
-          "canonical": "PrimeVenkaClawsBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Venka Prime Blades",
+          "displayName": "凯旋之爪 Prime 爪刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_PrimeVenkaClawsBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
@@ -197,21 +301,21 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsGauntlet",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeVenkaClawsBlade",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

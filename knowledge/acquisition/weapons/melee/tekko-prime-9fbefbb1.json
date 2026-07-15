@@ -46,13 +46,19 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "prime-relic",
+      "official-drop",
       "crafting"
     ],
+    "prime": {
+      "kind": "prime-relic",
+      "status": "已入库",
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "prime-relic",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TekkoPrimeBlueprint"
         ],
@@ -63,38 +69,111 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TekkoPrimeBlueprint"
+            ],
+            "relicCanonical": "Neo B7",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {},
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeBlade"
         ],
         "variables": {
-          "partName": "TekkoPrimeBlade"
+          "partName": "铁钩手甲 Prime 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeBlade"
+            ],
+            "relicCanonical": "Neo T2",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "铁钩手甲 Prime 刀刃"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeGauntlet"
         ],
         "variables": {
-          "partName": "TekkoPrimeGauntlet"
+          "partName": "铁钩手甲 Prime 拳套"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeGauntlet"
+            ],
+            "relicCanonical": "Meso W1",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "铁钩手甲 Prime 拳套"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -127,7 +206,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +224,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeBlade",
-          "canonical": "TekkoPrimeBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Tekko Prime Blade",
+          "displayName": "铁钩手甲 Prime 刀刃",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_TekkoPrimeBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeGauntlet",
-          "canonical": "TekkoPrimeGauntlet",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Tekko Prime Gauntlet",
+          "displayName": "铁钩手甲 Prime 拳套",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_TekkoPrimeGauntlet",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
@@ -197,21 +276,21 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TekkoPrimeGauntlet",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

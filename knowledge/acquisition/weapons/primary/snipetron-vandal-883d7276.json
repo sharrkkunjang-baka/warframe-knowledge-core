@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SnipetronVandalBarrel"
         ],
         "variables": {
-          "partName": "SnipetronVandalBarrel"
+          "partName": "狙击特昂·破坏者 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SnipetronVandalReceiver"
         ],
         "variables": {
-          "partName": "SnipetronVandalReceiver"
+          "partName": "狙击特昂·破坏者 枪机"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SnipetronVandalStock"
         ],
         "variables": {
-          "partName": "SnipetronVandalStock"
+          "partName": "狙击特昂·破坏者 枪托"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SnipetronVandalBarrel",
-          "canonical": "SnipetronVandalBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Snipetron Vandal Barrel",
+          "displayName": "狙击特昂·破坏者 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_SnipetronVandalBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SnipetronVandalReceiver",
-          "canonical": "SnipetronVandalReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Snipetron Vandal Receiver",
+          "displayName": "狙击特昂·破坏者 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_SnipetronVandalReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SnipetronVandalStock",
-          "canonical": "SnipetronVandalStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Snipetron Vandal Stock",
+          "displayName": "狙击特昂·破坏者 枪托",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_SnipetronVandalStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel"
         ],
         "variables": {
-          "partName": "ImperatorVandalBarrel"
+          "partName": "凯旋将军·破坏者 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver"
         ],
         "variables": {
-          "partName": "ImperatorVandalReceiver"
+          "partName": "凯旋将军·破坏者 枪机"
         },
         "requirements": {
           "type": "none"
@@ -127,7 +132,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +150,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel",
-          "canonical": "ImperatorVandalBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Imperator Vandal Barrel",
+          "displayName": "凯旋将军·破坏者 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ImperatorVandalBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver",
-          "canonical": "ImperatorVandalReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Imperator Vandal Receiver",
+          "displayName": "凯旋将军·破坏者 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ImperatorVandalReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -212,6 +217,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

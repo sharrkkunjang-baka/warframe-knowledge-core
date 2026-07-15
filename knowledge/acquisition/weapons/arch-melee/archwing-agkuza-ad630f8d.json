@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
         ],
         "variables": {
-          "partName": "ArchHookSwordBlade"
+          "partName": "驯象钩刃 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
         ],
         "variables": {
-          "partName": "ArchHookSwordHandle"
+          "partName": "驯象钩刃 握柄"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
         ],
         "variables": {
-          "partName": "ArchHookSwordGuard"
+          "partName": "驯象钩刃 护手"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade",
-          "canonical": "ArchHookSwordBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Agkuza Blade",
+          "displayName": "驯象钩刃 刀刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHookSwordBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle",
-          "canonical": "ArchHookSwordHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Agkuza Handle",
+          "displayName": "驯象钩刃 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHookSwordHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard",
-          "canonical": "ArchHookSwordGuard",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Agkuza Guard",
+          "displayName": "驯象钩刃 护手",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHookSwordGuard",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

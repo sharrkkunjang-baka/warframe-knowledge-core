@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHead"
         ],
         "variables": {
-          "partName": "ArchHammerHead"
+          "partName": "拉斯波恩 锤头"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHandle"
         ],
         "variables": {
-          "partName": "ArchHammerHandle"
+          "partName": "拉斯波恩 握柄"
         },
         "requirements": {
           "type": "none"
@@ -128,7 +133,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -146,18 +151,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHead",
-          "canonical": "ArchHammerHead",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Rathbone Head",
+          "displayName": "拉斯波恩 锤头",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHammerHead",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHandle",
-          "canonical": "ArchHammerHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Rathbone Handle",
+          "displayName": "拉斯波恩 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHammerHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -221,6 +226,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

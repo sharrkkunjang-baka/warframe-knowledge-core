@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchAxeBlade"
         ],
         "variables": {
-          "partName": "ArchAxeBlade"
+          "partName": "奥努里克斯 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchAxeHandle"
         ],
         "variables": {
-          "partName": "ArchAxeHandle"
+          "partName": "奥努里克斯 握柄"
         },
         "requirements": {
           "type": "none"
@@ -127,7 +132,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +150,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchAxeBlade",
-          "canonical": "ArchAxeBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Onorix Blade",
+          "displayName": "奥努里克斯 刀刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchAxeBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchAxeHandle",
-          "canonical": "ArchAxeHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Onorix Handle",
+          "displayName": "奥努里克斯 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchAxeHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -212,6 +217,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

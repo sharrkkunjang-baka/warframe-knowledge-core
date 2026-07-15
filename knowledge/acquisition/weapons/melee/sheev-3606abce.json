@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade"
         ],
         "variables": {
-          "partName": "GrineerCombatKnifeBlade"
+          "partName": "希芙 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink"
         ],
         "variables": {
-          "partName": "GrineerCombatKnifeHeatsink"
+          "partName": "希芙 散热片"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt"
         ],
         "variables": {
-          "partName": "GrineerCombatKnifeHilt"
+          "partName": "希芙 握柄"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade",
-          "canonical": "GrineerCombatKnifeBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Sheev Blade",
+          "displayName": "希芙 刀刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_GrineerCombatKnifeBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink",
-          "canonical": "GrineerCombatKnifeHeatsink",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Sheev Heatsink",
+          "displayName": "希芙 散热片",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_GrineerCombatKnifeHeatsink",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt",
-          "canonical": "GrineerCombatKnifeHilt",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Sheev Hilt",
+          "displayName": "希芙 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_GrineerCombatKnifeHilt",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

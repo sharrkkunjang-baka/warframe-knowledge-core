@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowBarrel"
         ],
         "variables": {
-          "partName": "ArchRocketCrossbowBarrel"
+          "partName": "巨浪 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowReceiver"
         ],
         "variables": {
-          "partName": "ArchRocketCrossbowReceiver"
+          "partName": "巨浪 枪托"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowStock"
         ],
         "variables": {
-          "partName": "ArchRocketCrossbowStock"
+          "partName": "巨浪 弓臂"
         },
         "requirements": {
           "type": "none"
@@ -143,7 +148,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -161,26 +166,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowBarrel",
-          "canonical": "ArchRocketCrossbowBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Fluctus Barrel",
+          "displayName": "巨浪 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchRocketCrossbowBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowReceiver",
-          "canonical": "ArchRocketCrossbowReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Fluctus Stock",
+          "displayName": "巨浪 枪托",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchRocketCrossbowReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowStock",
-          "canonical": "ArchRocketCrossbowStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Fluctus Limbs",
+          "displayName": "巨浪 弓臂",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchRocketCrossbowStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -240,6 +245,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

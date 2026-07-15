@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
         ],
         "variables": {
-          "partName": "LasGooSicklesPlayerWeaponBlade"
+          "partName": "双子恶行 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
         ],
         "variables": {
-          "partName": "LasGooSicklesPlayerWeaponHilt"
+          "partName": "双子恶行 握柄"
         },
         "requirements": {
           "type": "none"
@@ -126,7 +131,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -144,18 +149,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade",
-          "canonical": "LasGooSicklesPlayerWeaponBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Dual Viciss Blade",
+          "displayName": "双子恶行 刀刃",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooSicklesPlayerWeaponBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt",
-          "canonical": "LasGooSicklesPlayerWeaponHilt",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Dual Viciss Hilt",
+          "displayName": "双子恶行 握柄",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooSicklesPlayerWeaponHilt",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -203,6 +208,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

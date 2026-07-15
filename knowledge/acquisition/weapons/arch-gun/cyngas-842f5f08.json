@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel"
         ],
         "variables": {
-          "partName": "ArchBurstGunBarrel"
+          "partName": "合成燃气炮 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver"
         ],
         "variables": {
-          "partName": "ArchBurstGunReceiver"
+          "partName": "合成燃气炮 枪机"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock"
         ],
         "variables": {
-          "partName": "ArchBurstGunStock"
+          "partName": "合成燃气炮 枪托"
         },
         "requirements": {
           "type": "none"
@@ -143,7 +148,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -161,26 +166,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel",
-          "canonical": "ArchBurstGunBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Cyngas Barrel",
+          "displayName": "合成燃气炮 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchBurstGunBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver",
-          "canonical": "ArchBurstGunReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Cyngas Receiver",
+          "displayName": "合成燃气炮 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchBurstGunReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock",
-          "canonical": "ArchBurstGunStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Cyngas Stock",
+          "displayName": "合成燃气炮 枪托",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchBurstGunStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -240,6 +245,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

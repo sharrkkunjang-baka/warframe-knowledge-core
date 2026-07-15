@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBlade"
         ],
         "variables": {
-          "partName": "VinquibusBlade"
+          "partName": "制胜者 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBarrel"
         ],
         "variables": {
-          "partName": "VinquibusBarrel"
+          "partName": "制胜者 枪管"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusReceiver"
         ],
         "variables": {
-          "partName": "VinquibusReceiver"
+          "partName": "制胜者 枪机"
         },
         "requirements": {
           "type": "none"
@@ -118,7 +123,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusStock"
         ],
         "variables": {
-          "partName": "VinquibusStock"
+          "partName": "制胜者 枪托"
         },
         "requirements": {
           "type": "none"
@@ -158,7 +163,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -176,34 +181,34 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBlade",
-          "canonical": "VinquibusBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Vinquibus Blade",
+          "displayName": "制胜者 刀刃",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_VinquibusBladeName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBarrel",
-          "canonical": "VinquibusBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Vinquibus Barrel",
+          "displayName": "制胜者 枪管",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_VinquibusBarrelName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusReceiver",
-          "canonical": "VinquibusReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Vinquibus Receiver",
+          "displayName": "制胜者 枪机",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_VinquibusReceiverName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusStock",
-          "canonical": "VinquibusStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Vinquibus Stock",
+          "displayName": "制胜者 枪托",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_VinquibusStockName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -259,6 +264,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

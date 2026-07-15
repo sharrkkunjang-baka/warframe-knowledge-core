@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade"
         ],
         "variables": {
-          "partName": "TeshinGlaiveBlade"
+          "partName": "灵枢 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc"
         ],
         "variables": {
-          "partName": "TeshinGlaiveDisc"
+          "partName": "灵枢 圆盘"
         },
         "requirements": {
           "type": "none"
@@ -128,7 +133,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -146,18 +151,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade",
-          "canonical": "TeshinGlaiveBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Orvius Blade",
+          "displayName": "灵枢 刀刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_TeshinGlaiveBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc",
-          "canonical": "TeshinGlaiveDisc",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Orvius Disc",
+          "displayName": "灵枢 圆盘",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_TeshinGlaiveDisc",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -221,6 +226,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

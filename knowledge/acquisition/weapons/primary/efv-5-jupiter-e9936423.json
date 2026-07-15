@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel"
         ],
         "variables": {
-          "partName": "LasGooAKPlayerWeaponBarrel"
+          "partName": "艾弗旺-5 木星 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver"
         ],
         "variables": {
-          "partName": "LasGooAKPlayerWeaponReceiver"
+          "partName": "艾弗旺-5 木星 枪机"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock"
         ],
         "variables": {
-          "partName": "LasGooAKPlayerWeaponStock"
+          "partName": "艾弗旺-5 木星 枪托"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel",
-          "canonical": "LasGooAKPlayerWeaponBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "EFV-5 Jupiter Barrel",
+          "displayName": "艾弗旺-5 木星 枪管",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooAKPlayerWeaponBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver",
-          "canonical": "LasGooAKPlayerWeaponReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "EFV-5 Jupiter Receiver",
+          "displayName": "艾弗旺-5 木星 枪机",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooAKPlayerWeaponReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock",
-          "canonical": "LasGooAKPlayerWeaponStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "EFV-5 Jupiter Stock",
+          "displayName": "艾弗旺-5 木星 枪托",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooAKPlayerWeaponStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

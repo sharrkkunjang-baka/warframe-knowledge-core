@@ -47,9 +47,86 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+          ],
+          "sourceCanonical": "Mercury/Tolstoj (Assassination)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": null,
+          "missionTypeId": "mission-type.assassination",
+          "chance": 0.3872,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel"
+          ],
+          "sourceCanonical": "Mercury/Tolstoj (Assassination)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": null,
+          "missionTypeId": "mission-type.assassination",
+          "chance": 0.3872,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver"
+          ],
+          "sourceCanonical": "Mercury/Tolstoj (Assassination)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": null,
+          "missionTypeId": "mission-type.assassination",
+          "chance": 0.2256,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        }
+      ]
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -94,32 +171,82 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel"
         ],
         "variables": {
-          "partName": "VorsPistolBarrel"
+          "partName": "预言者 枪管"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel"
+            ],
+            "sourceCanonical": "Mercury/Tolstoj (Assassination)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.assassination",
+            "chance": 0.3872,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver"
         ],
         "variables": {
-          "partName": "VorsPistolReceiver"
+          "partName": "预言者 枪机"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver"
+            ],
+            "sourceCanonical": "Mercury/Tolstoj (Assassination)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.assassination",
+            "chance": 0.2256,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
@@ -153,7 +280,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -171,18 +298,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel",
-          "canonical": "VorsPistolBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Seer Barrel",
+          "displayName": "预言者 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_VorsPistolBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver",
-          "canonical": "VorsPistolReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Seer Receiver",
+          "displayName": "预言者 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_VorsPistolReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -238,6 +365,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

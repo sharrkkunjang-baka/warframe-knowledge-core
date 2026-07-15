@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/FuraxWraithLeftGauntlet"
         ],
         "variables": {
-          "partName": "FuraxWraithLeftGauntlet"
+          "partName": "弗拉克斯·亡魂 左拳套"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/FuraxWraithRightGauntlet"
         ],
         "variables": {
-          "partName": "FuraxWraithRightGauntlet"
+          "partName": "弗拉克斯·亡魂 右拳套"
         },
         "requirements": {
           "type": "none"
@@ -126,7 +131,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -144,18 +149,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/FuraxWraithLeftGauntlet",
-          "canonical": "FuraxWraithLeftGauntlet",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Furax Wraith Left Gauntlet",
+          "displayName": "弗拉克斯·亡魂 左拳套",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_FuraxWraithLeftGauntlet",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/FuraxWraithRightGauntlet",
-          "canonical": "FuraxWraithRightGauntlet",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Furax Wraith Right Gauntlet",
+          "displayName": "弗拉克斯·亡魂 右拳套",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_FuraxWraithRightGauntlet",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -203,6 +208,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

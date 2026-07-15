@@ -1,0 +1,133 @@
+{
+  "id": "knowledge.acquisition.weapon.haalvu-ab12b860",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Haalvu",
+  "subject": {
+    "canonical": "Haalvu",
+    "displayName": "哈尔武",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Sentients/SentOctaMiniGun/SentOctaMiniGun",
+    "categoryRefs": [
+      "weapon.primary",
+      "weapon.limited-event"
+    ]
+  },
+  "description": {
+    "canonical": "Deliver a ruthless barrage of Sentient artillery from this instrument of death. Alt-fire splits the weapon apart into separate rifles, expanding its devastation by tracking up to 4 targets at once, while consuming more ammo per shot.",
+    "display": "（英文：HAALVU）通过这件死亡利器释放无情的 Sentient 炮火。次要射击可将武器拆分为 8 把独立的步枪，同时锁定最多 4 个目标，进一步扩展其毁灭威力，但每发射击将消耗更多弹药。",
+    "localizationStatus": "official-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary",
+      "weapon.limited-event"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": null,
+    "disposition": null,
+    "attackClassification": {
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required",
+      "modes": []
+    }
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "limited-event"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "route",
+          "scope": "item",
+          "variables": {
+            "text": "TennoCon 2026 官方直播掉宝期间可领取；该活动现已结束，当前没有常驻获取方式。"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE official event announcement",
+            "url": "https://www.warframe.com/en/news/tennocon-2026-giveaways-and-digital-extras"
+          }
+        }
+      ]
+    },
+    "routes": [
+      {
+        "scope": "item",
+        "category": "limited-event",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "哈尔武"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "route",
+            "scope": "item",
+            "variables": {
+              "text": "TennoCon 2026 官方直播掉宝期间可领取；该活动现已结束，当前没有常驻获取方式。"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE official event announcement",
+              "url": "https://www.warframe.com/en/news/tennocon-2026-giveaways-and-digital-extras"
+            }
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "（英文：HAALVU）通过这件死亡利器释放无情的 Sentient 炮火。次要射击可将武器拆分为 8 把独立的步枪，同时锁定最多 4 个目标，进一步扩展其毁灭威力，但每发射击将消耗更多弹药。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-weapon-source-audit"
+  ],
+  "status": "complete",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": true,
+    "description": true,
+    "directItem": true,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
+}

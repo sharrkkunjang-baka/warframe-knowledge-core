@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldBlade"
         ],
         "variables": {
-          "partName": "ArchSwordShieldBlade"
+          "partName": "半人马 剑刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldAegis"
         ],
         "variables": {
-          "partName": "ArchSwordShieldAegis"
+          "partName": "半人马 盾"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldHandle"
         ],
         "variables": {
-          "partName": "ArchSwordShieldHandle"
+          "partName": "半人马 握柄"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldBlade",
-          "canonical": "ArchSwordShieldBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Centaur Blade",
+          "displayName": "半人马 剑刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchSwordShieldBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldAegis",
-          "canonical": "ArchSwordShieldAegis",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Centaur Aegis",
+          "displayName": "半人马 盾",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchSwordShieldAegis",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldHandle",
-          "canonical": "ArchSwordShieldHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Centaur Handle",
+          "displayName": "半人马 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchSwordShieldHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

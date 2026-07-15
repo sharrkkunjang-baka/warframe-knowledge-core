@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-15T15:28:19.446Z",
+  "generatedAt": "2026-07-15T17:58:58.878Z",
   "counts": {
-    "included": 693,
+    "included": 694,
     "excluded": 148,
-    "reviewRequired": 0,
-    "languageOnly": 1
+    "reviewRequired": 1,
+    "languageOnly": 0
   },
   "weapons": [
     {
@@ -14730,6 +14730,55 @@
         "stats": "ExportWeapons"
       },
       "status": "identity-complete"
+    },
+    {
+      "uniqueName": "/Lotus/Weapons/Sentients/SentOctaMiniGun/SentOctaMiniGun",
+      "canonical": "Haalvu",
+      "displayName": "哈尔武",
+      "nameLanguageKey": "/Lotus/Language/Weapons/TnoOctaMiniGunName",
+      "descriptionLanguageKey": "/Lotus/Language/Weapons/TnoOctaMiniGunDesc",
+      "description": {
+        "canonical": "Deliver a ruthless barrage of Sentient artillery from this instrument of death. Alt-fire splits the weapon apart into separate rifles, expanding its devastation by tracking up to 4 targets at once, while consuming more ammo per shot.",
+        "display": "（英文：HAALVU）通过这件死亡利器释放无情的 Sentient 炮火。次要射击可将武器拆分为 8 把独立的步枪，同时锁定最多 4 个目标，进一步扩展其毁灭威力，但每发射击将消耗更多弹药。",
+        "localizationStatus": "official-zh"
+      },
+      "localizationStatus": "official-zh",
+      "equipmentType": "primary",
+      "omegaAttenuation": null,
+      "disposition": null,
+      "masteryReq": null,
+      "productCategory": "LongGuns",
+      "attackClassification": {
+        "hitscan": "unknown",
+        "projectile": "unknown",
+        "aoe": "unknown",
+        "punchThrough": "unknown",
+        "lockOn": "review-required",
+        "tracking": "review-required",
+        "medium": "review-required",
+        "modes": []
+      },
+      "classification": {
+        "categoryRefs": [
+          "weapon.primary",
+          "weapon.limited-event"
+        ]
+      },
+      "sourceFields": {
+        "identity": "official-event-supplement",
+        "localization": "Languages.bin/zh",
+        "stats": "pending-ExportWeapons"
+      },
+      "acquisitionSupplement": {
+        "type": "limited-event-reward",
+        "eventCanonical": "TennoCon 2026",
+        "eventDisplayName": "TennoCon 2026",
+        "startAt": "2026-07-11T15:00:00Z",
+        "endAt": "2026-07-11T20:30:00Z",
+        "availability": "expired",
+        "sourceUrl": "https://www.warframe.com/en/news/tennocon-2026-giveaways-and-digital-extras"
+      },
+      "status": "review-required"
     },
     {
       "uniqueName": "/Lotus/Weapons/Sentients/SentRifleNewWar/SentRifleNewWarGun",
@@ -31937,39 +31986,7 @@
       "status": "identity-complete"
     }
   ],
-  "languageOnlyWeapons": [
-    {
-      "uniqueName": null,
-      "canonical": "Haalvu",
-      "displayName": "哈尔武",
-      "nameLanguageKey": "/Lotus/Language/Weapons/TnoOctaMiniGunName",
-      "descriptionLanguageKey": "/Lotus/Language/Weapons/TnoOctaMiniGunDesc",
-      "localizationStatus": "official-zh",
-      "equipmentType": null,
-      "omegaAttenuation": null,
-      "disposition": null,
-      "attackClassification": {
-        "hitscan": "unknown",
-        "projectile": "unknown",
-        "aoe": "unknown",
-        "punchThrough": "unknown",
-        "lockOn": "review-required",
-        "tracking": "review-required",
-        "medium": "review-required",
-        "modes": []
-      },
-      "classification": {
-        "categoryRefs": []
-      },
-      "sourceFields": {
-        "identity": "missing-from-ExportWeapons",
-        "localization": "Languages.bin/zh",
-        "stats": "missing"
-      },
-      "status": "review-required",
-      "reviewReason": "official-language-present-but-ExportWeapons-structure-missing"
-    }
-  ],
+  "languageOnlyWeapons": [],
   "excludedWeapons": [
     {
       "uniqueName": "/Lotus/Powersuits/Berserker/BerserkerMelee",

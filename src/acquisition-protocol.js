@@ -115,6 +115,10 @@ function renderStructuredMethod(method) {
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
   if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${source ? `在${source}兑换` : '向指定 NPC 兑换'}`
   if (method.type === 'quest-reward' || method.category === 'quest') return `${prefix}${method.questDisplayName ? `完成任务「${method.questDisplayName}」获得` : '完成指定任务获得'}`
+  if (method.type === 'relic-reward') {
+    const { localizeRelicName, relicRewardTier } = require('./prime-acquisition')
+    return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
+  }
   if (method.type === 'enemy-drop') {
     const chance = Number.isFinite(method.chance) ? `（综合概率${Number((method.chance * 100).toFixed(4))}%${Number.isFinite(method.sourceDropChance) && Number.isFinite(method.conditionalChance) ? `；来源掉落触发${Number((method.sourceDropChance * 100).toFixed(4))}%，触发后占${Number((method.conditionalChance * 100).toFixed(4))}%` : ''}）` : ''
     return `${prefix}${source ? `击败${source}获得` : '击败指定敌人获得'}${chance}`
@@ -129,8 +133,29 @@ function renderStructuredMethod(method) {
 }
 
 function renderAcquisition(methods, options = {}) {
+  const sourceGroups = new Map()
+  for (const method of methods || []) {
+    if (!['enemy-drop', 'mission-reward'].includes(method.type) || method.scope !== 'component') continue
+    const variables = method.variables || {}
+    const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
+    if (!source) continue
+    const key = JSON.stringify([method.type, source, method.missionTypeDisplayName || '', method.rotation || '', method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null])
+    const group = sourceGroups.get(key) || { methods: [], partNames: [] }
+    group.methods.push(method)
+    if (variables.partName) group.partNames.push(variables.partName)
+    sourceGroups.set(key, group)
+  }
+  const groupedMethods = new Set([...sourceGroups.values()].filter(group => group.methods.length > 1).flatMap(group => group.methods))
   const lines = []
   for (const method of methods || []) {
+    if (groupedMethods.has(method)) {
+      const group = [...sourceGroups.values()].find(item => item.methods[0] === method)
+      if (!group) continue
+      const merged = { ...method, variables: { ...(method.variables || {}), partName: [...new Set(group.partNames)].join('、') } }
+      const headline = renderStructuredMethod(merged)
+      if (headline) lines.push(headline)
+      continue
+    }
     const headline = renderStructuredMethod(method)
     if (headline) lines.push(headline)
     const isVendorExchange = method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange'

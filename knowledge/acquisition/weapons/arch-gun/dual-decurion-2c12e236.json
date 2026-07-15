@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHeavyPistolsBarrel"
         ],
         "variables": {
-          "partName": "ArchHeavyPistolsBarrel"
+          "partName": "什长双枪 枪管"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHeavyPistolsReceiver"
         ],
         "variables": {
-          "partName": "ArchHeavyPistolsReceiver"
+          "partName": "什长双枪 枪机"
         },
         "requirements": {
           "type": "none"
@@ -127,7 +132,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +150,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHeavyPistolsBarrel",
-          "canonical": "ArchHeavyPistolsBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Decurion Barrel",
+          "displayName": "什长双枪 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHeavyPistolsBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHeavyPistolsReceiver",
-          "canonical": "ArchHeavyPistolsReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Decurion Receiver",
+          "displayName": "什长双枪 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchHeavyPistolsReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
@@ -212,6 +217,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

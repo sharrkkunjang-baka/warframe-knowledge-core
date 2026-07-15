@@ -47,9 +47,86 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/NaginataBlueprint"
+          ],
+          "sourceCanonical": "Earth/Saya's Visions (Shrine Defense)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": null,
+          "missionTypeId": "mission-type.shrine-defense",
+          "chance": 0.0409,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataBlade"
+          ],
+          "sourceCanonical": "Earth/Saya's Visions (Shrine Defense)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": null,
+          "missionTypeId": "mission-type.shrine-defense",
+          "chance": 0.0409,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataHandle"
+          ],
+          "sourceCanonical": "Earth/Saya's Visions (Shrine Defense)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": null,
+          "missionTypeId": "mission-type.shrine-defense",
+          "chance": 0.0409,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        }
+      ]
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -94,32 +171,82 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataBlade"
         ],
         "variables": {
-          "partName": "NaginataBlade"
+          "partName": "天薙刀 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataBlade"
+            ],
+            "sourceCanonical": "Earth/Saya's Visions (Shrine Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.shrine-defense",
+            "chance": 0.0409,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataHandle"
         ],
         "variables": {
-          "partName": "NaginataHandle"
+          "partName": "天薙刀 握柄"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataHandle"
+            ],
+            "sourceCanonical": "Earth/Saya's Visions (Shrine Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.shrine-defense",
+            "chance": 0.0409,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
@@ -153,7 +280,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -171,18 +298,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataBlade",
-          "canonical": "NaginataBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Amanata Blade",
+          "displayName": "天薙刀 刀刃",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_NaginataBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataHandle",
-          "canonical": "NaginataHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Amanata Handle",
+          "displayName": "天薙刀 握柄",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_NaginataHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -238,6 +365,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

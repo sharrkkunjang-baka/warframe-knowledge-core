@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade"
         ],
         "variables": {
-          "partName": "SpinnerexBlade"
+          "partName": "丝蛛皇 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString"
         ],
         "variables": {
-          "partName": "SpinnerexString"
+          "partName": "丝蛛皇 鞭绳"
         },
         "requirements": {
           "type": "none"
@@ -103,7 +108,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle"
         ],
         "variables": {
-          "partName": "SpinnerexHandle"
+          "partName": "丝蛛皇 握柄"
         },
         "requirements": {
           "type": "none"
@@ -142,7 +147,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -160,26 +165,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade",
-          "canonical": "SpinnerexBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Spinnerex Blade",
+          "displayName": "丝蛛皇 刀刃",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_SpinnerexBladeName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString",
-          "canonical": "SpinnerexString",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Spinnerex String",
+          "displayName": "丝蛛皇 鞭绳",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_SpinnerexStringName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle",
-          "canonical": "SpinnerexHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Spinnerex Handle",
+          "displayName": "丝蛛皇 握柄",
+          "languageKey": "/Lotus/Language/CraftingComponents/CraftingComponent_SpinnerexHandleName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -231,6 +236,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

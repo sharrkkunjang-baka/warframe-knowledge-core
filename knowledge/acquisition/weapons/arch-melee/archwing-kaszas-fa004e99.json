@@ -49,6 +49,11 @@
       "unresolved",
       "crafting"
     ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
     "routes": [
       {
         "scope": "blueprint",
@@ -73,7 +78,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade"
         ],
         "variables": {
-          "partName": "ArchScytheBlade"
+          "partName": "死亡使徒 刀刃"
         },
         "requirements": {
           "type": "none"
@@ -88,7 +93,7 @@
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle"
         ],
         "variables": {
-          "partName": "ArchScytheHandle"
+          "partName": "死亡使徒 握柄"
         },
         "requirements": {
           "type": "none"
@@ -127,7 +132,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -145,18 +150,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade",
-          "canonical": "ArchScytheBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Kaszas Blade",
+          "displayName": "死亡使徒 刀刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchScytheBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle",
-          "canonical": "ArchScytheHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Kaszas Handle",
+          "displayName": "死亡使徒 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_ArchScytheHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -212,6 +217,6 @@
         "complete": false
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }
