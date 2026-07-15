@@ -132,9 +132,29 @@ function renderStructuredMethod(method) {
   return source ? `来源：${source}` : null
 }
 
-function renderAcquisition(methods, options = {}) {
-  const sourceGroups = new Map()
+function mergeAlternativeSources(methods) {
+  const groups = new Map(), passthrough = []
   for (const method of methods || []) {
+    if (!['enemy-drop', 'mission-reward'].includes(method.type)) { passthrough.push(method); continue }
+    const variables = method.variables || {}
+    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', method.missionTypeDisplayName || '', method.rotation || '', method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null])
+    const group = groups.get(key) || []
+    group.push(method); groups.set(key, group)
+  }
+  const merged = []
+  for (const group of groups.values()) {
+    if (group.length === 1) { merged.push(group[0]); continue }
+    const names = [...new Set(group.map(method => method.sourceDisplayName || method.locationDisplayName).filter(Boolean))]
+    if (names.length !== group.length) { merged.push(...group); continue }
+    merged.push({ ...group[0], sourceDisplayName: names.join('、'), sourceCanonical: group.map(method => method.sourceCanonical).filter(Boolean).join(' | '), mergedSourceCount: group.length })
+  }
+  return [...merged, ...passthrough]
+}
+
+function renderAcquisition(methods, options = {}) {
+  const renderMethods = mergeAlternativeSources(methods)
+  const sourceGroups = new Map()
+  for (const method of renderMethods) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type) || method.scope !== 'component') continue
     const variables = method.variables || {}
     const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
@@ -147,7 +167,7 @@ function renderAcquisition(methods, options = {}) {
   }
   const groupedMethods = new Set([...sourceGroups.values()].filter(group => group.methods.length > 1).flatMap(group => group.methods))
   const lines = []
-  for (const method of methods || []) {
+  for (const method of renderMethods) {
     if (groupedMethods.has(method)) {
       const group = [...sourceGroups.values()].find(item => item.methods[0] === method)
       if (!group) continue
@@ -176,4 +196,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, renderStructuredMethod, renderAcquisition }
+module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, renderStructuredMethod, mergeAlternativeSources, renderAcquisition }
