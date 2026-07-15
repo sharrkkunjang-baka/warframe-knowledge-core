@@ -111,7 +111,8 @@ function renderStructuredMethod(method, options = {}) {
   const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
   const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'item' ? '成品' : ''
   const prefix = scopeName ? `${scopeName}：` : ''
-  if (method.type === 'recipe' || method.category === 'crafting') return `${variables.productName ? `制造${variables.productName}` : '通过制造获得'}`
+  // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
+  if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
   if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${source ? `在${source}兑换` : '向指定 NPC 兑换'}`
   if (method.type === 'quest-reward' || method.category === 'quest') return `${prefix}${method.questDisplayName ? `完成任务「${method.questDisplayName}」获得` : '完成指定任务获得'}`
