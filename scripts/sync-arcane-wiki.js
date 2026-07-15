@@ -10,9 +10,14 @@ const ROOT = path.resolve(__dirname, '..')
 const ARCANE_ROOT = path.join(ROOT, 'knowledge', 'acquisition', 'arcane')
 const REPORT_PATH = path.join(ROOT, 'generated', 'arcane-wiki-unresolved.json')
 const OFFICIAL_ARCANES = require(path.join(path.dirname(require.resolve('warframe-items')), 'data', 'json', 'Arcanes.json'))
+const SUPPLEMENTS_PATH = path.join(ROOT, 'generated', 'official-arcane-supplements.json')
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
 function argument(argv, name) { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : null }
-function officialDirectory(items = OFFICIAL_ARCANES) { return new Map(items.filter(item => item.name && item.name !== 'Arcane' && !item.excludeFromCodex).map(item => [item.name.toLowerCase(), item])) }
+function officialDirectory(items = OFFICIAL_ARCANES) {
+  const output = new Map(items.filter(item => item.name && item.name !== 'Arcane' && !item.excludeFromCodex).map(item => [item.name.toLowerCase(), item]))
+  if (items === OFFICIAL_ARCANES && fs.existsSync(SUPPLEMENTS_PATH)) for (const item of JSON.parse(fs.readFileSync(SUPPLEMENTS_PATH, 'utf8')).entries || []) output.set(item.canonical.toLowerCase(), item)
+  return output
+}
 function listJson(directory) { if (!fs.existsSync(directory)) return []; return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? listJson(path.join(directory, entry.name)) : entry.isFile() && entry.name.endsWith('.json') ? [path.join(directory, entry.name)] : []) }
 function readEntries(directory) { return listJson(directory).filter(file => !file.includes(`${path.sep}method${path.sep}`)).flatMap(file => { const raw = fs.readFileSync(file, 'utf8'); const value = JSON.parse(raw); return (Array.isArray(value) ? value : [value]).map((entry, index) => ({ file, raw, value, entry, index })) }) }
 function mergeManual(entry) { const old = entry.arcaneAcquisition?.manual || {}; return { ...old, methods: Array.isArray(old.methods) ? old.methods : [], methodRefs: Array.isArray(old.methodRefs) ? old.methodRefs : [...(entry.methodRefs || [])], overrides: old.overrides || {}, reviewStatus: old.reviewStatus || entry.reviewStatus || 'draft', reviewedBy: Array.isArray(old.reviewedBy) ? old.reviewedBy : [...(entry.reviewedBy || [])] } }
@@ -29,7 +34,7 @@ function buildPlan(options = {}) {
   const selected = categoryRows.filter(page => official.has(page.title.toLowerCase())).filter(page => !options.canonical || page.title.toLowerCase() === options.canonical.toLowerCase())
   const existing = readEntries(options.arcaneRoot || ARCANE_ROOT)
   const byCanonical = new Map(existing.map(record => [String(record.entry.subject?.canonical || record.entry.title || '').toLowerCase(), record]))
-  const expectedFiles = []; const unresolved = []; const filteredOut = categoryRows.filter(page => !official.has(page.title.toLowerCase())).map(page => page.title)
+  const expectedFiles = []; const unresolved = []; const supplementReport = fs.existsSync(SUPPLEMENTS_PATH) ? JSON.parse(fs.readFileSync(SUPPLEMENTS_PATH, 'utf8')) : { exclusions: [] }; const exclusionReasons = new Map((supplementReport.exclusions || []).map(item => [item.canonical, item.reason])); const filteredOut = categoryRows.filter(page => !official.has(page.title.toLowerCase())).map(page => ({ pageTitle: page.title, reason: exclusionReasons.get(page.title) || null })); const unexplainedFiltered = filteredOut.filter(item => !item.reason); if (unexplainedFiltered.length) throw new Error(`赋能 Wiki 分类存在无理由过滤页面：${unexplainedFiltered.map(item => item.pageTitle).join('、')}`)
   try {
     for (const page of selected) {
       const record = byCanonical.get(page.title.toLowerCase())
@@ -49,7 +54,7 @@ function buildPlan(options = {}) {
       expectedFiles.push({ file: record.file, current: record.raw, content: serialize(output) })
     }
   } finally { db.close() }
-  const counts = { categoryRows: categoryRows.length, officialDirectory: official.size, selected: selected.length, filteredOut: filteredOut.length, missingEntries: unresolved.filter(item => item.kind === 'entry').length, changed: expectedFiles.filter(item => item.current !== item.content).length, unresolved: unresolved.length }
+  const counts = { categoryRows: categoryRows.length, officialDirectory: official.size, selected: selected.length, filteredOut: filteredOut.length, unexplainedFiltered: unexplainedFiltered.length, missingEntries: unresolved.filter(item => item.kind === 'entry').length, changed: expectedFiles.filter(item => item.current !== item.content).length, unresolved: unresolved.length }
   return { report, counts, filteredOut, unresolved, expectedFiles }
 }
 function run(argv = process.argv.slice(2)) {

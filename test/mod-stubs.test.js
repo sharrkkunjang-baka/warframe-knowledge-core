@@ -14,6 +14,7 @@ const fs = require('node:fs');
 const { createSyncPlan } = require('../scripts/sync-mods');
 const { buildPlan: buildWikiPlan } = require('../scripts/sync-mod-wiki');
 const { createKnowledgeCore } = require('../src');
+const { buildPlans: buildEntityPlans } = require('../scripts/migrate-entity-registries');
 
 const root = path.join(__dirname, '..');
 const items = new Items({ category: ['Mods'], i18n: ['zh'] });
@@ -28,6 +29,42 @@ test('真实 Mod 过滤排除专精、转换核心与内部重复记录', () => 
   assert.equal(playable.some(item => /SP(?:Sub)?Mod/i.test(item.uniqueName)), false);
   assert.equal(playable.some(item => item.name === 'Primed Streamline'), false);
   assert.equal(excluded.some(({ item }) => item.name === 'Pathogen Rounds' && /\/Expert\//.test(item.uniqueName)), true);
+});
+
+test('朱诺工兵恐鸟通过实体变量携带布鲁图斯扬升地点', () => {
+  const enemyPlan = buildEntityPlans().find(plan => plan.index.type === 'enemies');
+  const enemy = enemyPlan.files.map(item => item.entry).find(entry => entry.id === 'enemy.juno-sapper-moa');
+  assert.deepEqual(enemy && { canonical: enemy.canonical, displayName: enemy.displayName, locationId: enemy.locationId, missionTypeId: enemy.missionTypeId }, {
+    canonical: 'Juno Sapper MOA', displayName: '朱诺工兵恐鸟', locationId: 'mission-node.brutus', missionTypeId: 'mission-type.ascension'
+  });
+});
+
+test('手枪元素师显示实体化敌人及布鲁图斯扬升来源', () => {
+  const result = createKnowledgeCore({ approvedOnly: false }).getAcquisition('手枪元素师');
+  const method = result.structuredMethods.find(item => item.type === 'enemy-drop');
+  assert.deepEqual(method && { sourceEntityId: method.sourceEntityId, sourceDisplayName: method.sourceDisplayName, planetDisplayName: method.planetDisplayName, locationDisplayName: method.locationDisplayName, missionTypeDisplayName: method.missionTypeDisplayName, chance: method.chance }, {
+    sourceEntityId: 'enemy.juno-sapper-moa', sourceDisplayName: '朱诺工兵恐鸟', planetDisplayName: '天王星', locationDisplayName: '布鲁图斯', missionTypeDisplayName: '扬升', chance: 0.4287
+  });
+});
+
+test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  for (const query of ['执刑官 延伸', 'Archon Stretch']) {
+    const result = core.getAcquisition(query);
+    assert.deepEqual(result.structuredMethods.map(method => ({ type: method.type, sourceEntityId: method.sourceEntityId, sourceDisplayName: method.sourceDisplayName, locationId: method.locationId, locationDisplayName: method.locationDisplayName })), [{
+      type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.chipper', sourceDisplayName: '切片哥', locationId: 'hub.drifters-camp', locationDisplayName: '漂泊者营地'
+    }]);
+    assert.deepEqual(result.requirements, { type: 'currency', usage: 'exchange', npcId: 'npc.chipper', locationId: 'hub.drifters-camp', currency: [{ currencyId: 'currency.stock', amount: 40 }], isBuffUseless: true });
+    assert.deepEqual(result.requirementLines, [
+      '在漂泊者营地找切片哥兑换，需要40个存货储备',
+      '所需货币怎么刷：',
+      '存货储备（需要40个）：完成卡尔每周的“击溃合一众”任务挑战获得，并同时推进卡尔驻军等级',
+      '资源数量加成无效'
+    ]);
+    assert.equal(result.structuredMethods.some(method => method.type === 'enemy-drop'), false);
+  }
+  for (const query of ['执行官卡', '执刑官卡']) assert.equal(core.getGameplay(query)?.entry.id, 'gameplay.kahl-chipper');
+  assert.equal(core.renderGameText('+45% 技能范围；造成 <DT_ELECTRICITY_COLOR>电击伤害'), '+45% 技能范围；造成 ⚡电击伤害');
 });
 
 test('普通、残缺与 Prime 代表 Mod 保持独立身份', () => {

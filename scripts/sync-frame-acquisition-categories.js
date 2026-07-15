@@ -40,7 +40,8 @@ function buildPlan(dbPath) {
       const existingGenerated = old.frameAcquisition.generated || {}
       const generated = { ...existingGenerated, acquisitionCategories: { categoryRefs: refs, status: refs.length === 1 ? 'classified' : 'review-required', source: item.frame.isPrime ? { type: 'official-item-data', canonical: 'Prime' } : page ? { type: 'wiki-page', pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, sourceDatabase: { sha256: dbHash } } : { type: 'missing-wiki-page' } }, routing }
       let manual = old.frameAcquisition.manual || {}
-      if (componentCategory === 'frame-specific-mission' && !manual.acquisitionText && !routing.componentVariables?.missionNodeId && routing.require?.type !== 'currency') {
+      if (routing.requirements?.type !== 'none' && manual.acquisitionText) { const { acquisitionText, ...rest } = manual; manual = rest }
+      if (componentCategory === 'frame-specific-mission' && !manual.acquisitionText && !routing.componentVariables?.missionNodeId && routing.requirements?.type !== 'currency') {
         if (runtimeFrame) manual = { ...manual, acquisitionText: require('../src/frame-acquisition').renderAcquisition({ frame: runtimeFrame, materials: { available: false, reason: '制造材料数据由运行时补充' } }).split('\n材料统计：')[0] }
       }
       const entry = { ...old, subject: { ...old.subject, categoryRefs: refs }, frameAcquisition: { ...old.frameAcquisition, generated, manual } }

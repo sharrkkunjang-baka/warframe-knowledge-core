@@ -85,8 +85,9 @@
           },
           "blueprintVariables": {},
           "blueprintSource": "manual-override",
-          "require": {
+          "requirements": {
             "type": "currency",
+            "usage": "exchange",
             "npcId": "npc.nightcap",
             "locationId": "hub.fortuna-airlock",
             "currency": [
@@ -95,13 +96,11 @@
                 "amount": 720
               }
             ],
-            "isBuffuseless": true
+            "isBuffUseless": true
           }
         }
       },
-      "manual": {
-        "acquisitionText": "全部蓝图：官方结构化数据缺少该蓝图的获取来源"
-      }
+      "manual": {}
     },
     "sources": [
       {

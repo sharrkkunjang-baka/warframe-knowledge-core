@@ -31,7 +31,7 @@ function evidenceProvenance(page, section, excerpt) {
   return { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, section: section.title, excerpt: cleanCell(excerpt) }
 }
 function entityLocalization(canonical, kind) {
-  const registry = kind === 'vendor' ? REGISTRIES.vendors : REGISTRIES.locations
+  const registry = kind === 'enemy' ? REGISTRIES.enemies : REGISTRIES.locations
   const registered = registry.get(canonical)
   if (registered && registered.displayName !== registered.canonical) return { entityId: registered.id, displayName: registered.displayName, status: 'resolved' }
   if (kind === 'node') {
@@ -42,6 +42,7 @@ function entityLocalization(canonical, kind) {
   }
   if (kind === 'location' && LOCATION_ZH[canonical]) return { entityId: `location.${canonical.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, displayName: LOCATION_ZH[canonical], status: 'resolved' }
   if (kind === 'enemy') {
+    if (registered) return { entityId: registered.id, displayName: registered.displayName || null, status: registered.displayName ? 'resolved' : 'canonical-only' }
     const enemy = ENEMIES.find(item => item.name === canonical)
     const localized = enemy && I18N[enemy.uniqueName]?.zh?.name
     if (localized && localized !== canonical) return { entityId: `enemy.${enemy.uniqueName}`, displayName: localized, status: 'resolved' }

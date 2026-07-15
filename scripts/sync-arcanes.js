@@ -11,8 +11,19 @@ const ARCANE_ROOT = path.join(ROOT, 'knowledge', 'acquisition', 'arcane');
 const CATALOG_PATH = path.join(ARCANE_ROOT, 'catalog.json');
 const I18N = require(path.join(DATA_ROOT, 'i18n.json'));
 const PACKAGE = require(path.join(ITEMS_ROOT, 'package.json'));
-const { sourceId } = require('../src/arcane-source');
-const CATEGORIES = Object.freeze(['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'legacy']);
+const SUPPLEMENTS_PATH = path.join(ROOT, 'generated', 'official-arcane-supplements.json');
+const { sourceId, displaySource } = require('../src/arcane-source');
+const { renderGameText } = require('../src/game-text');
+const ARCANE_SOURCE_OVERRIDES = Object.freeze({
+  '/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast': [
+    { type: 'mission-reward', locationId: 'planet.mars', missionNodeId: 'mission-node.tyana-pass', missionTypeId: 'mission-type.defense', rotation: 'C', probability: 0.057, chancePercent: 5.7, quantity: 1, sourceCanonical: 'Mars/Tyana Pass (Defense), Rotation C' }
+  ],
+  '/Lotus/Upgrades/CosmeticEnhancers/Utility/GolemArcaneRadialEnergyOnEnergyPickup': [
+    { type: 'mission-reward', locationId: 'region.veil-proxima', locationDisplayName: '面纱比邻星域', missionTypeId: 'mission-type.orphix', missionTypeDisplayName: '奥影', rotation: 'C', probability: 0.0141, chancePercent: 1.41, quantity: 1, sourceCanonical: 'Veil Proxima Orphix, Rotation C' },
+    { type: 'enemy-drop', sourceEntityId: sourceId('Eidolon Hydrolyst'), sourceCanonical: 'Eidolon Hydrolyst', probability: 0.05, chancePercent: 5, quantity: 1 }
+  ]
+});
+const CATEGORIES = Object.freeze(['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'tektolyst', 'legacy']);
 const PROTECTED_DIRECTORIES = Object.freeze(['method']);
 const TYPE_CATEGORY = Object.freeze({
   'Warframe Arcane': 'warframe', Arcane: 'warframe', 'Primary Arcane': 'primary', 'Bow Arcane': 'bow',
@@ -21,7 +32,7 @@ const TYPE_CATEGORY = Object.freeze({
 });
 const CATEGORY_EQUIPMENT = Object.freeze({
   warframe: 'Warframe', primary: 'Primary', bow: 'Bow', shotgun: 'Shotgun', secondary: 'Secondary',
-  melee: 'Melee', operator: 'Operator', amp: 'Amp', kitgun: 'Kitgun', zaw: 'Zaw', legacy: 'Legacy/Unknown'
+  melee: 'Melee', operator: 'Operator', amp: 'Amp', kitgun: 'Kitgun', zaw: 'Zaw', tektolyst: 'Tektolyst Artifacts', legacy: 'Legacy/Unknown'
 });
 
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n`; }
@@ -34,6 +45,7 @@ function categoryFor(item) { return hasOfficialSource(item) ? (TYPE_CATEGORY[ite
 function isExchangeLocation(location) { return /(?:The Holdfasts|Ostron|Operational Supply|The Quills|Vox Solaris|Solaris United)(?:\s*\(|,)/i.test(location); }
 
 function structuredAcquisition(item) {
+  if (ARCANE_SOURCE_OVERRIDES[item.uniqueName]) return ARCANE_SOURCE_OVERRIDES[item.uniqueName].map(method => ({ ...method, provenance: { source: 'de-official-drop-tables', officialUniqueName: item.uniqueName, note: '官方掉落表与任务类型结构覆盖上游第三方 location 字符串。' } }));
   const methods = [];
   for (const drop of item.drops || []) {
     const location = String(drop.location || '').trim();
@@ -80,6 +92,15 @@ function existingEntries() {
   return byUniqueName;
 }
 
+function buildSupplementEntry(item, previous) {
+  const methods = (item.methods || []).map(method => ({ ...method, sourceEntityId: sourceId(method.sourceCanonical), sourceDisplayName: displaySource(method.sourceCanonical), provenance: { source: 'official-wiki-supplement', pageTitle: item.source.wiki.pageTitle, revisionId: item.source.wiki.revisionId, patchNotesUrl: item.source.patchNotesUrl } }))
+  const manualPrevious = previous?.arcaneAcquisition?.manual || {}
+  const manual = { aliases: Array.isArray(manualPrevious.aliases) ? manualPrevious.aliases : [], methods: Array.isArray(manualPrevious.methods) ? manualPrevious.methods : [], methodRefs: Array.isArray(manualPrevious.methodRefs) ? manualPrevious.methodRefs : [], notes: Array.isArray(manualPrevious.notes) ? manualPrevious.notes : [], overrides: manualPrevious.overrides && typeof manualPrevious.overrides === 'object' ? manualPrevious.overrides : {}, reviewStatus: manualPrevious.reviewStatus || 'draft', reviewedBy: Array.isArray(manualPrevious.reviewedBy) ? manualPrevious.reviewedBy : [] }
+  const levelStats = Array.from({ length: item.maxRank + 1 }, (_, rank) => ({ stats: rank === item.maxRank ? [item.maxRankEffectCanonical] : [] }))
+  const generated = { identity: { officialUniqueName: item.officialUniqueName, canonical: item.canonical, displayName: '', localizationStatus: item.localizationStatus }, classification: { category: item.category, arcaneType: item.arcaneType, equipmentClass: item.equipmentClass }, stats: { rarity: item.rarity, maxRank: item.maxRank, levelStats, localizationStatus: 'official-zh-unavailable' }, acquisition: { status: methods.length ? 'structured' : 'review-required', methods }, tradable: true, sourceFile: 'official-arcane-supplements.json', ...(previous?.arcaneAcquisition?.generated?.wiki ? { wiki: previous.arcaneAcquisition.generated.wiki } : {}) }
+  return { id: `knowledge.acquisition.arcane.${hashName(item.officialUniqueName)}`, kind: 'knowledge', module: 'acquisition', title: item.canonical, subject: { canonical: item.canonical, displayName: item.canonical, category: 'arcane', officialUniqueName: item.officialUniqueName }, officialUniqueName: item.officialUniqueName, arcaneType: item.arcaneType, equipmentClass: item.equipmentClass, rarity: item.rarity, maxRank: item.maxRank, levelStats, tradable: true, prerequisites: [], methodRefs: [], arcaneAcquisition: { generated, manual }, acquisitionStatus: methods.length ? 'complete' : 'partial', summary: `${item.canonical} 的官方 Wiki 补充身份；官方简中名称和效果暂未进入 Public Export。`, sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g,'_')}`, label: 'Official Warframe Wiki' }, ...(item.source.patchNotesUrl ? [{ url: item.source.patchNotesUrl, label: 'Warframe official patch notes' }] : [])], gameVersion: `Wiki revision ${item.source.wiki.revisionId}`, updatedAt: previous?.updatedAt || new Date().toISOString().slice(0,10), reviewStatus: 'approved', reviewedBy: Array.isArray(previous?.reviewedBy) ? previous.reviewedBy : [], tags: ['acquisition','arcane',item.category,'official-wiki-supplement'], generator: { name: 'sync-arcanes', version: 2 } }
+}
+
 function buildEntry(item, previous) {
   const localized = I18N[item.uniqueName]?.zh || {};
   const category = categoryFor(item);
@@ -94,12 +115,15 @@ function buildEntry(item, previous) {
     overrides: manualPrevious.overrides && typeof manualPrevious.overrides === 'object' ? manualPrevious.overrides : {},
     reviewStatus: manualPrevious.reviewStatus || 'draft', reviewedBy: Array.isArray(manualPrevious.reviewedBy) ? manualPrevious.reviewedBy : []
   };
+  const requirements = item.uniqueName === '/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast'
+    ? { type: 'currency', usage: 'exchange', npcId: 'npc.otak', locationId: 'hub.necralisk', currency: [{ currencyId: 'currency.belric-crystal-fragment', amount: 60 }, { currencyId: 'currency.rania-crystal-fragment', amount: 60 }], isBuffUseless: true }
+    : { type: 'none' };
   const generated = {
     identity: { officialUniqueName: item.uniqueName, canonical: item.name, displayName: localized.name || item.name,
       localizationStatus: localized.name && localized.name !== item.name ? 'official-zh' : 'fallback-en' },
     classification: { category, arcaneType: item.type, equipmentClass: CATEGORY_EQUIPMENT[category] },
-    stats: { rarity: item.rarity || null, maxRank: Math.max(0, (item.levelStats?.length || 1) - 1), levelStats: localized.levelStats || item.levelStats || [], localizationStatus: localized.levelStats ? 'official-zh' : 'fallback-en' },
-    acquisition: { status, methods }, tradable: Boolean(item.tradable), sourceFile: 'Arcanes.json',
+    stats: { rarity: item.rarity || null, maxRank: Math.max(0, (item.levelStats?.length || 1) - 1), levelStats: (localized.levelStats || item.levelStats || []).map(level => ({ ...level, stats: (level.stats || []).map(renderGameText) })), localizationStatus: localized.levelStats ? 'official-zh' : 'fallback-en' },
+    acquisition: { status, methods, requirements }, tradable: Boolean(item.tradable), sourceFile: 'Arcanes.json',
     ...(previous?.arcaneAcquisition?.generated?.wiki ? { wiki: previous.arcaneAcquisition.generated.wiki } : {})
   };
   return {
@@ -122,7 +146,8 @@ function buildPlan(generatedAt = new Date().toISOString()) {
   const previous = existingEntries();
   const placeholders = raw.filter(isBasePlaceholder);
   const real = raw.filter(item => !isBasePlaceholder(item));
-  const entries = real.map(item => buildEntry(item, previous.get(item.uniqueName))).sort((a, b) => a.officialUniqueName.localeCompare(b.officialUniqueName));
+  const supplements = fs.existsSync(SUPPLEMENTS_PATH) ? JSON.parse(fs.readFileSync(SUPPLEMENTS_PATH, 'utf8')).entries || [] : [];
+  const entries = [...real.map(item => buildEntry(item, previous.get(item.uniqueName))), ...supplements.map(item => buildSupplementEntry(item, previous.get(item.officialUniqueName)))].sort((a, b) => a.officialUniqueName.localeCompare(b.officialUniqueName));
   const routes = entries.map(entry => {
     const category = entry.arcaneAcquisition.generated.classification.category;
     return { officialUniqueName: entry.officialUniqueName, canonical: entry.subject.canonical, displayName: entry.subject.displayName,
@@ -133,7 +158,7 @@ function buildPlan(generatedAt = new Date().toISOString()) {
   const catalog = { schemaVersion: 1, generatedAt, primaryKey: 'officialUniqueName', hashAlgorithm: 'sha256-8',
     source: { package: PACKAGE.name, version: PACKAGE.version, repository: 'https://github.com/WFCD/warframe-items', input: 'Arcanes.json' },
     categories: CATEGORIES.map(category => ({ id: category, equipmentClass: CATEGORY_EQUIPMENT[category], count: byCategory[category], mutuallyExclusive: true })),
-    counts: { input: raw.length, placeholdersExcluded: placeholders.length, arcanes: entries.length, structured: routes.filter(route => route.acquisitionStatus === 'structured').length,
+    counts: { input: raw.length, placeholdersExcluded: placeholders.length, supplementalArcanes: supplements.length, arcanes: entries.length, structured: routes.filter(route => route.acquisitionStatus === 'structured').length,
       reviewRequired: routes.filter(route => route.acquisitionStatus === 'review-required').length, byCategory },
     excludedPlaceholders: placeholders.map(item => ({ officialUniqueName: item.uniqueName, canonical: item.name, reason: 'base-class-placeholder' })), arcanes: routes };
   return { entries, catalog };
@@ -162,4 +187,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run(); } catch (error) { console.error(error.stack || error); process.exit(1); } }
-module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, isBasePlaceholder, categoryFor, structuredAcquisition, buildEntry, buildPlan, run, hashName, fileName };
+module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, isBasePlaceholder, categoryFor, structuredAcquisition, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };

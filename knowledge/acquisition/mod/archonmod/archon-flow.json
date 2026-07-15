@@ -93,7 +93,28 @@
         }
       },
       "manual": {
-        "methods": [],
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.chipper",
+            "locationId": "hub.drifters-camp",
+            "availability": "available",
+            "reviewStatus": "approved"
+          }
+        ],
+        "requirements": {
+          "type": "currency",
+          "usage": "exchange",
+          "npcId": "npc.chipper",
+          "locationId": "hub.drifters-camp",
+          "currency": [
+            {
+              "currencyId": "currency.stock",
+              "amount": 40
+            }
+          ],
+          "isBuffUseless": true
+        },
         "methodRefs": [
           "gameplay.kahl-chipper"
         ],

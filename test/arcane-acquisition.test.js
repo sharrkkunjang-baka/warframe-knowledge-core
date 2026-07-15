@@ -76,9 +76,54 @@ test('全部发布赋能都有官方中文满级效果和实体化来源', () =>
     assert.match(result.description, /满级效果：/);
     if (result.arcane.availability === 'available') {
       assert.ok(result.structuredMethods.length > 0, entry.subject.canonical);
-      assert.ok(result.structuredMethods.every(method => method.type === 'crafting' || (method.sourceEntityId && method.sourceDisplayName)), entry.subject.canonical);
+      assert.ok(result.structuredMethods.every(method => method.type === 'crafting' || (method.sourceEntityId && method.sourceDisplayName) || (method.locationId && method.locationDisplayName && method.missionTypeId && method.missionTypeDisplayName)), entry.subject.canonical);
     }
   }
+});
+
+test('官方包延迟时从 Wiki 官方分类补齐全部赋能且过滤都有理由', () => {
+  const sculptor = core.getAcquisition('Arcane Sculptor');
+  assert.equal(core.arcanes.length, 169);
+  assert.equal(sculptor.entry.arcaneAcquisition.generated.identity.localizationStatus, 'official-zh-unavailable');
+  assert.match(sculptor.description, /类型：战甲赋能/);
+  assert.match(sculptor.description, /官方简中数据暂缺/);
+  assert.ok(sculptor.structuredMethods.some(method => /天王星比邻星域任务完成奖励/.test(method.sourceDisplayName)));
+  assert.ok(sculptor.structuredMethods.some(method => /庞蒂斯之塔/.test(method.sourceDisplayName)));
+  assert.doesNotMatch(sculptor.description, /Ability Efficiency/);
+});
+
+test('工匠使文物赋能具有独立类型和结构化来源', () => {
+  const result = core.getAcquisition('Zid-An Asheir');
+  assert.match(result.description, /类型：工匠使文物赋能/);
+  assert.ok(result.structuredMethods.some(method => /Marie 的轮换商店/.test(method.sourceDisplayName)));
+});
+
+test('赋能坚定与战甲共用 requirements 协议显示双水晶兑换', () => {
+  const result = core.getAcquisition('赋能·坚定');
+  assert.deepEqual(result.requirements.currency, [
+    { currencyId: 'currency.belric-crystal-fragment', amount: 60 },
+    { currencyId: 'currency.rania-crystal-fragment', amount: 60 }
+  ]);
+  const text = result.requirementLines.join('\n');
+  assert.match(text, /殁世幽都/);
+  assert.match(text, /贝里克水晶碎片/);
+  assert.match(text, /拉尼娅水晶碎片/);
+  assert.match(text, /资源数量加成无效/);
+});
+
+test('充沛使用官方奥影任务类型，不把第三方 Erato Skirmish 字符串当来源', () => {
+  const result = core.getAcquisition('赋能·充沛');
+  const sources = result.structuredMethods.map(method => `${method.locationDisplayName || ''}${method.missionTypeDisplayName || ''}${method.sourceDisplayName || ''}`).join('\n');
+  assert.match(sources, /面纱比邻星域奥影/);
+  assert.match(sources, /夜灵水力使/);
+  assert.doesNotMatch(sources, /Erato|Skirmish|前哨战|前哨站/);
+  assert.ok(result.structuredMethods.some(method => method.missionTypeId === 'mission-type.orphix' && method.rotation === 'C' && method.chancePercent === 1.41));
+});
+
+test('游戏格式标记通过统一文本层渲染，不泄漏 DT 原文本', () => {
+  const result = core.getAcquisition('联结·电压');
+  assert.match(result.description, /⚡电击异常状态/);
+  assert.doesNotMatch(result.description, /DT_[A-Z_]+/);
 });
 
 test('双衍王境和夜灵来源使用注册变量显示', () => {

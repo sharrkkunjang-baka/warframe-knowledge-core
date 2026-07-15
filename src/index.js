@@ -7,6 +7,8 @@ const frameAcquisition = require('./frame-acquisition');
 const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
+const { renderGameText } = require('./game-text');
+const { normalizeRequirements, renderRequirements } = require('./acquisition-protocol');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -234,8 +236,9 @@ function createKnowledgeCore(options = {}) {
       requiredCopies: arcaneRequiredCopies(maxRank)
     });
     const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
-    const effectLines = [...new Set(topStats.flatMap(stat => String(stat).split(/\\n|\n/)).map(line => line.trim()).filter(Boolean))];
-    const effect = effectLines.length ? `满级效果：\n${effectLines.map(line => `- ${line}`).join('\n')}` : '满级效果：官方中文数据暂缺，等待审核';
+    const effectLines = [...new Set(topStats.flatMap(stat => renderGameText(stat).split(/\n/)).map(line => line.trim()).filter(Boolean))];
+    const statsLocalized = generated.stats?.localizationStatus === 'official-zh';
+    const effect = statsLocalized && effectLines.length ? `满级效果：\n${effectLines.map(line => `- ${line}`).join('\n')}` : effectLines.length ? `满级效果：官方简中数据暂缺（英文证据已保存，禁止猜译）` : '满级效果：官方中文数据暂缺，等待审核';
     if (category === 'legacy' || generated.acquisition?.status === 'review-required') return `${header}\n\n${effect}\n\n${arcaneMethodDefinition?.legacyDescription || '当前不可获取，等待人工审核。'}`;
     return `${header}\n\n${effect}`;
   };
@@ -249,6 +252,25 @@ function createKnowledgeCore(options = {}) {
       if (!identities.has(key)) { methods.push(method); identities.add(key); }
     }
     return methods;
+  };
+  const enrichModMethod = method => {
+    if (method.type === 'vendor-or-syndicate-exchange' && method.sourceEntityId) {
+      const npc = data.npcs.get(method.sourceEntityId);
+      const location = data.locations.get(method.locationId || npc?.locationId);
+      return { ...method, ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
+    }
+    if (method.type !== 'enemy-drop' || !method.sourceEntityId) return method;
+    const enemy = data.enemies.get(method.sourceEntityId);
+    const location = enemy?.locationId ? data.locations.get(enemy.locationId) : null;
+    const parent = location?.parentId ? data.locations.get(location.parentId) : null;
+    const missionType = enemy?.missionTypeId ? data.missionTypes.get(enemy.missionTypeId) : null;
+    return {
+      ...method,
+      ...(enemy ? { sourceDisplayName: displayEntityName(enemy) } : {}),
+      ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
+      ...(parent ? { planetId: parent.id, planetDisplayName: displayEntityName(parent) } : {}),
+      ...(missionType ? { missionTypeId: missionType.id, missionTypeDisplayName: displayEntityName(missionType) } : {})
+    };
   };
   const renderModAcquisition = entry => {
     const syndicateMethods = mergeStructuredMethods(entry).filter(method => method.type === 'syndicate-exchange');
@@ -395,6 +417,8 @@ function createKnowledgeCore(options = {}) {
       const category = generated.classification?.category || 'legacy';
       const maxRank = Number(arcaneEntry.maxRank ?? generated.stats?.maxRank ?? 0);
       const structuredMethods = mergeArcaneMethods(arcaneEntry);
+      const requirements = normalizeRequirements(generated.acquisition?.requirements);
+      const requirementLines = renderRequirements(requirements, data);
       const wikiEvidence = generated.wiki?.evidence || [];
       return {
         query: raw,
@@ -404,9 +428,18 @@ function createKnowledgeCore(options = {}) {
         categories: [{ id: category, displayName: arcaneMethodDefinition?.categoryLabels?.[category] || category }],
         methods: [],
         sourceOptions: [],
+        requirements,
+        requirementLines,
         structuredMethods: structuredMethods.map(method => {
           const entity = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;
-          return entity ? { ...method, sourceDisplayName: displayEntityName(entity), sourceKind: entity.kind } : method;
+          const location = method.locationId ? data.locations.get(method.locationId) : null;
+          const missionType = method.missionTypeId ? data.missionTypes.get(method.missionTypeId) : null;
+          return {
+            ...method,
+            ...(entity ? { sourceDisplayName: displayEntityName(entity), sourceKind: entity.kind } : {}),
+            ...(location ? { locationDisplayName: displayEntityName(location) } : {}),
+            ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
+          };
         }),
         wikiEvidence,
         arcane: { category, maxRank, requiredCopies: arcaneRequiredCopies(maxRank), availability: category === 'legacy' ? 'unavailable-review-required' : 'available' },
@@ -432,6 +465,8 @@ function createKnowledgeCore(options = {}) {
     const entry = exactFrameEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
+    const requirements = normalizeRequirements(entry.modAcquisition?.manual?.requirements);
+    const requirementLines = renderRequirements(requirements, data);
     const isFrame = entry.subject?.category === 'frame';
     const frameRoute = isFrame ? frameAcquisition.renderRoutedAcquisition(canonical) : null;
     if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
@@ -446,7 +481,9 @@ function createKnowledgeCore(options = {}) {
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
       sourceOptions,
-      structuredMethods: mergeStructuredMethods(entry),
+      requirements,
+      requirementLines,
+      structuredMethods: mergeStructuredMethods(entry).map(enrichModMethod),
       wikiEvidence: entry.modAcquisition?.generated?.wiki?.evidence || [],
       mechanicsEvidence: entry.modAcquisition?.generated?.wiki?.mechanicsEvidence || null,
       alternatives: []
@@ -525,6 +562,7 @@ function createKnowledgeCore(options = {}) {
     searchEnemies: data.enemies.search,
     getMissionType: data.missionTypes.get,
     searchMissionTypes: data.missionTypes.search,
+    renderGameText,
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,

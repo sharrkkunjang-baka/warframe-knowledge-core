@@ -40,6 +40,15 @@ const modMethods = require('../src/loader').readObjectDirectory(path.join(knowle
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
 const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
+const acquisitionRoot = path.join(knowledgeRoot, 'acquisition');
+for (const file of (function walk(dir) { return fs.existsSync(dir) ? fs.readdirSync(dir, { withFileTypes: true }).flatMap(item => item.isDirectory() ? walk(path.join(dir, item.name)) : item.isFile() && item.name.endsWith('.json') ? [path.join(dir, item.name)] : []) : []; })(acquisitionRoot)) {
+  if (file.includes(`${path.sep}method${path.sep}`)) continue;
+  const text = fs.readFileSync(file, 'utf8');
+  const relative = path.relative(root, file);
+  if (/"require"\s*:/.test(text)) errors.push(`${relative}: 禁止旧 require 字段，只能使用统一 requirements`);
+  if (/"isBuffuseless"\s*:/.test(text)) errors.push(`${relative}: 禁止旧 isBuffuseless 字段，只能使用 isBuffUseless`);
+  if (/<\s*DT_[A-Z0-9_]+\s*>/i.test(text)) errors.push(`${relative}: 用户数据泄漏 DT_* 游戏格式标记`);
+}
 const BLUEPRINT_CATEGORIES_FOR_VALIDATION = new Set(['market', 'quest', 'dojo', 'bounty', 'vendor', 'relic', 'specific-mission', 'mixed-missions', 'assassination']);
 
 for (const [name, directory] of Object.entries(entityDirectories)) {
@@ -156,29 +165,29 @@ for (const entry of entries) {
       else {
         if (route.componentCategory !== entry.subject.categoryRefs[0]) errors.push(`${entry.id}: 主分类与 categories.json 不一致`);
         if (JSON.stringify(entry.frameAcquisition?.generated?.routing?.blueprintCategory ?? null) !== JSON.stringify(route.blueprintCategory ?? null)) errors.push(`${entry.id}: 总图分类与 categories.json 不一致`);
-        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId && entry.frameAcquisition?.generated?.routing?.require?.type !== 'currency') errors.push(`${entry.id}: 特定任务战甲必须提供结构化任务节点、货币路由或独立获取文本`);
+        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId && entry.frameAcquisition?.generated?.routing?.requirements?.type !== 'currency') errors.push(`${entry.id}: 特定任务战甲必须提供结构化任务节点、货币路由或独立获取文本`);
       }
       const routing = entry.frameAcquisition?.generated?.routing || {};
       const variables = routing.componentVariables || {};
-      const requirement = routing.require;
-      if (!requirement || !['none', 'standing', 'currency'].includes(requirement.type)) errors.push(`${entry.id}: require.type 必须是 none、standing 或 currency`);
-      if (requirement?.type === 'currency' && typeof requirement.isBuffuseless !== 'boolean') errors.push(`${entry.id}: currency require.isBuffuseless 必须是布尔值`);
-      if (requirement?.usage !== undefined && !['exchange', 'crafting'].includes(requirement.usage)) errors.push(`${entry.id}: currency require.usage 只能是 exchange 或 crafting`);
-      if (requirement?.type === 'currency' && (!requirement.locationId || !entities.locations.some(item => item.id === requirement.locationId))) errors.push(`${entry.id}: currency require 必须提供有效 locationId`);
-      if (requirement?.type === 'currency' && (!Array.isArray(requirement.currency) || !requirement.currency.length)) errors.push(`${entry.id}: currency require 必须提供 currency 子选项`);
+      const requirement = routing.requirements;
+      if (!requirement || !['none', 'standing', 'currency', 'quest', 'item'].includes(requirement.type)) errors.push(`${entry.id}: requirements.type 不属于共享协议`);
+      if (requirement?.type === 'currency' && typeof requirement.isBuffUseless !== 'boolean') errors.push(`${entry.id}: currency requirements.isBuffUseless 必须是布尔值`);
+      if (requirement?.type === 'currency' && !['exchange', 'crafting'].includes(requirement.usage)) errors.push(`${entry.id}: currency requirements.usage 只能是 exchange 或 crafting`);
+      if (requirement?.type === 'currency' && (!requirement.locationId || !entities.locations.some(item => item.id === requirement.locationId))) errors.push(`${entry.id}: currency requirements 必须提供有效 locationId`);
+      if (requirement?.type === 'currency' && (!Array.isArray(requirement.currency) || !requirement.currency.length)) errors.push(`${entry.id}: currency requirements 必须提供 currency 子选项`);
       for (const currencyRequirement of requirement?.currency || []) {
         const currencyId = currencyRequirement?.currencyId;
         const currency = entities.currencies.find(item => item.id === currencyId);
-        if (!currency) errors.push(`${entry.id}: currency require 引用不存在的货币 ${currencyId}`);
+        if (!currency) errors.push(`${entry.id}: currency requirements 引用不存在的货币 ${currencyId}`);
         else if (!currency.acquisitionDependency) errors.push(`${entry.id}: 货币缺少获取方式 ${currencyId}`);
-        if (!Number.isFinite(currencyRequirement?.amount)) errors.push(`${entry.id}: currency require 缺少全套数量 ${currencyId}`);
+        if (!Number.isFinite(currencyRequirement?.amount)) errors.push(`${entry.id}: currency requirements 缺少全套数量 ${currencyId}`);
       }
-      if (requirement?.type !== 'currency' && Object.hasOwn(requirement || {}, 'isBuffuseless')) errors.push(`${entry.id}: isBuffuseless 只能作为 currency require 的子选项`);
-      if (requirement?.type === 'standing' && (!requirement.npcId || !Number.isInteger(requirement.rank))) errors.push(`${entry.id}: standing require 必须提供 npcId 和整数 rank`);
+      if (requirement?.type !== 'currency' && Object.hasOwn(requirement || {}, 'isBuffUseless')) errors.push(`${entry.id}: isBuffUseless 只能作为 currency requirements 的子选项`);
+      if (requirement?.type === 'standing' && (!requirement.npcId || !Number.isInteger(requirement.rank))) errors.push(`${entry.id}: standing requirements 必须提供 npcId 和整数 rank`);
       if (requirement?.npcId) {
         const npc = npcCategories?.npcs?.find(item => item.id === requirement.npcId);
-        if (!npc) errors.push(`${entry.id}: require 引用不存在的 NPC ${requirement.npcId}`);
-        else if (!npc.locationId || !entities.locations.some(item => item.id === npc.locationId)) errors.push(`${entry.id}: require NPC 缺少有效 locationId ${requirement.npcId}`);
+        if (!npc) errors.push(`${entry.id}: requirements 引用不存在的 NPC ${requirement.npcId}`);
+        else if (!npc.locationId || !entities.locations.some(item => item.id === npc.locationId)) errors.push(`${entry.id}: requirements NPC 缺少有效 locationId ${requirement.npcId}`);
       }
       const sourceTextForbidden = !entry.frameAcquisition?.generated?.isPrime && ['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination', 'frame-vendor'].includes(route?.componentCategory);
       if (entry.reviewStatus === 'approved' && sourceTextForbidden && (Object.hasOwn(variables, 'sourceText') || Object.hasOwn(routing.blueprintVariables || {}, 'sourceText'))) errors.push(`${entry.id}: approved 战甲路由不得以 sourceText 生成用户文案`);

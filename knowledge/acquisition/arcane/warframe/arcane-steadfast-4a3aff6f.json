@@ -109,20 +109,39 @@
         "status": "structured",
         "methods": [
           {
-            "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.eb8e38592a36",
-            "sourceCanonical": "Mars/Tyana Pass (Defense), Rotation C",
+            "type": "mission-reward",
+            "locationId": "planet.mars",
+            "missionNodeId": "mission-node.tyana-pass",
+            "missionTypeId": "mission-type.defense",
+            "rotation": "C",
             "probability": 0.057,
             "chancePercent": 5.7,
             "quantity": 1,
-            "rarity": "Rare",
+            "sourceCanonical": "Mars/Tyana Pass (Defense), Rotation C",
             "provenance": {
-              "source": "warframe-items",
-              "input": "Arcanes.json",
-              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast"
+              "source": "de-official-drop-tables",
+              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast",
+              "note": "官方掉落表与任务类型结构覆盖上游第三方 location 字符串。"
             }
           }
-        ]
+        ],
+        "requirements": {
+          "type": "currency",
+          "usage": "exchange",
+          "npcId": "npc.otak",
+          "locationId": "hub.necralisk",
+          "currency": [
+            {
+              "currencyId": "currency.belric-crystal-fragment",
+              "amount": 60
+            },
+            {
+              "currencyId": "currency.rania-crystal-fragment",
+              "amount": 60
+            }
+          ],
+          "isBuffUseless": true
+        }
       },
       "tradable": true,
       "sourceFile": "Arcanes.json"

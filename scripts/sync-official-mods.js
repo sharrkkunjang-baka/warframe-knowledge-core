@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { renderGameText } = require('../src/game-text');
 const Items = require('warframe-items');
 const { readCategoryDirectory, readEntryDirectory } = require('../src/loader');
 
@@ -119,8 +120,8 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         rarity: item.rarity || null,
         polarity: item.polarity || null,
         maxRank: Number.isInteger(item.fusionLimit) ? item.fusionLimit : 0,
-        maxRankEffects: item.levelStats?.at(-1)?.stats || item.stats || [],
-        maxRankEffectsZh: localized.levelStats?.at(-1)?.stats || [],
+        maxRankEffects: (item.levelStats?.at(-1)?.stats || item.stats || []).map(renderGameText),
+        maxRankEffectsZh: (localized.levelStats?.at(-1)?.stats || []).map(renderGameText),
         traits: {
           prime: Boolean(item.isPrime),
           augment: Boolean(item.isAugment),

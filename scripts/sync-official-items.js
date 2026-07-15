@@ -2,6 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { renderGameText } = require('../src/game-text');
 
 const root = path.join(__dirname, '..');
 const itemsRoot = path.dirname(require.resolve('warframe-items'));
@@ -145,13 +146,13 @@ function buildOfficialItems(generatedAt = new Date().toISOString()) {
         uniqueName: item.uniqueName, canonical: item.name, displayName: localized.name || item.name,
         localizationStatus: localized.name && localized.name !== item.name ? 'official-zh' : 'fallback-en',
         kind: category.toLowerCase(), semanticKinds: semanticKinds(item, category, classification.semanticKind),
-        description: { canonical: item.description || '', display: localized.description || item.description || '' },
+        description: { canonical: renderGameText(item.description || ''), display: renderGameText(localized.description || item.description || '') },
         tradable: Boolean(item.tradable), drops: item.drops || [], recipes, recipeVariants,
         ...(category === 'Arcanes' ? {
           arcaneType: item.type || null,
           equipmentClass: ({ 'Warframe Arcane': 'Warframe', Arcane: 'Warframe', 'Primary Arcane': 'Primary', 'Bow Arcane': 'Bow', 'Shotgun Arcane': 'Shotgun', 'Secondary Arcane': 'Secondary', 'Melee Arcane': 'Melee', 'Operator Arcane': 'Operator', 'Amp Arcane': 'Amp', 'Kitgun Arcane': 'Kitgun', 'Zaw Arcane': 'Zaw' })[item.type] || null,
           rarity: item.rarity || null,
-          levelStats: item.levelStats || [],
+          levelStats: (localized.levelStats || item.levelStats || []).map(level => ({ ...level, stats: (level.stats || []).map(renderGameText) })),
           maxRank: Math.max(0, (item.levelStats?.length || 1) - 1)
         } : {}),
         buildQuantity: Number(item.buildQuantity || 1), sourceCategory: category, sourceFile: file

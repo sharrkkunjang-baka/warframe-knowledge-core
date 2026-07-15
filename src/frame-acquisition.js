@@ -25,6 +25,7 @@ const FACTION_REGISTRY = ENTITY_REGISTRIES.factions;
 const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
 const ENEMY_REGISTRY = ENTITY_REGISTRIES.enemies;
 const MISSION_TYPE_REGISTRY = ENTITY_REGISTRIES.missionTypes;
+const { renderRequirements } = require('./acquisition-protocol');
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
 const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards.json';
@@ -638,50 +639,9 @@ function renderSpecificMissionRoute(variables) {
   }
   return lines;
 }
-function currencyAcquisitionSummary(entity) {
-  const dependency = entity?.acquisitionDependency;
-  if (!dependency) return null;
-  if (dependency.acquisitionSummary) return dependency.acquisitionSummary;
-  if (dependency.type === 'mission-enemy-drop') {
-    const node = LOCATION_REGISTRY.get(dependency.missionNodeId);
-    const missionType = MISSION_TYPE_REGISTRY.get(dependency.missionTypeId);
-    return `在${entityName(LOCATION_REGISTRY, node.parentId)}的${entityName(LOCATION_REGISTRY, node.id)}（${entityName(MISSION_TYPE_REGISTRY, missionType.id)}）击败爆破使获得，普通每只 ${dependency.normalAmount.min}-${dependency.normalAmount.max}，钢铁之路每只 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max}`;
-  }
-  if (dependency.type === 'bounty-completion-or-compost') return `完成${dependency.bountyName}获得：普通难度 ${dependency.normalAmount.min}-${dependency.normalAmount.max} 个，钢铁之路 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max} 个；多余蘑菇样本每个可堆肥获得 ${dependency.compostAmount} 个`;
-  if (dependency.acquisition?.type === 'mission-completion') {
-    const mission = entityName(LOCATION_REGISTRY, dependency.acquisition.locationId);
-    return `完成天王星比邻星域${mission}获得：普通难度 ${dependency.acquisition.normalAmount.min}-${dependency.acquisition.normalAmount.max} 个，钢铁之路 ${dependency.acquisition.steelPathAmount.min}-${dependency.acquisition.steelPathAmount.max} 个；${dependency.acquisition.bonus}`;
-  }
-  return null;
-}
 function requirementLines(routing, options = {}) {
-  const requirement = routing?.require;
-  if (!requirement || requirement.type === 'none') return [];
-  const npc = requirement.npcId ? NPC_REGISTRY.get(requirement.npcId) : null;
-  const locationId = requirement.locationId || npc?.locationId;
-  const locationName = locationId ? entityName(LOCATION_REGISTRY, locationId) : null;
-  const npcName = npc ? entityName(NPC_REGISTRY, requirement.npcId) : null;
-  if (requirement.type === 'currency') {
-    const currencies = (requirement.currency || []).map(item => ({ ...item, entity: CURRENCY_REGISTRY.get(item.currencyId) })).filter(item => item.entity);
-    const currenciesText = currencies.map(item => item.entity.displayName || item.entity.canonical).join('和');
-    const currenciesWithAmountsText = currencies.map(item => `${item.amount} ${item.entity.displayName || item.entity.canonical}`).join('和');
-    const lines = [];
-    if (options.includeExchange !== false) {
-      const routeTemplate = requirement.usage === 'crafting' ? 'currencyCraftingTemplate' : npcName ? 'currencyNpcTemplate' : 'currencyLocationTemplate';
-      lines.push(applyTemplate(methodTemplate('components', 'frame-vendor', routeTemplate), { locationName, npcName, currenciesText, currenciesWithAmountsText }));
-    }
-    const dependencies = currencies.map(({ entity, amount }) => {
-      const summary = currencyAcquisitionSummary(entity);
-      return summary ? applyTemplate(methodTemplate('components', 'frame-vendor', 'currencyDependencyTemplate'), { currencyName: entity.displayName || entity.canonical, amountText: `（全套需要 ${amount}）`, acquisitionSummary: summary }) : null;
-    }).filter(Boolean);
-    if (dependencies.length) lines.push(methodTemplate('components', 'frame-vendor', 'currencyDependencyHeader'), ...dependencies);
-    lines.push(requirement.isBuffuseless ? methodTemplate('components', 'frame-vendor', 'buffUselessTemplate') : methodTemplate('components', 'frame-vendor', 'buffUsefulTemplate'));
-    return lines.filter(Boolean);
-  }
-  if (requirement.type !== 'standing' || !locationName || !npcName) return [];
-  const variables = { locationName, npcName, rank: requirement.rank, blueprintRank: requirement.blueprintRank };
-  const templateName = requirement.blueprintRank && requirement.blueprintRank !== requirement.rank ? 'standingSplitTemplate' : 'standingTemplate';
-  return [applyTemplate(methodTemplate('components', 'frame-vendor', templateName), variables)].filter(Boolean);
+  const lines = renderRequirements(routing?.requirements || routing?.require, ENTITY_REGISTRIES);
+  return options.includeExchange === false ? lines.filter(line => !/兑换，需要/.test(line)) : lines;
 }
 function renderRoutedAcquisition(frameOrName) {
   const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
@@ -721,11 +681,11 @@ function renderRoutedAcquisition(frameOrName) {
       if (fallback && !/缺少/.test(fallback)) lines.push(`总图：${fallback}`);
     }
   }
-  const componentLine = route.componentCategory === 'frame-dojo' && routing.require?.type === 'currency'
+  const componentLine = route.componentCategory === 'frame-dojo' && (routing.requirements || routing.require)?.type === 'currency'
     ? null
     : route.componentCategory === 'frame-vendor' && routing.componentVariables?.enemyName
     ? applyTemplate(methodTemplate('components', 'frame-vendor', 'componentDropTemplate'), routing.componentVariables)
-    : route.componentCategory === 'frame-vendor' && routing.require?.type === 'standing'
+    : route.componentCategory === 'frame-vendor' && (routing.requirements || routing.require)?.type === 'standing'
       ? null
     : route.componentCategory === 'frame-bounty'
     ? renderBountyRoute(routing.componentVariables || {})
@@ -737,7 +697,7 @@ function renderRoutedAcquisition(frameOrName) {
             ? renderMissionNodeRoute(routing.componentVariables || {})
             : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
   if (componentLine) lines.push(componentLine);
-  else if (!((route.componentCategory === 'frame-vendor' && routing.require?.type === 'standing') || (route.componentCategory === 'frame-dojo' && routing.require?.type === 'currency'))) {
+  else if (!((route.componentCategory === 'frame-vendor' && (routing.requirements || routing.require)?.type === 'standing') || (route.componentCategory === 'frame-dojo' && (routing.requirements || routing.require)?.type === 'currency'))) {
     const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
     lines.push(...fallback);
   }

@@ -2,21 +2,44 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
-const { buildRegistryPlan, applyRegistryPlan, walkJson } = require('./entity-registry-io')
+const { buildRegistryPlan, applyRegistryPlan, walkJson, slug } = require('./entity-registry-io')
 const { readIndexedEntries } = require('../src/entities')
 
 const ROOT = path.resolve(__dirname, '..')
 const KNOWLEDGE = path.join(ROOT, 'knowledge')
 const LEGACY = path.join(KNOWLEDGE, 'entities')
+const LOCALIZATION_SNAPSHOT = path.join(ROOT, 'generated', 'official-localization-snapshot.json')
+const AUDITED_ENEMY_OVERRIDES = Object.freeze({
+  'Juno Sapper MOA': { locationId: 'mission-node.brutus', missionTypeId: 'mission-type.ascension' }
+})
+function officialEnemyEntries() {
+  if (!fs.existsSync(LOCALIZATION_SNAPSHOT)) throw new Error('缺少官方本地化快照，请先运行 npm run sync:localization')
+  const snapshot = JSON.parse(fs.readFileSync(LOCALIZATION_SNAPSHOT, 'utf8'))
+  return snapshot.entities.map(item => ({
+    id: `enemy.${slug(item.canonical)}`,
+    canonical: item.canonical,
+    displayName: item.displayName,
+    kind: item.kind || 'enemy',
+    category: item.kind || 'enemy',
+    aliases: [],
+    factionId: item.factionCanonical ? `faction.${slug(item.factionCanonical)}` : null,
+    internalPaths: item.internalPaths || [],
+    languageKey: item.languageKey || null,
+    localization: { status: item.status, source: 'DE Languages.bin', languageVersion: snapshot.provenance.languageVersion, languageCommit: snapshot.provenance.languageCommit },
+    source: snapshot.provenance,
+    ...(AUDITED_ENEMY_OVERRIDES[item.canonical] || {})
+  }))
+}
 const DEFINITIONS = Object.freeze({
-  enemies: { legacy: 'enemies', categoryOf: () => 'boss', names: { boss: '首领与刺杀目标' } }
+  enemies: { legacy: 'enemies', categoryOf: entry => entry.category || 'enemy', names: { boss: '首领与刺杀目标', enemy: '敌人单位', 'enemy-family': '敌人家族', 'enemy-group': '敌人群组来源' } }
 })
 function readLegacy(name, directory) {
   const legacyPath = path.join(LEGACY, `${name}.json`)
   if (fs.existsSync(legacyPath)) return JSON.parse(fs.readFileSync(legacyPath, 'utf8'))
   const indexed = readIndexedEntries(ROOT, directory)
   const loose = walkJson(path.join(KNOWLEDGE, directory)).filter(file => path.basename(file) !== 'categories.json').map(file => JSON.parse(fs.readFileSync(file, 'utf8')))
-  const byId = new Map([...indexed, ...loose].map(({ category, ...entry }) => [entry.id, entry]))
+  const supplements = directory === 'enemies' ? officialEnemyEntries() : []
+  const byId = new Map([...indexed, ...loose, ...supplements].map(entry => [entry.id, entry]))
   return [...byId.values()]
 }
 function buildPlans() {
@@ -29,4 +52,4 @@ function run(argv = process.argv.slice(2)) {
   console.log(check ? '基础实体变量目录无漂移' : `已同步 ${Object.keys(DEFINITIONS).length} 类基础实体变量；写入 ${changes} 项`)
 }
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
-module.exports = { DEFINITIONS, buildPlans, run }
+module.exports = { LOCALIZATION_SNAPSHOT, AUDITED_ENEMY_OVERRIDES, officialEnemyEntries, DEFINITIONS, buildPlans, run }

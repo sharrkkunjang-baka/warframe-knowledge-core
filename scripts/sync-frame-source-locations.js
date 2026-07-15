@@ -30,6 +30,7 @@ function generatedEntries() {
     { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' },
     { id: 'hub.clan-dojo', canonical: 'Clan Dojo', displayName: '氏族道场的 Dagath 空阁', kind: 'hub', aliases: [], officialSource: 'Warframe Wiki - Dagath' },
     { id: 'interface.nightwave', canonical: 'Nightwave Cred Offerings', displayName: '午夜电波贡品界面', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki - Vauban' },
+    { id: 'region.veil-proxima', canonical: 'Veil Proxima', displayName: '面纱比邻星域', kind: 'proxima-region', aliases: [], officialSource: 'DE official zh-hans terminology' },
     { id: 'landscape.duviri', canonical: 'Duviri', displayName: '双衍王境', kind: 'landscape', aliases: [], officialSource: 'Warframe Update 39 official zh-hans patch notes' },
     { id: 'mission-node.isleweaver', canonical: 'Isleweaver', displayName: '织屿人', kind: 'mission-node', aliases: [], parentId: 'landscape.duviri', officialSource: 'Warframe Update 39 official zh-hans patch notes' }
   )

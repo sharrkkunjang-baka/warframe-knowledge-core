@@ -17,7 +17,8 @@ const SPECIAL_TYPES = Object.freeze([
   { canonical: 'Extended Granum Void', displayName: '', category: 'special', officialSource: 'official-drop-canonical' },
   { canonical: 'Nightmare Granum Void', displayName: '', category: 'special', officialSource: 'official-drop-canonical' },
   { canonical: 'Void Storm', displayName: '', category: 'railjack', officialSource: 'official-drop-canonical' },
-  { canonical: 'Operation: Orphix Venom', displayName: '行动代号：奥影之毒', category: 'event', officialSource: 'wf_en_cn_full.json' },
+  { canonical: 'Orphix', displayName: '奥影', category: 'railjack', officialSource: 'DE official zh-hans Operation: Orphix Venom terminology' },
+  { canonical: 'Operation: Orphix Venom', displayName: '行动代号：奥影之毒', category: 'event', officialSource: 'DE official zh-hans news' },
   ...['Cetus Bounty','Orb Vallis Bounty','Cambion Drift Bounty','Entrati Lab Bounty','Zariman Bounty','WF1999 Bounty','Plague Star'].map(canonical => ({ canonical, displayName: '', category: canonical === 'Plague Star' ? 'event' : 'bounty', officialSource: 'official-drop-canonical' }))
 ])
 const ENDLESS = /DEFENSE|SURVIVAL|DISRUPTION|TERRITORY|EXCAVATE|DEFECTION|SALVAGE|ASCENSION/i

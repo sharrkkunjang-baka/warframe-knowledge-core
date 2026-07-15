@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-15T02:52:47.402Z",
+  "generatedAt": "2026-07-15T04:47:55.754Z",
   "primaryKey": "officialUniqueName",
   "hashAlgorithm": "sha256-8",
   "source": {
@@ -13,13 +13,13 @@
     {
       "id": "warframe",
       "equipmentClass": "Warframe",
-      "count": 59,
+      "count": 60,
       "mutuallyExclusive": true
     },
     {
       "id": "primary",
       "equipmentClass": "Primary",
-      "count": 10,
+      "count": 14,
       "mutuallyExclusive": true
     },
     {
@@ -37,13 +37,13 @@
     {
       "id": "secondary",
       "equipmentClass": "Secondary",
-      "count": 16,
+      "count": 18,
       "mutuallyExclusive": true
     },
     {
       "id": "melee",
       "equipmentClass": "Melee",
-      "count": 10,
+      "count": 12,
       "mutuallyExclusive": true
     },
     {
@@ -71,6 +71,12 @@
       "mutuallyExclusive": true
     },
     {
+      "id": "tektolyst",
+      "equipmentClass": "Tektolyst Artifacts",
+      "count": 5,
+      "mutuallyExclusive": true
+    },
+    {
       "id": "legacy",
       "equipmentClass": "Legacy/Unknown",
       "count": 7,
@@ -80,20 +86,22 @@
   "counts": {
     "input": 172,
     "placeholdersExcluded": 17,
-    "arcanes": 155,
-    "structured": 148,
+    "supplementalArcanes": 14,
+    "arcanes": 169,
+    "structured": 162,
     "reviewRequired": 7,
     "byCategory": {
-      "warframe": 59,
-      "primary": 10,
+      "warframe": 60,
+      "primary": 14,
       "bow": 1,
       "shotgun": 1,
-      "secondary": 16,
-      "melee": 10,
+      "secondary": 18,
+      "melee": 12,
       "operator": 22,
       "amp": 13,
       "kitgun": 8,
       "zaw": 8,
+      "tektolyst": 5,
       "legacy": 7
     }
   },
@@ -1423,6 +1431,118 @@
       "displayName": "蜕化·效能",
       "category": "warframe",
       "file": "warframe/molt-efficiency-81c94ec1.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Arcane Sculptor",
+      "canonical": "Arcane Sculptor",
+      "displayName": "Arcane Sculptor",
+      "category": "warframe",
+      "file": "warframe/arcane-sculptor-d9f5a2d8.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Melee Assimilation",
+      "canonical": "Melee Assimilation",
+      "displayName": "Melee Assimilation",
+      "category": "melee",
+      "file": "melee/melee-assimilation-7199a763.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Melee Careen",
+      "canonical": "Melee Careen",
+      "displayName": "Melee Careen",
+      "category": "melee",
+      "file": "melee/melee-careen-cbfd2620.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Primary Bulwark",
+      "canonical": "Primary Bulwark",
+      "displayName": "Primary Bulwark",
+      "category": "primary",
+      "file": "primary/primary-bulwark-0e47b8fd.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Primary Compression",
+      "canonical": "Primary Compression",
+      "displayName": "Primary Compression",
+      "category": "primary",
+      "file": "primary/primary-compression-5558b549.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Primary Debilitate",
+      "canonical": "Primary Debilitate",
+      "displayName": "Primary Debilitate",
+      "category": "primary",
+      "file": "primary/primary-debilitate-e6d6abdf.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Primary Overcharge",
+      "canonical": "Primary Overcharge",
+      "displayName": "Primary Overcharge",
+      "category": "primary",
+      "file": "primary/primary-overcharge-832960ff.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Secondary Cryogenic",
+      "canonical": "Secondary Cryogenic",
+      "displayName": "Secondary Cryogenic",
+      "category": "secondary",
+      "file": "secondary/secondary-cryogenic-bf583be9.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Secondary Irradiate",
+      "canonical": "Secondary Irradiate",
+      "displayName": "Secondary Irradiate",
+      "category": "secondary",
+      "file": "secondary/secondary-irradiate-264a369f.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Zid-An Asheir",
+      "canonical": "Zid-An Asheir",
+      "displayName": "Zid-An Asheir",
+      "category": "tektolyst",
+      "file": "tektolyst/zid-an-asheir-e7dd1938.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Zid-An Haras",
+      "canonical": "Zid-An Haras",
+      "displayName": "Zid-An Haras",
+      "category": "tektolyst",
+      "file": "tektolyst/zid-an-haras-046df8f6.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Zid-An Osbok",
+      "canonical": "Zid-An Osbok",
+      "displayName": "Zid-An Osbok",
+      "category": "tektolyst",
+      "file": "tektolyst/zid-an-osbok-e8b9e611.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Zid-An Sek-Eel",
+      "canonical": "Zid-An Sek-Eel",
+      "displayName": "Zid-An Sek-Eel",
+      "category": "tektolyst",
+      "file": "tektolyst/zid-an-sek-eel-0e7d1554.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "wiki-arcane:Zid-An Uskos",
+      "canonical": "Zid-An Uskos",
+      "displayName": "Zid-An Uskos",
+      "category": "tektolyst",
+      "file": "tektolyst/zid-an-uskos-7928da91.json",
       "acquisitionStatus": "structured"
     }
   ]

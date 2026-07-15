@@ -2,6 +2,7 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
+const { normalizeRequirements } = require('./acquisition-protocol')
 
 const CATEGORY_DIRS = Object.freeze({
   'frame-prime-relic': 'prime-relic',
@@ -181,7 +182,7 @@ function buildRouting(frame, componentCategory, page) {
     componentVariables: variables,
     blueprintVariables: blueprint.variables || {},
     blueprintSource: blueprint.source,
-    require: acquisitionRequirement(frame, componentCategory, variables)
+    requirements: normalizeRequirements(acquisitionRequirement(frame, componentCategory, variables))
   }
 }
 function applyTemplate(template, variables) {

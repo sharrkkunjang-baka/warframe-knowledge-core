@@ -11,16 +11,17 @@ const CATEGORY_PAGES = Object.freeze({
   cetus: { displayName: '希图斯', locationId: 'hub.cetus', names: ['Konzu','Saya','Hok','Hai-Luk','Nakak','Master Teasonai','Old Man Suumbaat','Onkko','Quill Onkko'] },
   fortuna: { displayName: '福尔图娜', locationId: 'hub.fortuna', names: ['Eudico','The Business','Smokefinger','Ticker','Legs','Roky','Little Duck','Rude Zuud','Thursby','Nightcap'] },
   necralisk: { displayName: '殁世幽都', locationId: 'hub.necralisk', names: ['Mother','Father','Daughter','Son','Grandmother','Otak','Loid'] },
-  'sanctum-anatomica': { displayName: '解剖圣所', locationId: 'hub.sanctum-anatomica', names: ['Fibonacci','Bird 3','Tagfer','Loid'] }
+  'sanctum-anatomica': { displayName: '解剖圣所', locationId: 'hub.sanctum-anatomica', names: ['Fibonacci','Bird 3','Tagfer','Loid'] },
+  'kahl-garrison': { displayName: '卡尔驻军', locationId: 'hub.drifters-camp', names: ['Chipper'] }
 })
 const ROOT_NPCS = Object.freeze(['Lotus','Ordis','Acrithis'])
 const LOCATION_OVERRIDES = Object.freeze({ Acrithis: 'hub.dormizone', 'Aspirant Zorba': 'hub.any-relay', Hunhow: 'hub.pontis-tower', Ordis: 'hub.drifters-camp' })
 // 仅收录能确认的官方简中；空字符串表示未核验，运行时必须回退 canonical，禁止猜译。
-const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', Acrithis: '言录使', 'Cephalon Simaris': '中枢 Simaris', Nightcap: '夜帽' })
+const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', Acrithis: '言录使', 'Cephalon Simaris': '中枢 Simaris', Nightcap: '夜帽', Chipper: '切片哥' })
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') }
 function npcId(name) { return `npc.${slug(name)}` }
 function sourceFor(db, name) { const page = db.getPage(name); return page ? { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId } : { pageTitle: name, missing: true } }
-const NPC_ROLES = Object.freeze({ Konzu: ['bounty-provider'], Eudico: ['bounty-provider'], Mother: ['bounty-provider'], Nightcap: ['bounty-provider', 'exchange-provider'], Hunhow: ['exchange-provider'] })
+const NPC_ROLES = Object.freeze({ Konzu: ['bounty-provider'], Eudico: ['bounty-provider'], Mother: ['bounty-provider'], Nightcap: ['bounty-provider', 'exchange-provider'], Hunhow: ['exchange-provider'], Chipper: ['exchange-provider'] })
 function buildNpc(db, name, category, locationId) { return { id: npcId(name), canonical: name, displayName: AUDITED_ZH[name] || '', kind: 'npc', aliases: [], ...(NPC_ROLES[name] ? { roles: NPC_ROLES[name] } : {}), category, locationId: LOCATION_OVERRIDES[name] || locationId, factionId: null, source: sourceFor(db, name), localization: { status: AUDITED_ZH[name] ? 'official-audited' : 'unresolved', rule: 'empty-displayName-falls-back-to-canonical' } } }
 function listCharacterPages(resolved) {
   const raw = new Database(resolved, { readonly: true, fileMustExist: true })
