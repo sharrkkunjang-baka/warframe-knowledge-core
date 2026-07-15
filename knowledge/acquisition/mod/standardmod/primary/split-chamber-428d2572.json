@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -139,6 +139,8 @@
                 "excerpt": "Defense | Tier 3 Defense | C | 2.26% | 1 | 0.0226 Stephano , Uranus | | Stephano , Uranus Stöfler , Lua Proteus , Neptune Nabuk , Kuva Fortress Outer Terminus , Pluto Hydron , Sedna Kala-azar , Eris"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 3 Defense"
             },
             {
@@ -179,6 +181,8 @@
                 "excerpt": "Excavation | Tier 3 Excavation | B | 6.67% | 1 | 0.0667 Cholistan , Europa | | Cholistan , Europa Despina , Neptune Hieracon , Pluto"
               },
               "missionTypeCanonical": "Excavation",
+              "missionTypeEntityId": "mission-type.excavation",
+              "missionTypeDisplayName": "挖掘",
               "sourceCanonical": "Tier 3 Excavation"
             },
             {
@@ -205,6 +209,8 @@
                 "excerpt": "Survival | Kuva Fortress Survival | B | 6.67% | 1 | 0.0667 Taveuni , Kuva Fortress | | Taveuni , Kuva Fortress"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Kuva Fortress Survival"
             },
             {
@@ -245,6 +251,8 @@
                 "excerpt": "Survival | Tier 3 Dark Sector Survival | B | 6.67% | 1 | 0.0667 Assur , Uranus | | Assur , Uranus Kelashin , Neptune Amarna , Sedna"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Dark Sector Survival"
             },
             {
@@ -299,6 +307,8 @@
                 "excerpt": "Survival | Tier 3 Survival | B | 6.67% | 1 | 0.0667 Ophelia , Uranus | | Ophelia , Uranus Tycho , Lua Palus , Pluto Selkie , Sedna Nimus , Eris"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Survival"
             },
             {
@@ -1084,28 +1094,993 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Defense"
-            },
-            {
               "kind": "node",
               "canonical": "Stöfler"
             },
             {
               "kind": "node",
               "canonical": "Kala-azar"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Excavation"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Survival"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Leech Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Leech Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Mine Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Sapping Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sapping Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Sapping Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Aurax Atloc Raknoid",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kyta Raknoid",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mite Raknoid",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Mite",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Raknoid",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Scyto Raknoid",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Mt",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Ns",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Rv",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Scyto Raknoid",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Anti Moa",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Moa",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Railgun Moa",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shockwave Moa",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jackal",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Ambulas",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Anti Moa",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Elite Embattor Moa",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Elite Raptor Sx",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Embattor Moa",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Jackal",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Moa",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Railgun Moa",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Raptor Sx",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shockwave Moa",
+            "chance": 0.2,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Commander",
+            "chance": 1.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "General Sargas Ruk",
+            "chance": 1.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "chance": 1.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 4 (Normal)",
+            "chance": 1.49,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Another Betrayer, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Family Reunion, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hot Mess, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Opik (Rush), Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Recover The Orokin Archive, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sunkiller, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Table For Two, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Aftermath, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Time's Up, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Ixodes (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Kala-Azar (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Nabuk (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/StöFler (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Proteus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Outer Terminus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Hydron (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Bianca (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Miranda (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Stephano (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vem Tabook",
+            "chance": 5,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Hymeno (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Nimus (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Cholistan (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Taveuni (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Tycho (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Despina (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Kelashin (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Hieracon (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Palus (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Amarna (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Scylla (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Selkie (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Yemaja (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Assur (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Cupid (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Ophelia (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Leekter",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Shik Tal",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

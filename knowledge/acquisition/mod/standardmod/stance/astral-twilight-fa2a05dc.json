@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -152,6 +152,8 @@
                 "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
               },
               "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "missionTypeEntityId": "mission-type.weekly-conclave-challenge-reward",
+              "missionTypeDisplayName": "武形秘仪每周挑战奖励",
               "sourceCanonical": "Weekly Conclave Challenge Reward"
             },
             {
@@ -210,6 +212,22 @@
               "sourceCanonical": "Mimic",
               "sourceEntityId": "enemy.mimic",
               "sourceDisplayName": "拟态者"
+            },
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Astral Twilight",
+                "pageId": 598830,
+                "revisionId": 2728742,
+                "section": "Acquisition",
+                "excerpt": "Astral Twilight is also offered as a periodic item for sale by Baro Ki'Teer , costing 385 385 and 175,000 Credits 175,000 to purchase."
+              }
             }
           ],
           "evidence": [
@@ -285,14 +303,90 @@
             {
               "kind": "missionType",
               "canonical": "Rathuum"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Weekly Conclave Challenge Reward"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Denial Bursa",
+            "chance": 0.06,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GlaiveCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Jester",
+            "chance": 0.5,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GlaiveCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Vodyanoi (Arena)",
+            "chance": 0.5,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GlaiveCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Yam (Arena)",
+            "chance": 0.5,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GlaiveCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Pavlov (Spy), Rotation A",
+            "chance": 1.29,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GlaiveCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mimic",
+            "chance": 2.1399999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GlaiveCmbTwoMeleeTree"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

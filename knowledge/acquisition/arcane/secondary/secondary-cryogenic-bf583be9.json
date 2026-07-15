@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.bf583be9",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Secondary Cryogenic",
+  "title": "次要·低温",
   "subject": {
     "canonical": "Secondary Cryogenic",
-    "displayName": "Secondary Cryogenic",
+    "displayName": "次要·低温",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Secondary Cryogenic"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "On Puncture: Apply 3 Cold stacks on targets within 15m."
+        "造成 穿刺 穿刺时：对 15 米内的敌人施加 3 层 ❄ 冰冻异常状态。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Secondary Cryogenic",
         "canonical": "Secondary Cryogenic",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "次要·低温",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "secondary",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "On Puncture: Apply 3 Cold stacks on targets within 15m."
+              "造成 穿刺 穿刺时：对 15 米内的敌人施加 3 层 ❄ 冰冻异常状态。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Arcanes/SecondaryColdOnPunctureDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -90,6 +91,9 @@
             "quantity": 1,
             "sourceEntityId": "arcane-source.8e4a7ed0d951",
             "sourceDisplayName": "天王星比邻星域任务完成奖励",
+            "requirements": {
+              "type": "none"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Secondary Cryogenic",
@@ -102,7 +106,24 @@
             "sourceCanonical": "Hunhow at Pontis Tower (10 Emerald Talent + 10 Crimson Talent)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.c13f0935e4fe",
-            "sourceDisplayName": "庞蒂斯之塔的 Hunhow (10 翠绿天赋 + 10 深红天赋)",
+            "sourceDisplayName": "边界之塔的 Hunhow (10 翠绿天赋 + 10 猩红天赋)",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.jade-talent",
+                  "amount": 10
+                },
+                {
+                  "currencyId": "currency.crimson-talent",
+                  "amount": 10
+                }
+              ],
+              "isBuffUseless": true
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Secondary Cryogenic",

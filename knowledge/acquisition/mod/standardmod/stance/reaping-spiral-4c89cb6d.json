@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -83,7 +83,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -96,6 +98,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Stage 2 | B | 10.08% | 1 | 0.1008 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Stage 2"
             },
             {
@@ -106,7 +109,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -119,6 +124,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Final Stage | B | 25% | 1 | 0.25 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Final Stage"
             },
             {
@@ -137,6 +143,8 @@
                 "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
               },
               "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "missionTypeEntityId": "mission-type.weekly-conclave-challenge-reward",
+              "missionTypeDisplayName": "武形秘仪每周挑战奖励",
               "sourceCanonical": "Weekly Conclave Challenge Reward"
             },
             {
@@ -721,24 +729,443 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Cetus Bounty"
-            },
-            {
               "kind": "node",
               "canonical": "Plains of Eidolon / Cetus"
-            },
-            {
-              "kind": "location",
-              "canonical": "Earth ; talk to Konzu"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Weekly Conclave Challenge Reward"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Engineer",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Tech",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Elite Crewman",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Tech",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Tech",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Engineer",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Tech",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Engineer",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Tech",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Engineer",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Tech",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Corpus Power Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Corrupted Power Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos Mutalist Osprey Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eidolon Vomvalyst",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Grineer Power Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hellion Power Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Hellion Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Power Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mutalist Osprey Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Power Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nightwatch Carrier",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hellion Power Carrier",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 9.68,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 10.08,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ScytheCmbOneMeleeTree"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

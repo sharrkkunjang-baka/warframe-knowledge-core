@@ -188,14 +188,13 @@ function createKnowledgeCore(options = {}) {
   const listOfficialCategories = (filter = {}) => officialCategories.filter(category =>
     (!filter.dimension || category.dimension === filter.dimension)
     && (!filter.status || category.status === filter.status));
-  const listMissingOfficialMods = (filter = {}) => officialMods.filter(mod =>
-    mod.status === 'missing'
+  const listReviewRequiredOfficialMods = (filter = {}) => officialMods.filter(mod =>
+    mod.status === 'review-required'
     && (!filter.categoryId || mod.officialCategoryIds.includes(filter.categoryId))
     && (!filter.localizationStatus || mod.localizationStatus === filter.localizationStatus));
-  const listStubOfficialMods = (filter = {}) => officialMods.filter(mod =>
-    mod.status === 'stub'
-    && (!filter.categoryId || mod.officialCategoryIds.includes(filter.categoryId))
-    && (!filter.localizationStatus || mod.localizationStatus === filter.localizationStatus));
+  // 兼容旧调用方；新目录不再区分 missing/stub，二者都属于明确的待审状态。
+  const listMissingOfficialMods = listReviewRequiredOfficialMods;
+  const listStubOfficialMods = listReviewRequiredOfficialMods;
   const listMissingOfficialCategories = (filter = {}) => listOfficialCategories({ ...filter, status: 'missing' });
   const getCategory = query => searchCategories(query)[0] || null;
   const getCategoryDetail = query => {
@@ -242,7 +241,14 @@ function createKnowledgeCore(options = {}) {
     if (category === 'legacy' || generated.acquisition?.status === 'review-required') return `${header}\n\n${effect}\n\n${arcaneMethodDefinition?.legacyDescription || '当前不可获取，等待人工审核。'}`;
     return `${header}\n\n${effect}`;
   };
-  const generatedAcquisitionMethods = entry => entry?.modAcquisition?.generated?.wiki?.methods || [];
+  const generatedAcquisitionMethods = entry => {
+    const rawWikiMethods = entry?.modAcquisition?.generated?.wiki?.methods || [];
+    const individualFactions = new Set(rawWikiMethods.filter(method => method.type === 'syndicate-exchange').map(method => method.factionId));
+    const wikiMethods = rawWikiMethods.filter(method => method.type !== 'syndicate-exchange-group' || !(method.factionIds || []).every(id => individualFactions.has(id)));
+    const hasSyndicateRoute = wikiMethods.some(method => method.type === 'syndicate-exchange' || method.type === 'syndicate-exchange-group');
+    const officialDrops = (entry?.modAcquisition?.generated?.officialDrops || []).filter(method => !(hasSyndicateRoute && /^(?:Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence),/i.test(method.sourceCanonical || '')));
+    return [...wikiMethods, ...officialDrops];
+  };
   const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
   const mergeStructuredMethods = entry => {
     const methods = [...manualAcquisitionMethods(entry)];
@@ -253,9 +259,30 @@ function createKnowledgeCore(options = {}) {
     }
     return methods;
   };
+  const enrichOfficialDrop = method => {
+    if (method.type !== 'official-drop') return method;
+    const raw = String(method.sourceCanonical || '');
+    const source = data.arcaneSources.get(raw);
+    if (source && source.localization?.status !== 'canonical-fallback') return { ...method, type: source.kind === 'enemy-drop' ? 'enemy-drop' : 'reward-or-drop', sourceEntityId: source.id, sourceDisplayName: displayEntityName(source), sourceKind: source.kind };
+    const mission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i);
+    if (mission) {
+      const location = data.locations.get(mission[1]);
+      const missionType = data.missionTypes.get(mission[3]);
+      return { ...method, type: missionType ? 'mission-reward' : 'reward-or-drop', locationId: location?.id || null, locationDisplayName: location ? displayEntityName(location) : null, nodeCanonical: mission[2], missionTypeId: missionType?.id || null, missionTypeDisplayName: missionType ? displayEntityName(missionType) : null, rotation: mission[4] || method.rotation || null };
+    }
+    const enemy = data.enemies.get(raw.replace(/\s*\(Level\s*\d+\s*-\s*\d+\)\s*$/i, ''));
+    return enemy ? enrichModMethod({ ...method, type: 'enemy-drop', sourceEntityId: enemy.id }) : { ...method, type: 'unresolved-source', sourceDisplayName: null };
+  };
   const enrichModMethod = method => {
-    if (method.type === 'vendor-or-syndicate-exchange' && method.sourceEntityId) {
-      const npc = data.npcs.get(method.sourceEntityId);
+    if (method.type === 'official-drop') return enrichOfficialDrop(method);
+    if (method.type === 'syndicate-exchange-group') return { ...method, factionDisplayNames: (method.factionIds || []).map(id => data.factions.get(id)).filter(Boolean).map(displayEntityName) };
+    if (method.type === 'quest-reward' && method.questCanonical) {
+      const quest = data.quests.get(method.questCanonical);
+      return { ...method, questId: quest?.id || null, questDisplayName: quest ? displayEntityName(quest) : null };
+    }
+    if (method.type === 'companion-included') return method;
+    if (method.type === 'vendor-or-syndicate-exchange') {
+      const npc = method.sourceEntityId ? data.npcs.get(method.sourceEntityId) : null;
       const location = data.locations.get(method.locationId || npc?.locationId);
       return { ...method, ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
     }
@@ -328,6 +355,21 @@ function createKnowledgeCore(options = {}) {
     };
   };
   const getAcquisitionSourceOptions = entry => aggregateAcquisitionMethods([entry]).sourceOptions;
+  const structuredGameplayMethods = entry => {
+    if (mergeStructuredMethods(entry).length) return [];
+    return expandMethodRefs(entry).map(method => {
+      const requirements = normalizeRequirements(method.requirements);
+      return {
+        type: 'gameplay-route',
+        methodRef: method.id,
+        sourceDisplayName: method.title,
+        acquisitionQuery: method.acquisitionQuery || method.aliases?.[0] || method.title,
+        requirements,
+        requirementLines: renderRequirements(requirements, data),
+        provenance: { source: 'local-reviewed-gameplay', entryId: method.id }
+      };
+    });
+  };
   const getAcquisitionDescription = entry => {
     if (entry.summary || entry.content) return entry.summary || entry.content;
     const primaryCategory = getCategory(entry.subject?.categoryRefs?.[0]);
@@ -417,8 +459,9 @@ function createKnowledgeCore(options = {}) {
       const category = generated.classification?.category || 'legacy';
       const maxRank = Number(arcaneEntry.maxRank ?? generated.stats?.maxRank ?? 0);
       const structuredMethods = mergeArcaneMethods(arcaneEntry);
-      const requirements = normalizeRequirements(generated.acquisition?.requirements);
-      const requirementLines = renderRequirements(requirements, data);
+      const methodRequirements = structuredMethods.map(method => normalizeRequirements(method.requirements)).filter(requirement => requirement.type !== 'none');
+      const requirements = methodRequirements.length === 1 ? methodRequirements[0] : normalizeRequirements(generated.acquisition?.requirements);
+      const requirementLines = methodRequirements.flatMap(requirement => renderRequirements(requirement, data));
       const wikiEvidence = generated.wiki?.evidence || [];
       return {
         query: raw,
@@ -434,8 +477,11 @@ function createKnowledgeCore(options = {}) {
           const entity = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;
           const location = method.locationId ? data.locations.get(method.locationId) : null;
           const missionType = method.missionTypeId ? data.missionTypes.get(method.missionTypeId) : null;
+          const methodRequirements = normalizeRequirements(method.requirements);
           return {
             ...method,
+            requirements: methodRequirements,
+            requirementLines: renderRequirements(methodRequirements, data),
             ...(entity ? { sourceDisplayName: displayEntityName(entity), sourceKind: entity.kind } : {}),
             ...(location ? { locationDisplayName: displayEntityName(location) } : {}),
             ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
@@ -472,18 +518,29 @@ function createKnowledgeCore(options = {}) {
     if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
       throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
     }
+    const structuredMethods = [
+      ...mergeStructuredMethods(entry).map(enrichModMethod).filter(method => method.type !== 'unresolved-source').map(method => {
+        const methodRequirements = normalizeRequirements(method.requirements);
+        return { ...method, requirements: methodRequirements, requirementLines: renderRequirements(methodRequirements, data) };
+      }),
+      ...structuredGameplayMethods(entry)
+    ];
+    const defaultDescription = frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry);
+    const structuredDescription = structuredMethods.flatMap(method => method.requirementLines || []).length
+      ? `${entry.subject?.displayName || entry.title}获取方式：\n${structuredMethods.flatMap(method => method.requirementLines || []).join('\n')}${structuredMethods.some(method => method.prerequisite === 'steel-path') ? '\n需要已解锁钢铁之路' : ''}`
+      : null;
     return {
       query: raw,
       resolution,
       entry,
-      description: frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry),
+      description: structuredDescription && /尚未收录/.test(defaultDescription || '') ? structuredDescription : defaultDescription,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
       sourceOptions,
       requirements,
       requirementLines,
-      structuredMethods: mergeStructuredMethods(entry).map(enrichModMethod),
+      structuredMethods,
       wikiEvidence: entry.modAcquisition?.generated?.wiki?.evidence || [],
       mechanicsEvidence: entry.modAcquisition?.generated?.wiki?.mechanicsEvidence || null,
       alternatives: []
@@ -543,6 +600,7 @@ function createKnowledgeCore(options = {}) {
     getModTipKeywords,
     searchOfficialMods,
     listOfficialCategories,
+    listReviewRequiredOfficialMods,
     listMissingOfficialMods,
     listStubOfficialMods,
     listMissingOfficialCategories,

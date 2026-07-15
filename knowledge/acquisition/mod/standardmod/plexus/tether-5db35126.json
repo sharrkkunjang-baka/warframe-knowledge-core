@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -84,27 +84,37 @@
                 {
                   "nodeCanonical": "Sover Strait",
                   "nodeEntityId": "mission-node.sover-strait",
-                  "planetCanonical": "Earth Proxima"
+                  "planetCanonical": "Earth Proxima",
+                  "planetEntityId": "location.earth-proxima",
+                  "planetDisplayName": "地球比邻星域"
                 },
                 {
                   "nodeCanonical": "Iota Temple",
                   "nodeEntityId": "mission-node.iota-temple",
-                  "planetCanonical": "Earth Proxima"
+                  "planetCanonical": "Earth Proxima",
+                  "planetEntityId": "location.earth-proxima",
+                  "planetDisplayName": "地球比邻星域"
                 },
                 {
                   "nodeCanonical": "Ogal Cluster",
                   "nodeEntityId": "mission-node.ogal-cluster",
-                  "planetCanonical": "Earth Proxima"
+                  "planetCanonical": "Earth Proxima",
+                  "planetEntityId": "location.earth-proxima",
+                  "planetDisplayName": "地球比邻星域"
                 },
                 {
                   "nodeCanonical": "Korm's Belt",
                   "nodeEntityId": "mission-node.korm-s-belt",
-                  "planetCanonical": "Earth Proxima"
+                  "planetCanonical": "Earth Proxima",
+                  "planetEntityId": "location.earth-proxima",
+                  "planetDisplayName": "地球比邻星域"
                 },
                 {
                   "nodeCanonical": "Bendar Cluster",
                   "nodeEntityId": "mission-node.bendar-cluster",
-                  "planetCanonical": "Earth Proxima"
+                  "planetCanonical": "Earth Proxima",
+                  "planetEntityId": "location.earth-proxima",
+                  "planetDisplayName": "地球比邻星域"
                 }
               ],
               "availability": "unknown",
@@ -128,31 +138,43 @@
                 {
                   "nodeCanonical": "Bifrost Echo",
                   "nodeEntityId": "mission-node.bifrost-echo",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 },
                 {
                   "nodeCanonical": "Beacon Shield Ring",
                   "nodeEntityId": "mission-node.beacon-shield-ring",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 },
                 {
                   "nodeCanonical": "Orvin-Haarc",
                   "nodeEntityId": "mission-node.orvin-haarc",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 },
                 {
                   "nodeCanonical": "Vesper Strait",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 },
                 {
                   "nodeCanonical": "Luckless Expanse",
                   "nodeEntityId": "mission-node.luckless-expanse",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 },
                 {
                   "nodeCanonical": "Falling Glory",
                   "nodeEntityId": "mission-node.falling-glory",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 }
               ],
               "availability": "unknown",
@@ -392,16 +414,8 @@
               "canonical": "Earth Proxima Point of Interest"
             },
             {
-              "kind": "location",
-              "canonical": "Earth Proxima"
-            },
-            {
               "kind": "missionType",
               "canonical": "Venus Proxima Point of Interest"
-            },
-            {
-              "kind": "location",
-              "canonical": "Venus Proxima"
             },
             {
               "kind": "node",
@@ -409,7 +423,477 @@
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Gox",
+            "chance": 0.04,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Elite Gyre Outrider",
+            "chance": 0.06,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Outrider",
+            "chance": 0.06,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Elite Kosma Outrider",
+            "chance": 0.47000000000000003,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Outrider",
+            "chance": 0.47000000000000003,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Gox",
+            "chance": 0.52,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Gox",
+            "chance": 0.83,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Elite Exo Outrider",
+            "chance": 0.95,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Outrider",
+            "chance": 0.95,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "002-Er",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Armis Ulta",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Auditor",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Azoth",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Derim Zahn",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Dru Pesfor",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jad Teran",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jen Dro",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lockjaw & Sol",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "M-W.A.M.",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nako Xol",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pelna Cade",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rana Del",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Rx",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Tia Mayn",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ved Xol",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Bendar Cluster (Caches)",
+            "chance": 4,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Iota Temple (Caches)",
+            "chance": 4,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Korm's Belt (Caches)",
+            "chance": 4,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Ogal Cluster (Caches)",
+            "chance": 4,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Sover Strait (Caches)",
+            "chance": 4,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Beacon Shield Ring (Caches), Rotation A",
+            "chance": 8.7,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Bifrost Echo (Caches), Rotation A",
+            "chance": 8.7,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Falling Glory (Caches), Rotation A",
+            "chance": 8.7,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Luckless Expanse (Caches), Rotation A",
+            "chance": 8.7,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Orvin-Haarc (Caches), Rotation A",
+            "chance": 8.7,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Vesper Strait (Caches), Rotation A",
+            "chance": 8.7,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Railjack/Abilities/CrewShipTetherAbilityCard"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

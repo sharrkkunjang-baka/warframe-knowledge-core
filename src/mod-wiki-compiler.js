@@ -15,8 +15,9 @@ const ENEMY_HEADERS = [['sourceCanonical', 'Enemy'], ['dropTableChance', 'Drop T
 const LOCATION_HEADERS = [['target', 'Target'], ['planetCanonical', 'Planet'], ['nodeCanonical', 'Name'], ['missionType', 'Type'], ['level', 'Level'], ['tileSet', 'Tile Set']]
 const MECHANICS_SECTIONS = new Set(['notes', 'usage'])
 const ACQUISITION_SECTIONS = new Set(['acquisition', 'blueprints', 'drop location', 'drop locations', 'mission drop tables', 'enemy drop tables', 'vendor'])
-const MISSION_TYPE_ZH = Object.freeze({ Spy: '间谍', 'The Circuit': '无尽回廊' })
-const LOCATION_ZH = Object.freeze({ Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一', Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', 'Kuva Fortress': '赤毒要塞' })
+const MISSION_TYPE_ZH = Object.freeze({ Spy: '间谍', 'The Circuit': '无尽回廊', 'Orokin Vault': '奥罗金宝库', 'Weekly Conclave Challenge Reward': '武形秘仪每周挑战奖励' })
+const LOCATION_ZH = Object.freeze({ Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一', Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', Zariman: '扎里曼号', 'Earth Proxima': '地球比邻星域', 'Venus Proxima': '金星比邻星域', 'Saturn Proxima': '土星比邻星域', 'Neptune Proxima': '海王星比邻星域', 'Pluto Proxima': '冥王星比邻星域', 'Veil Proxima': '面纱比邻星域', 'Kuva Fortress': '赤毒要塞' })
+function baseLocationCanonical(value) { return cleanCell(String(value || '').split(/\s*;\s*/)[0]) }
 
 function normalizeSection(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim() }
 function percentage(value) {
@@ -31,16 +32,17 @@ function evidenceProvenance(page, section, excerpt) {
   return { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, section: section.title, excerpt: cleanCell(excerpt) }
 }
 function entityLocalization(canonical, kind) {
-  const registry = kind === 'enemy' ? REGISTRIES.enemies : REGISTRIES.locations
-  const registered = registry.get(canonical)
+  const registry = kind === 'enemy' ? REGISTRIES.enemies : kind === 'missionType' ? REGISTRIES.missionTypes : REGISTRIES.locations
+  const lookupCanonical = kind === 'location' ? baseLocationCanonical(canonical) : canonical
+  const registered = registry.get(lookupCanonical)
   if (registered && registered.displayName !== registered.canonical) return { entityId: registered.id, displayName: registered.displayName, status: 'resolved' }
   if (kind === 'node') {
-    const node = NODES.find(item => item.name === canonical)
+    const node = NODES.find(item => item.name === lookupCanonical)
     const localized = node && I18N[node.uniqueName]?.zh?.name
     if (localized && localized !== canonical) return { entityId: `node.${node.uniqueName}`, displayName: localized, status: 'resolved' }
     if (node) return { entityId: `node.${node.uniqueName}`, displayName: null, status: 'canonical-only' }
   }
-  if (kind === 'location' && LOCATION_ZH[canonical]) return { entityId: `location.${canonical.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, displayName: LOCATION_ZH[canonical], status: 'resolved' }
+  if (kind === 'location' && LOCATION_ZH[lookupCanonical]) return { entityId: `location.${lookupCanonical.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, displayName: LOCATION_ZH[lookupCanonical], status: 'resolved' }
   if (kind === 'enemy') {
     if (registered) return { entityId: registered.id, displayName: registered.displayName || null, status: registered.displayName ? 'resolved' : 'canonical-only' }
     const enemy = ENEMIES.find(item => item.name === canonical)
@@ -49,7 +51,8 @@ function entityLocalization(canonical, kind) {
     return { entityId: enemy ? `enemy.${enemy.uniqueName}` : null, displayName: null, status: 'unresolved' }
   }
   if (kind === 'missionType' && MISSION_TYPE_ZH[canonical]) return { entityId: `mission-type.${canonical.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, displayName: MISSION_TYPE_ZH[canonical], status: 'resolved' }
-  return { entityId: registered?.id || null, displayName: null, status: 'unresolved' }
+  if (registered) return { entityId: registered.id, displayName: registered.displayName || null, status: registered.displayName ? 'resolved' : 'canonical-only' }
+  return { entityId: null, displayName: null, status: 'unresolved' }
 }
 function attachEntity(target, field, canonical, kind, unresolved) {
   if (!canonical) return
@@ -97,6 +100,37 @@ function compileEnemyRows(page, section, unresolved) {
   }).filter(row => row.sourceCanonical && row.chance !== null)
 }
 
+function compileAcquisitionProseMethod(excerpt, page, section) {
+  let match = excerpt.match(/automatically acquired upon obtaining (?:an? |the )?(.+?)(?:\s*\.|$)/i)
+  if (match) return { type: 'companion-included', sourceItemCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/(?:given one copy every time you claim|automatically acquired upon claiming) (?:an? |the )?(.+?) from your Foundry/i)
+  if (match) return { type: 'companion-included', sourceItemCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (/Void Trader|Baro Ki['’]Teer/i.test(excerpt) && /(?:purchased|bought|sale|offered)/i.test(excerpt)) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.baro-ki-teer', locationId: 'hub.any-relay', chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (/Nightwave Cred Offerings/i.test(excerpt) && /rotational basis/i.test(excerpt)) return { type: 'vendor-or-syndicate-exchange', locationId: 'interface.nightwave', currency: [{ currencyCanonical: 'Nightwave Cred', amount: integer(excerpt) }], chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/(?:obtained|reaching Rank\s+(\d+))[^.]*?Nightwave[^.]*?(?:Rank\s+(\d+))?/i)
+  if (match) return { type: 'legacy-nightwave-reward', locationId: 'interface.nightwave', rank: Number(match[1] || match[2] || 0) || null, chance: null, quantity: 1, availability: 'legacy-or-future-rotation', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/Arbitrations vendor[^.]*?for\s+(\d+)\s+Vitus Essence/i)
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/Teshin[^.]*?for\s+(\d+)\s+Steel Essence/i)
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.teshin', locationId: 'hub.any-relay', currency: [{ currencyCanonical: 'Steel Essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  const factionIds = { 'Arbiters of Hexis': 'faction.arbiters-of-hexis', 'Cephalon Suda': 'faction.cephalon-suda', 'New Loka': 'faction.new-loka', 'The Perrin Sequence': 'faction.the-perrin-sequence', 'Steel Meridian': 'faction.steel-meridian', 'Red Veil': 'faction.red-veil' }
+  if (/attaining the rank/i.test(excerpt) && /Standing/i.test(excerpt)) {
+    const factions = Object.entries(factionIds).filter(([name]) => new RegExp(name.replace(/^The /, '(?:The )?'), 'i').test(excerpt))
+    if (factions.length) return { type: 'syndicate-exchange-group', factionIds: factions.map(([, id]) => id), standing: integer(excerpt.match(/spending\s+([\d,]+)\s+Standing/i)?.[1]?.replace(/,/g, '') || 0), rankRequirement: 'max', chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  }
+  match = excerpt.match(/Rank\s+(\d+)[^.]*?Entrati[^.]*?purchased for\s+([\d,]+)\s+Standing/i)
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.father', locationId: 'hub.necralisk', rank: Number(match[1]), standing: Number(match[2].replace(/,/g, '')), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/Koumei['’]s Shrine[^.]*?for\s+(\d+)\s+Fate Pearl/i)
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.koumei-shrine', locationId: 'hub.cetus', prerequisite: 'steel-path', currency: [{ currencyCanonical: 'Fate Pearl', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  const exchangeProviders = [{ pattern: /The Business/i, sourceEntityId: 'npc.the-business', locationId: 'hub.fortuna' }, { pattern: /Master Teasonai/i, sourceEntityId: 'npc.master-teasonai', locationId: 'hub.cetus' }, { pattern: /\bSon\b/i, sourceEntityId: 'npc.son', locationId: 'hub.necralisk' }]
+  const provider = exchangeProviders.find(item => item.pattern.test(excerpt))
+  if (provider && /(?:purchased|bought)/i.test(excerpt)) return { type: 'vendor-or-syndicate-exchange', ...provider, requirementsEvidence: excerpt.split(/\|\|/).slice(1).map(cleanCell).filter(Boolean), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/(?:completion of|completing) (?:the )?(.+?) Quest/i)
+  if (match) return { type: 'quest-reward', questCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'one-time-or-repurchase', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  match = excerpt.match(/Rewarded upon completion of (?:the )?(.+?) Quest/i)
+  if (match) return { type: 'quest-reward', questCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'one-time-or-repurchase', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  return null
+}
 function compileAcquisition(page, section, unresolved) {
   const methods = []
   const cells = extractCells(section.text)
@@ -115,6 +149,7 @@ function compileAcquisition(page, section, unresolved) {
     }
   }
   const prose = splitEvidenceItems(section.text).filter(item => !/^\|/.test(item) && !/^Drop Locations:?$/i.test(item) && !/^Originally\b/i.test(item))
+  methods.push(...prose.map(excerpt => compileAcquisitionProseMethod(excerpt, page, section)).filter(Boolean))
   return { methods, evidence: prose.map(excerpt => ({ type: 'acquisition-prose', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) })) }
 }
 
@@ -132,11 +167,15 @@ function compileModWikiPage(page, sourceDatabase, compiledAt = new Date().toISOS
     if (title === 'mission drop tables') methods.push(...compileMissionRows(page, section, unresolved))
     else if (title === 'enemy drop tables') methods.push(...compileEnemyRows(page, section, unresolved))
     else if (title === 'acquisition') { const compiled = compileAcquisition(page, section, unresolved); methods.push(...compiled.methods); evidence.push(...compiled.evidence) }
-    else if (ACQUISITION_SECTIONS.has(title)) evidence.push(...splitEvidenceItems(section.text).map(excerpt => ({ type: 'acquisition-prose', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) })))
+    else if (ACQUISITION_SECTIONS.has(title)) {
+      const excerpts = splitEvidenceItems(section.text)
+      methods.push(...excerpts.map(excerpt => compileAcquisitionProseMethod(excerpt, page, section)).filter(Boolean))
+      evidence.push(...excerpts.map(excerpt => ({ type: 'acquisition-prose', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) })))
+    }
     if (MECHANICS_SECTIONS.has(title)) mechanicsEvidence[title].push(...splitEvidenceItems(section.text).map(excerpt => ({ reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) })))
   }
   const unresolvedEntities = uniqueUnresolved(unresolved)
-  const usable = methods.filter(method => method.chance !== null || method.type === 'mission-reward')
+  const usable = methods.filter(method => method.chance !== null || ['mission-reward', 'companion-included', 'vendor-or-syndicate-exchange', 'syndicate-exchange-group', 'quest-reward', 'legacy-nightwave-reward'].includes(method.type))
   return {
     wiki: { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, pageTimestamp: page.timestamp, compiledAt, sourceDatabase },
     methods, evidence, mechanicsEvidence, unresolvedEntities,
@@ -144,4 +183,4 @@ function compileModWikiPage(page, sourceDatabase, compiledAt = new Date().toISOS
   }
 }
 
-module.exports = { ACQUISITION_SECTIONS, ENEMY_HEADERS, LOCATION_HEADERS, MISSION_HEADERS, compileModWikiPage, percentage }
+module.exports = { ACQUISITION_SECTIONS, ENEMY_HEADERS, LOCATION_HEADERS, MISSION_HEADERS, compileAcquisitionProseMethod, compileModWikiPage, percentage }

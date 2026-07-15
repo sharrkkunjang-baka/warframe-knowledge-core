@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.046df8f6",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Zid-An Haras",
+  "title": "齐哈",
   "subject": {
     "canonical": "Zid-An Haras",
-    "displayName": "Zid-An Haras",
+    "displayName": "齐哈",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Zid-An Haras"
   },
@@ -32,7 +32,8 @@
     },
     {
       "stats": [
-        "48% Warframe Ammo Efficiency for 30s after executing Tauron Strike\n+18% Amp Ammo Efficiency"
+        "进行 Tauron 打击后，战甲的弹药效率增加 48%，持续 30 秒",
+        "+18% 增幅器弹药效率"
       ]
     }
   ],
@@ -44,8 +45,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Zid-An Haras",
         "canonical": "Zid-An Haras",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "齐哈",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "tektolyst",
@@ -73,11 +74,13 @@
           },
           {
             "stats": [
-              "48% Warframe Ammo Efficiency for 30s after executing Tauron Strike\n+18% Amp Ammo Efficiency"
+              "进行 Tauron 打击后，战甲的弹药效率增加 48%，持续 30 秒",
+              "+18% 增幅器弹药效率"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Upgrades/AmmoEfficencyDuringUltimateDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +90,14 @@
             "sourceCanonical": "Marie rotating shop (random Perita resources)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.f2875f13b99c",
-            "sourceDisplayName": "Marie 的轮换商店 (随机 Perita 资源)",
+            "sourceDisplayName": "玛丽的轮换商店 (随机佩里塔资源)",
+            "requirements": {
+              "type": "item",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "itemGroupId": "resource-group.perita",
+              "amountStatus": "random"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Zid-An Haras",

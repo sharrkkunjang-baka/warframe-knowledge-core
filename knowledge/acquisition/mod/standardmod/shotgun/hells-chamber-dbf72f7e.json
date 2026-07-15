@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -134,6 +134,8 @@
                 "excerpt": "Defense | Tier 1 Defense | B | 7.69% | 1 | 0.0769 Lith , Earth | | Lith , Earth Tessera , Venus Lares , Mercury Spear , Mars Gulliver , Phobos Casta , Ceres"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 1 Defense"
             },
             {
@@ -174,6 +176,8 @@
                 "excerpt": "Defense | Tier 2 Defense | B | 6.25% | 1 | 0.0625 Io , Jupiter | | Io , Jupiter Paimon , Europa Helene , Saturn"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 2 Defense"
             },
             {
@@ -240,6 +244,8 @@
                 "excerpt": "Defense | Tier 3 Defense | B | 6.67% | 1 | 0.0667 Stephano , Uranus | | Stephano , Uranus Stöfler , Lua Proteus , Neptune Nabuk , Kuva Fortress Outer Terminus , Pluto Hydron , Sedna Kala-azar , Eris"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 3 Defense"
             },
             {
@@ -280,6 +286,8 @@
                 "excerpt": "Excavation | Tier 3 Excavation | B | 6.67% | 1 | 0.0667 Cholistan , Europa | | Cholistan , Europa Despina , Neptune Hieracon , Pluto"
               },
               "missionTypeCanonical": "Excavation",
+              "missionTypeEntityId": "mission-type.excavation",
+              "missionTypeDisplayName": "挖掘",
               "sourceCanonical": "Tier 3 Excavation"
             },
             {
@@ -306,6 +314,8 @@
                 "excerpt": "Infested Salvage | Infested Salvage | B | 7.69% | 1 | 0.0769 Oestrus , Eris | | Oestrus , Eris"
               },
               "missionTypeCanonical": "Infested Salvage",
+              "missionTypeEntityId": "mission-type.infested-salvage",
+              "missionTypeDisplayName": "INFESTED 资源回收",
               "sourceCanonical": "Infested Salvage"
             },
             {
@@ -353,6 +363,8 @@
                 "excerpt": "Interception | Tier 2 Interception | B | 7.14% | 1 | 0.0714 Callisto , Jupiter | | Callisto , Jupiter Ose , Europa Rhea , Saturn Umbriel , Uranus"
               },
               "missionTypeCanonical": "Interception",
+              "missionTypeEntityId": "mission-type.interception",
+              "missionTypeDisplayName": "拦截",
               "sourceCanonical": "Tier 2 Interception"
             },
             {
@@ -505,6 +517,8 @@
                 "excerpt": "Survival | Kuva Fortress Survival | B | 6.67% | 1 | 0.0667 Taveuni , Kuva Fortress | | Taveuni , Kuva Fortress"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Kuva Fortress Survival"
             },
             {
@@ -545,6 +559,8 @@
                 "excerpt": "Survival | Tier 3 Dark Sector Survival | B | 6.67% | 1 | 0.0667 Assur , Uranus | | Assur , Uranus Kelashin , Neptune Amarna , Sedna"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Dark Sector Survival"
             },
             {
@@ -599,6 +615,8 @@
                 "excerpt": "Survival | Tier 3 Survival | B | 6.67% | 1 | 0.0667 Ophelia , Uranus | | Ophelia , Uranus Tycho , Lua Palus , Pluto Selkie , Sedna Nimus , Eris"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Survival"
             },
             {
@@ -954,36 +972,1058 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Defense"
-            },
-            {
               "kind": "node",
               "canonical": "Stöfler"
             },
             {
               "kind": "node",
               "canonical": "Kala-azar"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Excavation"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Infested Salvage"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Interception"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Survival"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Elite Crewman",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Attack Drone",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Carabus",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Frontier Regulator",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Oxium Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Observation Drone",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Oxium Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Regulator",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nemes",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Observation Drone",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Oxium Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rathuum Broadcaster",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Regulator",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Remech Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sensor Regulator",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Secura Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Turret Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Oxium Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "chance": 1.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 4 (Normal)",
+            "chance": 1.49,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vem Tabook",
+            "chance": 5,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Bode (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Valac (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Amalthea (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Aegaeon (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Dione (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Paimon (Defense), Rotation B",
+            "chance": 6.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Io (Defense), Rotation B",
+            "chance": 6.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Helene (Defense), Rotation B",
+            "chance": 6.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Camenae (Defense), Rotation B",
+            "chance": 6.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Hymeno (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Ixodes (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Kala-Azar (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Nimus (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Oestrus (Infested Salvage), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Cholistan (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Nabuk (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Taveuni (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/StöFler (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Tycho (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Despina (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Kelashin (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Proteus (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Hieracon (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Outer Terminus (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Palus (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Amarna (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Hydron (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Scylla (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Selkie (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Yemaja (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Assur (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Bianca (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Cupid (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Miranda (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Ophelia (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Stephano (Defense), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Cyath (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Gnathos (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Nereid (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Oceanum (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Kelpie (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Tikoloshe (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Rosalind (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Ose (Interception), Rotation B",
+            "chance": 7.140000000000001,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Callisto (Interception), Rotation B",
+            "chance": 7.140000000000001,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Rhea (Interception), Rotation B",
+            "chance": 7.140000000000001,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Umbriel (Interception), Rotation B",
+            "chance": 7.140000000000001,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Pavlov (Spy), Rotation B",
+            "chance": 7.489999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Casta (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Egeria (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Varro (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Lith (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Spear (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Lares (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Drunlo (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Gulliver (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Tessera (Defense), Rotation B",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Leekter",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Shik Tal",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

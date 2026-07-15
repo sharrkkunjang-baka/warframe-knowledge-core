@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Quasar_Drill",
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -106,6 +106,8 @@
                 "excerpt": "Mobile Defense | Archwing Mobile Defense | A | 3.76% | 1 | 0.0376 Erpo , Earth | | Erpo , Earth Salacia , Neptune"
               },
               "missionTypeCanonical": "Mobile Defense",
+              "missionTypeEntityId": "mission-type.mobile-defense",
+              "missionTypeDisplayName": "移动防御",
               "sourceCanonical": "Archwing Mobile Defense"
             },
             {
@@ -132,6 +134,8 @@
                 "excerpt": "Sabotage | Archwing Sabotage | A | 3.76% | 1 | 0.0376 Galilea , Jupiter | | Galilea , Jupiter"
               },
               "missionTypeCanonical": "Sabotage",
+              "missionTypeEntityId": "mission-type.sabotage",
+              "missionTypeDisplayName": "破坏",
               "sourceCanonical": "Archwing Sabotage"
             },
             {
@@ -179,18 +183,89 @@
             "notes": [],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Mobile Defense"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Sabotage"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lektro Commander",
+            "chance": 3,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pyr Captain",
+            "chance": 3,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Erpo (Mobile Defense)",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Gamygyn (Mobile Defense)",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Galilea (Sabotage)",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Salacia (Mobile Defense)",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingDualStatPunctureStatusMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

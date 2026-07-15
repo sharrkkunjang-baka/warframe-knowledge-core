@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Martyr_Symbiosis",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -74,7 +74,26 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "pattern": {},
+              "sourceEntityId": "npc.son",
+              "locationId": "hub.necralisk",
+              "requirementsEvidence": [],
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Martyr Symbiosis",
+                "pageId": 1543722,
+                "revisionId": 2774211,
+                "section": "Acquisition",
+                "excerpt": "The mod can be bought from Son for 10,000 Standing 10,000 after reaching Friend with the Entrati ."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -125,8 +144,23 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Entrati (Son), Friend",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Types/Friendly/Pets/CreaturePets/CreaturePrecepts/InfestedCatbrowVampireShieldPrecept"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

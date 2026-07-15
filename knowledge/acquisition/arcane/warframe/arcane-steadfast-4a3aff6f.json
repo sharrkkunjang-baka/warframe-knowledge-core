@@ -123,24 +123,40 @@
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast",
               "note": "官方掉落表与任务类型结构覆盖上游第三方 location 字符串。"
             }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "arcane-source.d06f05c7894f",
+            "sourceCanonical": "Otak at Necralisk",
+            "sourceDisplayName": "殁世幽都的奥塔克",
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.otak",
+              "locationId": "hub.necralisk",
+              "currency": [
+                {
+                  "currencyId": "currency.belric-crystal-fragment",
+                  "amount": 60
+                },
+                {
+                  "currencyId": "currency.rania-crystal-fragment",
+                  "amount": 60
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "provenance": {
+              "source": "de-official-drop-tables",
+              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast",
+              "note": "官方掉落表与任务类型结构覆盖上游第三方 location 字符串。"
+            }
           }
         ],
         "requirements": {
-          "type": "currency",
-          "usage": "exchange",
-          "npcId": "npc.otak",
-          "locationId": "hub.necralisk",
-          "currency": [
-            {
-              "currencyId": "currency.belric-crystal-fragment",
-              "amount": 60
-            },
-            {
-              "currencyId": "currency.rania-crystal-fragment",
-              "amount": 60
-            }
-          ],
-          "isBuffUseless": true
+          "type": "none"
         }
       },
       "tradable": true,

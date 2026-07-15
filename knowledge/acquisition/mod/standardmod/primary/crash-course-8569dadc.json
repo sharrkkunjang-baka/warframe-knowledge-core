@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -75,6 +75,22 @@
             }
           },
           "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Crash Course",
+                "pageId": 712969,
+                "revisionId": 2610489,
+                "section": "Acquisition",
+                "excerpt": "It is now offered as a periodic item for sale by Baro Ki'Teer , costing 330 330 and 200,000 Credits 200,000 to purchase. Note that Baro Ki'Teer's stock changes with each appearance, and this modification may not be available on a succeeding appearance."
+              }
+            },
             {
               "type": "enemy-drop",
               "dropTableChance": 100,
@@ -158,7 +174,22 @@
           },
           "unresolvedEntities": [],
           "status": "complete"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eidolon Teralyst",
+            "chance": 8.33,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponEventRifleImpactDamageMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -75,6 +75,22 @@
             }
           },
           "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Vermillion Storm",
+                "pageId": 598827,
+                "revisionId": 2694789,
+                "section": "Acquisition",
+                "excerpt": "Apart from being available as drops from Manic Bombards and their variants, Vermilion Storm is also offered as a periodic item for sale by Baro Ki'Teer , costing 385 385 and 175,000 Credits 175,000 to purchase."
+              }
+            },
             {
               "type": "mission-reward",
               "rotation": "A",
@@ -117,6 +133,8 @@
                 "excerpt": "Weekly Conclave Challenge Reward | Weekly Conclave Challenge Reward | A | 2.27% | 1 | 0.0227 Complete all weekly Conclave challenges to get this reward in your in-game inbox: | | Complete all weekly Conclave challenges to get this reward in your in-game inbox: Match Won: Win 6 matches of any game type. Match Complete: Complete 20 matches of any game type. Conditioning: Complete 10 Daily Challenges."
               },
               "missionTypeCanonical": "Weekly Conclave Challenge Reward",
+              "missionTypeEntityId": "mission-type.weekly-conclave-challenge-reward",
+              "missionTypeDisplayName": "武形秘仪每周挑战奖励",
               "sourceCanonical": "Weekly Conclave Challenge Reward"
             },
             {
@@ -220,14 +238,64 @@
             {
               "kind": "missionType",
               "canonical": "Rathuum"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Weekly Conclave Challenge Reward"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Drekar Manic Bombard",
+            "chance": 0.27,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ClawCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Manic Bombard",
+            "chance": 0.27,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ClawCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Nakki (Arena)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ClawCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Guardian",
+            "chance": 0.4,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/ClawCmbTwoMeleeTree"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

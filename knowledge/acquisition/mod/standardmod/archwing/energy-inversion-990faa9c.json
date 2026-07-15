@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -83,7 +83,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -96,6 +98,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Stage 1 | B | 25% | 1 | 0.25 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Stage 1"
             },
             {
@@ -106,7 +109,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -119,6 +124,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Stage 2 | B | 15.97% | 1 | 0.1597 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Stage 2"
             },
             {
@@ -145,6 +151,8 @@
                 "excerpt": "Interception | Archwing Interception | B | 10% | 1 | 0.1 Caelus , Uranus | | Caelus , Uranus"
               },
               "missionTypeCanonical": "Interception",
+              "missionTypeEntityId": "mission-type.interception",
+              "missionTypeDisplayName": "拦截",
               "sourceCanonical": "Archwing Interception"
             },
             {
@@ -367,24 +375,365 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Cetus Bounty"
-            },
-            {
               "kind": "node",
               "canonical": "Plains of Eidolon / Cetus"
-            },
-            {
-              "kind": "location",
-              "canonical": "Earth ; talk to Konzu"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Interception"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Cannon Battery",
+            "chance": 0.77,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Turret",
+            "chance": 0.77,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Shield Dargyn",
+            "chance": 1.16,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Apex Membroid",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Common Grineer Storage Container",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Raider Carver",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Raider Eviscerator",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Raider",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juvenile Membroid",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mature Membroid",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nascent Membroid",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orokin Storage Container",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Orokin Storage Container",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Reinforced Orokin Storage Container",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uncommon Corpus Storage Container",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uncommon Grineer Storage Container",
+            "chance": 1.9,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Corpus Storage Container",
+            "chance": 2.85,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Grineer Storage Container",
+            "chance": 2.85,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Gokstad Officer",
+            "chance": 3.7900000000000005,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Gokstad Pilot",
+            "chance": 3.7900000000000005,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Reinforced Grineer Storage Container",
+            "chance": 3.7900000000000005,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Butcher",
+            "chance": 3.9899999999999998,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Elite Lancer",
+            "chance": 3.9899999999999998,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Caelus (Interception), Rotation B",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 15.32,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 15.97,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldMaxMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

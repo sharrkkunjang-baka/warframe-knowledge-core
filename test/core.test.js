@@ -183,9 +183,10 @@ test('默认批准的刷取知识直接进入生产核心', () => {
   assert.equal(core.getAcquisition('电妹').entry.id, 'knowledge.acquisition.warframe.gyre');
 });
 
-test('官方 Mod 快照包含完整且唯一的 1733 条记录', () => {
-  assert.equal(core.officialCatalog.mods.length, 1733);
-  assert.equal(new Set(core.officialCatalog.mods.map(mod => mod.uniqueName)).size, 1733);
+test('官方 Mod 快照为全部 1733 条上游记录给出可用或排除状态', () => {
+  assert.equal(core.officialCatalog.counts.upstreamRecords, 1733);
+  assert.equal(core.officialCatalog.mods.length + core.officialCatalog.excludedMods.length, 1733);
+  assert.equal(new Set([...core.officialCatalog.mods, ...core.officialCatalog.excludedMods].map(mod => mod.uniqueName)).size, 1733);
   assert.equal(core.officialCatalog.source.version, '1.1269.87');
   assert.equal(core.categories.some(category => category.schemaVersion === 1), false);
 });
@@ -206,7 +207,7 @@ test('4k Mod 与本地分类和刷取条目建立覆盖关联', () => {
   assert.equal(corrupted.status, 'covered');
   const narrow = core.getOfficialMod('Narrow Minded');
   assert.deepEqual(narrow.localEntryIds, ['knowledge.acquisition.narrow-minded']);
-  assert.equal(narrow.status, 'covered');
+  assert.equal(narrow.status, 'complete');
   assert.equal(core.listMissingOfficialMods({ categoryId: 'trait.corrupted' }).some(mod => mod.uniqueName === narrow.uniqueName), false);
 });
 

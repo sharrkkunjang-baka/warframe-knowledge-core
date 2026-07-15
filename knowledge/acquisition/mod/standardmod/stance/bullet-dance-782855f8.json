@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Bullet_Dance",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -100,6 +100,8 @@
                 "excerpt": "Sabotage | Tier 4 Void Sabotage Resource Caches | C | 4.42% | 1 | 0.0442 Marduk , Void | | Marduk , Void"
               },
               "missionTypeCanonical": "Sabotage",
+              "missionTypeEntityId": "mission-type.sabotage",
+              "missionTypeDisplayName": "破坏",
               "sourceCanonical": "Tier 4 Void Sabotage Resource Caches"
             },
             {
@@ -127,6 +129,8 @@
                 "excerpt": "Sabotage | Tier 2 Void Sabotage Resource Caches | C | 3.67% | 1 | 0.0367 Stribog , Void | | Stribog , Void"
               },
               "missionTypeCanonical": "Sabotage",
+              "missionTypeEntityId": "mission-type.sabotage",
+              "missionTypeDisplayName": "破坏",
               "sourceCanonical": "Tier 2 Void Sabotage Resource Caches"
             }
           ],
@@ -277,14 +281,50 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Sabotage"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Lich Agor Rok (Level 70 - 79)",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GunbladeCmbTwoMeleeTree"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Void/Stribog (Caches), Rotation C",
+            "chance": 3.6700000000000004,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GunbladeCmbTwoMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Void/Marduk (Caches), Rotation C",
+            "chance": 4.42,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/GunbladeCmbTwoMeleeTree"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

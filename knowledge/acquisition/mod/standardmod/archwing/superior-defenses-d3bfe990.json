@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Superior_Defenses",
@@ -51,7 +51,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -100,6 +100,8 @@
                 "excerpt": "Interception | Archwing Interception | B | 20% | 1 | 0.2 Caelus , Uranus | | Caelus , Uranus"
               },
               "missionTypeCanonical": "Interception",
+              "missionTypeEntityId": "mission-type.interception",
+              "missionTypeDisplayName": "拦截",
               "sourceCanonical": "Archwing Interception"
             },
             {
@@ -133,6 +135,8 @@
                 "excerpt": "Mobile Defense | Archwing Mobile Defense | A | 38.72% | 1 | 0.3872 Erpo , Earth | | Erpo , Earth Salacia , Neptune"
               },
               "missionTypeCanonical": "Mobile Defense",
+              "missionTypeEntityId": "mission-type.mobile-defense",
+              "missionTypeDisplayName": "移动防御",
               "sourceCanonical": "Archwing Mobile Defense"
             },
             {
@@ -159,6 +163,8 @@
                 "excerpt": "Pursuit | Archwing Pursuit | A | 3.16% | 1 | 0.0316 Pandora , Saturn | | Pandora , Saturn"
               },
               "missionTypeCanonical": "Pursuit",
+              "missionTypeEntityId": "mission-type.pursuit",
+              "missionTypeDisplayName": "追击",
               "sourceCanonical": "Archwing Pursuit"
             },
             {
@@ -185,6 +191,8 @@
                 "excerpt": "Rush | Archwing Rush | B | 3.76% | 1 | 0.0376 Kepler , Phobos | | Kepler , Phobos"
               },
               "missionTypeCanonical": "Rush",
+              "missionTypeEntityId": "mission-type.rush",
+              "missionTypeDisplayName": "突袭",
               "sourceCanonical": "Archwing Rush"
             },
             {
@@ -376,26 +384,375 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Interception"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Mobile Defense"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Pursuit"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Rush"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Corvette",
+            "chance": 0.16999999999999998,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gox",
+            "chance": 0.16999999999999998,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Butcher",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Elite Lancer",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Roller Sentry",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Apex Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juvenile Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Eviscerator",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Supressor",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mature Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nascent Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orokin Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Orokin Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Reinforced Orokin Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uncommon Corpus Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uncommon Grineer Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Common Grineer Storage Container",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Eviscerator",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Supressor",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Corpus Storage Container",
+            "chance": 0.41000000000000003,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Grineer Storage Container",
+            "chance": 0.41000000000000003,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Reinforced Grineer Storage Container",
+            "chance": 0.5499999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Pandora (Pursuit)",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Kepler (Rush), Rotation B",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Caelus (Interception), Rotation B",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Erpo (Mobile Defense)",
+            "chance": 38.72,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Gamygyn (Mobile Defense)",
+            "chance": 38.72,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Salacia (Mobile Defense)",
+            "chance": 38.72,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitShieldRechargeRateMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

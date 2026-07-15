@@ -40,7 +40,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "approved",
     "reviewedBy": [
       "official-sync:syndicate-exchange"
@@ -53,7 +53,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -96,6 +96,26 @@
               "provenance": {
                 "source": "warframe-items",
                 "canonical": "New Loka"
+              }
+            },
+            {
+              "type": "syndicate-exchange-group",
+              "factionIds": [
+                "faction.arbiters-of-hexis",
+                "faction.new-loka"
+              ],
+              "standing": 25000,
+              "rankRequirement": "max",
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Chaos Sphere",
+                "pageId": 736174,
+                "revisionId": 2676580,
+                "section": "Acquisition",
+                "excerpt": "Can be acquired by attaining the rank of Maxim under the Arbiters of Hexis , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
               }
             }
           ],
@@ -160,7 +180,35 @@
           },
           "unresolvedEntities": [],
           "status": "complete"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Arbiters of Hexis, Maxim",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Powersuits/Jade/ChaosAugmentCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "New Loka, Flawless",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Powersuits/Jade/ChaosAugmentCard"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

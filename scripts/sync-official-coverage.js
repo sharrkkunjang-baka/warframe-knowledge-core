@@ -99,11 +99,19 @@ function buildManifest(generatedAt = new Date().toISOString()) {
   });
 
   const officialMods = readJson(path.join(KNOWLEDGE, 'categories', 'official.json')).mods || [];
-  const mods = officialMods.map(mod => ({
-    identity: mod.uniqueName, canonical: mod.canonical,
-    sourcePresence: { publicExport: true, package: true, wiki: Boolean(mod.wiki?.available) }, localPresence: Boolean(mod.localEntryIds?.length),
-    disposition: mod.status === 'covered' ? 'covered' : mod.status === 'stub' ? 'stub' : 'included', excludedPolicy: null, sourceConflict: false, reviewRequired: mod.status !== 'covered'
-  }));
+  const excludedMods = readJson(path.join(KNOWLEDGE, 'categories', 'official.json')).excludedMods || [];
+  const mods = [
+    ...officialMods.map(mod => ({
+      identity: mod.uniqueName, canonical: mod.canonical,
+      sourcePresence: { publicExport: true, package: true, wiki: Boolean(mod.wiki?.available) }, localPresence: Boolean(mod.localEntryIds?.length),
+      disposition: mod.status === 'complete' ? 'covered' : 'review-required', excludedPolicy: null, sourceConflict: false, reviewRequired: mod.status !== 'complete'
+    })),
+    ...excludedMods.map(mod => ({
+      identity: mod.uniqueName, canonical: mod.canonical,
+      sourcePresence: { publicExport: true, package: true, wiki: false }, localPresence: false,
+      disposition: 'excluded-policy', excludedPolicy: mod.exclusionReason, sourceConflict: false, reviewRequired: false
+    }))
+  ];
 
   const officialItems = readJson(path.join(KNOWLEDGE, 'generated', 'official-items.json')).items || [];
   const resourceIndex = readJson(path.join(KNOWLEDGE, 'acquisition', 'resource', 'categories.json')).resources || [];
@@ -117,7 +125,7 @@ function buildManifest(generatedAt = new Date().toISOString()) {
   const domains = {
     warframe: domain('warframe', frames, { publicExport: officialFrames.map(item => item.uniqueName), package: [...packageFrameById.keys()], wiki: frameEntries.filter(item => item.frameAcquisition?.generated?.acquisitionCategories?.source?.type === 'wiki-page').map(item => item.subject?.officialUniqueName) }),
     quest: domain('quest', quests, { publicExport: [...publicQuestById.keys()], package: [...packageQuestById.keys()], wiki: [] }),
-    mod: domain('mod', mods, { publicExport: officialMods.map(item => item.uniqueName), package: officialMods.map(item => item.uniqueName), wiki: officialMods.filter(item => item.wiki?.available).map(item => item.uniqueName) }),
+    mod: domain('mod', mods, { publicExport: mods.map(item => item.identity), package: mods.map(item => item.identity), wiki: officialMods.filter(item => item.wiki?.available).map(item => item.uniqueName) }),
     'official-items': domain('official-items', items, { publicExport: officialItems.map(item => item.uniqueName), package: officialItems.map(item => item.uniqueName), wiki: [] }),
     resources: domain('resources', resources, { publicExport: resources.map(item => item.identity), package: resources.map(item => item.identity), wiki: [] })
   };

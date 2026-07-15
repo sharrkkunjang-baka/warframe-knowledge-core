@@ -12,6 +12,7 @@ const {
 } = require('../src/playable-mod-filter');
 const fs = require('node:fs');
 const { createSyncPlan } = require('../scripts/sync-mods');
+const { buildOfficialCatalog } = require('../scripts/sync-official-mods');
 const { buildPlan: buildWikiPlan } = require('../scripts/sync-mod-wiki');
 const { createKnowledgeCore } = require('../src');
 const { buildPlans: buildEntityPlans } = require('../scripts/migrate-entity-registries');
@@ -29,6 +30,13 @@ test('真实 Mod 过滤排除专精、转换核心与内部重复记录', () => 
   assert.equal(playable.some(item => /SP(?:Sub)?Mod/i.test(item.uniqueName)), false);
   assert.equal(playable.some(item => item.name === 'Primed Streamline'), false);
   assert.equal(excluded.some(({ item }) => item.name === 'Pathogen Rounds' && /\/Expert\//.test(item.uniqueName)), true);
+  for (const canonical of ['Fizzbang Flourish', 'Necramech Stamina']) {
+    const record = excluded.find(({ item }) => item.name === canonical);
+    assert.equal(record?.reason, 'codex-hidden-no-acquisition-evidence');
+    assert.equal(Boolean(record?.item.excludeFromCodex), true);
+    assert.equal(Boolean(record?.item.wikiaUrl), false);
+    assert.equal((record?.item.drops || []).length, 0);
+  }
 });
 
 test('朱诺工兵恐鸟通过实体变量携带布鲁图斯扬升地点', () => {
@@ -130,14 +138,59 @@ test('Wiki 编译幂等且样本表格解析可靠', () => {
   assert.equal(frostbite.structuredMethods.some(method => method.type === 'enemy-drop'), false);
 });
 
-test('官方目录区分空壳、完整刷法与缺失状态', () => {
+test('全部已发布 Mod 都通过统一 structuredMethods 与 requirements 协议输出', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
-  const pressurePoint = core.getOfficialMod('/Lotus/Upgrades/Mods/Melee/WeaponMeleeDamageMod');
-  const narrowMinded = core.getOfficialMod('Narrow Minded');
-  assert.equal(pressurePoint.status, 'stub');
-  assert.equal(narrowMinded.status, 'covered');
-  assert.equal(core.listStubOfficialMods().some(mod => mod.uniqueName === pressurePoint.uniqueName), true);
-  assert.equal(core.listMissingOfficialMods().some(mod => mod.uniqueName === pressurePoint.uniqueName), false);
+  for (const mod of core.officialCatalog.mods.filter(item => item.status === 'complete')) {
+    const result = core.getAcquisition(mod.canonical);
+    assert.ok(result, mod.canonical);
+    assert.ok(result.description?.trim(), `${mod.canonical} 缺少发布文案`);
+    assert.ok(result.structuredMethods.length > 0, `${mod.canonical} 缺少结构化获取方法`);
+    assert.ok(result.structuredMethods.every(method => method.requirements && Array.isArray(method.requirementLines)), `${mod.canonical} 未走统一 requirements`);
+  }
+});
+
+test('官方目录为全部上游记录给出完整、待审或排除状态', () => {
+  const catalog = buildOfficialCatalog('2026-07-15T00:00:00.000Z');
+  assert.equal(catalog.counts.upstreamRecords, 1733);
+  assert.equal(catalog.counts.mods, playable.length);
+  assert.equal(catalog.counts.excludedMods, excluded.length);
+  assert.equal(catalog.counts.completeMods + catalog.counts.reviewRequiredMods, playable.length);
+  assert.equal(catalog.mods.every(mod => ['complete', 'review-required'].includes(mod.status)), true);
+  assert.equal(catalog.excludedMods.every(mod => mod.status === 'excluded-policy' && mod.exclusionReason), true);
+  assert.equal(new Set([...catalog.mods, ...catalog.excludedMods].map(mod => mod.uniqueName)).size, 1733);
+  const pressurePoint = catalog.mods.find(mod => mod.uniqueName === '/Lotus/Upgrades/Mods/Melee/WeaponMeleeDamageMod');
+  const narrowMinded = catalog.mods.find(mod => mod.canonical === 'Narrow Minded');
+  assert.equal(pressurePoint.status, 'review-required');
+  assert.equal(narrowMinded.status, 'complete');
+});
+
+test('最后本地边界项有明确的发布或排除结论', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const amanata = core.getAcquisition('Amanata Pressure');
+  const method = amanata.structuredMethods.find(item => item.type === 'vendor-or-syndicate-exchange');
+  assert.deepEqual(method && {
+    sourceEntityId: method.sourceEntityId,
+    locationId: method.locationId,
+    prerequisite: method.prerequisite,
+    requirements: method.requirements
+  }, {
+    sourceEntityId: 'npc.koumei-shrine',
+    locationId: 'hub.cetus',
+    prerequisite: 'steel-path',
+    requirements: {
+      type: 'currency', usage: 'exchange', npcId: 'npc.koumei-shrine', locationId: 'hub.cetus',
+      currency: [{ currencyId: 'currency.fate-pearl', amount: 150 }], isBuffUseless: true
+    }
+  });
+  assert.match(amanata.description, /希图斯.*150个命运之珠/);
+  assert.match(amanata.description, /需要已解锁钢铁之路/);
+  assert.doesNotMatch(amanata.description, /尚未收录/);
+  assert.equal(core.officialCatalog.mods.find(mod => mod.canonical === 'Amanata Pressure')?.status, 'complete');
+  assert.equal(core.officialCatalog.mods.find(mod => mod.canonical === 'Soaring Truth')?.status, 'review-required');
+  for (const canonical of ['Fizzbang Flourish', 'Necramech Stamina']) {
+    const record = core.officialCatalog.excludedMods.find(mod => mod.canonical === canonical);
+    assert.equal(record?.exclusionReason, 'codex-hidden-no-acquisition-evidence');
+  }
 });
 
 test('Prime Mod 默认继承奸商玩法且保留明确来源例外', () => {

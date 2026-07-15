@@ -43,11 +43,21 @@ test('Prime 战甲不使用预编译历史遗物路由', () => {
 
 test('刷磁妹走商城总图与刺杀模板', () => {
   const routed = frameAcquisition.renderRoutedAcquisition('磁妹')
-  assert.deepEqual(routed.lines, ['商城购买总图', '火卫一刺杀 军士 刷取部件'])
+  assert.deepEqual(routed.lines, ['商城购买总图', '火卫一刺杀 海军陆战队中士 刷取部件'])
   const core = createKnowledgeCore()
   const result = core.getAcquisition('磁妹')
   assert.equal(result.frameRoute.source, 'category-method')
-  assert.equal(result.description, '商城购买总图\n火卫一刺杀 军士 刷取部件')
+  assert.equal(result.description, '商城购买总图\n火卫一刺杀 海军陆战队中士 刷取部件')
+})
+
+test('全部刺杀战甲只显示刺杀地点与目标，不显示分部件概率', () => {
+  const core = createKnowledgeCore()
+  for (const item of INDEX.frames.filter(frame => frame.componentCategory === 'frame-assassination')) {
+    const result = core.getAcquisition(item.canonical)
+    const text = result.frameRoute.lines.join('\n')
+    assert.match(text, /刺杀.+刷取部件/, item.canonical)
+    assert.doesNotMatch(text, /%|概率|掉率|头、机体|系统：|头：|机体：/, item.canonical)
+  }
 })
 
 test('指定战甲主分类正确且特定任务按可用结构化数据渲染', () => {

@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Hata-Satya",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -74,7 +74,26 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.father",
+              "locationId": "hub.necralisk",
+              "rank": 4,
+              "standing": 20000,
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Hata-Satya",
+                "pageId": 1527118,
+                "revisionId": 2657473,
+                "section": "Acquisition",
+                "excerpt": "Hata-Satya can be obtained by reaching Rank 4 - Friend with the Entrati and purchased for 20,000 Standing 20,000 from Father ."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -175,8 +194,23 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Entrati (Father), Friend",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/Event/SomaCritChanceOnHitMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

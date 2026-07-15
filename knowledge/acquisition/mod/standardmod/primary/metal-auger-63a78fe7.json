@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -113,6 +113,8 @@
                 "excerpt": "Defense | Tier 2 Defense | C | 4.51% | 1 | 0.0451 Io , Jupiter | | Io , Jupiter Paimon , Europa Helene , Saturn"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 2 Defense"
             },
             {
@@ -179,6 +181,8 @@
                 "excerpt": "Defense | Tier 3 Defense | C | 2.26% | 1 | 0.0226 Stephano , Uranus | | Stephano , Uranus Stöfler , Lua Proteus , Neptune Nabuk , Kuva Fortress Outer Terminus , Pluto Hydron , Sedna Kala-azar , Eris"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 3 Defense"
             },
             {
@@ -240,6 +244,8 @@
                 "excerpt": "Defense | Tier 1 Defense | C | 7.69% | 1 | 0.0769 Lith , Earth | | Lith , Earth Tessera , Venus Lares , Mercury Spear , Mars Gulliver , Phobos Casta , Ceres"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 1 Defense"
             },
             {
@@ -322,6 +328,8 @@
                 "excerpt": "Defense | Dark Sector Defense | B | 1.47% | 1 | 0.0147 Coba , Earth | | Coba , Earth Romula , Venus Kadesh , Mars Seimeni , Ceres Sinai , Jupiter Larzac , Europa Akkad , Eris Sechura , Pluto Sangeru , Sedna"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Dark Sector Defense"
             },
             {
@@ -348,6 +356,8 @@
                 "excerpt": "Infested Salvage | Infested Salvage | C | 14.29% | 1 | 0.1429 Oestrus , Eris | | Oestrus , Eris"
               },
               "missionTypeCanonical": "Infested Salvage",
+              "missionTypeEntityId": "mission-type.infested-salvage",
+              "missionTypeDisplayName": "INFESTED 资源回收",
               "sourceCanonical": "Infested Salvage"
             },
             {
@@ -705,24 +715,967 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Defense"
-            },
-            {
               "kind": "node",
               "canonical": "Stöfler"
             },
             {
               "kind": "node",
               "canonical": "Kala-azar"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Infested Salvage"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos Venin Mutalist",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Jactus Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mine Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mutalist Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Mine Osprey",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sikula",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venin Mutalist",
+            "chance": 0.02,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Primm",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Attack Drone",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Oxium Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shield Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Turret Osprey",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Verd-Ie",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Attack Drone",
+            "chance": 0.13,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shield Osprey",
+            "chance": 0.13,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "chance": 1.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Another Betrayer, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Seimeni (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Coba (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Akkad (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Larzac (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Family Reunion, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hot Mess, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Sinai (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Kadesh (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Opik (Rush), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Sechura (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Recover The Orokin Archive, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Sangeru (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sunkiller, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Table For Two, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Aftermath, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Time's Up, Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Romula (Defense), Rotation B",
+            "chance": 1.47,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 4 (Normal)",
+            "chance": 1.49,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Ixodes (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Kala-Azar (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Nabuk (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/StöFler (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Proteus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Outer Terminus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Hydron (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Bianca (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Miranda (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Stephano (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Paimon (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Io (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Helene (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Camenae (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Bode (Spy), Rotation C",
+            "chance": 5.64,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Valac (Spy), Rotation C",
+            "chance": 5.64,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Amalthea (Spy), Rotation C",
+            "chance": 5.64,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Aegaeon (Spy), Rotation C",
+            "chance": 5.64,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Dione (Spy), Rotation C",
+            "chance": 5.64,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Casta (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Egeria (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Varro (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Lith (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Spear (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Lares (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Drunlo (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Gulliver (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Tessera (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Hapke (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cambria (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Arval (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Suisei (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Grildrig (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Shklovsky (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Unda (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Vesper (Spy), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Oestrus (Infested Salvage), Rotation C",
+            "chance": 14.29,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/The Ropalolyst (Assassination)",
+            "chance": 20,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponPunctureDepthMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Spectral_Spirit",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -74,7 +74,28 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "syndicate-exchange-group",
+              "factionIds": [
+                "faction.the-perrin-sequence",
+                "faction.red-veil"
+              ],
+              "standing": 25000,
+              "rankRequirement": "max",
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Spectral Spirit",
+                "pageId": 1585300,
+                "revisionId": 2790188,
+                "section": "Acquisition",
+                "excerpt": "Can be acquired by attaining the rank of Partner under The Perrin Sequence , or the rank of Exalted under the Red Veil , and spending 25,000 Standing 25,000 to purchase."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -175,8 +196,9 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": []
       },
       "manual": {
         "methods": [],

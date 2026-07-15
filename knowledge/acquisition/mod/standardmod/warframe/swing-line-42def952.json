@@ -41,7 +41,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "approved",
     "reviewedBy": [
       "official-sync:syndicate-exchange"
@@ -54,7 +54,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -98,6 +98,26 @@
                 "source": "warframe-items",
                 "canonical": "The Perrin Sequence"
               }
+            },
+            {
+              "type": "syndicate-exchange-group",
+              "factionIds": [
+                "faction.new-loka",
+                "faction.the-perrin-sequence"
+              ],
+              "standing": 25000,
+              "rankRequirement": "max",
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Swing Line",
+                "pageId": 608876,
+                "revisionId": 2701053,
+                "section": "Acquisition",
+                "excerpt": "Can be acquired by attaining the rank of Partner under The Perrin Sequence , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+              }
             }
           ],
           "evidence": [
@@ -120,7 +140,35 @@
           },
           "unresolvedEntities": [],
           "status": "complete"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "New Loka, Flawless",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Powersuits/Berserker/GrappleAugmentCard"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Perrin Sequence, Partner",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Powersuits/Berserker/GrappleAugmentCard"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

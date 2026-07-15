@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -83,7 +83,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -96,6 +98,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Final Stage | A | 25% | 1 | 0.25 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Final Stage"
             },
             {
@@ -106,7 +109,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -119,6 +124,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Stage 2 | A | 10.08% | 1 | 0.1008 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Stage 2"
             },
             {
@@ -345,20 +351,157 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Cetus Bounty"
-            },
-            {
               "kind": "node",
               "canonical": "Plains of Eidolon / Cetus"
-            },
-            {
-              "kind": "location",
-              "canonical": "Earth ; talk to Konzu"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Railgun Moa",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Railgun Moa",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Railgun Moa",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Railgun Moa",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Railgun Moa",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Railgun Moa",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 1 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 3 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation A",
+            "chance": 9.68,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation A",
+            "chance": 10.08,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation A",
+            "chance": 25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/SniperReloadDamageMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

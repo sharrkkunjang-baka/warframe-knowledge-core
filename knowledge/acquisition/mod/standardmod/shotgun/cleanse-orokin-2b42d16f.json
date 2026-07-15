@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cleanse_Orokin",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -99,6 +99,8 @@
                 "excerpt": "Defection | Tier 2 Defection | B | 7.27% | 1 | 0.0727 Caracol , Saturn | | Caracol , Saturn"
               },
               "missionTypeCanonical": "Defection",
+              "missionTypeEntityId": "mission-type.defection",
+              "missionTypeDisplayName": "叛逃",
               "sourceCanonical": "Tier 2 Defection"
             },
             {
@@ -125,6 +127,8 @@
                 "excerpt": "Defection | Tier 3 Defection | B | 8% | 1 | 0.08 Yursa , Neptune | | Yursa , Neptune"
               },
               "missionTypeCanonical": "Defection",
+              "missionTypeEntityId": "mission-type.defection",
+              "missionTypeDisplayName": "叛逃",
               "sourceCanonical": "Tier 3 Defection"
             },
             {
@@ -151,6 +155,8 @@
                 "excerpt": "Defection | Tier 1 Defection | B | 8% | 1 | 0.08 Memphis , Phobos | | Memphis , Phobos"
               },
               "missionTypeCanonical": "Defection",
+              "missionTypeEntityId": "mission-type.defection",
+              "missionTypeDisplayName": "叛逃",
               "sourceCanonical": "Tier 1 Defection"
             },
             {
@@ -221,14 +227,76 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Defection"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 1 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageCorrupted"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 3 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageCorrupted"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Caracol (Defection), Rotation B",
+            "chance": 7.2700000000000005,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageCorrupted"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Yursa (Defection), Rotation B",
+            "chance": 8,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageCorrupted"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Memphis (Defection), Rotation B",
+            "chance": 8,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageCorrupted"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

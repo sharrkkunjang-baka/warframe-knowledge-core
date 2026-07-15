@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cyclone_Kraken",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -99,6 +99,8 @@
                 "excerpt": "Exterminate | Kuva Fortress Exterminate Resource Caches | C | 10.79% | 1 | 0.1079 Dakata , Kuva Fortress | | Dakata , Kuva Fortress"
               },
               "missionTypeCanonical": "Exterminate",
+              "missionTypeEntityId": "mission-type.exterminate",
+              "missionTypeDisplayName": "歼灭",
               "sourceCanonical": "Kuva Fortress Exterminate Resource Caches"
             }
           ],
@@ -179,14 +181,24 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Exterminate"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Dakata (Caches), Rotation C",
+            "chance": 10.79,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/MacheteCmbTwoMeleeTree"
             }
-          ],
-          "status": "partial"
-        }
+          }
+        ]
       },
       "manual": {
         "methods": [],

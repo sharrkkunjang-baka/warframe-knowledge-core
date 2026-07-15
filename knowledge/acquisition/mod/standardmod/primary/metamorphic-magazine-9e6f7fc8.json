@@ -33,7 +33,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Metamorphic_Magazine",
@@ -41,7 +41,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -52,7 +52,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -76,7 +76,45 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "locationId": "interface.nightwave",
+              "currency": [
+                {
+                  "currencyCanonical": "Nightwave Cred",
+                  "amount": 20
+                }
+              ],
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Metamorphic Magazine",
+                "pageId": 1573255,
+                "revisionId": 2729945,
+                "section": "Acquisition",
+                "excerpt": "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis."
+              }
+            },
+            {
+              "type": "legacy-nightwave-reward",
+              "locationId": "interface.nightwave",
+              "rank": 23,
+              "chance": null,
+              "quantity": 1,
+              "availability": "legacy-or-future-rotation",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Metamorphic Magazine",
+                "pageId": 1573255,
+                "revisionId": 2729945,
+                "section": "Acquisition",
+                "excerpt": "Metamorphic Magazine was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 3 ."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -149,8 +187,9 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": []
       },
       "manual": {
         "methods": [],

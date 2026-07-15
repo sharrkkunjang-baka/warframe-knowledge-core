@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -113,6 +113,8 @@
                 "excerpt": "Defense | Tier 2 Defense | C | 4.51% | 1 | 0.0451 Io , Jupiter | | Io , Jupiter Paimon , Europa Helene , Saturn"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 2 Defense"
             },
             {
@@ -179,6 +181,8 @@
                 "excerpt": "Defense | Tier 3 Defense | C | 2.26% | 1 | 0.0226 Stephano , Uranus | | Stephano , Uranus Stöfler , Lua Proteus , Neptune Nabuk , Kuva Fortress Outer Terminus , Pluto Hydron , Sedna Kala-azar , Eris"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 3 Defense"
             },
             {
@@ -261,6 +265,8 @@
                 "excerpt": "Defense | Dark Sector Defense | B | 8.43% | 1 | 0.0843 Coba , Earth | | Coba , Earth Romula , Venus Kadesh , Mars Seimeni , Ceres Sinai , Jupiter Larzac , Europa Akkad , Eris Sechura , Pluto Sangeru , Sedna"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Dark Sector Defense"
             },
             {
@@ -287,6 +293,8 @@
                 "excerpt": "Excavation | Tier 2 Excavation | B | 6.67% | 1 | 0.0667 Valefor , Europa | | Valefor , Europa"
               },
               "missionTypeCanonical": "Excavation",
+              "missionTypeEntityId": "mission-type.excavation",
+              "missionTypeDisplayName": "挖掘",
               "sourceCanonical": "Tier 2 Excavation"
             },
             {
@@ -313,6 +321,8 @@
                 "excerpt": "Infested Salvage | Infested Salvage | C | 14.29% | 1 | 0.1429 Oestrus , Eris | | Oestrus , Eris"
               },
               "missionTypeCanonical": "Infested Salvage",
+              "missionTypeEntityId": "mission-type.infested-salvage",
+              "missionTypeDisplayName": "INFESTED 资源回收",
               "sourceCanonical": "Infested Salvage"
             },
             {
@@ -360,6 +370,8 @@
                 "excerpt": "Survival | Tier 2 Dark Sector Survival | B | 6.67% | 1 | 0.0667 Wahiba , Mars | | Wahiba , Mars Zeugma , Phobos Cameria , Jupiter Piscinas , Saturn"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 2 Dark Sector Survival"
             },
             {
@@ -400,6 +412,8 @@
                 "excerpt": "Survival | Tier 2 Survival | B | 6.67% | 1 | 0.0667 Draco , Ceres | | Draco , Ceres Elara , Jupiter Titan , Saturn"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 2 Survival"
             },
             {
@@ -850,32 +864,889 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Defense"
-            },
-            {
               "kind": "node",
               "canonical": "Stöfler"
             },
             {
               "kind": "node",
               "canonical": "Kala-azar"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Excavation"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Infested Salvage"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Survival"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Stropha Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Malleus Machinist",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Prod Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Stropha Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Prod Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Stropha Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Prod Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Stropha Crewman",
+            "chance": 0.01,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Fog Comba",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nul Comba",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sap Comba",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Slo Comba",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Detron Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Elite Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Plasmor Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Research Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Sniper Crewman",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Corpus Power Carrier",
+            "chance": 0.05,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Crewman",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Plasmor Crewman",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Sniper Crewman",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "chance": 1.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 4 (Normal)",
+            "chance": 1.49,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Ixodes (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Kala-Azar (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Nabuk (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/StöFler (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Proteus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Outer Terminus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Hydron (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Bianca (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Miranda (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Stephano (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Paimon (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Io (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Helene (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Camenae (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Draco (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Lillith (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Valefor (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Zagan (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Cameria (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Elara (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Wahiba (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Zeugma (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Piscinas (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Titan (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Another Betrayer, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Seimeni (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Coba (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Akkad (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Larzac (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Family Reunion, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hot Mess, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Sinai (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Kadesh (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Opik (Rush), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Sechura (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Recover The Orokin Archive, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Sangeru (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sunkiller, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Table For Two, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Aftermath, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Time's Up, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Romula (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Oestrus (Infested Salvage), Rotation C",
+            "chance": 14.29,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponCritDamageMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

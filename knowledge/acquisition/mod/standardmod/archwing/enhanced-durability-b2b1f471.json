@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -83,7 +83,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -96,6 +98,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Final Stage | C | 25% | 1 | 0.25 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Final Stage"
             },
             {
@@ -106,7 +109,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -119,6 +124,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Stage 2 | C | 10.08% | 1 | 0.1008 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Stage 2"
             },
             {
@@ -244,20 +250,300 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Cetus Bounty"
-            },
-            {
               "kind": "node",
               "canonical": "Plains of Eidolon / Cetus"
-            },
-            {
-              "kind": "location",
-              "canonical": "Earth ; talk to Konzu"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Corvette",
+            "chance": 0.16999999999999998,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gox",
+            "chance": 0.16999999999999998,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Zeplen",
+            "chance": 0.22999999999999998,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Butcher",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Elite Lancer",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Roller Sentry",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Apex Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juvenile Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mature Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nascent Membroid",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orokin Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Orokin Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Reinforced Orokin Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uncommon Corpus Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uncommon Grineer Storage Container",
+            "chance": 0.27999999999999997,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Common Grineer Storage Container",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Corpus Storage Container",
+            "chance": 0.41000000000000003,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Rare Grineer Storage Container",
+            "chance": 0.41000000000000003,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Reinforced Grineer Storage Container",
+            "chance": 0.5499999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation C",
+            "chance": 9.68,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation C",
+            "chance": 10.08,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation C",
+            "chance": 25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Suit/ArchwingSuitHealthMaxMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

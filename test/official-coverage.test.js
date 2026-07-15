@@ -26,7 +26,9 @@ test('manifest covers required domains and records policy states', () => {
     assert.ok(domain.entries.every(entry => Object.hasOwn(entry, 'excludedPolicy') && Object.hasOwn(entry, 'sourceConflict') && Object.hasOwn(entry, 'reviewRequired')));
   }
   assert.ok(manifest.domains.warframe.entries.some(entry => entry.disposition === 'excluded-policy'));
-  assert.ok(manifest.domains.mod.entries.some(entry => entry.disposition === 'stub'));
+  assert.ok(manifest.domains.mod.entries.some(entry => entry.disposition === 'review-required'));
+  assert.ok(manifest.domains.mod.entries.some(entry => entry.disposition === 'excluded-policy'));
+  assert.equal(manifest.domains.mod.entries.length, 1733);
 });
 
 test('source differences are derived from identities rather than fixed totals', () => {

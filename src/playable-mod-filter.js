@@ -80,6 +80,10 @@ function getExclusionReason(item, recordsByCanonical) {
   if (item?.name === 'Unfused Artifact') return 'unfused-artifact-internal'
   if (/\/BrokenFrame\//i.test(uniqueName)) return 'broken-frame-internal'
   if (/SP(?:Sub)?Mod/i.test(uniqueName)) return 'steel-path-internal'
+  if (uniqueName === '/Lotus/Upgrades/Mods/Sentinel/Kubrow/ChargerFinisherMod') return 'removed-replaced-mod'
+  if (uniqueName === '/Lotus/Upgrades/Mods/Warframe/AvatarDamageResistanceStun') return 'retrieved-unreleased-mod'
+  if (uniqueName === '/Lotus/Upgrades/Mods/Hoverboard/HBFireWorksMod') return 'codex-hidden-no-acquisition-evidence'
+  if (uniqueName === '/Lotus/Upgrades/Mods/Necromech/NecromechSprintEfficiencyMod') return 'codex-hidden-no-acquisition-evidence'
   if (isBeginner(item) && !isFlawedMod(item)) return 'non-flawed-beginner'
   if (isExpert(item) && !hasWikiIdentity(item)) return 'unreleased-expert'
 

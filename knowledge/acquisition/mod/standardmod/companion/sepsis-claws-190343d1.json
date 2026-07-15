@@ -33,7 +33,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Sepsis_Claws",
@@ -41,7 +41,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -52,7 +52,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -76,7 +76,26 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "pattern": {},
+              "sourceEntityId": "npc.son",
+              "locationId": "hub.necralisk",
+              "requirementsEvidence": [],
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Sepsis Claws",
+                "pageId": 1587433,
+                "revisionId": 2696175,
+                "section": "Acquisition",
+                "excerpt": "Sepsis Claws can be purchased from Son on the Necralisk , Deimos for:"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -149,8 +168,9 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": []
       },
       "manual": {
         "methods": [],

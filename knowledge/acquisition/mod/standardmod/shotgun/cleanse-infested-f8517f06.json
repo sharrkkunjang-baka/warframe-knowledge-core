@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cleanse_Infested",
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -113,6 +113,8 @@
                 "excerpt": "Excavation | Tier 3 Excavation | C | 3.76% | 1 | 0.0376 Cholistan , Europa | | Cholistan , Europa Despina , Neptune Hieracon , Pluto"
               },
               "missionTypeCanonical": "Excavation",
+              "missionTypeEntityId": "mission-type.excavation",
+              "missionTypeDisplayName": "挖掘",
               "sourceCanonical": "Tier 3 Excavation"
             },
             {
@@ -139,6 +141,8 @@
                 "excerpt": "Sabotage | Orokin Derelict Resource Caches | B | 4.42% | 1 | 0.0442 Formido , Deimos | | Formido , Deimos"
               },
               "missionTypeCanonical": "Sabotage",
+              "missionTypeEntityId": "mission-type.sabotage",
+              "missionTypeDisplayName": "破坏",
               "sourceCanonical": "Orokin Derelict Resource Caches"
             },
             {
@@ -193,6 +197,8 @@
                 "excerpt": "Survival | Tier 3 Survival | C | 3.76% | 1 | 0.0376 Ophelia , Uranus | | Ophelia , Uranus Tycho , Lua Palus , Pluto Selkie , Sedna Nimus , Eris"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Survival"
             },
             {
@@ -387,22 +393,284 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Excavation"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Sabotage"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Survival"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos Leaper",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Leaper",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 1 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 3 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Demolisher Boiler",
+            "chance": 3.75,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Demolisher Charger",
+            "chance": 3.75,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Demolisher Juggernaut",
+            "chance": 3.75,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Demolisher Thrasher",
+            "chance": 3.75,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Hymeno (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Nimus (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Cholistan (Excavation), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Tycho (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Despina (Excavation), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Hieracon (Excavation), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Palus (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Scylla (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Selkie (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Yemaja (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Cupid (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Ophelia (Survival), Rotation C",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Formido (Caches), Rotation B",
+            "chance": 4.42,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponShotgunFactionDamageInfested"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

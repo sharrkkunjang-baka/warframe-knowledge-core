@@ -49,14 +49,15 @@ const EXACT_ZH = Object.freeze({
   'Isolation Vault': '隔离库',
   'Capture': '捕获',
   'Uranus Proxima Completion Bonuses': '天王星比邻星域任务完成奖励',
-  'Hunhow at Pontis Tower': '庞蒂斯之塔的 Hunhow',
+  'Otak at Necralisk': '殁世幽都的奥塔克',
+  'Hunhow at Pontis Tower': '边界之塔的 Hunhow',
   'Emerald Talent': '翠绿天赋',
-  'Crimson Talent': '深红天赋',
-  'Roathe at La Cathédrale': '解剖圣所大教堂的 Roathe',
-  'Maphica': 'Maphica',
-  'Steel Path The Descendia weekly reward': '钢铁之路 The Descendia 每周轮换奖励',
-  'Marie rotating shop': 'Marie 的轮换商店',
-  'random Perita resources': '随机 Perita 资源'
+  'Crimson Talent': '猩红天赋',
+  'Roathe at La Cathédrale': '解剖圣所大教堂的罗瑟',
+  'Maphica': '怒火核',
+  'Steel Path The Descendia weekly reward': '钢铁之路沉沦之地每周轮换奖励',
+  'Marie rotating shop': '玛丽的轮换商店',
+  'random Perita resources': '随机佩里塔资源'
 })
 
 const ENEMY_ZH = Object.freeze({

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { renderGameText } = require('../src/game-text');
 const Items = require('warframe-items');
+const { filterPlayableMods } = require('../src/playable-mod-filter');
 const { readCategoryDirectory, readEntryDirectory } = require('../src/loader');
 
 const root = path.join(__dirname, '..');
@@ -61,9 +62,19 @@ function findLocalCategoryMatches(officialCategory, localCategories) {
     .sort();
 }
 
+function hasApprovedAcquisition(entry) {
+  if (!entry || entry.reviewStatus !== 'approved') return false;
+  const generated = entry.modAcquisition?.generated?.wiki;
+  const manual = entry.modAcquisition?.manual || {};
+  const methods = [...(generated?.methods || []), ...(manual.methods || []).filter(method => method.reviewStatus === 'approved')];
+  const methodRefs = [...new Set([...(entry.methodRefs || []), ...(manual.methodRefs || [])])];
+  return methods.length > 0 || methodRefs.length > 0 || entry.modAcquisition?.generated?.identity?.variant === 'prime';
+}
+
 function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const packageInfo = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
-  const items = new Items({ category: ['Mods'], i18n: ['zh'] });
+  const rawItems = new Items({ category: ['Mods'], i18n: ['zh'] });
+  const { playable: items, excluded } = filterPlayableMods(rawItems);
   const localCategories = readCategoryDirectory(path.join(knowledgeRoot, 'categories'));
   const acquisitionEntries = readEntryDirectory(path.join(root, 'knowledge', 'acquisition'));
   const acquisitionsByCanonical = new Map();
@@ -95,7 +106,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const mods = [...items]
     .sort((a, b) => a.uniqueName.localeCompare(b.uniqueName))
     .map(item => {
-      const localized = items.i18n[item.uniqueName]?.zh || {};
+      const localized = rawItems.i18n[item.uniqueName]?.zh || {};
       const hasChineseName = Boolean(localized.name && localized.name !== item.name);
       const officialCategoryIds = [`type.${slug(item.type)}`];
       if (item.compatName) officialCategoryIds.push(`compat.${slug(item.compatName)}`);
@@ -105,10 +116,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         ...(acquisitionsByUniqueName.get(item.uniqueName) || []),
         ...(acquisitionsByCanonical.get(normalize(item.name)) || [])
       ])].sort();
-      const hasCompleteEntry = localEntryIds.some(id => {
-        const entry = acquisitionById.get(id);
-        return entry && entry.acquisitionStatus !== 'stub' && entry.methodRefs?.length;
-      });
+      const hasCompleteEntry = localEntryIds.some(id => hasApprovedAcquisition(acquisitionById.get(id)));
       return {
         uniqueName: item.uniqueName,
         canonical: item.name,
@@ -137,7 +145,9 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         officialCategoryIds,
         wiki: item.wikiaUrl ? { available: item.wikiAvailable !== false, url: item.wikiaUrl } : { available: false, url: null },
         localEntryIds,
-        status: hasCompleteEntry ? 'covered' : localEntryIds.length ? 'stub' : 'missing'
+        status: hasCompleteEntry ? 'complete' : 'review-required',
+        reviewRequired: !hasCompleteEntry,
+        evidenceStatus: hasCompleteEntry ? 'approved-acquisition' : localEntryIds.length ? 'identity-present-acquisition-unapproved' : 'identity-missing'
       };
     });
 
@@ -166,8 +176,15 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       };
     });
 
-  const coveredMods = mods.filter(mod => mod.status === 'covered').length;
-  const stubMods = mods.filter(mod => mod.status === 'stub').length;
+  const completeMods = mods.filter(mod => mod.status === 'complete').length;
+  const reviewRequiredMods = mods.filter(mod => mod.status === 'review-required').length;
+  const excludedMods = excluded.map(({ item, reason }) => ({
+    uniqueName: item.uniqueName,
+    canonical: item.name,
+    type: item.type || null,
+    status: 'excluded-policy',
+    exclusionReason: reason
+  })).sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
   const coveredCategories = officialCategories.filter(category => category.status === 'covered').length;
   const missingChineseNames = mods.filter(mod => mod.localizationStatus === 'missing-zh').length;
 
@@ -187,18 +204,20 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       upstream: 'Warframe Public Export'
     },
     counts: {
+      upstreamRecords: rawItems.length,
       mods: mods.length,
+      excludedMods: excludedMods.length,
       officialCategories: officialCategories.length,
       localCategories: localCategorySnapshot.length,
-      coveredMods,
-      stubMods,
-      missingMods: mods.length - coveredMods - stubMods,
+      completeMods,
+      reviewRequiredMods,
       coveredOfficialCategories: coveredCategories,
       missingOfficialCategories: officialCategories.length - coveredCategories,
       missingChineseNames
     },
     officialCategories,
     localCategories: localCategorySnapshot,
+    excludedMods,
     mods
   };
 }
@@ -237,4 +256,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { buildOfficialCatalog, serialize };
+module.exports = { hasApprovedAcquisition, buildOfficialCatalog, serialize };

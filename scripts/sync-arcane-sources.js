@@ -7,13 +7,14 @@ const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'knowledge', 'arcane-sources')
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'))
 const ARCANES = require(path.join(ITEMS_ROOT, 'data/json/Arcanes.json'))
+const MODS = require(path.join(ITEMS_ROOT, 'data/json/Mods.json'))
 const SUPPLEMENTS = path.join(ROOT, 'generated', 'official-arcane-supplements.json')
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 100) || 'source' }
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
 function buildPlan() {
   const supplementMethods = fs.existsSync(SUPPLEMENTS) ? (JSON.parse(fs.readFileSync(SUPPLEMENTS, 'utf8')).entries || []).flatMap(entry => entry.methods || []) : []
-  const canonicals = [...new Set([...ARCANES.filter(item => item.name !== 'Arcane' && !item.excludeFromCodex).flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...supplementMethods.map(method => method.sourceCanonical).filter(Boolean)])].sort()
-  const entries = canonicals.map(canonical => ({ id: sourceId(canonical), canonical, displayName: displaySource(canonical), kind: sourceKind(canonical), aliases: [], localization: { status: displaySource(canonical) === canonical ? 'canonical-fallback' : 'official-or-audited', rule: '禁止运行时猜译' }, source: 'warframe-items Arcanes.json + official i18n/audited mapping' }))
+  const canonicals = [...new Set([...ARCANES.filter(item => item.name !== 'Arcane' && !item.excludeFromCodex).flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...MODS.flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...supplementMethods.map(method => method.sourceCanonical).filter(Boolean)])].sort()
+  const entries = canonicals.map(canonical => ({ id: sourceId(canonical), canonical, displayName: displaySource(canonical), kind: sourceKind(canonical), aliases: [], localization: { status: displaySource(canonical) === canonical ? 'canonical-fallback' : 'official-or-audited', rule: '禁止运行时猜译' }, source: 'warframe-items Arcanes.json/Mods.json + official i18n/audited mapping' }))
   const categories = [...new Set(entries.map(entry => entry.kind))].sort().map(id => ({ id, count: entries.filter(entry => entry.kind === id).length }))
   return { entries, index: { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0, 10), type: 'arcane-sources', count: entries.length, categories, variables: entries.map(entry => ({ id: entry.id, canonical: entry.canonical, displayName: entry.displayName, kind: entry.kind, category: entry.kind, file: `${entry.kind}/${slug(entry.canonical)}-${entry.id.slice(-8)}.json` })) } }
 }

@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Galeforce_Dawn",
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -85,7 +85,9 @@
                   "nodeCanonical": "Halako Perimeter",
                   "nodeEntityId": "node.SolNode231",
                   "nodeDisplayName": "哈拉科防线",
-                  "planetCanonical": "Zariman"
+                  "planetCanonical": "Zariman",
+                  "planetEntityId": "location.zariman",
+                  "planetDisplayName": "扎里曼号"
                 }
               ],
               "availability": "unknown",
@@ -98,6 +100,8 @@
                 "excerpt": "Exterminate | Zariman Exterminate | A | 4.88% | 1 | 0.0488 Halako Perimeter , Zariman | | Halako Perimeter , Zariman"
               },
               "missionTypeCanonical": "Exterminate",
+              "missionTypeEntityId": "mission-type.exterminate",
+              "missionTypeDisplayName": "歼灭",
               "sourceCanonical": "Zariman Exterminate"
             },
             {
@@ -110,7 +114,9 @@
                   "nodeCanonical": "The Greenway",
                   "nodeEntityId": "node.SolNode235",
                   "nodeDisplayName": "翠径",
-                  "planetCanonical": "Zariman"
+                  "planetCanonical": "Zariman",
+                  "planetEntityId": "location.zariman",
+                  "planetDisplayName": "扎里曼号"
                 }
               ],
               "availability": "unknown",
@@ -123,6 +129,8 @@
                 "excerpt": "Mobile Defense | Zariman Mobile Defense | A | 4.88% | 1 | 0.0488 The Greenway , Zariman | | The Greenway , Zariman"
               },
               "missionTypeCanonical": "Mobile Defense",
+              "missionTypeEntityId": "mission-type.mobile-defense",
+              "missionTypeDisplayName": "移动防御",
               "sourceCanonical": "Zariman Mobile Defense"
             },
             {
@@ -135,7 +143,9 @@
                   "nodeCanonical": "Oro Works",
                   "nodeEntityId": "node.SolNode233",
                   "nodeDisplayName": "奥金工场",
-                  "planetCanonical": "Zariman"
+                  "planetCanonical": "Zariman",
+                  "planetEntityId": "location.zariman",
+                  "planetDisplayName": "扎里曼号"
                 }
               ],
               "availability": "unknown",
@@ -148,6 +158,8 @@
                 "excerpt": "Void Armageddon | Void Armageddon | C | 10% | 1 | 0.1 Oro Works , Zariman | | Oro Works , Zariman"
               },
               "missionTypeCanonical": "Void Armageddon",
+              "missionTypeEntityId": "mission-type.void-armageddon",
+              "missionTypeDisplayName": "虚空决战",
               "sourceCanonical": "Void Armageddon"
             },
             {
@@ -206,26 +218,76 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Exterminate"
-            },
-            {
-              "kind": "location",
-              "canonical": "Zariman"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Mobile Defense"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Void Armageddon"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Derivator Crewman",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/HeavyScytheCmbOneMeleeTree"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Trokarian",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/HeavyScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Zariman/Halako Perimeter (Exterminate)",
+            "chance": 4.88,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/HeavyScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Zariman/The Greenway (Mobile Defense)",
+            "chance": 4.88,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/HeavyScytheCmbOneMeleeTree"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Zariman/Oro Works (Void Armageddon), Rotation C",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/HeavyScytheCmbOneMeleeTree"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

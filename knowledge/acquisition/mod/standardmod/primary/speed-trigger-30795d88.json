@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -83,7 +83,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -96,6 +98,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Stage 2 | B | 10.08% | 1 | 0.1008 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Stage 2"
             },
             {
@@ -106,7 +109,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -119,6 +124,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 10-30 Final Stage | B | 25% | 1 | 0.25 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 10-30 Final Stage"
             },
             {
@@ -201,6 +207,8 @@
                 "excerpt": "Defense | Dark Sector Defense | B | 8.43% | 1 | 0.0843 Coba , Earth | | Coba , Earth Romula , Venus Kadesh , Mars Seimeni , Ceres Sinai , Jupiter Larzac , Europa Akkad , Eris Sechura , Pluto Sangeru , Sedna"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Dark Sector Defense"
             },
             {
@@ -255,6 +263,8 @@
                 "excerpt": "Interception | Tier 1 Interception | B | 5.56% | 1 | 0.0556 Gaia , Earth | | Gaia , Earth Cytherean , Venus Odin , Mercury Alator , Mars Cinxia , Ceres"
               },
               "missionTypeCanonical": "Interception",
+              "missionTypeEntityId": "mission-type.interception",
+              "missionTypeDisplayName": "拦截",
               "sourceCanonical": "Tier 1 Interception"
             },
             {
@@ -538,28 +548,573 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Cetus Bounty"
-            },
-            {
               "kind": "node",
               "canonical": "Plains of Eidolon / Cetus"
-            },
-            {
-              "kind": "location",
-              "canonical": "Earth ; talk to Konzu"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Defense"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Interception"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Carrion Charger",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Charger",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos Charger",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos Juggernaut",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jack O'Naut",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juggernaut Behemoth",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juggernaut",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Crewman",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Polyp-Hog Juggernaut",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 1 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 3 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Bode (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Cinxia (Interception), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Gaia (Interception), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Valac (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Amalthea (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Alator (Interception), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Odin (Interception), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Aegaeon (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Dione (Spy), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Cytherean (Interception), Rotation B",
+            "chance": 5.56,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Another Betrayer, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Seimeni (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Coba (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Akkad (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Larzac (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Family Reunion, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hot Mess, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Sinai (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Kadesh (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Opik (Rush), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Sechura (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Recover The Orokin Archive, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Sangeru (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sunkiller, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Table For Two, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Aftermath, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Time's Up, Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Romula (Defense), Rotation B",
+            "chance": 8.43,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 9.68,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 10.08,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eidolon Hydrolyst",
+            "chance": 22.220000000000002,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 10 - 30 Cetus Bounty), Rotation B",
+            "chance": 25,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

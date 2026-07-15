@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Mystic_Bond",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -74,7 +74,26 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "pattern": {},
+              "sourceEntityId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "requirementsEvidence": [],
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Mystic Bond",
+                "pageId": 1581001,
+                "revisionId": 2792821,
+                "section": "Acquisition",
+                "excerpt": "The mod can be bought from Master Teasonai for 20,000 Standing 20,000 after reaching Rank 3 - Trusted with the Ostrons ."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -175,8 +194,23 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ostron (Master Teasonai), Trusted",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/PreyDrive"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

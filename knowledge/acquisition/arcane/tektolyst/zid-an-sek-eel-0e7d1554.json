@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.0e7d1554",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Zid-An Sek-Eel",
+  "title": "齐塞",
   "subject": {
     "canonical": "Zid-An Sek-Eel",
-    "displayName": "Zid-An Sek-Eel",
+    "displayName": "齐塞",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Zid-An Sek-Eel"
   },
@@ -32,7 +32,8 @@
     },
     {
       "stats": [
-        "Gain invisiblity for 30s after activating Tauron Strike\n+9% Tauron Strike Charge Rate"
+        "激活 Tauron 打击后获得隐身效果，持续 30 秒",
+        "+9% Tauron 打击充能速率"
       ]
     }
   ],
@@ -44,8 +45,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Zid-An Sek-Eel",
         "canonical": "Zid-An Sek-Eel",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "齐塞",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "tektolyst",
@@ -73,11 +74,13 @@
           },
           {
             "stats": [
-              "Gain invisiblity for 30s after activating Tauron Strike\n+9% Tauron Strike Charge Rate"
+              "激活 Tauron 打击后获得隐身效果，持续 30 秒",
+              "+9% Tauron 打击充能速率"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Upgrades/UltimateInvisibiltyDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +90,14 @@
             "sourceCanonical": "Marie rotating shop (random Perita resources)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.f2875f13b99c",
-            "sourceDisplayName": "Marie 的轮换商店 (随机 Perita 资源)",
+            "sourceDisplayName": "玛丽的轮换商店 (随机佩里塔资源)",
+            "requirements": {
+              "type": "item",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "itemGroupId": "resource-group.perita",
+              "amountStatus": "random"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Zid-An Sek-Eel",

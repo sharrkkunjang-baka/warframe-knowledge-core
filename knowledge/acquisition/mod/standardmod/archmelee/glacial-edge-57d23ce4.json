@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Glacial_Edge",
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -99,6 +99,8 @@
                 "excerpt": "Interception | Archwing Interception | B | 10% | 1 | 0.1 Caelus , Uranus | | Caelus , Uranus"
               },
               "missionTypeCanonical": "Interception",
+              "missionTypeEntityId": "mission-type.interception",
+              "missionTypeDisplayName": "拦截",
               "sourceCanonical": "Archwing Interception"
             },
             {
@@ -125,6 +127,8 @@
                 "excerpt": "Pursuit | Archwing Pursuit | A | 4.74% | 1 | 0.0474 Pandora , Saturn | | Pandora , Saturn"
               },
               "missionTypeCanonical": "Pursuit",
+              "missionTypeEntityId": "mission-type.pursuit",
+              "missionTypeDisplayName": "追击",
               "sourceCanonical": "Archwing Pursuit"
             },
             {
@@ -151,6 +155,8 @@
                 "excerpt": "Rush | Archwing Rush | A | 16.67% | 1 | 0.1667 Kepler , Phobos | | Kepler , Phobos"
               },
               "missionTypeCanonical": "Rush",
+              "missionTypeEntityId": "mission-type.rush",
+              "missionTypeDisplayName": "突袭",
               "sourceCanonical": "Archwing Rush"
             },
             {
@@ -177,6 +183,8 @@
                 "excerpt": "Sabotage | Archwing Sabotage | A | 25.81% | 1 | 0.2581 Galilea , Jupiter | | Galilea , Jupiter"
               },
               "missionTypeCanonical": "Sabotage",
+              "missionTypeEntityId": "mission-type.sabotage",
+              "missionTypeDisplayName": "破坏",
               "sourceCanonical": "Archwing Sabotage"
             },
             {
@@ -349,26 +357,193 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Interception"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Pursuit"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Rush"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Sabotage"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Gokstad Officer",
+            "chance": 0.04,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Gokstad Pilot",
+            "chance": 0.04,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Roller Sentry",
+            "chance": 0.04,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Dargyn",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Gokstad Officer",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kosma Gokstad Pilot",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Tusk Dargyn",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Tusk Shield Dargyn",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Gokstad Officer",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Exo Gokstad Pilot",
+            "chance": 0.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Pandora (Pursuit)",
+            "chance": 4.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Caelus (Interception), Rotation B",
+            "chance": 10,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Kepler (Rush), Rotation A",
+            "chance": 16.669999999999998,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Galilea (Sabotage)",
+            "chance": 25.81,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

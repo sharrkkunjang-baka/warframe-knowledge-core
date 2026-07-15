@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -75,6 +75,21 @@
             }
           },
           "methods": [
+            {
+              "type": "quest-reward",
+              "questCanonical": "Teacher",
+              "chance": null,
+              "quantity": 1,
+              "availability": "one-time-or-repurchase",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Continuity",
+                "pageId": 18976,
+                "revisionId": 2709330,
+                "section": "Drop Locations",
+                "excerpt": "An unranked Continuity is given upon completion of The Teacher Quest."
+              }
+            },
             {
               "type": "mission-reward",
               "rotation": "C",
@@ -134,6 +149,8 @@
                 "excerpt": "Defense | Tier 1 Defense | C | 7.69% | 1 | 0.0769 Lith , Earth | | Lith , Earth Tessera , Venus Lares , Mercury Spear , Mars Gulliver , Phobos Casta , Ceres"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 1 Defense"
             },
             {
@@ -200,6 +217,8 @@
                 "excerpt": "Defense | Tier 3 Defense | C | 2.26% | 1 | 0.0226 Stephano , Uranus | | Stephano , Uranus Stöfler , Lua Proteus , Neptune Nabuk , Kuva Fortress Outer Terminus , Pluto Hydron , Sedna Kala-azar , Eris"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 3 Defense"
             },
             {
@@ -360,10 +379,6 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Defense"
-            },
-            {
               "kind": "node",
               "canonical": "Stöfler"
             },
@@ -373,7 +388,542 @@
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Glaxion Moa",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Glaxion Moa",
+            "chance": 0.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Elite Shield Lancer",
+            "chance": 0.13999999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Commander",
+            "chance": 1.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "General Sargas Ruk",
+            "chance": 1.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "chance": 1.03,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 4 (Normal)",
+            "chance": 1.49,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nechramech (Tier 2)",
+            "chance": 1.66,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Another Betrayer, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Family Reunion, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hot Mess, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Opik (Rush), Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Recover The Orokin Archive, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sunkiller, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Table For Two, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Aftermath, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Time's Up, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Ixodes (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Kala-Azar (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Nabuk (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/StöFler (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Proteus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Outer Terminus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Hydron (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Bianca (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Miranda (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Stephano (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 40 - 50 Arcana Isolation Vault), Rotation B",
+            "chance": 7.5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 40 - 50 Isolation Vault), Rotation B",
+            "chance": 7.5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Casta (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Egeria (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Varro (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Lith (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Spear (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Lares (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Drunlo (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Gulliver (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Tessera (Defense), Rotation C",
+            "chance": 7.6899999999999995,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 40 - 50 Arcana Isolation Vault), Rotation B",
+            "chance": 9.379999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 40 - 50 Arcana Isolation Vault), Rotation B",
+            "chance": 15,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kahl's Garrison (Chipper), Fort",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityDurationMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

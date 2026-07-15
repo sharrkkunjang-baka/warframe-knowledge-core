@@ -34,21 +34,30 @@ const METHOD_TEMPLATES = Object.freeze({
 })
 function methodTemplate(scope, category, name = 'template') { return METHOD_DEFINITIONS[scope]?.[category]?.[name] || null }
 
+// 刺杀模板变量契约：固定节点只能使用 locationId + enemyId；动态来源使用
+// acquisitionSourceId + enemyId。sourceCanonical 仅保存官方掉落证据，不参与渲染。
 const ASSASSINATION_SOURCES = Object.freeze({
-  'Earth/Everest': { planetName: '地球', enemyName: '巨型豺狼' },
-  'Venus/Fossa': { planetName: '金星', enemyName: '豺狼' },
-  'Mercury/Tolstoj': { planetName: '水星', enemyName: '沃尔上尉' },
-  'Mars/War': { planetName: '火星', enemyName: '莱希·克里尔中尉' },
-  'Phobos/Iliad': { planetName: '火卫一', enemyName: '军士' },
-  'Ceres/Exta': { planetName: '谷神星', enemyName: '沃尔上尉与莱希·克里尔中尉' },
-  'Jupiter/The Ropalolyst': { planetName: '木星', enemyName: '蝠力使' },
-  'Saturn/Tethys': { planetName: '土星', enemyName: '萨加斯·鲁克将军' },
-  'Uranus/Titania': { planetName: '天王星', enemyName: '泰尔·雷格' },
-  'Neptune/Psamathe': { planetName: '海王星', enemyName: '鬣狗群' },
-  'Pluto/Hades': { planetName: '冥王星', enemyName: 'Ambulas' },
-  'Sedna/Merrow': { planetName: '赛德娜', enemyName: '凯拉·德·赛姆' },
+  'Venus/Fossa': { locationId: 'planet.venus', enemyId: 'enemy.jackal' },
+  'Mars/War': { locationId: 'planet.mars', enemyId: 'enemy.lieutenant-lech-kril' },
+  'Phobos/Iliad': { locationId: 'planet.phobos', enemyId: 'enemy.the-sergeant' },
+  'Ceres/Exta': { locationId: 'planet.ceres', enemyId: 'enemy.captain-vor-and-lieutenant-lech-kril' },
+  'Jupiter/The Ropalolyst': { locationId: 'planet.jupiter', enemyId: 'enemy.ropalolyst' },
+  'Saturn/Tethys': { locationId: 'planet.saturn', enemyId: 'enemy.general-sargas-ruk' },
+  'Uranus/Titania': { locationId: 'planet.uranus', enemyId: 'enemy.tyl-regor' },
+  'Neptune/Psamathe': { locationId: 'planet.neptune', enemyId: 'enemy.hyena-pack' },
+  'Pluto/Hades': { locationId: 'planet.pluto', enemyId: 'enemy.ambulas' },
+  'Sedna/Merrow': { locationId: 'planet.sedna', enemyId: 'enemy.kela-de-thaym' },
   'Eris/Mutalist Alad V Assassinate': { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v' },
-  'Deimos/Magnacidium': { planetName: '火卫二', enemyName: 'Lephantis' }
+  'Deimos/Magnacidium': { locationId: 'planet.deimos', enemyId: 'enemy.lephantis' }
+})
+const ASSASSINATION_FRAME_OVERRIDES = Object.freeze({
+  Atlas: { locationId: 'planet.eris', enemyId: 'enemy.jordas-golem', sourceCanonical: 'Eris/Jordas Golem (Assassination)' },
+  Equinox: { locationId: 'planet.uranus', enemyId: 'enemy.tyl-regor', sourceCanonical: 'Uranus/Titania (Assassination)' },
+  Hydroid: { locationId: 'planet.earth', enemyId: 'enemy.councilor-vay-hek', sourceCanonical: 'Earth/Oro (Assassination)' },
+  Mesa: { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v', sourceCanonical: 'Mutalist Alad V Assassinate, Rotation C' },
+  Nova: { locationId: 'planet.europa', enemyId: 'enemy.raptor', sourceCanonical: 'Europa/Naamah (Assassination)' },
+  Nyx: { acquisitionSourceId: 'source.phorid-assassination', enemyId: 'enemy.phorid', sourceCanonical: 'Phorid Assassination' },
+  Valkyr: { locationId: 'planet.jupiter', enemyId: 'enemy.alad-v', sourceCanonical: 'Jupiter/Themisto (Assassination)' }
 })
 
 const BLUEPRINT_OVERRIDES = Object.freeze({
@@ -126,8 +135,8 @@ function classifyBlueprint(frame, componentCategory, page) {
   return { category: 'unresolved', variables: {}, source: 'unresolved' }
 }
 function assassinationVariables(frame) {
-  if (frame.name === 'Mesa') return { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v', sourceCanonical: 'Eris/Mutalist Alad V Assassinate' }
-  const location = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).find(value => /Assassination/i.test(value)) || ''
+  if (ASSASSINATION_FRAME_OVERRIDES[frame.name]) return { ...ASSASSINATION_FRAME_OVERRIDES[frame.name] }
+  const location = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).find(value => /Assassination|Assassinate/i.test(value)) || ''
   const key = Object.keys(ASSASSINATION_SOURCES).find(source => location.startsWith(source))
   return key ? { ...ASSASSINATION_SOURCES[key], sourceCanonical: location } : { sourceCanonical: location }
 }
@@ -195,4 +204,4 @@ function applyTemplate(template, variables) {
   return missing ? null : text
 }
 
-module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_ROOT, METHOD_DEFINITIONS, METHOD_TEMPLATES, ASSASSINATION_SOURCES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, REQUIRE_OVERRIDES, loadMethodDefinitions, methodTemplate, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, bountyVariables, acquisitionRequirement, buildRouting, applyTemplate }
+module.exports = { CATEGORY_DIRS, BLUEPRINT_CATEGORIES, METHOD_ROOT, METHOD_DEFINITIONS, METHOD_TEMPLATES, ASSASSINATION_SOURCES, ASSASSINATION_FRAME_OVERRIDES, BLUEPRINT_OVERRIDES, COMPONENT_OVERRIDES, REQUIRE_OVERRIDES, loadMethodDefinitions, methodTemplate, categoryDirectory, sourceEntityVariables, structuredSources, classifyBlueprint, assassinationVariables, bountyVariables, acquisitionRequirement, buildRouting, applyTemplate }

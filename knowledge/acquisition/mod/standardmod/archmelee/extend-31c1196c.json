@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Extend",
@@ -51,7 +51,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -107,6 +107,8 @@
                 "excerpt": "Exterminate | Archwing Exterminate | A | 38.72% | 1 | 0.3872 Montes , Venus | | Montes , Venus Syrtis , Mars"
               },
               "missionTypeCanonical": "Exterminate",
+              "missionTypeEntityId": "mission-type.exterminate",
+              "missionTypeDisplayName": "歼灭",
               "sourceCanonical": "Archwing Exterminate"
             },
             {
@@ -133,6 +135,8 @@
                 "excerpt": "Pursuit | Archwing Pursuit | A | 3.16% | 1 | 0.0316 Pandora , Saturn | | Pandora , Saturn"
               },
               "missionTypeCanonical": "Pursuit",
+              "missionTypeEntityId": "mission-type.pursuit",
+              "missionTypeDisplayName": "追击",
               "sourceCanonical": "Archwing Pursuit"
             },
             {
@@ -159,6 +163,8 @@
                 "excerpt": "Rush | Archwing Rush | B | 3.76% | 1 | 0.0376 Kepler , Phobos | | Kepler , Phobos"
               },
               "missionTypeCanonical": "Rush",
+              "missionTypeEntityId": "mission-type.rush",
+              "missionTypeDisplayName": "突袭",
               "sourceCanonical": "Archwing Rush"
             },
             {
@@ -388,22 +394,219 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Exterminate"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Pursuit"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Rush"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Attack Drone",
+            "chance": 0.76,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lancer Dreg",
+            "chance": 1.1400000000000001,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Temporal Dreg",
+            "chance": 2.53,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hellion Dargyn",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Dargyn",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Pandora (Pursuit)",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Tusk Command Dargyn",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Tusk Dargyn",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Tusk Shield Dargyn",
+            "chance": 3.16,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Kepler (Rush), Rotation B",
+            "chance": 3.7600000000000002,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Raider Carver",
+            "chance": 3.7900000000000005,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Raider Eviscerator",
+            "chance": 3.7900000000000005,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Raider",
+            "chance": 3.7900000000000005,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Syrtis (Exterminate)",
+            "chance": 38.72,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Caduceus (Exterminate)",
+            "chance": 38.72,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Montes (Exterminate)",
+            "chance": 38.72,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingMeleeRangeIncMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

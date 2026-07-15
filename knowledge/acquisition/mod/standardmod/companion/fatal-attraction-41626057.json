@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -75,6 +75,21 @@
             }
           },
           "methods": [
+            {
+              "type": "companion-included",
+              "sourceItemCanonical": "Djinn",
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Fatal Attraction",
+                "pageId": 197368,
+                "revisionId": 2696110,
+                "section": "Acquisition",
+                "excerpt": "Fatal Attraction is automatically acquired upon obtaining Djinn ."
+              }
+            },
             {
               "type": "enemy-drop",
               "dropTableChance": 3,
@@ -246,7 +261,22 @@
           },
           "unresolvedEntities": [],
           "status": "complete"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Corrupted Moa",
+            "chance": 0.76,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/Bait"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

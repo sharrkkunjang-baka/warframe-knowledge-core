@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Provoked",
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -99,6 +99,8 @@
                 "excerpt": "Excavation | Tier 2 Excavation | B | 6.67% | 1 | 0.0667 Valefor , Europa | | Valefor , Europa"
               },
               "missionTypeCanonical": "Excavation",
+              "missionTypeEntityId": "mission-type.excavation",
+              "missionTypeDisplayName": "挖掘",
               "sourceCanonical": "Tier 2 Excavation"
             },
             {
@@ -146,6 +148,8 @@
                 "excerpt": "Survival | Tier 2 Dark Sector Survival | B | 6.67% | 1 | 0.0667 Wahiba , Mars | | Wahiba , Mars Zeugma , Phobos Cameria , Jupiter Piscinas , Saturn"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 2 Dark Sector Survival"
             },
             {
@@ -186,6 +190,8 @@
                 "excerpt": "Survival | Tier 2 Survival | B | 6.67% | 1 | 0.0667 Draco , Ceres | | Draco , Ceres Elara , Jupiter Titan , Saturn"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 2 Survival"
             },
             {
@@ -305,18 +311,206 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Excavation"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Survival"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 1 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 3 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Draco (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Lillith (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Valefor (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Zagan (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Cameria (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Elara (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Wahiba (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Zeugma (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Piscinas (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Titan (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ancient Infested",
+            "chance": 7.5200000000000005,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Infested Corpus",
+            "chance": 7.5200000000000005,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Infested Grineer",
+            "chance": 7.5200000000000005,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarGroundFireDmgMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

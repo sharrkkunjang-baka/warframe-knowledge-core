@@ -32,7 +32,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Amalgam_Barrel_Diffusion",
@@ -40,9 +40,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-15",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "local-wiki-cross-page-sync"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -51,7 +53,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -65,7 +67,23 @@
         },
         "wiki": {
           "wiki": null,
-          "methods": [],
+          "methods": [
+            {
+              "type": "event-milestone-reward",
+              "sourceCanonical": "Thermia Fractures",
+              "points": 50,
+              "chance": null,
+              "quantity": 1,
+              "availability": "recurring-event",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Thermia Fractures",
+                "section": "Rewards",
+                "excerpt": "50 Points: Amalgam Barrel Diffusion and Amalgam Organ Shatter"
+              }
+            }
+          ],
           "evidence": [],
           "mechanicsEvidence": {
             "status": "draft",
@@ -78,15 +96,18 @@
               "canonical": "Amalgam Barrel Diffusion"
             }
           ],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": []
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "local-wiki-cross-page-sync"
+        ]
       }
     }
   }

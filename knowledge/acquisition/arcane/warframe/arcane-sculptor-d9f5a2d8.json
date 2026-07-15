@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.d9f5a2d8",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Arcane Sculptor",
+  "title": "赋能·雕塑",
   "subject": {
     "canonical": "Arcane Sculptor",
-    "displayName": "Arcane Sculptor",
+    "displayName": "赋能·雕塑",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Arcane Sculptor"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "On creating an object with abilities: casts have 175% Ability Efficiency for 12 seconds"
+        "通过技能创造物体时：施放的技能效率为 175%，持续 12 秒。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Arcane Sculptor",
         "canonical": "Arcane Sculptor",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "赋能·雕塑",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "warframe",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "On creating an object with abilities: casts have 175% Ability Efficiency for 12 seconds"
+              "通过技能创造物体时：施放的技能效率为 175%，持续 12 秒。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Arcanes/AbilityEfficiencyOnAbilityObjectCreationDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -90,6 +91,9 @@
             "quantity": 1,
             "sourceEntityId": "arcane-source.8e4a7ed0d951",
             "sourceDisplayName": "天王星比邻星域任务完成奖励",
+            "requirements": {
+              "type": "none"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Arcane Sculptor",
@@ -102,7 +106,24 @@
             "sourceCanonical": "Hunhow at Pontis Tower (10 Emerald Talent + 10 Crimson Talent)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.c13f0935e4fe",
-            "sourceDisplayName": "庞蒂斯之塔的 Hunhow (10 翠绿天赋 + 10 深红天赋)",
+            "sourceDisplayName": "边界之塔的 Hunhow (10 翠绿天赋 + 10 猩红天赋)",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.jade-talent",
+                  "amount": 10
+                },
+                {
+                  "currencyId": "currency.crimson-talent",
+                  "amount": 10
+                }
+              ],
+              "isBuffUseless": true
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Arcane Sculptor",

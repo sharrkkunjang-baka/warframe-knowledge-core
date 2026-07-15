@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.7928da91",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Zid-An Uskos",
+  "title": "齐乌",
   "subject": {
     "canonical": "Zid-An Uskos",
-    "displayName": "Zid-An Uskos",
+    "displayName": "齐乌",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Zid-An Uskos"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "On Operator and Tauron Strike Kill: 2.4% Heat Damage for Secondary Weapon for duration of mission, max 250%"
+        "指挥官或 Tauron 打击击杀时：任务期间次要武器的 🔥火焰伤害增加 2.4%，最高可达 250%"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Zid-An Uskos",
         "canonical": "Zid-An Uskos",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "齐乌",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "tektolyst",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "On Operator and Tauron Strike Kill: 2.4% Heat Damage for Secondary Weapon for duration of mission, max 250%"
+              "指挥官或 Tauron 打击击杀时：任务期间次要武器的 🔥火焰伤害增加 2.4%，最高可达 250%"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Upgrades/HeatStatusProcOnUltimateKillDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +88,14 @@
             "sourceCanonical": "Marie rotating shop (random Perita resources)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.f2875f13b99c",
-            "sourceDisplayName": "Marie 的轮换商店 (随机 Perita 资源)",
+            "sourceDisplayName": "玛丽的轮换商店 (随机佩里塔资源)",
+            "requirements": {
+              "type": "item",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "itemGroupId": "resource-group.perita",
+              "amountStatus": "random"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Zid-An Uskos",

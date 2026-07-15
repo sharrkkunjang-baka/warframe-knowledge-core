@@ -535,8 +535,9 @@ function getWarframeKnowledge(query) {
   return frame ? FRAME_KNOWLEDGE_INDEX.get(frame.name) || null : null;
 }
 function renderAssassinationRoute(variables) {
-  const locationName = variables?.locationId ? entityName(LOCATION_REGISTRY, variables.locationId) : variables?.planetName;
-  const enemyName = variables?.enemyId ? entityName(ENEMY_REGISTRY, variables.enemyId) : variables?.enemyName;
+  const locationId = variables?.locationId || variables?.acquisitionSourceId;
+  const locationName = locationId ? entityName(LOCATION_REGISTRY, locationId) : '';
+  const enemyName = variables?.enemyId ? entityName(ENEMY_REGISTRY, variables.enemyId) : '';
   if (!locationName || !enemyName) return null;
   return applyTemplate(methodTemplate('components', 'frame-assassination'), { locationName, enemyName });
 }

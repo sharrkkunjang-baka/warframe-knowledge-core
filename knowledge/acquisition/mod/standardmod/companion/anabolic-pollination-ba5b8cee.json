@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Anabolic_Pollination",
@@ -39,9 +39,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-15",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "local-wiki-cross-page-sync"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -50,7 +52,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -64,7 +66,22 @@
         },
         "wiki": {
           "wiki": null,
-          "methods": [],
+          "methods": [
+            {
+              "type": "companion-included",
+              "sourceItemCanonical": "Pharaoh Predasite",
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Pharaoh Predasite",
+                "section": "Lead",
+                "excerpt": "Its precepts Anabolic Pollination and Endoparasitic Vector are tied to the Pharaoh Predasite."
+              }
+            }
+          ],
           "evidence": [],
           "mechanicsEvidence": {
             "status": "draft",
@@ -77,15 +94,18 @@
               "canonical": "Anabolic Pollination"
             }
           ],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": []
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "local-wiki-cross-page-sync"
+        ]
       }
     }
   }

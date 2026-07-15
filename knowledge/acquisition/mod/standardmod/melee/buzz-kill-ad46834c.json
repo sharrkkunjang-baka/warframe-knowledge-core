@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -75,6 +75,22 @@
             }
           },
           "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Buzz Kill",
+                "pageId": 548597,
+                "revisionId": 2622618,
+                "section": "Acquisition",
+                "excerpt": "It is now offered as a periodic item for sale by Baro Ki'Teer , costing 375 375 and 150,000 Credits 150,000 to purchase. Note that Baro Ki'Teer's stock changes with each appearance, and this mod may not be available on a succeeding appearance."
+              }
+            },
             {
               "type": "enemy-drop",
               "dropTableChance": 100,
@@ -168,7 +184,22 @@
           },
           "unresolvedEntities": [],
           "status": "complete"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eidolon Hydrolyst",
+            "chance": 8.33,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponEventSlashDamageMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

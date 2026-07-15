@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.5558b549",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Primary Compression",
+  "title": "主要·压缩",
   "subject": {
     "canonical": "Primary Compression",
-    "displayName": "Primary Compression",
+    "displayName": "主要·压缩",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Primary Compression"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "On aim: x0.2 explosion radius, +100% damage and +5.5% ammo efficiency for every 1m radius lost."
+        "瞄准时：爆炸范围为 0.2 倍，且每缩小 1 米范围，增加 100% 伤害与 5.5% 弹药效率。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Primary Compression",
         "canonical": "Primary Compression",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "主要·压缩",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "primary",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "On aim: x0.2 explosion radius, +100% damage and +5.5% ammo efficiency for every 1m radius lost."
+              "瞄准时：爆炸范围为 0.2 倍，且每缩小 1 米范围，增加 100% 伤害与 5.5% 弹药效率。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Arcanes/ConvergeRadialAttackOnAimDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -90,6 +91,9 @@
             "quantity": 1,
             "sourceEntityId": "arcane-source.8e4a7ed0d951",
             "sourceDisplayName": "天王星比邻星域任务完成奖励",
+            "requirements": {
+              "type": "none"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Primary Compression",
@@ -102,7 +106,24 @@
             "sourceCanonical": "Hunhow at Pontis Tower (15 Emerald Talent + 15 Crimson Talent)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.357a420a2a39",
-            "sourceDisplayName": "庞蒂斯之塔的 Hunhow (15 翠绿天赋 + 15 深红天赋)",
+            "sourceDisplayName": "边界之塔的 Hunhow (15 翠绿天赋 + 15 猩红天赋)",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.jade-talent",
+                  "amount": 15
+                },
+                {
+                  "currencyId": "currency.crimson-talent",
+                  "amount": 15
+                }
+              ],
+              "isBuffUseless": true
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Primary Compression",

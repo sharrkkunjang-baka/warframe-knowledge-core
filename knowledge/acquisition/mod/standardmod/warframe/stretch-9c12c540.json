@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -197,6 +197,8 @@
                 "excerpt": "Capture | Capture | A | 0.34% | 1 | 0.0034 Mantle , Earth | | Mantle , Earth Venera , Venus Elion , Mercury Ara , Mars Skyresh , Phobos Horend , Deimos Lex , Ceres Ananke , Jupiter Abaddon , Europa Cassini , Saturn Ariel , Uranus Copernicus , Lua Galatea , Neptune Hydra , Pluto Isos , Eris"
               },
               "missionTypeCanonical": "Capture",
+              "missionTypeEntityId": "mission-type.capture",
+              "missionTypeDisplayName": "捕获",
               "sourceCanonical": "Capture"
             },
             {
@@ -207,7 +209,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -220,6 +224,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 5-15 Final Stage | B | 30.56% | 1 | 0.3056 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 5-15 Final Stage"
             },
             {
@@ -230,7 +235,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Plains of Eidolon / Cetus",
-                  "planetCanonical": "Earth ; talk to Konzu"
+                  "planetCanonical": "Earth ; talk to Konzu",
+                  "planetEntityId": "planet.earth",
+                  "planetDisplayName": "地球"
                 }
               ],
               "availability": "unknown",
@@ -243,6 +250,7 @@
                 "excerpt": "Cetus Bounty | Cetus Bounty Lvl 5-15 Stage 2 | B | 7.52% | 1 | 0.0752 Plains of Eidolon / Cetus , Earth ; talk to Konzu | | Plains of Eidolon / Cetus , Earth ; talk to Konzu"
               },
               "missionTypeCanonical": "Cetus Bounty",
+              "missionTypeEntityId": "mission-type.cetus-bounty",
               "sourceCanonical": "Cetus Bounty Lvl 5-15 Stage 2"
             },
             {
@@ -283,6 +291,8 @@
                 "excerpt": "Defense | Tier 2 Defense | C | 4.51% | 1 | 0.0451 Io , Jupiter | | Io , Jupiter Paimon , Europa Helene , Saturn"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 2 Defense"
             },
             {
@@ -349,6 +359,8 @@
                 "excerpt": "Defense | Tier 3 Defense | C | 2.26% | 1 | 0.0226 Stephano , Uranus | | Stephano , Uranus Stöfler , Lua Proteus , Neptune Nabuk , Kuva Fortress Outer Terminus , Pluto Hydron , Sedna Kala-azar , Eris"
               },
               "missionTypeCanonical": "Defense",
+              "missionTypeEntityId": "mission-type.defense",
+              "missionTypeDisplayName": "防御",
               "sourceCanonical": "Tier 3 Defense"
             },
             {
@@ -389,6 +401,8 @@
                 "excerpt": "Excavation | Tier 3 Excavation | B | 6.67% | 1 | 0.0667 Cholistan , Europa | | Cholistan , Europa Despina , Neptune Hieracon , Pluto"
               },
               "missionTypeCanonical": "Excavation",
+              "missionTypeEntityId": "mission-type.excavation",
+              "missionTypeDisplayName": "挖掘",
               "sourceCanonical": "Tier 3 Excavation"
             },
             {
@@ -415,6 +429,8 @@
                 "excerpt": "Infested Salvage | Infested Salvage | C | 14.29% | 1 | 0.1429 Oestrus , Eris | | Oestrus , Eris"
               },
               "missionTypeCanonical": "Infested Salvage",
+              "missionTypeEntityId": "mission-type.infested-salvage",
+              "missionTypeDisplayName": "INFESTED 资源回收",
               "sourceCanonical": "Infested Salvage"
             },
             {
@@ -546,6 +562,8 @@
                 "excerpt": "Survival | Tier 3 Survival | B | 6.67% | 1 | 0.0667 Ophelia , Uranus | | Ophelia , Uranus Tycho , Lua Palus , Pluto Selkie , Sedna Nimus , Eris"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Survival"
             },
             {
@@ -572,6 +590,8 @@
                 "excerpt": "Survival | Kuva Fortress Survival | B | 6.67% | 1 | 0.0667 Taveuni , Kuva Fortress | | Taveuni , Kuva Fortress"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Kuva Fortress Survival"
             },
             {
@@ -612,6 +632,8 @@
                 "excerpt": "Survival | Tier 3 Dark Sector Survival | B | 6.67% | 1 | 0.0667 Assur , Uranus | | Assur , Uranus Kelashin , Neptune Amarna , Sedna"
               },
               "missionTypeCanonical": "Survival",
+              "missionTypeEntityId": "mission-type.survival",
+              "missionTypeDisplayName": "生存",
               "sourceCanonical": "Tier 3 Dark Sector Survival"
             },
             {
@@ -1760,24 +1782,8 @@
           },
           "unresolvedEntities": [
             {
-              "kind": "missionType",
-              "canonical": "Capture"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Cetus Bounty"
-            },
-            {
               "kind": "node",
               "canonical": "Plains of Eidolon / Cetus"
-            },
-            {
-              "kind": "location",
-              "canonical": "Earth ; talk to Konzu"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Defense"
             },
             {
               "kind": "node",
@@ -1786,22 +1792,1858 @@
             {
               "kind": "node",
               "canonical": "Kala-azar"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Excavation"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Infested Salvage"
-            },
-            {
-              "kind": "missionType",
-              "canonical": "Survival"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Primm",
+            "chance": 0.18,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Attack Drone",
+            "chance": 0.18,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Oxium Osprey",
+            "chance": 0.18,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shield Osprey",
+            "chance": 0.18,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Turret Osprey",
+            "chance": 0.18,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Verd-Ie",
+            "chance": 0.18,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Juno Geminex Moa",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Geminex Moa",
+            "chance": 0.22,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nox",
+            "chance": 0.22999999999999998,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Axio Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Breacher Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Leech Osprey",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Leech Osprey",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Mine Osprey",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Sapping Osprey",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Orm Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sapping Osprey",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Taro Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Test Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Sapping Osprey",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vapos Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vorac Shockwave Moa",
+            "chance": 0.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Ceres/Lex (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Mantle (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Cosis (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Isos (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Abaddon (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Beleth (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Cryotic Front (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Ananke (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Copernicus (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Ara (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mars/Quirinus (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mercury/Elion (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Galatea (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Limtoc (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Skyresh (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Todd (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Corb (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Hydra (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Cassini (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Phoebe (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Ariel (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Trinculo (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Venera (Capture)",
+            "chance": 0.33999999999999997,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Aurax Atloc Raknoid",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kyta Raknoid",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Mite Raknoid",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Mite",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Raknoid",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Narmer Scyto Raknoid",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Scyto Raknoid",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Anti Moa",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Moa",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Railgun Moa",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shockwave Moa",
+            "chance": 0.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Mt",
+            "chance": 0.5499999999999999,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Ns",
+            "chance": 0.5499999999999999,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor Rv",
+            "chance": 0.5499999999999999,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor",
+            "chance": 0.5499999999999999,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 1 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Duviri/Endless: Tier 3 (Normal)",
+            "chance": 0.67,
+            "quantity": 1,
+            "rarity": "Legendary",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jackal",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nechramech (Tier 3)",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Ambulas",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Anti Moa",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Attack Drone",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Elite Embattor Moa",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Elite Raptor Sx",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Embattor Moa",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Jackal",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Moa",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Railgun Moa",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Raptor Sx",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shield Osprey",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Terra Shockwave Moa",
+            "chance": 0.74,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Coolant Raknoid",
+            "chance": 0.97,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Another Betrayer, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Family Reunion, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hot Mess, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phobos/Opik (Rush), Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Recover The Orokin Archive, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sunkiller, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Table For Two, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "The Aftermath, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Time's Up, Rotation C",
+            "chance": 2.01,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Ixodes (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Kala-Azar (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Nabuk (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/StöFler (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Proteus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Outer Terminus (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Hydron (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Bianca (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Miranda (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Stephano (Defense), Rotation C",
+            "chance": 2.26,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Artificer",
+            "chance": 4.42,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Councilor Vay Hek",
+            "chance": 4.42,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Vay Hek Terra Frame",
+            "chance": 4.42,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Paimon (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Jupiter/Io (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Saturn/Helene (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Camenae (Defense), Rotation C",
+            "chance": 4.51,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Phorid",
+            "chance": 5.64,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Hymeno (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Nimus (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Europa/Cholistan (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Taveuni (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lua/Tycho (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Despina (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Kelashin (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Hieracon (Excavation), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Palus (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Amarna (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Scylla (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Selkie (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Yemaja (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Assur (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Cupid (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Ophelia (Survival), Rotation B",
+            "chance": 6.67,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Cyath (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Gnathos (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Nereid (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Oceanum (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Kelpie (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Sedna/Tikoloshe (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Uranus/Rosalind (Spy), Rotation C",
+            "chance": 7.04,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 5 - 15 Cetus Bounty), Rotation B",
+            "chance": 7.37,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 50 - 60 Arcana Isolation Vault), Rotation A",
+            "chance": 7.5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 50 - 60 Isolation Vault), Rotation A",
+            "chance": 7.5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 5 - 15 Cetus Bounty), Rotation B",
+            "chance": 7.5200000000000005,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 50 - 60 Arcana Isolation Vault), Rotation A",
+            "chance": 9.379999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Profit-Taker",
+            "chance": 10.26,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Raptor",
+            "chance": 11.06,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Fortress/Pago (Spy), Rotation A",
+            "chance": 13.33,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Eris/Oestrus (Infested Salvage), Rotation C",
+            "chance": 14.29,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 50 - 60 Arcana Isolation Vault), Rotation A",
+            "chance": 15,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Lt Lech Kril",
+            "chance": 22.919999999999998,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Earth/Cetus (Level 5 - 15 Cetus Bounty), Rotation B",
+            "chance": 30.56,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kahl's Garrison (Chipper), Fort",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarAbilityRangeMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

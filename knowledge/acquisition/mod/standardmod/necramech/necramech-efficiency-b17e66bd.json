@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -85,7 +85,9 @@
                   "nodeCanonical": "Cambion Drift",
                   "nodeEntityId": "landscape.cambion-drift",
                   "nodeDisplayName": "魔胎之境",
-                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
+                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
                 }
               ],
               "availability": "unknown",
@@ -110,7 +112,9 @@
                   "nodeCanonical": "Cambion Drift",
                   "nodeEntityId": "landscape.cambion-drift",
                   "nodeDisplayName": "魔胎之境",
-                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
+                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
                 }
               ],
               "availability": "unknown",
@@ -133,7 +137,9 @@
               "nodes": [
                 {
                   "nodeCanonical": "Cambion Drift / Necralisk",
-                  "planetCanonical": "Deimos ; talk to Mother"
+                  "planetCanonical": "Deimos ; talk to Mother",
+                  "planetEntityId": "planet.deimos",
+                  "planetDisplayName": "火卫二"
                 }
               ],
               "availability": "unknown",
@@ -225,24 +231,96 @@
               "canonical": "Arcana Isolation Vault Bounty"
             },
             {
-              "kind": "location",
-              "canonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
-            },
-            {
               "kind": "missionType",
               "canonical": "Isolation Vault Bounty"
             },
             {
               "kind": "node",
               "canonical": "Cambion Drift / Necralisk"
-            },
-            {
-              "kind": "location",
-              "canonical": "Deimos ; talk to Mother"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Nechramech (Tier 1)",
+            "chance": 3.32,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechBoostEfficiencyMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Arcana Isolation Vault), Rotation B",
+            "chance": 7.5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechBoostEfficiencyMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Isolation Vault), Rotation B",
+            "chance": 7.5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechBoostEfficiencyMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Arcana Isolation Vault), Rotation B",
+            "chance": 9.379999999999999,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechBoostEfficiencyMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Arcana Isolation Vault), Rotation B",
+            "chance": 15,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechBoostEfficiencyMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
+            "chance": 100,
+            "quantity": 1,
+            "rarity": "Common",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Necromech/NecromechBoostEfficiencyMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.e8b9e611",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Zid-An Osbok",
+  "title": "齐奥",
   "subject": {
     "canonical": "Zid-An Osbok",
-    "displayName": "Zid-An Osbok",
+    "displayName": "齐奥",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Zid-An Osbok"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "Void Sling strips 30% of enemy Overguard.\nWhen Overguard is stripped: +3.0x Amp Critical Damage for 15s."
+        "虚空弹射剥离敌人的 30% 超宏防护。  \r\n超宏防护被剥离时：增幅器暴击伤害增加 3.0x，持续 15 秒。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Zid-An Osbok",
         "canonical": "Zid-An Osbok",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "齐奥",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "tektolyst",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "Void Sling strips 30% of enemy Overguard.\nWhen Overguard is stripped: +3.0x Amp Critical Damage for 15s."
+              "虚空弹射剥离敌人的 30% 超宏防护。  \r\n超宏防护被剥离时：增幅器暴击伤害增加 3.0x，持续 15 秒。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Upgrades/VoidSlingsOverguardStripDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +88,14 @@
             "sourceCanonical": "Marie rotating shop (random Perita resources)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.f2875f13b99c",
-            "sourceDisplayName": "Marie 的轮换商店 (随机 Perita 资源)",
+            "sourceDisplayName": "玛丽的轮换商店 (随机佩里塔资源)",
+            "requirements": {
+              "type": "item",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "itemGroupId": "resource-group.perita",
+              "amountStatus": "random"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Zid-An Osbok",

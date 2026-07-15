@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.264a369f",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Secondary Irradiate",
+  "title": "次要·照射",
   "subject": {
     "canonical": "Secondary Irradiate",
-    "displayName": "Secondary Irradiate",
+    "displayName": "次要·照射",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Secondary Irradiate"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "On hitting enemies afflicted by 10 stacks of Radiation: Deal 180% of the hit damage to enemies within 7m."
+        "命中受到 10 层 辐射辐射影响的敌人时：对 7 米范围内的敌人造成 180% 的命中伤害。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Secondary Irradiate",
         "canonical": "Secondary Irradiate",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "次要·照射",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "secondary",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "On hitting enemies afflicted by 10 stacks of Radiation: Deal 180% of the hit damage to enemies within 7m."
+              "命中受到 10 层 辐射辐射影响的敌人时：对 7 米范围内的敌人造成 180% 的命中伤害。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Arcanes/RadialDamageOnMaxRadiationStackHitDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +88,20 @@
             "sourceCanonical": "Roathe at La Cathédrale (5 Maphica)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.645bd61bf523",
-            "sourceDisplayName": "解剖圣所大教堂的 Roathe (5 Maphica)",
+            "sourceDisplayName": "解剖圣所大教堂的罗瑟 (5 怒火核)",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.roathe",
+              "locationId": "hub.sanctum-anatomica",
+              "currency": [
+                {
+                  "currencyId": "currency.maphica",
+                  "amount": 5
+                }
+              ],
+              "isBuffUseless": true
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Secondary Irradiate",
@@ -102,7 +116,10 @@
             "chancePercent": null,
             "quantity": 1,
             "sourceEntityId": "arcane-source.33dc5253ea3c",
-            "sourceDisplayName": "钢铁之路 The Descendia 每周轮换奖励",
+            "sourceDisplayName": "钢铁之路沉沦之地每周轮换奖励",
+            "requirements": {
+              "type": "none"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Secondary Irradiate",

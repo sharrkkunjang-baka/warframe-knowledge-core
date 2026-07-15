@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.e6d6abdf",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Primary Debilitate",
+  "title": "主要·衰弱",
   "subject": {
     "canonical": "Primary Debilitate",
-    "displayName": "Primary Debilitate",
+    "displayName": "主要·衰弱",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Primary Debilitate"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "If an enemy has 10 stacks of a combined Status Effect, inflicting the same Status Effect again has a 100% chance to inflict one of the base Status Effects it is composed of."
+        "如果敌人身上叠加了 10 层复合异常状态，再次造成相同的异常状态有 100% 的几率施加组成该异常状态的基础异常状态之一。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Primary Debilitate",
         "canonical": "Primary Debilitate",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "主要·衰弱",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "primary",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "If an enemy has 10 stacks of a combined Status Effect, inflicting the same Status Effect again has a 100% chance to inflict one of the base Status Effects it is composed of."
+              "如果敌人身上叠加了 10 层复合异常状态，再次造成相同的异常状态有 100% 的几率施加组成该异常状态的基础异常状态之一。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Arcanes/SplitStatusProcsOnStackedStatusHitDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +88,20 @@
             "sourceCanonical": "Roathe at La Cathédrale (5 Maphica)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.645bd61bf523",
-            "sourceDisplayName": "解剖圣所大教堂的 Roathe (5 Maphica)",
+            "sourceDisplayName": "解剖圣所大教堂的罗瑟 (5 怒火核)",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.roathe",
+              "locationId": "hub.sanctum-anatomica",
+              "currency": [
+                {
+                  "currencyId": "currency.maphica",
+                  "amount": 5
+                }
+              ],
+              "isBuffUseless": true
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Primary Debilitate",
@@ -102,7 +116,10 @@
             "chancePercent": null,
             "quantity": 1,
             "sourceEntityId": "arcane-source.33dc5253ea3c",
-            "sourceDisplayName": "钢铁之路 The Descendia 每周轮换奖励",
+            "sourceDisplayName": "钢铁之路沉沦之地每周轮换奖励",
+            "requirements": {
+              "type": "none"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Primary Debilitate",

@@ -10,7 +10,19 @@ const OFFICIAL = require(path.join(path.dirname(require.resolve('warframe-items'
 const EXCLUSIONS = Object.freeze({ Vosfor: 'resource-not-arcane' })
 const CATEGORY_MAP = Object.freeze({ Warframe: 'warframe', Primary: 'primary', Secondary: 'secondary', Melee: 'melee', 'Tektolyst Artifacts': 'tektolyst' })
 const PATCH_URLS = Object.freeze({ '43.0': 'https://www.warframe.com/zh-hans/patch-notes/psn/43-0-0', '41.0': 'https://www.warframe.com/zh-hans/patch-notes/pc/41-0-0' })
+const LANGUAGE_CACHE = path.join(ROOT, '.cache', 'official-localization')
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
+function normalize(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, '') }
+function loadLanguages() {
+  const enPath = path.join(LANGUAGE_CACHE, 'languages.en.json'), zhPath = path.join(LANGUAGE_CACHE, 'languages.zh.json')
+  if (!fs.existsSync(enPath) || !fs.existsSync(zhPath)) throw new Error('缺少 Languages.bin 缓存，请先运行 npm run sync:localization')
+  return { en: JSON.parse(fs.readFileSync(enPath, 'utf8')), zh: JSON.parse(fs.readFileSync(zhPath, 'utf8')) }
+}
+function officialLocalization(canonical, languages) {
+  const matches = Object.entries(languages.en).filter(([key, value]) => /Name$/i.test(key) && normalize(value) === normalize(canonical) && languages.zh[key])
+  const unique = [...new Set(matches.map(([key]) => String(languages.zh[key]).trim()).filter(Boolean))]
+  return unique.length === 1 ? { displayName: unique[0], languageKey: matches.find(([key]) => String(languages.zh[key]).trim() === unique[0])?.[0] || null } : null
+}
 function parsePage(page) {
   const text = String(page.text || '')
   const type = text.match(/General Information Type (Warframe|Primary|Secondary|Melee|Tektolyst Artifacts) Rarity/)?.[1]
@@ -30,6 +42,7 @@ function parsePage(page) {
   return { officialUniqueName: `wiki-arcane:${page.title}`, canonical: page.title, displayName: '', localizationStatus: 'official-zh-unavailable', category: CATEGORY_MAP[type], arcaneType: type === 'Tektolyst Artifacts' ? type : `${type} Arcane`, equipmentClass: type, rarity, maxRank, maxRankEffectCanonical: description, methods, introduced, source: { wiki: { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, timestamp: page.timestamp }, patchNotesUrl: PATCH_URLS[introduced] || null } }
 }
 function buildPlan(options = {}) {
+  const languages = options.languages || loadLanguages()
   const filename = resolveWikiDatabase(options.db)
   const report = inspectWikiDatabase(filename, { skipHash: options.skipHash })
   const officialNames = new Set(OFFICIAL.filter(item => item.name !== 'Arcane' && !item.excludeFromCodex).map(item => item.name.toLowerCase()))
@@ -37,7 +50,10 @@ function buildPlan(options = {}) {
   let pages
   try { pages = db.prepare("SELECT p.page_id pageId,p.title,p.revision_id revisionId,p.timestamp,p.text FROM categories c JOIN pages p ON p.page_id=c.page_id WHERE c.category='Arcane_Enhancements' ORDER BY p.title").all() } finally { db.close() }
   const missing = pages.filter(page => !officialNames.has(page.title.toLowerCase()))
-  const entries = missing.filter(page => !EXCLUSIONS[page.title]).map(parsePage).filter(Boolean)
+  const entries = missing.filter(page => !EXCLUSIONS[page.title]).map(parsePage).filter(Boolean).map(entry => {
+    const localized = officialLocalization(entry.canonical, languages)
+    return localized ? { ...entry, displayName: localized.displayName, localizationStatus: 'official-zh', languageKey: localized.languageKey } : entry
+  })
   const exclusions = missing.filter(page => EXCLUSIONS[page.title]).map(page => ({ canonical: page.title, reason: EXCLUSIONS[page.title] }))
   const unclassified = missing.filter(page => !EXCLUSIONS[page.title] && !entries.some(entry => entry.canonical === page.title)).map(page => page.title)
   if (unclassified.length) throw new Error(`Wiki 赋能分类存在未分类页面：${unclassified.join('、')}`)
@@ -49,4 +65,4 @@ function run(argv = process.argv.slice(2)) {
   fs.mkdirSync(path.dirname(TARGET),{recursive:true});fs.writeFileSync(TARGET,next);console.log(`已生成 ${plan.counts.supplementalArcanes} 个补充赋能；当前总数 ${plan.counts.totalCurrent}`);return plan
 }
 if(require.main===module){try{run()}catch(error){console.error(error.stack||error);process.exit(1)}}
-module.exports={EXCLUSIONS,CATEGORY_MAP,parsePage,buildPlan,run}
+module.exports={EXCLUSIONS,CATEGORY_MAP,loadLanguages,officialLocalization,parsePage,buildPlan,run}

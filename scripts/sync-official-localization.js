@@ -36,7 +36,8 @@ const AUDITED_COMPOSITES = Object.freeze({
   Scrambus: { displayName: '扰敌员', kind: 'enemy-family', languageKeys: ['/Lotus/Language/Game/ModCorpPerceptionSkate','/Lotus/Language/Game/ModCorpDamageSkate','/Lotus/Language/Game/ModCorpBuffSkate','/Lotus/Language/Game/ModCorpMobilitySkate'], rule: '四种官方简中变体（迷雾/衰竭/虚无/滞缓扰敌员）的共同职业名' },
   'Orb Vallis - Enrichment Labs Enemies': { displayName: '奥布山谷升华实验室内的敌人', kind: 'enemy-group', languageKeys: ['/Lotus/Language/SolarisVenus/ArachnoidPowerCoreHungerDesc'], rule: '官方简中物品描述中的原文来源' },
   'Orb Vallis - Spaceport Enemies': { displayName: '奥布山谷航天站内的敌人', kind: 'enemy-group', languageKeys: ['/Lotus/Language/SolarisVenus/ArachnoidPowerCoreMicroidDesc'], rule: '官方简中物品描述中的原文来源' },
-  'Orb Vallis - Temple of Profit Enemies': { displayName: '奥布山谷润盈殿内的敌人', kind: 'enemy-group', languageKeys: ['/Lotus/Language/SolarisVenus/ArachnoidPowerCoreWraithDesc'], rule: '官方简中物品描述中的原文来源' }
+  'Orb Vallis - Temple of Profit Enemies': { displayName: '奥布山谷润盈殿内的敌人', kind: 'enemy-group', languageKeys: ['/Lotus/Language/SolarisVenus/ArachnoidPowerCoreWraithDesc'], rule: '官方简中物品描述中的原文来源' },
+  'Captain Vor and Lieutenant Lech Kril': { displayName: '沃尔上尉与 Lech Kril 中尉', kind: 'enemy-group', languageKeys: ['/Lotus/Language/Game/VorBossName','/Lotus/Language/Game/KrilBossName'], rule: '由同一刺杀节点的两个官方敌人名称组合，不新增猜译' }
 })
 function sha256(file) { return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex') }
 function normalize(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, '') }
@@ -49,6 +50,14 @@ function referencedEnemies() {
     const values = [].concat(JSON.parse(fs.readFileSync(file, 'utf8')))
     for (const entry of values) for (const method of entry.modAcquisition?.generated?.wiki?.methods || []) if (method.type === 'enemy-drop' && method.sourceCanonical) names.add(method.sourceCanonical)
   }
+  // 战甲刺杀模板和 Mod 共用同一敌人实体注册表；自动维护必须覆盖两类引用。
+  const { ASSASSINATION_SOURCES, ASSASSINATION_FRAME_OVERRIDES } = require('../src/frame-acquisition-routing')
+  for (const variables of [...Object.values(ASSASSINATION_SOURCES), ...Object.values(ASSASSINATION_FRAME_OVERRIDES)]) {
+    if (variables.enemyCanonical) names.add(variables.enemyCanonical)
+  }
+  names.add('Raptor')
+  names.add('Ropalolyst')
+  names.add('Captain Vor and Lieutenant Lech Kril')
   return [...names].sort((a, b) => a.localeCompare(b, 'en'))
 }
 async function download(url, target) {

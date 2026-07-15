@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Swift_Mercy",
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -84,7 +84,9 @@
                 {
                   "nodeCanonical": "Brom Cluster",
                   "nodeEntityId": "mission-node.brom-cluster",
-                  "planetCanonical": "Neptune Proxima"
+                  "planetCanonical": "Neptune Proxima",
+                  "planetEntityId": "location.neptune-proxima",
+                  "planetDisplayName": "海王星比邻星域"
                 }
               ],
               "availability": "unknown",
@@ -110,7 +112,9 @@
                 {
                   "nodeCanonical": "Peregrine Axis",
                   "nodeEntityId": "mission-node.peregrine-axis",
-                  "planetCanonical": "Pluto Proxima"
+                  "planetCanonical": "Pluto Proxima",
+                  "planetEntityId": "location.pluto-proxima",
+                  "planetDisplayName": "冥王星比邻星域"
                 }
               ],
               "availability": "unknown",
@@ -164,7 +168,9 @@
                 {
                   "nodeCanonical": "Orvin-Haarc",
                   "nodeEntityId": "mission-node.orvin-haarc",
-                  "planetCanonical": "Venus Proxima"
+                  "planetCanonical": "Venus Proxima",
+                  "planetEntityId": "location.venus-proxima",
+                  "planetDisplayName": "金星比邻星域"
                 }
               ],
               "availability": "unknown",
@@ -188,22 +194,63 @@
             "notes": [],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "location",
-              "canonical": "Neptune Proxima"
-            },
-            {
-              "kind": "location",
-              "canonical": "Pluto Proxima"
-            },
-            {
-              "kind": "location",
-              "canonical": "Venus Proxima"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Neptune/Brom Cluster (Skirmish), Rotation A",
+            "chance": 16.669999999999998,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Assassin/SwiftExecuteMod"
             }
-          ],
-          "status": "partial"
-        }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Pluto/Peregrine Axis (Skirmish), Rotation A",
+            "chance": 16.669999999999998,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Assassin/SwiftExecuteMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Veil/Sabmir Cloud (Skirmish), Rotation A",
+            "chance": 16.669999999999998,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Assassin/SwiftExecuteMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Orvin-Haarc (Skirmish), Rotation A",
+            "chance": 16.669999999999998,
+            "quantity": 1,
+            "rarity": "Uncommon",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/DataSpike/Assassin/SwiftExecuteMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

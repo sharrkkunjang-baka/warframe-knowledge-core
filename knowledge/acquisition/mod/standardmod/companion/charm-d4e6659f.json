@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Charm",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -74,7 +74,23 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "companion-included",
+              "sourceItemCanonical": "Smeeta Kavat",
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "pageTitle": "Charm",
+                "pageId": 1016293,
+                "revisionId": 2719438,
+                "section": "Acquisition",
+                "excerpt": "Charm is automatically acquired upon obtaining a Smeeta Kavat ."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -205,8 +221,36 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Hyekka",
+            "chance": 0.83,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Types/Friendly/Pets/CatbrowPetPrecepts/CatbrowLuckPrecept"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Kuva Hyekka",
+            "chance": 0.83,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Types/Friendly/Pets/CatbrowPetPrecepts/CatbrowLuckPrecept"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],

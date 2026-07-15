@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Xata_Invocation",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -100,6 +100,8 @@
                 "excerpt": "Mirror Defense | Deimos Entrati Mirror Defense | C | 5% | 1 | 0.05 Munio , Deimos | | Munio , Deimos"
               },
               "missionTypeCanonical": "Mirror Defense",
+              "missionTypeEntityId": "mission-type.mirror-defense",
+              "missionTypeDisplayName": "镜像防御",
               "sourceCanonical": "Deimos Entrati Mirror Defense"
             }
           ],
@@ -152,14 +154,24 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Mirror Defense"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Munio (Defense), Rotation C",
+            "chance": 5,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Grimoire/XataStrikeMod"
             }
-          ],
-          "status": "partial"
-        }
+          }
+        ]
       },
       "manual": {
         "methods": [],

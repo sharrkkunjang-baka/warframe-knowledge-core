@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "stub",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Cold_Snap",
@@ -39,9 +39,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-15",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "local-wiki-cross-page-sync"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -50,7 +52,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -74,7 +76,22 @@
               "size": 2317266944
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "enemy-group-drop",
+              "sourceCanonical": "Archwing Eximus",
+              "chance": null,
+              "quantity": 1,
+              "availability": "farmable",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Cold Snap",
+                "section": "Drop Locations",
+                "excerpt": "Obtained by defeating Eximus units in Archwing missions."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -105,15 +122,18 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
-        }
+          "status": "complete"
+        },
+        "officialDrops": []
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "local-wiki-cross-page-sync"
+        ]
       }
     }
   }

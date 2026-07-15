@@ -59,10 +59,11 @@ class ReadonlyWikiDatabase {
     this.filename = resolveWikiDatabase(filename)
     this.db = new Database(this.filename, { readonly: true, fileMustExist: true })
     this.page = this.db.prepare('SELECT page_id pageId,title,revision_id revisionId,timestamp,synced_at syncedAt FROM pages WHERE title=? COLLATE NOCASE LIMIT 1')
+    this.pageByAlias = this.db.prepare('SELECT p.page_id pageId,p.title,p.revision_id revisionId,p.timestamp,p.synced_at syncedAt FROM aliases a JOIN pages p ON p.page_id=a.page_id WHERE a.alias=? COLLATE NOCASE LIMIT 1')
     this.sections = this.db.prepare('SELECT anchor,title,level,ordinal,text FROM sections WHERE page_id=? ORDER BY ordinal')
   }
   getPage(title) {
-    const page = this.page.get(title)
+    const page = this.page.get(title) || this.pageByAlias.get(title)
     if (!page) return null
     page.sections = this.sections.all(page.pageId)
     return page

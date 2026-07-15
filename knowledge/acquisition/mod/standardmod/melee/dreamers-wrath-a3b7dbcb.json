@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Dreamer's_Wrath",
@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-15",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -50,7 +50,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -100,6 +100,8 @@
                 "excerpt": "Alchemy | Deimos Entrati Alchemy | C | 6% | 1 | 0.06 Cambire , Deimos | | Cambire , Deimos"
               },
               "missionTypeCanonical": "Alchemy",
+              "missionTypeEntityId": "mission-type.alchemy",
+              "missionTypeDisplayName": "元素转换",
               "sourceCanonical": "Deimos Entrati Alchemy"
             }
           ],
@@ -140,14 +142,24 @@
             ],
             "usage": []
           },
-          "unresolvedEntities": [
-            {
-              "kind": "missionType",
-              "canonical": "Alchemy"
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Deimos/Cambire (Alchemy), Rotation C",
+            "chance": 6,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/FocusedAttack"
             }
-          ],
-          "status": "partial"
-        }
+          }
+        ]
       },
       "manual": {
         "methods": [],

@@ -2,10 +2,10 @@
   "id": "knowledge.acquisition.arcane.832960ff",
   "kind": "knowledge",
   "module": "acquisition",
-  "title": "Primary Overcharge",
+  "title": "主要·过载",
   "subject": {
     "canonical": "Primary Overcharge",
-    "displayName": "Primary Overcharge",
+    "displayName": "主要·过载",
     "category": "arcane",
     "officialUniqueName": "wiki-arcane:Primary Overcharge"
   },
@@ -32,7 +32,7 @@
     },
     {
       "stats": [
-        "While at or above 90% Energy: Gain 35% of Max Energy as Multishot, capped at 350%."
+        "当能量值达到或超过 90% 时：获得最大能量值的 35% 作为多重射击，上限为 350%。"
       ]
     }
   ],
@@ -44,8 +44,8 @@
       "identity": {
         "officialUniqueName": "wiki-arcane:Primary Overcharge",
         "canonical": "Primary Overcharge",
-        "displayName": "",
-        "localizationStatus": "official-zh-unavailable"
+        "displayName": "主要·过载",
+        "localizationStatus": "official-zh"
       },
       "classification": {
         "category": "primary",
@@ -73,11 +73,12 @@
           },
           {
             "stats": [
-              "While at or above 90% Energy: Gain 35% of Max Energy as Multishot, capped at 350%."
+              "当能量值达到或超过 90% 时：获得最大能量值的 35% 作为多重射击，上限为 350%。"
             ]
           }
         ],
-        "localizationStatus": "official-zh-unavailable"
+        "localizationStatus": "official-zh",
+        "languageKey": "/Lotus/Language/Arcanes/MultishotForMaxEnergyDesc"
       },
       "acquisition": {
         "status": "structured",
@@ -87,7 +88,20 @@
             "sourceCanonical": "Roathe at La Cathédrale (5 Maphica)",
             "quantity": 1,
             "sourceEntityId": "arcane-source.645bd61bf523",
-            "sourceDisplayName": "解剖圣所大教堂的 Roathe (5 Maphica)",
+            "sourceDisplayName": "解剖圣所大教堂的罗瑟 (5 怒火核)",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.roathe",
+              "locationId": "hub.sanctum-anatomica",
+              "currency": [
+                {
+                  "currencyId": "currency.maphica",
+                  "amount": 5
+                }
+              ],
+              "isBuffUseless": true
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Primary Overcharge",
@@ -102,7 +116,10 @@
             "chancePercent": null,
             "quantity": 1,
             "sourceEntityId": "arcane-source.33dc5253ea3c",
-            "sourceDisplayName": "钢铁之路 The Descendia 每周轮换奖励",
+            "sourceDisplayName": "钢铁之路沉沦之地每周轮换奖励",
+            "requirements": {
+              "type": "none"
+            },
             "provenance": {
               "source": "official-wiki-supplement",
               "pageTitle": "Primary Overcharge",

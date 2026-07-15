@@ -191,6 +191,13 @@ for (const entry of entries) {
       }
       const sourceTextForbidden = !entry.frameAcquisition?.generated?.isPrime && ['frame-mixed-missions', 'frame-specific-mission', 'frame-quest', 'frame-bounty', 'frame-assassination', 'frame-vendor'].includes(route?.componentCategory);
       if (entry.reviewStatus === 'approved' && sourceTextForbidden && (Object.hasOwn(variables, 'sourceText') || Object.hasOwn(routing.blueprintVariables || {}, 'sourceText'))) errors.push(`${entry.id}: approved 战甲路由不得以 sourceText 生成用户文案`);
+      if (route?.componentCategory === 'frame-assassination') {
+        const forbidden = ['planetName', 'locationName', 'enemyName'].filter(key => Object.hasOwn(variables, key));
+        if (forbidden.length) errors.push(`${entry.id}: 刺杀模板禁止字面量变量 ${forbidden.join(', ')}，必须引用实体 ID`);
+        if (!variables.enemyId || !entities.enemies.some(item => item.id === variables.enemyId)) errors.push(`${entry.id}: 刺杀模板必须提供有效 enemyId`);
+        const sourceId = variables.locationId || variables.acquisitionSourceId;
+        if (!sourceId || !entities.locations.some(item => item.id === sourceId)) errors.push(`${entry.id}: 刺杀模板必须提供有效 locationId 或 acquisitionSourceId`);
+      }
       const variableSources = [...(variables.sources || []), routing.blueprintVariables || {}];
       for (const source of variableSources) {
         if (source.locationId && !entities.locations.some(item => item.id === source.locationId)) errors.push(`${entry.id}: 路由引用不存在的地点 ${source.locationId}`);
@@ -266,6 +273,11 @@ for (const entry of entries) {
       for (const method of wiki?.methods || []) {
         if (method.type === 'syndicate-exchange') {
           if (method.provenance?.source !== 'warframe-items' || !method.provenance?.canonical) errors.push(`${entry.id}: 集团 method 缺少官方 provenance`);
+          continue;
+        }
+        if (method.provenance?.source === 'local-wiki-sqlite') {
+          if (!method.type || !method.provenance.pageTitle || !method.provenance.section || !method.provenance.excerpt) errors.push(`${entry.id}: 本地跨页 method 缺少类型或 provenance`);
+          if (method.reviewStatus !== 'approved') errors.push(`${entry.id}: 本地跨页 method 必须显式审核通过`);
           continue;
         }
         if (!method.type || !method.provenance?.pageTitle || !method.provenance?.revisionId || !method.provenance?.section || !method.provenance?.excerpt) errors.push(`${entry.id}: Wiki method 缺少类型或 provenance`);
@@ -359,8 +371,11 @@ if (!officialCatalog) {
   const acquisitionIds = new Set(entries.filter(entry => entry.module === 'acquisition').map(entry => entry.id));
 
   if (officialCatalog.schemaVersion !== 1) errors.push('official.json: schemaVersion 必须为 1');
-  if (officialMods.length !== 1733) errors.push(`official.json: 应包含 1733 个 Mod，实际 ${officialMods.length}`);
+  const excludedMods = officialCatalog.excludedMods || [];
+  if (officialMods.length + excludedMods.length !== 1733) errors.push(`official.json: 应为全部 1733 条上游记录确定状态，实际 ${officialMods.length + excludedMods.length}`);
+  if (officialCatalog.counts?.upstreamRecords !== officialMods.length + excludedMods.length) errors.push('official.json: counts.upstreamRecords 不一致');
   if (officialCatalog.counts?.mods !== officialMods.length) errors.push('official.json: counts.mods 不一致');
+  if (officialCatalog.counts?.excludedMods !== excludedMods.length) errors.push('official.json: counts.excludedMods 不一致');
   if (officialCatalog.counts?.officialCategories !== officialCategories.length) errors.push('official.json: counts.officialCategories 不一致');
   if (!officialCatalog.source?.version || !officialCatalog.source?.repository || !officialCatalog.generatedAt) errors.push('official.json: 缺少来源版本、来源链接或生成时间');
 
@@ -382,14 +397,18 @@ if (!officialCatalog) {
     if (!Number.isInteger(mod.maxRank) || !Array.isArray(mod.maxRankEffects) || !Array.isArray(mod.maxRankEffectsZh)) errors.push(`${mod.uniqueName}: 最高等级或满级效果格式错误`);
     for (const id of mod.officialCategoryIds || []) if (!officialCategoryKeys.has(id)) errors.push(`${mod.uniqueName}: 官方分类引用不存在 ${id}`);
     for (const id of mod.localEntryIds || []) if (!acquisitionIds.has(id)) errors.push(`${mod.uniqueName}: 本地刷取引用不存在 ${id}`);
-    if (!['covered', 'stub', 'missing'].includes(mod.status)) errors.push(`${mod.uniqueName}: Mod 覆盖状态无效`);
-    if (mod.status === 'missing' && mod.localEntryIds?.length) errors.push(`${mod.uniqueName}: missing Mod 不应包含本地引用`);
-    if (mod.status !== 'missing' && !mod.localEntryIds?.length) errors.push(`${mod.uniqueName}: 已收录 Mod 缺少本地引用`);
+    if (!['complete', 'review-required'].includes(mod.status)) errors.push(`${mod.uniqueName}: Mod 发布状态无效`);
+    if (mod.reviewRequired !== (mod.status === 'review-required')) errors.push(`${mod.uniqueName}: reviewRequired 与状态不一致`);
+    if (!mod.localEntryIds?.length) errors.push(`${mod.uniqueName}: 可用 Mod 缺少本地身份条目`);
+  }
+  for (const mod of excludedMods) {
+    if (!mod.uniqueName || officialModKeys.has(mod.uniqueName)) errors.push(`official.json: 排除项 uniqueName 重复 ${mod.uniqueName}`);
+    officialModKeys.add(mod.uniqueName);
+    if (mod.status !== 'excluded-policy' || !mod.exclusionReason) errors.push(`${mod.uniqueName}: 排除项缺少明确理由`);
   }
 
-  if (officialCatalog.counts?.coveredMods !== officialMods.filter(mod => mod.status === 'covered').length) errors.push('official.json: coveredMods 计数不一致');
-  if (officialCatalog.counts?.stubMods !== officialMods.filter(mod => mod.status === 'stub').length) errors.push('official.json: stubMods 计数不一致');
-  if (officialCatalog.counts?.missingMods !== officialMods.filter(mod => mod.status === 'missing').length) errors.push('official.json: missingMods 计数不一致');
+  if (officialCatalog.counts?.completeMods !== officialMods.filter(mod => mod.status === 'complete').length) errors.push('official.json: completeMods 计数不一致');
+  if (officialCatalog.counts?.reviewRequiredMods !== officialMods.filter(mod => mod.status === 'review-required').length) errors.push('official.json: reviewRequiredMods 计数不一致');
   if (officialCatalog.counts?.coveredOfficialCategories !== officialCategories.filter(category => category.status === 'covered').length) errors.push('official.json: coveredOfficialCategories 计数不一致');
   if (officialCatalog.counts?.missingOfficialCategories !== officialCategories.filter(category => category.status === 'missing').length) errors.push('official.json: missingOfficialCategories 计数不一致');
 

@@ -51,7 +51,7 @@
     ],
     "generator": {
       "name": "sync-mods",
-      "version": 3
+      "version": 4
     },
     "modAcquisition": {
       "generated": {
@@ -86,7 +86,9 @@
                   "nodeCanonical": "Fortuna",
                   "nodeEntityId": "hub.fortuna",
                   "nodeDisplayName": "福尔图娜",
-                  "planetCanonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
+                  "planetCanonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access",
+                  "planetEntityId": "planet.venus",
+                  "planetDisplayName": "金星"
                 }
               ],
               "availability": "unknown",
@@ -180,14 +182,64 @@
             {
               "kind": "missionType",
               "canonical": "Profit-Taker Bounty"
-            },
-            {
-              "kind": "location",
-              "canonical": "Venus ; must be Rank 5: Old Mate with Solaris United syndicate to access"
             }
           ],
           "status": "partial"
-        }
+        },
+        "officialDrops": [
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Raider Carver",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRiflePunchthroughMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Raider Eviscerator",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRiflePunchthroughMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Gyre Raider",
+            "chance": 0.1,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRiflePunchthroughMod"
+            }
+          },
+          {
+            "type": "official-drop",
+            "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 PROFIT-TAKER - PHASE 3), Rotation C",
+            "chance": 1.25,
+            "quantity": 1,
+            "rarity": "Rare",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "warframe-items",
+              "input": "Mods.json",
+              "officialUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRiflePunchthroughMod"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],
