@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemC",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-location"
     ]
   },
   "prerequisites": [],
@@ -76,11 +76,14 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-location",
         "variables": {
-          "resourceName": "慧泉嫩芽"
+          "resourceName": "慧泉嫩芽",
+          "locationIds": [
+            "landscape.duviri"
+          ]
         },
-        "status": "review-required"
+        "status": "compiled"
       }
     },
     "manual": {
@@ -98,8 +101,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "慧泉嫩芽的资源身份与获取证据。",
   "tags": [
     "acquisition",

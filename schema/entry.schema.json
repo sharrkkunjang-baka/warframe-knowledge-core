@@ -23,7 +23,7 @@
       "properties": {
         "canonical": { "type": "string", "minLength": 1 },
         "displayName": { "type": "string", "minLength": 1 },
-        "category": { "enum": ["frame", "weapon", "mod", "resource", "companion", "other"], "description": "对象的基础类型" },
+        "category": { "enum": ["frame", "weapon", "mod", "resource", "companion", "arcane", "other"], "description": "对象的基础类型" },
         "categoryRefs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }, "uniqueItems": true, "description": "引用 knowledge/categories/<id>.json，可同时属于多个细分类" },
         "officialUniqueName": { "type": "string", "minLength": 1 },
         "setFamily": { "type": "string", "minLength": 1 },
@@ -50,6 +50,17 @@
         "version": { "type": "integer", "minimum": 1 }
       },
       "additionalProperties": false
+    },
+    "arcaneType": { "type": ["string", "null"] },
+    "equipmentClass": { "type": ["string", "null"] },
+    "levelStats": { "type": "array" },
+    "arcaneAcquisition": {
+      "type": "object",
+      "required": ["generated", "manual"],
+      "properties": {
+        "generated": { "type": "object", "required": ["identity", "classification", "stats", "acquisition"] },
+        "manual": { "type": "object", "required": ["aliases", "methods", "methodRefs", "notes", "overrides", "reviewStatus", "reviewedBy"] }
+      }
     },
     "modAcquisition": {
       "type": "object",

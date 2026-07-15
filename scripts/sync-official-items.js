@@ -147,6 +147,13 @@ function buildOfficialItems(generatedAt = new Date().toISOString()) {
         kind: category.toLowerCase(), semanticKinds: semanticKinds(item, category, classification.semanticKind),
         description: { canonical: item.description || '', display: localized.description || item.description || '' },
         tradable: Boolean(item.tradable), drops: item.drops || [], recipes, recipeVariants,
+        ...(category === 'Arcanes' ? {
+          arcaneType: item.type || null,
+          equipmentClass: ({ 'Warframe Arcane': 'Warframe', Arcane: 'Warframe', 'Primary Arcane': 'Primary', 'Bow Arcane': 'Bow', 'Shotgun Arcane': 'Shotgun', 'Secondary Arcane': 'Secondary', 'Melee Arcane': 'Melee', 'Operator Arcane': 'Operator', 'Amp Arcane': 'Amp', 'Kitgun Arcane': 'Kitgun', 'Zaw Arcane': 'Zaw' })[item.type] || null,
+          rarity: item.rarity || null,
+          levelStats: item.levelStats || [],
+          maxRank: Math.max(0, (item.levelStats?.length || 1) - 1)
+        } : {}),
         buildQuantity: Number(item.buildQuantity || 1), sourceCategory: category, sourceFile: file
       });
     }

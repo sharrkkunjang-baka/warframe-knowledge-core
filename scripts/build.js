@@ -10,6 +10,7 @@ const root = path.join(__dirname, '..');
 const dist = path.join(root, 'dist');
 fs.mkdirSync(dist, { recursive: true });
 const data = loadData(root, { approvedOnly: true });
+const coverageManifest = JSON.parse(fs.readFileSync(path.join(root, 'generated', 'official-coverage-manifest.json'), 'utf8'));
 const outputs = {
   'facts.json': data.facts,
   'knowledge.json': data.knowledge,
@@ -17,6 +18,7 @@ const outputs = {
   'official.json': data.officialCatalog,
   'official-items.json': data.officialItems,
   'official-item-sources.json': data.officialItemSources,
+  'official-coverage-manifest.json': coverageManifest,
   'locations.json': data.locations.values,
   'quests.json': data.quests.values,
   'enemies.json': data.enemies.values,
@@ -59,6 +61,7 @@ const manifest = {
   },
   officialSource: data.officialCatalog.source,
   officialItemSource: data.officialItems.source,
+  officialCoverage: { generatedAt: coverageManifest.generatedAt, qualityGate: coverageManifest.qualityGate, domains: Object.fromEntries(Object.entries(coverageManifest.domains).map(([name, domain]) => [name, domain.counts])) },
   files
 };
 fs.writeFileSync(path.join(dist, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/warframe-knowledge-core/arcane-catalog.schema.json",
+  "title": "Official arcane catalog",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "primaryKey", "hashAlgorithm", "source", "categories", "counts", "excludedPlaceholders", "arcanes"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "primaryKey": { "const": "officialUniqueName" },
+    "hashAlgorithm": { "const": "sha256-8" },
+    "categories": { "type": "array", "minItems": 11, "maxItems": 11, "items": { "type": "object", "required": ["id", "equipmentClass", "count", "mutuallyExclusive"] } },
+    "counts": { "type": "object", "required": ["input", "placeholdersExcluded", "arcanes", "structured", "reviewRequired", "byCategory"] },
+    "arcanes": { "type": "array", "items": { "type": "object", "required": ["officialUniqueName", "canonical", "displayName", "category", "file", "acquisitionStatus"] } }
+  }
+}

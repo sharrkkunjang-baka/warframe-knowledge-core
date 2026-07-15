@@ -1,0 +1,37 @@
+{
+  "id": "arcane.method.authoritative",
+  "kind": "arcane-acquisition-method",
+  "category": "authoritative",
+  "categoryLabels": {
+    "warframe": "战甲赋能",
+    "primary": "主要武器赋能",
+    "bow": "弓箭赋能",
+    "shotgun": "霰弹枪赋能",
+    "secondary": "次要武器赋能",
+    "melee": "近战武器赋能",
+    "operator": "指挥官赋能",
+    "amp": "增幅器赋能",
+    "kitgun": "组合枪赋能",
+    "zaw": "Zaw 赋能",
+    "legacy": "旧版/待审核赋能"
+  },
+  "headerTemplate": "【{displayName}】\n分类：{categoryLabel}\n最高等级：{maxRank}（满级共需 {requiredCopies} 个）",
+  "legacyDescription": "该赋能被官方结构化数据归入旧版/待审核条目；当前没有可确认的获取途径，按不可获取处理，等待人工审核。",
+  "sourcePriority": [
+    "manual-reviewed",
+    "warframe-items-public-export",
+    "compiled-wiki"
+  ],
+  "mergePolicy": "官方结构化来源为主；Wiki 仅补充不冲突途径和审计证据；无官方中文名的实体保留 canonical 英文，禁止猜译。",
+  "rankCopyRule": {
+    "formula": "(maxRank + 1) * (maxRank + 2) / 2",
+    "examples": {
+      "3": 10,
+      "5": 21
+    }
+  },
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "maintainer"
+  ]
+}

@@ -25,7 +25,7 @@ const required = ['id', 'title', 'sources', 'gameVersion', 'updatedAt', 'reviewS
 const ids = new Set();
 const errors = [];
 const secretPatterns = [/sk-[A-Za-z0-9_-]{16,}/, /Bearer\s+[A-Za-z0-9._-]{16,}/i, /warframe_whisper_secret/i, /master_qq/i, /127\.0\.0\.1:1080[89]/];
-const baseCategoryIds = new Set(['frame', 'weapon', 'mod', 'resource', 'companion', 'other']);
+const baseCategoryIds = new Set(['frame', 'weapon', 'mod', 'resource', 'companion', 'arcane', 'other']);
 const categoryIds = new Set();
 const categoryNames = new Map();
 const gameplayAcquisitionQueries = new Map();
@@ -156,7 +156,7 @@ for (const entry of entries) {
       else {
         if (route.componentCategory !== entry.subject.categoryRefs[0]) errors.push(`${entry.id}: 主分类与 categories.json 不一致`);
         if (JSON.stringify(entry.frameAcquisition?.generated?.routing?.blueprintCategory ?? null) !== JSON.stringify(route.blueprintCategory ?? null)) errors.push(`${entry.id}: 总图分类与 categories.json 不一致`);
-        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId) errors.push(`${entry.id}: 特定任务战甲必须提供结构化任务节点或独立获取文本`);
+        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId && entry.frameAcquisition?.generated?.routing?.require?.type !== 'currency') errors.push(`${entry.id}: 特定任务战甲必须提供结构化任务节点、货币路由或独立获取文本`);
       }
       const routing = entry.frameAcquisition?.generated?.routing || {};
       const variables = routing.componentVariables || {};
@@ -222,6 +222,16 @@ for (const entry of entries) {
     for (const ref of entry.subject?.categoryRefs || []) {
       if (!categoryIds.has(ref)) errors.push(`${entry.id}: 引用了不存在的细分类 ${ref}`);
       else if (!categoryReachesBase(ref)) errors.push(`${entry.id}: 细分类 ${ref} 的祖先链未归属基础分类 ${entry.subject.category}`);
+    }
+    if (entry.subject?.category === 'arcane') {
+      const generated = entry.arcaneAcquisition?.generated;
+      const manual = entry.arcaneAcquisition?.manual;
+      if (!generated || !manual) errors.push(`${entry.id}: 赋能必须分离 arcaneAcquisition.generated/manual`);
+      if (!entry.officialUniqueName || entry.officialUniqueName !== entry.subject?.officialUniqueName || generated?.identity?.officialUniqueName !== entry.officialUniqueName) errors.push(`${entry.id}: 赋能 officialUniqueName 主键不一致`);
+      if (!['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'legacy'].includes(generated?.classification?.category)) errors.push(`${entry.id}: 赋能互斥分类无效`);
+      if (!Array.isArray(entry.levelStats) || !Number.isInteger(entry.maxRank) || entry.maxRank !== Math.max(0, entry.levelStats.length - 1)) errors.push(`${entry.id}: 赋能等级数据或 maxRank 无效`);
+      if (!Array.isArray(manual?.aliases) || !Array.isArray(manual?.methods) || !Array.isArray(manual?.methodRefs) || !Array.isArray(manual?.notes) || !manual?.overrides || !Array.isArray(manual?.reviewedBy)) errors.push(`${entry.id}: 赋能 manual 字段不完整`);
+      for (const method of generated?.acquisition?.methods || []) if (method.type === 'vendor-or-syndicate-exchange' && (method.chancePercent !== undefined || method.probability !== undefined)) errors.push(`${entry.id}: 商店/集团兑换不得表示为概率掉落`);
     }
     if (entry.subject?.category === 'resource') {
       const generated = entry.resourceAcquisition?.generated;

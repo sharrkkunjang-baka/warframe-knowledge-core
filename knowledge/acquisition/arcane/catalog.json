@@ -1,0 +1,1432 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-15T02:15:11.150Z",
+  "primaryKey": "officialUniqueName",
+  "hashAlgorithm": "sha256-8",
+  "source": {
+    "package": "warframe-items",
+    "version": "1.1269.87",
+    "repository": "https://github.com/WFCD/warframe-items",
+    "input": "Arcanes.json"
+  },
+  "categories": [
+    {
+      "id": "warframe",
+      "equipmentClass": "Warframe",
+      "count": 60,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "primary",
+      "equipmentClass": "Primary",
+      "count": 10,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "bow",
+      "equipmentClass": "Bow",
+      "count": 1,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "shotgun",
+      "equipmentClass": "Shotgun",
+      "count": 1,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "secondary",
+      "equipmentClass": "Secondary",
+      "count": 16,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "melee",
+      "equipmentClass": "Melee",
+      "count": 10,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "operator",
+      "equipmentClass": "Operator",
+      "count": 22,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "amp",
+      "equipmentClass": "Amp",
+      "count": 13,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "kitgun",
+      "equipmentClass": "Kitgun",
+      "count": 8,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "zaw",
+      "equipmentClass": "Zaw",
+      "count": 8,
+      "mutuallyExclusive": true
+    },
+    {
+      "id": "legacy",
+      "equipmentClass": "Legacy/Unknown",
+      "count": 7,
+      "mutuallyExclusive": true
+    }
+  ],
+  "counts": {
+    "input": 172,
+    "placeholdersExcluded": 16,
+    "arcanes": 156,
+    "structured": 149,
+    "reviewRequired": 7,
+    "byCategory": {
+      "warframe": 60,
+      "primary": 10,
+      "bow": 1,
+      "shotgun": 1,
+      "secondary": 16,
+      "melee": 10,
+      "operator": 22,
+      "amp": 13,
+      "kitgun": 8,
+      "zaw": 8,
+      "legacy": 7
+    }
+  },
+  "excludedPlaceholders": [
+    {
+      "officialUniqueName": "/Lotus/Types/Game/ModularWeaponCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/OperatorAmpCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/OperatorCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeAbilitiesCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeArmorCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeCompanionCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeEnergyCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeHealthCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeMovementCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeResistanceCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeShieldsCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeSpecialCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeWeapDmgCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Types/Game/WarframeWeapStatsCosmeticEnhancer",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AbilityStrengthOnSummonAttackSub",
+      "canonical": "Arcane",
+      "reason": "base-class-placeholder"
+    }
+  ],
+  "arcanes": [
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/ArmourOnDamage",
+      "canonical": "Arcane Guardian",
+      "displayName": "赋能·保卫者",
+      "category": "warframe",
+      "file": "warframe/arcane-guardian-e3a8d4cb.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/CorrosiveProcResist",
+      "canonical": "Arcane Protection",
+      "displayName": "赋能·防蚀",
+      "category": "legacy",
+      "file": "legacy/arcane-protection-6b8bd292.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/CritChanceOnDamage",
+      "canonical": "Arcane Avenger",
+      "displayName": "赋能·复仇者",
+      "category": "warframe",
+      "file": "warframe/arcane-avenger-16b7a350.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/DamageResistanceStacksOverTime",
+      "canonical": "Arcane Double Back",
+      "displayName": "赋能·回返",
+      "category": "warframe",
+      "file": "warframe/arcane-double-back-e3cac2a5.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/ElectricityProcResist",
+      "canonical": "Arcane Resistance",
+      "displayName": "赋能·抗毒",
+      "category": "warframe",
+      "file": "warframe/arcane-resistance-98b7ee0e.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/FireProcResist",
+      "canonical": "Arcane Ice",
+      "displayName": "赋能·冰冷",
+      "category": "warframe",
+      "file": "warframe/arcane-ice-67762cd6.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/FreezeProcResist",
+      "canonical": "Arcane Warmth",
+      "displayName": "赋能·温暖",
+      "category": "warframe",
+      "file": "warframe/arcane-warmth-755ba05d.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/GasProcResist",
+      "canonical": "Arcane Liquid",
+      "displayName": "赋能·液态",
+      "category": "legacy",
+      "file": "legacy/arcane-liquid-ffa34aff.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/GolemArcaneShieldRegenOnDamage",
+      "canonical": "Arcane Aegis",
+      "displayName": "赋能·神盾",
+      "category": "warframe",
+      "file": "warframe/arcane-aegis-29a1aa40.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/HealthRegenOnDamage",
+      "canonical": "Arcane Grace",
+      "displayName": "赋能·优雅",
+      "category": "warframe",
+      "file": "warframe/arcane-grace-b93128d0.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/ImpactProcResist",
+      "canonical": "Arcane Shield",
+      "displayName": "赋能·保护",
+      "category": "legacy",
+      "file": "legacy/arcane-shield-b19bf69a.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/IncreaseMaxHealthOnHealthPickup",
+      "canonical": "Arcane Blessing",
+      "displayName": "赋能·赐福",
+      "category": "warframe",
+      "file": "warframe/arcane-blessing-3ce40eaf.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/InstantShieldOnDamage",
+      "canonical": "Arcane Barrier",
+      "displayName": "赋能·壁垒",
+      "category": "warframe",
+      "file": "warframe/arcane-barrier-96d58a6f.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/InvulnerabilityOnDeathOnMercyKill",
+      "canonical": "Arcane Escapist",
+      "displayName": "赋能·脱逃",
+      "category": "warframe",
+      "file": "warframe/arcane-escapist-c82d67ef.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/MagneticProcResist",
+      "canonical": "Arcane Nullifier",
+      "displayName": "赋能·消磁",
+      "category": "warframe",
+      "file": "warframe/arcane-nullifier-906d621c.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/PoisonProcResist",
+      "canonical": "Arcane Detoxifier",
+      "displayName": "赋能·解毒",
+      "category": "legacy",
+      "file": "legacy/arcane-detoxifier-41359a17.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/PunctureProcResist",
+      "canonical": "Arcane Defense",
+      "displayName": "赋能·防御",
+      "category": "legacy",
+      "file": "legacy/arcane-defense-5fe39e65.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/RadialViralAttackOnOverguardGain",
+      "canonical": "Arcane Truculence",
+      "displayName": "赋能·暴虐",
+      "category": "warframe",
+      "file": "warframe/arcane-truculence-6a619c18.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/RadiationProcResist",
+      "canonical": "Arcane Healing",
+      "displayName": "赋能·复原",
+      "category": "warframe",
+      "file": "warframe/arcane-healing-b39a4b17.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/SlashProcResist",
+      "canonical": "Arcane Deflection",
+      "displayName": "赋能·偏折",
+      "category": "warframe",
+      "file": "warframe/arcane-deflection-b5ed7ff5.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/SpeedOnDamage",
+      "canonical": "Arcane Agility",
+      "displayName": "赋能·灵敏",
+      "category": "warframe",
+      "file": "warframe/arcane-agility-ad41572e.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/SpeedOnParry",
+      "canonical": "Arcane Phantasm",
+      "displayName": "赋能·幻象",
+      "category": "warframe",
+      "file": "warframe/arcane-phantasm-e9318a9e.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AbilityHeatProcsGiveCritChance",
+      "canonical": "Arcane Hot Shot",
+      "displayName": "赋能·热火",
+      "category": "warframe",
+      "file": "warframe/arcane-hot-shot-b41b75d9.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AbilityPowerOnFreeze",
+      "canonical": "Arcane Ice Storm",
+      "displayName": "赋能·冰暴",
+      "category": "warframe",
+      "file": "warframe/arcane-ice-storm-e6fc32cb.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AbilityStrengthForMaxHealth",
+      "canonical": "Arcane Bellicose",
+      "displayName": "赋能·黩武",
+      "category": "warframe",
+      "file": "warframe/arcane-bellicose-525115ae.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AbilityStrengthOnCast",
+      "canonical": "Arcane Power Ramp",
+      "displayName": "赋能·力升",
+      "category": "warframe",
+      "file": "warframe/arcane-power-ramp-3fb19bde.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AbilityStrengthOnSummonAttack",
+      "canonical": "Arcane Camisado",
+      "displayName": "赋能·奇袭",
+      "category": "warframe",
+      "file": "warframe/arcane-camisado-9a22b4b6.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AmmoEfficiencyOnPistolHeadshot",
+      "canonical": "Arcane Pistoleer",
+      "displayName": "赋能·枪炮",
+      "category": "warframe",
+      "file": "warframe/arcane-pistoleer-5126ae6b.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AmmoEfficiencyOnSliding",
+      "canonical": "Akimbo Slip Shot",
+      "displayName": "双枪·滑射",
+      "category": "secondary",
+      "file": "secondary/akimbo-slip-shot-2b668cc2.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/ArmorOnHeavyGunEquipped",
+      "canonical": "Arcane Tanker",
+      "displayName": "赋能·坦克",
+      "category": "warframe",
+      "file": "warframe/arcane-tanker-ca7b106d.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/ArmorOnMeleeKill",
+      "canonical": "Melee Fortification",
+      "displayName": "近战·坚壁",
+      "category": "melee",
+      "file": "melee/melee-fortification-1702a058.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/BonusDamageNextShotForCurEnergy",
+      "canonical": "Secondary Surge",
+      "displayName": "次要·激涌",
+      "category": "secondary",
+      "file": "secondary/secondary-surge-9fef6964.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/ChannelKillEnergyRate",
+      "canonical": "Exodia Brave",
+      "displayName": "神威·勇武",
+      "category": "zaw",
+      "file": "zaw/exodia-brave-4b350745.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/CompanionDamageOnResidualContact",
+      "canonical": "Theorem Infection",
+      "displayName": "定理·感染",
+      "category": "warframe",
+      "file": "warframe/theorem-infection-78a12968.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/CorrosiveMeleePerAbilityCast",
+      "canonical": "Melee Exposure",
+      "displayName": "近战·暴露",
+      "category": "melee",
+      "file": "melee/melee-exposure-a13bf693.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/CritChannelingDamage",
+      "canonical": "Exodia Valor",
+      "displayName": "神威·勇猛",
+      "category": "zaw",
+      "file": "zaw/exodia-valor-62d0587f.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/CritDamageForPunctureStatus",
+      "canonical": "Melee Doughty",
+      "displayName": "近战·无畏",
+      "category": "melee",
+      "file": "melee/melee-doughty-188a6c9c.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/DuplicateStatusOnKnock",
+      "canonical": "Melee Afflictions",
+      "displayName": "近战·苦痛",
+      "category": "melee",
+      "file": "melee/melee-afflictions-f2e95ca3.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/EyeInTheSky",
+      "canonical": "Pax Soar",
+      "displayName": "和平·高飞",
+      "category": "kitgun",
+      "file": "kitgun/pax-soar-6569822d.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/FinisherLifesteal",
+      "canonical": "Exodia Might",
+      "displayName": "神威·力量",
+      "category": "zaw",
+      "file": "zaw/exodia-might-e41c6c58.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GolemArcaneArmorOnFinisher",
+      "canonical": "Arcane Ultimatum",
+      "displayName": "赋能·通牒",
+      "category": "warframe",
+      "file": "warframe/arcane-ultimatum-9cd6eba0.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GolemArcaneMeleeDamageOnCrit",
+      "canonical": "Arcane Fury",
+      "displayName": "赋能·狂怒",
+      "category": "warframe",
+      "file": "warframe/arcane-fury-96782e15.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GolemArcanePistolDamageOnHeadshot",
+      "canonical": "Arcane Precision",
+      "displayName": "赋能·精确",
+      "category": "warframe",
+      "file": "warframe/arcane-precision-36794917.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GolemArcanePistolSpeedOnCrit",
+      "canonical": "Arcane Velocity",
+      "displayName": "赋能·迅速",
+      "category": "warframe",
+      "file": "warframe/arcane-velocity-b54e371b.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GolemArcaneShotgunSpeedOnCrit",
+      "canonical": "Arcane Tempo",
+      "displayName": "赋能·节奏",
+      "category": "warframe",
+      "file": "warframe/arcane-tempo-d9058ff5.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GolemArcaneSniperSpeedOnCrit",
+      "canonical": "Arcane Momentum",
+      "displayName": "赋能·动量",
+      "category": "warframe",
+      "file": "warframe/arcane-momentum-2cb3bc0d.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/GroundSlamPull",
+      "canonical": "Exodia Hunt",
+      "displayName": "神威·狩猎",
+      "category": "zaw",
+      "file": "zaw/exodia-hunt-8c870802.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/HealCompanionOnSixMeleeKills",
+      "canonical": "Arcane Bodyguard",
+      "displayName": "赋能·卫士",
+      "category": "warframe",
+      "file": "warframe/arcane-bodyguard-1d56402c.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/HealthRegenOnHeadshot",
+      "canonical": "Arcane Victory",
+      "displayName": "赋能·胜利",
+      "category": "warframe",
+      "file": "warframe/arcane-victory-930d9662.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/HeavyCritOnRegularMelee",
+      "canonical": "Melee Animosity",
+      "displayName": "近战·憎恶",
+      "category": "melee",
+      "file": "melee/melee-animosity-cf53447b.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/InvisibilityOnFinisher",
+      "canonical": "Arcane Trickery",
+      "displayName": "赋能·诡计",
+      "category": "warframe",
+      "file": "warframe/arcane-trickery-92489bb5.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/LongbowDamageOnHeadshot",
+      "canonical": "Longbow Sharpshot",
+      "displayName": "弓箭·利矢",
+      "category": "bow",
+      "file": "bow/longbow-sharpshot-2f794893.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/LongGunDamageOnHeadshot",
+      "canonical": "Arcane Rage",
+      "displayName": "赋能·愤怒",
+      "category": "warframe",
+      "file": "warframe/arcane-rage-f05cd57b.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/LongGunSpeedOnCrit",
+      "canonical": "Arcane Acceleration",
+      "displayName": "赋能·加速",
+      "category": "warframe",
+      "file": "warframe/arcane-acceleration-55ddddd5.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MaxEnergyForArmor",
+      "canonical": "Arcane Battery",
+      "displayName": "赋能·电池",
+      "category": "warframe",
+      "file": "warframe/arcane-battery-f06aeedb.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeArcaneProjectileOnJump",
+      "canonical": "Exodia Contagion",
+      "displayName": "神威·触染",
+      "category": "zaw",
+      "file": "zaw/exodia-contagion-2fbb9162.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeArcaneShockwaveOnJump",
+      "canonical": "Exodia Epidemic",
+      "displayName": "神威·流行病",
+      "category": "zaw",
+      "file": "zaw/exodia-epidemic-3d8ebce9.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeDamageForActiveShields",
+      "canonical": "Melee Retaliation",
+      "displayName": "近战·报复",
+      "category": "melee",
+      "file": "melee/melee-retaliation-9655d022.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeDamageOnCrit",
+      "canonical": "Arcane Fury",
+      "displayName": "赋能·狂怒",
+      "category": "warframe",
+      "file": "warframe/arcane-fury-0168c512.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeDmgOnRifleKill",
+      "canonical": "Arcane Blade Charger",
+      "displayName": "赋能·刀刃充能",
+      "category": "warframe",
+      "file": "warframe/arcane-blade-charger-1473f634.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeProcsSpread",
+      "canonical": "Melee Influence",
+      "displayName": "近战·侵染",
+      "category": "melee",
+      "file": "melee/melee-influence-dc07407e.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MeleeSpeedOnHit",
+      "canonical": "Arcane Strike",
+      "displayName": "赋能·速攻",
+      "category": "warframe",
+      "file": "warframe/arcane-strike-68cede4c.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MultishotForCombo",
+      "canonical": "Secondary Outburst",
+      "displayName": "次要·爆发",
+      "category": "secondary",
+      "file": "secondary/secondary-outburst-efcc1022.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/OperatorHeavyMeleeDamageOnTransference",
+      "canonical": "Magus Aggress",
+      "displayName": "魔导·侵略",
+      "category": "operator",
+      "file": "operator/magus-aggress-599b53f1.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/OrbsOnResidualContact",
+      "canonical": "Theorem Contagion",
+      "displayName": "定理·触染",
+      "category": "warframe",
+      "file": "warframe/theorem-contagion-743c5fe8.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/OverguardSteal",
+      "canonical": "Secondary Fortifier",
+      "displayName": "次要·筑垒",
+      "category": "secondary",
+      "file": "secondary/secondary-fortifier-c8708665.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PermaComboOnFinisher",
+      "canonical": "Melee Crescendo",
+      "displayName": "近战·渐强",
+      "category": "melee",
+      "file": "melee/melee-crescendo-5f006372.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PowerStrengthOnKill",
+      "canonical": "Molt Augmented",
+      "displayName": "蜕化·升腾",
+      "category": "warframe",
+      "file": "warframe/molt-augmented-3b9cebae.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryCritDmgAndMultishotOnColdProc",
+      "canonical": "Primary Frostbite",
+      "displayName": "主要·霜冻",
+      "category": "primary",
+      "file": "primary/primary-frostbite-c6e5377d.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryDamageOnKill",
+      "canonical": "Primary Merciless",
+      "displayName": "主要·无情",
+      "category": "primary",
+      "file": "primary/primary-merciless-aec18df7.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryDamageOnMeleeKill",
+      "canonical": "Primary Dexterity",
+      "displayName": "主要·熟练",
+      "category": "primary",
+      "file": "primary/primary-dexterity-9705f431.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryDamageOnNoMelee",
+      "canonical": "Primary Deadhead",
+      "displayName": "主要·死首",
+      "category": "primary",
+      "file": "primary/primary-deadhead-5993a403.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryDamagePerAmmoOnReload",
+      "canonical": "Primary Plated Round",
+      "displayName": "主要·镀金弹头",
+      "category": "primary",
+      "file": "primary/primary-plated-round-734177dc.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryDmgOnMeleeKill",
+      "canonical": "Arcane Primary Charger",
+      "displayName": "赋能·主武充能",
+      "category": "warframe",
+      "file": "warframe/arcane-primary-charger-5e33666e.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryEnergyRegenOnImpactProc",
+      "canonical": "Primary Exhilarate",
+      "displayName": "主要·激昂",
+      "category": "primary",
+      "file": "primary/primary-exhilarate-75235142.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryHeadshotCritMultOnHeadshot",
+      "canonical": "Primary Blight",
+      "displayName": "主要·毒侵",
+      "category": "primary",
+      "file": "primary/primary-blight-03ff4cb0.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryJamEnemyWeaponsOnMagneticProc",
+      "canonical": "Primary Obstruct",
+      "displayName": "主要·滞阻",
+      "category": "primary",
+      "file": "primary/primary-obstruct-58f6ca8b.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PullEnemiesOnMeleeKill",
+      "canonical": "Melee Vortex",
+      "displayName": "近战·漩涡",
+      "category": "melee",
+      "file": "melee/melee-vortex-ad74d9a9.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/ReplayLightCritHits",
+      "canonical": "Melee Duplicate",
+      "displayName": "近战·刃影",
+      "category": "melee",
+      "file": "melee/melee-duplicate-219c5598.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryCritChancePerBuff",
+      "canonical": "Secondary Kinship",
+      "displayName": "次要·手足",
+      "category": "secondary",
+      "file": "secondary/secondary-kinship-06c1006a.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryCritOnHit",
+      "canonical": "Secondary Enervate",
+      "displayName": "次要·失活",
+      "category": "secondary",
+      "file": "secondary/secondary-enervate-4355e3b9.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryDamageOnHeatProc",
+      "canonical": "Cascadia Flare",
+      "displayName": "瀑流·耀炎",
+      "category": "secondary",
+      "file": "secondary/cascadia-flare-73b8ccfc.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryDamageOnKill",
+      "canonical": "Secondary Merciless",
+      "displayName": "次要·无情",
+      "category": "secondary",
+      "file": "secondary/secondary-merciless-1715e4c7.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryDamageOnMeleeKill",
+      "canonical": "Secondary Dexterity",
+      "displayName": "次要·熟练",
+      "category": "secondary",
+      "file": "secondary/secondary-dexterity-b6a67c2c.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryDamageOnNoMelee",
+      "canonical": "Secondary Deadhead",
+      "displayName": "次要·死首",
+      "category": "secondary",
+      "file": "secondary/secondary-deadhead-b7ca4709.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryExtraDamagePerFreezeStack",
+      "canonical": "Secondary Shiver",
+      "displayName": "次要·冷颤",
+      "category": "secondary",
+      "file": "secondary/secondary-shiver-687a4dc0.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryReloadSpeedAndMultishotOnElectricProc",
+      "canonical": "Conjunction Voltage",
+      "displayName": "联结·电压",
+      "category": "secondary",
+      "file": "secondary/conjunction-voltage-c1895d4a.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SeekerProjOnHeadshotKill",
+      "canonical": "Pax Seeker",
+      "displayName": "和平·追寻者",
+      "category": "kitgun",
+      "file": "kitgun/pax-seeker-c48e8010.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/ShotgunMultishotAndReloadSpeedOnCloseKill",
+      "canonical": "Shotgun Vendetta",
+      "displayName": "霰弹·仇杀",
+      "category": "shotgun",
+      "file": "shotgun/shotgun-vendetta-73055ead.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/StatusAndAmmoEfficiencyOnWeakpointHit",
+      "canonical": "Primary Crux",
+      "displayName": "主要·准星",
+      "category": "primary",
+      "file": "primary/primary-crux-a66207fd.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/StatusChannelingDamage",
+      "canonical": "Exodia Triumph",
+      "displayName": "神威·凯旋",
+      "category": "zaw",
+      "file": "zaw/exodia-triumph-7237f742.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/StatusTriggerRadialDamage",
+      "canonical": "Exodia Force",
+      "displayName": "神威·气力",
+      "category": "zaw",
+      "file": "zaw/exodia-force-3bf4dc31.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/WeaponDamageOnResidualContact",
+      "canonical": "Theorem Demulcent",
+      "displayName": "定理·缓和",
+      "category": "warframe",
+      "file": "warframe/theorem-demulcent-dd778aa2.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/AttackSpeedOnKill",
+      "canonical": "Virtuos Tempo",
+      "displayName": "正直·节奏",
+      "category": "amp",
+      "file": "amp/virtuos-tempo-d2d1a366.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/CriticalChanceOnHeadshot",
+      "canonical": "Virtuos Shadow",
+      "displayName": "正直·暗影",
+      "category": "amp",
+      "file": "amp/virtuos-shadow-2981df60.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/IncreasedCriticalDamageOnCriticalStrike",
+      "canonical": "Virtuos Strike",
+      "displayName": "正直·打击",
+      "category": "amp",
+      "file": "amp/virtuos-strike-18ed8199.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/IncreasedDamageOnStatusProc",
+      "canonical": "Virtuos Fury",
+      "displayName": "正直·狂怒",
+      "category": "amp",
+      "file": "amp/virtuos-fury-020b8e38.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/OperatorAmmoRegenOnKill",
+      "canonical": "Virtuos Null",
+      "displayName": "正直·空无",
+      "category": "amp",
+      "file": "amp/virtuos-null-6788dfa7.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/StatusChanceOnHeadshot",
+      "canonical": "Virtuos Ghost",
+      "displayName": "正直·鬼魅",
+      "category": "amp",
+      "file": "amp/virtuos-ghost-78735770.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/VoidToElectricDamage",
+      "canonical": "Virtuos Surge",
+      "displayName": "正直·突波",
+      "category": "amp",
+      "file": "amp/virtuos-surge-55877a84.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/VoidToHeatDamage",
+      "canonical": "Virtuos Forge",
+      "displayName": "正直·熔炉",
+      "category": "amp",
+      "file": "amp/virtuos-forge-4cda16e8.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/VoidToPunctureDamage",
+      "canonical": "Virtuos Spike",
+      "displayName": "正直·尖刺",
+      "category": "amp",
+      "file": "amp/virtuos-spike-2a802a68.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorAmps/VoidToViralDamage",
+      "canonical": "Virtuos Trojan",
+      "displayName": "正直·特洛伊",
+      "category": "amp",
+      "file": "amp/virtuos-trojan-07ab808d.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/ArmourOnOperatorMode",
+      "canonical": "Magus Husk",
+      "displayName": "魔导·外壳",
+      "category": "operator",
+      "file": "operator/magus-husk-718c0814.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/DamageReductionOnVoidMode",
+      "canonical": "Magus Firewall",
+      "displayName": "魔导·防火墙",
+      "category": "operator",
+      "file": "operator/magus-firewall-3ae3f4fb.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HealOnTransferenceIn",
+      "canonical": "Magus Elevate",
+      "displayName": "魔导·振奋",
+      "category": "operator",
+      "file": "operator/magus-elevate-3474bd78.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HealOnTransferenceOut",
+      "canonical": "Magus Nourish",
+      "displayName": "魔导·滋养",
+      "category": "operator",
+      "file": "operator/magus-nourish-265f9bd2.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HealOnVoidDash",
+      "canonical": "Magus Replenish",
+      "displayName": "魔导·充盈",
+      "category": "operator",
+      "file": "operator/magus-replenish-bf78f13e.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HealOnVoidMode",
+      "canonical": "Magus Repair",
+      "displayName": "魔导·修复",
+      "category": "operator",
+      "file": "operator/magus-repair-3a7cc4ca.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HealthOnOperatorMode",
+      "canonical": "Magus Vigor",
+      "displayName": "魔导·活力",
+      "category": "operator",
+      "file": "operator/magus-vigor-fc4e90f4.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HealthRegenAndArmorOnMeleeKill",
+      "canonical": "Arcane Reaper",
+      "displayName": "赋能·收割",
+      "category": "warframe",
+      "file": "warframe/arcane-reaper-4a6d3e13.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HeatDamageOnDash",
+      "canonical": "Magus Melt",
+      "displayName": "魔导·热熔",
+      "category": "operator",
+      "file": "operator/magus-melt-e46021d8.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HeatResistOnBlast",
+      "canonical": "Magus Accelerant",
+      "displayName": "魔导·触媒",
+      "category": "operator",
+      "file": "operator/magus-accelerant-f4b31fa9.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/HoverboardSpeedOnTransferenceIn",
+      "canonical": "Magus Drive",
+      "displayName": "魔导·驱动",
+      "category": "operator",
+      "file": "operator/magus-drive-edfc4d42.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/ImmunityFallDamageOnVoidDash",
+      "canonical": "Magus Cloud",
+      "displayName": "魔导·游云",
+      "category": "operator",
+      "file": "operator/magus-cloud-2394adca.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/NoPenaltyOnDeath",
+      "canonical": "Magus Glitch",
+      "displayName": "魔导·干扰",
+      "category": "operator",
+      "file": "operator/magus-glitch-997ff492.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/ProcResistOnBlast",
+      "canonical": "Magus Destruct",
+      "displayName": "魔导·穿破",
+      "category": "operator",
+      "file": "operator/magus-destruct-08e1ff36.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/PullOnTransferenceIn",
+      "canonical": "Magus Anomaly",
+      "displayName": "魔导·近点",
+      "category": "operator",
+      "file": "operator/magus-anomaly-b583dfcc.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/ReverseOnDash",
+      "canonical": "Magus Revert",
+      "displayName": "魔导·复位",
+      "category": "operator",
+      "file": "operator/magus-revert-2b81eb1a.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/RobotStunOnBlast",
+      "canonical": "Magus Overload",
+      "displayName": "魔导·超载",
+      "category": "operator",
+      "file": "operator/magus-overload-6afc80eb.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/SpeedOnVoidDash",
+      "canonical": "Magus Cadence",
+      "displayName": "魔导·韵律",
+      "category": "operator",
+      "file": "operator/magus-cadence-7dbb2a1f.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/OperatorArmour/TetherMineOnDash",
+      "canonical": "Magus Lockdown",
+      "displayName": "魔导·封锁",
+      "category": "operator",
+      "file": "operator/magus-lockdown-01607af6.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityRadiationProcsCreateUniversalOrbsOnKill",
+      "canonical": "Arcane Universal Fallout",
+      "displayName": "赋能·辐照",
+      "category": "warframe",
+      "file": "warframe/arcane-universal-fallout-5414315a.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityStatusProcsGiveAbilityStrengthAndEfficiency",
+      "canonical": "Arcane Impetus",
+      "displayName": "赋能·激励",
+      "category": "warframe",
+      "file": "warframe/arcane-impetus-02622993.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityStrengthAndCritDamageWhenInvisible",
+      "canonical": "Arcane Crepuscular",
+      "displayName": "赋能·影袭",
+      "category": "warframe",
+      "file": "warframe/arcane-crepuscular-f3261814.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/BulletToBattery",
+      "canonical": "Pax Charge",
+      "displayName": "和平·电充",
+      "category": "kitgun",
+      "file": "kitgun/pax-charge-e14f8b15.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/BurningCystOnKill",
+      "canonical": "Residual Boils",
+      "displayName": "残差·燃沸",
+      "category": "kitgun",
+      "file": "kitgun/residual-boils-fc013616.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/DamageReductionDuringRevive",
+      "canonical": "Arcane Temperance",
+      "displayName": "赋能·节制",
+      "category": "legacy",
+      "file": "legacy/arcane-temperance-ef6a5a17.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/EnergyEfficiencyOnHeadshot",
+      "canonical": "Pax Bolt",
+      "displayName": "和平·电闪",
+      "category": "kitgun",
+      "file": "kitgun/pax-bolt-8f7c0754.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/ExtraProcOnProc",
+      "canonical": "Secondary Encumber",
+      "displayName": "次要·妨害",
+      "category": "secondary",
+      "file": "secondary/secondary-encumber-fa6b2690.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/GolemArcaneAimGlideOnHeadshot",
+      "canonical": "Arcane Consequence",
+      "displayName": "赋能·结果",
+      "category": "warframe",
+      "file": "warframe/arcane-consequence-9198d941.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/GolemArcaneBonusDamageOnWallLatch",
+      "canonical": "Arcane Arachne",
+      "displayName": "赋能·蜘蛛",
+      "category": "warframe",
+      "file": "warframe/arcane-arachne-f5da7c06.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/GolemArcaneRadialEnergyOnEnergyPickup",
+      "canonical": "Arcane Energize",
+      "displayName": "赋能·充沛",
+      "category": "warframe",
+      "file": "warframe/arcane-energize-0a955c2b.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/HealAlliesOnEnergySpent",
+      "canonical": "Molt Reconstruct",
+      "displayName": "蜕化·重塑",
+      "category": "warframe",
+      "file": "warframe/molt-reconstruct-edd3e70f.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/HealthWhileUsingChanneledAbilities",
+      "canonical": "Arcane Intention",
+      "displayName": "赋能·心相",
+      "category": "warframe",
+      "file": "warframe/arcane-intention-4e931527.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/IceMistOnKill",
+      "canonical": "Residual Malodor",
+      "displayName": "残差·恶嗅",
+      "category": "kitgun",
+      "file": "kitgun/residual-malodor-7f9b19b8.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/LightningStrikeOnKill",
+      "canonical": "Residual Shock",
+      "displayName": "残差·电击",
+      "category": "kitgun",
+      "file": "kitgun/residual-shock-77162925.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/LongGunDamageOnReload",
+      "canonical": "Arcane Rise",
+      "displayName": "赋能·崛起",
+      "category": "warframe",
+      "file": "warframe/arcane-rise-bbb49fb2.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast",
+      "canonical": "Arcane Steadfast",
+      "displayName": "赋能·坚定",
+      "category": "warframe",
+      "file": "warframe/arcane-steadfast-4a3aff6f.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/PistolDamageOnReload",
+      "canonical": "Arcane Awakening",
+      "displayName": "赋能·觉醒",
+      "category": "warframe",
+      "file": "warframe/arcane-awakening-c7f13bda.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/RadialHealOnHealthPickup",
+      "canonical": "Arcane Pulse",
+      "displayName": "赋能·生机",
+      "category": "warframe",
+      "file": "warframe/arcane-pulse-bc2db7f0.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/RadialKnockdownOnEnergyPickup",
+      "canonical": "Arcane Eruption",
+      "displayName": "赋能·爆发",
+      "category": "warframe",
+      "file": "warframe/arcane-eruption-8c145557.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/SlowerBleedOutOnPredeath",
+      "canonical": "Arcane Survival",
+      "displayName": "赋能·求生",
+      "category": "legacy",
+      "file": "legacy/arcane-survival-fec1d6f9.json",
+      "acquisitionStatus": "review-required"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/ToxicBloodOnKill",
+      "canonical": "Residual Viremia",
+      "displayName": "残差·毒血",
+      "category": "kitgun",
+      "file": "kitgun/residual-viremia-90b79be0.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/AmpOnEnergyDepletedCritChance",
+      "canonical": "Eternal Onslaught",
+      "displayName": "永恒·猛攻",
+      "category": "amp",
+      "file": "amp/eternal-onslaught-06f96d20.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/AmpOnVoidSlingAmpAmmoEfficiency",
+      "canonical": "Eternal Logistics",
+      "displayName": "永恒·流转",
+      "category": "amp",
+      "file": "amp/eternal-logistics-9fc04697.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/EnergyOnGhostDissipate",
+      "canonical": "Emergence Dissipate",
+      "displayName": "始现·消散",
+      "category": "operator",
+      "file": "operator/emergence-dissipate-070c70a3.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/OperatorOnDeathInvulnerability",
+      "canonical": "Emergence Savior",
+      "displayName": "始现·救世",
+      "category": "operator",
+      "file": "operator/emergence-savior-7e4a1b37.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/OperatorOnEnergyDepletedRegenEnergy",
+      "canonical": "Emergence Renewed",
+      "displayName": "始现·新生",
+      "category": "operator",
+      "file": "operator/emergence-renewed-7525379a.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/OperatorOnOperatorAbilityIncreaseDamage",
+      "canonical": "Eternal Eradicate",
+      "displayName": "永恒·湮灭",
+      "category": "amp",
+      "file": "amp/eternal-eradicate-9cd45895.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/PrimaryOnAbilityReloadSpeed",
+      "canonical": "Fractalized Reset",
+      "displayName": "分形·重置",
+      "category": "primary",
+      "file": "primary/fractalized-reset-1bc42e00.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/SecondaryOnOvershieldCritChance",
+      "canonical": "Cascadia Overcharge",
+      "displayName": "瀑流·溢能",
+      "category": "secondary",
+      "file": "secondary/cascadia-overcharge-6f0fbf76.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/SecondaryOnRollCritChanceOnHeadshot",
+      "canonical": "Cascadia Accuracy",
+      "displayName": "瀑流·精准",
+      "category": "secondary",
+      "file": "secondary/cascadia-accuracy-f49da000.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/SecondaryOnStatusProcBonusDamage",
+      "canonical": "Cascadia Empowered",
+      "displayName": "瀑流·强化",
+      "category": "secondary",
+      "file": "secondary/cascadia-empowered-dd069609.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/WarframeOnOperatorAbilityPowerStrength",
+      "canonical": "Molt Vigor",
+      "displayName": "蜕化·活力",
+      "category": "warframe",
+      "file": "warframe/molt-vigor-974a163c.json",
+      "acquisitionStatus": "structured"
+    },
+    {
+      "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Zariman/WarframeOnShieldUptimePowerDuration",
+      "canonical": "Molt Efficiency",
+      "displayName": "蜕化·效能",
+      "category": "warframe",
+      "file": "warframe/molt-efficiency-81c94ec1.json",
+      "acquisitionStatus": "structured"
+    }
+  ]
+}

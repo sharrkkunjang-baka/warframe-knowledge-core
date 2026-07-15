@@ -1,33 +1,33 @@
 {
-  "id": "currency.crimson-talent",
-  "canonical": "Crimson Talent",
-  "displayName": "猩红天赋",
-  "kind": "exchange-token",
-  "aliases": [
-    "红"
-  ],
-  "reviewStatus": "approved",
   "acquisitionDependency": {
+    "acquisition": {
+      "bonus": "转场阶段击落全部目标可获得额外数量",
+      "locationId": "mission.scorias-angel",
+      "normalAmount": {
+        "max": 16,
+        "min": 12
+      },
+      "steelPathAmount": {
+        "max": 22,
+        "min": 18
+      },
+      "type": "mission-completion"
+    },
     "canonical": "Crimson Talent",
     "displayName": "猩红天赋",
+    "reviewStatus": "approved",
     "sourceRefs": [
       "https://wiki.warframe.com/w/Crimson_Talent",
       "https://www.warframe.com/patch-notes/switch/43-0-0"
-    ],
-    "reviewStatus": "approved",
-    "acquisition": {
-      "type": "mission-completion",
-      "locationId": "mission.scorias-angel",
-      "normalAmount": {
-        "min": 12,
-        "max": 16
-      },
-      "steelPathAmount": {
-        "min": 18,
-        "max": 22
-      },
-      "bonus": "转场阶段击落全部目标可获得额外数量"
-    }
+    ]
   },
-  "category": "exchange-token"
+  "aliases": [
+    "红"
+  ],
+  "canonical": "Crimson Talent",
+  "category": "exchange-token",
+  "displayName": "猩红天赋",
+  "id": "currency.crimson-talent",
+  "kind": "exchange-token",
+  "reviewStatus": "approved"
 }

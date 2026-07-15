@@ -61,9 +61,14 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const frameCategories = fs.existsSync(frameCategoriesPath) ? deepFreeze(readJson(frameCategoriesPath)) : null;
   const frameMethods = deepFreeze(readObjectDirectory(path.join(frameDirectory, 'method')).filter(item => item.kind === 'frame-acquisition-method'));
   const modMethods = deepFreeze(readObjectDirectory(path.join(knowledgeDirectory, 'acquisition', 'mod', 'method')).filter(item => item.kind === 'mod-acquisition-method'));
+  const arcaneDirectory = path.join(knowledgeDirectory, 'acquisition', 'arcane');
+  const arcaneCatalogPath = path.join(arcaneDirectory, 'catalog.json');
+  const arcaneCatalog = fs.existsSync(arcaneCatalogPath) ? deepFreeze(readJson(arcaneCatalogPath)) : null;
+  const arcaneMethods = deepFreeze(readObjectDirectory(path.join(arcaneDirectory, 'method')).filter(item => item.kind === 'arcane-acquisition-method'));
+  const arcanes = deepFreeze(readObjectDirectory(arcaneDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'arcane').filter(keep));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, frameCategories, frameMethods, modMethods, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialItemSources, aliases, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

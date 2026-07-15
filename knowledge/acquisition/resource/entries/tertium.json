@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriEndlessItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-location"
     ]
   },
   "prerequisites": [],
@@ -25,11 +25,14 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-location",
         "variables": {
-          "resourceName": "三形"
+          "resourceName": "三形",
+          "locationIds": [
+            "landscape.duviri"
+          ]
         },
-        "status": "unresolved"
+        "status": "compiled"
       }
     },
     "manual": {
@@ -47,8 +50,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "三形的资源身份与获取证据。",
   "tags": [
     "acquisition",

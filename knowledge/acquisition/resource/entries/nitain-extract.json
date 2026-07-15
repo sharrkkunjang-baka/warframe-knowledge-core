@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-location"
     ]
   },
   "prerequisites": [],
@@ -230,11 +230,14 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-location",
         "variables": {
-          "resourceName": "泥炭萃取物"
+          "resourceName": "泥炭萃取物",
+          "locationIds": [
+            "interface.nightwave"
+          ]
         },
-        "status": "review-required"
+        "status": "compiled"
       }
     },
     "manual": {
@@ -252,8 +255,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "泥炭萃取物的资源身份与获取证据。",
   "tags": [
     "acquisition",

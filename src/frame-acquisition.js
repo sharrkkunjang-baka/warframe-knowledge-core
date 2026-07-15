@@ -564,21 +564,12 @@ function renderBountyRoute(variables) {
   const lines = [applyTemplate(methodTemplate('components', 'frame-bounty', 'detailedTemplate'), { prerequisiteText, hubsText, bountyName: variables.bountyName })].filter(Boolean);
   const exchange = variables.exchange;
   if (exchange?.npcId && exchange?.currencyId) {
-    const currencyEntity = CURRENCY_REGISTRY.get(exchange.currencyId);
     const currencyName = entityName(CURRENCY_REGISTRY, exchange.currencyId);
     const exchangeLine = applyTemplate(methodTemplate('components', 'frame-bounty', 'exchangeTemplate'), {
       exchangeLocationName: entityName(LOCATION_REGISTRY, exchange.locationId), npcName: entityName(NPC_REGISTRY, exchange.npcId), currencyName,
       componentCost: exchange.componentCost, blueprintCost: exchange.blueprintCost, totalCost: exchange.totalCost, rank: exchange.rank, rankName: exchange.rankName
     });
     if (exchangeLine) lines.push(exchangeLine);
-    const dependency = currencyEntity?.acquisitionDependency;
-    if (dependency?.type === 'bounty-completion-or-compost') {
-      const dependencyLine = applyTemplate(methodTemplate('components', 'frame-bounty', 'currencyDependencyTemplate'), {
-        currencyName, bountyName: dependency.bountyName, normalMin: dependency.normalAmount.min, normalMax: dependency.normalAmount.max,
-        steelMin: dependency.steelPathAmount.min, steelMax: dependency.steelPathAmount.max, compostAmount: dependency.compostAmount
-      });
-      if (dependencyLine) lines.push(dependencyLine);
-    }
   }
   return lines.join('\n');
 }
@@ -616,27 +607,12 @@ function renderMissionNodeRoute(variables) {
   const exchange = variables?.exchange;
   if (exchange?.npcId && exchange?.currencyId) {
     const npc = entityName(NPC_REGISTRY, exchange.npcId);
-    const currencyEntity = CURRENCY_REGISTRY.get(exchange.currencyId);
     const currency = entityName(CURRENCY_REGISTRY, exchange.currencyId);
     const exchangeLine = applyTemplate(methodTemplate('components', 'frame-mixed-missions', 'exchangeTemplate'), {
       npcName: npc, currencyName: currency, componentCost: exchange.componentCost,
       blueprintCost: exchange.blueprintCost, totalCost: exchange.totalCost
     });
     if (exchangeLine) line += `\n${exchangeLine}`;
-    const dependency = currencyEntity?.acquisitionDependency;
-    if (dependency?.type === 'mission-enemy-drop') {
-      const node = LOCATION_REGISTRY.get(dependency.missionNodeId);
-      const missionType = MISSION_TYPE_REGISTRY.get(dependency.missionTypeId);
-      const normal = dependency.normalAmount;
-      const steel = dependency.steelPathAmount;
-      const dependencyLine = applyTemplate(methodTemplate('components', 'frame-mixed-missions', 'currencyDependencyTemplate'), {
-        currencyName: currency, locationName: entityName(LOCATION_REGISTRY, node.parentId),
-        missionNodeName: entityName(LOCATION_REGISTRY, node.id), missionTypeName: entityName(MISSION_TYPE_REGISTRY, missionType.id),
-        enemyName: dependency.enemyName || '爆破使', normalMin: normal.min, normalMax: normal.max,
-        steelMin: steel.min, steelMax: steel.max
-      });
-      if (dependencyLine) line += `\n${dependencyLine}`;
-    }
   }
   return line;
 }
@@ -678,7 +654,7 @@ function currencyAcquisitionSummary(entity) {
   }
   return null;
 }
-function requirementLines(routing) {
+function requirementLines(routing, options = {}) {
   const requirement = routing?.require;
   if (!requirement || requirement.type === 'none') return [];
   const npc = requirement.npcId ? NPC_REGISTRY.get(requirement.npcId) : null;
@@ -690,8 +666,10 @@ function requirementLines(routing) {
     const currenciesText = currencies.map(item => item.entity.displayName || item.entity.canonical).join('和');
     const currenciesWithAmountsText = currencies.map(item => `${item.amount} ${item.entity.displayName || item.entity.canonical}`).join('和');
     const lines = [];
-    const routeTemplate = requirement.usage === 'crafting' ? 'currencyCraftingTemplate' : npcName ? 'currencyNpcTemplate' : 'currencyLocationTemplate';
-    lines.push(applyTemplate(methodTemplate('components', 'frame-vendor', routeTemplate), { locationName, npcName, currenciesText, currenciesWithAmountsText }));
+    if (options.includeExchange !== false) {
+      const routeTemplate = requirement.usage === 'crafting' ? 'currencyCraftingTemplate' : npcName ? 'currencyNpcTemplate' : 'currencyLocationTemplate';
+      lines.push(applyTemplate(methodTemplate('components', 'frame-vendor', routeTemplate), { locationName, npcName, currenciesText, currenciesWithAmountsText }));
+    }
     const dependencies = currencies.map(({ entity, amount }) => {
       const summary = currencyAcquisitionSummary(entity);
       return summary ? applyTemplate(methodTemplate('components', 'frame-vendor', 'currencyDependencyTemplate'), { currencyName: entity.displayName || entity.canonical, amountText: `（全套需要 ${amount}）`, acquisitionSummary: summary }) : null;
@@ -723,10 +701,12 @@ function renderRoutedAcquisition(frameOrName) {
       : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
     if (structured?.length) {
       const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
-      return { route, lines: [blueprint, ...structured, ...requirementLines(routing)].filter(Boolean), source: 'category-method' };
+      return { route, lines: [blueprint, ...structured, ...requirementLines(routing, { includeExchange: !variables.exchange })].filter(Boolean), source: 'category-method' };
     }
     const text = knowledge.frameAcquisition?.manual?.acquisitionText;
-    return text ? { route, lines: [...String(text).split('\n').filter(Boolean), ...requirementLines(routing)].filter(Boolean), source: 'frame-json' } : null;
+    const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
+    const lines = [blueprint, ...String(text || '').split('\n').filter(Boolean), ...requirementLines(routing)].filter(Boolean);
+    return lines.length ? { route, lines, source: text ? 'frame-json' : 'category-method' } : null;
   }
   const lines = [];
   if (route.blueprintCategory) {
@@ -761,7 +741,7 @@ function renderRoutedAcquisition(frameOrName) {
     const fallback = groupedPartSourceLines(getComponentDrops(frame).filter(item => item.part !== 'Blueprint').map(item => ({ part: item.part, text: componentSourceText(frame, item.part, item.drops) })));
     lines.push(...fallback);
   }
-  lines.push(...requirementLines(routing));
+  lines.push(...requirementLines(routing, { includeExchange: !routing.componentVariables?.exchange }));
   return lines.length ? { route, lines, source: 'category-method' } : null;
 }
 

@@ -50,15 +50,15 @@ test('刷磁妹走商城总图与刺杀模板', () => {
   assert.equal(result.description, '商城购买总图\n火卫一刺杀 军士 刷取部件')
 })
 
-test('指定战甲主分类正确且特定任务从独立 JSON 回退', () => {
+test('指定战甲主分类正确且特定任务按可用结构化数据渲染', () => {
   assert.equal(route('Cyte-09').componentCategory, 'frame-bounty')
   assert.equal(route('Gara').componentCategory, 'frame-bounty')
   assert.equal(route('Garuda').componentCategory, 'frame-bounty')
   assert.equal(route('Octavia').componentCategory, 'frame-mixed-missions')
   assert.equal(route('Xaku').componentCategory, 'frame-bounty')
   for (const name of ['Jade', 'Citrine', 'Kullervo']) assert.equal(route(name).componentCategory, 'frame-specific-mission')
-  assert.ok(entry('Kullervo').frameAcquisition.manual.acquisitionText)
-  assert.equal(frameAcquisition.renderRoutedAcquisition('Kullervo').source, 'frame-json')
+  assert.equal(entry('Kullervo').frameAcquisition.manual.acquisitionText, undefined)
+  assert.equal(frameAcquisition.renderRoutedAcquisition('Kullervo').source, 'category-method')
   assert.equal(frameAcquisition.renderRoutedAcquisition('Citrine').source, 'category-method')
   assert.equal(frameAcquisition.renderRoutedAcquisition('Jade').source, 'category-method')
 })
@@ -86,7 +86,6 @@ test('Jade 使用任务节点、NPC 与货币变量展示掉落和保底兑换',
     '完成《翠玉之影》获得总图',
     '在天王星的布鲁图斯（扬升）刷取，部件蓝图掉率 4.63%',
     '也可在 Ordis 处使用残存微粒兑换：部件蓝图每张 150，总图 450',
-    '前往漂泊者营地找Ordis，使用残存微粒兑换',
     '货币获取：',
     '- 残存微粒（全套需要 900）：完成天王星布鲁图斯的扬升任务结算获得，任务中的帕尔沃斯姐妹也会额外掉落',
     '资源数量加成：不吃'
@@ -99,8 +98,7 @@ test('Dante 使用节点、任务类型、NPC 与兑换货币变量', () => {
   assert.equal(routing.exchange.npcId, 'npc.loid')
   assert.equal(routing.exchange.currencyId, 'currency.vessel-capillaries')
   assert.deepEqual(frameAcquisition.renderRoutedAcquisition('Dante').lines, [
-    '在火卫二的卫城区（中断） C 轮刷取部件蓝图\n也可在 洛德 处使用承载体毛细血管兑换：部件蓝图每张 90，总图 270，全套共 540\n承载体毛细血管怎么刷：在火卫二的卫城区（中断）击败爆破使，普通每只掉落 2-4，钢铁之路每只 5-7',
-    '前往解剖圣所找洛德，使用承载体毛细血管兑换',
+    '在火卫二的卫城区（中断） C 轮刷取部件蓝图\n也可在 洛德 处使用承载体毛细血管兑换：部件蓝图每张 90，总图 270，全套共 540',
     '货币获取：',
     '- 承载体毛细血管（全套需要 540）：在火卫二的卫城区（中断）击败爆破使获得，普通每只 2-4，钢铁之路每只 5-7',
     '资源数量加成：不吃'
@@ -136,7 +134,7 @@ test('Nokko 通过赏金、NPC、地点、任务和铁离石变量渲染', () =>
   assert.equal(result.frameRoute.route.blueprintCategory, null)
   assert.match(result.description, /完成《新纪之战》后，在福尔图娜气密舱找夜帽接取深矿赏金刷取全部蓝图/)
   assert.match(result.description, /铁离石兑换：部件蓝图每张 160，总图 240，全套共 720/)
-  assert.match(result.description, /普通难度结算 11-15 个，钢铁之路结算 15-19 个/)
+  assert.match(result.description, /普通难度 11-15 个，钢铁之路 15-19 个/)
   assert.doesNotMatch(result.description, /官方结构化数据缺少|Deepmines|Nightcap|Fergolyte/)
 })
 
@@ -159,9 +157,9 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
     assert.equal(result.description.split('\n').at(-1), '资源数量加成：不吃', name)
   }
   assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.vessel-capillaries', amount: 540 }], isBuffuseless: true })
-  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /前往解剖圣所找洛德，使用承载体毛细血管兑换[\s\S]*资源数量加成：不吃$/)
+  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /也可在 洛德 处使用承载体毛细血管兑换[\s\S]*资源数量加成：不吃$/)
   assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.require, { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currency: [{ currencyId: 'currency.fergolyte', amount: 720 }], isBuffuseless: true })
-  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /前往气密舱找夜帽，使用铁离石兑换[\s\S]*资源数量加成：不吃$/)
+  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /也可在气密舱向夜帽使用铁离石兑换[\s\S]*资源数量加成：不吃$/)
   const dagath = entry('Dagath').frameAcquisition.generated.routing.require
   assert.deepEqual(dagath, { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currency: [{ currencyId: 'currency.vainthorn', amount: 102 }], isBuffuseless: true })
   assert.equal(createKnowledgeCore().getAcquisition('Dagath').description, [
@@ -180,7 +178,7 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
   assert.doesNotMatch(createKnowledgeCore().getAcquisition('Mag').description, /资源数量加成|声望兑换/)
 })
 
-test('全部 currency require 都有地点、货币、数量和获取方式', () => {
+test('全部 currency require 都有地点、货币、数量和唯一语义段落', () => {
   const core = createKnowledgeCore()
   for (const item of INDEX.frames) {
     const routing = entry(item.canonical).frameAcquisition.generated.routing
@@ -189,8 +187,15 @@ test('全部 currency require 都有地点、货币、数量和获取方式', ()
     assert.ok(routing.require.currency.length, item.canonical)
     for (const currency of routing.require.currency) assert.ok(currency.currencyId && Number.isFinite(currency.amount), `${item.canonical}: ${currency.currencyId}`)
     const description = core.getAcquisition(item.canonical).description
-    assert.match(description, /货币获取：/, item.canonical)
-    assert.match(description, /资源数量加成：(吃|不吃)$/, item.canonical)
+    const lines = description.split('\n')
+    assert.equal(lines.filter(line => line === '货币获取：').length, 1, item.canonical)
+    assert.equal(lines.filter(line => /^资源数量加成：(吃|不吃)$/.test(line)).length, 1, item.canonical)
+    assert.equal(lines.filter(line => line.startsWith('- ')).length, routing.require.currency.length, item.canonical)
+    assert.equal(new Set(lines).size, lines.length, `${item.canonical}: 存在完全重复行`)
+    if (routing.componentVariables?.exchange) {
+      assert.equal(lines.filter(line => line.includes('兑换')).length, 1, `${item.canonical}: 兑换入口重复`)
+    }
+    assert.doesNotMatch(description, /官方结构化数据缺少该蓝图的获取来源/, item.canonical)
   }
 })
 
@@ -203,7 +208,6 @@ test('Oraxia 蜘蛛别名通过织屿人独立任务与急行蛛外壳路由', (
   assert.equal(core.getAcquisition('蜘蛛').description, [
     '在双衍王境的织屿人刷取，部件蓝图掉率 7.69%',
     '也可在 言录使 处使用急行蛛外壳兑换：部件蓝图每张 20，总图 60',
-    '前往宿舍找言录使，使用急行蛛外壳兑换',
     '货币获取：',
     '- 急行蛛外壳（全套需要 120）：完成双衍王境织屿人节点的复眠螺旋，在结尾击败接肢怪后获得：普通模式 3-5 个，钢铁之路 5-8 个',
     '资源数量加成：不吃'
