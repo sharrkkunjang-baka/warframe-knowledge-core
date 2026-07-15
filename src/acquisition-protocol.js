@@ -106,7 +106,7 @@ function renderRequirements(value, registries) {
   return [route, ...(dependencies.length ? ['所需货币怎么刷：', ...dependencies] : []), requirement.isBuffUseless ? '资源数量加成无效' : '资源数量加成有效'].filter(Boolean)
 }
 
-function renderStructuredMethod(method) {
+function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
   const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
   const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'item' ? '成品' : ''
@@ -120,16 +120,26 @@ function renderStructuredMethod(method) {
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
   if (method.type === 'enemy-drop') {
-    const chance = Number.isFinite(method.chance) ? `（综合概率${Number((method.chance * 100).toFixed(4))}%${Number.isFinite(method.sourceDropChance) && Number.isFinite(method.conditionalChance) ? `；来源掉落触发${Number((method.sourceDropChance * 100).toFixed(4))}%，触发后占${Number((method.conditionalChance * 100).toFixed(4))}%` : ''}）` : ''
-    return `${prefix}${source ? `击败${source}获得` : '击败指定敌人获得'}${chance}`
+    const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（综合概率${Number((method.chance * 100).toFixed(4))}%${Number.isFinite(method.sourceDropChance) && Number.isFinite(method.conditionalChance) ? `；来源掉落触发${Number((method.sourceDropChance * 100).toFixed(4))}%，触发后占${Number((method.conditionalChance * 100).toFixed(4))}%` : ''}）` : ''
+    return `${prefix}${source ? `击败${source}${chance ? '获得' : '概率获得'}` : `击败指定敌人${chance ? '获得' : '概率获得'}`}${chance}`
   }
   if (method.type === 'mission-reward') {
     const mission = [method.locationDisplayName || source, method.missionTypeDisplayName ? `（${method.missionTypeDisplayName}）` : ''].join('')
-    const chance = Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
-    return `${prefix}${mission ? `完成${mission}${method.rotation ? ` ${method.rotation}轮` : ''}获得` : '完成指定任务获得'}${chance}`
+    const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
+    return `${prefix}${mission ? `完成${mission}${method.rotation ? ` ${method.rotation}轮` : ''}${chance ? '获得' : '概率获得'}` : `完成指定任务${chance ? '获得' : '概率获得'}`}${chance}`
   }
   if (method.type === 'route') return variables.text || source || null
   return source ? `来源：${source}` : null
+}
+
+function joinPartNames(partNames) {
+  const names = [...new Set((partNames || []).filter(Boolean))]
+  if (names.length < 2) return names[0] || ''
+  const firstSpace = names[0].indexOf(' ')
+  if (firstSpace <= 0) return names.join('、')
+  const prefix = names[0].slice(0, firstSpace + 1)
+  if (!names.every(name => name.startsWith(prefix) && name.length > prefix.length)) return names.join('、')
+  return `${names[0]}、${names.slice(1).map(name => name.slice(prefix.length)).join('、')}`
 }
 
 function mergeAlternativeSources(methods) {
@@ -151,8 +161,21 @@ function mergeAlternativeSources(methods) {
   return [...merged, ...passthrough]
 }
 
+function applyDisplaySummaries(methods) {
+  const counts = new Map()
+  for (const method of methods || []) if (method.displayGroupId && method.displaySummary) counts.set(method.displayGroupId, (counts.get(method.displayGroupId) || 0) + 1)
+  const emitted = new Set(), output = []
+  for (const method of methods || []) {
+    if (!method.displayGroupId || !method.displaySummary) { output.push(method); continue }
+    if (emitted.has(method.displayGroupId)) continue
+    emitted.add(method.displayGroupId)
+    output.push({ type: 'route', scope: 'item', variables: { text: method.displaySummary }, requirements: { type: 'none' }, requirementLines: [], reviewStatus: 'approved', provenance: { source: 'compiled-display-summary', methodCount: counts.get(method.displayGroupId) || 1 } })
+  }
+  return output
+}
+
 function renderAcquisition(methods, options = {}) {
-  const renderMethods = mergeAlternativeSources(methods)
+  const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods))
   const sourceGroups = new Map()
   for (const method of renderMethods) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type) || method.scope !== 'component') continue
@@ -171,12 +194,12 @@ function renderAcquisition(methods, options = {}) {
     if (groupedMethods.has(method)) {
       const group = [...sourceGroups.values()].find(item => item.methods[0] === method)
       if (!group) continue
-      const merged = { ...method, variables: { ...(method.variables || {}), partName: [...new Set(group.partNames)].join('、') } }
-      const headline = renderStructuredMethod(merged)
+      const merged = { ...method, variables: { ...(method.variables || {}), partName: joinPartNames(group.partNames) } }
+      const headline = renderStructuredMethod(merged, options)
       if (headline) lines.push(headline)
       continue
     }
-    const headline = renderStructuredMethod(method)
+    const headline = renderStructuredMethod(method, options)
     if (headline) lines.push(headline)
     const isVendorExchange = method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange'
     if (method.type !== 'quest-reward' && !isVendorExchange) lines.push(...(method.requirementLines || []))
@@ -196,4 +219,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, renderStructuredMethod, mergeAlternativeSources, renderAcquisition }
+module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, renderAcquisition }

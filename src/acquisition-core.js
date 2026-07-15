@@ -10,7 +10,7 @@ function methodIdentity(method) {
     sourceDisplayName: method.sourceDisplayName || null, locationId: method.locationId || null,
     missionNodeId: method.missionNodeId || null, factionId: method.factionId || null,
     rotation: method.rotation || null, chance: method.chance ?? method.probability ?? null,
-    recipeId: method.recipeId || null, partRefs: method.partRefs || []
+    relicCanonical: method.relicCanonical || null, recipeId: method.recipeId || null, partRefs: method.partRefs || []
   })
 }
 
