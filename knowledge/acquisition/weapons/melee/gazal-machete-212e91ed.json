@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Each kill with this swooping blade adds bonus damage to the Djinn Sentinel’s next Fatal Attraction ability. In turn, Fatal Attraction bestows the weapon with a period of 腐蚀Corrosive Damage.",
+    "display": "（英文：GAZAL MACHETE）每次用这把俯冲样式的刀刃击杀会给引灵下一次释放的致命诱惑增加额外的伤害。作为回报，致命诱惑会赋予这把武器一段时间的 腐蚀腐蚀伤害。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+        ],
         "variables": {
           "weaponName": "加扎勒反曲刀",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/PersianMachete/DjinnMachete",
+      "blueprintCanonical": "DjinnMacheteBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
-          "canonical": "ArgonCrystal",
-          "displayName": "ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2600
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1900
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1400
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "加扎勒反曲刀的官方武器身份、获取和制造数据。",
+  "summary": "（英文：GAZAL MACHETE）每次用这把俯冲样式的刀刃击杀会给引灵下一次释放的致命诱惑增加额外的伤害。作为回报，致命诱惑会赋予这把武器一段时间的 腐蚀腐蚀伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

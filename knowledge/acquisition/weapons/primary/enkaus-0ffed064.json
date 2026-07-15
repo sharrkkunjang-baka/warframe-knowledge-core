@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Turn the enemy's worst nightmare into reality with Follie's signature rifle. The Enkaus will instantly kill and dissolve inked enemies that are damaged at low health. Shooting inked enemies siphons ink back into the Enkaus, allowing for a constant flow of creative destruction.",
+    "display": "（英文：ENKAUS）使用 Follie 的标志性步枪将敌人的噩梦化为现实。当被墨汁侵染的敌人生命值较低时，绘墨会瞬间将其击杀并溶解。射击被墨汁侵染的敌人可将墨水回流至绘墨，实现持续不断的创造性破坏。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,115 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+        ],
         "variables": {
           "weaponName": "绘墨",
           "recipeId": "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+            ],
+            "sourceCanonical": "Venus/Vesper Relay (Follie's Hunt)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.follie-s-hunt",
+            "chance": 0.05,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "A",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+            ],
+            "sourceCanonical": "Venus/Vesper Relay (Follie's Hunt) Extra",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.06,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "A",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausBarrel"
+        ],
+        "variables": {
+          "partName": "EnkausBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausReceiver"
+        ],
+        "variables": {
+          "partName": "EnkausReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausStock"
+        ],
+        "variables": {
+          "partName": "EnkausStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +179,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/EnkausBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/EnkausBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +200,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/EnkausBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnInkRifle/TnInkRifleWeapon",
+      "blueprintCanonical": "EnkausBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 40000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausBarrel",
           "canonical": "EnkausBarrel",
-          "displayName": "EnkausBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +219,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausReceiver",
           "canonical": "EnkausReceiver",
-          "displayName": "EnkausReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +227,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausStock",
           "canonical": "EnkausStock",
-          "displayName": "EnkausStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +241,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "绘墨的官方武器身份、获取和制造数据。",
+  "summary": "（英文：ENKAUS）使用 Follie 的标志性步枪将敌人的噩梦化为现实。当被墨汁侵染的敌人生命值较低时，绘墨会瞬间将其击杀并溶解。射击被墨汁侵染的敌人可将墨水回流至绘墨，实现持续不断的创造性破坏。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +250,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EnkausStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

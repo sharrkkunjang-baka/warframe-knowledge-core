@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "This unusual automatic rifle feels strangely familiar and has two fire modes. Primary fire packs radiation damage. Alternate fire charges up to launch an explosive projectile.",
+    "display": "（英文：AEOLAK）这把非同寻常的自动步枪给人一种奇异的熟悉感，并且拥有两种开火模式。主要射击附带辐射伤害，次要射击充能后可发射一枚爆炸投射物。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint"
+        ],
         "variables": {
           "weaponName": "风鸣",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleBarrel"
+        ],
+        "variables": {
+          "partName": "DuviriRifleBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleReceiver"
+        ],
+        "variables": {
+          "partName": "DuviriRifleReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleStock"
+        ],
+        "variables": {
+          "partName": "DuviriRifleStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnRifleErsatz/TnRifleErsatzWeapon",
+      "blueprintCanonical": "DuviriRifleBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleBarrel",
           "canonical": "DuviriRifleBarrel",
-          "displayName": "DuviriRifleBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleReceiver",
           "canonical": "DuviriRifleReceiver",
-          "displayName": "DuviriRifleReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +178,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleStock",
           "canonical": "DuviriRifleStock",
-          "displayName": "DuviriRifleStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -118,7 +187,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
           "canonical": "Thrax Plasm",
           "displayName": "凶魂浆质",
-          "languageKey": "/Lotus/Language/Zariman/VoidWraithItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 50
         }
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "风鸣的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AEOLAK）这把非同寻常的自动步枪给人一种奇异的熟悉感，并且拥有两种开火模式。主要射击附带辐射伤害，次要射击充能后可发射一枚爆炸投射物。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

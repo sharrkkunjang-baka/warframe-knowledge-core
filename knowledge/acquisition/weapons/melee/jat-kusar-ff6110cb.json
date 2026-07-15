@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Overwhelm hostiles with this jet-powered sickle and razor-chain weapon. Charged strikes ignite an explosive blast at range.",
+    "display": "（英文：JAT KUSAR）用这把喷气动力的镰刀和锋利锁链武器击垮你的敌人。蓄力攻击可以点燃一次远距离的爆破。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "喷射锁镰",
           "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnKusarigama/GrnKusarigamaWeapon",
+      "blueprintCanonical": "GrnKusarigamaWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
-          "canonical": "ChemComponent",
-          "displayName": "ChemComponent",
+          "canonical": "Detonite Injector",
+          "displayName": "爆燃喷射器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 7
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 7500
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "喷射锁镰的官方武器身份、获取和制造数据。",
+  "summary": "（英文：JAT KUSAR）用这把喷气动力的镰刀和锋利锁链武器击垮你的敌人。蓄力攻击可以点燃一次远距离的爆破。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

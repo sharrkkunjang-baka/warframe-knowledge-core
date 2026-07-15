@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Chew through the enemy with this vicious automatic hand shotgun.",
+    "display": "（英文：PYRANA）用这把凶恶的自动霰弹手枪咬穿敌人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint"
+        ],
         "variables": {
           "weaponName": "食人鱼",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TennoHandShotgunBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/SawnOffShotgun/TennoHandShotgun",
+      "blueprintCanonical": "TennoHandShotgunBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
-          "canonical": "ControlModule",
-          "displayName": "ControlModule",
+          "canonical": "Control Module",
+          "displayName": "控制模块",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 800
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "食人鱼的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PYRANA）用这把凶恶的自动霰弹手枪咬穿敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

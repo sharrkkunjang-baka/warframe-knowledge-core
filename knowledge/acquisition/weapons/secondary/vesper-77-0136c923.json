@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "A true masterpiece of Höllvanian engineering, Vesper 77's advanced laser sight highlights enemy Weak Points with precision. Aim to increase its Critical Damage Multiplier.",
+    "display": "（英文：VESPER 77）夜语者 77 是霍瓦尼亚工程的真正杰作，其先进的激光瞄准器可突出显示敌人的弱点。瞄准来提高其暴击伤害倍率。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "夜语者 77",
           "recipeId": "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolBarrel"
+        ],
+        "variables": {
+          "partName": "LasSilencedPistolBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolReceiver"
+        ],
+        "variables": {
+          "partName": "LasSilencedPistolReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolStock"
+        ],
+        "variables": {
+          "partName": "LasSilencedPistolStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Lasria/LasSilencedPistol/LasSilencedPistolWeapon",
+      "blueprintCanonical": "LasSilencedPistolBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolBarrel",
           "canonical": "LasSilencedPistolBarrel",
-          "displayName": "LasSilencedPistolBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolReceiver",
           "canonical": "LasSilencedPistolReceiver",
-          "displayName": "LasSilencedPistolReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolStock",
           "canonical": "LasSilencedPistolStock",
-          "displayName": "LasSilencedPistolStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "夜语者 77的官方武器身份、获取和制造数据。",
+  "summary": "（英文：VESPER 77）夜语者 77 是霍瓦尼亚工程的真正杰作，其先进的激光瞄准器可突出显示敌人的弱点。瞄准来提高其暴击伤害倍率。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

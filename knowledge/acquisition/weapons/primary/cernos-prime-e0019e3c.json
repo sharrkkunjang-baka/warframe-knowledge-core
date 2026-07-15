@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "A noble bow to hunt hellish beasts.",
+    "display": "（英文：CERNOS PRIME）一把用来狩猎恶兽的高贵之弓。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,80 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint"
+        ],
         "variables": {
           "weaponName": "西诺斯 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosLowerLimb"
+        ],
+        "variables": {
+          "partName": "PrimeCernosLowerLimb"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosUpperLimb"
+        ],
+        "variables": {
+          "partName": "PrimeCernosUpperLimb"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosGrip"
+        ],
+        "variables": {
+          "partName": "PrimeCernosGrip"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosString"
+        ],
+        "variables": {
+          "partName": "PrimeCernosString"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +145,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +166,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/PrimeCernosBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Bows/PrimeCernos/PrimeCernos",
+      "blueprintCanonical": "PrimeCernosBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosLowerLimb",
           "canonical": "PrimeCernosLowerLimb",
-          "displayName": "PrimeCernosLowerLimb",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +185,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosUpperLimb",
           "canonical": "PrimeCernosUpperLimb",
-          "displayName": "PrimeCernosUpperLimb",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +193,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosGrip",
           "canonical": "PrimeCernosGrip",
-          "displayName": "PrimeCernosGrip",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -117,7 +201,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosString",
           "canonical": "PrimeCernosString",
-          "displayName": "PrimeCernosString",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -131,7 +215,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "西诺斯 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CERNOS PRIME）一把用来狩猎恶兽的高贵之弓。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +224,41 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosLowerLimb",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosUpperLimb",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosGrip",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosString",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

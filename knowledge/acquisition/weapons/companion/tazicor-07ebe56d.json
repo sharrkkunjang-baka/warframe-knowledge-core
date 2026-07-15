@@ -12,6 +12,11 @@
       "weapon.companion"
     ]
   },
+  "description": {
+    "canonical": "Releases a burst of static electricity that can jump between foes, incapacitating them.",
+    "display": "（英文：TAZICOR）释放出一阵静电，该静电可以在敌人之间跳跃，使他们失去战斗能力。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.companion"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "泰瑟步枪",
           "recipeId": "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint",
       "resultUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/TazronWeapon",
+      "blueprintCanonical": "SentinelTazronWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 50000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/CommonGemBCutAItem",
-          "canonical": "CommonGemBCutAItem",
-          "displayName": "CommonGemBCutAItem",
+          "canonical": "Esher Devar",
+          "displayName": "伊舍兄弟之石",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisCommonGemACutItem",
-          "canonical": "SolarisCommonGemACutItem",
-          "displayName": "SolarisCommonGemACutItem",
+          "canonical": "Smooth Phasmin",
+          "displayName": "光滑翡斯敏石",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         },
         {
           "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishNeuralRelayItem",
-          "canonical": "SolarisFishNeuralRelayItem",
-          "displayName": "SolarisFishNeuralRelayItem",
+          "canonical": "Recaster Neural Relay",
+          "displayName": "续播机神经中继器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         },
         {
           "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishLatheCoogulantItem",
-          "canonical": "SolarisFishLatheCoogulantItem",
-          "displayName": "SolarisFishLatheCoogulantItem",
+          "canonical": "Longwinder Lathe Coagulant",
+          "displayName": "长型环绕者车床凝聚剂",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "泰瑟步枪的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TAZICOR）释放出一阵静电，该静电可以在敌人之间跳跃，使他们失去战斗能力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

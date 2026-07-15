@@ -80,7 +80,12 @@
               "type": "vendor-or-syndicate-exchange",
               "sourceEntityId": "npc.father",
               "locationId": "hub.necralisk",
-              "rank": 4,
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.father",
+                "locationId": "hub.necralisk",
+                "rank": 4
+              },
               "standing": 20000,
               "chance": null,
               "quantity": 1,

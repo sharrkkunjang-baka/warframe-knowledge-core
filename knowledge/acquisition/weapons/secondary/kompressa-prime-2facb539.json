@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Glinting like a golden dawn, Yareli Prime’s signature pistol engulfs foes in a cascade of virulent, explosive, water globules. None can escape the sea.",
+    "display": "（英文：KOMPRESSA PRIME）Yareli Prime 的标志性手枪闪耀着金色黎明般的光芒，将敌人吞噬在一连串的剧毒、爆炸性水弹中。没有人能逃出这片水域。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "卡帕压力枪 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/KompressaPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "KompressaPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/KompressaPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "KompressaPrimeReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/KompressaPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeKompressa/PrimeKompressa",
+      "blueprintCanonical": "KompressaPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/KompressaPrimeBarrel",
           "canonical": "KompressaPrimeBarrel",
-          "displayName": "KompressaPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,17 +154,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/KompressaPrimeReceiver",
           "canonical": "KompressaPrimeReceiver",
-          "displayName": "KompressaPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "卡帕压力枪 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：KOMPRESSA PRIME）Yareli Prime 的标志性手枪闪耀着金色黎明般的光芒，将敌人吞噬在一连串的剧毒、爆炸性水弹中。没有人能逃出这片水域。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/KompressaPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/KompressaPrimeReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

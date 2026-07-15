@@ -13,6 +13,11 @@
       "weapon.tenet"
     ]
   },
+  "description": {
+    "canonical": "On Heavy Slide Attack, this Corpus scythe launches a spinning energy disk that ricochets throughout the battlefield. Its lifetime is derived from the size of the Combo Counter. Note: The Granum Attaché system pauses the combo timer when holstered.",
+    "display": "（英文：TENET GRIGORI）滑行重击时，这把 Corpus 镰刀会发射一个旋转的能量盘在战场上弹跳。能量盘的持续时间由近战连击数决定。注意：格拉努公文包系统会在武器收起时暂停连击倒计时。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee",
@@ -42,11 +47,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint"
+        ],
         "variables": {
           "weaponName": "信条·格里高利",
           "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint"
@@ -71,7 +82,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -82,10 +103,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseScytheBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Melee/CrpBriefcaseScythe/CrpBriefcaseScythe",
+      "blueprintCanonical": "CrpBriefcaseScytheBlueprint",
       "outputQuantity": 1,
       "credits": 10000,
       "buildTimeSeconds": 60,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [],
       "provenance": {
         "source": "DE ExportRecipes",
@@ -95,7 +119,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "信条·格里高利的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TENET GRIGORI）滑行重击时，这把 Corpus 镰刀会发射一个旋转的能量盘在战场上弹跳。能量盘的持续时间由近战连击数决定。注意：格拉努公文包系统会在武器收起时暂停连击倒计时。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -104,11 +128,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

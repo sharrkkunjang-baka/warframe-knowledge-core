@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "A golden shotgun, forged for those who deliver judgment.",
+    "display": "（英文：CEDO PRIME）一把金色的霰弹枪，为那些执裁者而打造。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "塞多 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "CedoPrimeReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "CedoPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeStock"
+        ],
+        "variables": {
+          "partName": "CedoPrimeStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CedoPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeCedo/PrimeCedoWeapon",
+      "blueprintCanonical": "CedoPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeReceiver",
           "canonical": "CedoPrimeReceiver",
-          "displayName": "CedoPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeBarrel",
           "canonical": "CedoPrimeBarrel",
-          "displayName": "CedoPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +178,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeStock",
           "canonical": "CedoPrimeStock",
-          "displayName": "CedoPrimeStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "塞多 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CEDO PRIME）一把金色的霰弹枪，为那些执裁者而打造。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CedoPrimeStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

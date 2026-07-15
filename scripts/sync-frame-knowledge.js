@@ -57,7 +57,12 @@ function generatedData(frame) {
 function buildEntry(frame, existing) {
   const canonical = CANONICAL_OVERRIDES[frame.uniqueName] || frame.name;
   const generated = { ...(existing?.frameAcquisition?.generated || {}), ...generatedData(frame) };
+  if (canonical === 'Sirius & Orion' && generated.routing?.requirements?.type === 'currency') generated.routing = { ...generated.routing, requirements: { ...generated.routing.requirements, currency: (generated.routing.requirements.currency || []).map(item => item.currencyId === 'currency.jade-talent' ? { ...item, currencyId: 'currency.emerald-talent' } : item) } };
   const manual = migrateManual(existing);
+  if (canonical === 'Sirius & Orion') {
+    if (manual.specialFrame?.acquisition?.vendorExchange?.currencyIds) manual.specialFrame.acquisition.vendorExchange.currencyIds = manual.specialFrame.acquisition.vendorExchange.currencyIds.map(id => id === 'currency.jade-talent' ? 'currency.emerald-talent' : id);
+    if (Array.isArray(manual.dependencies)) manual.dependencies = manual.dependencies.map(item => item.currencyId === 'currency.jade-talent' ? { ...item, currencyId: 'currency.emerald-talent' } : item);
+  }
   const old = existing || {};
   return {
     ...old,

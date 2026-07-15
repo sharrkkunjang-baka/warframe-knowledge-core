@@ -77,10 +77,16 @@
           "methods": [
             {
               "type": "vendor-or-syndicate-exchange",
-              "pattern": {},
               "sourceEntityId": "npc.son",
               "locationId": "hub.necralisk",
-              "requirementsEvidence": [],
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.son",
+                "locationId": "hub.necralisk",
+                "rank": 3,
+                "rankName": "同伴"
+              },
+              "standing": 20000,
               "chance": null,
               "quantity": 1,
               "availability": "guaranteed-when-requirements-met",
@@ -328,16 +334,27 @@
         },
         "officialDrops": [
           {
-            "type": "official-drop",
-            "sourceCanonical": "Entrati (Son), Associate",
-            "chance": 100,
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.son",
+            "locationId": "hub.necralisk",
+            "availability": "guaranteed-when-requirements-met",
             "quantity": 1,
             "rarity": "Common",
-            "reviewStatus": "draft",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.son",
+              "locationId": "hub.necralisk",
+              "rank": 2,
+              "rankName": "同伴"
+            },
+            "reviewStatus": "approved",
             "provenance": {
               "source": "warframe-items",
               "input": "Mods.json",
-              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/VoidClone"
+              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/VoidClone",
+              "rawChance": 1,
+              "sourceCanonical": "Entrati (Son), Associate",
+              "note": "上游 chance=1 表示满足声望条件后可兑换，不是随机掉落。"
             }
           }
         ]

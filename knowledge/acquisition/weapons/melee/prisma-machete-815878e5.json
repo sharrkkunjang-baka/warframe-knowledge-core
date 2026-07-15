@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "The addition of Prisma Crystal allows this otherwise barbaric weapon to elegantly hack through any foe.",
+    "display": "（英文：PRISMA MACHETE）这把原本野蛮的武器在融入棱晶后能优雅的斩杀任何敌人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,6 +45,9 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved"
+    ],
     "routes": [
       {
         "scope": "item",
@@ -59,7 +67,7 @@
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "棱晶·马谢特砍刀的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PRISMA MACHETE）这把原本野蛮的武器在融入棱晶后能优雅的斩杀任何敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -68,11 +76,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

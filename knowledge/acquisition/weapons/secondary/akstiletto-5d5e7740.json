@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "These diminutive rapid-fire Stiletto machine-pistols are just the right size to be akimbo style without sacrificing accuracy.",
+    "display": "（英文：AKSTILETTO）这对小巧，能快速击发的史提托全自动手枪，其恰如其分的尺寸既能双持射击又不失精准度。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
+        ],
         "variables": {
           "weaponName": "史提托双枪",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/TennoUzi/TennoUzi",
+      "blueprintCanonical": "TennoUziBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
           "canonical": "Gallium",
-          "displayName": "Gallium",
+          "displayName": "镓",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 800
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "史提托双枪的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AKSTILETTO）这对小巧，能快速击发的史提托全自动手枪，其恰如其分的尺寸既能双持射击又不失精准度。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "This pre-Orokin weapon earned its popularity for its reliability in tough conditions. When hip-firing, its Ammo Efficiency increases. When aiming, headshots have a high Critical Chance.",
+    "display": "（英文：AX-52）这款前奥罗金时代的武器因其在恶劣条件下的可靠性而广受欢迎。腰射时，弹药效率会提高。瞄准时，爆头有极高的暴击几率。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+        ],
         "variables": {
           "weaponName": "AX-52",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint",
       "resultUniqueName": "/Lotus/Weapons/Lasria/AK47/TC2024AK47Weapon",
+      "blueprintCanonical": "TC2024AK47Blueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceRareA",
-          "canonical": "1999ResourceRareA",
-          "displayName": "1999ResourceRareA",
+          "canonical": "Techrot Motherboard",
+          "displayName": "科腐者主板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceUncommonA",
-          "canonical": "1999ResourceUncommonA",
-          "displayName": "1999ResourceUncommonA",
+          "canonical": "Techrot Chitin",
+          "displayName": "科腐者几丁质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 25
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceCommonA",
-          "canonical": "1999ResourceCommonA",
-          "displayName": "1999ResourceCommonA",
+          "canonical": "Efervon Sample",
+          "displayName": "艾弗旺样本",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 60
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceCommonB",
-          "canonical": "1999ResourceCommonB",
-          "displayName": "1999ResourceCommonB",
+          "canonical": "HöLlvanian Pitchweave Fragment",
+          "displayName": "霍瓦尼亚沥青布碎片",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 60
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "AX-52的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AX-52）这款前奥罗金时代的武器因其在恶劣条件下的可靠性而广受欢迎。腰射时，弹药效率会提高。瞄准时，爆头有极高的暴击几率。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

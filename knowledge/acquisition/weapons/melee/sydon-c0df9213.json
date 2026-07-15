@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Inflict maximum devastation with this massive Grineer trident.",
+    "display": "（英文：SYDON）这柄沉重的 Grineer 三叉戟能造成极致的毁灭。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "恶龙",
           "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,39 +106,42 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnTrident/GrnTridentWeapon",
+      "blueprintCanonical": "GrnTridentWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
-          "canonical": "ChemComponent",
-          "displayName": "ChemComponent",
+          "canonical": "Detonite Injector",
+          "displayName": "爆燃喷射器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1100
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4000
         },
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Melee/Staff/GrnStaff",
           "canonical": "GrnStaff",
-          "displayName": "GrnStaff",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "恶龙的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SYDON）这柄沉重的 Grineer 三叉戟能造成极致的毁灭。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

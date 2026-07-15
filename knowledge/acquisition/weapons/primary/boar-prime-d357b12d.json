@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "One of the finest examples of Tenno craftsmanship, the Boar Prime offers a higher Fire Rate, Magazine Capacity and a much higher per-shot damage.",
+    "display": "（英文：BOAR PRIME）Tenno 工艺设计的绝佳案例之一，野猪 Prime 能提供更快的射速、更大的弹匣容量，以及更高的子弹伤害。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "野猪 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "BoarPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "BoarPrimeReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeStock"
+        ],
+        "variables": {
+          "partName": "BoarPrimeStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/BoarPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Shotgun/PrimeBoar",
+      "blueprintCanonical": "BoarPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeBarrel",
           "canonical": "BoarPrimeBarrel",
-          "displayName": "BoarPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeReceiver",
           "canonical": "BoarPrimeReceiver",
-          "displayName": "BoarPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +178,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeStock",
           "canonical": "BoarPrimeStock",
-          "displayName": "BoarPrimeStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "野猪 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：BOAR PRIME）Tenno 工艺设计的绝佳案例之一，野猪 Prime 能提供更快的射速、更大的弹匣容量，以及更高的子弹伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/BoarPrimeStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

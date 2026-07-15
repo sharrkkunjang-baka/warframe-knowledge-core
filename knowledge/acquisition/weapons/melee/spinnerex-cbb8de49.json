@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Each lash of Oraxia's whip injects its victim with a dose of deadly toxin. Upon death, afflicted enemies have a chance to burst, damaging nearby enemies and spreading the poison.",
+    "display": "（英文：SPINNEREX）Oraxia 的每一次鞭打都会将致命毒素注入敌人体内，受影响的敌人死亡时爆发毒素，对附近的敌人造成伤害并扩散毒素。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+        ],
         "variables": {
           "weaponName": "丝蛛皇",
           "recipeId": "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade"
+        ],
+        "variables": {
+          "partName": "SpinnerexBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString"
+        ],
+        "variables": {
+          "partName": "SpinnerexString"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle"
+        ],
+        "variables": {
+          "partName": "SpinnerexHandle"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Whips/SpiderWhip/SpiderWhipWeapon",
+      "blueprintCanonical": "SpinnerexBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade",
           "canonical": "SpinnerexBlade",
-          "displayName": "SpinnerexBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString",
           "canonical": "SpinnerexString",
-          "displayName": "SpinnerexString",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle",
           "canonical": "SpinnerexHandle",
-          "displayName": "SpinnerexHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "丝蛛皇的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SPINNEREX）Oraxia 的每一次鞭打都会将致命毒素注入敌人体内，受影响的敌人死亡时爆发毒素，对附近的敌人造成伤害并扩散毒素。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

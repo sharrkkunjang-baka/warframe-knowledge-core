@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Perforate Techrot, and anyone else who stands in your way, with this Scaldra machine gun. Alternative fire pummels targets with Efervon laced buckshot.",
+    "display": "（英文：EFV-5 JUPITER）使用这把炽蛇军机枪扫射科腐者和任何胆敢阻挡你的人。次要射击使用涂有艾弗旺的霰弹重击目标。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "艾弗旺-5 木星",
           "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel"
+        ],
+        "variables": {
+          "partName": "LasGooAKPlayerWeaponBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver"
+        ],
+        "variables": {
+          "partName": "LasGooAKPlayerWeaponReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock"
+        ],
+        "variables": {
+          "partName": "LasGooAKPlayerWeaponStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Lasria/LasGooAK/LasGooAKPlayerWeapon",
+      "blueprintCanonical": "LasGooAKPlayerWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel",
           "canonical": "LasGooAKPlayerWeaponBarrel",
-          "displayName": "LasGooAKPlayerWeaponBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver",
           "canonical": "LasGooAKPlayerWeaponReceiver",
-          "displayName": "LasGooAKPlayerWeaponReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock",
           "canonical": "LasGooAKPlayerWeaponStock",
-          "displayName": "LasGooAKPlayerWeaponStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "艾弗旺-5 木星的官方武器身份、获取和制造数据。",
+  "summary": "（英文：EFV-5 JUPITER）使用这把炽蛇军机枪扫射科腐者和任何胆敢阻挡你的人。次要射击使用涂有艾弗旺的霰弹重击目标。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

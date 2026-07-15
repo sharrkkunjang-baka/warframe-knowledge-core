@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Half taser, half whip. The Corpus Lecta delivers a deadly shock to anything it touches.",
+    "display": "（英文：LECTA）一半电击器一半鞭子。这条 Corpus 的勒克塔会对接触到的任何东西发出致命电击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint"
+        ],
         "variables": {
           "weaponName": "勒克塔",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Melee/Whip/CorpusWhipWeapon",
+      "blueprintCanonical": "CorpusWhipBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
-          "canonical": "Morphic",
-          "displayName": "Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 900
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
           "canonical": "Ferrite",
-          "displayName": "Ferrite",
+          "displayName": "铁氧体",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
-          "canonical": "NeuralSensor",
-          "displayName": "NeuralSensor",
+          "canonical": "Neural Sensors",
+          "displayName": "神经传感器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "勒克塔的官方武器身份、获取和制造数据。",
+  "summary": "（英文：LECTA）一半电击器一半鞭子。这条 Corpus 的勒克塔会对接触到的任何东西发出致命电击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

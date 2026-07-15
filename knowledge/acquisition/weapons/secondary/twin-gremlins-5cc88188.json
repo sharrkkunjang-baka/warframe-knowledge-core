@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Designed as a pair, these Grineer sidearms fire projectiles at a slower rate but with greater force and accuracy.",
+    "display": "（英文：TWIN GREMLINS）这把 Grineer 随身武器被设计成一对，虽然开火速度较慢，但有更强大的火力和准确性。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
+        ],
         "variables": {
           "weaponName": "双子小精灵",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
@@ -52,7 +63,32 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
+            ],
+            "sourceCanonical": "Ceres/Exta (Assassination)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.assassination",
+            "chance": 0.16670000000000001,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
@@ -74,10 +110,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GremlinBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +131,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GremlinBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerAkimboPistol",
+      "blueprintCanonical": "GremlinBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
-          "canonical": "Neurode",
-          "displayName": "Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 900
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1500
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1200
         }
       ],
@@ -131,7 +180,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "双子小精灵的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TWIN GREMLINS）这把 Grineer 随身武器被设计成一对，虽然开火速度较慢，但有更强大的火力和准确性。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +189,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

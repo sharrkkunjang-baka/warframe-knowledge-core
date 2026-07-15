@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Completely overwhelmed by Infested biology, this former Quanta now fires organic ordnance and a harpoon like appendage.",
+    "display": "（英文：PARACYST）被感染生物体完全包覆，这种形态的量子切割器会射出类似器质性的附肢尖叉。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint"
+        ],
         "variables": {
           "weaponName": "附肢寄生者",
           "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Bio/InfQuantaRifleBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Infested/LongGuns/QuantaFullyInfested/InfQuantaRifle",
+      "blueprintCanonical": "InfQuantaRifleBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/BioComponent",
-          "canonical": "BioComponent",
-          "displayName": "BioComponent",
+          "canonical": "Mutagen Mass",
+          "displayName": "突变原聚合物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
-          "canonical": "Nanospores",
-          "displayName": "Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 15000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "附肢寄生者的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PARACYST）被感染生物体完全包覆，这种形态的量子切割器会射出类似器质性的附肢尖叉。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

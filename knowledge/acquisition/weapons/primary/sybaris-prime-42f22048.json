@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Sleek and slender, a golden symbol of Tenno perfection.",
+    "display": "（英文：SYBARIS PRIME）纤细而又熠熠生辉，象征着 Tenno 的至善至美。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "席芭莉丝 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "SybarisPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "SybarisPrimeReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeStock"
+        ],
+        "variables": {
+          "partName": "SybarisPrimeStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/SybarisPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeSybaris/PrimeSybarisRifle",
+      "blueprintCanonical": "SybarisPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeBarrel",
           "canonical": "SybarisPrimeBarrel",
-          "displayName": "SybarisPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeReceiver",
           "canonical": "SybarisPrimeReceiver",
-          "displayName": "SybarisPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +178,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeStock",
           "canonical": "SybarisPrimeStock",
-          "displayName": "SybarisPrimeStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "席芭莉丝 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SYBARIS PRIME）纤细而又熠熠生辉，象征着 Tenno 的至善至美。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SybarisPrimeStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

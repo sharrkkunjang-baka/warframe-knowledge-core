@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "The wrath of one who knows revenge is all about timing. Orion's signature Heavy Scythe.",
+    "display": "（英文：WRATH）复仇之道，重在时机，此为深谙此语之人的怒火。Orion 的标志性重型镰刀。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
+        ],
         "variables": {
           "weaponName": "愤怒",
           "recipeId": "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
@@ -52,8 +63,279 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
+            ],
+            "sourceCanonical": "Uranus/Scoria's Angel (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.scorias-angel",
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.1429,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint",
+            "npcId": "npc.hunhow",
+            "locationId": "hub.pontis-tower",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
+            ],
+            "variables": {},
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.crimson-talent",
+                  "amount": 90
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "prerequisiteQuestId": "quest.jade-shadows-constellations",
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Hubs/HunhowVendorManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/OrionScytheBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheBlade"
+        ],
+        "variables": {
+          "partName": "愤怒 刀刃"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheBlade"
+            ],
+            "sourceCanonical": "Uranus/Scoria's Angel (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.scorias-angel",
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.1429,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "npcId": "npc.hunhow",
+            "locationId": "hub.pontis-tower",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheBladeBlueprint"
+            ],
+            "variables": {
+              "partName": "愤怒 刀刃"
+            },
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.crimson-talent",
+                  "amount": 45
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "prerequisiteQuestId": "quest.jade-shadows-constellations",
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Hubs/HunhowVendorManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/OrionScytheBladeBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheHandle"
+        ],
+        "variables": {
+          "partName": "愤怒 握柄"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheHandle"
+            ],
+            "sourceCanonical": "Uranus/Scoria's Angel (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.scorias-angel",
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.1429,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "npcId": "npc.hunhow",
+            "locationId": "hub.pontis-tower",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheHandleBlueprint"
+            ],
+            "variables": {
+              "partName": "愤怒 握柄"
+            },
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.crimson-talent",
+                  "amount": 45
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "prerequisiteQuestId": "quest.jade-shadows-constellations",
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Hubs/HunhowVendorManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/OrionScytheHandleBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SiriusScytheBlade"
+        ],
+        "variables": {
+          "partName": "骄傲 刀刃"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SiriusScytheBlade"
+            ],
+            "sourceCanonical": "Uranus/The Kuva Wytch (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.the-kuva-wytch",
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.1429,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "npcId": "npc.hunhow",
+            "locationId": "hub.pontis-tower",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SiriusScytheBladeBlueprint"
+            ],
+            "variables": {
+              "partName": "骄傲 刀刃"
+            },
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.hunhow",
+              "locationId": "hub.pontis-tower",
+              "currency": [
+                {
+                  "currencyId": "currency.emerald-talent",
+                  "amount": 45
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "prerequisiteQuestId": "quest.jade-shadows-constellations",
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Hubs/HunhowVendorManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/SiriusScytheBladeBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -73,7 +355,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -84,10 +376,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/OrionScytheBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/HeavyScythe/TnOrionSiriusScythe/TnOrionScytheWeapon",
+      "blueprintCanonical": "OrionScytheBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheBlade",
@@ -122,7 +417,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "愤怒的官方武器身份、获取和制造数据。",
+  "summary": "（英文：WRATH）复仇之道，重在时机，此为深谙此语之人的怒火。Orion 的标志性重型镰刀。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +426,39 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required"
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-weapon-source-audit"
+  ],
+  "status": "complete",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": true,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheBlade",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/OrionScytheHandle",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SiriusScytheBlade",
+        "complete": true
+      }
+    ],
+    "crafting": true
+  }
 }

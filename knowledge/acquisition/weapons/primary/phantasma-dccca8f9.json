@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Irradiate enemies with a continuous stream of deadly plasma. Charging secondary fire releases a glob of plasma that erupts with homing bomblets on impact. Increased Magazine Capacity when wielded by Revenant.",
+    "display": "（英文：PHANTASMA）用连续的致命等离子束照射敌人；次要攻击充能后可以释放出一团等离子球，球体碰撞时会产生多发制导的小型炸弹。在被 Revenant 使用时，该武器的弹匣容量会提升。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+        ],
         "variables": {
           "weaponName": "幻离子",
           "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/RevenantShotgun/RevenantShotgun",
+      "blueprintCanonical": "RevenantShotgunBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 25000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
-          "canonical": "ArgonCrystal",
-          "displayName": "ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsDogTag",
-          "canonical": "QuillsDogTag",
-          "displayName": "QuillsDogTag",
+          "canonical": "Intact Sentient Core",
+          "displayName": "完整的 Sentient 核心",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 650
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
-          "canonical": "Nanospores",
-          "displayName": "Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 12500
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "幻离子的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PHANTASMA）用连续的致命等离子束照射敌人；次要攻击充能后可以释放出一团等离子球，球体碰撞时会产生多发制导的小型炸弹。在被 Revenant 使用时，该武器的弹匣容量会提升。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

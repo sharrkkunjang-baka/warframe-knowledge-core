@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "This hooked blade rewards critical hits to those skilled enough to strike with finesse.",
+    "display": "（英文：KROHKUR）这把钩刃能在拥有精湛技艺的人手里造成致命的打击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint"
+        ],
         "variables": {
           "weaponName": "克鲁古尔",
           "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Chemical/GrnEgyptSwdBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnEgyptSwd/GrnEgyptSwdWeapon",
+      "blueprintCanonical": "GrnEgyptSwdBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 25000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
           "canonical": "Tellurium",
-          "displayName": "Tellurium",
+          "displayName": "碲",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
-          "canonical": "Morphic",
-          "displayName": "Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 8
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OxiumAlloy",
-          "canonical": "OxiumAlloy",
-          "displayName": "OxiumAlloy",
+          "canonical": "Oxium",
+          "displayName": "奥席金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 125
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4375
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "克鲁古尔的官方武器身份、获取和制造数据。",
+  "summary": "（英文：KROHKUR）这把钩刃能在拥有精湛技艺的人手里造成致命的打击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

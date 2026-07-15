@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Tear and maim with this agile, lightweight glass hammer. When Gara's wields her signature melee weapon, it gains additional Slam Radial Damage.",
+    "display": "（英文：VOLNUS）用这把轻量灵活的玻璃锤来撕裂并残害目标。Gara 的标志性近战武器。在被 Gara 使用时，它会获得额外的震地范围伤害。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint"
+        ],
         "variables": {
           "weaponName": "创伤",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GlassHammerBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/GlassHammer/GlassHammer",
+      "blueprintCanonical": "GlassHammerBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OxiumAlloy",
-          "canonical": "OxiumAlloy",
-          "displayName": "OxiumAlloy",
+          "canonical": "Oxium",
+          "displayName": "奥席金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 225
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
-          "canonical": "ArgonCrystal",
-          "displayName": "ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 11000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
           "canonical": "Cryotic",
-          "displayName": "Cryotic",
+          "displayName": "永冻晶矿",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 875
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "创伤的官方武器身份、获取和制造数据。",
+  "summary": "（英文：VOLNUS）用这把轻量灵活的玻璃锤来撕裂并残害目标。Gara 的标志性近战武器。在被 Gara 使用时，它会获得额外的震地范围伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

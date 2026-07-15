@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Fearsome and noble, the elegant two-handed Nikana is the pride of any Arsenal. Kills build charges and seeking projectiles are unleashed with a Slide Attack to find and stun unwitting enemies. When Revenant wields this blade, Tatsu's charge cap is increased.",
+    "display": "（英文：TATSU）尊贵而令人畏惧，这把优雅的双手侍刃是任何军械库里的骄傲。击杀可以蓄能，而在施展滑行攻击时，积蓄的能量会转化为投射物，追踪并击晕那些浑然不觉的敌人。在被 Revenant 使用时，龙辰的蓄能次数上限会得到提升。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+        ],
         "variables": {
           "weaponName": "龙辰",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/TnTwoHandedKatana/TnTwoHandedKatana",
+      "blueprintCanonical": "TnTwoHandedKatanaBlueprint",
       "outputQuantity": 1,
       "credits": 5000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
-          "canonical": "ArgonCrystal",
-          "displayName": "ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Kuva",
           "canonical": "Kuva",
-          "displayName": "Kuva",
+          "displayName": "赤毒",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1200
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/RareOreAAlloyAItem",
-          "canonical": "RareOreAAlloyAItem",
-          "displayName": "RareOreAAlloyAItem",
+          "canonical": "Auroxium Alloy",
+          "displayName": "金辉合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 100
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisRareOreAAlloyItem",
-          "canonical": "SolarisRareOreAAlloyItem",
-          "displayName": "SolarisRareOreAAlloyItem",
+          "canonical": "Hespazym Alloy",
+          "displayName": "长庚合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 100
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "龙辰的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TATSU）尊贵而令人畏惧，这把优雅的双手侍刃是任何军械库里的骄傲。击杀可以蓄能，而在施展滑行攻击时，积蓄的能量会转化为投射物，追踪并击晕那些浑然不觉的敌人。在被 Revenant 使用时，龙辰的蓄能次数上限会得到提升。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

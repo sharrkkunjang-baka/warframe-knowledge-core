@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "After 10 kills or assists, Dorrclave enters a spectral state that doubles weapon Follow Through and guarantees Status Effects for the next 10 attacks. In Dagath's hands, each active Status Effect heals her slightly.",
+    "display": "（英文：DORRCLAVE）在 10 次击杀或助攻后，怒斩进入光谱状态，使得武器伤害穿透系数加倍，并且接下来的 10 次攻击必定造成异常状态。如果是 Dagath 使用，每个激活的状态效果都会轻微治疗她。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,80 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+        ],
         "variables": {
           "weaponName": "怒斩",
           "recipeId": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade"
+        ],
+        "variables": {
+          "partName": "TnDagathBladeWhipBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt"
+        ],
+        "variables": {
+          "partName": "TnDagathBladeWhipHilt"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString"
+        ],
+        "variables": {
+          "partName": "TnDagathBladeWhipString"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook"
+        ],
+        "variables": {
+          "partName": "TnDagathBladeWhipHook"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +145,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +166,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/TnDagathBladeWhip/TnDagathBladeWhip",
+      "blueprintCanonical": "TnDagathBladeWhipBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade",
           "canonical": "TnDagathBladeWhipBlade",
-          "displayName": "TnDagathBladeWhipBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +185,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt",
           "canonical": "TnDagathBladeWhipHilt",
-          "displayName": "TnDagathBladeWhipHilt",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +193,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString",
           "canonical": "TnDagathBladeWhipString",
-          "displayName": "TnDagathBladeWhipString",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -117,7 +201,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook",
           "canonical": "TnDagathBladeWhipHook",
-          "displayName": "TnDagathBladeWhipHook",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -131,7 +215,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "怒斩的官方武器身份、获取和制造数据。",
+  "summary": "（英文：DORRCLAVE）在 10 次击杀或助攻后，怒斩进入光谱状态，使得武器伤害穿透系数加倍，并且接下来的 10 次攻击必定造成异常状态。如果是 Dagath 使用，每个激活的状态效果都会轻微治疗她。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +224,41 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

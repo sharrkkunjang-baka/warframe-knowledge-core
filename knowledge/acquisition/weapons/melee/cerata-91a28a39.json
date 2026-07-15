@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Twisted and tortured from exposure to the Infestation, this glaive becomes an absolute predator in the hands of the right Tenno.",
+    "display": "（英文：CERATA）由于接触到感染者变得疯狂而扭曲，这把战刃在能熟练的 Tenno 手中会成为绝对的掠食者。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "裸鳃刃",
           "recipeId": "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Bio/PunctureGlaiveWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Infested/Melee/Glaives/PunctureGlaive/PunctureGlaiveWeapon",
+      "blueprintCanonical": "PunctureGlaiveWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/BioComponent",
-          "canonical": "BioComponent",
-          "displayName": "BioComponent",
+          "canonical": "Mutagen Mass",
+          "displayName": "突变原聚合物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
           "canonical": "Cryotic",
-          "displayName": "Cryotic",
+          "displayName": "永冻晶矿",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2500
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "裸鳃刃的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CERATA）由于接触到感染者变得疯狂而扭曲，这把战刃在能熟练的 Tenno 手中会成为绝对的掠食者。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

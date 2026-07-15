@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Never stop fighting, never run out of ammo. Temple's signature machine pistol was modified by Albrecht Entrati to warp fired bullets back into the magazine when reloaded.",
+    "display": "（英文：RIOT-848）弹药无穷无尽，战斗至死方休。Temple 的标志性连发手枪经过阿尔布雷希特·英择谛的改造，装填时，被消耗的子弹会重新回到弹匣中。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,139 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "暴乱-848",
           "recipeId": "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+            ],
+            "sourceCanonical": "Höllvania/Solstice Square (Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.0097,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "A",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+            ],
+            "sourceCanonical": "Höllvania/Solstice Square (Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.019799999999999998,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+            ],
+            "sourceCanonical": "Höllvania/Solstice Square (Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.0458,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "C",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolBarrel"
+        ],
+        "variables": {
+          "partName": "1999EntHybridPistolBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolReceiver"
+        ],
+        "variables": {
+          "partName": "1999EntHybridPistolReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolStock"
+        ],
+        "variables": {
+          "partName": "1999EntHybridPistolStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +204,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +225,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/1999EntHybridPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/1999EntHybridPistolWeapon/1999EntHybridPistolWeapon",
+      "blueprintCanonical": "1999EntHybridPistolBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolBarrel",
           "canonical": "1999EntHybridPistolBarrel",
-          "displayName": "1999EntHybridPistolBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +244,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolReceiver",
           "canonical": "1999EntHybridPistolReceiver",
-          "displayName": "1999EntHybridPistolReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +252,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolStock",
           "canonical": "1999EntHybridPistolStock",
-          "displayName": "1999EntHybridPistolStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -131,7 +274,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "暴乱-848的官方武器身份、获取和制造数据。",
+  "summary": "（英文：RIOT-848）弹药无穷无尽，战斗至死方休。Temple 的标志性连发手枪经过阿尔布雷希特·英择谛的改造，装填时，被消耗的子弹会重新回到弹匣中。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +283,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/1999EntHybridPistolStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

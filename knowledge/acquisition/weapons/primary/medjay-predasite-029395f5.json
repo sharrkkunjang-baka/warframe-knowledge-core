@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "",
+    "display": "",
+    "localizationStatus": "official-zh-unavailable"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,6 +45,9 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved"
+    ],
     "routes": [
       {
         "scope": "item",
@@ -59,7 +67,7 @@
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "守卫扑猎达赛的官方武器身份、获取和制造数据。",
+  "summary": "守卫扑猎达赛的官方武器身份与获取数据。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -68,11 +76,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": false,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

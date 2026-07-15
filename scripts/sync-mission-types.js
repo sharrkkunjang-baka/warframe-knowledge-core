@@ -12,6 +12,7 @@ const SOURCES = Object.freeze({ regions: 'https://browse.wf/warframe-public-expo
 const AUDITED_ZH = Object.freeze({ Assassination: '刺杀', Defense: '防御', Survival: '生存', Capture: '捕获', Rescue: '救援', Spy: '间谍', Disruption: '中断', Exterminate: '歼灭', Interception: '拦截', Excavation: '挖掘', Defection: '叛逃', Skirmish: '前哨战', Caches: '任务缓存', 'Infested Salvage': 'INFESTED 资源回收', Ascension: '扬升', 'Shrine Defense': '神龛防御' })
 const CATEGORY_NAMES = Object.freeze({ endless: '无尽与轮次任务', standard: '常规任务', railjack: '航道星舰任务', 'reward-source': '奖励来源类型', special: '特殊任务', event: '活动任务', bounty: '赏金任务' })
 const SPECIAL_TYPES = Object.freeze([
+  { canonical: 'Skirmish', displayName: '前哨战', category: 'railjack', officialSource: 'DE Languages.bin official mission terminology' },
   { canonical: 'Sanctuary Onslaught', displayName: '圣殿突袭', category: 'special', officialSource: 'wf_en_cn_full.json' },
   { canonical: 'Granum Void', displayName: '格拉努虚空', category: 'special', officialSource: 'wf_en_cn_full.json' },
   { canonical: 'Extended Granum Void', displayName: '', category: 'special', officialSource: 'official-drop-canonical' },

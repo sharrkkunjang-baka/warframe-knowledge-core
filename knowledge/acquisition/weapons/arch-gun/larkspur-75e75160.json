@@ -12,6 +12,11 @@
       "weapon.arch-gun"
     ]
   },
+  "description": {
+    "canonical": "From death blooms the Larkspur. A unique and menacing Archgun with a wild initial attack that locks onto a target then chains other targets close to the first. It also sports an explosive projectile mode. In Hildryn's grip the Larkspur carries more reserve ammo.",
+    "display": "（英文：LARKSPUR）从死亡之中生长的翠雀。一把独特且具有威胁性的曲翼枪械，初始攻击会锁定目标并将靠近第一个目标的其他敌人链在一起。它还配有爆炸性投弹模式。在 Hildryn 的握持之下，翠雀会携带更多的预备弹药。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.arch-gun"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+        ],
         "variables": {
           "weaponName": "翠雀",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/TnShieldframeArchGun/TnShieldFrameArchGun",
+      "blueprintCanonical": "TnShieldFrameArchGunBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/ArachnoidCamperItem",
-          "canonical": "ArachnoidCamperItem",
-          "displayName": "ArachnoidCamperItem",
+          "canonical": "Crisma Toroid",
+          "displayName": "圣油环型装置",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonOreAAlloyItem",
-          "canonical": "SolarisUncommonOreAAlloyItem",
-          "displayName": "SolarisUncommonOreAAlloyItem",
+          "canonical": "Venerdo Alloy",
+          "displayName": "启明合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 80
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisEidolonGemACutItem",
-          "canonical": "SolarisEidolonGemACutItem",
-          "displayName": "SolarisEidolonGemACutItem",
+          "canonical": "Radiant Zodian",
+          "displayName": "发光的黄道宝石",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/OrokinFishEcosynthAnalyzerItem",
-          "canonical": "OrokinFishEcosynthAnalyzerItem",
-          "displayName": "OrokinFishEcosynthAnalyzerItem",
+          "canonical": "Synathid Ecosynth Analyzer",
+          "displayName": "海龙环境合成分析器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "翠雀的官方武器身份、获取和制造数据。",
+  "summary": "（英文：LARKSPUR）从死亡之中生长的翠雀。一把独特且具有威胁性的曲翼枪械，初始攻击会锁定目标并将靠近第一个目标的其他敌人链在一起。它还配有爆炸性投弹模式。在 Hildryn 的握持之下，翠雀会携带更多的预备弹药。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

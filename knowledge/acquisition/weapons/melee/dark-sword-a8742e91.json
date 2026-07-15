@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "A blade forged using dark metals, capable of delivering innate 辐射Radiation Damage with attacks.",
+    "display": "（英文：DARK SWORD）一把使用暗黑金属制作的长剑，每次攻击都会附带辐射辐射伤害。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/DarkSwordBlueprint"
+        ],
         "variables": {
           "weaponName": "暗黑长剑",
           "recipeId": "/Lotus/Types/Recipes/DarkSwordBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/DarkSwordBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/DarkSwordBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/DarkSwordBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/DarkSwordBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/DarkSwordBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/DarkSword/DarkLongSword",
+      "blueprintCanonical": "DarkSwordBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
-          "canonical": "Neurode",
-          "displayName": "Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
           "canonical": "Ferrite",
-          "displayName": "Ferrite",
+          "displayName": "铁氧体",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 800
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "canonical": "PolymerBundle",
-          "displayName": "PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 75
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "暗黑长剑的官方武器身份、获取和制造数据。",
+  "summary": "（英文：DARK SWORD）一把使用暗黑金属制作的长剑，每次攻击都会附带辐射辐射伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

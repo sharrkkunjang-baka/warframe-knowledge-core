@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "This sidearm’s circular design evokes Protea Prime’s perception of time.",
+    "display": "（英文：VELOX PRIME）这把次要武器的圆形设计唤起了 Protea Prime 对时间的感知。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "逐电 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "VeloxPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "VeloxPrimeReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVelox/PrimeVeloxPistol",
+      "blueprintCanonical": "VeloxPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeBarrel",
           "canonical": "VeloxPrimeBarrel",
-          "displayName": "VeloxPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,17 +154,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeReceiver",
           "canonical": "VeloxPrimeReceiver",
-          "displayName": "VeloxPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "逐电 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：VELOX PRIME）这把次要武器的圆形设计唤起了 Protea Prime 对时间的感知。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

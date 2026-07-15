@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Fashioned with Grineer materials and balanced for marine infantry use, the Amphis is a traditional staff weapon that has received a monstrous makeover that enables shock damage on jump attacks. Connects with multiple enemies with each strike.",
+    "display": "（英文：AMPHIS）以 Grineer 材料制成，设计为海军陆战队使用，双头蛇是一把为了附带电击伤害而接受了大幅改造的传统棍棒武器——跳跃攻击附带电击伤害。可以同时打击多个敌人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
+        ],
         "variables": {
           "weaponName": "双头蛇",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Staff/GrnStaff",
+      "blueprintCanonical": "GrnStaffBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
-          "canonical": "Neurode",
-          "displayName": "Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 500
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 600
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 600
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "双头蛇的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AMPHIS）以 Grineer 材料制成，设计为海军陆战队使用，双头蛇是一把为了附带电击伤害而接受了大幅改造的传统棍棒武器——跳跃攻击附带电击伤害。可以同时打击多个敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

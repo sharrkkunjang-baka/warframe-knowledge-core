@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Wield a golden pair of rocket launchers. Sprint to reload them faster. They reload fastest when wielded by Gauss.",
+    "display": "（英文：AKARIUS PRIME）挥舞一对金色火箭发射器。冲刺时可以拥有更快的装填速度。搭配 Gauss 使用时，其装填速度更快。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "阿利乌双枪 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "AkariusPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "AkariusPrimeReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeLink"
+        ],
+        "variables": {
+          "partName": "AkariusPrimeLink"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/AkariusPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAkarius/PrimeAkariusWeapon",
+      "blueprintCanonical": "AkariusPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeBarrel",
           "canonical": "AkariusPrimeBarrel",
-          "displayName": "AkariusPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeReceiver",
           "canonical": "AkariusPrimeReceiver",
-          "displayName": "AkariusPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeLink",
           "canonical": "AkariusPrimeLink",
-          "displayName": "AkariusPrimeLink",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "阿利乌双枪 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AKARIUS PRIME）挥舞一对金色火箭发射器。冲刺时可以拥有更快的装填速度。搭配 Gauss 使用时，其装填速度更快。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/AkariusPrimeLink",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

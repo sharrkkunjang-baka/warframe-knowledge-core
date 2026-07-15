@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "A classic Orokin weapon, Braton Prime features modified damage levels and a larger magazine over the standard model.",
+    "display": "（英文：BRATON PRIME）一把经典的  奥罗金兵器，布莱顿 Prime 比起标准版，强化了伤害能力以及更大的弹匣。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "布莱顿 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "BratonPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "BratonPrimeReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeStock"
+        ],
+        "variables": {
+          "partName": "BratonPrimeStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/BratonPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Rifle/BratonPrime",
+      "blueprintCanonical": "BratonPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeBarrel",
           "canonical": "BratonPrimeBarrel",
-          "displayName": "BratonPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeReceiver",
           "canonical": "BratonPrimeReceiver",
-          "displayName": "BratonPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +178,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeStock",
           "canonical": "BratonPrimeStock",
-          "displayName": "BratonPrimeStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "布莱顿 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：BRATON PRIME）一把经典的  奥罗金兵器，布莱顿 Prime 比起标准版，强化了伤害能力以及更大的弹匣。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/BratonPrimeStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

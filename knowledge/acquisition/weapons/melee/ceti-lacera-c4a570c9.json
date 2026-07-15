@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Forged for veterans of the Scarlet Spear conflict, this Lacera has been modified to enhance nimbleness and lethality.",
+    "display": "（英文：CETI LACERA）这款专为参与猩红之矛战役的老将所打造的悲痛之刃，经过了改造以提高敏捷性和杀伤力。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
+        ],
         "variables": {
           "weaponName": "天仓·悲痛之刃",
           "recipeId": "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerMios/OperationsLacera",
+      "blueprintCanonical": "OperationsLaceraBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 8150
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OxiumAlloy",
-          "canonical": "OxiumAlloy",
-          "displayName": "OxiumAlloy",
+          "canonical": "Oxium",
+          "displayName": "奥席金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 400
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5950
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
-          "canonical": "Morphic",
-          "displayName": "Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 15
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "天仓·悲痛之刃的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CETI LACERA）这款专为参与猩红之矛战役的老将所打造的悲痛之刃，经过了改造以提高敏捷性和杀伤力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

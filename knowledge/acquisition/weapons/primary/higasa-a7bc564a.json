@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Depend on Higasa when it rains bullets. Aiming creates a shield that blocks weapon fire. Kills and blocked shots charge a beam released by Alternate Fire.",
+    "display": "（英文：HIGASA）依靠晴日伞抵御如雨倾泻的子弹。瞄准可形成一面盾牌，阻挡敌方武器的射击。击杀和阻挡射击将为次要射击充能，以释放光束。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,91 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint"
+        ],
         "variables": {
           "weaponName": "晴日伞",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint"
+            ],
+            "sourceCanonical": "Earth/Saya's Visions (Shrine Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.shrine-defense",
+            "chance": 0.0409,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaBarrel"
+        ],
+        "variables": {
+          "partName": "GunbrellaBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaReceiver"
+        ],
+        "variables": {
+          "partName": "GunbrellaReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaStock"
+        ],
+        "variables": {
+          "partName": "GunbrellaStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +156,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +177,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon",
+      "blueprintCanonical": "GunbrellaBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaBarrel",
           "canonical": "GunbrellaBarrel",
-          "displayName": "GunbrellaBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +196,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaReceiver",
           "canonical": "GunbrellaReceiver",
-          "displayName": "GunbrellaReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +204,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaStock",
           "canonical": "GunbrellaStock",
-          "displayName": "GunbrellaStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ShrineFragment",
-          "canonical": "ShrineFragment",
-          "displayName": "ShrineFragment",
+          "canonical": "Fate Pearl",
+          "displayName": "命运之珠",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         }
       ],
@@ -131,7 +226,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "晴日伞的官方武器身份、获取和制造数据。",
+  "summary": "（英文：HIGASA）依靠晴日伞抵御如雨倾泻的子弹。瞄准可形成一面盾牌，阻挡敌方武器的射击。击杀和阻挡射击将为次要射击充能，以释放光束。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +235,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

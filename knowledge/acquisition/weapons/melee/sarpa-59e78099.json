@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Makes sweeping cuts punctuated by bursts of heavy gunfire.",
+    "display": "（英文：SARPA）在连续切砍之间夹杂重火力连发。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+        ],
         "variables": {
           "weaponName": "蛇刃",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,10 +106,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Gunblade/GunbladeAutomatic/TnoGunbladeAutomatic",
+      "blueprintCanonical": "TnoGunbladeAutomaticBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Pistols/TennoUzi/TennoUzi",
@@ -101,25 +125,25 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
           "canonical": "Cryotic",
-          "displayName": "Cryotic",
+          "displayName": "永冻晶矿",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3300
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
-          "canonical": "ControlModule",
-          "displayName": "ControlModule",
+          "canonical": "Control Module",
+          "displayName": "控制模块",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "蛇刃的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SARPA）在连续切砍之间夹杂重火力连发。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

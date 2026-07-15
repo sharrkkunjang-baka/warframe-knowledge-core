@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "A lone Tenno once used this staff to fight back a horde of Infested.",
+    "display": "（英文：CADUS）曾经有一名孤身一人的 Tenno 以这柄单手杖击退了一整个群落的感染者。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
+        ],
         "variables": {
           "weaponName": "卡德斯",
           "recipeId": "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,33 +106,36 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Staff/SingleStaff",
+      "blueprintCanonical": "SingleStaffBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 50000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
-          "canonical": "NeuralSensor",
-          "displayName": "NeuralSensor",
+          "canonical": "Neural Sensors",
+          "displayName": "神经传感器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "canonical": "PolymerBundle",
-          "displayName": "PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1600
         },
         {
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "卡德斯的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CADUS）曾经有一名孤身一人的 Tenno 以这柄单手杖击退了一整个群落的感染者。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

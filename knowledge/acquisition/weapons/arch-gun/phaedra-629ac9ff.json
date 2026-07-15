@@ -12,6 +12,11 @@
       "weapon.arch-gun"
     ]
   },
+  "description": {
+    "canonical": "Devastate free-space enemies with Phaedra, the Soma's big-sister.",
+    "display": "（英文：PHAEDRA）借由这把菲德菈——月神最年长的姊妹——纵横太空尽情毁灭敌人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.arch-gun"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+        ],
         "variables": {
           "weaponName": "菲德菈",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
+        ],
+        "variables": {
+          "partName": "ArchLongRifleBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
+        ],
+        "variables": {
+          "partName": "ArchLongRifleReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
+        ],
+        "variables": {
+          "partName": "ArchLongRifleStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/ArchLongRifle/ArchLongRifle",
+      "blueprintCanonical": "ArchLongRifleBlueprint",
       "outputQuantity": 1,
       "credits": 45000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 35000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel",
           "canonical": "ArchLongRifleBarrel",
-          "displayName": "ArchLongRifleBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver",
           "canonical": "ArchLongRifleReceiver",
-          "displayName": "ArchLongRifleReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +178,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock",
           "canonical": "ArchLongRifleStock",
-          "displayName": "ArchLongRifleStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -117,9 +186,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
           "canonical": "Tellurium",
-          "displayName": "Tellurium",
+          "displayName": "碲",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "菲德菈的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PHAEDRA）借由这把菲德菈——月神最年长的姊妹——纵横太空尽情毁灭敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

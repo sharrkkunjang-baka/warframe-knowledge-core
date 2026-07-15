@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Sentient tech merges with Corpus design to deliver this lethal sidearm. Fully automatic, it fires ricocheting, homing projectiles that release small clouds of 毒气Gas on impact. Alt-fire to release the entire magazine without homing as a single burst.",
+    "display": "（英文：CYANEX）Sentient 科技与 Corpus 设计的结合，发展出这款致命的次要武器。该武器为全自动，可射出跳飞式、自动导引的弹幕，子弹在撞击时会释放出小一股 毒气毒气。次要射击为可在单次射击中释放剩余的弹药。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "氰毒",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CrpSentAmalgPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Pistols/CrpSentAmalgPistol/CrpSentAmalgPistol",
+      "blueprintCanonical": "CrpSentAmalgPistolBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
-          "canonical": "EnergyComponent",
-          "displayName": "EnergyComponent",
+          "canonical": "Fieldron",
+          "displayName": "电磁力场装置",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
-          "canonical": "Nanospores",
-          "displayName": "Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 8750
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ConcentratedGas",
-          "canonical": "ConcentratedGas",
-          "displayName": "ConcentratedGas",
+          "canonical": "Hexenon",
+          "displayName": "六醇燃剂",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 250
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "氰毒的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CYANEX）Sentient 科技与 Corpus 设计的结合，发展出这款致命的次要武器。该武器为全自动，可射出跳飞式、自动导引的弹幕，子弹在撞击时会释放出小一股 毒气毒气。次要射击为可在单次射击中释放剩余的弹药。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

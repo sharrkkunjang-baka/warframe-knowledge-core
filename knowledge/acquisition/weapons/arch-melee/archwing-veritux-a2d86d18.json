@@ -12,6 +12,11 @@
       "weapon.arch-melee"
     ]
   },
+  "description": {
+    "canonical": "Weightless space turns this impossibly massive sword into an agile instrument of destruction.",
+    "display": "（英文：VERITUX）零重力的太空将这把大到难以想象的巨剑变成了敏捷的毁灭工具。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.arch-melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/VerituxBlueprint"
+        ],
         "variables": {
           "weaponName": "<ARCHWING> 真理巨剑",
           "recipeId": "/Lotus/Types/Recipes/Weapons/VerituxBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/VerituxBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/VerituxBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/VerituxBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/VerituxBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/VerituxBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/Archsword/ArchSwordWeapon",
+      "blueprintCanonical": "VerituxBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 35000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 500
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
-          "canonical": "Neurode",
-          "displayName": "Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 500
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "<ARCHWING> 真理巨剑的官方武器身份、获取和制造数据。",
+  "summary": "（英文：VERITUX）零重力的太空将这把大到难以想象的巨剑变成了敏捷的毁灭工具。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

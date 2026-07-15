@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "With a high fire rate, ammo efficiency and rapid reload when emptied, this unusual sidearm can hand out carnage all day long. Ammo efficiency is further increased when Protea uses this, her signature weapon.",
+    "display": "（英文：VELOX）在高射速、高弹药效率以及高装填速度的加持下，这把非比寻常的次要武器能昼夜无休地大杀四方。作为 Protea 的标志性武器，弹药效率会在 Protea 使用它时更进一步地提升。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "逐电",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel"
+        ],
+        "variables": {
+          "partName": "ProteaSMGBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver"
+        ],
+        "variables": {
+          "partName": "ProteaSMGReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnOdaliskSmg/TnOdaliskSmgPistol",
+      "blueprintCanonical": "ProteaSMGWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 25000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel",
           "canonical": "ProteaSMGBarrel",
-          "displayName": "ProteaSMGBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,17 +154,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver",
           "canonical": "ProteaSMGReceiver",
-          "displayName": "ProteaSMGReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "逐电的官方武器身份、获取和制造数据。",
+  "summary": "（英文：VELOX）在高射速、高弹药效率以及高装填速度的加持下，这把非比寻常的次要武器能昼夜无休地大杀四方。作为 Protea 的标志性武器，弹药效率会在 Protea 使用它时更进一步地提升。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

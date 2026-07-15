@@ -12,6 +12,11 @@
       "weapon.companion"
     ]
   },
+  "description": {
+    "canonical": "",
+    "display": "",
+    "localizationStatus": "official-zh-unavailable"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.companion"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint"
+        ],
         "variables": {
           "weaponName": "万兹稳定器",
           "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailABlueprint",
       "resultUniqueName": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetParts/ZanukaPetPartTailA",
+      "blueprintCanonical": "ZanukaPetPartTailABlueprint",
       "outputQuantity": 1,
       "credits": 50000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
           "canonical": "Salvage",
-          "displayName": "Salvage",
+          "displayName": "回收金属",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2500
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 600
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Deimos/DeimosRareOreAAlloyItem",
-          "canonical": "DeimosRareOreAAlloyItem",
-          "displayName": "DeimosRareOreAAlloyItem",
+          "canonical": "Thaumic Distillate",
+          "displayName": "精粹萨莫石",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 20
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
-          "canonical": "Alertium",
-          "displayName": "Alertium",
+          "canonical": "Nitain Extract",
+          "displayName": "泥炭萃取物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "万兹稳定器的官方武器身份、获取和制造数据。",
+  "summary": "万兹稳定器的官方武器身份与获取数据。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": false,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

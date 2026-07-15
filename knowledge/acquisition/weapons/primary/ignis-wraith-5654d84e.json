@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "A blood-red variant of this destructive flamethrower.",
+    "display": "（英文：IGNIS WRAITH）这款破坏性火焰喷射器的血红变体。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+        ],
         "variables": {
           "weaponName": "伊格尼斯·亡魂",
           "recipeId": "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
@@ -52,7 +63,104 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            ],
+            "sourceCanonical": "Veil Proxima/Flexa (Caches)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.caches",
+            "chance": 0.087,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            ],
+            "sourceCanonical": "Veil Proxima/H-2 Cloud (Caches)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.caches",
+            "chance": 0.087,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            ],
+            "sourceCanonical": "Veil Proxima/R-9 Cloud (Caches)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.caches",
+            "chance": 0.087,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            ],
+            "sourceCanonical": "Veil Proxima/Nsu Grid (Caches)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.caches",
+            "chance": 0.087,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
@@ -74,10 +182,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +203,44 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint",
       "resultUniqueName": "/Lotus/Weapons/ClanTech/Chemical/FlameThrowerWraith",
+      "blueprintCanonical": "FlamethrowerWraithBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
-          "canonical": "ChemComponent",
-          "displayName": "ChemComponent",
+          "canonical": "Detonite Injector",
+          "displayName": "爆燃喷射器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
           "canonical": "Ferrite",
-          "displayName": "Ferrite",
+          "displayName": "铁氧体",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5000
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
-          "canonical": "ArgonCrystal",
-          "displayName": "ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -131,7 +252,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "伊格尼斯·亡魂的官方武器身份、获取和制造数据。",
+  "summary": "（英文：IGNIS WRAITH）这款破坏性火焰喷射器的血红变体。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +261,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

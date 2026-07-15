@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Command the beauty and lethality of these ornate warfans.",
+    "display": "（英文：GUNSEN PRIME）让这对华丽的武扇彰显其绝美的杀伤力。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "军扇 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunsenPrimeHandle"
+        ],
+        "variables": {
+          "partName": "GunsenPrimeHandle"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunsenPrimeBlade"
+        ],
+        "variables": {
+          "partName": "GunsenPrimeBlade"
         },
         "requirements": {
           "type": "none"
@@ -72,7 +113,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -83,15 +134,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GunsenPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Warfan/PrimeGunsen/PrimeGunsenWeapon",
+      "blueprintCanonical": "GunsenPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunsenPrimeHandle",
           "canonical": "GunsenPrimeHandle",
-          "displayName": "GunsenPrimeHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -99,7 +153,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunsenPrimeBlade",
           "canonical": "GunsenPrimeBlade",
-          "displayName": "GunsenPrimeBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -113,7 +167,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "军扇 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：GUNSEN PRIME）让这对华丽的武扇彰显其绝美的杀伤力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -122,11 +176,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunsenPrimeHandle",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunsenPrimeBlade",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

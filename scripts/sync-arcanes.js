@@ -137,7 +137,7 @@ function exchangeRequirements(location, languages = loadLanguages()) {
 }
 function supplementRequirements(sourceCanonical) {
   let match = String(sourceCanonical || '').match(/^Hunhow at Pontis Tower \((\d+) Emerald Talent \+ (\d+) Crimson Talent\)$/);
-  if (match) return { type: 'currency', usage: 'exchange', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currency: [{ currencyId: 'currency.jade-talent', amount: Number(match[1]) }, { currencyId: 'currency.crimson-talent', amount: Number(match[2]) }], isBuffUseless: true };
+  if (match) return { type: 'currency', usage: 'exchange', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currency: [{ currencyId: 'currency.emerald-talent', amount: Number(match[1]) }, { currencyId: 'currency.crimson-talent', amount: Number(match[2]) }], isBuffUseless: true };
   match = String(sourceCanonical || '').match(/^Roathe at La Cathédrale \((\d+) Maphica\)$/);
   if (match) return { type: 'currency', usage: 'exchange', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.maphica', amount: Number(match[1]) }], isBuffUseless: true };
   if (/^Marie rotating shop/.test(String(sourceCanonical || ''))) return { type: 'item', npcId: 'npc.marie', locationId: 'hub.sanctum-anatomica', itemGroupId: 'resource-group.perita', amountStatus: 'random' };

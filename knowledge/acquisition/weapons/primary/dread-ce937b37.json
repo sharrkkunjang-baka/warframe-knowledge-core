@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Dread is the calling card of The Stalker. It fires arrows that can decapitate.",
+    "display": "（英文：DREAD）恐惧是追猎者的标志性武器，其射出的箭矢足以取人首级。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+        ],
         "variables": {
           "weaponName": "恐惧",
           "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
@@ -52,8 +63,105 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            ],
+            "sourceCanonical": "Hunhow",
+            "sourceDisplayName": "Hunhow",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.324,
+            "sourceDropChance": 0.5,
+            "conditionalChance": 0.648,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            ],
+            "sourceCanonical": "Stalker",
+            "sourceDisplayName": "追猎者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.324,
+            "sourceDropChance": 0.5,
+            "conditionalChance": 0.648,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            ],
+            "sourceCanonical": "Shadow Stalker",
+            "sourceDisplayName": "黑影追猎者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.20665,
+            "sourceDropChance": 0.5,
+            "conditionalChance": 0.4133,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            ],
+            "sourceCanonical": "Protector Stalker",
+            "sourceDisplayName": "卫护追猎者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.20665,
+            "sourceDropChance": 0.5,
+            "conditionalChance": 0.4133,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -74,10 +182,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +203,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/StalkerBowBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Bows/StalkerBow",
+      "blueprintCanonical": "StalkerBowBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
-          "canonical": "Morphic",
-          "displayName": "Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 6
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 900
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "canonical": "PolymerBundle",
-          "displayName": "PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 750
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 900
         }
       ],
@@ -131,7 +252,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "恐惧的官方武器身份、获取和制造数据。",
+  "summary": "（英文：DREAD）恐惧是追猎者的标志性武器，其射出的箭矢足以取人首级。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +261,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [],
+    "crafting": true
+  }
 }

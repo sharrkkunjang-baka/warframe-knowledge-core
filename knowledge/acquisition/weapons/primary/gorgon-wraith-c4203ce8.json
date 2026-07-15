@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "The Gorgon Wraith is a powerful variant of its precursor that features unique styling.",
+    "display": "（英文：GORGON WRAITH）蛇发女妖·亡魂是其前身的强大变体，以它独特的风格为特色。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint"
+        ],
         "variables": {
           "weaponName": "蛇发女妖·亡魂",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithBarrel"
+        ],
+        "variables": {
+          "partName": "GorgonWraithBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithReceiver"
+        ],
+        "variables": {
+          "partName": "GorgonWraithReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithStock"
+        ],
+        "variables": {
+          "partName": "GorgonWraithStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GorgonWraithBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/LongGuns/WraithGorgon/WraithGorgon",
+      "blueprintCanonical": "GorgonWraithBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithBarrel",
           "canonical": "GorgonWraithBarrel",
-          "displayName": "GorgonWraithBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithReceiver",
           "canonical": "GorgonWraithReceiver",
-          "displayName": "GorgonWraithReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithStock",
           "canonical": "GorgonWraithStock",
-          "displayName": "GorgonWraithStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "蛇发女妖·亡魂的官方武器身份、获取和制造数据。",
+  "summary": "（英文：GORGON WRAITH）蛇发女妖·亡魂是其前身的强大变体，以它独特的风格为特色。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GorgonWraithStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

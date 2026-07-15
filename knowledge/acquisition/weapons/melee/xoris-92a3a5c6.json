@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "An obscure glaive weapon of Corpus provenance, intrinsically linked to Specter technology. The Xoris strikes rapidly and with great devastation. It is capable of chaining combos infinitely.",
+    "display": "（英文：XORIS）一件来源于 Corpus 且鲜为人知的战刃武器，与魅影技术有内在联系。「驱魔之刃」可以迅速进行打击，并拥有显著的破坏力。此外它可以无限进行连击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+        ],
         "variables": {
           "weaponName": "驱魔之刃",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade"
+        ],
+        "variables": {
+          "partName": "CrpGhostCatcherGlaivePartBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore"
+        ],
+        "variables": {
+          "partName": "CrpGhostCatcherGlaivePartCore"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle"
+        ],
+        "variables": {
+          "partName": "CrpGhostCatcherGlaivePartHandle"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Melee/Glaive/CrpGhostCatcherGlaive/CrpGhostCatcherGlaive",
+      "blueprintCanonical": "CrpGhostCatcherGlaiveBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 30,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade",
           "canonical": "CrpGhostCatcherGlaivePartBlade",
-          "displayName": "CrpGhostCatcherGlaivePartBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore",
           "canonical": "CrpGhostCatcherGlaivePartCore",
-          "displayName": "CrpGhostCatcherGlaivePartCore",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle",
           "canonical": "CrpGhostCatcherGlaivePartHandle",
-          "displayName": "CrpGhostCatcherGlaivePartHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "驱魔之刃的官方武器身份、获取和制造数据。",
+  "summary": "（英文：XORIS）一件来源于 Corpus 且鲜为人知的战刃武器，与魅影技术有内在联系。「驱魔之刃」可以迅速进行打击，并拥有显著的破坏力。此外它可以无限进行连击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "The Braton's high rate of fire and accuracy make it a favorite among the Tenno.",
+    "display": "（英文：BRATON）布莱顿是一支自动步枪。高射速和高精度使其成为了 Tenno 的最爱。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
+        ],
         "variables": {
           "weaponName": "布莱顿",
           "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
@@ -69,7 +80,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -80,10 +101,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/BratonBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Rifle/Rifle",
+      "blueprintCanonical": "BratonBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [],
       "provenance": {
         "source": "DE ExportRecipes",
@@ -93,7 +117,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "布莱顿的官方武器身份、获取和制造数据。",
+  "summary": "（英文：BRATON）布莱顿是一支自动步枪。高射速和高精度使其成为了 Tenno 的最爱。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -102,11 +126,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

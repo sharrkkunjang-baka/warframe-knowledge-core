@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Put them down so that they stay down, with this Scaldra slug launcher.",
+    "display": "（英文：PURGATOR 1）用这把炽蛇军武器让敌人再起不能。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "净化者 1",
           "recipeId": "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponBarrel"
+        ],
+        "variables": {
+          "partName": "LasrianNoxPlayerWeaponBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponReceiver"
+        ],
+        "variables": {
+          "partName": "LasrianNoxPlayerWeaponReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponStock"
+        ],
+        "variables": {
+          "partName": "LasrianNoxPlayerWeaponStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Lasria/LasGrenadeLauncher/LasrianNoxPlayerWeapon",
+      "blueprintCanonical": "LasrianNoxPlayerWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponBarrel",
           "canonical": "LasrianNoxPlayerWeaponBarrel",
-          "displayName": "LasrianNoxPlayerWeaponBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponReceiver",
           "canonical": "LasrianNoxPlayerWeaponReceiver",
-          "displayName": "LasrianNoxPlayerWeaponReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponStock",
           "canonical": "LasrianNoxPlayerWeaponStock",
-          "displayName": "LasrianNoxPlayerWeaponStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "净化者 1的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PURGATOR 1）用这把炽蛇军武器让敌人再起不能。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

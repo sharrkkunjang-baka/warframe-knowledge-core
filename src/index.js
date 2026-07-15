@@ -324,7 +324,15 @@ function createKnowledgeCore(options = {}) {
     if (method.type === 'vendor-or-syndicate-exchange') {
       const npc = method.sourceEntityId ? data.npcs.get(method.sourceEntityId) : null;
       const location = data.locations.get(method.locationId || npc?.locationId);
-      return { ...method, ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
+      const excerpt = String(method.provenance?.excerpt || '');
+      const standingMatch = excerpt.match(/(?:for\s+)?([\d,]+)\s+Standing/i);
+      const rankMatch = excerpt.match(/Rank\s+(\d+)\s*-\s*([A-Za-z ]+?)(?:\s+with\s+|\s+in\s+|[.,]|$)/i);
+      const officialRankNames = { Doer: '实践者', Associate: '同伴', Friend: '朋友', Trusted: '信赖' };
+      const inferredStanding = standingMatch ? Number(standingMatch[1].replace(/,/g, '')) : null;
+      const inferredRank = rankMatch ? Number(rankMatch[1]) : null;
+      const inferredRankCanonical = rankMatch ? rankMatch[2].trim() : null;
+      const requirements = normalizeRequirements(method.requirements?.type && method.requirements.type !== 'none' ? { ...method.requirements, rank: method.requirements.rank ?? inferredRank, rankName: method.requirements.rankName || officialRankNames[inferredRankCanonical] || null, amount: method.requirements.amount ?? method.standing ?? inferredStanding } : method.currency?.length ? { type: 'currency', usage: 'exchange', npcId: method.sourceEntityId, locationId: method.locationId || npc?.locationId, currency: method.currency, isBuffUseless: true } : method.standing || method.rank != null || inferredStanding || inferredRank != null ? { type: 'standing', npcId: method.sourceEntityId, locationId: method.locationId || npc?.locationId, rank: method.rank ?? inferredRank, rankName: method.rankName || officialRankNames[inferredRankCanonical] || null, amount: method.standing ?? inferredStanding } : null);
+      return { ...method, requirements, ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
     }
     if (method.type !== 'enemy-drop' || !method.sourceEntityId) return method;
     const enemy = data.enemies.get(method.sourceEntityId);
@@ -498,7 +506,11 @@ function createKnowledgeCore(options = {}) {
     const weaponEntry = getWeapon(raw);
     if (weaponEntry) {
       const structuredMethods = routesToMethods(weaponEntry.acquisition?.routes || [], data).filter(method => method.reviewStatus !== 'review-required' || method.category !== 'unresolved');
-      const description = renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName }) || `${weaponEntry.subject.displayName}的官方身份已收录，但获取路径仍需官方结构数据补齐。`;
+      const acquisitionText = renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName, registries: data });
+      const missing = (weaponEntry.acquisition?.routes || []).filter(route => route.status !== 'complete').map(route => route.scope === 'blueprint' ? '总图来源' : route.scope === 'component' ? `${route.variables?.partName || '部件'}来源` : route.scope === 'item' ? '成品来源' : route.category === 'crafting' ? '制造数据' : route.scope).filter(Boolean);
+      const gapText = missing.length ? `尚未由 DE 官方结构闭环：${[...new Set(missing)].join('、')}。` : weaponEntry.coverage?.autoComplete && !weaponEntry.coverage?.auditedComplete ? 'DE 官方结构已自动闭环，但尚未完成逐项来源审计，因此保持待审。' : '';
+      const officialDescription = weaponEntry.description?.localizationStatus === 'official-zh' ? weaponEntry.description.display : '官方简体中文武器描述暂缺。';
+      const description = [officialDescription, acquisitionText || `${weaponEntry.subject.displayName}的获取路径尚未由 DE 官方结构闭环。`, gapText].filter(Boolean).join('\n\n');
       return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions: [], structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
     }
     const arcaneEntry = getArcane(raw);
@@ -571,17 +583,19 @@ function createKnowledgeCore(options = {}) {
       ...(frameRoute.blueprintLine ? [{ type: 'route', scope: 'blueprint', category: entry.frameAcquisition?.generated?.routing?.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } }] : [])
     ], data) : [];
     const structuredMethods = compileStructuredMethods([
-      ...mergeStructuredMethods(entry).map(enrichModMethod).filter(method => method.type !== 'unresolved-source'),
+      ...mergeStructuredMethods(entry).map(enrichModMethod).map(method => Number.isFinite(method.chance) && method.chance > 1 ? { ...method, chance: method.chance / 100 } : method).filter(method => method.type !== 'unresolved-source'),
       ...structuredGameplayMethods(entry),
       ...frameStructuredMethods
     ], data);
     const defaultDescription = frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry);
-    const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title });
+    const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
+    const hasStructuredExchange = structuredMethods.some(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
+    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || (hasStructuredExchange && !/输入[“\"]刷/.test(defaultDescription));
     return {
       query: raw,
       resolution,
       entry,
-      description: structuredDescription && /尚未收录/.test(defaultDescription || '') ? structuredDescription : defaultDescription,
+      description: preferStructuredDescription && structuredDescription ? structuredDescription : defaultDescription,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,

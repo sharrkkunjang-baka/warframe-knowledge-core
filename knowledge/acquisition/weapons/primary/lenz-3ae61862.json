@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Bolts from this Corpus bow deliver a one-two punch of an icy pulse, followed by a conventional explosion. Excess ammo picked up for other weapons will be converted into charges for the Lenz. \r\n\r\nWarning: Safety-protocols do not exist on this prototype.",
+    "display": "（英文：LENZ）从这把 Corpus 弓箭中射出的箭矢将会放出极寒脉冲，紧接产生常规爆炸。额外拾取的其他武器弹药将会转化为楞次弓的电荷。\r\n\r\n警告：此原型机未使用安全协议。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+        ],
         "variables": {
           "weaponName": "楞次弓",
           "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Bow/Longbow/CrpBow",
+      "blueprintCanonical": "CrpBowBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
-          "canonical": "EnergyComponent",
-          "displayName": "EnergyComponent",
+          "canonical": "Fieldron",
+          "displayName": "电磁力场装置",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 8200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
           "canonical": "Cryotic",
-          "displayName": "Cryotic",
+          "displayName": "永冻晶矿",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2400
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
-          "canonical": "Alertium",
-          "displayName": "Alertium",
+          "canonical": "Nitain Extract",
+          "displayName": "泥炭萃取物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "楞次弓的官方武器身份、获取和制造数据。",
+  "summary": "（英文：LENZ）从这把 Corpus 弓箭中射出的箭矢将会放出极寒脉冲，紧接产生常规爆炸。额外拾取的其他武器弹药将会转化为楞次弓的电荷。\r\n\r\n警告：此原型机未使用安全协议。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

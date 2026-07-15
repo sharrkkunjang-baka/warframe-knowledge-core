@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Three kills in rapid succession to summon a second ethereal Pyrana for twice the deadly punch.",
+    "display": "（英文：PYRANA PRIME）快速地连续 3 次击杀将召唤一把食人鱼的幻影，造成双倍的致命杀伤。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "食人鱼 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PyranaPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "PyranaPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PyranaPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "PyranaPrimeReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/PyranaPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimePyrana/PrimePyranaPistol",
+      "blueprintCanonical": "PyranaPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PyranaPrimeBarrel",
           "canonical": "PyranaPrimeBarrel",
-          "displayName": "PyranaPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,17 +154,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PyranaPrimeReceiver",
           "canonical": "PyranaPrimeReceiver",
-          "displayName": "PyranaPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "食人鱼 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PYRANA PRIME）快速地连续 3 次击杀将召唤一把食人鱼的幻影，造成双倍的致命杀伤。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PyranaPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PyranaPrimeReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

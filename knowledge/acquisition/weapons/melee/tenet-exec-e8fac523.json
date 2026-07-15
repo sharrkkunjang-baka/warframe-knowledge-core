@@ -13,6 +13,11 @@
       "weapon.tenet"
     ]
   },
+  "description": {
+    "canonical": "Leverage bleeding-edge Granum tech with this massive heavy blade. Slam sends forth a cascading set of three shockwaves, while Heavy Slam unleashes a swath of shockwaves.",
+    "display": "（英文：TENET EXEC）这把重型巨刃使用了最前沿的格拉努科技。震地攻击会向前发射三道冲击波，而重型震地攻击则会发射大量冲击波。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee",
@@ -42,11 +47,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
+        ],
         "variables": {
           "weaponName": "信条·枢密",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
@@ -71,7 +82,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -82,10 +103,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/CrpBigSlash/CrpBigSlash",
+      "blueprintCanonical": "CrpBigSlashBlueprint",
       "outputQuantity": 1,
       "credits": 10000,
       "buildTimeSeconds": 60,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [],
       "provenance": {
         "source": "DE ExportRecipes",
@@ -95,7 +119,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "信条·枢密的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TENET EXEC）这把重型巨刃使用了最前沿的格拉努科技。震地攻击会向前发射三道冲击波，而重型震地攻击则会发射大量冲击波。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -104,11 +128,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

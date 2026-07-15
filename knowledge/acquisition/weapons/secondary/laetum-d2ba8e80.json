@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "During parades and victory marches, the Laetum fired pigmented airburst rounds that rained onto festive crowds. The Orokin sent Laetum with the Zariman so they could properly celebrate a successful maiden voyage to Tau. There would be no such celebration, but the Void imbued the Laetum with a much more explosive capacity.",
+    "display": "（英文：LAETUM）在阅兵式和得胜行军期间，人们会用奏凯发射色彩缤纷的空爆弹化作鲜艳的雨点落在欢庆的人群身上。奥罗金人将奏凯送上了「扎里曼号」，以便他们能够好好庆祝前往 Tau 星系的成功首航。虽然这样的庆祝活动从未发生，但虚空给奏凯赋予了更强的爆炸之力。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "奏凯",
           "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,16 +106,19 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Zariman/Pistols/HeavyPistol/ZarimanHeavyPistol",
+      "blueprintCanonical": "ZarimanHeavyPistolBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidAngelItem",
           "canonical": "Voidplume Pinion",
           "displayName": "虚空羽翎",
-          "languageKey": "/Lotus/Language/Zariman/VoidAngelItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 1
         },
@@ -102,7 +126,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanDogTagBounty",
           "canonical": "Voidplume Quill",
           "displayName": "虚空刺翎",
-          "languageKey": "/Lotus/Language/Zariman/ZarimanDogTagBountyName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 5
         },
@@ -110,16 +134,16 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemA",
           "canonical": "Voidgel Orb",
           "displayName": "虚空胶丸",
-          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemAName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 20
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
           "canonical": "Ferrite",
-          "displayName": "Ferrite",
+          "displayName": "铁氧体",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4000
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "奏凯的官方武器身份、获取和制造数据。",
+  "summary": "（英文：LAETUM）在阅兵式和得胜行军期间，人们会用奏凯发射色彩缤纷的空爆弹化作鲜艳的雨点落在欢庆的人群身上。奥罗金人将奏凯送上了「扎里曼号」，以便他们能够好好庆祝前往 Tau 星系的成功首航。虽然这样的庆祝活动从未发生，但虚空给奏凯赋予了更强的爆炸之力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

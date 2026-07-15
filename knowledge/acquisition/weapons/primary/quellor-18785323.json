@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "The Quellor was standard-issue to Dax Railjack crews of the Old War, dating back to the earliest, pre-Sigma craft. A rapid-fire assault rifle with a hefty magazine-size, the Quellor is an all-round workhorse. Also capable of large, short-range cryo-blasts.",
+    "display": "（英文：QUELLOR）压制者是远古之战时禁卫航道星舰舰员的标准配置武器，其最早的铸造可追溯到西格玛系列之前。这是一种速射突击步枪，拥有较大的弹匣容量，是全能型的主战武器。而且也有着巨大的、短距离的冰冻冲击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+        ],
         "variables": {
           "weaponName": "压制者",
           "recipeId": "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
@@ -52,7 +63,128 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            ],
+            "sourceCanonical": "Pyr Captain",
+            "sourceDisplayName": "Pyr 舰长",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.073065,
+            "sourceDropChance": 0.15,
+            "conditionalChance": 0.48710000000000003,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            ],
+            "sourceCanonical": "Glacik Commander",
+            "sourceDisplayName": "Glacik 指挥官",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.073065,
+            "sourceDropChance": 0.15,
+            "conditionalChance": 0.48710000000000003,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            ],
+            "sourceCanonical": "Lektro Commander",
+            "sourceDisplayName": "Lektro 指挥官",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.073065,
+            "sourceDropChance": 0.15,
+            "conditionalChance": 0.48710000000000003,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            ],
+            "sourceCanonical": "Blite Captain",
+            "sourceDisplayName": "Blite 舰长",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.073065,
+            "sourceDropChance": 0.15,
+            "conditionalChance": 0.48710000000000003,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            ],
+            "sourceCanonical": "Kuva Lich Agor Rok",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.05,
+            "sourceDropChance": 0.1,
+            "conditionalChance": 0.5,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
         "status": "review-required"
       },
       {
@@ -74,10 +206,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +227,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnRailjackRifle/RailjackRifleGun",
+      "blueprintCanonical": "RailjackRifleGunBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
           "canonical": "Tellurium",
-          "displayName": "Tellurium",
+          "displayName": "碲",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 6250
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3600
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 15350
         }
       ],
@@ -131,7 +276,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "压制者的官方武器身份、获取和制造数据。",
+  "summary": "（英文：QUELLOR）压制者是远古之战时禁卫航道星舰舰员的标准配置武器，其最早的铸造可追溯到西格玛系列之前。这是一种速射突击步枪，拥有较大的弹匣容量，是全能型的主战武器。而且也有着巨大的、短距离的冰冻冲击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +285,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

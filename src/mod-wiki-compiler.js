@@ -118,13 +118,22 @@ function compileAcquisitionProseMethod(excerpt, page, section) {
     const factions = Object.entries(factionIds).filter(([name]) => new RegExp(name.replace(/^The /, '(?:The )?'), 'i').test(excerpt))
     if (factions.length) return { type: 'syndicate-exchange-group', factionIds: factions.map(([, id]) => id), standing: integer(excerpt.match(/spending\s+([\d,]+)\s+Standing/i)?.[1]?.replace(/,/g, '') || 0), rankRequirement: 'max', chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   }
+  match = excerpt.match(/(?:bought|purchased)\s+from\s+(Son|Father)[^.]*?for\s+([\d,]+)\s+Standing[^.]*?Rank\s+(\d+)\s*-\s*([A-Za-z ]+?)(?:\s+with\s+the\s+Entrati|\s+with\s+Entrati|[.,]|$)/i)
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: match[1].toLowerCase() === 'son' ? 'npc.son' : 'npc.father', locationId: 'hub.necralisk', requirements: { type: 'standing', npcId: match[1].toLowerCase() === 'son' ? 'npc.son' : 'npc.father', locationId: 'hub.necralisk', rank: Number(match[3]), rankName: ({ Associate: '同伴', Friend: '朋友' }[cleanCell(match[4])] || null) }, standing: Number(match[2].replace(/,/g, '')), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Rank\s+(\d+)[^.]*?Entrati[^.]*?purchased for\s+([\d,]+)\s+Standing/i)
-  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.father', locationId: 'hub.necralisk', rank: Number(match[1]), standing: Number(match[2].replace(/,/g, '')), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.father', locationId: 'hub.necralisk', requirements: { type: 'standing', npcId: 'npc.father', locationId: 'hub.necralisk', rank: Number(match[1]) }, standing: Number(match[2].replace(/,/g, '')), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Koumei['’]s Shrine[^.]*?for\s+(\d+)\s+Fate Pearl/i)
   if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.koumei-shrine', locationId: 'hub.cetus', prerequisite: 'steel-path', currency: [{ currencyCanonical: 'Fate Pearl', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   const exchangeProviders = [{ pattern: /The Business/i, sourceEntityId: 'npc.the-business', locationId: 'hub.fortuna' }, { pattern: /Master Teasonai/i, sourceEntityId: 'npc.master-teasonai', locationId: 'hub.cetus' }, { pattern: /\bSon\b/i, sourceEntityId: 'npc.son', locationId: 'hub.necralisk' }]
   const provider = exchangeProviders.find(item => item.pattern.test(excerpt))
-  if (provider && /(?:purchased|bought)/i.test(excerpt)) return { type: 'vendor-or-syndicate-exchange', ...provider, requirementsEvidence: excerpt.split(/\|\|/).slice(1).map(cleanCell).filter(Boolean), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (provider && /(?:purchased|bought)/i.test(excerpt)) {
+    const standing = Number((excerpt.match(/for\s+([\d,]+)\s+Standing/i)?.[1] || '').replace(/,/g, '')) || null
+    const rankMatch = excerpt.match(/Rank\s+(\d+)\s*-\s*([A-Za-z ]+?)(?:\s+with\s+|\s+in\s+|[.,]|$)/i)
+    const officialRanks = { Doer: '实践者', Associate: '同伴', Friend: '朋友', Trusted: '信赖' }
+    const rankCanonical = rankMatch ? cleanCell(rankMatch[2]) : null
+    const requirements = rankMatch ? { type: 'standing', npcId: provider.sourceEntityId, locationId: provider.locationId, rank: Number(rankMatch[1]), rankName: officialRanks[rankCanonical] || null } : { type: 'none' }
+    return { type: 'vendor-or-syndicate-exchange', ...provider, requirements, standing, requirementsEvidence: excerpt.split(/\|\|/).slice(1).map(cleanCell).filter(Boolean), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  }
   match = excerpt.match(/(?:completion of|completing) (?:the )?(.+?) Quest/i)
   if (match) return { type: 'quest-reward', questCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'one-time-or-repurchase', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Rewarded upon completion of (?:the )?(.+?) Quest/i)

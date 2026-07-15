@@ -29,7 +29,9 @@ const OFFICIAL_LANGUAGE_KEYS = Object.freeze({
   Marie: '/Lotus/Language/CircleOfHell/MarieName',
   Otak: '/Lotus/Language/Bosses/Otak',
   Hok: '/Lotus/Language/Actions/OstronWeaponSmith',
-  Nakak: '/Lotus/Language/Npcs/Nakak'
+  Nakak: '/Lotus/Language/Npcs/Nakak',
+  'The Business': '/Lotus/Language/Npcs/TheBusiness',
+  Son: '/Lotus/Language/InfestedMicroplanet/HivemindPetVendorName'
 })
 function loadOfficialChinese() { return JSON.parse(fs.readFileSync(path.join(LANGUAGE_CACHE, 'languages.zh.json'), 'utf8')) }
 function localizedNpc(name, chinese) {

@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "An intimidating Tonfa set designed to match the briary design of the Boltor.",
+    "display": "（英文：BOLTACE）一对设计成与满身尖刺为造型的螺钉步枪相辅相成的拐刃，有着令人生畏的外观。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
+        ],
         "variables": {
           "weaponName": "螺钉拐刃",
           "recipeId": "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
@@ -73,7 +84,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,10 +105,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Tonfa/Boltonfa/Boltonfa",
+      "blueprintCanonical": "BoltonfaBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Rifle/BoltoRifle",
@@ -100,7 +124,7 @@
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Melee/Tonfa/TonfaContestWinner/TennoTonfa",
           "canonical": "TennoTonfa",
-          "displayName": "TennoTonfa",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,9 +132,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
           "canonical": "Gallium",
-          "displayName": "Gallium",
+          "displayName": "镓",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -122,7 +146,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "螺钉拐刃的官方武器身份、获取和制造数据。",
+  "summary": "（英文：BOLTACE）一对设计成与满身尖刺为造型的螺钉步枪相辅相成的拐刃，有着令人生畏的外观。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +155,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

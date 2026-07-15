@@ -129,12 +129,12 @@ test('Wiki 编译幂等且样本表格解析可靠', () => {
   assert.deepEqual(growing.entry.methodRefs, ['gameplay.silver-grove-specters']);
   assert.deepEqual(growing.entry.modAcquisition.manual.methodRefs, growing.entry.methodRefs);
   const condition = core.getAcquisition('Condition Overload');
-  assert.ok(condition.structuredMethods.some(method => method.type === 'circuit-reward' && method.chance === 1.49));
+  assert.ok(condition.structuredMethods.some(method => method.type === 'circuit-reward' && method.chance === 0.0149));
   assert.ok(condition.structuredMethods.some(method => method.type === 'enemy-drop' && method.sourceCanonical === 'Kuva Bombard'));
   assert.ok(condition.mechanicsEvidence.notes.length > 0);
   const frostbite = core.getAcquisition('Frostbite');
-  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'C' && method.chance === 8.6 && method.nodes.length === 4));
-  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'B' && method.chance === 10));
+  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'C' && method.chance === 0.086 && method.nodes.length === 4));
+  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'B' && method.chance === 0.1));
   assert.equal(frostbite.structuredMethods.some(method => method.type === 'enemy-drop'), false);
 });
 

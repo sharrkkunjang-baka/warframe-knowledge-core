@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Bring negotiations to an instant conclusion with this Corpus assault rifle. Switch effortlessly between charged explosive shots and rapid-fire electrical assault mode.",
+    "display": "（英文：AMBASSADOR）使用这支 Corpus 突击步枪让谈判立即结束。可以在充能爆炸狙击和速射电子突击模式之间自由切换。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,163 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+        ],
         "variables": {
           "weaponName": "使节",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            ],
+            "sourceCanonical": "Venus/Luckless Expanse (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.125,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "C",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            ],
+            "sourceCanonical": "Neptune/Enkidu Ice Drifts (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.0833,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "C",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            ],
+            "sourceCanonical": "Pluto/Fenton's Field (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.0833,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "C",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            ],
+            "sourceCanonical": "Veil Proxima/Lu-Yan (Skirmish)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.skirmish",
+            "chance": 0.16670000000000001,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "C",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperBarrel"
+        ],
+        "variables": {
+          "partName": "CrpArSniperBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperReceiver"
+        ],
+        "variables": {
+          "partName": "CrpArSniperReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperStock"
+        ],
+        "variables": {
+          "partName": "CrpArSniperStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +227,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +248,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpArSniper/CrpArSniperRifle",
+      "blueprintCanonical": "CrpArSniperBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperBarrel",
           "canonical": "CrpArSniperBarrel",
-          "displayName": "CrpArSniperBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +267,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperReceiver",
           "canonical": "CrpArSniperReceiver",
-          "displayName": "CrpArSniperReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +275,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperStock",
           "canonical": "CrpArSniperStock",
-          "displayName": "CrpArSniperStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +289,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "使节的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AMBASSADOR）使用这支 Corpus 突击步枪让谈判立即结束。可以在充能爆炸狙击和速射电子突击模式之间自由切换。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +298,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

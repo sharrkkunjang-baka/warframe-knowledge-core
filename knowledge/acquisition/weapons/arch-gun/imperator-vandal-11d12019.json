@@ -12,6 +12,11 @@
       "weapon.arch-gun"
     ]
   },
+  "description": {
+    "canonical": "The Imperator Vandal has been customized by the Tenno with a blue-green metallic finish and Lotus branding on the barrel.",
+    "display": "（英文：IMPERATOR VANDAL）这款为 Tenno 量身打造的凯旋将军·破坏者带有蓝绿色的金属质感，枪管上还有 Lotus 的铭刻。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.arch-gun"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+        ],
         "variables": {
           "weaponName": "凯旋将军·破坏者",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel"
+        ],
+        "variables": {
+          "partName": "ImperatorVandalBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver"
+        ],
+        "variables": {
+          "partName": "ImperatorVandalReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/FoldingMachineGun/ArchMachineGunVandal",
+      "blueprintCanonical": "ImperatorVandalBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel",
           "canonical": "ImperatorVandalBarrel",
-          "displayName": "ImperatorVandalBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +154,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver",
           "canonical": "ImperatorVandalReceiver",
-          "displayName": "ImperatorVandalReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,9 +162,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
           "canonical": "Tellurium",
-          "displayName": "Tellurium",
+          "displayName": "碲",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "凯旋将军·破坏者的官方武器身份、获取和制造数据。",
+  "summary": "（英文：IMPERATOR VANDAL）这款为 Tenno 量身打造的凯旋将军·破坏者带有蓝绿色的金属质感，枪管上还有 Lotus 的铭刻。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

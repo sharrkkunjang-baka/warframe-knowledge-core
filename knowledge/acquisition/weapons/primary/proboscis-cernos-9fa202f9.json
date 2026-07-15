@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Each arrow spawns a swarm of sticky appendages on impact. These tongue-like probes latch onto nearby unfortunates and drag them close before bursting into a mess of diseased goo.",
+    "display": "（英文：PROBOSCIS CERNOS）每支箭在冲击时都会产生大量的粘稠附着物。这些像舌头一样的探针会吸附在附近的倒霉蛋身上，并把他们拖近，然后爆裂形成一团病害黏液。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+        ],
         "variables": {
           "weaponName": "刺吸西诺斯",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Bows/PrimeDerelictCernos/DerelictCernos",
+      "blueprintCanonical": "DerelictCernosBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 30000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Weapons/Infested/Bow/InfCernosBow/InfCernos",
           "canonical": "InfCernos",
-          "displayName": "InfCernos",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "canonical": "PolymerBundle",
-          "displayName": "PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1600
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
-          "canonical": "Alertium",
-          "displayName": "Alertium",
+          "canonical": "Nitain Extract",
+          "displayName": "泥炭萃取物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
-          "canonical": "Nanospores",
-          "displayName": "Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 25000
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "刺吸西诺斯的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PROBOSCIS CERNOS）每支箭在冲击时都会产生大量的粘稠附着物。这些像舌头一样的探针会吸附在附近的倒霉蛋身上，并把他们拖近，然后爆裂形成一团病害黏液。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

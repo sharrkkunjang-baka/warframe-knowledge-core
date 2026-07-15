@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "The Stalker's sword as bestowed on him by the Sentient Hunhow.",
+    "display": "（英文：WAR）这把追猎者的剑是 Hunhow 赐予给他的。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
+        ],
         "variables": {
           "weaponName": "战争之剑",
           "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
@@ -52,8 +63,57 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
+            ],
+            "sourceCanonical": "Shadow Stalker",
+            "sourceDisplayName": "黑影追猎者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.05865,
+            "sourceDropChance": 0.5,
+            "conditionalChance": 0.1173,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
+            ],
+            "sourceCanonical": "Protector Stalker",
+            "sourceDisplayName": "卫护追猎者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.05865,
+            "sourceDropChance": 0.5,
+            "conditionalChance": 0.1173,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -74,7 +134,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,41 +155,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoGreatSword",
+      "blueprintCanonical": "StalkerTwoGreatswordBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoSmallSword",
           "canonical": "StalkerTwoSmallSword",
-          "displayName": "StalkerTwoSmallSword",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "canonical": "PolymerBundle",
-          "displayName": "PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2300
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1400
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
-          "canonical": "Alertium",
-          "displayName": "Alertium",
+          "canonical": "Nitain Extract",
+          "displayName": "泥炭萃取物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         }
       ],
@@ -131,7 +204,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "战争之剑的官方武器身份、获取和制造数据。",
+  "summary": "（英文：WAR）这把追猎者的剑是 Hunhow 赐予给他的。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +213,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [],
+    "crafting": false
+  }
 }

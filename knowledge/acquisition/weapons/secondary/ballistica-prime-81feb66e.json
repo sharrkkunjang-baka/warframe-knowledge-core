@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "The beauty of this luxuriously gilded crossbow cannot obscure its lethal purpose.",
+    "display": "（英文：BALLISTICA PRIME）这款豪华镀金连弩的精美无法遮掩它致命的目的。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,80 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint"
+        ],
         "variables": {
           "weaponName": "布里斯提卡 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaLowerLimb"
+        ],
+        "variables": {
+          "partName": "PrimeBallisticaLowerLimb"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaUpperLimb"
+        ],
+        "variables": {
+          "partName": "PrimeBallisticaUpperLimb"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaReceiver"
+        ],
+        "variables": {
+          "partName": "PrimeBallisticaReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaString"
+        ],
+        "variables": {
+          "partName": "PrimeBallisticaString"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +145,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +166,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/PrimeBallisticaBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeBallistica/PrimeBallistica",
+      "blueprintCanonical": "PrimeBallisticaBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaLowerLimb",
           "canonical": "PrimeBallisticaLowerLimb",
-          "displayName": "PrimeBallisticaLowerLimb",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +185,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaUpperLimb",
           "canonical": "PrimeBallisticaUpperLimb",
-          "displayName": "PrimeBallisticaUpperLimb",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +193,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaReceiver",
           "canonical": "PrimeBallisticaReceiver",
-          "displayName": "PrimeBallisticaReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -117,7 +201,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaString",
           "canonical": "PrimeBallisticaString",
-          "displayName": "PrimeBallisticaString",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -131,7 +215,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "布里斯提卡 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：BALLISTICA PRIME）这款豪华镀金连弩的精美无法遮掩它致命的目的。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +224,41 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaLowerLimb",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaUpperLimb",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeBallisticaString",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

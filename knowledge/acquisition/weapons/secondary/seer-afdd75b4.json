@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Captain Vor's prized Orokin-Grineer hybrid pistol has an average rate of fire, but it has high damage and superior zoom capabilities.",
+    "display": "（英文：SEER）奥罗金-Grineer 复合式手枪是沃尔上尉最重要的手枪，虽只有一般射速，但具有高杀伤力和卓越的狙击能力。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,76 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "预言者",
           "recipeId": "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+            ],
+            "sourceCanonical": "Mercury/Tolstoj (Assassination)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.assassination",
+            "chance": 0.3872,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel"
+        ],
+        "variables": {
+          "partName": "VorsPistolBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver"
+        ],
+        "variables": {
+          "partName": "VorsPistolReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +140,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +161,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrnScopedPistolPlayer",
+      "blueprintCanonical": "VorsPistolBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel",
           "canonical": "VorsPistolBarrel",
-          "displayName": "VorsPistolBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,17 +180,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver",
           "canonical": "VorsPistolReceiver",
-          "displayName": "VorsPistolReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -122,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "预言者的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SEER）奥罗金-Grineer 复合式手枪是沃尔上尉最重要的手枪，虽只有一般射速，但具有高杀伤力和卓越的狙击能力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +211,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "An ancient weapon designed by the Entrati. Primary fire siphons life essence from the target to fuel a devastating secondary fire. This large, weighty double-barreled pistol delivers twin projectiles that pack a punch, exploding on impact. Secondary fire puts the weapon in lock-on mode. Aim to lock onto multiple targets, then fire to unleash homing projectiles.",
+    "display": "（英文：SEPULCRUM）一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把大且沉的双管手枪可发出双股投射弹药，并在撞击时产生强力爆炸。次要射击会将手枪置于锁定状态，可追踪多个目标，并释放制导弹药。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "追击者",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
+        ],
+        "variables": {
+          "partName": "ThanotechPistolBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
+        ],
+        "variables": {
+          "partName": "ThanotechPistolReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,23 +135,26 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Thanotech/ThanoPistol/ThanotechPistol",
+      "blueprintCanonical": "ThanotechPistolBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Deimos/SeriglassShard",
-          "canonical": "SeriglassShard",
-          "displayName": "SeriglassShard",
+          "canonical": "Seriglass Shard",
+          "displayName": "玻璃窗碎片",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel",
           "canonical": "ThanotechPistolBarrel",
-          "displayName": "ThanotechPistolBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +162,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver",
           "canonical": "ThanotechPistolReceiver",
-          "displayName": "ThanotechPistolReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "追击者的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SEPULCRUM）一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把大且沉的双管手枪可发出双股投射弹药，并在撞击时产生强力爆炸。次要射击会将手枪置于锁定状态，可追踪多个目标，并释放制导弹药。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

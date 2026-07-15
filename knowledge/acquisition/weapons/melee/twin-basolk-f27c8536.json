@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "These nasty, little hatchets slice through steel as if it were flesh.",
+    "display": "（英文：TWIN BASOLK）这对棘手凶恶的小型短斧斩铁如泥，断钢如削肉。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
+        ],
         "variables": {
           "weaponName": "双子巴萨克",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
@@ -73,7 +84,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +105,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnDualFireAxe/GrnDualFireAxe",
+      "blueprintCanonical": "GrnDualFireAxeBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Melee/Axe/DualAxeWeapon",
           "canonical": "DualAxeWeapon",
-          "displayName": "DualAxeWeapon",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -107,10 +131,10 @@
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
-          "canonical": "ControlModule",
-          "displayName": "ControlModule",
+          "canonical": "Control Module",
+          "displayName": "控制模块",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -122,7 +146,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "双子巴萨克的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TWIN BASOLK）这对棘手凶恶的小型短斧斩铁如泥，断钢如削肉。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +155,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

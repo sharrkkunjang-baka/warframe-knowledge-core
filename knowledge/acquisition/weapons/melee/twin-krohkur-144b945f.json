@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Battlefield butchery becomes all too easy with a Krohkur blade in each hand.",
+    "display": "（英文：DUAL KROHKUR）双手持有克鲁古尔之刃能让战场中的杀戮变得轻而易举",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint"
+        ],
         "variables": {
           "weaponName": "双子克鲁古尔",
           "recipeId": "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint"
@@ -73,7 +84,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,31 +105,34 @@
     {
       "id": "/Lotus/Weapons/ClanTech/Chemical/DualGrnEgyptSwdBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnEgyptSwd/DualGrnEgyptSwdWeapon",
+      "blueprintCanonical": "DualGrnEgyptSwdBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
-          "canonical": "ChemComponent",
-          "displayName": "ChemComponent",
+          "canonical": "Detonite Injector",
+          "displayName": "爆燃喷射器",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "Forma",
+          "displayName": "",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "fallback-en",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Weapons/Grineer/Melee/GrnEgyptSwd/GrnEgyptSwdWeapon",
           "canonical": "GrnEgyptSwdWeapon",
-          "displayName": "GrnEgyptSwdWeapon",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -122,7 +146,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "双子克鲁古尔的官方武器身份、获取和制造数据。",
+  "summary": "（英文：DUAL KROHKUR）双手持有克鲁古尔之刃能让战场中的杀戮变得轻而易举",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +155,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

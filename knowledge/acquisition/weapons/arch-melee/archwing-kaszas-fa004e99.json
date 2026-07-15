@@ -12,6 +12,11 @@
       "weapon.arch-melee"
     ]
   },
+  "description": {
+    "canonical": "Become an angel of death, with this Archwing scythe.",
+    "display": "（英文：KASZAS）拿起这把曲翼镰刀，化身为死亡天使。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.arch-melee"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+        ],
         "variables": {
           "weaponName": "<ARCHWING> 死亡使徒",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade"
+        ],
+        "variables": {
+          "partName": "ArchScytheBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle"
+        ],
+        "variables": {
+          "partName": "ArchScytheHandle"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchScythe/ArchScythe",
+      "blueprintCanonical": "ArchScytheBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 35000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade",
           "canonical": "ArchScytheBlade",
-          "displayName": "ArchScytheBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +154,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle",
           "canonical": "ArchScytheHandle",
-          "displayName": "ArchScytheHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,9 +162,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
           "canonical": "Tellurium",
-          "displayName": "Tellurium",
+          "displayName": "碲",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3
         }
       ],
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "<ARCHWING> 死亡使徒的官方武器身份、获取和制造数据。",
+  "summary": "（英文：KASZAS）拿起这把曲翼镰刀，化身为死亡天使。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

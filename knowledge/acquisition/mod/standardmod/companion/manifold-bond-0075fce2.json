@@ -80,6 +80,14 @@
               "pattern": {},
               "sourceEntityId": "npc.master-teasonai",
               "locationId": "hub.cetus",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.master-teasonai",
+                "locationId": "hub.cetus",
+                "rank": 3,
+                "rankName": "信赖"
+              },
+              "standing": 20000,
               "requirementsEvidence": [],
               "chance": null,
               "quantity": 1,
@@ -288,16 +296,27 @@
         },
         "officialDrops": [
           {
-            "type": "official-drop",
-            "sourceCanonical": "Ostron (Master Teasonai), Trusted",
-            "chance": 100,
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.master-teasonai",
+            "locationId": "hub.cetus",
+            "availability": "guaranteed-when-requirements-met",
             "quantity": 1,
             "rarity": "Common",
-            "reviewStatus": "draft",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "rank": 3,
+              "rankName": "受到信任"
+            },
+            "reviewStatus": "approved",
             "provenance": {
               "source": "warframe-items",
               "input": "Mods.json",
-              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/CompoundingLaceration"
+              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/CompoundingLaceration",
+              "rawChance": 1,
+              "sourceCanonical": "Ostron (Master Teasonai), Trusted",
+              "note": "上游 chance=1 表示满足声望条件后可兑换，不是随机掉落。"
             }
           }
         ]

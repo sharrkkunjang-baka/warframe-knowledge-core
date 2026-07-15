@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Built for close combat, the Sheev's plasma blade slices through flesh and armor with equal ease.",
+    "display": "（英文：SHEEV）专为近身战斗设计，希芙的等离子刀刃能轻而易举切开肉体与护甲。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+        ],
         "variables": {
           "weaponName": "希芙",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade"
+        ],
+        "variables": {
+          "partName": "GrineerCombatKnifeBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink"
+        ],
+        "variables": {
+          "partName": "GrineerCombatKnifeHeatsink"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt"
+        ],
+        "variables": {
+          "partName": "GrineerCombatKnifeHilt"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +129,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +150,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrineerCombatKnife/GrineerCombatKnife",
+      "blueprintCanonical": "GrineerCombatKnifeSortieBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade",
           "canonical": "GrineerCombatKnifeBlade",
-          "displayName": "GrineerCombatKnifeBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +169,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink",
           "canonical": "GrineerCombatKnifeHeatsink",
-          "displayName": "GrineerCombatKnifeHeatsink",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +177,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt",
           "canonical": "GrineerCombatKnifeHilt",
-          "displayName": "GrineerCombatKnifeHilt",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +191,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "希芙的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SHEEV）专为近身战斗设计，希芙的等离子刀刃能轻而易举切开肉体与护甲。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +200,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

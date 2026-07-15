@@ -3,6 +3,7 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const crypto = require('node:crypto')
+const { renderGameText } = require('../src/game-text')
 const ROOT = path.resolve(__dirname, '..')
 const CACHE = path.join(ROOT, 'cache')
 const WEAPONS = path.join(CACHE, 'warframe-export-weapons.json')
@@ -43,7 +44,9 @@ function build(generatedAt = new Date().toISOString()) {
     const boundary = classify(uniqueName, weapon)
     const canonical = en[weapon.name] || weapon.name || uniqueName
     const displayName = zh[weapon.name] || ''
-    const identity = { uniqueName, canonical, displayName: displayName || canonical, nameLanguageKey: weapon.name || null, descriptionLanguageKey: weapon.description || null, localizationStatus: displayName ? 'official-zh' : 'official-zh-unavailable' }
+    const descriptionCanonical = renderGameText(en[weapon.description] || '')
+    const descriptionDisplay = renderGameText(zh[weapon.description] || '')
+    const identity = { uniqueName, canonical, displayName: displayName || canonical, nameLanguageKey: weapon.name || null, descriptionLanguageKey: weapon.description || null, description: { canonical: descriptionCanonical, display: descriptionDisplay, localizationStatus: descriptionDisplay ? 'official-zh' : 'official-zh-unavailable' }, localizationStatus: displayName ? 'official-zh' : 'official-zh-unavailable' }
     if (!boundary.include) { excluded.push({ ...identity, exclusionReason: boundary.reason }); continue }
     included.push({ ...identity, equipmentType: boundary.equipmentType, omegaAttenuation: Number.isFinite(weapon.omegaAttenuation) ? weapon.omegaAttenuation : null, disposition: Number.isFinite(weapon.disposition) ? weapon.disposition : null, masteryReq: weapon.masteryReq ?? null, productCategory: weapon.productCategory || null, attackClassification: attackClassification(weapon), classification: { categoryRefs: [`weapon.${boundary.equipmentType}`, ...(/Kuva|Lich/i.test(`${canonical} ${uniqueName}`) ? ['weapon.kuva'] : []), ...(/Tenet|Sister/i.test(`${canonical} ${uniqueName}`) ? ['weapon.tenet'] : [])] }, sourceFields: { identity: 'ExportWeapons', localization: displayName ? 'Languages.bin/zh' : 'missing', stats: 'ExportWeapons' }, status: displayName && Number.isFinite(weapon.omegaAttenuation) ? 'identity-complete' : 'review-required' })
   }

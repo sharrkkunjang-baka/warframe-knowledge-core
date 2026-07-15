@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Leave your mark with these infected claws with increased heavy attack range. Heavy attack at max combo to keep the extended range and slam radius for 3 minutes.",
+    "display": "（英文：KERATINOS）这些感染利爪可以在更大的重击范围内留下你的印记。达到最高连击数时进行重击，可以保持持续三分钟的、更大的攻击范围和震地半径。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
+        ],
         "variables": {
           "weaponName": "卡提努之爪",
           "recipeId": "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponBlade"
+        ],
+        "variables": {
+          "partName": "InfTransformClawsWeaponBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove"
+        ],
+        "variables": {
+          "partName": "InfTransformClawsWeaponGlove"
         },
         "requirements": {
           "type": "none"
@@ -72,7 +113,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -83,15 +134,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Infested/Melee/InfTransformClaw/InfTransformClawsWeapon",
+      "blueprintCanonical": "InfTransformClawsBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 25000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponBlade",
           "canonical": "InfTransformClawsWeaponBlade",
-          "displayName": "InfTransformClawsWeaponBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -99,7 +153,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove",
           "canonical": "InfTransformClawsWeaponGlove",
-          "displayName": "InfTransformClawsWeaponGlove",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -113,7 +167,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "卡提努之爪的官方武器身份、获取和制造数据。",
+  "summary": "（英文：KERATINOS）这些感染利爪可以在更大的重击范围内留下你的印记。达到最高连击数时进行重击，可以保持持续三分钟的、更大的攻击范围和震地半径。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -122,11 +176,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

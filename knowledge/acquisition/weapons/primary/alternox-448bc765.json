@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Gyre's signature weapon has two fire modes. Primary fire shocks enemies with electrical orbs. Alternate fire is a large ball of electricity that sticks to any surface and pulses ⚡Electricity before it explodes. In Gyre's hands, the weapon has a small amount of multishot.",
+    "display": "（英文：ALTERNOX）Gyre 的标志性武器有两种射击模式。主要射击可通过带电球体攻击敌人。次要射击可产生一个大型带电球体，该球体可附着在任何表面并在爆炸之前产生 ⚡带电脉冲。被 Gyre 使用时，该武器可产生少量的多重射击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "电幻步枪",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,24 +106,27 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/GyreRifle/GyreRifleWeapon",
+      "blueprintCanonical": "GyreRifleWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "canonical": "AlloyPlate",
-          "displayName": "AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4000
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
           "canonical": "Thrax Plasm",
           "displayName": "凶魂浆质",
-          "languageKey": "/Lotus/Language/Zariman/VoidWraithItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 600
         },
@@ -110,16 +134,16 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
           "canonical": "Entrati Lanthorn",
           "displayName": "英择谛灯笼",
-          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemBName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 16
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
-          "canonical": "ArgonCrystal",
-          "displayName": "ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "电幻步枪的官方武器身份、获取和制造数据。",
+  "summary": "（英文：ALTERNOX）Gyre 的标志性武器有两种射击模式。主要射击可通过带电球体攻击敌人。次要射击可产生一个大型带电球体，该球体可附着在任何表面并在爆炸之前产生 ⚡带电脉冲。被 Gyre 使用时，该武器可产生少量的多重射击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

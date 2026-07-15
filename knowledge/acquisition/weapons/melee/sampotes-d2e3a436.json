@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "A warrior who prefers brute force will make the most of Sampotes. Its Slams and Heavy Slams have an extended area of effect.",
+    "display": "（英文：SAMPOTES）喜欢蛮力的战士会充分利用三宝聚，它的震地攻击和重型震地攻击具有更广的影响范围。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+        ],
         "variables": {
           "weaponName": "三宝聚",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,40 +106,43 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/DaxDuviriHammer/DaxDuviriHammerWeapon",
+      "blueprintCanonical": "DaxDuviriHammerBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemE",
-          "canonical": "DuviriPlantItemE",
-          "displayName": "DuviriPlantItemE",
+          "canonical": "Silphsela",
+          "displayName": "日精灵瘦果",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 20
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
           "canonical": "Rune Marrow",
           "displayName": "密印髓质",
-          "languageKey": "/Lotus/Language/Duviri/DuviriFractalItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 30
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemA",
-          "canonical": "DuviriPlantItemA",
-          "displayName": "DuviriPlantItemA",
+          "canonical": "Kovnik",
+          "displayName": "福烁草",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 40
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriRockItem",
           "canonical": "Aggristone",
           "displayName": "龙涎石",
-          "languageKey": "/Lotus/Language/Duviri/DuviriRockItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 150
         }
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "三宝聚的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SAMPOTES）喜欢蛮力的战士会充分利用三宝聚，它的震地攻击和重型震地攻击具有更广的影响范围。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

@@ -13,6 +13,15 @@ const {
 const GENERATOR_NAME = 'sync-mods'
 const GENERATOR_VERSION = 4
 const SYNDICATE_IDS = Object.freeze({ 'Arbiters of Hexis': 'faction.arbiters-of-hexis', 'Red Veil': 'faction.red-veil', 'Steel Meridian': 'faction.steel-meridian', 'Cephalon Suda': 'faction.cephalon-suda', 'New Loka': 'faction.new-loka', 'The Perrin Sequence': 'faction.the-perrin-sequence' })
+const STANDING_EXCHANGE_SOURCES = Object.freeze({
+  'Solaris United|The Business': { npcId: 'npc.the-business', locationId: 'hub.fortuna', ranks: { Doer: { rank: 2, languageKey: '/Lotus/Language/Syndicates/SolarisTitle3' } } },
+  'Entrati|Son': { npcId: 'npc.son', locationId: 'hub.necralisk', ranks: { Associate: { rank: 2, languageKey: '/Lotus/Language/InfestedMicroplanet/EntratiTitle3' }, Friend: { rank: 3, languageKey: '/Lotus/Language/InfestedMicroplanet/EntratiTitle4' } } },
+  'Entrati|Father': { npcId: 'npc.father', locationId: 'hub.necralisk', ranks: { Friend: { rank: 3, languageKey: '/Lotus/Language/InfestedMicroplanet/EntratiTitle4' } } },
+  'Solaris United|Rude Zuud': { npcId: 'npc.rude-zuud', locationId: 'hub.fortuna', ranks: { 'Old Mate': { rank: 5, languageKey: '/Lotus/Language/Syndicates/SolarisTitle5' } } },
+  'Ostron|Hok': { npcId: 'npc.hok', locationId: 'hub.cetus', ranks: { Kin: { rank: 5, languageKey: '/Lotus/Language/Syndicates/CetusTitle5' } } },
+  'Ostron|Master Teasonai': { npcId: 'npc.master-teasonai', locationId: 'hub.cetus', ranks: { Trusted: { rank: 3, languageKey: '/Lotus/Language/Syndicates/CetusTitle3' } } }
+})
+const OFFICIAL_ZH = require(path.join(__dirname, '..', '.cache', 'official-localization', 'languages.zh.json'))
 const LOCAL_CROSS_PAGE_METHODS = Object.freeze({
   Afterburner: [{ type: 'enemy-group-drop', sourceCanonical: 'Archwing Eximus', chance: null, quantity: 1, availability: 'farmable', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Drop Tables', section: 'Missing Content', excerpt: 'Archwing Eximus enemies which are the only sources for Afterburner, Cold Snap, and Energy Field augments' } }],
   'Cold Snap': [{ type: 'enemy-group-drop', sourceCanonical: 'Archwing Eximus', chance: null, quantity: 1, availability: 'farmable', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Cold Snap', section: 'Drop Locations', excerpt: 'Obtained by defeating Eximus units in Archwing missions.' } }],
@@ -136,10 +145,27 @@ function getSyndicateMethods(item) {
 function localCrossPageMethods(item) {
   return (LOCAL_CROSS_PAGE_METHODS[getCanonical(item)] || []).map(method => JSON.parse(JSON.stringify(method)))
 }
+function standingExchangeMethod(drop, item) {
+  if (Number(drop.chance) !== 1) return null
+  const match = String(drop.location || '').trim().match(/^(.+?)(?: \(([^)]+)\))?, (.+)$/)
+  if (!match) return null
+  const syndicate = match[1], npcCanonical = match[2] || '', rankCanonical = match[3]
+  const definition = STANDING_EXCHANGE_SOURCES[`${syndicate}|${npcCanonical}`]
+  const rank = definition?.ranks?.[rankCanonical]
+  if (!definition || !rank) return null
+  const rankName = String(OFFICIAL_ZH[rank.languageKey] || '').trim()
+  if (!rankName) throw new Error(`${drop.location}: 官方简中声望等级缺失`)
+  return {
+    type: 'vendor-or-syndicate-exchange', sourceEntityId: definition.npcId, locationId: definition.locationId,
+    availability: 'guaranteed-when-requirements-met', quantity: 1, rarity: drop.rarity || null,
+    requirements: { type: 'standing', npcId: definition.npcId, locationId: definition.locationId, rank: rank.rank, rankName },
+    reviewStatus: 'approved', provenance: { source: 'warframe-items', input: 'Mods.json', officialUniqueName: item.uniqueName, rawChance: 1, sourceCanonical: String(drop.location).trim(), note: '上游 chance=1 表示满足声望条件后可兑换，不是随机掉落。' }
+  }
+}
 function officialDropMethods(item) {
   const drops = RAW_MOD_DROPS_BY_UNIQUE_NAME.get(item.uniqueName) || item.drops || []
-  return drops.filter(drop => drop.location && Number.isFinite(Number(drop.chance))).map(drop => ({
-    type: 'official-drop', sourceCanonical: String(drop.location).trim(), chance: Number(drop.chance) * 100, quantity: 1,
+  return drops.filter(drop => drop.location && Number.isFinite(Number(drop.chance))).map(drop => standingExchangeMethod(drop, item) || ({
+    type: 'official-drop', sourceCanonical: String(drop.location).trim(), chance: Number(drop.chance), quantity: 1,
     rarity: drop.rarity || null, reviewStatus: 'draft',
     provenance: { source: 'warframe-items', input: 'Mods.json', officialUniqueName: item.uniqueName }
   }))
@@ -278,6 +304,8 @@ module.exports = {
   getSyndicateMethods,
   localCrossPageMethods,
   officialDropMethods,
+  standingExchangeMethod,
+  STANDING_EXCHANGE_SOURCES,
   SYNDICATE_IDS,
   isGeneratedModEntry,
   mergeGeneratedWiki,

@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "This arm-cannon, ripped from a Sentient, rapid-fires thermal pulses that explode in an electrical blast. Features an ammo-less quick charge capacitor, that emits a knock-back pulse and strips Sentient damage resistances when fully discharged.",
+    "display": "（英文：SHEDU）这种从 Sentient 身上扯下来的手炮能快速射出热脉冲，并在电击中爆炸。它有一个不需要弹药的快充电容器，在完全放电时会发出回弹脉冲并解除 Sentient 的伤害抗性。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,18 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "quest",
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "quest",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "舍杜",
           "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
@@ -52,8 +64,186 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "blueprint",
+            "questCanonical": "Erra",
+            "questDisplayName": "Erra",
+            "questUniqueName": "/Lotus/Types/Keys/NewWarIntroQuest/NewWarIntroKeyChain",
+            "quantity": 1,
+            "requirements": {
+              "type": "quest",
+              "questName": "Erra"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportKeys",
+              "questUniqueName": "/Lotus/Types/Keys/NewWarIntroQuest/NewWarIntroKeyChain"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponBarrel"
+        ],
+        "variables": {
+          "partName": "舍杜 枪管"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponBarrel"
+            ],
+            "sourceCanonical": "Symbilyst",
+            "sourceDisplayName": "共生使",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.01,
+            "sourceDropChance": 0.04,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponChassis"
+        ],
+        "variables": {
+          "partName": "舍杜 机体"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponChassis"
+            ],
+            "sourceCanonical": "Symbilyst",
+            "sourceDisplayName": "共生使",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.01,
+            "sourceDropChance": 0.04,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponHandle"
+        ],
+        "variables": {
+          "partName": "舍杜 握柄"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponHandle"
+            ],
+            "sourceCanonical": "Symbilyst",
+            "sourceDisplayName": "共生使",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.01,
+            "sourceDropChance": 0.04,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponReceiver"
+        ],
+        "variables": {
+          "partName": "舍杜 枪机"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponReceiver"
+            ],
+            "sourceCanonical": "Symbilyst",
+            "sourceDisplayName": "共生使",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.01,
+            "sourceDropChance": 0.04,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -74,7 +264,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -85,10 +285,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Sentients/Shedu/SheduHeavyWeapon",
+      "blueprintCanonical": "SheduHeavyWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponBarrel",
@@ -131,7 +334,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "舍杜的官方武器身份、获取和制造数据。",
+  "summary": "（英文：SHEDU）这种从 Sentient 身上扯下来的手炮能快速射出热脉冲，并在电击中爆炸。它有一个不需要弹药的快充电容器，在完全放电时会发出回弹脉冲并解除 Sentient 的伤害抗性。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +343,43 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required"
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-weapon-source-audit"
+  ],
+  "status": "complete",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": true,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponBarrel",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponChassis",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponHandle",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponReceiver",
+        "complete": true
+      }
+    ],
+    "crafting": true
+  }
 }

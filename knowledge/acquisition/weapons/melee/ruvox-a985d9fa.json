@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Albrecht's Void experiments revealed the true destructive potential of this fist weapon. In Incarnon form, perform Heavy Slams to impale nearby enemies with spikes.",
+    "display": "（英文：RUVOX）阿尔布雷希特的虚空实验揭示了这把拳套武器的真正破坏潜力。在灵化形态下，使用重型震地攻击会以尖刺刺穿附近的敌人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,76 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint"
+        ],
         "variables": {
           "weaponName": "古声",
           "recipeId": "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint"
+            ],
+            "sourceCanonical": "Deimos/Armatus (Disruption)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.disruption",
+            "chance": 0.05,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade"
+        ],
+        "variables": {
+          "partName": "EntFistIncarnonBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove"
+        ],
+        "variables": {
+          "partName": "EntFistIncarnonGlove"
         },
         "requirements": {
           "type": "none"
@@ -72,7 +139,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -83,15 +160,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/EntFistIncarnonBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Thanotech/EntFistIncarnon/EntFistIncarnon",
+      "blueprintCanonical": "EntFistIncarnonBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 25000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade",
           "canonical": "EntFistIncarnonBlade",
-          "displayName": "EntFistIncarnonBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -99,7 +179,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove",
           "canonical": "EntFistIncarnonGlove",
-          "displayName": "EntFistIncarnonGlove",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -113,7 +193,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "古声的官方武器身份、获取和制造数据。",
+  "summary": "（英文：RUVOX）阿尔布雷希特的虚空实验揭示了这把拳套武器的真正破坏潜力。在灵化形态下，使用重型震地攻击会以尖刺刺穿附近的敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -122,11 +202,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

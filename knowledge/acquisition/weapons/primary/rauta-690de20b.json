@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Kullervo's signature weapon boasts melee synergy. Every shot that lands increases the wielder's Melee Combo count. When Kullervo wields Rauta, it also increases his Melee Combo duration.",
+    "display": "（英文：RAUTA）Kullervo 的标志性武器具有近战协同的优势。每次命中都会增加持枪者的近战连击数。当 Kullervo 使用锐铁时，它也会增加他的近战连击持续时间。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+        ],
         "variables": {
           "weaponName": "锐铁",
           "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel"
+        ],
+        "variables": {
+          "partName": "锐铁 枪管"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver"
+        ],
+        "variables": {
+          "partName": "锐铁 枪机"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
+        ],
+        "variables": {
+          "partName": "锐铁 枪托"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -85,10 +151,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PaxDuviricusShotgun/PaxDuviricusShotgun",
+      "blueprintCanonical": "PaxDuviricusShotgunBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel",
@@ -118,7 +187,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriDragonDropItem",
           "canonical": "Pathos Clamp",
           "displayName": "苦栓",
-          "languageKey": "/Lotus/Language/Duviri/DuviriDragonDropItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 10
         }
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "锐铁的官方武器身份、获取和制造数据。",
+  "summary": "（英文：RAUTA）Kullervo 的标志性武器具有近战协同的优势。每次命中都会增加持枪者的近战连击数。当 Kullervo 使用锐铁时，它也会增加他的近战连击持续时间。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock",
+        "complete": false
+      }
+    ],
+    "crafting": true
+  }
 }

@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Vasto revolvers equipped in each hand.",
+    "display": "（英文：AKVASTO）双手各持一把瓦斯托左轮手枪。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
+        ],
         "variables": {
           "weaponName": "瓦斯托双枪",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
@@ -72,7 +83,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -83,25 +104,28 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Akimbo/DualVastos",
+      "blueprintCanonical": "DualVastosBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 50000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Weapons/Tenno/Pistol/RevolverPistol",
           "canonical": "RevolverPistol",
-          "displayName": "RevolverPistol",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -113,7 +137,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "瓦斯托双枪的官方武器身份、获取和制造数据。",
+  "summary": "（英文：AKVASTO）双手各持一把瓦斯托左轮手枪。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -122,11 +146,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
 }

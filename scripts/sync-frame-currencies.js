@@ -8,6 +8,8 @@ const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'knowledge', 'curreicies')
 const OFFICIAL_ITEMS = path.join(ROOT, 'knowledge', 'generated', 'official-items.json')
 const FRAME_CURRENCIES = Object.freeze([
+  { canonical: 'Emerald Talent', displayName: '翠绿天赋', kind: 'exchange-token', officialUniqueName: '/Lotus/Types/JadeShadowsPart2Mission/Gameplay/Resources/AshFavor', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Mission/JS2MAshFavorName', acquisitionDependency: { type: 'mission-completion', locationId: 'mission.the-kuva-wytch', missionTypeId: 'mission-type.skirmish', acquisition: { type: 'mission-completion', locationId: 'mission.the-kuva-wytch', normalAmount: { min: 12, max: 16 }, steelPathAmount: { min: 16, max: 20 }, bonus: '任务中的额外目标可增加结算数量' }, source: 'DE Languages.bin JS2MAshFavorDesc', reviewStatus: 'approved' } },
+  { canonical: 'Crimson Talent', displayName: '猩红天赋', kind: 'exchange-token', officialUniqueName: '/Lotus/Types/JadeShadowsPart2Mission/Gameplay/Resources/GarudaFavor', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Mission/JS2MGarudaFavorName', acquisitionDependency: { type: 'mission-completion', locationId: 'mission.scorias-angel', missionTypeId: 'mission-type.skirmish', acquisition: { type: 'mission-completion', locationId: 'mission.scorias-angel', normalAmount: { min: 12, max: 16 }, steelPathAmount: { min: 16, max: 20 }, bonus: '任务中的额外目标可增加结算数量' }, source: 'DE Languages.bin JS2MGarudaFavorDesc', reviewStatus: 'approved' } },
   { canonical: 'Fergolyte', displayName: '铁离石', kind: 'resource-token', officialSource: 'Warframe Update 40 official zh-hans patch notes', acquisitionDependency: { type: 'bounty-completion-or-compost', questId: 'quest.the-new-war', locationId: 'hub.fortuna-airlock', npcId: 'npc.nightcap', bountyName: '深矿赏金', normalAmount: { min: 11, max: 15 }, steelPathAmount: { min: 15, max: 19 }, compostAmount: 1, source: 'Warframe Update 40 official zh-hans patch notes' } },
   { canonical: 'Vessel Capillaries', kind: 'resource-token', acquisitionDependency: { type: 'mission-enemy-drop', missionNodeId: 'mission-node.armatus', missionTypeId: 'mission-type.disruption', enemyRole: 'Demolisher', normalAmount: { min: 2, max: 4 }, steelPathAmount: { min: 5, max: 7 }, source: 'Dante Wiki Acquisition' } },
   { canonical: 'Stock', displayName: '存货储备', kind: 'exchange-token', officialSource: 'DE Languages.bin /Lotus/Language/Veilbreaker/KahlCredsName', acquisitionDependency: { acquisitionSummary: '完成卡尔每周的“击溃合一众”任务挑战获得，并同时推进卡尔驻军等级', sourceRefs: ['https://wiki.warframe.com/w/Kahl%27s_Garrison'], reviewStatus: 'approved' } },
@@ -25,7 +27,7 @@ const FRAME_CURRENCIES = Object.freeze([
   { canonical: "Nora's Mix Vol. 8 Cred", kind: 'seasonal-token', acquisitionDependency: { acquisitionSummary: '完成午夜电波行动并提升午夜电波等级，从等级奖励中获得', sourceRefs: ['https://www.warframe.com/news/nightwave-guide'], reviewStatus: 'approved' } },
   { canonical: "Kullervo's Bane", kind: 'exchange-token', aliases: ['灾刃'], acquisitionDependency: { canonical: "Kullervo's Bane", displayName: 'Kullervo 的灾刃', acquisitionSummary: '在恐惧、愤怒或悲伤心情阶段的双衍王境中前往库尔沃之灾，击败 Kullervo，并在同一轮任务中击败奥金魇龙后结算获得', sourceRefs: ['https://wiki.warframe.com/w/Kullervo%27s_Bane'], reviewStatus: 'approved' } }
 ])
-const ID_OVERRIDES = Object.freeze({ "Kullervo's Bane": 'currency.kullervos-bane' })
+const ID_OVERRIDES = Object.freeze({ "Kullervo's Bane": 'currency.kullervos-bane', 'Emerald Talent': 'currency.emerald-talent', 'Crimson Talent': 'currency.crimson-talent' })
 const CATEGORY_NAMES = Object.freeze({ standard: '通用货币', premium: '高级货币', standing: '声望', 'exchange-token': '兑换代币', 'resource-token': '资源代币', 'seasonal-token': '赛季代币' })
 function officialByCanonical() { const data = JSON.parse(fs.readFileSync(OFFICIAL_ITEMS, 'utf8')); return new Map((data.items || []).map(item => [item.canonical, item])) }
 function build() {
@@ -37,7 +39,7 @@ function build() {
     const id = ID_OVERRIDES[definition.canonical] || `currency.${definition.canonical.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
     for (const [existingId, existing] of byId) if (existing.canonical === definition.canonical && existingId !== id) byId.delete(existingId)
     const previous = byId.get(id) || {}
-    byId.set(id, { id, canonical: definition.canonical, displayName: definition.displayName || item.displayName, kind: definition.kind, aliases: definition.aliases || [], ...(item?.uniqueName ? { officialUniqueName: item.uniqueName } : {}), officialSource: definition.officialSource || 'knowledge/generated/official-items.json', ...previous, ...(definition.acquisitionDependency ? { acquisitionDependency: definition.acquisitionDependency } : {}) })
+    byId.set(id, { id, canonical: definition.canonical, displayName: definition.displayName || item.displayName, kind: definition.kind, aliases: definition.aliases || [], ...(definition.officialUniqueName || item?.uniqueName ? { officialUniqueName: definition.officialUniqueName || item.uniqueName } : {}), officialSource: definition.officialSource || 'knowledge/generated/official-items.json', ...previous, ...(definition.acquisitionDependency ? { acquisitionDependency: definition.acquisitionDependency } : {}) })
   }
   return [...byId.values()]
 }

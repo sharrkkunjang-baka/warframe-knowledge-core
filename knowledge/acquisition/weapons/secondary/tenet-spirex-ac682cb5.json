@@ -13,6 +13,11 @@
       "weapon.tenet"
     ]
   },
+  "description": {
+    "canonical": "Dominate rivals with this pistol’s lightning fast rail-slugs. Head-shots speed up reload.",
+    "display": "（英文：TENET SPIREX）用这把手枪快如闪电的弹道压制对手。爆头可加快装填速度。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary",
@@ -42,11 +47,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+        ],
         "variables": {
           "weaponName": "信条·斯派克斯",
           "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
@@ -71,7 +82,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -82,10 +103,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Pistols/CrpIgniterPistol/CrpIgniterPistol",
+      "blueprintCanonical": "CrpIgniterPistolBlueprint",
       "outputQuantity": 1,
       "credits": 10000,
       "buildTimeSeconds": 60,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [],
       "provenance": {
         "source": "DE ExportRecipes",
@@ -95,7 +119,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "信条·斯派克斯的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TENET SPIREX）用这把手枪快如闪电的弹道压制对手。爆头可加快装填速度。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -104,11 +128,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

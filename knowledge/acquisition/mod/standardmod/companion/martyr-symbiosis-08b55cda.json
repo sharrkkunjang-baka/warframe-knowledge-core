@@ -80,6 +80,10 @@
               "pattern": {},
               "sourceEntityId": "npc.son",
               "locationId": "hub.necralisk",
+              "requirements": {
+                "type": "none"
+              },
+              "standing": 10000,
               "requirementsEvidence": [],
               "chance": null,
               "quantity": 1,
@@ -148,16 +152,27 @@
         },
         "officialDrops": [
           {
-            "type": "official-drop",
-            "sourceCanonical": "Entrati (Son), Friend",
-            "chance": 100,
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.son",
+            "locationId": "hub.necralisk",
+            "availability": "guaranteed-when-requirements-met",
             "quantity": 1,
             "rarity": "Common",
-            "reviewStatus": "draft",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.son",
+              "locationId": "hub.necralisk",
+              "rank": 3,
+              "rankName": "好友"
+            },
+            "reviewStatus": "approved",
             "provenance": {
               "source": "warframe-items",
               "input": "Mods.json",
-              "officialUniqueName": "/Lotus/Types/Friendly/Pets/CreaturePets/CreaturePrecepts/InfestedCatbrowVampireShieldPrecept"
+              "officialUniqueName": "/Lotus/Types/Friendly/Pets/CreaturePets/CreaturePrecepts/InfestedCatbrowVampireShieldPrecept",
+              "rawChance": 1,
+              "sourceCanonical": "Entrati (Son), Friend",
+              "note": "上游 chance=1 表示满足声望条件后可兑换，不是随机掉落。"
             }
           }
         ]

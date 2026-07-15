@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Archon Boreal’s signature trident. Thrust Korumm into the ground with a Tactical Combo and then rip it out in a shower of electricity.",
+    "display": "（英文：KORUMM）执刑官诡文枭主的标志性三叉戟。战术组合可以将雷霆暴君插入地面，并在拔出时造成电击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint"
+        ],
         "variables": {
           "weaponName": "雷霆暴君",
           "recipeId": "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +106,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Archon/Melee/Trident/ArchonTridentPlayerWep",
+      "blueprintCanonical": "ArchonTridentBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/NarmerBountyResource",
           "canonical": "Narmer Isoplast",
           "displayName": "合一众塑讯块",
-          "languageKey": "/Lotus/Language/Narmer/NarmerBountyResourceName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 16
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisEidolonGemACutItem",
-          "canonical": "SolarisEidolonGemACutItem",
-          "displayName": "SolarisEidolonGemACutItem",
+          "canonical": "Radiant Zodian",
+          "displayName": "发光的黄道宝石",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 6
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/CommonOreBAlloyBItem",
-          "canonical": "CommonOreBAlloyBItem",
-          "displayName": "CommonOreBAlloyBItem",
+          "canonical": "Coprite Alloy",
+          "displayName": "亚铜合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 60
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
           "canonical": "Rubedo",
-          "displayName": "Rubedo",
+          "displayName": "红化结晶",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 3200
         }
       ],
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "雷霆暴君的官方武器身份、获取和制造数据。",
+  "summary": "（英文：KORUMM）执刑官诡文枭主的标志性三叉戟。战术组合可以将雷霆暴君插入地面，并在拔出时造成电击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

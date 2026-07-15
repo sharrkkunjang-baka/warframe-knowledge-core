@@ -137,7 +137,7 @@
           {
             "type": "official-drop",
             "sourceCanonical": "Corrupted Drahk",
-            "chance": 0.01,
+            "chance": 0.0001,
             "quantity": 1,
             "rarity": "Legendary",
             "reviewStatus": "draft",
@@ -150,7 +150,7 @@
           {
             "type": "official-drop",
             "sourceCanonical": "Drahk",
-            "chance": 0.01,
+            "chance": 0.0001,
             "quantity": 1,
             "rarity": "Legendary",
             "reviewStatus": "draft",
@@ -163,7 +163,7 @@
           {
             "type": "official-drop",
             "sourceCanonical": "Kubrow",
-            "chance": 0.01,
+            "chance": 0.0001,
             "quantity": 1,
             "rarity": "Legendary",
             "reviewStatus": "draft",
@@ -176,7 +176,7 @@
           {
             "type": "official-drop",
             "sourceCanonical": "Kuva Drahk",
-            "chance": 0.01,
+            "chance": 0.0001,
             "quantity": 1,
             "rarity": "Legendary",
             "reviewStatus": "draft",
@@ -189,7 +189,7 @@
           {
             "type": "official-drop",
             "sourceCanonical": "Tamm",
-            "chance": 0.01,
+            "chance": 0.0001,
             "quantity": 1,
             "rarity": "Legendary",
             "reviewStatus": "draft",
@@ -200,16 +200,27 @@
             }
           },
           {
-            "type": "official-drop",
-            "sourceCanonical": "Ostron (Hok), Kin",
-            "chance": 100,
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.hok",
+            "locationId": "hub.cetus",
+            "availability": "guaranteed-when-requirements-met",
             "quantity": 1,
             "rarity": "Common",
-            "reviewStatus": "draft",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.hok",
+              "locationId": "hub.cetus",
+              "rank": 5,
+              "rankName": "情同手足"
+            },
+            "reviewStatus": "approved",
             "provenance": {
               "source": "warframe-items",
               "input": "Mods.json",
-              "officialUniqueName": "/Lotus/Types/Friendly/Pets/KubrowPetPrecepts/KubrowChargePrecept"
+              "officialUniqueName": "/Lotus/Types/Friendly/Pets/KubrowPetPrecepts/KubrowChargePrecept",
+              "rawChance": 1,
+              "sourceCanonical": "Ostron (Hok), Kin",
+              "note": "上游 chance=1 表示满足声望条件后可兑换，不是随机掉落。"
             }
           }
         ]

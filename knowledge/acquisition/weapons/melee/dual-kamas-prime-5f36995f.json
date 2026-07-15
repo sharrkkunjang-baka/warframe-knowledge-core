@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "The sensual lines of these golden Kamas have long been celebrated as a masterwork of Tenno weapon smithing.",
+    "display": "（英文：DUAL KAMAS PRIME）这对拥有迷人线条的金色短柄战镰，长久以来一直被奉为 Tenno 武器锻造的杰作。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint"
+        ],
         "variables": {
           "weaponName": "双短柄战镰 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDualKamasHandle"
+        ],
+        "variables": {
+          "partName": "PrimeDualKamasHandle"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDualKamasBlade"
+        ],
+        "variables": {
+          "partName": "PrimeDualKamasBlade"
         },
         "requirements": {
           "type": "none"
@@ -72,7 +113,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -83,15 +134,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/PrimeDualKamasBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeDualKamas/PrimeDualKamas",
+      "blueprintCanonical": "PrimeDualKamasBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDualKamasHandle",
           "canonical": "PrimeDualKamasHandle",
-          "displayName": "PrimeDualKamasHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -99,7 +153,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDualKamasBlade",
           "canonical": "PrimeDualKamasBlade",
-          "displayName": "PrimeDualKamasBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -113,7 +167,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "双短柄战镰 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：DUAL KAMAS PRIME）这对拥有迷人线条的金色短柄战镰，长久以来一直被奉为 Tenno 武器锻造的杰作。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -122,11 +176,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDualKamasHandle",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDualKamasBlade",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

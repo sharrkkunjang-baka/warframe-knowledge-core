@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Rend enemies and up the heat with these mining tools repurposed into machine-tonfa. Building the Combo Multiplier overheats the Tonkkatts, setting enemies ablaze.",
+    "display": "（英文：TONKKATT）用这对由采矿工具改装而来的拐刃撕裂并点燃你的敌人。积累连击倍率将使武器过热，让敌人熊熊燃烧。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,100 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+        ],
         "variables": {
           "weaponName": "通卡拐刃",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+            ],
+            "sourceCanonical": "Ghoul Expired",
+            "sourceDisplayName": "除役尸鬼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.016665,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+            ],
+            "sourceCanonical": "Ghoul Rictus",
+            "sourceDisplayName": "裂嘴尸鬼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.016665,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle"
+        ],
+        "variables": {
+          "partName": "GrnChainSawTonfaHandle"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade"
+        ],
+        "variables": {
+          "partName": "GrnChainSawTonfaBlade"
         },
         "requirements": {
           "type": "none"
@@ -72,7 +163,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -83,15 +184,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrnChainSawTonfaBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/Tonfa/GrnChainSawTonfa/GrnChainSawTonfaWeapon",
+      "blueprintCanonical": "GrnChainSawTonfaBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle",
           "canonical": "GrnChainSawTonfaHandle",
-          "displayName": "GrnChainSawTonfaHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -99,7 +203,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade",
           "canonical": "GrnChainSawTonfaBlade",
-          "displayName": "GrnChainSawTonfaBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 2
@@ -113,7 +217,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "通卡拐刃的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TONKKATT）用这对由采矿工具改装而来的拐刃撕裂并点燃你的敌人。积累连击倍率将使武器过热，让敌人熊熊燃烧。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -122,11 +226,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaHandle",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnChainSawTonfaBlade",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

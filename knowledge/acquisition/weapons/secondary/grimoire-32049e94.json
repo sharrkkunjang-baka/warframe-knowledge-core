@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "Claim the power of Albrecht Entrati's knowledge. Customize the Grimoire with Tome Mods that enhance Warframe Abilities and reward strategic combat. Its alternate attack releases a voltaic orb with guaranteed ⚡Electricity Status.",
+    "display": "（英文：GRIMOIRE）获取阿尔布雷希特·英择谛的全知之力。使用典籍 Mod 增强战甲技能并获得战术优势。次要射击发射一颗必定造成 ⚡电击异常状态的电弧球。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+        ],
         "variables": {
           "weaponName": "魔典",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
@@ -74,7 +85,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -85,16 +106,19 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Grimoire/TnGrimoire",
+      "blueprintCanonical": "GrimoireBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 35000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemA",
           "canonical": "Entrati Obols",
           "displayName": "英择谛银币",
-          "languageKey": "/Lotus/Language/Entrati/EntratiLabMiscItemAName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 2000
         },
@@ -102,7 +126,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemB",
           "canonical": "Necracoil",
           "displayName": "殁世线圈",
-          "languageKey": "/Lotus/Language/Entrati/EntratiLabMiscItemBName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 50
         },
@@ -110,7 +134,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagRare",
           "canonical": "Echo Voca",
           "displayName": "回响音魂",
-          "languageKey": "/Lotus/Language/Entrati/EntratiLabDogTagRareName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 15
         },
@@ -118,7 +142,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
           "canonical": "Entrati Lanthorn",
           "displayName": "英择谛灯笼",
-          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemBName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 10
         }
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "魔典的官方武器身份、获取和制造数据。",
+  "summary": "（英文：GRIMOIRE）获取阿尔布雷希特·英择谛的全知之力。使用典籍 Mod 增强战甲技能并获得战术优势。次要射击发射一颗必定造成 ⚡电击异常状态的电弧球。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

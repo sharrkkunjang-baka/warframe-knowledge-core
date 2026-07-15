@@ -81,16 +81,27 @@
         },
         "officialDrops": [
           {
-            "type": "official-drop",
-            "sourceCanonical": "Solaris United (The Business), Doer",
-            "chance": 100,
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.the-business",
+            "locationId": "hub.fortuna",
+            "availability": "guaranteed-when-requirements-met",
             "quantity": 1,
             "rarity": "Common",
-            "reviewStatus": "draft",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.the-business",
+              "locationId": "hub.fortuna",
+              "rank": 2,
+              "rankName": "实践者"
+            },
+            "reviewStatus": "approved",
             "provenance": {
               "source": "warframe-items",
               "input": "Mods.json",
-              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/Copilot"
+              "officialUniqueName": "/Lotus/Types/Sentinels/SentinelPrecepts/VoidBond/Copilot",
+              "rawChance": 1,
+              "sourceCanonical": "Solaris United (The Business), Doer",
+              "note": "上游 chance=1 表示满足声望条件后可兑换，不是随机掉落。"
             }
           }
         ]

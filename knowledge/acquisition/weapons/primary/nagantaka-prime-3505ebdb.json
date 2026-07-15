@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "A golden version of Garuda's versatile crossbow, as fashioned by the Orokin's finest weaponsmiths. Alt-fire to let loose a barrage of bolts. All bolts have a chance to cause 切割Slash Status, and Headshot kills have a chance to increase Reload Speed. When wielded by Garuda the Nagantaka gains a slight Punch Through.",
+    "display": "（英文：NAGANTAKA PRIME）Garuda 的标志性十字弓的镀金版本，由奥罗金最优秀的工匠所锻造。次要射击能发射出弩矢弹幕；每支弩矢都有可能造成 切割切割异常状态，爆头击杀则可加快装填速度。在被 Garuda 使用时，噬蛇弩会获得少量的穿透效果。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,65 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint"
+        ],
         "variables": {
           "weaponName": "噬蛇弩 Prime",
           "recipeId": "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeBarrel"
+        ],
+        "variables": {
+          "partName": "NagantakaPrimeBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeReceiver"
+        ],
+        "variables": {
+          "partName": "NagantakaPrimeReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeStock"
+        ],
+        "variables": {
+          "partName": "NagantakaPrimeStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +130,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +151,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/NagantakaPrimeBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeNagantaka/PrimeNagantakaWeapon",
+      "blueprintCanonical": "NagantakaPrimeBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeBarrel",
           "canonical": "NagantakaPrimeBarrel",
-          "displayName": "NagantakaPrimeBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +170,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeReceiver",
           "canonical": "NagantakaPrimeReceiver",
-          "displayName": "NagantakaPrimeReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +178,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeStock",
           "canonical": "NagantakaPrimeStock",
-          "displayName": "NagantakaPrimeStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -131,7 +200,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "噬蛇弩 Prime的官方武器身份、获取和制造数据。",
+  "summary": "（英文：NAGANTAKA PRIME）Garuda 的标志性十字弓的镀金版本，由奥罗金最优秀的工匠所锻造。次要射击能发射出弩矢弹幕；每支弩矢都有可能造成 切割切割异常状态，爆头击杀则可加快装填速度。在被 Garuda 使用时，噬蛇弩会获得少量的穿透效果。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +209,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/NagantakaPrimeStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

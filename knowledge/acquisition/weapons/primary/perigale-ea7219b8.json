@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Like a breath of wind, shots fired by this multi-barrel sniper are felt but never seen by its targets. Headshots in quick succession increase the Perigale's ammo efficiency. When the Perigale is wielded by Voruna, its ammo pool increases.",
+    "display": "（英文：PERIGALE）就像一阵风，这把多管狙击枪发射的子弹能被它的目标感觉到，却从未被看到。快速连续爆头可提高月面狂风的弹药效率。当 Voruna 手持月面狂风时，它的弹药库会因此增加。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,115 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+        ],
         "variables": {
           "weaponName": "月面狂风",
           "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+            ],
+            "sourceCanonical": "Lua/Yuvarium (Survival)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.survival",
+            "chance": 0.07519999999999999,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "A",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+            ],
+            "sourceCanonical": "Lua/Circulus (Survival)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": null,
+            "missionTypeId": "mission-type.survival",
+            "chance": 0.1128,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "A",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel"
+        ],
+        "variables": {
+          "partName": "TnQuadSniperRifleBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver"
+        ],
+        "variables": {
+          "partName": "TnQuadSniperRifleReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock"
+        ],
+        "variables": {
+          "partName": "TnQuadSniperRifleStock"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +180,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +201,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnQuadSniper/TnQuadSniper",
+      "blueprintCanonical": "TnQuadSniperRifleBlueprint",
       "outputQuantity": 1,
       "credits": 20000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel",
           "canonical": "TnQuadSniperRifleBarrel",
-          "displayName": "TnQuadSniperRifleBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +220,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver",
           "canonical": "TnQuadSniperRifleReceiver",
-          "displayName": "TnQuadSniperRifleReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +228,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock",
           "canonical": "TnQuadSniperRifleStock",
-          "displayName": "TnQuadSniperRifleStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -118,7 +237,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/EclipseVoidWraithItem",
           "canonical": "Lua Thrax Plasm",
           "displayName": "月球凶魂浆质",
-          "languageKey": "/Lotus/Language/VoidEclipse/EclipseVoidWraithItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 50
         }
@@ -131,7 +250,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "月面狂风的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PERIGALE）就像一阵风，这把多管狙击枪发射的子弹能被它的目标感觉到，却从未被看到。快速连续爆头可提高月面狂风的弹药效率。当 Voruna 手持月面狂风时，它的弹药库会因此增加。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +259,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

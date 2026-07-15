@@ -12,6 +12,11 @@
       "weapon.secondary"
     ]
   },
+  "description": {
+    "canonical": "The sleek lines of the Detron conceal its ferocious nature. The hand cannon's semi-automatic action takes down enemies with speed and efficiency.",
+    "display": "（英文：DETRON）德特昂的流线型线条掩饰其凶残本性，这把半自动手枪是快速并有效率地击倒敌人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.secondary"
@@ -40,14 +45,76 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DetronBlueprint"
+        ],
         "variables": {
           "weaponName": "德特昂",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DetronBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DetronBlueprint"
+            ],
+            "sourceCanonical": "Zanuka Hunter",
+            "sourceDisplayName": "Zanuka 猎犬",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.1765,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.1765,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DetronBarrel"
+        ],
+        "variables": {
+          "partName": "DetronBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DetronReceiver"
+        ],
+        "variables": {
+          "partName": "DetronReceiver"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +140,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DetronBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DetronBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DetronBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DetronBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +161,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DetronBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Pistols/CorpusHandShotgun/CorpusHandCannon",
+      "blueprintCanonical": "DetronBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DetronBarrel",
           "canonical": "DetronBarrel",
-          "displayName": "DetronBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,17 +180,17 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DetronReceiver",
           "canonical": "DetronReceiver",
-          "displayName": "DetronReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "canonical": "OrokinCell",
-          "displayName": "OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 10
         }
       ],
@@ -122,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "德特昂的官方武器身份、获取和制造数据。",
+  "summary": "（英文：DETRON）德特昂的流线型线条掩饰其凶残本性，这把半自动手枪是快速并有效率地击倒敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +211,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DetronBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DetronReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

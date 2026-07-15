@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "This Heavy Scythe echoes battles of another time. It is far more a weapon of sheer force than one of finesse.",
+    "display": "（英文：HESPAR）这把重型镰刀呼应了另一个时代的战斗。其更像是一种纯粹的力量型武器，而不是一种技巧型武器。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
+        ],
         "variables": {
           "weaponName": "暮斩",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade"
+        ],
+        "variables": {
+          "partName": "DuviriHeavyScytheBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle"
+        ],
+        "variables": {
+          "partName": "DuviriHeavyScytheHandle"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +114,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +135,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/HeavyScythe/DuviriScythe/DuviriHeavyScytheWeapon",
+      "blueprintCanonical": "DuviriHeavyScytheBlueprint",
       "outputQuantity": 1,
       "credits": 15000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade",
           "canonical": "DuviriHeavyScytheBlade",
-          "displayName": "DuviriHeavyScytheBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +154,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle",
           "canonical": "DuviriHeavyScytheHandle",
-          "displayName": "DuviriHeavyScytheHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +163,7 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
           "canonical": "Thrax Plasm",
           "displayName": "凶魂浆质",
-          "languageKey": "/Lotus/Language/Zariman/VoidWraithItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 50
         }
@@ -122,7 +176,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "暮斩的官方武器身份、获取和制造数据。",
+  "summary": "（英文：HESPAR）这把重型镰刀呼应了另一个时代的战斗。其更像是一种纯粹的力量型武器，而不是一种技巧型武器。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +185,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

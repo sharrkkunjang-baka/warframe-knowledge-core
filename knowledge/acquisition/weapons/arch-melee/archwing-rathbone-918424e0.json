@@ -12,6 +12,11 @@
       "weapon.arch-melee"
     ]
   },
+  "description": {
+    "canonical": "Using Archwing's jets for thrust, this massive hammer crushes anything in its path.",
+    "display": "利用了曲翼的喷射推动力，这把巨大的铁锤能击碎其挥舞路径中的任何物体。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.arch-melee"
@@ -40,14 +45,50 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint"
+        ],
         "variables": {
           "weaponName": "<ARCHWING> 拉斯波恩",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHead"
+        ],
+        "variables": {
+          "partName": "ArchHammerHead"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHandle"
+        ],
+        "variables": {
+          "partName": "ArchHammerHandle"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +115,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +136,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ArchHammerBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchHammer/ArchHammer",
+      "blueprintCanonical": "ArchHammerBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 35000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHead",
           "canonical": "ArchHammerHead",
-          "displayName": "ArchHammerHead",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +155,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHandle",
           "canonical": "ArchHammerHandle",
-          "displayName": "ArchHammerHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,17 +163,17 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
           "canonical": "Circuits",
-          "displayName": "Circuits",
+          "displayName": "电路",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 300
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
-          "canonical": "ControlModule",
-          "displayName": "ControlModule",
+          "canonical": "Control Module",
+          "displayName": "控制模块",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -131,7 +185,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "<ARCHWING> 拉斯波恩的官方武器身份、获取和制造数据。",
+  "summary": "利用了曲翼的喷射推动力，这把巨大的铁锤能击碎其挥舞路径中的任何物体。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +194,33 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHead",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHammerHandle",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

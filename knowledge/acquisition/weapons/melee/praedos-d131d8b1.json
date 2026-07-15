@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "Orokin elites admired farmers in conquered regions, because they had learned to fight with modified farming tools despite being forbidden to own weapons. For their voyage, the Zariman were presented with Praedos in recognition of Zariman tenacity. The Void reinforces the strength of the spirited individual by fortifying the Praedos.",
+    "display": "（英文：PRAEDOS）奥罗金精英很佩服那些被征服地区的农夫，他们在武器禁令的压制下学会了通过改良的农具来进行战斗。当「扎里曼号」启航时，船上的人们获得了双雄以表彰他们坚韧不拔的精神。虚空通过增强双雄的力量来奖励使用该武器的人。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "双雄",
           "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
@@ -74,10 +85,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,16 +106,19 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Zariman/Melee/Tonfas/ZarimanTonfaWeapon",
+      "blueprintCanonical": "ZarimanTonfaWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidAngelItem",
           "canonical": "Voidplume Pinion",
           "displayName": "虚空羽翎",
-          "languageKey": "/Lotus/Language/Zariman/VoidAngelItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 15
         },
@@ -102,23 +126,23 @@
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanDogTagBounty",
           "canonical": "Voidplume Quill",
           "displayName": "虚空刺翎",
-          "languageKey": "/Lotus/Language/Zariman/ZarimanDogTagBountyName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 30
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
           "canonical": "Ferrite",
-          "displayName": "Ferrite",
+          "displayName": "铁氧体",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 8000
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
           "canonical": "Thrax Plasm",
           "displayName": "凶魂浆质",
-          "languageKey": "/Lotus/Language/Zariman/VoidWraithItemName",
+          "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 100
         }
@@ -131,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "双雄的官方武器身份、获取和制造数据。",
+  "summary": "（英文：PRAEDOS）奥罗金精英很佩服那些被征服地区的农夫，他们在武器禁令的压制下学会了通过改良的农具来进行战斗。当「扎里曼号」启航时，船上的人们获得了双雄以表彰他们坚韧不拔的精神。虚空通过增强双雄的力量来奖励使用该武器的人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +164,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

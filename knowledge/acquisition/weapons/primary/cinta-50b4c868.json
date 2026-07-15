@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "The versatile Cinta can fire arrows in quick succession, quickly charge a shock wave, or fully charge a powerful focused shot.",
+    "display": "（英文：CINTA）遂心的功能非常多样化，可以快速连续地射出箭矢，迅速充能释放冲击震波，或完全充能并进行威力强大的聚焦式射击。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,80 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+        ],
         "variables": {
           "weaponName": "遂心",
           "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString"
+        ],
+        "variables": {
+          "partName": "DaxDuviriAsymmetricalLongBowString"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip"
+        ],
+        "variables": {
+          "partName": "DaxDuviriAsymmetricalLongBowGrip"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb"
+        ],
+        "variables": {
+          "partName": "DaxDuviriAsymmetricalLongBowUpperLimb"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
+        ],
+        "variables": {
+          "partName": "DaxDuviriAsymmetricalLongBowLowerLimb"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +145,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +166,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Bows/DaxDuviriAsymetricalBow/DaxDuviriAsymmetricalLongBowPlayerWeapon",
+      "blueprintCanonical": "DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString",
           "canonical": "DaxDuviriAsymmetricalLongBowString",
-          "displayName": "DaxDuviriAsymmetricalLongBowString",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +185,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip",
           "canonical": "DaxDuviriAsymmetricalLongBowGrip",
-          "displayName": "DaxDuviriAsymmetricalLongBowGrip",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +193,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb",
           "canonical": "DaxDuviriAsymmetricalLongBowUpperLimb",
-          "displayName": "DaxDuviriAsymmetricalLongBowUpperLimb",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -117,7 +201,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb",
           "canonical": "DaxDuviriAsymmetricalLongBowLowerLimb",
-          "displayName": "DaxDuviriAsymmetricalLongBowLowerLimb",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -131,7 +215,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "遂心的官方武器身份、获取和制造数据。",
+  "summary": "（英文：CINTA）遂心的功能非常多样化，可以快速连续地射出箭矢，迅速充能释放冲击震波，或完全充能并进行威力强大的聚焦式射击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +224,41 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

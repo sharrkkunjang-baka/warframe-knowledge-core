@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "The cruelest of weapons built for the crudest of Grineer soldiers. Rips through metal like flesh, and through flesh like day-old pudding.",
+    "display": "（英文：GHOULSAW）为那些最粗鲁的 Grineer 士兵所打造的最残忍的武器。削铁如肉，割肉如泥。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,14 +45,80 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+        ],
         "variables": {
           "weaponName": "尸鬼电锯",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade"
+        ],
+        "variables": {
+          "partName": "GrnGhoulSawBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis"
+        ],
+        "variables": {
+          "partName": "GrnGhoulSawChassis"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine"
+        ],
+        "variables": {
+          "partName": "GrnGhoulSawEngine"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle"
+        ],
+        "variables": {
+          "partName": "GrnGhoulSawHandle"
         },
         "requirements": {
           "type": "none"
@@ -74,7 +145,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -85,15 +166,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnGhoulSaw/GrnGhoulSawPlayer",
+      "blueprintCanonical": "GrnGhoulSawBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 40000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade",
           "canonical": "GrnGhoulSawBlade",
-          "displayName": "GrnGhoulSawBlade",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -101,7 +185,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis",
           "canonical": "GrnGhoulSawChassis",
-          "displayName": "GrnGhoulSawChassis",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -109,7 +193,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine",
           "canonical": "GrnGhoulSawEngine",
-          "displayName": "GrnGhoulSawEngine",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -117,7 +201,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle",
           "canonical": "GrnGhoulSawHandle",
-          "displayName": "GrnGhoulSawHandle",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -131,7 +215,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "尸鬼电锯的官方武器身份、获取和制造数据。",
+  "summary": "（英文：GHOULSAW）为那些最粗鲁的 Grineer 士兵所打造的最残忍的武器。削铁如肉，割肉如泥。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +224,41 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

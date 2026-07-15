@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "The signature weapon of the only lunatic fearsome enough to bust out of the Saturn Six Max-Pen. Once loosed this formidable throwing hammer always finds its way home.",
+    "display": "（英文：WOLF SLEDGE）能逃脱出土星六号最高戒备监狱的唯一可怕狂人的标志性武器。一旦被解放，这把强大的战锤总是能找到回家的路。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint"
+        ],
         "variables": {
           "weaponName": "恶狼战锤",
           "recipeId": "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint"
@@ -52,8 +63,153 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint"
+            ],
+            "sourceCanonical": "Wolf Of Saturn Six",
+            "sourceDisplayName": "土星六号之狼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.25,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerHandle"
+        ],
+        "variables": {
+          "partName": "恶狼战锤握柄"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerHandle"
+            ],
+            "sourceCanonical": "Wolf Of Saturn Six",
+            "sourceDisplayName": "土星六号之狼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.25,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerHead"
+        ],
+        "variables": {
+          "partName": "恶狼战锤锤头"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerHead"
+            ],
+            "sourceCanonical": "Wolf Of Saturn Six",
+            "sourceDisplayName": "土星六号之狼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.25,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerMotor"
+        ],
+        "variables": {
+          "partName": "恶狼战锤马达"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerMotor"
+            ],
+            "sourceCanonical": "Wolf Of Saturn Six",
+            "sourceDisplayName": "土星六号之狼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.25,
+            "sourceDropChance": 1,
+            "conditionalChance": 0.25,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -74,10 +230,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,17 +251,20 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/ThrowingHammerBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/ThrowingHammer",
+      "blueprintCanonical": "ThrowingHammerBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
-          "canonical": "Alertium",
-          "displayName": "Alertium",
+          "canonical": "Nitain Extract",
+          "displayName": "泥炭萃取物",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
@@ -131,7 +300,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "恶狼战锤的官方武器身份、获取和制造数据。",
+  "summary": "（英文：WOLF SLEDGE）能逃脱出土星六号最高戒备监狱的唯一可怕狂人的标志性武器。一旦被解放，这把强大的战锤总是能找到回家的路。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +309,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerHandle",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerHead",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThrowingHammerMotor",
+        "complete": true
+      }
+    ],
+    "crafting": true
+  }
 }

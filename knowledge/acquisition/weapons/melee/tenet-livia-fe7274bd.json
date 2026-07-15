@@ -13,6 +13,11 @@
       "weapon.tenet"
     ]
   },
+  "description": {
+    "canonical": "The sleek lines of the Granum Attaché case conceal an infinitely sharp two-handed blade. Blocked attacks have a chance to increase the blocking angle. Note: The Granum Attaché system pauses the combo timer when holstered.",
+    "display": "（英文：TENET LIVIA）格拉努公文包的流畅线条下隐藏着削铁如泥的双持利刃。格挡攻击有几率增加格挡角度。配备了获得专利批准的格拉努公文包系统，收起时暂停连击倒计时。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee",
@@ -42,11 +47,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+        ],
         "variables": {
           "weaponName": "信条·莉薇娅",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
@@ -71,7 +82,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -82,10 +103,13 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/Melee/CrpBriefcase2HKatana/CrpBriefcase2HKatana",
+      "blueprintCanonical": "CrpBriefcase2HKatanaBlueprint",
       "outputQuantity": 1,
       "credits": 10000,
       "buildTimeSeconds": 60,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
       "ingredients": [],
       "provenance": {
         "source": "DE ExportRecipes",
@@ -95,7 +119,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "信条·莉薇娅的官方武器身份、获取和制造数据。",
+  "summary": "（英文：TENET LIVIA）格拉努公文包的流畅线条下隐藏着削铁如泥的双持利刃。格挡攻击有几率增加格挡角度。配备了获得专利批准的格拉努公文包系统，收起时暂停连击倒计时。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -104,11 +128,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
 }

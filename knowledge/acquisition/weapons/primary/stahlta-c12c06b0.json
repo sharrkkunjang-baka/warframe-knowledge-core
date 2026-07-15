@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Nail them to the wall! The Stahlta automatic rifle propels hardened steel rods at high speed, while a charged fire mode fuses a number of volatile rods together for a large radioactive explosion.",
+    "display": "（英文：STAHLTA）将敌人钉在墙上！这件钢刃自动步枪把硬化钢棒推进到高速状态，而蓄力射击模式会将大量不稳定的钢棒融合在一起，产生巨大的放射性爆炸。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,14 +45,91 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
+        ],
         "variables": {
           "weaponName": "钢刃步枪",
           "recipeId": "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
+            ],
+            "sourceCanonical": "Jackal",
+            "sourceDisplayName": "豺狼",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.15,
+            "sourceDropChance": 0.3,
+            "conditionalChance": 0.5,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
+        ],
+        "variables": {
+          "partName": "CrpRubanRifleBarrel"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver"
+        ],
+        "variables": {
+          "partName": "CrpRubanRifleReceiver"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock"
+        ],
+        "variables": {
+          "partName": "CrpRubanRifleStock"
         },
         "requirements": {
           "type": "none"
@@ -73,7 +155,17 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
+            }
           }
         ],
         "status": "review-required"
@@ -84,15 +176,18 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpRubanRifle/CrpRubanRifle",
+      "blueprintCanonical": "CrpRubanRifleBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 40000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel",
           "canonical": "CrpRubanRifleBarrel",
-          "displayName": "CrpRubanRifleBarrel",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -100,7 +195,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver",
           "canonical": "CrpRubanRifleReceiver",
-          "displayName": "CrpRubanRifleReceiver",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -108,7 +203,7 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock",
           "canonical": "CrpRubanRifleStock",
-          "displayName": "CrpRubanRifleStock",
+          "displayName": "",
           "languageKey": null,
           "localizationStatus": "official-zh-unavailable",
           "quantity": 1
@@ -122,7 +217,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "钢刃步枪的官方武器身份、获取和制造数据。",
+  "summary": "（英文：STAHLTA）将敌人钉在墙上！这件钢刃自动步枪把硬化钢棒推进到高速状态，而蓄力射击模式会将大量不稳定的钢棒融合在一起，产生巨大的放射性爆炸。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -131,11 +226,37 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
 }

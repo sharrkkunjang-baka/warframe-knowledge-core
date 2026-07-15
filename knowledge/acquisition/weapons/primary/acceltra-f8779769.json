@@ -12,6 +12,11 @@
       "weapon.primary"
     ]
   },
+  "description": {
+    "canonical": "Using a barrage of rapid-fire plasma rockets, Gauss’ signature weapon lays down a path of destruction. Reloads are faster while sprinting, even more so in Gauss’ hands. For safety, rockets arm after traveling a safe distance.",
+    "display": "（英文：ACCELTRA）通过使用速射电浆火箭弹，Gauss 的标志性武器铺设了一条毁灭之路。冲刺时可以更快地装填弹匣，在 Gauss 手里效果更加显著。为了安全起见，火箭会在离开安全距离后爆炸。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.primary"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+        ],
         "variables": {
           "weaponName": "迅发电浆炮",
           "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
@@ -52,8 +63,105 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            ],
+            "sourceCanonical": "Demolisher Boiler",
+            "sourceDisplayName": "爆破型痈裂者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.025,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.5,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            ],
+            "sourceCanonical": "Demolisher Thrasher",
+            "sourceDisplayName": "爆破型奔跳者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.025,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.5,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            ],
+            "sourceCanonical": "Demolisher Juggernaut",
+            "sourceDisplayName": "爆破型巨兽",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.0249975,
+            "sourceDropChance": 0.075,
+            "conditionalChance": 0.3333,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            ],
+            "sourceCanonical": "Demolisher Charger",
+            "sourceDisplayName": "爆破型疾冲者",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.025,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 0.5,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -74,10 +182,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +203,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/SapientPrimaryBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/SapientPrimary/SapientPrimaryWeapon",
+      "blueprintCanonical": "SapientPrimaryBlueprint",
       "outputQuantity": 1,
       "credits": 25000,
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 20000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
-          "canonical": "Neurode",
-          "displayName": "Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 4
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/ConcentratedGas",
-          "canonical": "ConcentratedGas",
-          "displayName": "ConcentratedGas",
+          "canonical": "Hexenon",
+          "displayName": "六醇燃剂",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 200
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
           "canonical": "Plastids",
-          "displayName": "Plastids",
+          "displayName": "生物质",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 925
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
-          "canonical": "Nanospores",
-          "displayName": "Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 8000
         }
       ],
@@ -131,7 +252,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "迅发电浆炮的官方武器身份、获取和制造数据。",
+  "summary": "（英文：ACCELTRA）通过使用速射电浆火箭弹，Gauss 的标志性武器铺设了一条毁灭之路。冲刺时可以更快地装填弹匣，在 Gauss 手里效果更加显著。为了安全起见，火箭会在离开安全距离后爆炸。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +261,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [],
+    "crafting": true
+  }
 }

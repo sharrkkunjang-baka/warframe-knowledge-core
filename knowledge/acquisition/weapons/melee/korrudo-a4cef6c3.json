@@ -12,6 +12,11 @@
       "weapon.melee"
     ]
   },
+  "description": {
+    "canonical": "When they go high, go low. Powerful pneumatic grips and toecaps amplify every blow. Four ways to deal twice the pain.",
+    "display": "（英文：KORRUDO）当他们出上拳的时候，你就出下拳。强大的气动握把和尖锐的部分可以强化每一次攻击。多达四种方法来施放双倍的痛苦。",
+    "localizationStatus": "official-zh"
+  },
   "classification": {
     "categoryRefs": [
       "weapon.melee"
@@ -40,11 +45,17 @@
     }
   },
   "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "crafting"
+    ],
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-recipe-blueprint",
-        "partRefs": [],
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+        ],
         "variables": {
           "weaponName": "库鲁多",
           "recipeId": "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
@@ -52,8 +63,105 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            ],
+            "sourceCanonical": "Tusk Thumper Doma",
+            "sourceDisplayName": "巨牙重击者朵玛",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.1,
+            "sourceDropChance": 0.1,
+            "conditionalChance": 1,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            ],
+            "sourceCanonical": "Tusk Thumper Bull",
+            "sourceDisplayName": "巨牙重击者公牛",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.05,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 1,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            ],
+            "sourceCanonical": "Narmer Thumper Doma",
+            "sourceDisplayName": "合一众重击者朵玛",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.1,
+            "sourceDropChance": 0.1,
+            "conditionalChance": 1,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            ],
+            "sourceCanonical": "Narmer Thumper Bull",
+            "sourceDisplayName": "合一众重击者公牛",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": null,
+            "missionTypeId": null,
+            "chance": 0.05,
+            "sourceDropChance": 0.05,
+            "conditionalChance": 1,
+            "rotation": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Blueprint/Item Drops by Blueprint/Item"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -74,10 +182,20 @@
         "methods": [
           {
             "type": "recipe",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -85,41 +203,44 @@
     {
       "id": "/Lotus/Types/Recipes/Weapons/GrnSpiderSparringBlueprint",
       "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnSparring/GrnSpiderSparring/GrnSpiderSparring",
+      "blueprintCanonical": "GrnSpiderSparringBlueprint",
       "outputQuantity": 1,
       "credits": 30000,
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 15000,
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/RareOreAAlloyAItem",
-          "canonical": "RareOreAAlloyAItem",
-          "displayName": "RareOreAAlloyAItem",
+          "canonical": "Auroxium Alloy",
+          "displayName": "金辉合金",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 25
         },
         {
           "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/CommonGemBCutAItem",
-          "canonical": "CommonGemBCutAItem",
-          "displayName": "CommonGemBCutAItem",
+          "canonical": "Esher Devar",
+          "displayName": "伊舍兄弟之石",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 15
         },
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Eidolonium",
-          "canonical": "Eidolonium",
-          "displayName": "Eidolonium",
+          "canonical": "Breath Of The Eidolon",
+          "displayName": "夜灵之息",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 5
         },
         {
           "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/DayCommonFishAPartItem",
-          "canonical": "DayCommonFishAPartItem",
-          "displayName": "DayCommonFishAPartItem",
+          "canonical": "Mawfish Bones",
+          "displayName": "喉鱼骨骼",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-zh",
           "quantity": 20
         }
       ],
@@ -131,7 +252,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "库鲁多的官方武器身份、获取和制造数据。",
+  "summary": "（英文：KORRUDO）当他们出上拳的时候，你就出下拳。强大的气动握把和尖锐的部分可以强化每一次攻击。多达四种方法来施放双倍的痛苦。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -140,11 +261,24 @@
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
       "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
     }
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-15",
   "reviewStatus": "review",
   "reviewedBy": [],
-  "status": "review-required"
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": true,
+    "components": [],
+    "crafting": true
+  }
 }

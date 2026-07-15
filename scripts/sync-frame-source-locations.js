@@ -28,6 +28,10 @@ function generatedEntries() {
     { id: 'hub.drifters-camp', canonical: "Drifter's Camp", displayName: '漂泊者营地', kind: 'hub', aliases: [], parentId: 'planet.earth', officialSource: 'audited-official-zh' },
     { id: 'hub.dormizone', canonical: 'Dormizone', displayName: '宿舍', kind: 'hub', aliases: [], parentId: 'hub.zariman', officialSource: 'audited-official-zh' },
     { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' },
+    { id: 'region.uranus-proxima', canonical: 'Uranus Proxima', displayName: '天王星比邻星域', kind: 'proxima-region', aliases: [], officialSource: 'DE Languages.bin JS2MAshFavorDesc' },
+    { id: 'hub.pontis-tower', canonical: 'Pontis Tower', displayName: '渡界之塔', kind: 'hub', aliases: ['边界之塔'], parentId: 'region.uranus-proxima', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/HunhowHubName' },
+    { id: 'mission.the-kuva-wytch', canonical: 'The Kuva Wytch', displayName: '赤毒女巫号', kind: 'railjack-mission', aliases: [], parentId: 'region.uranus-proxima', missionTypeId: 'mission-type.skirmish', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/AshRJMissionName' },
+    { id: 'mission.scorias-angel', canonical: "Scoria's Angel", displayName: '火山石天使号', kind: 'railjack-mission', aliases: [], parentId: 'region.uranus-proxima', missionTypeId: 'mission-type.skirmish', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/GarudaRJMissionName' },
     { id: 'hub.clan-dojo', canonical: 'Clan Dojo', displayName: '氏族道场的 Dagath 空阁', kind: 'hub', aliases: [], officialSource: 'Warframe Wiki - Dagath' },
     { id: 'interface.nightwave', canonical: 'Nightwave Cred Offerings', displayName: '午夜电波贡品界面', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki - Vauban' },
     { id: 'region.veil-proxima', canonical: 'Veil Proxima', displayName: '面纱比邻星域', kind: 'proxima-region', aliases: [], officialSource: 'DE official zh-hans terminology' },
@@ -52,7 +56,8 @@ function build() {
   for (const entry of generatedEntries()) {
     const previous = byId.get(entry.id)
     const legacyType = previous?.missionTypeCanonical
-    byId.set(entry.id, previous ? { ...entry, ...previous, displayName: previous.displayName || entry.displayName, parentId: previous.parentId || entry.parentId, missionTypeId: previous.missionTypeId || entry.missionTypeId || (legacyType ? `mission-type.${slug(legacyType)}` : null), missionTypeCanonical: undefined, missionTypeDisplayName: undefined } : entry)
+    const officialOverride = ['hub.pontis-tower','region.uranus-proxima','mission.the-kuva-wytch','mission.scorias-angel'].includes(entry.id)
+    byId.set(entry.id, previous ? { ...entry, ...previous, displayName: officialOverride ? entry.displayName : previous.displayName || entry.displayName, aliases: officialOverride ? entry.aliases : previous.aliases || entry.aliases, officialSource: officialOverride ? entry.officialSource : previous.officialSource || entry.officialSource, parentId: previous.parentId || entry.parentId, missionTypeId: previous.missionTypeId || entry.missionTypeId || (legacyType ? `mission-type.${slug(legacyType)}` : null), missionTypeCanonical: undefined, missionTypeDisplayName: undefined } : entry)
   }
   return [...byId.values()]
 }
