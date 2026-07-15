@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.evensong-d10f6a1e",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Evensong",
+  "subject": {
+    "canonical": "Evensong",
+    "displayName": "晚祷",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/TnChoirBow/TnChoirBow",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "CHARGE",
+          "projectileSpeed": null,
+          "totalDamage": 650,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "晚祷",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnChoirBowBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Salvage",
+          "/Lotus/Types/Items/MiscItems/Plastids",
+          "/Lotus/Types/Items/MiscItems/Gallium",
+          "/Lotus/Types/Items/MiscItems/ControlModule"
+        ],
+        "variables": {
+          "productName": "晚祷"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnChoirBowBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnChoirBowBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnChoirBowBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Bows/TnChoirBow/TnChoirBow",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "Salvage",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 700
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "Plastids",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1100
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "Gallium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+          "canonical": "ControlModule",
+          "displayName": "ControlModule",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnChoirBowBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "晚祷的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.fragor-584740dd",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Fragor",
+  "subject": {
+    "canonical": "Fragor",
+    "displayName": "重击巨锤",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/HammerWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 200,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "重击巨锤",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/HammerBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Gallium",
+          "/Lotus/Types/Items/MiscItems/Salvage",
+          "/Lotus/Types/Items/MiscItems/Rubedo",
+          "/Lotus/Types/Items/MiscItems/AlloyPlate"
+        ],
+        "variables": {
+          "productName": "重击巨锤"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/HammerBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/HammerBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/HammerBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/HammerWeapon",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "Gallium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "Salvage",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 750
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
+          "canonical": "Rubedo",
+          "displayName": "Rubedo",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 300
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "AlloyPlate",
+          "displayName": "AlloyPlate",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 80
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/HammerBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "重击巨锤的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

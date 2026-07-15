@@ -3,6 +3,8 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const { createRegistry, loadEntityRegistries } = require('./entities')
+const { structuredMethods } = require('./acquisition-core')
+const { renderAcquisition } = require('./acquisition-protocol')
 
 const ROOT = path.resolve(__dirname, '..')
 const RESOURCE_ROOT = path.join(ROOT, 'knowledge', 'acquisition', 'resource')
@@ -75,8 +77,11 @@ function getResourceAcquisition(query) {
   if (!entry || entry.reviewStatus !== 'approved') return null
   const routeText = renderRoute(entry)
   if (!routeText) throw new Error(`资源 ${entry.subject.canonical} 无法从 method 模板渲染`)
+  const routing = entry.resourceAcquisition?.manual?.routingOverride || entry.resourceAcquisition?.generated?.routing
+  const methods = structuredMethods([{ type: 'route', scope: 'item', category: routing.category, variables: { ...(routing.variables || {}), text: routeText }, requirements: routing.requirements || { type: 'none' }, provenance: { source: 'resource-route', entryId: entry.id } }], ENTITIES)
   const tips = entry.resourceAcquisition?.manual?.tips || []
-  return { entry, routeText, tips, text: [routeText, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }
+  const description = renderAcquisition(methods, { displayName: entry.subject.displayName }) || routeText
+  return { entry, routeText, tips, structuredMethods: methods, text: [description, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }
 }
 function listResources() { return ENTRIES.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, reviewStatus: entry.reviewStatus, category: entry.subject.categoryRefs[0] })) }
 

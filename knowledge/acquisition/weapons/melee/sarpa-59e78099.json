@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.sarpa-59e78099",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sarpa",
+  "subject": {
+    "canonical": "Sarpa",
+    "displayName": "蛇刃",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gunblade/GunbladeAutomatic/TnoGunbladeAutomatic",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 160,
+          "range": 2
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "蛇刃",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Weapons/Tenno/Pistols/TennoUzi/TennoUzi",
+          "/Lotus/Types/Items/MiscItems/Cryotic",
+          "/Lotus/Types/Items/MiscItems/Plastids",
+          "/Lotus/Types/Items/MiscItems/ControlModule"
+        ],
+        "variables": {
+          "productName": "蛇刃"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Gunblade/GunbladeAutomatic/TnoGunbladeAutomatic",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Weapons/Tenno/Pistols/TennoUzi/TennoUzi",
+          "canonical": "Akstiletto",
+          "displayName": "史提托双枪",
+          "languageKey": "/Lotus/Language/Items/TennoUziName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+          "canonical": "Cryotic",
+          "displayName": "Cryotic",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3300
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "Plastids",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+          "canonical": "ControlModule",
+          "displayName": "ControlModule",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnoGunbladeAutomaticBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "蛇刃的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

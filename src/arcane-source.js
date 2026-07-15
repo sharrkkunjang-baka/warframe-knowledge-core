@@ -57,7 +57,24 @@ const EXACT_ZH = Object.freeze({
   'Maphica': '怒火核',
   'Steel Path The Descendia weekly reward': '钢铁之路沉沦之地每周轮换奖励',
   'Marie rotating shop': '玛丽的轮换商店',
-  'random Perita resources': '随机佩里塔资源'
+  'random Perita resources': '随机佩里塔资源',
+  'The Holdfasts (Cavalero), Fallen': '坚守者（卡瓦莱罗），堕天使',
+  'The Holdfasts (Cavalero), Watcher': '坚守者（卡瓦莱罗），守望天使',
+  'The Holdfasts (Cavalero), Guardian': '坚守者（卡瓦莱罗），守护天使',
+  'The Holdfasts (Cavalero), Seraph': '坚守者（卡瓦莱罗），炽天使',
+  'The Holdfasts (Cavalero), Angel': '坚守者（卡瓦莱罗），大天使',
+  'Ostron (Hok), Kin': '奥斯唐人（霍刻），情同手足',
+  'Operational Supply, Defender': '行动补给，防卫者',
+  'The Quills, Mote': '夜羽，微尘',
+  'The Quills, Observer': '夜羽，观察者',
+  'The Quills, Adherent': '夜羽，信徒',
+  'The Quills, Instrument': '夜羽，乐器',
+  'The Quills, Architect': '夜羽，构筑师',
+  'Vox Solaris, Agent': '索拉里斯之声，特工',
+  'Vox Solaris, Hand': '索拉里斯之声，刽子手',
+  'Vox Solaris, Instrument': '索拉里斯之声，无影手',
+  'Vox Solaris, Shadow': '索拉里斯之声，幕后推手',
+  'Solaris United (Rude Zuud), Old Mate': '索拉里斯联盟（粗鲁的 ZUUD），老朋友'
 })
 
 const ENEMY_ZH = Object.freeze({
@@ -83,6 +100,7 @@ function sourceKind(canonical) {
 }
 function displaySource(canonical) {
   const raw = String(canonical || '').trim()
+  if (EXACT_ZH[raw]) return EXACT_ZH[raw]
   if (ENEMY_ZH[raw]) return ENEMY_ZH[raw]
   let match = raw.match(/^(.+?) \(Level \d+ - \d+\)$/)
   if (match) return ENEMY_ZH[match[1]] || replaceTerms(match[1])

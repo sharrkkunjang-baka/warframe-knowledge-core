@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.arc-twelve-7efd95c2",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Arc Twelve",
+  "subject": {
+    "canonical": "Arc Twelve",
+    "displayName": "十二弧",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngine",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "十二弧",
+          "recipeId": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngineBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Venus/Resources/VenusTreeItem",
+          "/Lotus/Types/Items/Fish/Solaris/FishParts/GenericFishScrapItem",
+          "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonOreAAlloyItem",
+          "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishDissipatorCoilItem"
+        ],
+        "variables": {
+          "productName": "十二弧"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngineBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngineBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngineBlueprint",
+      "resultUniqueName": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngine",
+      "outputQuantity": 1,
+      "credits": 5000,
+      "buildTimeSeconds": 3600,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/VenusTreeItem",
+          "canonical": "VenusTreeItem",
+          "displayName": "VenusTreeItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/GenericFishScrapItem",
+          "canonical": "GenericFishScrapItem",
+          "displayName": "GenericFishScrapItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 45
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonOreAAlloyItem",
+          "canonical": "SolarisUncommonOreAAlloyItem",
+          "displayName": "SolarisUncommonOreAAlloyItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 40
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishDissipatorCoilItem",
+          "canonical": "SolarisFishDissipatorCoilItem",
+          "displayName": "SolarisFishDissipatorCoilItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Vehicles/Hoverboard/HoverboardParts/PartComponents/HoverboardCorpusA/HoverboardCorpusAEngineBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "十二弧的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

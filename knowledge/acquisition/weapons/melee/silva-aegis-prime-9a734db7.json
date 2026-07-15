@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.silva-aegis-prime-9a734db7",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Silva & Aegis Prime",
+  "subject": {
+    "canonical": "Silva & Aegis Prime",
+    "displayName": "席瓦 & 神盾 Prime",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeSilvaAegis/PrimeSilvaAegis",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.05,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 318,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "席瓦 & 神盾 Prime",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SilvaAegisPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SilvaAegisPrimeBlade",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SilvaAegisPrimeHandle",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SilvaAegisPrimeGuard",
+          "/Lotus/Types/Items/MiscItems/OrokinCell"
+        ],
+        "variables": {
+          "productName": "席瓦 & 神盾 Prime"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SilvaAegisPrimeBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SilvaAegisPrimeBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/SilvaAegisPrimeBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeSilvaAegis/PrimeSilvaAegis",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SilvaAegisPrimeBlade",
+          "canonical": "SilvaAegisPrimeBlade",
+          "displayName": "SilvaAegisPrimeBlade",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SilvaAegisPrimeHandle",
+          "canonical": "SilvaAegisPrimeHandle",
+          "displayName": "SilvaAegisPrimeHandle",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SilvaAegisPrimeGuard",
+          "canonical": "SilvaAegisPrimeGuard",
+          "displayName": "SilvaAegisPrimeGuard",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "OrokinCell",
+          "displayName": "OrokinCell",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SilvaAegisPrimeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "席瓦 & 神盾 Prime的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

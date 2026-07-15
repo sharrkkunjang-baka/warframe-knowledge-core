@@ -122,12 +122,23 @@ function buildManifest(generatedAt = new Date().toISOString()) {
     return { identity: item.uniqueName, canonical: item.canonical, sourcePresence: { publicExport: true, package: true, wiki: false }, localPresence: Boolean(local), disposition: local ? (local.reviewStatus === 'draft' ? 'review-required' : 'covered') : 'review-required', excludedPolicy: null, sourceConflict: false, reviewRequired: !local || local.reviewStatus === 'draft' };
   });
 
+  const weaponCatalogPath = path.join(KNOWLEDGE, 'generated', 'official-weapons.json');
+  const officialWeapons = fs.existsSync(weaponCatalogPath) ? readJson(weaponCatalogPath) : { weapons: [], excludedWeapons: [] };
+  const weaponIndexPath = path.join(KNOWLEDGE, 'acquisition', 'weapons', 'categories.json');
+  const weaponIndex = fs.existsSync(weaponIndexPath) ? readJson(weaponIndexPath) : { weapons: [] };
+  const localWeaponById = new Map((weaponIndex.weapons || []).map(item => [item.officialUniqueName, item]));
+  const weapons = [
+    ...(officialWeapons.weapons || []).map(item => { const local = localWeaponById.get(item.uniqueName); return { identity: item.uniqueName, canonical: item.canonical, sourcePresence: { publicExport: true, package: false, wiki: false }, localPresence: Boolean(local), disposition: local?.status === 'complete' ? 'covered' : 'review-required', excludedPolicy: null, sourceConflict: false, reviewRequired: local?.status !== 'complete' }; }),
+    ...(officialWeapons.excludedWeapons || []).map(item => ({ identity: item.uniqueName, canonical: item.canonical, sourcePresence: { publicExport: true, package: false, wiki: false }, localPresence: false, disposition: 'excluded-policy', excludedPolicy: item.exclusionReason, sourceConflict: false, reviewRequired: false }))
+  ];
+
   const domains = {
     warframe: domain('warframe', frames, { publicExport: officialFrames.map(item => item.uniqueName), package: [...packageFrameById.keys()], wiki: frameEntries.filter(item => item.frameAcquisition?.generated?.acquisitionCategories?.source?.type === 'wiki-page').map(item => item.subject?.officialUniqueName) }),
     quest: domain('quest', quests, { publicExport: [...publicQuestById.keys()], package: [...packageQuestById.keys()], wiki: [] }),
     mod: domain('mod', mods, { publicExport: mods.map(item => item.identity), package: mods.map(item => item.identity), wiki: officialMods.filter(item => item.wiki?.available).map(item => item.uniqueName) }),
     'official-items': domain('official-items', items, { publicExport: officialItems.map(item => item.uniqueName), package: officialItems.map(item => item.uniqueName), wiki: [] }),
-    resources: domain('resources', resources, { publicExport: resources.map(item => item.identity), package: resources.map(item => item.identity), wiki: [] })
+    resources: domain('resources', resources, { publicExport: resources.map(item => item.identity), package: resources.map(item => item.identity), wiki: [] }),
+    weapons: domain('weapons', weapons, { publicExport: weapons.map(item => item.identity), package: [], wiki: [] })
   };
   const qualityFailures = frames.filter(item => item.sourcePresence.publicExport && !item.sourcePresence.package && !/ Prime$/i.test(item.canonical) && item.disposition !== 'excluded-policy' && item.evidence !== 'substantive-acquisition').map(item => ({ rule: 'public-export-package-gap-frame-must-not-be-shell', identity: item.identity, canonical: item.canonical }));
   return {

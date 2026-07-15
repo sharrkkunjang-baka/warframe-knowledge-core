@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.vectis-prime-2029f25b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Vectis Prime",
+  "subject": {
+    "canonical": "Vectis Prime",
+    "displayName": "守望者 Prime",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeVectis/PrimeVectisRifle",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 350,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "守望者 Prime",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/VectisPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VectisPrimeBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VectisPrimeReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VectisPrimeStock",
+          "/Lotus/Types/Items/MiscItems/OrokinCell"
+        ],
+        "variables": {
+          "productName": "守望者 Prime"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/VectisPrimeBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/VectisPrimeBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/VectisPrimeBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeVectis/PrimeVectisRifle",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VectisPrimeBarrel",
+          "canonical": "VectisPrimeBarrel",
+          "displayName": "VectisPrimeBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VectisPrimeReceiver",
+          "canonical": "VectisPrimeReceiver",
+          "displayName": "VectisPrimeReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VectisPrimeStock",
+          "canonical": "VectisPrimeStock",
+          "displayName": "VectisPrimeStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "OrokinCell",
+          "displayName": "OrokinCell",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/VectisPrimeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "守望者 Prime的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

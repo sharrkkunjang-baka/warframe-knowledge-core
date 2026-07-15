@@ -1,0 +1,73 @@
+'use strict'
+
+const { normalizeRequirements, renderRequirements } = require('./acquisition-protocol')
+const { displayEntityName } = require('./entities')
+
+function methodIdentity(method) {
+  return JSON.stringify({
+    scope: method.scope || 'item', type: method.type || null, category: method.category || null,
+    sourceEntityId: method.sourceEntityId || null, locationId: method.locationId || null,
+    missionNodeId: method.missionNodeId || null, factionId: method.factionId || null,
+    rotation: method.rotation || null, chance: method.chance ?? method.probability ?? null,
+    recipeId: method.recipeId || null, partRefs: method.partRefs || []
+  })
+}
+
+function mergeMethods(...layers) {
+  const output = [], seen = new Set()
+  for (const method of layers.flat().filter(Boolean)) {
+    const key = methodIdentity(method)
+    if (seen.has(key)) continue
+    seen.add(key); output.push(method)
+  }
+  return output
+}
+
+function entity(registries, kind, id) {
+  const registry = registries?.[kind]
+  return id && registry?.get ? registry.get(id) : null
+}
+
+function enrichMethod(method, registries) {
+  const source = method.sourceEntityId && (
+    entity(registries, 'arcaneSources', method.sourceEntityId) || entity(registries, 'enemies', method.sourceEntityId) ||
+    entity(registries, 'npcs', method.sourceEntityId) || entity(registries, 'locations', method.sourceEntityId)
+  )
+  const npc = entity(registries, 'npcs', method.npcId || method.requirements?.npcId)
+  const location = entity(registries, 'locations', method.locationId || method.requirements?.locationId || npc?.locationId)
+  const missionType = entity(registries, 'missionTypes', method.missionTypeId)
+  const requirements = normalizeRequirements(method.requirements)
+  return {
+    ...method,
+    requirements,
+    requirementLines: renderRequirements(requirements, registries),
+    ...(source ? { sourceDisplayName: displayEntityName(source), sourceKind: source.kind || null } : {}),
+    ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
+    ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
+  }
+}
+
+function structuredMethods(methods, registries) {
+  return mergeMethods(methods).map(method => enrichMethod(method, registries))
+}
+
+function normalizeRoute(route = {}) {
+  return {
+    scope: route.scope || 'item',
+    category: route.category || 'unresolved',
+    partRefs: Array.isArray(route.partRefs) ? [...new Set(route.partRefs)] : [],
+    variables: route.variables && typeof route.variables === 'object' ? route.variables : {},
+    requirements: normalizeRequirements(route.requirements),
+    methods: Array.isArray(route.methods) ? route.methods : [],
+    status: route.status || 'review-required'
+  }
+}
+
+function routesToMethods(routes, registries) {
+  return structuredMethods((routes || []).flatMap(raw => {
+    const route = normalizeRoute(raw)
+    return route.methods.length ? route.methods.map(method => ({ ...method, scope: method.scope || route.scope, category: method.category || route.category, partRefs: method.partRefs || route.partRefs, variables: { ...route.variables, ...(method.variables || {}) }, requirements: method.requirements || route.requirements })) : [{ type: 'route', scope: route.scope, category: route.category, partRefs: route.partRefs, variables: route.variables, requirements: route.requirements, reviewStatus: route.status }]
+  }), registries)
+}
+
+module.exports = { methodIdentity, mergeMethods, enrichMethod, structuredMethods, normalizeRoute, routesToMethods }

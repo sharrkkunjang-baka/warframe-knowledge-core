@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.cedo-02506f3d",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Cedo",
+  "subject": {
+    "canonical": "Cedo",
+    "displayName": "塞多",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnAlchemistShotgun/TnAlchemistShotgun",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.65,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 30,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "塞多",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock",
+          "/Lotus/Types/Items/MiscItems/Forma"
+        ],
+        "variables": {
+          "productName": "塞多"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnAlchemistShotgun/TnAlchemistShotgun",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel",
+          "canonical": "Cedo Barrel",
+          "displayName": "塞多 枪管",
+          "languageKey": "/Lotus/Language/Weapons/TnAlchemistShotgunBarrelName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver",
+          "canonical": "Cedo Receiver",
+          "displayName": "塞多 枪机",
+          "languageKey": "/Lotus/Language/Weapons/TnAlchemistShotgunReceiverName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock",
+          "canonical": "Cedo Stock",
+          "displayName": "塞多 枪托",
+          "languageKey": "/Lotus/Language/Weapons/TnAlchemistShotgunStockName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "塞多的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

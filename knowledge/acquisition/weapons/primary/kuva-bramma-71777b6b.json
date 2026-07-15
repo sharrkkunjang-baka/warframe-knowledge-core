@@ -1,0 +1,114 @@
+{
+  "id": "knowledge.acquisition.weapon.kuva-bramma-71777b6b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Kuva Bramma",
+  "subject": {
+    "canonical": "Kuva Bramma",
+    "displayName": "赤毒·布拉玛",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Grineer/Bows/GrnBow/GrnBowWeapon",
+    "categoryRefs": [
+      "weapon.primary",
+      "weapon.kuva"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary",
+      "weapon.kuva"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.65,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "CHARGE",
+          "projectileSpeed": null,
+          "totalDamage": 1026,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "赤毒·布拉玛",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [],
+        "variables": {
+          "productName": "赤毒·布拉玛"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Grineer/Bows/GrnBow/GrnBowWeapon",
+      "outputQuantity": 1,
+      "credits": 10000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": true,
+      "ingredients": [],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "赤毒·布拉玛的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

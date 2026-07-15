@@ -1,0 +1,141 @@
+{
+  "id": "knowledge.acquisition.weapon.velox-prime-de13b8c5",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Velox Prime",
+  "subject": {
+    "canonical": "Velox Prime",
+    "displayName": "逐电 Prime",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVelox/PrimeVeloxPistol",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 0.85,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 27,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "逐电 Prime",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeReceiver",
+          "/Lotus/Types/Items/MiscItems/OrokinCell"
+        ],
+        "variables": {
+          "productName": "逐电 Prime"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVelox/PrimeVeloxPistol",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeBarrel",
+          "canonical": "VeloxPrimeBarrel",
+          "displayName": "VeloxPrimeBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VeloxPrimeReceiver",
+          "canonical": "VeloxPrimeReceiver",
+          "displayName": "VeloxPrimeReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "OrokinCell",
+          "displayName": "OrokinCell",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/VeloxPrimeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "逐电 Prime的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

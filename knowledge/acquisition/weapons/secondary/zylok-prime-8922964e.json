@@ -1,0 +1,141 @@
+{
+  "id": "knowledge.acquisition.weapon.zylok-prime-8922964e",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Zylok Prime",
+  "subject": {
+    "canonical": "Zylok Prime",
+    "displayName": "席尔火枪 Prime",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeZylok/ZylokPrimePistol",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 0.9,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "DUPLEX",
+          "projectileSpeed": null,
+          "totalDamage": 210,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "席尔火枪 Prime",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/ZylokPrimeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ZylokPrimeBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ZylokPrimeReceiver",
+          "/Lotus/Types/Items/MiscItems/OrokinCell"
+        ],
+        "variables": {
+          "productName": "席尔火枪 Prime"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/ZylokPrimeBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ZylokPrimeBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/ZylokPrimeBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeZylok/ZylokPrimePistol",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ZylokPrimeBarrel",
+          "canonical": "ZylokPrimeBarrel",
+          "displayName": "ZylokPrimeBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ZylokPrimeReceiver",
+          "canonical": "ZylokPrimeReceiver",
+          "displayName": "ZylokPrimeReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "OrokinCell",
+          "displayName": "OrokinCell",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ZylokPrimeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "席尔火枪 Prime的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

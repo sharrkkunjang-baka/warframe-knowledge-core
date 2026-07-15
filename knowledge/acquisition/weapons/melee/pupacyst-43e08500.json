@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.pupacyst-43e08500",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Pupacyst",
+  "subject": {
+    "canonical": "Pupacyst",
+    "displayName": "毒囊骨茧",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Infested/Melee/Staff/InfStaff/InfStaff",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.35,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 284,
+          "range": 2.7
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "毒囊骨茧",
+          "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfStaffWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/BioComponent",
+          "/Lotus/Types/Items/MiscItems/Salvage",
+          "/Lotus/Types/Items/MiscItems/Rubedo",
+          "/Lotus/Types/Items/MiscItems/Forma"
+        ],
+        "variables": {
+          "productName": "毒囊骨茧"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfStaffWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfStaffWeaponBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Bio/InfStaffWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Infested/Melee/Staff/InfStaff/InfStaff",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/BioComponent",
+          "canonical": "BioComponent",
+          "displayName": "BioComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "Salvage",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 8750
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
+          "canonical": "Rubedo",
+          "displayName": "Rubedo",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2250
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/InfStaffWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "毒囊骨茧的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

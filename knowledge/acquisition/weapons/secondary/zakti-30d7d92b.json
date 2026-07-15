@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.zakti-30d7d92b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Zakti",
+  "subject": {
+    "canonical": "Zakti",
+    "displayName": "毒芽",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnGuandoPistol/TnGuandoPistolGun",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1.25,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 30,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "毒芽",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnGuandaoPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/ControlModule",
+          "/Lotus/Types/Items/MiscItems/Plastids",
+          "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "/Lotus/Types/Items/MiscItems/Nanospores"
+        ],
+        "variables": {
+          "productName": "毒芽"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnGuandaoPistolBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnGuandaoPistolBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnGuandaoPistolBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnGuandoPistol/TnGuandoPistolGun",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+          "canonical": "ControlModule",
+          "displayName": "ControlModule",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 8
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "Plastids",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 350
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "AlloyPlate",
+          "displayName": "AlloyPlate",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 6500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nanospores",
+          "displayName": "Nanospores",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnGuandaoPistolBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "毒芽的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

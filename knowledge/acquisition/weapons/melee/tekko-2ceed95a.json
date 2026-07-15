@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.tekko-2ceed95a",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Tekko",
+  "subject": {
+    "canonical": "Tekko",
+    "displayName": "铁钩手甲",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gauntlet/BrawlerKnuckles/BrawlerKnuckles",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.4,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 160,
+          "range": 1.25
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "铁钩手甲",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Gallium",
+          "/Lotus/Types/Items/MiscItems/Rubedo",
+          "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "/Lotus/Weapons/Tenno/Melee/Gauntlet/Gauntlet"
+        ],
+        "variables": {
+          "productName": "铁钩手甲"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Gauntlet/BrawlerKnuckles/BrawlerKnuckles",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "Gallium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
+          "canonical": "Rubedo",
+          "displayName": "Rubedo",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 700
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "PolymerBundle",
+          "displayName": "PolymerBundle",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3300
+        },
+        {
+          "uniqueName": "/Lotus/Weapons/Tenno/Melee/Gauntlet/Gauntlet",
+          "canonical": "Gauntlet",
+          "displayName": "Gauntlet",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "铁钩手甲的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.grimoire-32049e94",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Grimoire",
+  "subject": {
+    "canonical": "Grimoire",
+    "displayName": "魔典",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Grimoire/TnGrimoire",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 0.6,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 150,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "魔典",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemA",
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemB",
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagRare",
+          "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB"
+        ],
+        "variables": {
+          "productName": "魔典"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Grimoire/TnGrimoire",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemA",
+          "canonical": "Entrati Obols",
+          "displayName": "英择谛银币",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabMiscItemAName",
+          "localizationStatus": "official-zh",
+          "quantity": 2000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemB",
+          "canonical": "Necracoil",
+          "displayName": "殁世线圈",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabMiscItemBName",
+          "localizationStatus": "official-zh",
+          "quantity": 50
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagRare",
+          "canonical": "Echo Voca",
+          "displayName": "回响音魂",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabDogTagRareName",
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+          "canonical": "Entrati Lanthorn",
+          "displayName": "英择谛灯笼",
+          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemBName",
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "魔典的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

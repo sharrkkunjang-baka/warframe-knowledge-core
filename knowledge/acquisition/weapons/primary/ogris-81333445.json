@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.ogris-81333445",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Ogris",
+  "subject": {
+    "canonical": "Ogris",
+    "displayName": "食人女魔",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncher",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.3,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "CHARGE",
+          "projectileSpeed": null,
+          "totalDamage": 700,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "食人女魔",
+          "recipeId": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncherBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/ChemComponent",
+          "/Lotus/Types/Items/MiscItems/Salvage",
+          "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "/Lotus/Types/Items/MiscItems/Forma"
+        ],
+        "variables": {
+          "productName": "食人女魔"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncherBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncherBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncherBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncher",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
+          "canonical": "ChemComponent",
+          "displayName": "ChemComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "Salvage",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "AlloyPlate",
+          "displayName": "AlloyPlate",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/RocketLauncherBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "食人女魔的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

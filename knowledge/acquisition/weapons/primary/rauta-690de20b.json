@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.rauta-690de20b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Rauta",
+  "subject": {
+    "canonical": "Rauta",
+    "displayName": "锐铁",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PaxDuviricusShotgun/PaxDuviricusShotgun",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 130,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "锐铁",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriDragonDropItem"
+        ],
+        "variables": {
+          "productName": "锐铁"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PaxDuviricusShotgun/PaxDuviricusShotgun",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel",
+          "canonical": "Rauta Barrel",
+          "displayName": "锐铁 枪管",
+          "languageKey": "/Lotus/Language/Duviri/PaxDuviricusShotgunBarrelName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver",
+          "canonical": "Rauta Receiver",
+          "displayName": "锐铁 枪机",
+          "languageKey": "/Lotus/Language/Duviri/PaxDuviricusShotgunReceiverName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock",
+          "canonical": "Rauta Stock",
+          "displayName": "锐铁 枪托",
+          "languageKey": "/Lotus/Language/Duviri/PaxDuviricusShotgunStockName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriDragonDropItem",
+          "canonical": "Pathos Clamp",
+          "displayName": "苦栓",
+          "languageKey": "/Lotus/Language/Duviri/DuviriDragonDropItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "锐铁的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

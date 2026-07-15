@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.sun-moon-c7299352",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sun & Moon",
+  "subject": {
+    "canonical": "Sun & Moon",
+    "displayName": "赤阳 & 幽月",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/PlayerControllable/Weapons/DuviriDualSwordsWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 0.8,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 190,
+          "range": 2.6
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "赤阳 & 幽月",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemA",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriEnemyDropItem",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemE"
+        ],
+        "variables": {
+          "productName": "赤阳 & 幽月"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/PlayerControllable/Weapons/DuviriDualSwordsWeapon",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemA",
+          "canonical": "DuviriPlantItemA",
+          "displayName": "DuviriPlantItemA",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 100
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
+          "canonical": "Rune Marrow",
+          "displayName": "密印髓质",
+          "languageKey": "/Lotus/Language/Duviri/DuviriFractalItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 35
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriEnemyDropItem",
+          "canonical": "Lamentus",
+          "displayName": "哀灵精华",
+          "languageKey": "/Lotus/Language/Duviri/DuviriEnemyDropItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 40
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemE",
+          "canonical": "DuviriPlantItemE",
+          "displayName": "DuviriPlantItemE",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 45
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "赤阳 & 幽月的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

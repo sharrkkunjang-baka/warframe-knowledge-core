@@ -1,0 +1,114 @@
+{
+  "id": "knowledge.acquisition.weapon.tenet-spirex-ac682cb5",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Tenet Spirex",
+  "subject": {
+    "canonical": "Tenet Spirex",
+    "displayName": "信条·斯派克斯",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Corpus/Pistols/CrpIgniterPistol/CrpIgniterPistol",
+    "categoryRefs": [
+      "weapon.secondary",
+      "weapon.tenet"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary",
+      "weapon.tenet"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1.05,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 200,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "信条·斯派克斯",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [],
+        "variables": {
+          "productName": "信条·斯派克斯"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Corpus/Pistols/CrpIgniterPistol/CrpIgniterPistol",
+      "outputQuantity": 1,
+      "credits": 10000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": true,
+      "ingredients": [],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpIgniterPistolBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "信条·斯派克斯的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

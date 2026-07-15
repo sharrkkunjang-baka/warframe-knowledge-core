@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.opticor-167e48eb",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Opticor",
+  "subject": {
+    "canonical": "Opticor",
+    "displayName": "奥堤克光子枪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpBFG/CrpBFG",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.15,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "CHARGE",
+          "projectileSpeed": null,
+          "totalDamage": 999.99994,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "奥堤克光子枪",
+          "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBFGBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/EnergyComponent",
+          "/Lotus/Types/Items/MiscItems/Gallium",
+          "/Lotus/Types/Items/MiscItems/Cryotic",
+          "/Lotus/Types/Items/MiscItems/Forma"
+        ],
+        "variables": {
+          "productName": "奥堤克光子枪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBFGBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpBFGBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/CrpBFGBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpBFG/CrpBFG",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+          "canonical": "EnergyComponent",
+          "displayName": "EnergyComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "Gallium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+          "canonical": "Cryotic",
+          "displayName": "Cryotic",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/CrpBFGBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "奥堤克光子枪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

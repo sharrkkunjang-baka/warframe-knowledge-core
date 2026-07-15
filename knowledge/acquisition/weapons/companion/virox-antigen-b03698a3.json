@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.virox-antigen-b03698a3",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "VIROX ANTIGEN",
+  "subject": {
+    "canonical": "VIROX ANTIGEN",
+    "displayName": "韦罗斯抗原",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/CreaturePets/CreaturePetParts/Deimos/InfestedCritterAntigenA",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "韦罗斯抗原",
+          "recipeId": "/Lotus/Types/Recipes/DeimosRecipes/Pets/InfestedCritterAntigenABlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Game/FishBait/Infested/InfestedFishBaitA",
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/InfMapricoFruitItem",
+          "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosGenericSharedFishPartItem",
+          "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosInfestedFishAPartItem"
+        ],
+        "variables": {
+          "productName": "韦罗斯抗原"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/DeimosRecipes/Pets/InfestedCritterAntigenABlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/DeimosRecipes/Pets/InfestedCritterAntigenABlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/DeimosRecipes/Pets/InfestedCritterAntigenABlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/Pets/CreaturePets/CreaturePetParts/Deimos/InfestedCritterAntigenA",
+      "outputQuantity": 1,
+      "credits": 1000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Game/FishBait/Infested/InfestedFishBaitA",
+          "canonical": "InfestedFishBaitA",
+          "displayName": "InfestedFishBaitA",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 6
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/InfMapricoFruitItem",
+          "canonical": "InfMapricoFruitItem",
+          "displayName": "InfMapricoFruitItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosGenericSharedFishPartItem",
+          "canonical": "DeimosGenericSharedFishPartItem",
+          "displayName": "DeimosGenericSharedFishPartItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosInfestedFishAPartItem",
+          "canonical": "DeimosInfestedFishAPartItem",
+          "displayName": "DeimosInfestedFishAPartItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 15
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/DeimosRecipes/Pets/InfestedCritterAntigenABlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "韦罗斯抗原的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

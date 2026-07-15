@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.jat-kusar-ff6110cb",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Jat Kusar",
+  "subject": {
+    "canonical": "Jat Kusar",
+    "displayName": "喷射锁镰",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnKusarigama/GrnKusarigamaWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 218,
+          "range": 2.4
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "喷射锁镰",
+          "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/ChemComponent",
+          "/Lotus/Types/Items/MiscItems/Salvage",
+          "/Lotus/Types/Items/MiscItems/Rubedo",
+          "/Lotus/Types/Items/MiscItems/Forma"
+        ],
+        "variables": {
+          "productName": "喷射锁镰"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnKusarigama/GrnKusarigamaWeapon",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
+          "canonical": "ChemComponent",
+          "displayName": "ChemComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 7
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "Salvage",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 7500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
+          "canonical": "Rubedo",
+          "displayName": "Rubedo",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/GrnKusarigamaWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "喷射锁镰的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

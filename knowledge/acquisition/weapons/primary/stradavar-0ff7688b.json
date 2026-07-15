@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.stradavar-0ff7688b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Stradavar",
+  "subject": {
+    "canonical": "Stradavar",
+    "displayName": "斯特拉迪瓦",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TennoTommyGun/TennoTommyGunRifle",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 28,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "斯特拉迪瓦",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TennoTommyGunRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Ferrite",
+          "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "/Lotus/Types/Items/MiscItems/NeuralSensor",
+          "/Lotus/Types/Items/MiscItems/ArgonCrystal"
+        ],
+        "variables": {
+          "productName": "斯特拉迪瓦"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TennoTommyGunRifleBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TennoTommyGunRifleBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TennoTommyGunRifleBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TennoTommyGun/TennoTommyGunRifle",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "Ferrite",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 15000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "PolymerBundle",
+          "displayName": "PolymerBundle",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 8000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+          "canonical": "NeuralSensor",
+          "displayName": "NeuralSensor",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "ArgonCrystal",
+          "displayName": "ArgonCrystal",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TennoTommyGunRifleBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "斯特拉迪瓦的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.pulmonars-69ee1580",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Pulmonars",
+  "subject": {
+    "canonical": "Pulmonars",
+    "displayName": "感染连枷",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Infested/Melee/Nunchaku/InfNunchuck/InfNunchuck",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 290,
+          "range": 2.507992
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "感染连枷",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/InfNunchuckBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosInfestedFishGPartItem",
+          "/Lotus/Types/Items/Gems/Deimos/DeimosUncommonOreAAlloyItem",
+          "/Lotus/Types/Items/MiscItems/Nanospores"
+        ],
+        "variables": {
+          "productName": "感染连枷"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/InfNunchuckBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/InfNunchuckBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/InfNunchuckBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Infested/Melee/Nunchaku/InfNunchuck/InfNunchuck",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "ArgonCrystal",
+          "displayName": "ArgonCrystal",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosInfestedFishGPartItem",
+          "canonical": "DeimosInfestedFishGPartItem",
+          "displayName": "DeimosInfestedFishGPartItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 24
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Deimos/DeimosUncommonOreAAlloyItem",
+          "canonical": "DeimosUncommonOreAAlloyItem",
+          "displayName": "DeimosUncommonOreAAlloyItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 60
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nanospores",
+          "displayName": "Nanospores",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 24000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/InfNunchuckBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "感染连枷的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.tyli-gyro-2613172c",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Tyli Gyro",
+  "subject": {
+    "canonical": "Tyli Gyro",
+    "displayName": "泰利陀螺仪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetParts/MeleeMoaPetPayload",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "泰利陀螺仪",
+          "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadMeleeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Venus/Resources/CoolantItem",
+          "/Lotus/Types/Items/Gems/Solaris/SolarisRareGemACutItem",
+          "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishParralelBiodeItem",
+          "/Lotus/Types/Items/MiscItems/OxiumAlloy"
+        ],
+        "variables": {
+          "productName": "泰利陀螺仪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadMeleeBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadMeleeBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadMeleeBlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetParts/MeleeMoaPetPayload",
+      "outputQuantity": 1,
+      "credits": 50000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CoolantItem",
+          "canonical": "CoolantItem",
+          "displayName": "CoolantItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisRareGemACutItem",
+          "canonical": "SolarisRareGemACutItem",
+          "displayName": "SolarisRareGemACutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishParralelBiodeItem",
+          "canonical": "CorpusFishParralelBiodeItem",
+          "displayName": "CorpusFishParralelBiodeItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OxiumAlloy",
+          "canonical": "OxiumAlloy",
+          "displayName": "OxiumAlloy",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1200
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadMeleeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "泰利陀螺仪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.atheca-gyro-8ca14b81",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Atheca Gyro",
+  "subject": {
+    "canonical": "Atheca Gyro",
+    "displayName": "阿西卡陀螺仪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetParts/MoaPetPayloadThermocor",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "阿西卡陀螺仪",
+          "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadThermocorBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Venus/Resources/VenusTreeItem",
+          "/Lotus/Types/Items/Gems/Solaris/SolarisRareGemACutItem",
+          "/Lotus/Types/Items/Fish/Solaris/FishParts/OrokinFishEntroplasmaItem",
+          "/Lotus/Types/Items/MiscItems/ControlModule"
+        ],
+        "variables": {
+          "productName": "阿西卡陀螺仪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadThermocorBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadThermocorBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadThermocorBlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetParts/MoaPetPayloadThermocor",
+      "outputQuantity": 1,
+      "credits": 50000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/VenusTreeItem",
+          "canonical": "VenusTreeItem",
+          "displayName": "VenusTreeItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisRareGemACutItem",
+          "canonical": "SolarisRareGemACutItem",
+          "displayName": "SolarisRareGemACutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/OrokinFishEntroplasmaItem",
+          "canonical": "OrokinFishEntroplasmaItem",
+          "displayName": "OrokinFishEntroplasmaItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+          "canonical": "ControlModule",
+          "displayName": "ControlModule",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/MoaPetParts/MoaPetPayloadThermocorBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "阿西卡陀螺仪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

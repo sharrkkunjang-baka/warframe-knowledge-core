@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.alternox-448bc765",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Alternox",
+  "subject": {
+    "canonical": "Alternox",
+    "displayName": "电幻步枪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/GyreRifle/GyreRifleWeapon",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.15,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 62,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "电幻步枪",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
+          "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+          "/Lotus/Types/Items/MiscItems/ArgonCrystal"
+        ],
+        "variables": {
+          "productName": "电幻步枪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/GyreRifle/GyreRifleWeapon",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "AlloyPlate",
+          "displayName": "AlloyPlate",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 4000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
+          "canonical": "Thrax Plasm",
+          "displayName": "凶魂浆质",
+          "languageKey": "/Lotus/Language/Zariman/VoidWraithItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+          "canonical": "Entrati Lanthorn",
+          "displayName": "英择谛灯笼",
+          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemBName",
+          "localizationStatus": "official-zh",
+          "quantity": 16
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "ArgonCrystal",
+          "displayName": "ArgonCrystal",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "电幻步枪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

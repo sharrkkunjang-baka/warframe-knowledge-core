@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.sobek-61244846",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sobek",
+  "subject": {
+    "canonical": "Sobek",
+    "displayName": "鳄神",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Shotgun/DoubleBarrelShotgun",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.33,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 70,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "鳄神",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Neurode",
+          "/Lotus/Types/Items/MiscItems/Circuits",
+          "/Lotus/Types/Items/MiscItems/Salvage",
+          "/Lotus/Types/Items/MiscItems/PolymerBundle"
+        ],
+        "variables": {
+          "productName": "鳄神"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Shotgun/DoubleBarrelShotgun",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+          "canonical": "Neurode",
+          "displayName": "Neurode",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+          "canonical": "Circuits",
+          "displayName": "Circuits",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "Salvage",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 900
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "PolymerBundle",
+          "displayName": "PolymerBundle",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 400
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "鳄神的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

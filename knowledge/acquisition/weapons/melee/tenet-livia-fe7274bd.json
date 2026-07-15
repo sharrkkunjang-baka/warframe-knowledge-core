@@ -1,0 +1,114 @@
+{
+  "id": "knowledge.acquisition.weapon.tenet-livia-fe7274bd",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Tenet Livia",
+  "subject": {
+    "canonical": "Tenet Livia",
+    "displayName": "信条·莉薇娅",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Corpus/Melee/CrpBriefcase2HKatana/CrpBriefcase2HKatana",
+    "categoryRefs": [
+      "weapon.melee",
+      "weapon.tenet"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee",
+      "weapon.tenet"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 0.95,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 198,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "信条·莉薇娅",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [],
+        "variables": {
+          "productName": "信条·莉薇娅"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Corpus/Melee/CrpBriefcase2HKatana/CrpBriefcase2HKatana",
+      "outputQuantity": 1,
+      "credits": 10000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": true,
+      "ingredients": [],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpBriefcase2HKatanaBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "信条·莉薇娅的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.perigale-ea7219b8",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Perigale",
+  "subject": {
+    "canonical": "Perigale",
+    "displayName": "月面狂风",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnQuadSniper/TnQuadSniper",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.15,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "BURST",
+          "projectileSpeed": null,
+          "totalDamage": 172,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "月面狂风",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock",
+          "/Lotus/Types/Gameplay/Zariman/Resources/EclipseVoidWraithItem"
+        ],
+        "variables": {
+          "productName": "月面狂风"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnQuadSniper/TnQuadSniper",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel",
+          "canonical": "TnQuadSniperRifleBarrel",
+          "displayName": "TnQuadSniperRifleBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver",
+          "canonical": "TnQuadSniperRifleReceiver",
+          "displayName": "TnQuadSniperRifleReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock",
+          "canonical": "TnQuadSniperRifleStock",
+          "displayName": "TnQuadSniperRifleStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/EclipseVoidWraithItem",
+          "canonical": "Lua Thrax Plasm",
+          "displayName": "月球凶魂浆质",
+          "languageKey": "/Lotus/Language/VoidEclipse/EclipseVoidWraithItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 50
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "月面狂风的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

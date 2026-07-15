@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.phantasma-dccca8f9",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Phantasma",
+  "subject": {
+    "canonical": "Phantasma",
+    "displayName": "幻离子",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/RevenantShotgun/RevenantShotgun",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "HELD",
+          "projectileSpeed": null,
+          "totalDamage": 15,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "幻离子",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsDogTag",
+          "/Lotus/Types/Items/MiscItems/Plastids",
+          "/Lotus/Types/Items/MiscItems/Nanospores"
+        ],
+        "variables": {
+          "productName": "幻离子"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/RevenantShotgun/RevenantShotgun",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "ArgonCrystal",
+          "displayName": "ArgonCrystal",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsDogTag",
+          "canonical": "QuillsDogTag",
+          "displayName": "QuillsDogTag",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "Plastids",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 650
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nanospores",
+          "displayName": "Nanospores",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 12500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/RevenantShotgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "幻离子的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

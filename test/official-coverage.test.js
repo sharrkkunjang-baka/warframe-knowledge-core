@@ -18,7 +18,7 @@ test('coverage pipeline is idempotent and check-only does not write', () => {
 
 test('manifest covers required domains and records policy states', () => {
   const manifest = coverage.buildManifest('stable');
-  assert.deepEqual(Object.keys(manifest.domains), ['warframe', 'quest', 'mod', 'official-items', 'resources']);
+  assert.deepEqual(Object.keys(manifest.domains), ['warframe', 'quest', 'mod', 'official-items', 'resources', 'weapons']);
   for (const domain of Object.values(manifest.domains)) {
     assert.equal(domain.counts.identities, domain.entries.length);
     assert.ok(domain.differences.publicExportMissingFromPackage);

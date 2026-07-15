@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.nychus-moa-679ad597",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Nychus Moa",
+  "subject": {
+    "canonical": "Nychus Moa",
+    "displayName": "尼丘斯恐鸟",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetParts/MoaPetHeadMelee",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "尼丘斯恐鸟",
+          "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetHeadMeleeBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Venus/Resources/VenusCoconutItem",
+          "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonGemACutItem",
+          "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonOreAAlloyItem",
+          "/Lotus/Types/Items/MiscItems/Morphic"
+        ],
+        "variables": {
+          "productName": "尼丘斯恐鸟"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetHeadMeleeBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/MoaPetParts/MoaPetHeadMeleeBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/MoaPetParts/MoaPetHeadMeleeBlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetParts/MoaPetHeadMelee",
+      "outputQuantity": 1,
+      "credits": 50000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/VenusCoconutItem",
+          "canonical": "VenusCoconutItem",
+          "displayName": "VenusCoconutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonGemACutItem",
+          "canonical": "SolarisUncommonGemACutItem",
+          "displayName": "SolarisUncommonGemACutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisUncommonOreAAlloyItem",
+          "canonical": "SolarisUncommonOreAAlloyItem",
+          "displayName": "SolarisUncommonOreAAlloyItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphic",
+          "displayName": "Morphic",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/MoaPetParts/MoaPetHeadMeleeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "尼丘斯恐鸟的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

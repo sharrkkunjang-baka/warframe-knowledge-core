@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.akarius-2009d875",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Akarius",
+  "subject": {
+    "canonical": "Akarius",
+    "displayName": "阿利乌双枪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/SapientPistol/SapientPistol",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1.05,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "BURST",
+          "projectileSpeed": null,
+          "totalDamage": 487,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "阿利乌双枪",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPistolBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Neurode",
+          "/Lotus/Types/Items/MiscItems/ConcentratedGas",
+          "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "/Lotus/Types/Items/MiscItems/Nanospores"
+        ],
+        "variables": {
+          "productName": "阿利乌双枪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPistolBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SapientPistolBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/SapientPistolBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/SapientPistol/SapientPistol",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+          "canonical": "Neurode",
+          "displayName": "Neurode",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ConcentratedGas",
+          "canonical": "ConcentratedGas",
+          "displayName": "ConcentratedGas",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 150
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "PolymerBundle",
+          "displayName": "PolymerBundle",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nanospores",
+          "displayName": "Nanospores",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 7500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SapientPistolBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "阿利乌双枪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

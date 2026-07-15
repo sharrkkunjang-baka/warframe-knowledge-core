@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.arca-plasmor-22aeed29",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Arca Plasmor",
+  "subject": {
+    "canonical": "Arca Plasmor",
+    "displayName": "弧电离子枪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpShotgun/CrpShotgun",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.95,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 600,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "弧电离子枪",
+          "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/EnergyComponent",
+          "/Lotus/Types/Items/MiscItems/ControlModule",
+          "/Lotus/Types/Items/MiscItems/Cryotic",
+          "/Lotus/Types/Items/MiscItems/Forma"
+        ],
+        "variables": {
+          "productName": "弧电离子枪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpShotgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/CrpShotgunBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/CrpShotgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpShotgun/CrpShotgun",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+          "canonical": "EnergyComponent",
+          "displayName": "EnergyComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+          "canonical": "ControlModule",
+          "displayName": "ControlModule",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 25
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+          "canonical": "Cryotic",
+          "displayName": "Cryotic",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 925
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/CrpShotgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "弧电离子枪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

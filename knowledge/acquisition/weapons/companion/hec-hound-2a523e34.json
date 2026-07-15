@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.hec-hound-2a523e34",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Hec Hound",
+  "subject": {
+    "canonical": "Hec Hound",
+    "displayName": "骸克猎犬",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetParts/ZanukaPetPartHeadC",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "骸克猎犬",
+          "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartHeadCBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/SpecterParticleResidue",
+          "/Lotus/Types/Items/MiscItems/Gallium",
+          "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemACutItem",
+          "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishVenedoCaseItem"
+        ],
+        "variables": {
+          "productName": "骸克猎犬"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartHeadCBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartHeadCBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartHeadCBlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetParts/ZanukaPetPartHeadC",
+      "outputQuantity": 1,
+      "credits": 50000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/SpecterParticleResidue",
+          "canonical": "Spectral Debris",
+          "displayName": "魅影残粒",
+          "languageKey": "/Lotus/Language/Resources/SpecterParticleResidueName",
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "Gallium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemACutItem",
+          "canonical": "DeimosEidolonGemACutItem",
+          "displayName": "DeimosEidolonGemACutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishVenedoCaseItem",
+          "canonical": "CorpusFishVenedoCaseItem",
+          "displayName": "CorpusFishVenedoCaseItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartHeadCBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "骸克猎犬的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

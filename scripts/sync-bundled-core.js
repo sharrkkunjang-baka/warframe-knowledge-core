@@ -1,0 +1,9 @@
+'use strict'
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto')
+const ROOT=path.resolve(__dirname,'..'),TARGET=path.resolve(ROOT,'..','qq-bot','warframe-knowledge-core')
+const ROOT_FILES=['package.json','ARCHITECTURE.md'],DIRS=['src','knowledge','schema','generated']
+function walk(dir){return fs.existsSync(dir)?fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name)).flatMap(x=>x.isDirectory()?walk(path.join(dir,x.name)):x.isFile()?[path.join(dir,x.name)]:[]):[]}
+function relativeFiles(base){return [...ROOT_FILES.filter(f=>fs.existsSync(path.join(base,f))),...DIRS.flatMap(d=>walk(path.join(base,d)).map(f=>path.relative(base,f)))].map(x=>x.replace(/\\/g,'/')).sort()}
+function hash(f){return crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')}
+function run(argv=process.argv.slice(2)){const check=argv.includes('--check'),sourceFiles=relativeFiles(ROOT),targetFiles=relativeFiles(TARGET),drift=[];for(const rel of sourceFiles){const a=path.join(ROOT,rel),b=path.join(TARGET,rel);if(!fs.existsSync(b)||hash(a)!==hash(b))drift.push(rel)}for(const rel of targetFiles)if(!sourceFiles.includes(rel))drift.push(rel);if(check){if(drift.length)throw new Error(`Bot 内置核心漂移：${drift.slice(0,20).join('、')}${drift.length>20?` 等 ${drift.length} 项`:''}`);console.log(`Bot 内置核心无漂移：${sourceFiles.length} 个文件`);return}for(const rel of targetFiles)if(!sourceFiles.includes(rel))fs.unlinkSync(path.join(TARGET,rel));for(const rel of sourceFiles){const a=path.join(ROOT,rel),b=path.join(TARGET,rel);fs.mkdirSync(path.dirname(b),{recursive:true});if(!fs.existsSync(b)||hash(a)!==hash(b))fs.copyFileSync(a,b)}console.log(`已同步 Bot 内置核心：${sourceFiles.length} 个文件，修复 ${drift.length} 项`)}
+if(require.main===module){try{run()}catch(e){console.error(e.stack||e);process.exit(1)}}module.exports={relativeFiles,run}

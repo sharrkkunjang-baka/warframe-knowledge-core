@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.steflos-2444088d",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Steflos",
+  "subject": {
+    "canonical": "Steflos",
+    "displayName": "石晶之花",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnoLotusPodShotgun/TnoLotusPodShotgun",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.25,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 320,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "石晶之花",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnoLotusPodShotgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunStock",
+          "/Lotus/Types/Items/MiscItems/Neurode"
+        ],
+        "variables": {
+          "productName": "石晶之花"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnoLotusPodShotgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnoLotusPodShotgunBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnoLotusPodShotgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnoLotusPodShotgun/TnoLotusPodShotgun",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunBarrel",
+          "canonical": "Steflos Barrel",
+          "displayName": "石晶之花 枪管",
+          "languageKey": "/Lotus/Language/LastWish/TnoLotusPodShotgunBarrelName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunReceiver",
+          "canonical": "Steflos Receiver",
+          "displayName": "石晶之花 枪机",
+          "languageKey": "/Lotus/Language/LastWish/TnoLotusPodShotgunReceiverName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunStock",
+          "canonical": "Steflos Stock",
+          "displayName": "石晶之花 枪托",
+          "languageKey": "/Lotus/Language/LastWish/TnoLotusPodShotgunStockName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+          "canonical": "Neurode",
+          "displayName": "Neurode",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 4
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnoLotusPodShotgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "石晶之花的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

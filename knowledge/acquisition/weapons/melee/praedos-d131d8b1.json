@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.praedos-d131d8b1",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Praedos",
+  "subject": {
+    "canonical": "Praedos",
+    "displayName": "双雄",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Zariman/Melee/Tonfas/ZarimanTonfaWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 0.6,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 200,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "双雄",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Zariman/Resources/VoidAngelItem",
+          "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanDogTagBounty",
+          "/Lotus/Types/Items/MiscItems/Ferrite",
+          "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem"
+        ],
+        "variables": {
+          "productName": "双雄"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Zariman/Melee/Tonfas/ZarimanTonfaWeapon",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidAngelItem",
+          "canonical": "Voidplume Pinion",
+          "displayName": "虚空羽翎",
+          "languageKey": "/Lotus/Language/Zariman/VoidAngelItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanDogTagBounty",
+          "canonical": "Voidplume Quill",
+          "displayName": "虚空刺翎",
+          "languageKey": "/Lotus/Language/Zariman/ZarimanDogTagBountyName",
+          "localizationStatus": "official-zh",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "Ferrite",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 8000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
+          "canonical": "Thrax Plasm",
+          "displayName": "凶魂浆质",
+          "languageKey": "/Lotus/Language/Zariman/VoidWraithItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 100
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "双雄的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

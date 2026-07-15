@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.kreska-27eae4fc",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Kreska",
+  "subject": {
+    "canonical": "Kreska",
+    "displayName": "直镐",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Corpus/Melee/CrpVenusHatchet/CrpVenusHatchet",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.35,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 190,
+          "range": 2.4
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "直镐",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpVenusHatchetBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/EnergyComponent",
+          "/Lotus/Types/Gameplay/Venus/Resources/FungusHeartItem",
+          "/Lotus/Types/Items/Gems/Solaris/SolarisRareGemACutItem",
+          "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishLatheCoogulantItem"
+        ],
+        "variables": {
+          "productName": "直镐"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpVenusHatchetBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpVenusHatchetBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/CrpVenusHatchetBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Corpus/Melee/CrpVenusHatchet/CrpVenusHatchet",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+          "canonical": "EnergyComponent",
+          "displayName": "EnergyComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/FungusHeartItem",
+          "canonical": "FungusHeartItem",
+          "displayName": "FungusHeartItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 40
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisRareGemACutItem",
+          "canonical": "SolarisRareGemACutItem",
+          "displayName": "SolarisRareGemACutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 25
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishLatheCoogulantItem",
+          "canonical": "SolarisFishLatheCoogulantItem",
+          "displayName": "SolarisFishLatheCoogulantItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpVenusHatchetBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "直镐的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

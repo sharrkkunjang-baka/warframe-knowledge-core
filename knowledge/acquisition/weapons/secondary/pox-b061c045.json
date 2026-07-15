@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.pox-b061c045",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Pox",
+  "subject": {
+    "canonical": "Pox",
+    "displayName": "脓痘",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Infested/Pistols/InfProximityStars/InfProximityStars",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 70,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "脓痘",
+          "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfProximityStarsBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/Research/BioComponent",
+          "/Lotus/Types/Items/MiscItems/Nanospores",
+          "/Lotus/Types/Items/MiscItems/Rubedo",
+          "/Lotus/Types/Items/MiscItems/Alertium"
+        ],
+        "variables": {
+          "productName": "脓痘"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfProximityStarsBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/ClanTech/Bio/InfProximityStarsBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Bio/InfProximityStarsBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Infested/Pistols/InfProximityStars/InfProximityStars",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/BioComponent",
+          "canonical": "BioComponent",
+          "displayName": "BioComponent",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 4
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nanospores",
+          "displayName": "Nanospores",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 6500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Rubedo",
+          "canonical": "Rubedo",
+          "displayName": "Rubedo",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1200
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
+          "canonical": "Alertium",
+          "displayName": "Alertium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/InfProximityStarsBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "脓痘的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

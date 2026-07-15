@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.hinta-stabilizer-a9616f55",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Hinta Stabilizer",
+  "subject": {
+    "canonical": "Hinta Stabilizer",
+    "displayName": "辛塔稳定器",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetParts/ZanukaPetPartTailB",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 0,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "辛塔稳定器",
+          "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailBBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "/Lotus/Types/Items/MiscItems/Circuits",
+          "/Lotus/Types/Items/Gems/Eidolon/RareOreAAlloyAItem",
+          "/Lotus/Types/Items/MiscItems/Alertium"
+        ],
+        "variables": {
+          "productName": "辛塔稳定器"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailBBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailBBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailBBlueprint",
+      "resultUniqueName": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetParts/ZanukaPetPartTailB",
+      "outputQuantity": 1,
+      "credits": 50000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "AlloyPlate",
+          "displayName": "AlloyPlate",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+          "canonical": "Circuits",
+          "displayName": "Circuits",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/RareOreAAlloyAItem",
+          "canonical": "RareOreAAlloyAItem",
+          "displayName": "RareOreAAlloyAItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
+          "canonical": "Alertium",
+          "displayName": "Alertium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/ZanukaPetParts/ZanukaPetPartTailBBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "辛塔稳定器的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

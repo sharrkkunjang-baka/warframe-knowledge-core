@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.syam-d7ba378d",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Syam",
+  "subject": {
+    "canonical": "Syam",
+    "displayName": "业珀",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriKatana/DaxDuviriKatanaWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 0.75,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 270,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "业珀",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriKatanaBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Duviri/Resource/Fish/GenericDuviriFishPartCItem",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemF",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemB"
+        ],
+        "variables": {
+          "productName": "业珀"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriKatanaBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriKatanaBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/DaxDuviriKatanaBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriKatana/DaxDuviriKatanaWeapon",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/Fish/GenericDuviriFishPartCItem",
+          "canonical": "GenericDuviriFishPartCItem",
+          "displayName": "GenericDuviriFishPartCItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 4
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
+          "canonical": "Rune Marrow",
+          "displayName": "密印髓质",
+          "languageKey": "/Lotus/Language/Duviri/DuviriFractalItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemF",
+          "canonical": "DuviriPlantItemF",
+          "displayName": "DuviriPlantItemF",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemB",
+          "canonical": "DuviriPlantItemB",
+          "displayName": "DuviriPlantItemB",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 30
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DaxDuviriKatanaBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "业珀的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

@@ -17,6 +17,38 @@ function normalizeRequirements(value) {
   return { ...source, type }
 }
 
+function missionCompletionDependency(entity) {
+  const dependency = entity?.acquisitionDependency?.acquisition
+  return dependency?.type === 'mission-completion' ? dependency : null
+}
+
+function sameMissionCompletionRule(left, right) {
+  return left && right
+    && left.normalAmount?.min === right.normalAmount?.min
+    && left.normalAmount?.max === right.normalAmount?.max
+    && left.steelPathAmount?.min === right.steelPathAmount?.min
+    && left.steelPathAmount?.max === right.steelPathAmount?.max
+    && left.bonus === right.bonus
+}
+
+function combinedMissionCurrencySummary(currencies, registries) {
+  if (currencies.length < 2) return null
+  const dependencies = currencies.map(item => missionCompletionDependency(item.entity))
+  if (dependencies.some(dependency => !dependency) || !dependencies.every(dependency => sameMissionCompletionRule(dependency, dependencies[0]))) return null
+  const names = currencies.map(item => item.entity.displayName || item.entity.canonical)
+  const locations = dependencies.map(dependency => {
+    const location = registries.locations.get(dependency.locationId)
+    return location ? (location.displayName || location.canonical) : ''
+  })
+  if (locations.some(location => !location)) return null
+  const amountText = new Set(currencies.map(item => item.amount)).size === 1
+    ? `各需要${currencies[0].amount}个`
+    : currencies.map(item => `${item.entity.displayName || item.entity.canonical}需要${item.amount}个`).join('，')
+  const rule = dependencies[0]
+  const routes = names.map((name, index) => `${name}完成${locations[index]}获得`).join('；')
+  return `${names.join('和')}（${amountText}）：${routes}；普通难度 ${rule.normalAmount.min}-${rule.normalAmount.max} 个，钢铁之路 ${rule.steelPathAmount.min}-${rule.steelPathAmount.max} 个；${rule.bonus}`
+}
+
 function currencyAcquisitionSummary(entity, registries) {
   const dependency = entity?.acquisitionDependency
   if (!dependency) return null
@@ -35,6 +67,15 @@ function currencyAcquisitionSummary(entity, registries) {
 function renderRequirements(value, registries) {
   const requirement = normalizeRequirements(value)
   if (requirement.type === 'none') return []
+  if (requirement.type === 'quest') {
+    const quest = requirement.questId ? registries.quests.get(requirement.questId) : null
+    return [quest ? `完成任务「${quest.displayName || quest.canonical}」` : requirement.questName ? `完成任务「${requirement.questName}」` : '完成指定任务']
+  }
+  if (requirement.type === 'item') {
+    if (requirement.recipeId) return []
+    const items = (requirement.items || []).map(item => `${Number(item.amount || 1)}个${item.displayName || item.canonical || item.itemId}`).filter(Boolean)
+    return items.length ? [`需要${items.join('和')}`] : []
+  }
   const entityName = (registry, id) => { const item = id ? registry.get(id) : null; return item ? (item.displayName || item.canonical) : '' }
   const npc = requirement.npcId ? registries.npcs.get(requirement.npcId) : null
   const locationId = requirement.locationId || npc?.locationId
@@ -43,7 +84,7 @@ function renderRequirements(value, registries) {
   if (requirement.type === 'standing') {
     if (!locationName || !npcName) return []
     if (requirement.blueprintRank != null && requirement.blueprintRank !== requirement.rank) return [`${locationName}的${npcName}：总图需要 ${requirement.blueprintRank}级声望，部件蓝图需要 ${requirement.rank}级声望兑换`]
-    const rank = requirement.rank == null ? '' : ` ${requirement.rank}级`
+    const rank = requirement.rank == null ? '' : ` ${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}`
     return [`在${locationName}找${npcName}${rank}声望兑换`]
   }
   if (requirement.type !== 'currency') return []
@@ -52,11 +93,37 @@ function renderRequirements(value, registries) {
   const route = requirement.usage === 'crafting'
     ? `在${locationName}制造需要${currencyText}`
     : npcName ? `在${locationName}找${npcName}兑换，需要${currencyText}` : `在${locationName}兑换，需要${currencyText}`
-  const dependencies = currencies.map(({ entity, amount }) => {
+  const combinedDependency = combinedMissionCurrencySummary(currencies, registries)
+  const dependencies = combinedDependency ? [combinedDependency] : currencies.map(({ entity, amount }) => {
     const summary = currencyAcquisitionSummary(entity, registries)
     return summary ? `${entity.displayName || entity.canonical}（需要${amount}个）：${summary}` : null
   }).filter(Boolean)
   return [route, ...(dependencies.length ? ['所需货币怎么刷：', ...dependencies] : []), requirement.isBuffUseless ? '资源数量加成无效' : '资源数量加成有效'].filter(Boolean)
 }
 
-module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements }
+function renderStructuredMethod(method) {
+  const variables = method.variables || {}
+  const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
+  if (method.type === 'recipe' || method.category === 'crafting') return variables.productName ? `制造${variables.productName}` : '通过制造获得'
+  if (method.type === 'market-purchase' || method.category === 'market') return source ? `在${source}购买` : '在商店购买'
+  if (method.type === 'quest-reward' || method.category === 'quest') return method.questDisplayName ? `完成任务「${method.questDisplayName}」获得` : '完成指定任务获得'
+  if (method.type === 'enemy-drop') return source ? `击败${source}获得` : '击败指定敌人获得'
+  if (method.type === 'mission-reward') return source ? `完成${source}${method.rotation ? ` ${method.rotation}轮` : ''}获得` : '完成指定任务获得'
+  if (method.type === 'route') return variables.text || source || null
+  return source ? `来源：${source}` : null
+}
+
+function renderAcquisition(methods, options = {}) {
+  const lines = []
+  for (const method of methods || []) {
+    const headline = renderStructuredMethod(method)
+    if (headline) lines.push(headline)
+    lines.push(...(method.requirementLines || []))
+    if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
+  }
+  const unique = [...new Set(lines.filter(Boolean))]
+  const name = options.displayName || ''
+  return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
+}
+
+module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, renderStructuredMethod, renderAcquisition }

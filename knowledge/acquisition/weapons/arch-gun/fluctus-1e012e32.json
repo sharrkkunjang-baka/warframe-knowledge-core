@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.fluctus-1e012e32",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Fluctus",
+  "subject": {
+    "canonical": "Fluctus",
+    "displayName": "巨浪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/RocketArtillery/ArchRocketCrossbow",
+    "categoryRefs": [
+      "weapon.arch-gun"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.arch-gun"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "arch-gun",
+    "omegaAttenuation": 1.1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 250,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "巨浪",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowStock",
+          "/Lotus/Types/Items/MiscItems/ArgonCrystal"
+        ],
+        "variables": {
+          "productName": "巨浪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/RocketArtillery/ArchRocketCrossbow",
+      "outputQuantity": 1,
+      "credits": 45000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowBarrel",
+          "canonical": "ArchRocketCrossbowBarrel",
+          "displayName": "ArchRocketCrossbowBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowReceiver",
+          "canonical": "ArchRocketCrossbowReceiver",
+          "displayName": "ArchRocketCrossbowReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowStock",
+          "canonical": "ArchRocketCrossbowStock",
+          "displayName": "ArchRocketCrossbowStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "ArgonCrystal",
+          "displayName": "ArgonCrystal",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "巨浪的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

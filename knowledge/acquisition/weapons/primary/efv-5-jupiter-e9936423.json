@@ -1,0 +1,141 @@
+{
+  "id": "knowledge.acquisition.weapon.efv-5-jupiter-e9936423",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "EFV-5 Jupiter",
+  "subject": {
+    "canonical": "EFV-5 Jupiter",
+    "displayName": "艾弗旺-5 木星",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Lasria/LasGooAK/LasGooAKPlayerWeapon",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 1.05,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 61,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "艾弗旺-5 木星",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock"
+        ],
+        "variables": {
+          "productName": "艾弗旺-5 木星"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Lasria/LasGooAK/LasGooAKPlayerWeapon",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel",
+          "canonical": "LasGooAKPlayerWeaponBarrel",
+          "displayName": "LasGooAKPlayerWeaponBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver",
+          "canonical": "LasGooAKPlayerWeaponReceiver",
+          "displayName": "LasGooAKPlayerWeaponReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock",
+          "canonical": "LasGooAKPlayerWeaponStock",
+          "displayName": "LasGooAKPlayerWeaponStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "艾弗旺-5 木星的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

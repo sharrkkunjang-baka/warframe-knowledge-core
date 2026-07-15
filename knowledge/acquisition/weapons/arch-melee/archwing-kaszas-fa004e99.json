@@ -1,0 +1,141 @@
+{
+  "id": "knowledge.acquisition.weapon.archwing-kaszas-fa004e99",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "<ARCHWING> Kaszas",
+  "subject": {
+    "canonical": "<ARCHWING> Kaszas",
+    "displayName": "<ARCHWING> 死亡使徒",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchScythe/ArchScythe",
+    "categoryRefs": [
+      "weapon.arch-melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.arch-melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "arch-melee",
+    "omegaAttenuation": 0.5,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 392,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "<ARCHWING> 死亡使徒",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle",
+          "/Lotus/Types/Items/MiscItems/Tellurium"
+        ],
+        "variables": {
+          "productName": "<ARCHWING> 死亡使徒"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchScythe/ArchScythe",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade",
+          "canonical": "ArchScytheBlade",
+          "displayName": "ArchScytheBlade",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle",
+          "canonical": "ArchScytheHandle",
+          "displayName": "ArchScytheHandle",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
+          "canonical": "Tellurium",
+          "displayName": "Tellurium",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 3
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "<ARCHWING> 死亡使徒的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

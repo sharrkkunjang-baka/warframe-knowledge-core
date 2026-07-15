@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.ax-52-7ebc7ac6",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "AX-52",
+  "subject": {
+    "canonical": "AX-52",
+    "displayName": "AX-52",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Lasria/AK47/TC2024AK47Weapon",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.85,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 40,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "AX-52",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceRareA",
+          "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceUncommonA",
+          "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceCommonA",
+          "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceCommonB"
+        ],
+        "variables": {
+          "productName": "AX-52"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint",
+      "resultUniqueName": "/Lotus/Weapons/Lasria/AK47/TC2024AK47Weapon",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceRareA",
+          "canonical": "1999ResourceRareA",
+          "displayName": "1999ResourceRareA",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceUncommonA",
+          "canonical": "1999ResourceUncommonA",
+          "displayName": "1999ResourceUncommonA",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 25
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceCommonA",
+          "canonical": "1999ResourceCommonA",
+          "displayName": "1999ResourceCommonA",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 60
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/1999Wf/Resources/1999ResourceCommonB",
+          "canonical": "1999ResourceCommonB",
+          "displayName": "1999ResourceCommonB",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 60
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TC2024AK47Blueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "AX-52的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

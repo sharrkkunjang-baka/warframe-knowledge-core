@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.sampotes-d2e3a436",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sampotes",
+  "subject": {
+    "canonical": "Sampotes",
+    "displayName": "三宝聚",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/DaxDuviriHammer/DaxDuviriHammerWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 247.99998,
+          "range": 2.5
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "三宝聚",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemE",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemA",
+          "/Lotus/Types/Gameplay/Duviri/Resource/DuviriRockItem"
+        ],
+        "variables": {
+          "productName": "三宝聚"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/DaxDuviriHammer/DaxDuviriHammerWeapon",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemE",
+          "canonical": "DuviriPlantItemE",
+          "displayName": "DuviriPlantItemE",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem",
+          "canonical": "Rune Marrow",
+          "displayName": "密印髓质",
+          "languageKey": "/Lotus/Language/Duviri/DuviriFractalItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemA",
+          "canonical": "DuviriPlantItemA",
+          "displayName": "DuviriPlantItemA",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 40
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriRockItem",
+          "canonical": "Aggristone",
+          "displayName": "龙涎石",
+          "languageKey": "/Lotus/Language/Duviri/DuviriRockItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 150
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/DaxDuviriHammerBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "三宝聚的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

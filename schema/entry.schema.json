@@ -139,6 +139,17 @@
         }
       }
     },
+    "acquisition": {
+      "type": "object",
+      "properties": {
+        "routes": { "type": "array", "items": { "$ref": "#/$defs/route" } }
+      },
+      "additionalProperties": false
+    },
+    "recipes": { "type": "array", "items": { "$ref": "#/$defs/recipe" } },
+    "weaponIdentity": { "type": "object" },
+    "classification": { "type": "object" },
+    "status": { "enum": ["complete", "review-required", "excluded-policy", "source-conflict"] },
     "summary": { "type": "string", "minLength": 1 },
     "prerequisites": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "methodRefs": { "type": "array", "items": { "type": "string", "pattern": "^gameplay\\." }, "uniqueItems": true },
@@ -157,6 +168,11 @@
     },
     "notes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "tags": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "requirements": { "type": "object", "required": ["type"], "properties": { "type": { "enum": ["none", "currency", "standing", "quest", "item"] } } },
+    "route": { "type": "object", "required": ["scope", "category", "partRefs", "variables", "requirements", "methods", "status"], "properties": { "scope": { "enum": ["item", "blueprint", "components", "component"] }, "category": { "type": "string" }, "partRefs": { "type": "array", "items": { "type": "string" }, "variables": { "type": "object" }, "requirements": { "$ref": "#/$defs/requirements" }, "methods": { "type": "array" }, "status": { "enum": ["complete", "review-required", "unresolved"] } } },
+    "recipe": { "type": "object", "required": ["id", "resultUniqueName", "outputQuantity", "ingredients", "provenance"], "properties": { "id": { "type": "string" }, "resultUniqueName": { "type": "string" }, "outputQuantity": { "type": "number", "exclusiveMinimum": 0 }, "ingredients": { "type": "array", "items": { "type": "object", "required": ["uniqueName", "quantity"], "properties": { "uniqueName": { "type": "string" }, "quantity": { "type": "number", "exclusiveMinimum": 0 } } }, "provenance": { "type": "object" } } }
   },
   "allOf": [
     {

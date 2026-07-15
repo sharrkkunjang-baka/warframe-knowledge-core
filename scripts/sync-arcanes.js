@@ -114,12 +114,26 @@ const STANDING_EXCHANGES = Object.freeze({
   'Vox Solaris': { npcId: 'npc.little-duck', locationId: 'hub.fortuna', ranks: { Agent: 2, Hand: 3, Instrument: 4, Shadow: 5 } },
   'Solaris United': { npcId: 'npc.rude-zuud', locationId: 'hub.fortuna', ranks: { 'Old Mate': 5 } }
 });
-function exchangeRequirements(location) {
+const STANDING_RANK_LANGUAGE_KEYS = Object.freeze({
+  'The Holdfasts': { Fallen: '/Lotus/Language/Syndicates/ZarimanTitle1', Watcher: '/Lotus/Language/Syndicates/ZarimanTitle2', Guardian: '/Lotus/Language/Syndicates/ZarimanTitle3', Seraph: '/Lotus/Language/Syndicates/ZarimanTitle4', Angel: '/Lotus/Language/Syndicates/ZarimanTitle5' },
+  Ostron: { Kin: '/Lotus/Language/Syndicates/CetusTitle5' },
+  'Operational Supply': { Defender: '/Lotus/Language/Syndicates/EventSyndicateTitle2' },
+  'The Quills': { Mote: '/Lotus/Language/Syndicates/QuillsTitle1', Observer: '/Lotus/Language/Syndicates/QuillsTitle2', Adherent: '/Lotus/Language/Syndicates/QuillsTitle3', Instrument: '/Lotus/Language/Syndicates/QuillsTitle4', Architect: '/Lotus/Language/Syndicates/QuillsTitle5' },
+  'Vox Solaris': { Agent: '/Lotus/Language/Syndicates/VoxSolTitle2', Hand: '/Lotus/Language/Syndicates/VoxSolTitle3', Instrument: '/Lotus/Language/Syndicates/VoxSolTitle4', Shadow: '/Lotus/Language/Syndicates/VoxSolTitle5' },
+  'Solaris United': { 'Old Mate': '/Lotus/Language/Syndicates/SolarisTitle5' }
+});
+function officialRankName(syndicate, rankName, languages = loadLanguages()) {
+  const languageKey = STANDING_RANK_LANGUAGE_KEYS[syndicate]?.[rankName]
+  const displayName = languageKey ? String(languages.zh[languageKey] || '').trim() : ''
+  if (!displayName) throw new Error(`${syndicate}/${rankName}: 官方声望等级缺少简中语言值`)
+  return displayName
+}
+function exchangeRequirements(location, languages = loadLanguages()) {
   const match = String(location || '').match(/^(.+?)(?:\s*\([^)]+\))?,\s*(.+)$/);
   if (!match) return { type: 'none' };
   const definition = STANDING_EXCHANGES[match[1]];
   const rank = definition?.ranks?.[match[2]];
-  return definition && rank != null ? { type: 'standing', npcId: definition.npcId, locationId: definition.locationId, rank, rankName: match[2] } : { type: 'none' };
+  return definition && rank != null ? { type: 'standing', npcId: definition.npcId, locationId: definition.locationId, rank, rankName: officialRankName(match[1], match[2], languages) } : { type: 'none' };
 }
 function supplementRequirements(sourceCanonical) {
   let match = String(sourceCanonical || '').match(/^Hunhow at Pontis Tower \((\d+) Emerald Talent \+ (\d+) Crimson Talent\)$/);
@@ -130,7 +144,7 @@ function supplementRequirements(sourceCanonical) {
   return { type: 'none' };
 }
 
-function structuredAcquisition(item) {
+function structuredAcquisition(item, languages = loadLanguages()) {
   if (ARCANE_SOURCE_OVERRIDES[item.uniqueName]) return ARCANE_SOURCE_OVERRIDES[item.uniqueName].map(method => ({ ...method, provenance: { source: 'de-official-drop-tables', officialUniqueName: item.uniqueName, note: '官方掉落表与任务类型结构覆盖上游第三方 location 字符串。' } }));
   const methods = [];
   for (const drop of item.drops || []) {
@@ -139,7 +153,7 @@ function structuredAcquisition(item) {
     if (Number(drop.chance) === 1 && isExchangeLocation(location)) {
       methods.push({
         type: 'vendor-or-syndicate-exchange', sourceEntityId: sourceId(location), sourceCanonical: location, availability: 'guaranteed-when-requirements-met',
-        quantity: 1, rarity: drop.rarity || null, requirements: exchangeRequirements(location),
+        quantity: 1, rarity: drop.rarity || null, requirements: exchangeRequirements(location, languages),
         provenance: { source: 'warframe-items', input: 'Arcanes.json', officialUniqueName: item.uniqueName, rawChance: 1,
           note: '上游 chance=1 表示满足声望/商店条件后可确定兑换，不是 100% 随机掉落。' }
       });
@@ -189,10 +203,10 @@ function buildSupplementEntry(item, previous, languages = loadLanguages()) {
   return { id: `knowledge.acquisition.arcane.${hashName(item.officialUniqueName)}`, kind: 'knowledge', module: 'acquisition', title: displayName, subject: { canonical: item.canonical, displayName, category: 'arcane', officialUniqueName: item.officialUniqueName }, officialUniqueName: item.officialUniqueName, arcaneType: item.arcaneType, equipmentClass: item.equipmentClass, rarity: item.rarity, maxRank: item.maxRank, levelStats, tradable: true, prerequisites: [], methodRefs: [], arcaneAcquisition: { generated, manual }, acquisitionStatus: methods.length ? 'complete' : 'partial', summary: `${item.canonical} 的官方 Wiki 补充身份；官方简中名称和效果暂未进入 Public Export。`, sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g,'_')}`, label: 'Official Warframe Wiki' }, ...(item.source.patchNotesUrl ? [{ url: item.source.patchNotesUrl, label: 'Warframe official patch notes' }] : [])], gameVersion: `Wiki revision ${item.source.wiki.revisionId}`, updatedAt: previous?.updatedAt || new Date().toISOString().slice(0,10), reviewStatus: 'approved', reviewedBy: Array.isArray(previous?.reviewedBy) ? previous.reviewedBy : [], tags: ['acquisition','arcane',item.category,'official-wiki-supplement'], generator: { name: 'sync-arcanes', version: 2 } }
 }
 
-function buildEntry(item, previous) {
+function buildEntry(item, previous, languages = loadLanguages()) {
   const localized = I18N[item.uniqueName]?.zh || {};
   const category = categoryFor(item);
-  const methods = structuredAcquisition(item);
+  const methods = structuredAcquisition(item, languages);
   const status = category === 'legacy' ? 'review-required' : methods.length ? 'structured' : 'review-required';
   const manualPrevious = previous?.arcaneAcquisition?.manual || {};
   const manual = {
@@ -234,7 +248,7 @@ function buildPlan(generatedAt = new Date().toISOString()) {
   const real = raw.filter(item => !isBasePlaceholder(item));
   const supplements = fs.existsSync(SUPPLEMENTS_PATH) ? JSON.parse(fs.readFileSync(SUPPLEMENTS_PATH, 'utf8')).entries || [] : [];
   const languages = loadLanguages();
-  const entries = [...real.map(item => buildEntry(item, previous.get(item.uniqueName))), ...supplements.map(item => buildSupplementEntry(item, previous.get(item.officialUniqueName), languages))].sort((a, b) => a.officialUniqueName.localeCompare(b.officialUniqueName));
+  const entries = [...real.map(item => buildEntry(item, previous.get(item.uniqueName), languages)), ...supplements.map(item => buildSupplementEntry(item, previous.get(item.officialUniqueName), languages))].sort((a, b) => a.officialUniqueName.localeCompare(b.officialUniqueName));
   const routes = entries.map(entry => {
     const category = entry.arcaneAcquisition.generated.classification.category;
     return { officialUniqueName: entry.officialUniqueName, canonical: entry.subject.canonical, displayName: entry.subject.displayName,
@@ -274,4 +288,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run(); } catch (error) { console.error(error.stack || error); process.exit(1); } }
-module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, STANDING_EXCHANGES, isBasePlaceholder, categoryFor, exchangeRequirements, supplementRequirements, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };
+module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };

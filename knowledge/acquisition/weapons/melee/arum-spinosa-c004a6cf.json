@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.arum-spinosa-c004a6cf",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Arum Spinosa",
+  "subject": {
+    "canonical": "Arum Spinosa",
+    "displayName": "疆南星刺",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfWarfan/InfWarfanWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.25,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 297,
+          "range": 1.7
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "疆南星刺",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/InfWarFanBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanGuard",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanRivet",
+          "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemACutItem",
+          "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemBCutItem"
+        ],
+        "variables": {
+          "productName": "疆南星刺"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/InfWarFanBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/InfWarFanBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/InfWarFanBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Infested/Melee/InfWarfan/InfWarfanWeapon",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanGuard",
+          "canonical": "InfWarFanGuard",
+          "displayName": "InfWarFanGuard",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanRivet",
+          "canonical": "InfWarFanRivet",
+          "displayName": "InfWarFanRivet",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemACutItem",
+          "canonical": "DeimosEidolonGemACutItem",
+          "displayName": "DeimosEidolonGemACutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemBCutItem",
+          "canonical": "DeimosEidolonGemBCutItem",
+          "displayName": "DeimosEidolonGemBCutItem",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/InfWarFanBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "疆南星刺的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

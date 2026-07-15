@@ -8,7 +8,10 @@ const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
 const { renderGameText } = require('./game-text');
-const { normalizeRequirements, renderRequirements } = require('./acquisition-protocol');
+const { normalizeRequirements, renderRequirements, renderAcquisition } = require('./acquisition-protocol');
+const { structuredMethods: compileStructuredMethods, routesToMethods } = require('./acquisition-core');
+const { createCraftingGraph, renderCrafting } = require('./weapon-crafting');
+const { parseWeaponCraftingCommand } = require('./weapon-command');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -39,10 +42,15 @@ function createKnowledgeCore(options = {}) {
   const officialMods = data.officialCatalog?.mods || [];
   const officialItems = data.officialItems?.items || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
+  const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName]
+    .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
+  const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
+  const arcaneNameCandidates = (data.arcanes || []).flatMap(arcane => [arcane.subject?.canonical, arcane.subject?.displayName, ...(arcane.arcaneAcquisition?.manual?.aliases || [])]
+    .filter(Boolean).map(alias => ({ alias, canonical: arcane.subject.canonical, category: 'arcane', priority: 30 })));
   const officialNameCandidates = [
     ...officialMods.flatMap(mod => [mod.canonical, mod.displayName].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'official' }))),
-    ...(data.arcanes || []).flatMap(arcane => [arcane.subject?.canonical, arcane.subject?.displayName, ...(arcane.arcaneAcquisition?.manual?.aliases || [])]
-      .filter(Boolean).map(alias => ({ alias, canonical: arcane.subject.canonical, category: 'arcane' })))
+    ...arcaneNameCandidates,
+    ...weaponNameCandidates
   ];
   const baseResolveName = createResolver(data.aliases);
   const resolveName = (query, resolveOptions = {}) => {
@@ -138,7 +146,39 @@ function createKnowledgeCore(options = {}) {
     const matches = (data.arcanes || []).filter(entry => [entry.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName, ...(entry.arcaneAcquisition?.manual?.aliases || [])].some(value => normalizeArcaneName(value) === q));
     return matches.sort((a, b) => Number(Boolean(a.arcaneAcquisition?.generated?.identity?.excludedFromCodex)) - Number(Boolean(b.arcaneAcquisition?.generated?.identity?.excludedFromCodex)) || String(a.officialUniqueName).localeCompare(String(b.officialUniqueName)))[0] || null;
   };
+  const resolveArcane = (query, resolveOptions = {}) => {
+    const raw = String(query || '').trim();
+    const name = raw.replace(/^赋能(?:[\s·・‧•:：_\-/]*)/i, '').trim();
+    if (!name) return null;
+    const exact = getArcane(raw) || getArcane(name);
+    if (exact) return { alias: exact.subject.displayName, canonical: exact.subject.canonical, category: 'arcane', match: 'exact', score: 300 };
+    return resolveName(name, {
+      minScore: 50,
+      minLead: 5,
+      ...resolveOptions,
+      categories: ['arcane'],
+      candidates: arcaneNameCandidates
+    });
+  };
+  const getWeapon = query => {
+    const q = normalize(query);
+    if (!q) return null;
+    return (data.weapons || []).find(entry => [entry.subject?.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName].some(value => normalize(value) === q)) || null;
+  };
+  const getWeaponGap = query => {
+    const q = normalize(query);
+    return (data.officialWeapons?.languageOnlyWeapons || []).find(item => [item.canonical, item.displayName, item.nameLanguageKey].some(value => normalize(value) === q)) || null;
+  };
+  const resolveWeapon = (query, resolveOptions = {}) => {
+    const exact = getWeapon(query);
+    if (exact) return { alias: exact.subject.displayName, canonical: exact.subject.canonical, category: 'weapon', match: 'exact', score: 300 };
+    return resolveName(query, { minScore: 50, minLead: 5, ...resolveOptions, categories: ['weapon'], candidates: weaponNameCandidates });
+  };
   const resolveItem = query => {
+    const weapon = getWeapon(query);
+    if (weapon) return { kind: 'weapon', item: weapon, recipeVariant: null };
+    const weaponGap = getWeaponGap(query);
+    if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
     const arcane = getArcane(query);
     if (arcane) return { kind: 'arcane', item: arcane, recipeVariant: null };
     const officialItem = getOfficialItem(query);
@@ -453,6 +493,14 @@ function createKnowledgeCore(options = {}) {
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
     if (!raw) return null;
+    const weaponGap = getWeaponGap(raw);
+    if (weaponGap) return { query: raw, resolution: { canonical: weaponGap.canonical, exact: true }, entry: null, description: `${weaponGap.displayName}已在 DE 官方简体中文语言数据中出现，但当前 ExportWeapons 尚未提供完整 uniqueName、属性、倾向和来源结构，因此保持待审，禁止猜造获取路径。`, categories: [], methods: [], sourceOptions: [], structuredMethods: [], weaponGap, alternatives: [] };
+    const weaponEntry = getWeapon(raw);
+    if (weaponEntry) {
+      const structuredMethods = routesToMethods(weaponEntry.acquisition?.routes || [], data).filter(method => method.reviewStatus !== 'review-required' || method.category !== 'unresolved');
+      const description = renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName }) || `${weaponEntry.subject.displayName}的官方身份已收录，但获取路径仍需官方结构数据补齐。`;
+      return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions: [], structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
+    }
     const arcaneEntry = getArcane(raw);
     if (arcaneEntry) {
       const generated = arcaneEntry.arcaneAcquisition?.generated || {};
@@ -498,7 +546,7 @@ function createKnowledgeCore(options = {}) {
     if (resourceResult) return {
       query: raw, resolution: { canonical: resourceResult.entry.subject.canonical, exact: true }, entry: resourceResult.entry,
       description: resourceResult.text, resourceRoute: { text: resourceResult.routeText, tips: resourceResult.tips, source: 'resource-method' },
-      categories: [], methods: [], sourceOptions: [], structuredMethods: [], alternatives: []
+      categories: [], methods: [], sourceOptions: [], structuredMethods: resourceResult.structuredMethods, alternatives: []
     };
     // 战甲规范名已经由命令层完成解析时必须精确锁定；通用别名解析可能把
     // "Wukong Prime" 之类的名称再次降级为普通 "Wukong"。
@@ -518,17 +566,17 @@ function createKnowledgeCore(options = {}) {
     if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
       throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
     }
-    const structuredMethods = [
-      ...mergeStructuredMethods(entry).map(enrichModMethod).filter(method => method.type !== 'unresolved-source').map(method => {
-        const methodRequirements = normalizeRequirements(method.requirements);
-        return { ...method, requirements: methodRequirements, requirementLines: renderRequirements(methodRequirements, data) };
-      }),
-      ...structuredGameplayMethods(entry)
-    ];
+    const frameStructuredMethods = isFrame && frameRoute ? compileStructuredMethods([
+      { type: 'route', scope: 'components', category: entry.frameAcquisition?.generated?.routing?.componentCategory || entry.subject?.categoryRefs?.[0], variables: { text: frameRoute.componentLine || frameRoute.lines?.[0] || '' }, requirements: entry.frameAcquisition?.generated?.routing?.requirements || { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } },
+      ...(frameRoute.blueprintLine ? [{ type: 'route', scope: 'blueprint', category: entry.frameAcquisition?.generated?.routing?.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } }] : [])
+    ], data) : [];
+    const structuredMethods = compileStructuredMethods([
+      ...mergeStructuredMethods(entry).map(enrichModMethod).filter(method => method.type !== 'unresolved-source'),
+      ...structuredGameplayMethods(entry),
+      ...frameStructuredMethods
+    ], data);
     const defaultDescription = frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry);
-    const structuredDescription = structuredMethods.flatMap(method => method.requirementLines || []).length
-      ? `${entry.subject?.displayName || entry.title}获取方式：\n${structuredMethods.flatMap(method => method.requirementLines || []).join('\n')}${structuredMethods.some(method => method.prerequisite === 'steel-path') ? '\n需要已解锁钢铁之路' : ''}`
-      : null;
+    const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title });
     return {
       query: raw,
       resolution,
@@ -578,6 +626,8 @@ function createKnowledgeCore(options = {}) {
     parseAcquisitionCommand,
     parseGameplayCommand,
     parseCategoryCommand,
+    parseWeaponCraftingCommand: text => parseWeaponCraftingCommand(text, data.weapons || []),
+    renderWeaponCraftingCommand: text => { const parsed = parseWeaponCraftingCommand(text, data.weapons || []); return parsed ? parsed.items.map(({ entry }) => renderCrafting(entry, weaponCraftingGraph)).join('\n\n') : null; },
     searchFacts,
     searchKnowledge,
     searchAcquisition,
@@ -591,9 +641,15 @@ function createKnowledgeCore(options = {}) {
     getResourceAcquisition: resourceAcquisition.getResourceAcquisition,
     listResources: resourceAcquisition.listResources,
     resolveItem,
+    getWeapon,
+    getWeaponGap,
+    resolveWeapon,
+    getWeaponCrafting: query => { const entry = getWeapon(query); return entry ? { entry, text: renderCrafting(entry, weaponCraftingGraph), recipes: weaponCraftingGraph.recipesFor(entry.subject.officialUniqueName), craftTo: weaponCraftingGraph.craftTo(entry.subject.officialUniqueName) } : null; },
+    weaponCraftingGraph,
     searchOfficialItems,
     getOfficialItem,
     getArcane,
+    resolveArcane,
     getItemAcquisition,
     getOfficialMod,
     getModTips,
@@ -621,6 +677,7 @@ function createKnowledgeCore(options = {}) {
     getMissionType: data.missionTypes.get,
     searchMissionTypes: data.missionTypes.search,
     renderGameText,
+    renderStructuredMethod: require('./acquisition-protocol').renderStructuredMethod,
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,

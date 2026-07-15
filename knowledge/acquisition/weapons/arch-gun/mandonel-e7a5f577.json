@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.mandonel-e7a5f577",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Mandonel",
+  "subject": {
+    "canonical": "Mandonel",
+    "displayName": "辐光弩炮",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/TnConcreteArchgun/TnConcreteArchgunWeapon",
+    "categoryRefs": [
+      "weapon.arch-gun"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.arch-gun"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "arch-gun",
+    "omegaAttenuation": 1.1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "CHARGE",
+          "projectileSpeed": null,
+          "totalDamage": 90,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "辐光弩炮",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunStock",
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagRare"
+        ],
+        "variables": {
+          "productName": "辐光弩炮"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/TnConcreteArchgun/TnConcreteArchgunWeapon",
+      "outputQuantity": 1,
+      "credits": 45000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunBarrel",
+          "canonical": "TnConcreteArchgunBarrel",
+          "displayName": "TnConcreteArchgunBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunReceiver",
+          "canonical": "TnConcreteArchgunReceiver",
+          "displayName": "TnConcreteArchgunReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunStock",
+          "canonical": "TnConcreteArchgunStock",
+          "displayName": "TnConcreteArchgunStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagRare",
+          "canonical": "Echo Voca",
+          "displayName": "回响音魂",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabDogTagRareName",
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "辐光弩炮的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

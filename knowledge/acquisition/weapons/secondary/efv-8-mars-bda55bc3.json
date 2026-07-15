@@ -1,0 +1,141 @@
+{
+  "id": "knowledge.acquisition.weapon.efv-8-mars-bda55bc3",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "EFV-8 Mars",
+  "subject": {
+    "canonical": "EFV-8 Mars",
+    "displayName": "艾弗旺-8 火星",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Lasria/LasGooPistol/LasGooPistolPlayerWeapon",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1.05,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 75,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "艾弗旺-8 火星",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooPistolPlayerWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooPistolPlayerWeaponBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooPistolPlayerWeaponReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooPistolPlayerWeaponStock"
+        ],
+        "variables": {
+          "productName": "艾弗旺-8 火星"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooPistolPlayerWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooPistolPlayerWeaponBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/LasGooPistolPlayerWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Lasria/LasGooPistol/LasGooPistolPlayerWeapon",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooPistolPlayerWeaponBarrel",
+          "canonical": "LasGooPistolPlayerWeaponBarrel",
+          "displayName": "LasGooPistolPlayerWeaponBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooPistolPlayerWeaponReceiver",
+          "canonical": "LasGooPistolPlayerWeaponReceiver",
+          "displayName": "LasGooPistolPlayerWeaponReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooPistolPlayerWeaponStock",
+          "canonical": "LasGooPistolPlayerWeaponStock",
+          "displayName": "LasGooPistolPlayerWeaponStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasGooPistolPlayerWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "艾弗旺-8 火星的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

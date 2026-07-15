@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.phenmor-a24d5385",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Phenmor",
+  "subject": {
+    "canonical": "Phenmor",
+    "displayName": "凤殁",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Zariman/LongGuns/SemiAutoRifle/ZarimanSemiAutoRifle",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.6,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 140,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "凤殁",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanSemiAutoRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/Zariman/Resources/VoidAngelItem",
+          "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanDogTagBounty",
+          "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB"
+        ],
+        "variables": {
+          "productName": "凤殁"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanSemiAutoRifleBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanSemiAutoRifleBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanSemiAutoRifleBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Zariman/LongGuns/SemiAutoRifle/ZarimanSemiAutoRifle",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidAngelItem",
+          "canonical": "Voidplume Pinion",
+          "displayName": "虚空羽翎",
+          "languageKey": "/Lotus/Language/Zariman/VoidAngelItemName",
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanDogTagBounty",
+          "canonical": "Voidplume Quill",
+          "displayName": "虚空刺翎",
+          "languageKey": "/Lotus/Language/Zariman/ZarimanDogTagBountyName",
+          "localizationStatus": "official-zh",
+          "quantity": 20
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "AlloyPlate",
+          "displayName": "AlloyPlate",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 6000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+          "canonical": "Entrati Lanthorn",
+          "displayName": "英择谛灯笼",
+          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemBName",
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanSemiAutoRifleBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "凤殁的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

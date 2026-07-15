@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.ekhein-abeaf39f",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Ekhein",
+  "subject": {
+    "canonical": "Ekhein",
+    "displayName": "映声战锤",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Thanotech/EntSphereHammer/EntSphereHammer",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.2,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 340,
+          "range": 2.8
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "映声战锤",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/EntSphereHammerBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemA",
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemB",
+          "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagCommon",
+          "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB"
+        ],
+        "variables": {
+          "productName": "映声战锤"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/EntSphereHammerBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/EntSphereHammerBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/EntSphereHammerBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Thanotech/EntSphereHammer/EntSphereHammer",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemA",
+          "canonical": "Entrati Obols",
+          "displayName": "英择谛银币",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabMiscItemAName",
+          "localizationStatus": "official-zh",
+          "quantity": 2400
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemB",
+          "canonical": "Necracoil",
+          "displayName": "殁世线圈",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabMiscItemBName",
+          "localizationStatus": "official-zh",
+          "quantity": 75
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabDogTagCommon",
+          "canonical": "Shrill Voca",
+          "displayName": "尖锐音魂",
+          "languageKey": "/Lotus/Language/Entrati/EntratiLabDogTagCommonName",
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+          "canonical": "Entrati Lanthorn",
+          "displayName": "英择谛灯笼",
+          "languageKey": "/Lotus/Language/Zariman/ZarimanMiscItemBName",
+          "localizationStatus": "official-zh",
+          "quantity": 3
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/EntSphereHammerBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "映声战锤的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

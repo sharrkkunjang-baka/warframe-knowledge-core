@@ -36,6 +36,9 @@ const resourceRoot = path.join(knowledgeRoot, 'acquisition', 'resource');
 const resourceIndexPath = path.join(resourceRoot, 'categories.json');
 const resourceIndex = fs.existsSync(resourceIndexPath) ? JSON.parse(fs.readFileSync(resourceIndexPath, 'utf8')) : null;
 const resourceMethods = fs.existsSync(path.join(resourceRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(resourceRoot, 'method')).filter(item => item.kind === 'resource-acquisition-method') : [];
+const weaponRoot = path.join(knowledgeRoot, 'acquisition', 'weapons');
+const weaponIndexPath = path.join(weaponRoot, 'categories.json');
+const weaponIndex = fs.existsSync(weaponIndexPath) ? JSON.parse(fs.readFileSync(weaponIndexPath, 'utf8')) : null;
 const modMethods = require('../src/loader').readObjectDirectory(path.join(knowledgeRoot, 'acquisition', 'mod', 'method')).filter(item => item.kind === 'mod-acquisition-method');
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
@@ -131,6 +134,12 @@ for (const item of resourceIndex?.resources || []) {
   if (!fs.existsSync(path.join(resourceRoot, item.file))) errors.push(`${item.canonical}: 资源文件不存在 ${item.file}`);
 }
 
+if (!weaponIndex || weaponIndex.count !== weaponIndex.weapons?.length) errors.push('weapons/categories.json: count 与武器数量不一致');
+for (const item of weaponIndex?.weapons || []) {
+  const file = path.join(weaponRoot, ...String(item.file || '').split('/'));
+  if (!fs.existsSync(file)) errors.push(`${item.canonical}: 武器文件不存在 ${item.file}`);
+}
+
 for (const entry of entries) {
   for (const key of required) if (!(key in entry)) errors.push(`${entry.id || entry.title || '<unknown>'}: 缺少 ${key}`);
   if (!/^[a-z0-9][a-z0-9._-]+$/.test(entry.id || '')) errors.push(`${entry.id}: id 格式错误`);
@@ -155,6 +164,19 @@ for (const entry of entries) {
     if (entry.subject?.category && !baseCategoryIds.has(entry.subject.category)) errors.push(`${entry.id}: 基础分类无效 ${entry.subject.category}`);
     if (entry.subject?.categoryRefs !== undefined && (!Array.isArray(entry.subject.categoryRefs) || new Set(entry.subject.categoryRefs).size !== entry.subject.categoryRefs.length)) errors.push(`${entry.id}: subject.categoryRefs 必须是唯一数组`);
     const officialUniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
+    if (entry.subject?.category === 'weapon') {
+      if (!entry.acquisition || !Array.isArray(entry.acquisition.routes)) errors.push(`${entry.id}: 武器缺少统一 acquisition.routes`);
+      if (!Number.isFinite(entry.weaponIdentity?.omegaAttenuation) && entry.status === 'complete') errors.push(`${entry.id}: complete 武器缺少官方 omegaAttenuation`);
+      for (const route of entry.acquisition?.routes || []) {
+        if (!['item','blueprint','components','component'].includes(route.scope)) errors.push(`${entry.id}: route.scope 无效 ${route.scope}`);
+        if (!route.requirements || !['none','standing','currency','quest','item'].includes(route.requirements.type)) errors.push(`${entry.id}: route 未使用统一 requirements`);
+        if (!Array.isArray(route.partRefs) || !Array.isArray(route.methods)) errors.push(`${entry.id}: route.partRefs/methods 必须为数组`);
+      }
+      for (const recipe of entry.recipes || []) {
+        if (!recipe.id || !recipe.resultUniqueName || !Array.isArray(recipe.ingredients) || !recipe.provenance?.source) errors.push(`${entry.id}: recipe 结构或来源不完整`);
+        if (recipe.ingredients.some(item => !item.uniqueName || !(item.quantity > 0))) errors.push(`${entry.id}: recipe ingredient 必须使用 uniqueName 与正数量`);
+      }
+    }
     if (entry.subject?.category === 'frame' && entry.id?.startsWith('knowledge.acquisition.warframe.')) {
       if (!entry.frameAcquisition?.generated || !entry.frameAcquisition?.manual) errors.push(`${entry.id}: 战甲必须分离 frameAcquisition.generated/manual`);
       if (entry.subject?.categoryRefs?.length !== 1) errors.push(`${entry.id}: 战甲必须且只能有一个获取分类`);

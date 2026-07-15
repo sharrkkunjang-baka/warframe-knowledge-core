@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.vinquibus-51734ff1",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Vinquibus",
+  "subject": {
+    "canonical": "Vinquibus",
+    "displayName": "制胜者",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleWeapon",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.6,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 400,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "制胜者",
+          "recipeId": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBlade",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusStock"
+        ],
+        "variables": {
+          "productName": "制胜者"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleBlueprint"
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleWeapon",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBlade",
+          "canonical": "VinquibusBlade",
+          "displayName": "VinquibusBlade",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusBarrel",
+          "canonical": "VinquibusBarrel",
+          "displayName": "VinquibusBarrel",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusReceiver",
+          "canonical": "VinquibusReceiver",
+          "displayName": "VinquibusReceiver",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/VinquibusStock",
+          "canonical": "VinquibusStock",
+          "displayName": "VinquibusStock",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetRifleBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "制胜者的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

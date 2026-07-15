@@ -1,0 +1,150 @@
+{
+  "id": "knowledge.acquisition.weapon.shedu-d2d1c0c3",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Shedu",
+  "subject": {
+    "canonical": "Shedu",
+    "displayName": "舍杜",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Sentients/Shedu/SheduHeavyWeapon",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": 0.75,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "AUTO",
+          "projectileSpeed": null,
+          "totalDamage": 158,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-recipe-blueprint",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "舍杜",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponChassis",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponHandle",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponReceiver"
+        ],
+        "variables": {
+          "productName": "舍杜"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Sentients/Shedu/SheduHeavyWeapon",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponBarrel",
+          "canonical": "Shedu Barrel",
+          "displayName": "舍杜 枪管",
+          "languageKey": "/Lotus/Language/CraftingComponents/SheduHeavyWeaponBarrelName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponChassis",
+          "canonical": "Shedu Chassis",
+          "displayName": "舍杜 机体",
+          "languageKey": "/Lotus/Language/CraftingComponents/SheduHeavyWeaponChassisName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponHandle",
+          "canonical": "Shedu Handle",
+          "displayName": "舍杜 握柄",
+          "languageKey": "/Lotus/Language/CraftingComponents/SheduHeavyWeaponHandleName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/SheduHeavyWeaponReceiver",
+          "canonical": "Shedu Receiver",
+          "displayName": "舍杜 枪机",
+          "languageKey": "/Lotus/Language/CraftingComponents/SheduHeavyWeaponReceiverName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "舍杜的官方武器身份、获取和制造数据。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-15",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required"
+}

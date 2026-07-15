@@ -36,6 +36,22 @@ test('Shotgun Vendetta accepts the common full category alias', () => {
   assert.ok(result.structuredMethods.length > 0);
 });
 
+test('刷赋能简称沿用统一字面与拼音加权解析并限定赋能类别', () => {
+  const resolved = core.resolveArcane('赋能升腾');
+  assert.equal(resolved.canonical, 'Molt Augmented');
+  assert.equal(resolved.category, 'arcane');
+  const augmented = core.getAcquisition(resolved.canonical);
+  assert.equal(augmented.entry.subject.displayName, '蜕化·升腾');
+  const exchange = augmented.structuredMethods.find(method => method.type === 'vendor-or-syndicate-exchange');
+  assert.equal(exchange.sourceDisplayName, '坚守者（卡瓦莱罗），大天使');
+  assert.deepEqual(exchange.requirementLines, ['在扎里曼号找卡瓦莱罗 5级（大天使）声望兑换']);
+  assert.doesNotMatch(`${exchange.sourceDisplayName}\n${exchange.requirementLines.join('\n')}`, /Cavalero|Angel/);
+
+  const exact = core.resolveArcane('赋能·充沛');
+  assert.equal(exact.canonical, 'Arcane Energize');
+  assert.equal(exact.match, 'exact');
+});
+
 test('syndicate chance=1 is represented as exchange, never a 100% drop', () => {
   const [method] = structuredAcquisition({
     uniqueName: '/Test/Arcane',
@@ -78,6 +94,11 @@ test('全部发布赋能都有官方中文满级效果和实体化来源', () =>
       assert.ok(result.structuredMethods.length > 0, entry.subject.canonical);
       assert.ok(result.structuredMethods.every(method => method.type === 'crafting' || (method.sourceEntityId && method.sourceDisplayName) || (method.locationId && method.locationDisplayName && method.missionTypeId && method.missionTypeDisplayName)), entry.subject.canonical);
       assert.ok(result.structuredMethods.every(method => method.requirements && Array.isArray(method.requirementLines)), `${entry.subject.canonical} 缺少方法级统一 requirements`);
+      for (const method of result.structuredMethods.filter(item => item.requirements?.npcId)) {
+        const npc = core.npcs.get(method.requirements.npcId);
+        assert.ok(npc?.displayName, `${entry.subject.canonical} 的 ${method.requirements.npcId} 缺少官方中文 NPC 名`);
+        assert.doesNotMatch(method.requirements.rankName || '', /[A-Za-z]/, `${entry.subject.canonical} 声望等级泄漏英文`);
+      }
     }
   }
 });
@@ -113,6 +134,15 @@ test('赋能坚定与战甲共用 requirements 协议显示双水晶兑换', () 
   assert.match(text, /贝里克水晶碎片/);
   assert.match(text, /拉尼娅水晶碎片/);
   assert.match(text, /资源数量加成无效/);
+});
+
+test('多货币的相同任务奖励规则合并为一个依赖段落', () => {
+  const result = core.getAcquisition('赋能雕塑');
+  const exchange = result.structuredMethods.find(method => method.requirements.type === 'currency');
+  const lines = exchange.requirementLines;
+  assert.equal(lines.filter(line => /普通难度 12-16 个/.test(line)).length, 1);
+  assert.match(lines.join('\n'), /翠绿天赋和猩红天赋（各需要10个）/);
+  assert.match(lines.join('\n'), /翠绿天赋完成赤毒女巫号获得；猩红天赋完成火山石天使号获得/);
 });
 
 test('充沛使用官方奥影任务类型，不把第三方 Erato Skirmish 字符串当来源', () => {
