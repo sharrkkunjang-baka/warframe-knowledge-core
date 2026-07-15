@@ -58,3 +58,32 @@ test('rank copy rule is cumulative for rank 3', () => {
   const definition = core.arcaneMethods.find(method => method.category === 'authoritative');
   assert.equal(definition.rankCopyRule.examples['3'], 10);
 });
+
+test('赋能狂怒排除 Codex 隐藏旧对象并显示官方中文满级效果', () => {
+  const result = core.getAcquisition('赋能·狂怒');
+  assert.match(result.entry.officialUniqueName, /GolemArcaneMeleeDamageOnCrit$/);
+  assert.match(result.description, /类型：战甲赋能/);
+  assert.match(result.description, /满级效果/);
+  assert.match(result.description, /60% 几率在近战武器上附加 \+180% 近战伤害/);
+  assert.doesNotMatch(result.description, /Pistols|On Critical Hit|Melee Damage/);
+});
+
+test('全部发布赋能都有官方中文满级效果和实体化来源', () => {
+  for (const entry of core.arcanes) {
+    const result = core.getAcquisition(entry.officialUniqueName);
+    assert.ok(result, entry.officialUniqueName);
+    assert.match(result.description, /类型：/);
+    assert.match(result.description, /满级效果：/);
+    if (result.arcane.availability === 'available') {
+      assert.ok(result.structuredMethods.length > 0, entry.subject.canonical);
+      assert.ok(result.structuredMethods.every(method => method.type === 'crafting' || (method.sourceEntityId && method.sourceDisplayName)), entry.subject.canonical);
+    }
+  }
+});
+
+test('双衍王境和夜灵来源使用注册变量显示', () => {
+  const result = core.getAcquisition('赋能·狂怒');
+  assert.ok(result.structuredMethods.some(method => /普通无尽回廊第 1 阶段奖励/.test(method.sourceDisplayName)));
+  assert.ok(result.structuredMethods.some(method => /夜灵水力使/.test(method.sourceDisplayName)));
+  assert.doesNotMatch(result.structuredMethods.map(method => method.sourceDisplayName).join('\n'), /Duviri|Eidolon Hydrolyst/);
+});

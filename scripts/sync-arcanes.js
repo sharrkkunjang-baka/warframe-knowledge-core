@@ -11,6 +11,7 @@ const ARCANE_ROOT = path.join(ROOT, 'knowledge', 'acquisition', 'arcane');
 const CATALOG_PATH = path.join(ARCANE_ROOT, 'catalog.json');
 const I18N = require(path.join(DATA_ROOT, 'i18n.json'));
 const PACKAGE = require(path.join(ITEMS_ROOT, 'package.json'));
+const { sourceId } = require('../src/arcane-source');
 const CATEGORIES = Object.freeze(['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'legacy']);
 const PROTECTED_DIRECTORIES = Object.freeze(['method']);
 const TYPE_CATEGORY = Object.freeze({
@@ -27,7 +28,7 @@ function serialize(value) { return `${JSON.stringify(value, null, 2)}\n`; }
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'arcane'; }
 function hashName(uniqueName) { return crypto.createHash('sha256').update(uniqueName).digest('hex').slice(0, 8); }
 function fileName(item) { return `${slug(item.name)}-${hashName(item.uniqueName)}.json`; }
-function isBasePlaceholder(item) { return item.name === 'Arcane'; }
+function isBasePlaceholder(item) { return item.name === 'Arcane' || Boolean(item.excludeFromCodex); }
 function hasOfficialSource(item) { return Boolean(item.drops?.length || item.components?.length); }
 function categoryFor(item) { return hasOfficialSource(item) ? (TYPE_CATEGORY[item.type] || 'legacy') : 'legacy'; }
 function isExchangeLocation(location) { return /(?:The Holdfasts|Ostron|Operational Supply|The Quills|Vox Solaris|Solaris United)(?:\s*\(|,)/i.test(location); }
@@ -39,7 +40,7 @@ function structuredAcquisition(item) {
     if (!location) continue;
     if (Number(drop.chance) === 1 && isExchangeLocation(location)) {
       methods.push({
-        type: 'vendor-or-syndicate-exchange', sourceCanonical: location, availability: 'guaranteed-when-requirements-met',
+        type: 'vendor-or-syndicate-exchange', sourceEntityId: sourceId(location), sourceCanonical: location, availability: 'guaranteed-when-requirements-met',
         quantity: 1, rarity: drop.rarity || null,
         provenance: { source: 'warframe-items', input: 'Arcanes.json', officialUniqueName: item.uniqueName, rawChance: 1,
           note: '上游 chance=1 表示满足声望/商店条件后可确定兑换，不是 100% 随机掉落。' }
@@ -47,7 +48,7 @@ function structuredAcquisition(item) {
     } else {
       const probability = Number.isFinite(Number(drop.chance)) ? Number(drop.chance) : null;
       methods.push({
-        type: 'reward-or-drop', sourceCanonical: location, probability, chancePercent: probability === null ? null : probability * 100,
+        type: 'reward-or-drop', sourceEntityId: sourceId(location), sourceCanonical: location, probability, chancePercent: probability === null ? null : probability * 100,
         quantity: 1, rarity: drop.rarity || null,
         provenance: { source: 'warframe-items', input: 'Arcanes.json', officialUniqueName: item.uniqueName }
       });
@@ -97,7 +98,7 @@ function buildEntry(item, previous) {
     identity: { officialUniqueName: item.uniqueName, canonical: item.name, displayName: localized.name || item.name,
       localizationStatus: localized.name && localized.name !== item.name ? 'official-zh' : 'fallback-en' },
     classification: { category, arcaneType: item.type, equipmentClass: CATEGORY_EQUIPMENT[category] },
-    stats: { rarity: item.rarity || null, maxRank: Math.max(0, (item.levelStats?.length || 1) - 1), levelStats: item.levelStats || [] },
+    stats: { rarity: item.rarity || null, maxRank: Math.max(0, (item.levelStats?.length || 1) - 1), levelStats: localized.levelStats || item.levelStats || [], localizationStatus: localized.levelStats ? 'official-zh' : 'fallback-en' },
     acquisition: { status, methods }, tradable: Boolean(item.tradable), sourceFile: 'Arcanes.json',
     ...(previous?.arcaneAcquisition?.generated?.wiki ? { wiki: previous.arcaneAcquisition.generated.wiki } : {})
   };
@@ -106,7 +107,7 @@ function buildEntry(item, previous) {
     title: localized.name || item.name,
     subject: { canonical: item.name, displayName: localized.name || item.name, category: 'arcane', officialUniqueName: item.uniqueName },
     officialUniqueName: item.uniqueName, arcaneType: item.type, equipmentClass: CATEGORY_EQUIPMENT[category], rarity: item.rarity || null,
-    maxRank: generated.stats.maxRank, levelStats: item.levelStats || [], tradable: Boolean(item.tradable), prerequisites: [], methodRefs: [],
+    maxRank: generated.stats.maxRank, levelStats: generated.stats.levelStats, tradable: Boolean(item.tradable), prerequisites: [], methodRefs: [],
     arcaneAcquisition: { generated, manual }, acquisitionStatus: status === 'structured' ? 'complete' : 'partial',
     summary: `${localized.name || item.name}的官方赋能身份与结构化获取来源。`,
     sources: [{ url: 'https://github.com/WFCD/warframe-items', label: 'warframe-items / Warframe Public Export' }],

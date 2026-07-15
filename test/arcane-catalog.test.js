@@ -11,10 +11,10 @@ const core = createKnowledgeCore({ approvedOnly: false });
 test('官方赋能目录排除基类并按 officialUniqueName 唯一索引', () => {
   const catalog = core.arcaneCatalog;
   assert.equal(catalog.counts.input, 172);
-  assert.equal(catalog.counts.placeholdersExcluded, 16);
-  assert.equal(catalog.counts.arcanes, 156);
+  assert.equal(catalog.counts.placeholdersExcluded, 17);
+  assert.equal(catalog.counts.arcanes, 155);
   assert.equal(catalog.counts.reviewRequired, 7);
-  assert.equal(new Set(catalog.arcanes.map(item => item.officialUniqueName)).size, 156);
+  assert.equal(new Set(catalog.arcanes.map(item => item.officialUniqueName)).size, 155);
   assert.deepEqual(catalog.categories.map(item => item.id), ['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'legacy']);
   assert.ok(catalog.categories.every(item => item.mutuallyExclusive));
   for (const route of catalog.arcanes) {

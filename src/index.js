@@ -133,7 +133,8 @@ function createKnowledgeCore(options = {}) {
   const getArcane = query => {
     const q = normalizeArcaneName(query);
     if (!q) return null;
-    return (data.arcanes || []).find(entry => [entry.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName, ...(entry.arcaneAcquisition?.manual?.aliases || [])].some(value => normalizeArcaneName(value) === q)) || null;
+    const matches = (data.arcanes || []).filter(entry => [entry.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName, ...(entry.arcaneAcquisition?.manual?.aliases || [])].some(value => normalizeArcaneName(value) === q));
+    return matches.sort((a, b) => Number(Boolean(a.arcaneAcquisition?.generated?.identity?.excludedFromCodex)) - Number(Boolean(b.arcaneAcquisition?.generated?.identity?.excludedFromCodex)) || String(a.officialUniqueName).localeCompare(String(b.officialUniqueName)))[0] || null;
   };
   const resolveItem = query => {
     const arcane = getArcane(query);
@@ -208,14 +209,14 @@ function createKnowledgeCore(options = {}) {
   const modMethodDefinitions = new Map((data.modMethods || []).map(method => [method.category, method]));
   const arcaneMethodDefinition = (data.arcaneMethods || []).find(method => method.category === 'authoritative') || null;
   const arcaneRequiredCopies = maxRank => ((Number(maxRank) + 1) * (Number(maxRank) + 2)) / 2;
-  const arcaneMethodIdentity = method => JSON.stringify({ type: method.type, sourceCanonical: method.sourceCanonical, probability: method.probability, quantity: method.quantity, outputQuantity: method.outputQuantity });
+  const arcaneMethodIdentity = method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, probability: method.probability, quantity: method.quantity, outputQuantity: method.outputQuantity });
   const mergeArcaneMethods = entry => {
     const manual = entry?.arcaneAcquisition?.manual?.methods || [];
     const official = entry?.arcaneAcquisition?.generated?.acquisition?.methods || [];
-    const wiki = entry?.arcaneAcquisition?.generated?.wiki?.methods || [];
+    // Wiki 表格保留为 evidence 供审计；未经过实体变量审核的 draft method 不直接发布给用户。
     const methods = [];
     const seen = new Set();
-    for (const method of [...manual, ...official, ...wiki]) {
+    for (const method of [...manual.filter(item => item.reviewStatus === 'approved'), ...official]) {
       const key = arcaneMethodIdentity(method);
       if (!seen.has(key)) { seen.add(key); methods.push(method); }
     }
@@ -226,14 +227,17 @@ function createKnowledgeCore(options = {}) {
     const category = generated.classification?.category || 'legacy';
     const maxRank = Number(entry.maxRank ?? generated.stats?.maxRank ?? 0);
     const label = arcaneMethodDefinition?.categoryLabels?.[category] || category;
-    const header = renderTemplate(arcaneMethodDefinition?.headerTemplate || '【{displayName}】\n分类：{categoryLabel}\n最高等级：{maxRank}（满级共需 {requiredCopies} 个）', {
+    const header = renderTemplate(arcaneMethodDefinition?.headerTemplate || '【{displayName}】\n类型：{categoryLabel}\n最高等级：{maxRank}（满级共需 {requiredCopies} 个）', {
       displayName: entry.subject?.displayName || entry.title,
       categoryLabel: label,
       maxRank,
       requiredCopies: arcaneRequiredCopies(maxRank)
     });
-    if (category === 'legacy' || generated.acquisition?.status === 'review-required') return `${header}\n\n${arcaneMethodDefinition?.legacyDescription || '当前不可获取，等待人工审核。'}`;
-    return header;
+    const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
+    const effectLines = [...new Set(topStats.flatMap(stat => String(stat).split(/\\n|\n/)).map(line => line.trim()).filter(Boolean))];
+    const effect = effectLines.length ? `满级效果：\n${effectLines.map(line => `- ${line}`).join('\n')}` : '满级效果：官方中文数据暂缺，等待审核';
+    if (category === 'legacy' || generated.acquisition?.status === 'review-required') return `${header}\n\n${effect}\n\n${arcaneMethodDefinition?.legacyDescription || '当前不可获取，等待人工审核。'}`;
+    return `${header}\n\n${effect}`;
   };
   const generatedAcquisitionMethods = entry => entry?.modAcquisition?.generated?.wiki?.methods || [];
   const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
@@ -400,7 +404,10 @@ function createKnowledgeCore(options = {}) {
         categories: [{ id: category, displayName: arcaneMethodDefinition?.categoryLabels?.[category] || category }],
         methods: [],
         sourceOptions: [],
-        structuredMethods,
+        structuredMethods: structuredMethods.map(method => {
+          const entity = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;
+          return entity ? { ...method, sourceDisplayName: displayEntityName(entity), sourceKind: entity.kind } : method;
+        }),
         wikiEvidence,
         arcane: { category, maxRank, requiredCopies: arcaneRequiredCopies(maxRank), availability: category === 'legacy' ? 'unavailable-review-required' : 'available' },
         alternatives: []
@@ -448,7 +455,7 @@ function createKnowledgeCore(options = {}) {
   const resolveEntityVariables = query => {
     const sources = [
       ['npc', data.npcs], ['location', data.locations], ['faction', data.factions],
-      ['quest', data.quests], ['currency', data.currencies], ['enemy', data.enemies], ['mission-type', data.missionTypes]
+      ['quest', data.quests], ['currency', data.currencies], ['enemy', data.enemies], ['mission-type', data.missionTypes], ['arcane-source', data.arcaneSources]
     ];
     const seen = new Set();
     return sources.flatMap(([type, registry]) => registry.search(query).slice(0, 8).map(entry => ({

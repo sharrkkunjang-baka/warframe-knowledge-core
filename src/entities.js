@@ -51,6 +51,7 @@ function loadEntityRegistries(root = path.join(__dirname, '..')) {
     factions: load('factions'),
     enemies: load('enemies'),
     missionTypes: load('mission-types'),
+    arcaneSources: load('arcane-sources'),
     npcs: load('npc')
   });
 }
