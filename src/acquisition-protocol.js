@@ -143,12 +143,13 @@ function joinPartNames(partNames) {
   return `${names[0]}、${names.slice(1).map(name => name.slice(prefix.length)).join('、')}`
 }
 
-function mergeAlternativeSources(methods) {
+function mergeAlternativeSources(methods, options = {}) {
   const groups = new Map(), passthrough = []
   for (const method of methods || []) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type)) { passthrough.push(method); continue }
     const variables = method.variables || {}
-    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', method.missionTypeDisplayName || '', method.rotation || '', method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null])
+    const probabilityKey = options.showProbabilities === false ? [] : [method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null]
+    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', method.missionTypeDisplayName || '', method.rotation || '', ...probabilityKey])
     const group = groups.get(key) || []
     group.push(method); groups.set(key, group)
   }
@@ -156,7 +157,7 @@ function mergeAlternativeSources(methods) {
   for (const group of groups.values()) {
     if (group.length === 1) { merged.push(group[0]); continue }
     const names = [...new Set(group.map(method => method.sourceDisplayName || method.locationDisplayName).filter(Boolean))]
-    if (names.length !== group.length) { merged.push(...group); continue }
+    if (!names.length) { merged.push(...group); continue }
     merged.push({ ...group[0], sourceDisplayName: names.join('、'), sourceCanonical: group.map(method => method.sourceCanonical).filter(Boolean).join(' | '), mergedSourceCount: group.length })
   }
   return [...merged, ...passthrough]
@@ -176,14 +177,15 @@ function applyDisplaySummaries(methods) {
 }
 
 function renderAcquisition(methods, options = {}) {
-  const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods))
+  const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods), options)
   const sourceGroups = new Map()
   for (const method of renderMethods) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type) || method.scope !== 'component') continue
     const variables = method.variables || {}
     const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
     if (!source) continue
-    const key = JSON.stringify([method.type, source, method.missionTypeDisplayName || '', method.rotation || '', method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null])
+    const probabilityKey = options.showProbabilities === false ? [] : [method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null]
+    const key = JSON.stringify([method.type, source, method.missionTypeDisplayName || '', method.rotation || '', ...probabilityKey])
     const group = sourceGroups.get(key) || { methods: [], partNames: [] }
     group.methods.push(method)
     if (variables.partName) group.partNames.push(variables.partName)

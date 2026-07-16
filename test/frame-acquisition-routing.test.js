@@ -41,6 +41,14 @@ test('Prime 战甲不使用预编译历史遗物路由', () => {
   assert.equal(frameAcquisition.renderRoutedAcquisition('Wukong Prime'), null)
 })
 
+test('牛甲精确定位 Rhino 且单字牛不截断未知复合词', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  assert.equal(frameAcquisition.resolveWarframe('牛甲').name, 'Rhino');
+  assert.equal(frameAcquisition.resolveWarframeMention('刷 牛甲').frame.name, 'Rhino');
+  assert.equal(core.getAcquisition('牛甲').entry.subject.canonical, 'Rhino');
+  assert.equal(frameAcquisition.resolveWarframeMention('刷 牛头怪'), null);
+});
+
 test('刷磁妹走商城总图与刺杀模板', () => {
   const routed = frameAcquisition.renderRoutedAcquisition('磁妹')
   assert.deepEqual(routed.lines, ['商城购买总图', '火卫一刺杀 海军陆战队中士 刷取部件'])

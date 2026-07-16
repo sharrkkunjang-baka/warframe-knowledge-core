@@ -47,7 +47,6 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
     "prime": {
@@ -61,18 +60,44 @@
             "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
           ],
           "sourceCanonical": "Mars/Tyana Pass (Defense)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
+          "sourceDisplayName": "火星/Tyana Pass（Defense）",
+          "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.tyana-pass-solnode450",
           "missionTypeId": "mission-type.defense",
           "chance": 0.1,
           "sourceDropChance": null,
           "conditionalChance": null,
           "rotation": "A",
+          "stage": null,
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade"
+          ],
+          "sourceCanonical": "Mars/Tyana Pass (Defense)",
+          "sourceDisplayName": "火星/Tyana Pass（Defense）",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.tyana-pass-solnode450",
+          "missionTypeId": "mission-type.defense",
+          "chance": 0.08,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": "B",
+          "stage": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
@@ -85,18 +110,19 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle"
           ],
           "sourceCanonical": "Mars/Tyana Pass (Defense)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
+          "sourceDisplayName": "火星/Tyana Pass（Defense）",
+          "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.tyana-pass-solnode450",
           "missionTypeId": "mission-type.defense",
           "chance": 0.08,
           "sourceDropChance": null,
           "conditionalChance": null,
           "rotation": "B",
+          "stage": null,
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
@@ -109,18 +135,19 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver"
           ],
           "sourceCanonical": "Mars/Tyana Pass (Defense)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
+          "sourceDisplayName": "火星/Tyana Pass（Defense）",
+          "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.tyana-pass-solnode450",
           "missionTypeId": "mission-type.defense",
           "chance": 0.08,
           "sourceDropChance": null,
           "conditionalChance": null,
           "rotation": "B",
+          "stage": null,
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
@@ -150,40 +177,67 @@
               "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
             ],
             "sourceCanonical": "Mars/Tyana Pass (Defense)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
+            "sourceDisplayName": "火星/Tyana Pass（Defense）",
+            "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.tyana-pass-solnode450",
             "missionTypeId": "mission-type.defense",
             "chance": 0.1,
             "sourceDropChance": null,
             "conditionalChance": null,
             "rotation": "A",
+            "stage": null,
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade"
         ],
         "variables": {
-          "partName": "GunScytheBlade"
+          "partName": "闪劫 枪管"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade"
+            ],
+            "sourceCanonical": "Mars/Tyana Pass (Defense)",
+            "sourceDisplayName": "火星/Tyana Pass（Defense）",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.tyana-pass-solnode450",
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.08,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "stage": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -205,25 +259,26 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle"
             ],
             "sourceCanonical": "Mars/Tyana Pass (Defense)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
+            "sourceDisplayName": "火星/Tyana Pass（Defense）",
+            "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.tyana-pass-solnode450",
             "missionTypeId": "mission-type.defense",
             "chance": 0.08,
             "sourceDropChance": null,
             "conditionalChance": null,
             "rotation": "B",
+            "stage": null,
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -245,25 +300,26 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver"
             ],
             "sourceCanonical": "Mars/Tyana Pass (Defense)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
+            "sourceDisplayName": "火星/Tyana Pass（Defense）",
+            "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.tyana-pass-solnode450",
             "missionTypeId": "mission-type.defense",
             "chance": 0.08,
             "sourceDropChance": null,
             "conditionalChance": null,
             "rotation": "B",
+            "stage": null,
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -297,7 +353,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -315,10 +371,10 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade",
-          "canonical": "GunScytheBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Corufell Barrel",
+          "displayName": "闪劫 枪管",
+          "languageKey": "/Lotus/Language/LastWish/GunScytheBarrelName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -371,29 +427,31 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

@@ -79,6 +79,13 @@ function createKnowledgeCore(options = {}) {
     if (!match) return null;
     return { intent: 'acquisition', query: match[1].trim() };
   };
+  const resolveAcquisitionCommand = text => {
+    const parsed = parseAcquisitionCommand(text);
+    if (!parsed) return null;
+    const arcaneIntent = /^赋能(?:[\s·・‧•:：_\-/]*)(.*)$/i.exec(parsed.query);
+    if (!arcaneIntent) return { ...parsed, domain: null, resolution: null };
+    return { ...parsed, domain: 'arcane', resolution: resolveArcane(parsed.query) };
+  };
   const parseGameplayCommand = text => {
     const raw = String(text || '').trim();
     const match = raw.match(/^\/玩法(?:\s+(.+))?$/i);
@@ -514,7 +521,7 @@ function createKnowledgeCore(options = {}) {
       const primeRelicText = prime?.kind === 'prime-relic' && prime.status !== '已入库' ? (() => { const { renderPrimePartGroups } = require('./prime-acquisition'); const componentNames = (weaponEntry.acquisition?.routes || []).filter(route => route.scope === 'component').map(route => route.variables?.partName).filter(Boolean); return `${weaponEntry.subject.displayName}当前可刷遗物：\n${renderPrimePartGroups(structuredMethods, { componentNames }).join('\n')}` })() : null;
       const acquisitionText = [primeStatusText, primeRelicText || renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName, registries: data, showProbabilities: false })].filter(Boolean).join('\n');
       const missing = (weaponEntry.acquisition?.routes || []).filter(route => route.status !== 'complete').map(route => route.scope === 'blueprint' ? '总图来源' : route.scope === 'component' ? `${route.variables?.partName || '部件'}来源` : route.scope === 'item' ? '成品来源' : route.category === 'crafting' ? '制造数据' : route.scope).filter(Boolean);
-      const gapText = missing.length ? `尚未由 DE 官方结构闭环：${[...new Set(missing)].join('、')}。` : weaponEntry.coverage?.autoComplete && !weaponEntry.coverage?.auditedComplete ? 'DE 官方结构已自动闭环，但尚未完成逐项来源审计，因此保持待审。' : '';
+      const gapText = missing.length ? `尚未由 DE 官方结构闭环：${[...new Set(missing)].join('、')}。` : '';
       const officialDescription = weaponEntry.description?.localizationStatus === 'official-zh' ? weaponEntry.description.display : '官方简体中文武器描述暂缺。';
       const description = [officialDescription, acquisitionText || `${weaponEntry.subject.displayName}的获取路径尚未由 DE 官方结构闭环。`, gapText].filter(Boolean).join('\n\n');
       return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions: [], structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
@@ -557,6 +564,13 @@ function createKnowledgeCore(options = {}) {
         arcane: { category, maxRank, requiredCopies: arcaneRequiredCopies(maxRank), availability: category === 'legacy' ? 'unavailable-review-required' : 'available' },
         alternatives: []
       };
+    }
+    const officialMod = getOfficialMod(raw);
+    if (officialMod) {
+      const effects = officialMod.maxRankEffectsZh?.filter(Boolean) || [];
+      const effectText = effects.length ? `官方效果：\n${effects.map(effect => `- ${effect}`).join('\n')}` : '官方简体中文效果暂缺。';
+      const acquisitionText = officialMod.status === 'complete' ? '获取路径已由本地知识条目闭环。' : '获取路径尚未由 DE 官方结构闭环，当前保持待审，禁止猜造来源。';
+      return { query: raw, resolution: { canonical: officialMod.canonical, exact: true }, entry: null, officialMod, description: `【${officialMod.displayName}】\n类型：${officialMod.traits?.augment ? '战甲强化 Mod' : officialMod.type}\n\n${effectText}\n\n${acquisitionText}`, categories: officialMod.officialCategoryIds || [], methods: [], sourceOptions: [], structuredMethods: [], alternatives: [] };
     }
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;
@@ -644,6 +658,7 @@ function createKnowledgeCore(options = {}) {
     resolveName,
     normalizeTerms,
     parseAcquisitionCommand,
+    resolveAcquisitionCommand,
     parseGameplayCommand,
     parseCategoryCommand,
     parseWeaponCraftingCommand: text => parseWeaponCraftingCommand(text, data.weapons || []),

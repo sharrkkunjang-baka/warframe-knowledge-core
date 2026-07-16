@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-16T03:21:23.530Z",
+  "generatedAt": "2026-07-16T04:14:41.112Z",
   "policy": {
-    "completeRequiresExplicitAudit": true,
+    "completeRequiresOfficialEvidenceClosure": true,
     "noGuessedSources": true
   },
   "counts": {
     "weapons": 618,
-    "complete": 5,
-    "reviewRequired": 613,
+    "complete": 157,
+    "reviewRequired": 461,
     "groups": {
-      "partial-official-chain": 119,
-      "source-not-in-official-index": 324,
-      "auto-closed-unreviewed": 133,
-      "official-source-needs-localization": 42
+      "partial-official-chain": 87,
+      "source-not-in-official-index": 341,
+      "official-evidence-closed": 155,
+      "official-source-needs-localization": 35
     }
   },
   "groups": {
@@ -197,8 +197,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Knux",
-        "displayName": "<ARCHWING> 克纳克斯",
+        "canonical": "Knux",
+        "displayName": "克纳克斯",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/GrnArchHand/GrnArchHandWeapon",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -269,106 +269,11 @@
         ]
       },
       {
-        "canonical": "Arum Spinosa",
-        "displayName": "疆南星刺",
-        "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfWarfan/InfWarfanWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/InfWarFanBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanGuard"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanRivet"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanGuard",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfWarFanRivet",
-              "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemACutItem",
-              "/Lotus/Types/Items/Gems/Deimos/DeimosEidolonGemBCutItem"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Boltace",
-        "displayName": "螺钉拐刃",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Tonfa/Boltonfa/Boltonfa",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Rifle/BoltoRifle",
-              "/Lotus/Weapons/Tenno/Melee/Tonfa/TonfaContestWinner/TennoTonfa",
-              "/Lotus/Types/Items/MiscItems/Gallium"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Broken War",
         "displayName": "破碎的战争之剑",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoSmallSword",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": [
           {
             "scope": "components",
@@ -782,101 +687,6 @@
         ]
       },
       {
-        "canonical": "Heliocor",
-        "displayName": "赫利俄光锤",
-        "officialUniqueName": "/Lotus/Weapons/Cephalon/Melee/Hammer/CephHammerWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/CephHammerBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Syndicates/CephalonSuda/Pistols/CSDroidArray",
-              "/Lotus/Types/Items/MiscItems/PolymerBundle",
-              "/Lotus/Types/Items/MiscItems/Rubedo",
-              "/Lotus/Types/Items/MiscItems/Morphic"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Hespar",
-        "displayName": "暮斩",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/HeavyScythe/DuviriScythe/DuviriHeavyScytheWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle",
-              "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Jat Kittag",
         "displayName": "喷射战锤",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrineerJetPoweredPolearm/GrineerJetPolearm",
@@ -939,100 +749,6 @@
               "/Lotus/Types/Items/MiscItems/Salvage",
               "/Lotus/Types/Items/MiscItems/Rubedo",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Keratinos",
-        "displayName": "卡提努之爪",
-        "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfTransformClaw/InfTransformClawsWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponBlade"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponBlade",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Lesion",
-        "displayName": "病变",
-        "officialUniqueName": "/Lotus/Weapons/Infested/Melee/TipedoStaff/InfTipedoStaff",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/InfTipedoBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Melee/Staff/MonkSpade/TnoMonkStaff",
-              "/Lotus/Types/Items/MiscItems/Plastids",
-              "/Lotus/Types/Items/MiscItems/Neurode",
-              "/Lotus/Types/Items/MiscItems/Nanospores"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -1187,41 +903,6 @@
         ]
       },
       {
-        "canonical": "Redeemer",
-        "displayName": "救赎者",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gunblade/TnoGunblade",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TennoGunbladeBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistol/RevolverPistol",
-              "/Lotus/Weapons/Tenno/Melee/DualShortSword/DualShortSword",
-              "/Lotus/Types/Items/MiscItems/ArgonCrystal"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Ripkas",
         "displayName": "锐卡斯",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrineerClaws/GrnClaws",
@@ -1248,52 +929,6 @@
               "/Lotus/Weapons/Grineer/Melee/GrineerMachetteAndCleaver/DualCleaverWeapon",
               "/Lotus/Types/Items/MiscItems/Tellurium",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Ruvox",
-        "displayName": "古声",
-        "officialUniqueName": "/Lotus/Weapons/Thanotech/EntFistIncarnon/EntFistIncarnon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -1423,41 +1058,6 @@
         ]
       },
       {
-        "canonical": "Sibear",
-        "displayName": "西伯利亚冰锤",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/IceHammer/IceHammer",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/IceHammerBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Melee/Maces/PaladinMace/PaladinMaceWeapon",
-              "/Lotus/Types/Items/MiscItems/Cryotic",
-              "/Lotus/Types/Items/MiscItems/AlloyPlate"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Silva & Aegis",
         "displayName": "席瓦 & 神盾",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/MeleeContestWinnerOne/TennoSwordShield",
@@ -1566,78 +1166,6 @@
         ]
       },
       {
-        "canonical": "Sydon",
-        "displayName": "恶龙",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnTrident/GrnTridentWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Items/Research/ChemComponent",
-              "/Lotus/Types/Items/MiscItems/Circuits",
-              "/Lotus/Types/Items/MiscItems/Salvage",
-              "/Lotus/Weapons/Tenno/Melee/Staff/GrnStaff"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Tekko",
-        "displayName": "铁钩手甲",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gauntlet/BrawlerKnuckles/BrawlerKnuckles",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Items/MiscItems/Gallium",
-              "/Lotus/Types/Items/MiscItems/Rubedo",
-              "/Lotus/Types/Items/MiscItems/PolymerBundle",
-              "/Lotus/Weapons/Tenno/Melee/Gauntlet/Gauntlet"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Thalys",
         "displayName": "大力士",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Zariman/Melee/HeavyScythe/ZarimanHeavyScythe/ZarimanHeavyScytheWeapon",
@@ -1664,41 +1192,6 @@
               "/Lotus/Types/Gameplay/EntratiLab/Resources/EntratiLabMiscItemA",
               "/Lotus/Types/Gameplay/Duviri/Resource/DuviriPlantItemE",
               "/Lotus/Types/Gameplay/Duviri/Resource/DuviriFractalItem"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Twin Basolk",
-        "displayName": "双子巴萨克",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnDualFireAxe/GrnDualFireAxe",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Melee/Axe/DualAxeWeapon",
-              "/Lotus/Weapons/Grineer/Pistols/HeatGun/GrnHeatGun",
-              "/Lotus/Types/Items/MiscItems/ControlModule"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -1770,102 +1263,6 @@
               "/Lotus/Types/Items/MiscItems/Salvage",
               "/Lotus/Types/Items/MiscItems/Plastids",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "War",
-        "displayName": "战争之剑",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoGreatSword",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoSmallSword",
-              "/Lotus/Types/Items/MiscItems/PolymerBundle",
-              "/Lotus/Types/Items/MiscItems/Rubedo",
-              "/Lotus/Types/Items/MiscItems/Alertium"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Aeolak",
-        "displayName": "风鸣",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnRifleErsatz/TnRifleErsatzWeapon",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/DuviriRifleBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriRifleStock",
-              "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -2250,90 +1647,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosUpperLimb",
               "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosGrip",
               "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeCernosString"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Cinta",
-        "displayName": "遂心",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/DaxDuviriAsymetricalBow/DaxDuviriAsymmetricalLongBowPlayerWeapon",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -2920,42 +2233,6 @@
         ]
       },
       {
-        "canonical": "Panthera",
-        "displayName": "猎豹",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/Miter/TnoMiter",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnoMiterBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Items/MiscItems/OrokinCell",
-              "/Lotus/Types/Items/MiscItems/PolymerBundle",
-              "/Lotus/Weapons/Tenno/ThrowingWeapons/TennoStars",
-              "/Lotus/Weapons/Grineer/LongGuns/GrineerSawbladeGun/SawBladeGun"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Paracyst",
         "displayName": "附肢寄生者",
         "officialUniqueName": "/Lotus/Weapons/Infested/LongGuns/QuantaFullyInfested/InfQuantaRifle",
@@ -3028,42 +2305,6 @@
         ]
       },
       {
-        "canonical": "Proboscis Cernos",
-        "displayName": "刺吸西诺斯",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/PrimeDerelictCernos/DerelictCernos",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Infested/Bow/InfCernosBow/InfCernos",
-              "/Lotus/Types/Items/MiscItems/PolymerBundle",
-              "/Lotus/Types/Items/MiscItems/Alertium",
-              "/Lotus/Types/Items/MiscItems/Nanospores"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Quanta",
         "displayName": "量子切割器",
         "officialUniqueName": "/Lotus/Weapons/Corpus/LongGuns/CrpShockRifle/CrpShockRifle",
@@ -3100,77 +2341,6 @@
         ]
       },
       {
-        "canonical": "Reconifex",
-        "displayName": "侦察者",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnBeltFedRifle/TnBeltFedRifleWeapon",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnBeltFedRifleBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnBeltFedRifleBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnBeltFedRifleReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnBeltFedRifleStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnBeltFedRifleBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnBeltFedRifleReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnBeltFedRifleStock"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Scourge Prime",
         "displayName": "祸根 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeScourge/PrimeScourgeWeapon",
@@ -3197,78 +2367,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ScourgePrimeBlade",
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ScourgePrimeHandle",
               "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Sporothrix",
-        "displayName": "孢丝感染枪",
-        "officialUniqueName": "/Lotus/Weapons/Infested/LongGuns/InfSniperRifle/InfSniperRifle",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/InfSniperRifleBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfSniperRifleBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfSniperRifleReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfSniperRifleStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfSniperRifleBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfSniperRifleReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfSniperRifleStock",
-              "/Lotus/Types/Items/Fish/Deimos/FishParts/DeimosOrokinFishCPartItem"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -3554,78 +2652,6 @@
         ]
       },
       {
-        "canonical": "Trumna",
-        "displayName": "灭杀者",
-        "officialUniqueName": "/Lotus/Weapons/Thanotech/ThanoRifle/ThanotechRifle",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Items/Deimos/SeriglassShard",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Veldt",
         "displayName": "草原猎手",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnRevolverRifle/TnRevolverRifleGun",
@@ -3652,42 +2678,6 @@
               "/Lotus/Types/Items/MiscItems/Cryotic",
               "/Lotus/Types/Items/MiscItems/Ferrite",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Zarr",
-        "displayName": "沙皇",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/LongGuns/GrnCannon/GrnCannonWeapon",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GrnCannonWeaponBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Items/MiscItems/Kuva",
-              "/Lotus/Types/Items/MiscItems/AlloyPlate",
-              "/Lotus/Types/Items/MiscItems/Salvage",
-              "/Lotus/Weapons/Grineer/LongGuns/GrineerFlakCannon/FlakCannon"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -3770,62 +2760,6 @@
         ]
       },
       {
-        "canonical": "Akbolto",
-        "displayName": "螺钉双枪",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/AkimboBolto",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/AkBoltoBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistol/CrossBow",
-              "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Akmagnus Prime",
-        "displayName": "麦格努斯双枪 Prime",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/DualMagnusPrime",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistols/PrimeMagnus/PrimeMagnusWeapon",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/AkmagnusPrimeLink"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Akstiletto",
         "displayName": "史提托双枪",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TennoUzi/TennoUzi",
@@ -3862,62 +2796,6 @@
         ]
       },
       {
-        "canonical": "Akvasto",
-        "displayName": "瓦斯托双枪",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/DualVastos",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistol/RevolverPistol",
-              "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Akvasto Prime",
-        "displayName": "瓦斯托双枪 Prime",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVasto/AkPrimeVasto/AkPrimeVastoPistol",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistols/PrimeVasto/PrimeVastoPistol",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/AkvastoPrimeLink"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Arca Scisco",
         "displayName": "弧电探知者",
         "officialUniqueName": "/Lotus/Weapons/Corpus/Pistols/SniperPistol/CrpScopeGun",
@@ -3944,53 +2822,6 @@
               "/Lotus/Types/Items/MiscItems/OxiumAlloy",
               "/Lotus/Types/Items/MiscItems/Salvage",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Athodai",
-        "displayName": "阿索代",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnJetTurbine/TnJetTurbinePistolWeapon",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/AthodaiPistolBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/AthodaiPistolReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/AthodaiPistolBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/AthodaiPistolReceiver",
-              "/Lotus/Types/Items/MiscItems/OrokinCell"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -4263,42 +3094,6 @@
         ]
       },
       {
-        "canonical": "Hystrix",
-        "displayName": "豪猪",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/QuillDartgun/QuillDartGunWeapon",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/QuillDartgunBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistol/CrossBow",
-              "/Lotus/Weapons/Grineer/GrineerPistol/GrineerLightPistol",
-              "/Lotus/Types/Items/MiscItems/Ferrite",
-              "/Lotus/Types/Items/MiscItems/ControlModule"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Kohmak",
         "displayName": "寇恩霰机枪",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Pistols/GrnKohmPistol/GrnKohmPistol",
@@ -4325,101 +3120,6 @@
               "/Lotus/Types/Items/MiscItems/Plastids",
               "/Lotus/Types/Items/MiscItems/Ferrite",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Kompressa",
-        "displayName": "卡帕压力枪",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnYareliPistol/TnYareliPistolWeapon",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver",
-              "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Kulstar",
-        "displayName": "杀星",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/Pistols/GrnTorpedoPistol/GrnTorpedoPistol",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GrnTorpedoPistolBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Grineer/GrineerPistol/GrnHeavyPistol",
-              "/Lotus/Types/Items/MiscItems/Tellurium",
-              "/Lotus/Types/Items/MiscItems/Cryotic",
-              "/Lotus/Types/Items/MiscItems/Plastids"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -4528,65 +3228,6 @@
               "/Lotus/Types/Items/MiscItems/Salvage",
               "/Lotus/Types/Items/MiscItems/AlloyPlate",
               "/Lotus/Types/Items/MiscItems/Forma"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Sepulcrum",
-        "displayName": "追击者",
-        "officialUniqueName": "/Lotus/Weapons/Thanotech/ThanoPistol/ThanotechPistol",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Items/Deimos/SeriglassShard",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -4845,135 +3486,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel",
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver",
               "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Vesper 77",
-        "displayName": "夜语者 77",
-        "officialUniqueName": "/Lotus/Weapons/Lasria/LasSilencedPistol/LasSilencedPistolWeapon",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasSilencedPistolStock"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
-        "canonical": "Zymos",
-        "displayName": "邪莫斯",
-        "officialUniqueName": "/Lotus/Weapons/Infested/Pistols/InfUzi/InfUziWeapon",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/InfUziBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfUziWeaponBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfUziWeaponReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfUziWeaponBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfUziWeaponReceiver"
             ],
             "hasMethods": true,
             "methodTypes": [
@@ -5426,8 +3938,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Agkuza",
-        "displayName": "<ARCHWING> 驯象钩刃",
+        "canonical": "Agkuza",
+        "displayName": "驯象钩刃",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchSwordHook/ArchHookSwordWeapon",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -5483,8 +3995,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Centaur",
-        "displayName": "<ARCHWING> 半人马",
+        "canonical": "Centaur",
+        "displayName": "半人马",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/Archswordandshield/ArchSwordShield",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -5540,8 +4052,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Kaszas",
-        "displayName": "<ARCHWING> 死亡使徒",
+        "canonical": "Kaszas",
+        "displayName": "死亡使徒",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchScythe/ArchScythe",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -5585,8 +4097,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Onorix",
-        "displayName": "<ARCHWING> 奥努里克斯",
+        "canonical": "Onorix",
+        "displayName": "奥努里克斯",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/Archaxe/ArchAxeWeapon",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -5630,8 +4142,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Prisma Veritux",
-        "displayName": "<ARCHWING> 棱晶·真理巨剑",
+        "canonical": "Prisma Veritux",
+        "displayName": "棱晶·真理巨剑",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/VoidTraderArchsword/VTArchSwordWeapon",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -5649,8 +4161,8 @@
         ]
       },
       {
-        "canonical": "<ARCHWING> Rathbone",
-        "displayName": "<ARCHWING> 拉斯波恩",
+        "canonical": "Rathbone",
+        "displayName": "拉斯波恩",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ArchHammer/ArchHammer",
         "equipmentType": "arch-melee",
         "status": "review-required",
@@ -6173,6 +4685,27 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/StaffBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Boltace",
+        "displayName": "螺钉拐刃",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Tonfa/Boltonfa/Boltonfa",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -6869,51 +5402,6 @@
         ]
       },
       {
-        "canonical": "Furax Wraith",
-        "displayName": "弗拉克斯·亡魂",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Fist/FuraxWraith",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/FuraxWraithBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/FuraxWraithLeftGauntlet"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/FuraxWraithRightGauntlet"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          }
-        ]
-      },
-      {
         "canonical": "Galatine",
         "displayName": "迦伦提恩",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/GreatSword/TennoGreatSword",
@@ -7101,6 +5589,27 @@
         ]
       },
       {
+        "canonical": "Heliocor",
+        "displayName": "赫利俄光锤",
+        "officialUniqueName": "/Lotus/Weapons/Cephalon/Melee/Hammer/CephHammerWeapon",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CephHammerBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Hirudo",
         "displayName": "蚂蟥",
         "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfWFAccompanyingSparring/InfestedKogake",
@@ -7206,6 +5715,51 @@
         ]
       },
       {
+        "canonical": "Keratinos",
+        "displayName": "卡提努之爪",
+        "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfTransformClaw/InfTransformClawsWeapon",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponBlade"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Kesheg",
         "displayName": "怯薛",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrineerHalberd/GrnHalberd",
@@ -7217,27 +5771,6 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Weapons/ClanTech/Chemical/GrnHalberdBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Korumm",
-        "displayName": "雷霆暴君",
-        "officialUniqueName": "/Lotus/Weapons/Archon/Melee/Trident/ArchonTridentPlayerWep",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/NewWar/ArchonTridentBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -7385,6 +5918,27 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/CorpusWhipBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Lesion",
+        "displayName": "病变",
+        "officialUniqueName": "/Lotus/Weapons/Infested/Melee/TipedoStaff/InfTipedoStaff",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/InfTipedoBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -7547,27 +6101,6 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TennoCutlassBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Nepheri",
-        "displayName": "赤炎流星",
-        "officialUniqueName": "/Lotus/Weapons/Archon/Melee/DualDaggers/ArchonDualDaggersPlayerWep",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/NewWar/ArchonDualDaggersBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -7893,27 +6426,6 @@
         ]
       },
       {
-        "canonical": "Quassus",
-        "displayName": "威震武扇",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Warfan/TnBrokenFrameWarfan/TnBrokenFrameWarfanWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnBrokenWarfanBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          }
-        ]
-      },
-      {
         "canonical": "Rakta Dark Dagger",
         "displayName": "绯红·暗黑匕首",
         "officialUniqueName": "/Lotus/Weapons/Syndicates/RedVeil/Melee/RVDarkDagger",
@@ -7924,6 +6436,27 @@
             "scope": "item",
             "category": "unresolved",
             "partRefs": [],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Redeemer",
+        "displayName": "救赎者",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gunblade/TnoGunblade",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TennoGunbladeBlueprint"
+            ],
             "hasMethods": false,
             "methodTypes": [],
             "reasons": [
@@ -8110,6 +6643,27 @@
         ]
       },
       {
+        "canonical": "Sibear",
+        "displayName": "西伯利亚冰锤",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/IceHammer/IceHammer",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/IceHammerBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Sigma & Octantis",
         "displayName": "西格玛 & 南极座",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/SundialSwordBoard/SundialBoardSword",
@@ -8175,7 +6729,7 @@
         "displayName": "影生",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/UmbraKatana/UmbraKatana",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": [
           {
             "scope": "blueprint",
@@ -8350,6 +6904,27 @@
         ]
       },
       {
+        "canonical": "Sydon",
+        "displayName": "恶龙",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnTrident/GrnTridentWeapon",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/GrnTridentWeaponBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Synoid Heliocor",
         "displayName": "枢议·赫利俄光锤",
         "officialUniqueName": "/Lotus/Weapons/Syndicates/CephalonSuda/Melee/CSHeliocor",
@@ -8380,6 +6955,27 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Tekko",
+        "displayName": "铁钩手甲",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gauntlet/BrawlerKnuckles/BrawlerKnuckles",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/BrawlerKnucklesBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -8535,6 +7131,27 @@
         ]
       },
       {
+        "canonical": "Twin Basolk",
+        "displayName": "双子巴萨克",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnDualFireAxe/GrnDualFireAxe",
+        "equipmentType": "melee",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnDualFireAxeBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Vastilok",
         "displayName": "瓦斯提枪刃",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GunBlade/GrnGunBlade/GrnGunblade",
@@ -8584,27 +7201,6 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/NewWar/SentJointedScytheBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Verdilac",
-        "displayName": "蝰首骨妖",
-        "officialUniqueName": "/Lotus/Weapons/Archon/Melee/Whip/ArchonWhipPlayerWep",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/NewWar/ArchonWhipBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -8746,27 +7342,6 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Alternox",
-        "displayName": "电幻步枪",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/GyreRifle/GyreRifleWeapon",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -8935,6 +7510,75 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/AntlerBowBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Cinta",
+        "displayName": "遂心",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/DaxDuviriAsymetricalBow/DaxDuviriAsymmetricalLongBowPlayerWeapon",
+        "equipmentType": "primary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -9983,6 +8627,27 @@
         ]
       },
       {
+        "canonical": "Panthera",
+        "displayName": "猎豹",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/Miter/TnoMiter",
+        "equipmentType": "primary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnoMiterBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Panthera Prime",
         "displayName": "猎豹 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimePanthera/PrimePanthera",
@@ -10195,6 +8860,27 @@
         ]
       },
       {
+        "canonical": "Proboscis Cernos",
+        "displayName": "刺吸西诺斯",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/PrimeDerelictCernos/DerelictCernos",
+        "equipmentType": "primary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Purgator 1",
         "displayName": "净化者 1",
         "officialUniqueName": "/Lotus/Weapons/Lasria/LasGrenadeLauncher/LasrianNoxPlayerWeapon",
@@ -10337,6 +9023,27 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Reconifex",
+        "displayName": "侦察者",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnBeltFedRifle/TnBeltFedRifleWeapon",
+        "equipmentType": "primary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnBeltFedRifleBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -10953,6 +9660,63 @@
         ]
       },
       {
+        "canonical": "Trumna",
+        "displayName": "灭杀者",
+        "officialUniqueName": "/Lotus/Weapons/Thanotech/ThanoRifle/ThanotechRifle",
+        "equipmentType": "primary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Vaykor Hek",
         "displayName": "勇气·海克",
         "officialUniqueName": "/Lotus/Weapons/Syndicates/SteelMeridian/LongGuns/SMHek",
@@ -11081,6 +9845,27 @@
         ]
       },
       {
+        "canonical": "Zarr",
+        "displayName": "沙皇",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/LongGuns/GrnCannon/GrnCannonWeapon",
+        "equipmentType": "primary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnCannonWeaponBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Zenith",
         "displayName": "天穹之顶",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/LoginPrimary/SundialRifle",
@@ -11155,6 +9940,27 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/AFurisBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Akbolto",
+        "displayName": "螺钉双枪",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/AkimboBolto",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/AkBoltoBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -11258,6 +10064,27 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/AksomatiBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Akvasto",
+        "displayName": "瓦斯托双枪",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/DualVastos",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DualVastosBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -11628,6 +10455,27 @@
         ]
       },
       {
+        "canonical": "Hystrix",
+        "displayName": "豪猪",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/QuillDartgun/QuillDartGunWeapon",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/QuillDartgunBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Knell",
         "displayName": "丧钟",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnPriestPistolScope/TnPriestPistolWeapon",
@@ -11639,6 +10487,72 @@
             "category": "unresolved",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TnPriestPistolBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Kompressa",
+        "displayName": "卡帕压力枪",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnYareliPistol/TnYareliPistolWeapon",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
+        "canonical": "Kulstar",
+        "displayName": "杀星",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/Pistols/GrnTorpedoPistol/GrnTorpedoPistol",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnTorpedoPistolBlueprint"
             ],
             "hasMethods": false,
             "methodTypes": [],
@@ -12157,6 +11071,51 @@
         ]
       },
       {
+        "canonical": "Sepulcrum",
+        "displayName": "追击者",
+        "officialUniqueName": "/Lotus/Weapons/Thanotech/ThanoPistol/ThanotechPistol",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Sicarus",
         "displayName": "暗杀者",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistol/BurstPistol",
@@ -12464,6 +11423,27 @@
         ]
       },
       {
+        "canonical": "Vesper 77",
+        "displayName": "夜语者 77",
+        "officialUniqueName": "/Lotus/Weapons/Lasria/LasSilencedPistol/LasSilencedPistolWeapon",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/LasSilencedPistolBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
+      },
+      {
         "canonical": "Viper",
         "displayName": "蝰蛇",
         "officialUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerLightPistol",
@@ -12542,15 +11522,60 @@
             ]
           }
         ]
+      },
+      {
+        "canonical": "Zymos",
+        "displayName": "邪莫斯",
+        "officialUniqueName": "/Lotus/Weapons/Infested/Pistols/InfUzi/InfUziWeapon",
+        "equipmentType": "secondary",
+        "status": "review-required",
+        "unresolved": [
+          {
+            "scope": "blueprint",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/InfUziBlueprint"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfUziWeaponBarrel"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          },
+          {
+            "scope": "component",
+            "category": "unresolved",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfUziWeaponReceiver"
+            ],
+            "hasMethods": false,
+            "methodTypes": [],
+            "reasons": [
+              "source-not-in-compiled-official-index"
+            ]
+          }
+        ]
       }
     ],
-    "auto-closed-unreviewed": [
+    "official-evidence-closed": [
       {
         "canonical": "Corvas Prime",
         "displayName": "黑鸦 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/PrimeCorvas/PrimeCorvasWeapon",
         "equipmentType": "arch-gun",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12558,7 +11583,7 @@
         "displayName": "凯旋将军",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/FoldingMachineGun/ArchMachineGun",
         "equipmentType": "arch-gun",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12566,15 +11591,15 @@
         "displayName": "翠雀 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Primary/PrimeLarkspur/PrimeLarkspurWeapon",
         "equipmentType": "arch-gun",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
-        "canonical": "<ARCHWING> Veritux",
-        "displayName": "<ARCHWING> 真理巨剑",
+        "canonical": "Veritux",
+        "displayName": "真理巨剑",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/Archsword/ArchSwordWeapon",
         "equipmentType": "arch-melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12582,7 +11607,7 @@
         "displayName": "天薙刀",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Polearms/Naginata/ShrineMaidenNaginataWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12590,7 +11615,15 @@
         "displayName": "甲龙双拳 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gauntlet/PrimeAnkyros/PrimeAnkyros",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Arum Spinosa",
+        "displayName": "疆南星刺",
+        "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfWarfan/InfWarfanWeapon",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12598,7 +11631,7 @@
         "displayName": "玻之武杖 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Staff/PrimeBo/PrimeBoWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12606,7 +11639,7 @@
         "displayName": "破损珽杖",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnQueenSceptre/GrnQueenSceptreWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12614,7 +11647,15 @@
         "displayName": "眼镜蛇 & 鹤 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/PrimeCobraAndCrane/PrimeCobraAndCraneWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Corufell",
+        "displayName": "闪劫",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ExaltedArchScythe/ExaltedAWScytheWeapon",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12622,7 +11663,7 @@
         "displayName": "技巧之剑 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PRapier/DestrezaPrime",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12630,7 +11671,7 @@
         "displayName": "双短柄战镰 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeDualKamas/PrimeDualKamas",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12638,7 +11679,7 @@
         "displayName": "凯瑞斯双刀 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeDualKeres/PrimeDualKeresWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12646,7 +11687,7 @@
         "displayName": "佐伦双斧 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Axe/PrimeZoren/PrimeZorenAxeWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12654,7 +11695,7 @@
         "displayName": "苍穹匕首",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/DualDagger/DualEtherDagger",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12662,7 +11703,7 @@
         "displayName": "狼牙 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/DualDagger/FangPrimeDagger",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12670,7 +11711,15 @@
         "displayName": "重击巨锤 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeFragor/PrimeFragor",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Furax Wraith",
+        "displayName": "弗拉克斯·亡魂",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Fist/FuraxWraith",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12678,7 +11727,7 @@
         "displayName": "加拉亚 Prime",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/Scythe/GrnDrillScythe/GrnDrillScythe",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12686,7 +11735,7 @@
         "displayName": "战刃 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Glaives/PrimeGlaive/PrimeGlaiveWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12694,7 +11743,7 @@
         "displayName": "格拉姆 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeGram/PrimeGram",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12702,7 +11751,7 @@
         "displayName": "关刀 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Polearms/PrimeGuandao/PrimeGuandaoWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12710,7 +11759,7 @@
         "displayName": "军扇 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Warfan/PrimeGunsen/PrimeGunsenWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12718,7 +11767,7 @@
         "displayName": "和谐",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Scythe/TnChoirScythe/TnChoirScythe",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12726,7 +11775,7 @@
         "displayName": "憎恨",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Scythe/StalkerScytheWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12734,7 +11783,15 @@
         "displayName": "烈焰长剑",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/HeatSword/HeatLongSword",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Hespar",
+        "displayName": "暮斩",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/HeavyScythe/DuviriScythe/DuviriHeavyScytheWeapon",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12742,7 +11799,7 @@
         "displayName": "凯洛斯特 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeKaryst/PrimeKrisDagger",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12750,7 +11807,7 @@
         "displayName": "红隼 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Glaives/PrimeKestrel/PrimeKestrel",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12758,7 +11815,7 @@
         "displayName": "科加基 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeKogake/KogakePrimeKnuckles",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12766,7 +11823,15 @@
         "displayName": "库鲁多",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/GrnSparring/GrnSpiderSparring/GrnSpiderSparring",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Korumm",
+        "displayName": "雷霆暴君",
+        "officialUniqueName": "/Lotus/Weapons/Archon/Melee/Trident/ArchonTridentPlayerWep",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12774,7 +11839,7 @@
         "displayName": "皇家拐刃 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Tonfa/TonfaContestWinnerPrime/TonfaContestWinnerPrimeWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12782,7 +11847,7 @@
         "displayName": "咀嚼金杖 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeMasseter/PrimeMasseter",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12790,7 +11855,15 @@
         "displayName": "海波斯库拉对剑 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeNamiSkyla/PrimeNamiSkyla",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Nepheri",
+        "displayName": "赤炎流星",
+        "officialUniqueName": "/Lotus/Weapons/Archon/Melee/DualDaggers/ArchonDualDaggersPlayerWep",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12798,7 +11871,7 @@
         "displayName": "侍刃 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeKatana/PrimeNikana",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12806,7 +11879,7 @@
         "displayName": "降灵追猎者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeNinkondi/PrimeNikondi",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12814,7 +11887,7 @@
         "displayName": "翁 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeOkina/PrimeOkina",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12822,7 +11895,7 @@
         "displayName": "欧特鲁斯 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Polearms/PrimePolearmWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12830,7 +11903,7 @@
         "displayName": "鲮鲤剑 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimePangolinSword/PrimePangolinSword",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12838,7 +11911,7 @@
         "displayName": "心智之殁",
         "officialUniqueName": "/Lotus/Weapons/Orokin/BallasSword/BallasSwordWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12846,7 +11919,7 @@
         "displayName": "病囊飞刃",
         "officialUniqueName": "/Lotus/Weapons/Infested/Melee/InfBoomerang/InfBoomerangWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12858,11 +11931,19 @@
         "unresolved": []
       },
       {
+        "canonical": "Quassus",
+        "displayName": "威震武扇",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Warfan/TnBrokenFrameWarfan/TnBrokenFrameWarfanWeapon",
+        "equipmentType": "melee",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
         "canonical": "Quassus Prime",
         "displayName": "威震武扇 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Warfan/PrimeQuassus/PrimeQuassusWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12870,7 +11951,7 @@
         "displayName": "收割者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Scythe/ReaperWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12878,7 +11959,7 @@
         "displayName": "救赎者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Gunblade/RedeemerPrime/RedeemerPrimeWep",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12886,7 +11967,23 @@
         "displayName": "电匕怪杰",
         "officialUniqueName": "/Lotus/Weapons/Operator/Melee/DrifterTazer/DrifterTazerPlayerWep",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Ruvox",
+        "displayName": "古声",
+        "officialUniqueName": "/Lotus/Weapons/Thanotech/EntFistIncarnon/EntFistIncarnon",
+        "equipmentType": "melee",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Sarofang",
+        "displayName": "沙罗之牙",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Axe/WolfFrameAxeWeapon",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12894,7 +11991,7 @@
         "displayName": "沙罗之牙 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Axe/PrimeVorunaAxeWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12902,7 +11999,7 @@
         "displayName": "席瓦 & 神盾 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeSilvaAegis/PrimeSilvaAegis",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12910,7 +12007,7 @@
         "displayName": "塔克 & 卢格",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/MortiforShieldAndSword/MortiforShieldAndSword",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12918,7 +12015,7 @@
         "displayName": "龙辰 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/PrimeTatsu/PrimeTatsuWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12926,7 +12023,7 @@
         "displayName": "铁钩手甲 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeTekko/PrimeTekko",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12934,7 +12031,7 @@
         "displayName": "提佩多 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Staff/TipedoPrime/TipedoPrimeWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12942,7 +12039,7 @@
         "displayName": "通卡拐刃",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Melee/Tonfa/GrnChainSawTonfa/GrnChainSawTonfaWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12950,7 +12047,7 @@
         "displayName": "脉纹 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Scythe/PrimeVento/PrimeVentoScythe",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12958,7 +12055,15 @@
         "displayName": "凯旋之爪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeVenKa/PrimeVenkaClaws",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Verdilac",
+        "displayName": "蝰首骨妖",
+        "officialUniqueName": "/Lotus/Weapons/Archon/Melee/Whip/ArchonWhipPlayerWep",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12966,7 +12071,15 @@
         "displayName": "创伤 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/PrimeVolnus/VolnusPrimeWeapon",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "War",
+        "displayName": "战争之剑",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoGreatSword",
+        "equipmentType": "melee",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12974,7 +12087,7 @@
         "displayName": "恶狼战锤",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Hammer/ThrowingHammer",
         "equipmentType": "melee",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -12998,7 +12111,7 @@
         "displayName": "迅发电浆炮",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/SapientPrimary/SapientPrimaryWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13006,7 +12119,15 @@
         "displayName": "迅发电浆炮 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeAcceltra/PrimeAcceltraWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Aeolak",
+        "displayName": "风鸣",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnRifleErsatz/TnRifleErsatzWeapon",
+        "equipmentType": "primary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13014,7 +12135,15 @@
         "displayName": "圣英 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeAfentis/PrimeAfentisWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Alternox",
+        "displayName": "电幻步枪",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/GyreRifle/GyreRifleWeapon",
+        "equipmentType": "primary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13022,7 +12151,7 @@
         "displayName": "电幻步枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeAlternox/PrimeAlternoxWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13030,7 +12159,7 @@
         "displayName": "碎裂者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeAstilla/AstillaPrimeWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13038,7 +12167,7 @@
         "displayName": "苍鹰 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeBaza/PrimeBazaGun",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13046,7 +12175,7 @@
         "displayName": "螺钉步枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeBoltor/PrimeBoltor",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13054,7 +12183,7 @@
         "displayName": "布莱顿 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Rifle/BratonPrime",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13062,7 +12191,7 @@
         "displayName": "布莱顿·破坏者",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Rifle/VIPRifle",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13070,7 +12199,7 @@
         "displayName": "伯斯顿 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeBurston/PrimeBurston",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13078,7 +12207,7 @@
         "displayName": "塞多 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeCedo/PrimeCedoWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13086,7 +12215,7 @@
         "displayName": "科林斯 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeCorinth/PrimeCorinth",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13094,7 +12223,7 @@
         "displayName": "恐惧",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/StalkerBow",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13102,7 +12231,7 @@
         "displayName": "晚祷",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/TnChoirBow/TnChoirBow",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13110,7 +12239,7 @@
         "displayName": "雷霆 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeFulmin/PrimeFulmin",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13118,7 +12247,7 @@
         "displayName": "蛇发女妖",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Rifle/HeavyRifle",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13134,7 +12263,7 @@
         "displayName": "晴日伞",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13142,7 +12271,7 @@
         "displayName": "伊格尼斯·亡魂",
         "officialUniqueName": "/Lotus/Weapons/ClanTech/Chemical/FlameThrowerWraith",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13150,7 +12279,15 @@
         "displayName": "拉特昂 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Rifle/LatronPrime",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Miter",
+        "displayName": "米特尔",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/LongGuns/GrineerSawbladeGun/SawBladeGun",
+        "equipmentType": "primary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13158,7 +12295,7 @@
         "displayName": "噬蛇弩 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeNagantaka/PrimeNagantakaWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13166,7 +12303,7 @@
         "displayName": "太始弓",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/Omicrus/OmicrusPlayerWep",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13174,7 +12311,15 @@
         "displayName": "帕里斯 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/PrimeHuntingBow",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Perigale",
+        "displayName": "月面狂风",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnQuadSniper/TnQuadSniper",
+        "equipmentType": "primary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13182,7 +12327,7 @@
         "displayName": "月面狂风 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimePerigale/PrimePerigaleSniper",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13190,7 +12335,7 @@
         "displayName": "幻离子 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimePhantasma/PhantasmaPrimeShotgun",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13198,7 +12343,7 @@
         "displayName": "夸塔克",
         "officialUniqueName": "/Lotus/Weapons/Grineer/LongGuns/GrnFourBarrelRifle/GrnFourBarrelRifleWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13206,7 +12351,7 @@
         "displayName": "绝路 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/RubicoPrime/RubicoPrimeWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13222,7 +12367,23 @@
         "displayName": "月神 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeSoma/PrimeSomaRifle",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Sporothrix",
+        "displayName": "孢丝感染枪",
+        "officialUniqueName": "/Lotus/Weapons/Infested/LongGuns/InfSniperRifle/InfSniperRifle",
+        "equipmentType": "primary",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Steflos",
+        "displayName": "石晶之花",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnoLotusPodShotgun/TnoLotusPodShotgun",
+        "equipmentType": "primary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13230,7 +12391,7 @@
         "displayName": "斯特拉迪瓦 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeStradavar/PrimeStradavarGun",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13238,7 +12399,7 @@
         "displayName": "斯特朗 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeStrun/PrimeStrunWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13246,7 +12407,7 @@
         "displayName": "席芭莉丝 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeSybaris/PrimeSybarisRifle",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13254,7 +12415,7 @@
         "displayName": "双簧管 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeTenora/TenoraPrimeWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13262,7 +12423,7 @@
         "displayName": "狂鲨 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeTiberon/PrimeTiberonRifle",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13270,7 +12431,7 @@
         "displayName": "猛虎 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeTigris/PrimeTigris",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13278,7 +12439,7 @@
         "displayName": "灭杀者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeTrumna/PrimeTrumnaWeapon",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13286,7 +12447,7 @@
         "displayName": "瓦德雅 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeLightningGun/PrimeLightningGun",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13294,7 +12455,7 @@
         "displayName": "守望者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/PrimeVectis/PrimeVectisRifle",
         "equipmentType": "primary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13302,7 +12463,7 @@
         "displayName": "盗贼双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAfuris/PrimeAFurisWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13310,7 +12471,7 @@
         "displayName": "阿利乌双枪",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/SapientPistol/SapientPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13318,7 +12479,7 @@
         "displayName": "阿利乌双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAkarius/PrimeAkariusWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13326,7 +12487,7 @@
         "displayName": "螺钉双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAkbolto/PrimeAkBoltoWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13334,7 +12495,7 @@
         "displayName": "野马双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/PrimeAkimboShotGun",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13342,7 +12503,7 @@
         "displayName": "觉醒双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAkjagara/AkJagaraPrime",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13350,7 +12511,15 @@
         "displayName": "雷克斯双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/AkLexPrimePistols",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Akmagnus Prime",
+        "displayName": "麦格努斯双枪 Prime",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Akimbo/DualMagnusPrime",
+        "equipmentType": "secondary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13358,7 +12527,7 @@
         "displayName": "轻灵月神双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAksomati/PrimeAksomati",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13366,7 +12535,23 @@
         "displayName": "史提托双枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAkstiletto/PrimeAkstiletto",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Akvasto Prime",
+        "displayName": "瓦斯托双枪 Prime",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVasto/AkPrimeVasto/AkPrimeVastoPistol",
+        "equipmentType": "secondary",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Athodai",
+        "displayName": "阿索代",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnJetTurbine/TnJetTurbinePistolWeapon",
+        "equipmentType": "secondary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13374,7 +12559,7 @@
         "displayName": "阿索代 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeAthodai/PrimeAthodaiPistolWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13382,7 +12567,7 @@
         "displayName": "布里斯提卡 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeBallistica/PrimeBallistica",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13390,7 +12575,7 @@
         "displayName": "布拉克",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Pistols/GrineerHandShotgun/GrineerHandCannon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13398,7 +12583,7 @@
         "displayName": "野马 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistol/BroncoPrime",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13406,7 +12591,7 @@
         "displayName": "歌颂",
         "officialUniqueName": "/Lotus/Weapons/Tenno/ThrowingWeapons/TnChoirframeKunai/TnChoirframeKunai",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13414,7 +12599,7 @@
         "displayName": "绝望",
         "officialUniqueName": "/Lotus/Weapons/Tenno/ThrowingWeapons/StalkerKunai",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13422,7 +12607,7 @@
         "displayName": "德特昂",
         "officialUniqueName": "/Lotus/Weapons/Corpus/Pistols/CorpusHandShotgun/CorpusHandCannon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13430,7 +12615,7 @@
         "displayName": "葬铭",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TnWraitheSidearm/TnWraitheSidearmWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13438,7 +12623,7 @@
         "displayName": "葬铭 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeEpitaph/PrimeEpitaphSidearmWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13446,7 +12631,7 @@
         "displayName": "悦音 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/AllNew1hSG/AllNew1hSG",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13454,7 +12639,7 @@
         "displayName": "豪猪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeHystrix/PrimeHystrixWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13462,7 +12647,7 @@
         "displayName": "丧钟 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeKnell/PrimeKnellWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13470,7 +12655,7 @@
         "displayName": "卡帕压力枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeKompressa/PrimeKompressa",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13478,7 +12663,7 @@
         "displayName": "拉托·破坏者",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistol/LatoVandal",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13486,7 +12671,7 @@
         "displayName": "雷克斯 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeLex/PrimeLex",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13494,7 +12679,7 @@
         "displayName": "麦格努斯 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeMagnus/PrimeMagnusWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13502,7 +12687,7 @@
         "displayName": "赘骨",
         "officialUniqueName": "/Lotus/Weapons/Thanotech/EntratiWristGun/EntratiWristGunWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13510,7 +12695,7 @@
         "displayName": "手鼓 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimePandero/PanderoPrimeWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13518,7 +12703,7 @@
         "displayName": "食人鱼 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimePyrana/PrimePyranaPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13526,7 +12711,7 @@
         "displayName": "暴乱-848",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/1999EntHybridPistolWeapon/1999EntHybridPistolWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13534,7 +12719,15 @@
         "displayName": "杀格 Prime",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Pistols/GrnOrokinPistol/GrnOrokinPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Seer",
+        "displayName": "预言者",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrnScopedPistolPlayer",
+        "equipmentType": "secondary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13542,7 +12735,7 @@
         "displayName": "暗杀者 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeSicarus/PrimeSicarusPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13550,7 +12743,7 @@
         "displayName": "赤风",
         "officialUniqueName": "/Lotus/Weapons/Operator/Pistols/DrifterPistol/DrifterPistolPlayerWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13558,7 +12751,7 @@
         "displayName": "光谱切割器·破坏者",
         "officialUniqueName": "/Lotus/Weapons/Corpus/Pistols/CorpusModularPistol/Vandal/CrpLaserPistolVandal",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13566,7 +12759,7 @@
         "displayName": "旋刃飞刀 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/ThrowingWeapons/PrimeLiDagger/PrimeLiDagger",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13574,7 +12767,15 @@
         "displayName": "史度巴",
         "officialUniqueName": "/Lotus/Weapons/Grineer/Pistols/GrnUzi/GrnUziWeapon",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
+        "unresolved": []
+      },
+      {
+        "canonical": "Twin Gremlins",
+        "displayName": "双子小精灵",
+        "officialUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerAkimboPistol",
+        "equipmentType": "secondary",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13582,7 +12783,7 @@
         "displayName": "瓦斯托 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVasto/PrimeVastoPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13590,7 +12791,7 @@
         "displayName": "逐电 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeVelox/PrimeVeloxPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13598,7 +12799,7 @@
         "displayName": "毒芽 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeZakti/PrimeZaktiPistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       },
       {
@@ -13606,7 +12807,7 @@
         "displayName": "席尔火枪 Prime",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/PrimeZylok/ZylokPrimePistol",
         "equipmentType": "secondary",
-        "status": "review-required",
+        "status": "complete",
         "unresolved": []
       }
     ],
@@ -13690,84 +12891,6 @@
             "reasons": [
               "source-localization-unavailable"
             ]
-          }
-        ]
-      },
-      {
-        "canonical": "Corufell",
-        "displayName": "闪劫",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ExaltedArchScythe/ExaltedAWScytheWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver",
-              "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
           }
         ]
       },
@@ -14026,67 +13149,6 @@
         ]
       },
       {
-        "canonical": "Sarofang",
-        "displayName": "沙罗之牙",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Axe/WolfFrameAxeWeapon",
-        "equipmentType": "melee",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WolfFrameAxeWeaponBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/WolfFrameAxeWeaponBlade"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/WolfFrameAxeWeaponHandle"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/WolfFrameAxeWeaponBlade",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/WolfFrameAxeWeaponHandle",
-              "/Lotus/Types/Gameplay/Zariman/Resources/EclipseVoidWraithItem"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Scindo",
         "displayName": "分裂斩斧",
         "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/Axe/AxeWeapon",
@@ -14129,56 +13191,6 @@
             "reasons": [
               "source-localization-unavailable"
             ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperStock"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
           }
         ]
       },
@@ -14275,53 +13287,45 @@
           },
           {
             "scope": "component",
-            "category": "unresolved",
+            "category": "official-drop",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/WeaponParts/CarminePentaBarrel"
             ],
-            "hasMethods": false,
-            "methodTypes": [],
+            "hasMethods": true,
+            "methodTypes": [
+              "mission-reward"
+            ],
             "reasons": [
-              "source-not-in-compiled-official-index"
+              "source-localization-unavailable"
             ]
           },
           {
             "scope": "component",
-            "category": "unresolved",
+            "category": "official-drop",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/WeaponParts/CarminePentaReceiver"
             ],
-            "hasMethods": false,
-            "methodTypes": [],
+            "hasMethods": true,
+            "methodTypes": [
+              "mission-reward"
+            ],
             "reasons": [
-              "source-not-in-compiled-official-index"
+              "source-localization-unavailable"
             ]
           },
           {
             "scope": "component",
-            "category": "unresolved",
+            "category": "official-drop",
             "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CarminePentaStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CarminePentaBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/CarminePentaReceiver",
               "/Lotus/Types/Recipes/Weapons/WeaponParts/CarminePentaStock"
             ],
             "hasMethods": true,
             "methodTypes": [
-              "recipe"
+              "mission-reward"
             ],
-            "reasons": []
+            "reasons": [
+              "source-localization-unavailable"
+            ]
           }
         ]
       },
@@ -14460,159 +13464,6 @@
         ]
       },
       {
-        "canonical": "Miter",
-        "displayName": "米特尔",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/LongGuns/GrineerSawbladeGun/SawBladeGun",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/MiterBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/MiterBarrel"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/MiterBlade"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/MiterChassis"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/MiterHandle"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Perigale",
-        "displayName": "月面狂风",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnQuadSniper/TnQuadSniper",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnQuadSniperRifleBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "unresolved",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock"
-            ],
-            "hasMethods": false,
-            "methodTypes": [],
-            "reasons": [
-              "source-not-in-compiled-official-index"
-            ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleBarrel",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleReceiver",
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnQuadSniperRifleStock",
-              "/Lotus/Types/Gameplay/Zariman/Resources/EclipseVoidWraithItem"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
-          }
-        ]
-      },
-      {
         "canonical": "Quellor",
         "displayName": "压制者",
         "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnRailjackRifle/RailjackRifleGun",
@@ -14628,71 +13479,6 @@
             "hasMethods": true,
             "methodTypes": [
               "enemy-drop"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Steflos",
-        "displayName": "石晶之花",
-        "officialUniqueName": "/Lotus/Weapons/Tenno/LongGuns/TnoLotusPodShotgun/TnoLotusPodShotgun",
-        "equipmentType": "primary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnoLotusPodShotgunBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunBarrel"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunReceiver"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnoLotusPodShotgunStock"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
             ],
             "reasons": [
               "source-localization-unavailable"
@@ -14743,19 +13529,6 @@
             "reasons": [
               "source-localization-unavailable"
             ]
-          },
-          {
-            "scope": "components",
-            "category": "crafting",
-            "partRefs": [
-              "/Lotus/Weapons/Tenno/Pistol/HandShotGun",
-              "/Lotus/Types/Items/MiscItems/OrokinCell"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "recipe"
-            ],
-            "reasons": []
           }
         ]
       },
@@ -14921,57 +13694,6 @@
         ]
       },
       {
-        "canonical": "Seer",
-        "displayName": "预言者",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrnScopedPistolPlayer",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/VorsPistolBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolBarrel"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          },
-          {
-            "scope": "component",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/VorsPistolReceiver"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          }
-        ]
-      },
-      {
         "canonical": "Sonicor",
         "displayName": "超音波冲击枪",
         "officialUniqueName": "/Lotus/Weapons/Corpus/Pistols/CrpAirPistol/CrpAirPistolArray",
@@ -15006,29 +13728,6 @@
             "category": "official-drop",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/GrineerGooGunBlueprint"
-            ],
-            "hasMethods": true,
-            "methodTypes": [
-              "mission-reward"
-            ],
-            "reasons": [
-              "source-localization-unavailable"
-            ]
-          }
-        ]
-      },
-      {
-        "canonical": "Twin Gremlins",
-        "displayName": "双子小精灵",
-        "officialUniqueName": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerAkimboPistol",
-        "equipmentType": "secondary",
-        "status": "review-required",
-        "unresolved": [
-          {
-            "scope": "blueprint",
-            "category": "official-drop",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GremlinBlueprint"
             ],
             "hasMethods": true,
             "methodTypes": [

@@ -161,7 +161,11 @@ function resolveWarframeMention(input) {
     }
     const index = raw.toLowerCase().indexOf(text.toLowerCase());
     if (index < 0) continue;
-    if (text.length === 1 && !/(?:普通|原版|战甲|怎么刷|如何刷|刷|Prime|P版)/i.test(raw)) continue;
+    if (text.length === 1) {
+      if (!/(?:普通|原版|战甲|怎么刷|如何刷|刷|Prime|P版)/i.test(raw)) continue;
+      const stripped = normalize(entityText);
+      if (stripped !== normalize(text)) continue;
+    }
     return { frame: alias.frame, matched: raw.slice(index, index + text.length), rest: `${raw.slice(0, index)} ${raw.slice(index + text.length)}`.replace(/\s+/g, ' ').trim(), match: 'mention' };
   }
   return null;

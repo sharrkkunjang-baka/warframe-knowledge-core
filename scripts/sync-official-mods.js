@@ -11,6 +11,8 @@ const root = path.join(__dirname, '..');
 const knowledgeRoot = path.join(root, 'knowledge');
 const outputPath = path.join(knowledgeRoot, 'categories', 'official.json');
 const packagePath = path.join(path.dirname(require.resolve('warframe-items')), 'package.json');
+const officialEnglishPath = path.join(root, '.cache', 'official-localization', 'languages.en.json');
+const officialChinesePath = path.join(root, '.cache', 'official-localization', 'languages.zh.json');
 
 function normalize(value) {
   return String(value || '').normalize('NFKC').trim().toLowerCase();
@@ -71,6 +73,45 @@ function hasApprovedAcquisition(entry) {
   return methods.length > 0 || methodRefs.length > 0 || entry.modAcquisition?.generated?.identity?.variant === 'prime';
 }
 
+function compileLanguageOnlyMods(rawItems) {
+  const en = JSON.parse(fs.readFileSync(officialEnglishPath, 'utf8'));
+  const zh = JSON.parse(fs.readFileSync(officialChinesePath, 'utf8'));
+  const knownNames = new Set(rawItems.map(item => normalize(item.name)));
+  const records = [];
+  for (const [nameKey, canonical] of Object.entries(en)) {
+    if (!nameKey.endsWith('AugmentName') || knownNames.has(normalize(canonical))) continue;
+    const descriptionKey = nameKey.replace(/Name$/, 'Desc');
+    const description = en[descriptionKey];
+    const displayName = zh[nameKey];
+    const descriptionZh = zh[descriptionKey];
+    if (!displayName || displayName === canonical || !descriptionZh || !/Augment:/i.test(description || '') || /^\[PH\]/i.test(canonical)) continue;
+    records.push({
+      uniqueName: `language:${nameKey}`,
+      canonical,
+      displayName,
+      localizationStatus: 'official-zh',
+      type: 'Warframe Mod',
+      category: 'Mods',
+      compatName: null,
+      rarity: null,
+      polarity: null,
+      maxRank: null,
+      maxRankEffects: [renderGameText(description)],
+      maxRankEffectsZh: [renderGameText(descriptionZh)],
+      traits: { prime: false, augment: true, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
+      modSet: null,
+      officialCategoryIds: ['type.warframe-mod', 'trait.augment'],
+      wiki: { available: false, url: null },
+      localEntryIds: [],
+      status: 'review-required',
+      reviewRequired: true,
+      evidenceStatus: 'official-language-identity-acquisition-missing',
+      provenance: { source: 'DE Languages.bin', nameKey, descriptionKey }
+    });
+  }
+  return records.sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
+}
+
 function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const packageInfo = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
   const rawItems = new Items({ category: ['Mods'], i18n: ['zh'] });
@@ -103,7 +144,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
     for (const [id, canonical] of getTraitCategories(item)) addCategory(officialCategoryMap, id, 'trait', canonical);
   }
 
-  const mods = [...items]
+  const packageMods = [...items]
     .sort((a, b) => a.uniqueName.localeCompare(b.uniqueName))
     .map(item => {
       const localized = rawItems.i18n[item.uniqueName]?.zh || {};
@@ -150,6 +191,12 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         evidenceStatus: hasCompleteEntry ? 'approved-acquisition' : localEntryIds.length ? 'identity-present-acquisition-unapproved' : 'identity-missing'
       };
     });
+  const languageOnlyMods = compileLanguageOnlyMods(rawItems);
+  for (const mod of languageOnlyMods) for (const id of mod.officialCategoryIds) {
+    if (!officialCategoryMap.has(id)) addCategory(officialCategoryMap, id, id.startsWith('type.') ? 'type' : 'trait', id === 'type.warframe-mod' ? 'Warframe Mod' : 'Augment Mods');
+    officialCategoryMap.get(id).count += 1;
+  }
+  const mods = [...packageMods, ...languageOnlyMods].sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
 
   const officialCategories = [...officialCategoryMap.values()]
     .sort((a, b) => a.id.localeCompare(b.id))
@@ -256,4 +303,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { hasApprovedAcquisition, buildOfficialCatalog, serialize };
+module.exports = { hasApprovedAcquisition, compileLanguageOnlyMods, buildOfficialCatalog, serialize };

@@ -47,7 +47,6 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
     "prime": {
@@ -69,6 +68,57 @@
           "sourceDropChance": null,
           "conditionalChance": null,
           "rotation": "B",
+          "stage": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade"
+          ],
+          "sourceCanonical": "Deimos/Armatus (Disruption)",
+          "sourceDisplayName": "火卫二/卫城区（Disruption）",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.armatus-solnode721",
+          "missionTypeId": "mission-type.disruption",
+          "chance": 0.05,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": "B",
+          "stage": null,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove"
+          ],
+          "sourceCanonical": "Deimos/Armatus (Disruption)",
+          "sourceDisplayName": "火卫二/卫城区（Disruption）",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.armatus-solnode721",
+          "missionTypeId": "mission-type.disruption",
+          "chance": 0.05,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": "B",
+          "stage": null,
           "requirements": {
             "type": "none"
           },
@@ -110,6 +160,7 @@
             "sourceDropChance": null,
             "conditionalChance": null,
             "rotation": "B",
+            "stage": null,
             "requirements": {
               "type": "none"
             },
@@ -124,33 +175,85 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade"
         ],
         "variables": {
-          "partName": "EntFistIncarnonBlade"
+          "partName": "古声 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade"
+            ],
+            "sourceCanonical": "Deimos/Armatus (Disruption)",
+            "sourceDisplayName": "火卫二/卫城区（Disruption）",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.armatus-solnode721",
+            "missionTypeId": "mission-type.disruption",
+            "chance": 0.05,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "stage": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove"
         ],
         "variables": {
-          "partName": "EntFistIncarnonGlove"
+          "partName": "古声 手套"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove"
+            ],
+            "sourceCanonical": "Deimos/Armatus (Disruption)",
+            "sourceDisplayName": "火卫二/卫城区（Disruption）",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.armatus-solnode721",
+            "missionTypeId": "mission-type.disruption",
+            "chance": 0.05,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "stage": null,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -182,7 +285,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -200,18 +303,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade",
-          "canonical": "EntFistIncarnonBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Ruvox Blade",
+          "displayName": "古声 刀刃",
+          "languageKey": "/Lotus/Language/CraftingComponents/EntFistIncarnonBlade",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove",
-          "canonical": "EntFistIncarnonGlove",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Ruvox Glove",
+          "displayName": "古声 手套",
+          "languageKey": "/Lotus/Language/CraftingComponents/EntFistIncarnonGlove",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -240,25 +343,27 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/EntFistIncarnonGlove",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

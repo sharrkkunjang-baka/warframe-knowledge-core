@@ -46,8 +46,8 @@ function build(generatedAt = new Date().toISOString()) {
   const weapons = read(WEAPONS), zh = read(LANG_ZH), en = read(LANG_EN), included = [], excluded = []
   for (const [uniqueName, weapon] of Object.entries(weapons)) {
     const boundary = classify(uniqueName, weapon)
-    const canonical = en[weapon.name] || weapon.name || uniqueName
-    const displayName = zh[weapon.name] || ''
+    const canonical = renderGameText(en[weapon.name] || weapon.name || uniqueName)
+    const displayName = renderGameText(zh[weapon.name] || '')
     const descriptionCanonical = renderGameText(en[weapon.description] || '')
     const descriptionDisplay = renderGameText(zh[weapon.description] || '')
     const identity = { uniqueName, canonical, displayName: displayName || canonical, nameLanguageKey: weapon.name || null, descriptionLanguageKey: weapon.description || null, description: { canonical: descriptionCanonical, display: descriptionDisplay, localizationStatus: descriptionDisplay ? 'official-zh' : 'official-zh-unavailable' }, localizationStatus: displayName ? 'official-zh' : 'official-zh-unavailable' }
@@ -59,7 +59,7 @@ function build(generatedAt = new Date().toISOString()) {
   })
   for (const [languageKey, supplement] of Object.entries(officialEventWeapons)) {
     if (included.some(item => item.nameLanguageKey === languageKey)) continue
-    const displayName = zh[languageKey], canonical = en[languageKey]
+    const displayName = renderGameText(zh[languageKey]), canonical = renderGameText(en[languageKey])
     if (!displayName || !canonical) continue
     const descriptionLanguageKey = languageKey.replace(/Name$/, 'Desc'), descriptionCanonical = renderGameText(en[descriptionLanguageKey] || ''), descriptionDisplay = renderGameText(zh[descriptionLanguageKey] || '')
     included.push({ uniqueName: supplement.uniqueName, canonical, displayName, nameLanguageKey: languageKey, descriptionLanguageKey, description: { canonical: descriptionCanonical, display: descriptionDisplay, localizationStatus: descriptionDisplay ? 'official-zh' : 'official-zh-unavailable' }, localizationStatus: 'official-zh', equipmentType: supplement.equipmentType, omegaAttenuation: null, disposition: null, masteryReq: null, productCategory: 'LongGuns', attackClassification: { hitscan: 'unknown', projectile: 'unknown', aoe: 'unknown', punchThrough: 'unknown', lockOn: 'review-required', tracking: 'review-required', medium: 'review-required', modes: [] }, classification: { categoryRefs: [`weapon.${supplement.equipmentType}`, 'weapon.limited-event'] }, sourceFields: { identity: 'official-event-supplement', localization: 'Languages.bin/zh', stats: 'pending-ExportWeapons' }, acquisitionSupplement: supplement.acquisition, status: 'review-required' })

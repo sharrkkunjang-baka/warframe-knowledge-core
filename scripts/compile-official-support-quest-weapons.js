@@ -5,7 +5,7 @@ const SOURCES=Object.freeze({preSecondDream:'https://support.warframe.com/hc/en-
 const RECORDS=Object.freeze([
  {weaponCanonical:'Heat Sword',questCanonical:'Once Awake',questDisplayName:'悲剧的开端',scope:'blueprint',sourceUrl:SOURCES.preSecondDream},
  {weaponCanonical:'Imperator',questCanonical:'The Archwing',questDisplayName:'曲翼',scope:'item',sourceUrl:SOURCES.preSecondDream},
- {weaponCanonical:'<ARCHWING> Veritux',questCanonical:'The Archwing',questDisplayName:'曲翼',scope:'item',sourceUrl:SOURCES.preSecondDream},
+ {weaponCanonical:'Veritux',questCanonical:'The Archwing',questDisplayName:'曲翼',scope:'item',sourceUrl:SOURCES.preSecondDream},
  {weaponCanonical:'Ether Daggers',questCanonical:'Stolen Dreams',questDisplayName:'被偷走的梦',scope:'blueprint',sourceUrl:SOURCES.preSecondDream},
  {weaponCanonical:'Broken War',questCanonical:'The Second Dream',questDisplayName:'第二场梦',scope:'item',sourceUrl:SOURCES.preSecondDream},
  {weaponCanonical:'Broken Scepter',questCanonical:'The War Within',questDisplayName:'内战',scope:'item',sourceUrl:SOURCES.postSecondDream},

@@ -21,12 +21,27 @@ function createCraftingGraph(entries = []) {
   return { identities, byResult, byIngredient, recipesFor, craftTo, tree }
 }
 
+function formatDuration(seconds) {
+  const value = Number(seconds || 0)
+  if (!Number.isFinite(value) || value <= 0) return ''
+  const units = [[86400, '天'], [3600, '小时'], [60, '分钟']]
+  let remaining = Math.round(value), text = ''
+  for (const [size, label] of units) {
+    const count = Math.floor(remaining / size)
+    if (!count) continue
+    text += `${count}${label}`
+    remaining %= size
+  }
+  if (remaining || !text) text += `${remaining}秒`
+  return text
+}
+
 function renderRecipe(recipe, identity) {
   const name = identity?.subject?.displayName || identity?.subject?.canonical || recipe.resultUniqueName
   const unresolved = recipe.ingredients.filter(item => !/^official-(?:zh|audited)$/.test(item.localizationStatus))
   if (unresolved.length) return `${name}的 DE 官方配方已收录，但有 ${unresolved.length} 项材料尚未接入官方简中身份，当前保持待审，禁止输出英文材料名。`
   const ingredients = recipe.ingredients.map(item => `${item.displayName} ×${item.quantity}`).join('、')
-  return `${name}如何合成：${ingredients || '官方配方未列出材料'}${recipe.credits ? `；制造费用 ${recipe.credits} 星币` : ''}${recipe.buildTimeSeconds ? `；耗时 ${recipe.buildTimeSeconds} 秒` : ''}`
+  return `${name}如何合成：${ingredients || '官方配方未列出材料'}${recipe.credits ? `；制造费用 ${recipe.credits} 星币` : ''}${recipe.buildTimeSeconds ? `；耗时 ${formatDuration(recipe.buildTimeSeconds)}` : ''}`
 }
 
 function renderCrafting(entry, graph) {
@@ -38,4 +53,4 @@ function renderCrafting(entry, graph) {
   return `【${entry.subject.displayName}】\n可以用于合成什么：\n${outgoingText}\n\n如何合成：\n${recipeText}`
 }
 
-module.exports = { createCraftingGraph, renderRecipe, renderCrafting }
+module.exports = { createCraftingGraph, formatDuration, renderRecipe, renderCrafting }
