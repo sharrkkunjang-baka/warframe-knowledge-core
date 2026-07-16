@@ -322,6 +322,10 @@ function createKnowledgeCore(options = {}) {
   };
   const enrichModMethod = method => {
     if (method.type === 'official-drop') return enrichOfficialDrop(method);
+    if (method.type === 'syndicate-exchange') {
+      const faction = data.factions.get(method.factionId);
+      return { ...method, factionDisplayName: faction ? displayEntityName(faction) : null };
+    }
     if (method.type === 'syndicate-exchange-group') return { ...method, factionDisplayNames: (method.factionIds || []).map(id => data.factions.get(id)).filter(Boolean).map(displayEntityName) };
     if (method.type === 'quest-reward' && method.questCanonical) {
       const quest = data.quests.get(method.questCanonical);
@@ -566,11 +570,14 @@ function createKnowledgeCore(options = {}) {
       };
     }
     const officialMod = getOfficialMod(raw);
-    if (officialMod) {
+    if (officialMod?.uniqueName?.startsWith('language:')) {
       const effects = officialMod.maxRankEffectsZh?.filter(Boolean) || [];
       const effectText = effects.length ? `官方效果：\n${effects.map(effect => `- ${effect}`).join('\n')}` : '官方简体中文效果暂缺。';
-      const acquisitionText = officialMod.status === 'complete' ? '获取路径已由本地知识条目闭环。' : '获取路径尚未由 DE 官方结构闭环，当前保持待审，禁止猜造来源。';
-      return { query: raw, resolution: { canonical: officialMod.canonical, exact: true }, entry: null, officialMod, description: `【${officialMod.displayName}】\n类型：${officialMod.traits?.augment ? '战甲强化 Mod' : officialMod.type}\n\n${effectText}\n\n${acquisitionText}`, categories: officialMod.officialCategoryIds || [], methods: [], sourceOptions: [], structuredMethods: [], alternatives: [] };
+      const structuredMethods = compileStructuredMethods((officialMod.acquisitionMethods || []).map(enrichModMethod), data);
+      const acquisitionText = structuredMethods.length
+        ? renderAcquisition(structuredMethods, { displayName: officialMod.displayName, registries: data })
+        : '获取路径尚未由 DE 官方结构闭环，当前保持待审，禁止猜造来源。';
+      return { query: raw, resolution: { canonical: officialMod.canonical, exact: true }, entry: null, officialMod, description: `【${officialMod.displayName}】\n类型：${officialMod.traits?.augment ? '战甲强化 Mod' : officialMod.type}\n\n${effectText}\n\n${acquisitionText}`, categories: officialMod.officialCategoryIds || [], methods: [], sourceOptions: [], structuredMethods, alternatives: [] };
     }
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;

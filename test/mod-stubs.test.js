@@ -55,6 +55,15 @@ test('手枪元素师显示实体化敌人及布鲁图斯扬升来源', () => {
   });
 });
 
+test('所有获取方法引用的 NPC 实体均已注册且仲裁商店保留官方名称', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const preparation = core.getAcquisition('有备而来');
+  assert.match(preparation.description, /任意中继站找仲裁阁下兑换，需要30个生息精华/);
+  assert.equal(preparation.structuredMethods[0].sourceDisplayName, '仲裁阁下');
+  assert.ok(core.getNpc('npc.arbitration-honors'));
+  assert.ok(core.getNpc('npc.koumei-shrine'));
+});
+
 test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
   for (const query of ['执刑官 延伸', 'Archon Stretch']) {
@@ -149,15 +158,34 @@ test('全部已发布 Mod 都通过统一 structuredMethods 与 requirements 协
   }
 });
 
+test('官方六大集团强化商品全量编译并显式报告未关联身份', () => {
+  const catalog = buildOfficialCatalog('2026-07-15T00:00:00.000Z');
+  assert.equal(catalog.counts.syndicateAugmentProducts, 197);
+  assert.equal(catalog.counts.syndicateAugmentOfferRows, 394);
+  assert.deepEqual(catalog.unmatchedSyndicateOffers.map(item => item.stem), ['nokkorerootaugment', 'fireskinaugment']);
+  const cases = [
+    ['刀锋迫击', ['faction.cephalon-suda', 'faction.the-perrin-sequence']],
+    ['夜枭群袭', ['faction.arbiters-of-hexis', 'faction.cephalon-suda']],
+    ['律动护卫', ['faction.new-loka', 'faction.steel-meridian']]
+  ];
+  for (const [name, factionIds] of cases) {
+    const mod = catalog.mods.find(item => item.displayName === name);
+    assert.equal(mod.status, 'complete');
+    assert.deepEqual(mod.acquisitionMethods.map(method => method.factionId), factionIds);
+    assert.doesNotMatch(mod.maxRankEffectsZh.join(''), /\|[A-Z][A-Z0-9_]*\|/);
+  }
+});
+
 test('官方目录为全部上游记录给出完整、待审或排除状态', () => {
   const catalog = buildOfficialCatalog('2026-07-15T00:00:00.000Z');
   assert.equal(catalog.counts.upstreamRecords, 1733);
-  assert.equal(catalog.counts.mods, playable.length);
+  assert.equal(catalog.counts.mods, catalog.mods.length);
+  assert.ok(catalog.counts.mods > playable.length);
   assert.equal(catalog.counts.excludedMods, excluded.length);
-  assert.equal(catalog.counts.completeMods + catalog.counts.reviewRequiredMods, playable.length);
+  assert.equal(catalog.counts.completeMods + catalog.counts.reviewRequiredMods, catalog.mods.length);
   assert.equal(catalog.mods.every(mod => ['complete', 'review-required'].includes(mod.status)), true);
   assert.equal(catalog.excludedMods.every(mod => mod.status === 'excluded-policy' && mod.exclusionReason), true);
-  assert.equal(new Set([...catalog.mods, ...catalog.excludedMods].map(mod => mod.uniqueName)).size, 1733);
+  assert.equal(new Set([...catalog.mods, ...catalog.excludedMods].map(mod => mod.uniqueName)).size, 1733 + (catalog.mods.length - playable.length));
   const pressurePoint = catalog.mods.find(mod => mod.uniqueName === '/Lotus/Upgrades/Mods/Melee/WeaponMeleeDamageMod');
   const narrowMinded = catalog.mods.find(mod => mod.canonical === 'Narrow Minded');
   assert.equal(pressurePoint.status, 'review-required');

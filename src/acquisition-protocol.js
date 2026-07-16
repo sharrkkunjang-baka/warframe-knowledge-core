@@ -115,6 +115,12 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
   if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${source ? `在${source}兑换` : '向指定 NPC 兑换'}`
+  if (method.type === 'syndicate-exchange') {
+    const faction = method.factionDisplayName || source || '指定集团'
+    const rank = Number.isInteger(method.requiredLevel) ? `达到 ${method.requiredLevel} 级后` : ''
+    const standing = Number.isFinite(method.standing) ? `花费${Number(method.standing).toLocaleString('zh-CN')}声望` : '使用声望'
+    return `${prefix}在${faction}${rank}${standing}兑换`
+  }
   if (method.type === 'quest-reward' || method.category === 'quest') return `${prefix}${method.questDisplayName ? `完成任务「${method.questDisplayName}」获得` : '完成指定任务获得'}`
   if (method.type === 'relic-reward') {
     const { localizeRelicName, relicRewardTier } = require('./prime-acquisition')

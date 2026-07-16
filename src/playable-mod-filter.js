@@ -78,7 +78,7 @@ function getExclusionReason(item, recordsByCanonical) {
   if (item?.type === 'Transmutation Mod') return 'transmutation'
   if (item?.type === 'Mod Set Mod') return 'internal-mod-set-marker'
   if (item?.name === 'Unfused Artifact') return 'unfused-artifact-internal'
-  if (/\/BrokenFrame\//i.test(uniqueName)) return 'broken-frame-internal'
+  // BrokenFrame 是 Xaku 的官方内部目录名，不能按目录整体排除；其中已包含正式发布的强化 Mod。
   if (/SP(?:Sub)?Mod/i.test(uniqueName)) return 'steel-path-internal'
   if (uniqueName === '/Lotus/Upgrades/Mods/Sentinel/Kubrow/ChargerFinisherMod') return 'removed-replaced-mod'
   if (uniqueName === '/Lotus/Upgrades/Mods/Warframe/AvatarDamageResistanceStun') return 'retrieved-unreleased-mod'

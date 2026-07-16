@@ -13,6 +13,16 @@ const outputPath = path.join(knowledgeRoot, 'categories', 'official.json');
 const packagePath = path.join(path.dirname(require.resolve('warframe-items')), 'package.json');
 const officialEnglishPath = path.join(root, '.cache', 'official-localization', 'languages.en.json');
 const officialChinesePath = path.join(root, '.cache', 'official-localization', 'languages.zh.json');
+const officialSyndicatesPath = path.join(root, 'cache', 'warframe-export-syndicates.json');
+
+const SYNDICATE_FACTION_IDS = Object.freeze({
+  ArbitersSyndicate: 'faction.arbiters-of-hexis',
+  CephalonSudaSyndicate: 'faction.cephalon-suda',
+  NewLokaSyndicate: 'faction.new-loka',
+  PerrinSyndicate: 'faction.the-perrin-sequence',
+  RedVeilSyndicate: 'faction.red-veil',
+  SteelMeridianSyndicate: 'faction.steel-meridian'
+});
 
 function normalize(value) {
   return String(value || '').normalize('NFKC').trim().toLowerCase();
@@ -73,18 +83,66 @@ function hasApprovedAcquisition(entry) {
   return methods.length > 0 || methodRefs.length > 0 || entry.modAcquisition?.generated?.identity?.variant === 'prime';
 }
 
+function augmentStem(value) {
+  return String(value || '').split('/').pop()
+    .replace(/(?:Card|Mod|Name|Desc)$/i, '')
+    .replace(/_?Ability(?=Augment)/i, '')
+    .replace(/Augment1$/i, 'Augment')
+    .toLowerCase();
+}
+
+function compileOfficialSyndicateOffers() {
+  const syndicates = JSON.parse(fs.readFileSync(officialSyndicatesPath, 'utf8'));
+  const byStem = new Map();
+  for (const [syndicateId, factionId] of Object.entries(SYNDICATE_FACTION_IDS)) {
+    const syndicate = syndicates[syndicateId];
+    if (!syndicate) throw new Error(`ExportSyndicates 缺少六大集团：${syndicateId}`);
+    for (const offer of syndicate.favours || []) {
+      if (!/\/Powersuits\/.+(?:Augment|DisablePassive).*(?:Card|Mod)$/i.test(offer.storeItem || '')) continue;
+      const stem = augmentStem(offer.storeItem);
+      const methods = byStem.get(stem) || [];
+      methods.push({
+        type: 'syndicate-exchange',
+        factionId,
+        standing: Number(offer.standingCost) || null,
+        requiredLevel: Number.isInteger(offer.requiredLevel) ? offer.requiredLevel : null,
+        requirements: { type: 'standing', factionId, amount: Number(offer.standingCost) || null, rank: Number.isInteger(offer.requiredLevel) ? offer.requiredLevel : null },
+        reviewStatus: 'approved',
+        provenance: { source: 'DE ExportSyndicates', syndicateId, storeItem: offer.storeItem }
+      });
+      byStem.set(stem, methods);
+    }
+  }
+  return byStem;
+}
+
+function safeLanguageTemplate(value) {
+  const rendered = renderGameText(value);
+  return /\|[A-Z][A-Z0-9_]*\|/.test(rendered)
+    ? '官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。'
+    : rendered;
+}
+
 function compileLanguageOnlyMods(rawItems) {
   const en = JSON.parse(fs.readFileSync(officialEnglishPath, 'utf8'));
   const zh = JSON.parse(fs.readFileSync(officialChinesePath, 'utf8'));
+  const syndicateOffers = compileOfficialSyndicateOffers();
+  const descriptionKeysByStem = new Map(Object.keys(en).filter(key => key.endsWith('Desc')).map(key => [augmentStem(key), key]));
   const knownNames = new Set(rawItems.map(item => normalize(item.name)));
   const records = [];
   for (const [nameKey, canonical] of Object.entries(en)) {
-    if (!nameKey.endsWith('AugmentName') || knownNames.has(normalize(canonical))) continue;
-    const descriptionKey = nameKey.replace(/Name$/, 'Desc');
+    if (!nameKey.endsWith('Name') || knownNames.has(normalize(canonical))) continue;
+    const offerMethods = syndicateOffers.get(augmentStem(nameKey)) || [];
+    if (!/AugmentName$/i.test(nameKey) && !offerMethods.length) continue;
+    const descriptionKey = en[nameKey.replace(/Name$/, 'Desc')]
+      ? nameKey.replace(/Name$/, 'Desc')
+      : descriptionKeysByStem.get(augmentStem(nameKey));
     const description = en[descriptionKey];
     const displayName = zh[nameKey];
     const descriptionZh = zh[descriptionKey];
     if (!displayName || displayName === canonical || !descriptionZh || !/Augment:/i.test(description || '') || /^\[PH\]/i.test(canonical)) continue;
+    const acquisitionMethods = offerMethods;
+    const acquisitionComplete = acquisitionMethods.length > 0;
     records.push({
       uniqueName: `language:${nameKey}`,
       canonical,
@@ -96,17 +154,18 @@ function compileLanguageOnlyMods(rawItems) {
       rarity: null,
       polarity: null,
       maxRank: null,
-      maxRankEffects: [renderGameText(description)],
-      maxRankEffectsZh: [renderGameText(descriptionZh)],
+      maxRankEffects: [safeLanguageTemplate(description)],
+      maxRankEffectsZh: [safeLanguageTemplate(descriptionZh)],
       traits: { prime: false, augment: true, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
       modSet: null,
       officialCategoryIds: ['type.warframe-mod', 'trait.augment'],
       wiki: { available: false, url: null },
       localEntryIds: [],
-      status: 'review-required',
-      reviewRequired: true,
-      evidenceStatus: 'official-language-identity-acquisition-missing',
-      provenance: { source: 'DE Languages.bin', nameKey, descriptionKey }
+      acquisitionMethods,
+      status: acquisitionComplete ? 'complete' : 'review-required',
+      reviewRequired: !acquisitionComplete,
+      evidenceStatus: acquisitionComplete ? 'official-syndicate-acquisition' : 'official-language-identity-acquisition-missing',
+      provenance: { source: 'DE Languages.bin + ExportSyndicates', nameKey, descriptionKey }
     });
   }
   return records.sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
@@ -192,6 +251,14 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       };
     });
   const languageOnlyMods = compileLanguageOnlyMods(rawItems);
+  const linkedSyndicateOfferStems = new Set([
+    ...items.map(item => augmentStem(item.uniqueName)),
+    ...languageOnlyMods.map(item => augmentStem(item.provenance.nameKey))
+  ]);
+  const officialSyndicateOffers = compileOfficialSyndicateOffers();
+  const unmatchedSyndicateOffers = [...officialSyndicateOffers.entries()]
+    .filter(([stem]) => !linkedSyndicateOfferStems.has(stem))
+    .map(([stem, methods]) => ({ stem, methods }));
   for (const mod of languageOnlyMods) for (const id of mod.officialCategoryIds) {
     if (!officialCategoryMap.has(id)) addCategory(officialCategoryMap, id, id.startsWith('type.') ? 'type' : 'trait', id === 'type.warframe-mod' ? 'Warframe Mod' : 'Augment Mods');
     officialCategoryMap.get(id).count += 1;
@@ -260,8 +327,12 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       reviewRequiredMods,
       coveredOfficialCategories: coveredCategories,
       missingOfficialCategories: officialCategories.length - coveredCategories,
-      missingChineseNames
+      missingChineseNames,
+      syndicateAugmentProducts: officialSyndicateOffers.size,
+      syndicateAugmentOfferRows: [...officialSyndicateOffers.values()].flat().length,
+      unmatchedSyndicateAugmentProducts: unmatchedSyndicateOffers.length
     },
+    unmatchedSyndicateOffers,
     officialCategories,
     localCategories: localCategorySnapshot,
     excludedMods,
@@ -303,4 +374,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { hasApprovedAcquisition, compileLanguageOnlyMods, buildOfficialCatalog, serialize };
+module.exports = { hasApprovedAcquisition, compileOfficialSyndicateOffers, compileLanguageOnlyMods, buildOfficialCatalog, serialize };
