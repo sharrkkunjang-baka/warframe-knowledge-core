@@ -149,6 +149,17 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.equal(reviewCore.getAcquisition('氩晶获取'), null);
 });
 
+test('官方 Mod 中文名精确命中且效果技能名不替代条目身份', () => {
+  const official = core.getOfficialMod('猛毒附加');
+  assert.equal(official.canonical, 'Venom Dose');
+  assert.equal(official.displayName, '猛毒附加');
+  assert.equal(core.resolveName('猛毒附加').canonical, 'Venom Dose');
+  const result = core.getAcquisition('猛毒附加');
+  assert.equal(result.entry.subject.canonical, 'Venom Dose');
+  assert.equal(result.entry.subject.displayName, '猛毒附加');
+  assert.match(result.entry.effectDetails.join('\n'), /毒性孢子强化/);
+});
+
 test('跑酷 Mod 泛类查询聚合成员与全部来源', () => {
   const result = core.getAcquisition('跑酷mod');
   assert.equal(result.entry, null);
