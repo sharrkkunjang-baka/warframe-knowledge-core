@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "An ancient executioners weapon, the honor of decapitation by the Scindo Prime was reserved for the Orokin's most respected enemies.",
-    "display": "（英文：SCINDO PRIME）一把古老的刑具，只有那些最受奥罗金尊重的敌人才能享有被分裂斩斧 Prime 斩首的荣耀。",
+    "display": "一把古老的刑具，只有那些最受奥罗金尊重的敌人才能享有被分裂斩斧 Prime 斩首的荣耀。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -47,7 +47,7 @@
   "acquisition": {
     "routeCategoryRefs": [
       "prime-relic",
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
@@ -66,6 +66,54 @@
           "chance": 0.11,
           "rarity": "Uncommon",
           "variables": {},
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade"
+          ],
+          "relicCanonical": "Axi S8",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.02,
+          "rarity": "Rare",
+          "variables": {
+            "partName": "分裂斩斧 Prime 刀刃"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle"
+          ],
+          "relicCanonical": "Meso N11",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.25329999999999997,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "分裂斩斧 Prime 握柄"
+          },
           "requirements": {
             "type": "none"
           },
@@ -164,33 +212,179 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade"
         ],
         "variables": {
-          "partName": "PrimeScindoBlade"
+          "partName": "分裂斩斧 Prime 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade"
+            ],
+            "relicCanonical": "Axi S1",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "分裂斩斧 Prime 刀刃"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade"
+            ],
+            "relicCanonical": "Axi S3",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "分裂斩斧 Prime 刀刃"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade"
+            ],
+            "relicCanonical": "Axi S8",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "分裂斩斧 Prime 刀刃"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle"
         ],
         "variables": {
-          "partName": "PrimeScindoHandle"
+          "partName": "分裂斩斧 Prime 握柄"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle"
+            ],
+            "relicCanonical": "Meso C1",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "分裂斩斧 Prime 握柄"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle"
+            ],
+            "relicCanonical": "Meso N11",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "分裂斩斧 Prime 握柄"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle"
+            ],
+            "relicCanonical": "Meso N6",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "分裂斩斧 Prime 握柄"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -223,7 +417,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -241,18 +435,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade",
-          "canonical": "PrimeScindoBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Scindo Prime Blade",
+          "displayName": "分裂斩斧 Prime 刀刃",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_NextPromoMeleeBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle",
-          "canonical": "PrimeScindoHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Scindo Prime Handle",
+          "displayName": "分裂斩斧 Prime 握柄",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_NextPromoMeleeHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -272,7 +466,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SCINDO PRIME）一把古老的刑具，只有那些最受奥罗金尊重的敌人才能享有被分裂斩斧 Prime 斩首的荣耀。",
+  "summary": "一把古老的刑具，只有那些最受奥罗金尊重的敌人才能享有被分裂斩斧 Prime 斩首的荣耀。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -289,25 +483,27 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeScindoHandle",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

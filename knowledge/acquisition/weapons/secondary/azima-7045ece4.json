@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "This intricate automatic pistol is able to fire its magazine which then spins in the air for a short time, firing lasers at nearby enemies.",
-    "display": "（英文：AZIMA）这把构造错综复杂的自动手枪能射出其弹匣，同时在空中旋转的弹匣短时间内会击发激光攻击附近的敌人。",
+    "display": "这把构造错综复杂的自动手枪能射出其弹匣，同时在空中旋转的弹匣短时间内会击发激光攻击附近的敌人。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,61 +46,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "daily-tribute",
+          "scope": "item",
+          "sourceDisplayName": "每日献礼里程碑",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Azima",
+            "revisionId": 2787622
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "方位角",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
+          "weaponName": "方位角"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [
-          "/Lotus/Types/Items/MiscItems/Morphic",
-          "/Lotus/Types/Items/MiscItems/Circuits",
-          "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "/Lotus/Types/Items/MiscItems/Salvage"
-        ],
-        "variables": {
-          "productName": "方位角"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint",
+            "type": "daily-tribute",
+            "scope": "item",
+            "sourceDisplayName": "每日献礼里程碑",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Azima",
+              "revisionId": 2787622
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -160,7 +156,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AZIMA）这把构造错综复杂的自动手枪能射出其弹匣，同时在空中旋转的弹匣短时间内会击发激光攻击附近的敌人。",
+  "summary": "这把构造错综复杂的自动手枪能射出其弹匣，同时在空中旋转的弹匣短时间内会击发激光攻击附近的敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +173,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

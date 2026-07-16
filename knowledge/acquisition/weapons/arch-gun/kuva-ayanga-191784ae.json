@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Sweep aside hordes of enemies with flaming fury of this powerful, automatic, grenade launching archgun.",
-    "display": "（英文：KUVA AYANGA）用这款全自动曲翼榴弹发射器的怒火来扫荡大群敌人。",
+    "display": "用这款全自动曲翼榴弹发射器的怒火来扫荡大群敌人。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Ayanga",
+            "revisionId": 2673793
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnHeavyGrenadeLauncherBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·怒雷",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnHeavyGrenadeLauncherBlueprint"
+          "weaponName": "赤毒·怒雷"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·怒雷"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnHeavyGrenadeLauncherBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnHeavyGrenadeLauncherBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnHeavyGrenadeLauncherBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnHeavyGrenadeLauncherBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Ayanga",
+              "revisionId": 2673793
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA AYANGA）用这款全自动曲翼榴弹发射器的怒火来扫荡大群敌人。",
+  "summary": "用这款全自动曲翼榴弹发射器的怒火来扫荡大群敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

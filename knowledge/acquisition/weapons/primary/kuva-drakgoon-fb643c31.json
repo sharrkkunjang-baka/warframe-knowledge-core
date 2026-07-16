@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "The Kuva Drakgoon flak cannon sends volleys of intensely hot shrapnel ricocheting around the room that do not slow down. Larger Magazine Capacity and Reload Speed. Can be fired in wide or concentrated bursts.",
-    "display": "（英文：KUVA DRAKGOON）这款改造版龙骑兵破片炮可击发出会四处弹射且不会减速的高热弹片。它拥有更大的弹匣容量和更快的装填速度。能以散射或压缩集中的方式进行射击。",
+    "display": "这款改造版龙骑兵破片炮可击发出会四处弹射且不会减速的高热弹片。它拥有更大的弹匣容量和更快的装填速度。能以散射或压缩集中的方式进行射击。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Drakgoon",
+            "revisionId": 2789972
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaDrakgoonBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·龙骑兵",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaDrakgoonBlueprint"
+          "weaponName": "赤毒·龙骑兵"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·龙骑兵"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaDrakgoonBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaDrakgoonBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaDrakgoonBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaDrakgoonBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Drakgoon",
+              "revisionId": 2789972
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA DRAKGOON）这款改造版龙骑兵破片炮可击发出会四处弹射且不会减速的高热弹片。它拥有更大的弹匣容量和更快的装填速度。能以散射或压缩集中的方式进行射击。",
+  "summary": "这款改造版龙骑兵破片炮可击发出会四处弹射且不会减速的高热弹片。它拥有更大的弹匣容量和更快的装填速度。能以散射或压缩集中的方式进行射击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

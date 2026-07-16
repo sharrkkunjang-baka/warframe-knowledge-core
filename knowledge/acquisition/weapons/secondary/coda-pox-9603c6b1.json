@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "These festering, writhing, throwable projectiles of pus and gas have been improved with a greater Magazine Size, Critical Chance, Critical Damage, Status Chance, and Damage.",
-    "display": "（英文：CODA POX）这些溃烂、扭动、可投掷的脓气投射物已得到改进，具有更高的弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
+    "display": "这些溃烂、扭动、可投掷的脓气投射物已得到改进，具有更高的弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,17 +48,40 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "活体心细胞",
+                "amount": 10
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Coda Pox",
+            "revisionId": 2790024
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "终幕·脓痘"
@@ -66,15 +89,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+            "requirements": {
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "活体心细胞",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Coda Pox",
+              "revisionId": 2790024
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CODA POX）这些溃烂、扭动、可投掷的脓气投射物已得到改进，具有更高的弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
+  "summary": "这些溃烂、扭动、可投掷的脓气投射物已得到改进，具有更高的弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -91,14 +137,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

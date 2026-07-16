@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "A crushing, killing, rocket-powered stab-hammer. Grineer, naturally.",
-    "display": "（英文：KUVA SHILDEG）一款以碾碎与杀戮为卖点的火箭动力刺锤。这显然是 Grineer 的杰作。",
+    "display": "一款以碾碎与杀戮为卖点的火箭动力刺锤。这显然是 Grineer 的杰作。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Shildeg",
+            "revisionId": 2673806
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnKuvaLichScytheBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·希尔德",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnKuvaLichScytheBlueprint"
+          "weaponName": "赤毒·希尔德"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·希尔德"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnKuvaLichScytheBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnKuvaLichScytheBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnKuvaLichScytheBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/GrnKuvaLichScytheBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Shildeg",
+              "revisionId": 2673806
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA SHILDEG）一款以碾碎与杀戮为卖点的火箭动力刺锤。这显然是 Grineer 的杰作。",
+  "summary": "一款以碾碎与杀戮为卖点的火箭动力刺锤。这显然是 Grineer 的杰作。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

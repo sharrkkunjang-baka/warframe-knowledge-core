@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "The Technocyte virus did nothing but increase the Hema’s thirst for blood. With increased Fire Rate, Magazine Size, Critical Chance, Critical Damage, Status Chance, and Damage.",
-    "display": "（英文：CODA HEMA）科技细胞病毒没有起到什么作用，只是增加了血肢的嗜血性。具有更高的射速、弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
+    "display": "科技细胞病毒没有起到什么作用，只是增加了血肢的嗜血性。具有更高的射速、弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,17 +48,40 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "活体心细胞",
+                "amount": 10
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Coda Hema",
+            "revisionId": 2789962
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "终幕·血肢"
@@ -66,15 +89,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+            "requirements": {
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "活体心细胞",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Coda Hema",
+              "revisionId": 2789962
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CODA HEMA）科技细胞病毒没有起到什么作用，只是增加了血肢的嗜血性。具有更高的射速、弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
+  "summary": "科技细胞病毒没有起到什么作用，只是增加了血肢的嗜血性。具有更高的射速、弹匣容量、暴击几率、暴击伤害、触发几率和伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -91,14 +137,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

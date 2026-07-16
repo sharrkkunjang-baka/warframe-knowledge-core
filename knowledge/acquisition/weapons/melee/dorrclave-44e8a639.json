@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "After 10 kills or assists, Dorrclave enters a spectral state that doubles weapon Follow Through and guarantees Status Effects for the next 10 attacks. In Dagath's hands, each active Status Effect heals her slightly.",
-    "display": "（英文：DORRCLAVE）在 10 次击杀或助攻后，怒斩进入光谱状态，使得武器伤害穿透系数加倍，并且接下来的 10 次攻击必定造成异常状态。如果是 Dagath 使用，每个激活的状态效果都会轻微治疗她。",
+    "display": "在 10 次击杀或助攻后，怒斩进入光谱状态，使得武器伤害穿透系数加倍，并且接下来的 10 次攻击必定造成异常状态。如果是 Dagath 使用，每个激活的状态效果都会轻微治疗她。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,117 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Dagath 的空阁",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dorrclave",
+            "revisionId": 2789874
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "component",
+          "sourceDisplayName": "Dagath 的空阁",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dorrclave",
+            "revisionId": 2789874
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade"
+          ],
+          "variables": {
+            "partName": "怒斩 刀刃"
+          }
+        },
+        {
+          "type": "dojo-research",
+          "scope": "component",
+          "sourceDisplayName": "Dagath 的空阁",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dorrclave",
+            "revisionId": 2789874
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt"
+          ],
+          "variables": {
+            "partName": "怒斩 握柄"
+          }
+        },
+        {
+          "type": "dojo-research",
+          "scope": "component",
+          "sourceDisplayName": "Dagath 的空阁",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dorrclave",
+            "revisionId": 2789874
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString"
+          ],
+          "variables": {
+            "partName": "怒斩 鞭绳"
+          }
+        },
+        {
+          "type": "dojo-research",
+          "scope": "component",
+          "sourceDisplayName": "Dagath 的空阁",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dorrclave",
+            "revisionId": 2789874
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook"
+          ],
+          "variables": {
+            "partName": "怒斩 弯钩"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
         ],
@@ -68,12 +167,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Dagath 的空阁",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dorrclave",
+              "revisionId": 2789874
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade"
         ],
@@ -83,12 +201,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "dojo-research",
+            "scope": "component",
+            "sourceDisplayName": "Dagath 的空阁",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dorrclave",
+              "revisionId": 2789874
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade"
+            ],
+            "variables": {
+              "partName": "怒斩 刀刃"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt"
         ],
@@ -98,12 +237,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "dojo-research",
+            "scope": "component",
+            "sourceDisplayName": "Dagath 的空阁",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dorrclave",
+              "revisionId": 2789874
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt"
+            ],
+            "variables": {
+              "partName": "怒斩 握柄"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString"
         ],
@@ -113,12 +273,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "dojo-research",
+            "scope": "component",
+            "sourceDisplayName": "Dagath 的空阁",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dorrclave",
+              "revisionId": 2789874
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString"
+            ],
+            "variables": {
+              "partName": "怒斩 鞭绳"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook"
         ],
@@ -128,8 +309,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "dojo-research",
+            "scope": "component",
+            "sourceDisplayName": "Dagath 的空阁",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dorrclave",
+              "revisionId": 2789874
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook"
+            ],
+            "variables": {
+              "partName": "怒斩 弯钩"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -220,7 +422,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：DORRCLAVE）在 10 次击杀或助攻后，怒斩进入光谱状态，使得武器伤害穿透系数加倍，并且接下来的 10 次攻击必定造成异常状态。如果是 Dagath 使用，每个激活的状态效果都会轻微治疗她。",
+  "summary": "在 10 次击杀或助攻后，怒斩进入光谱状态，使得武器伤害穿透系数加倍，并且接下来的 10 次攻击必定造成异常状态。如果是 Dagath 使用，每个激活的状态效果都会轻微治疗她。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -237,31 +439,33 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHilt",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipString",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnDagathBladeWhipHook",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

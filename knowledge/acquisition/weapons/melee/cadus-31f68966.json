@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A lone Tenno once used this staff to fight back a horde of Infested.",
-    "display": "（英文：CADUS）曾经有一名孤身一人的 Tenno 以这柄单手杖击退了一整个群落的感染者。",
+    "display": "曾经有一名孤身一人的 Tenno 以这柄单手杖击退了一整个群落的感染者。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,116 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cadus",
+            "revisionId": 2710486
+          },
+          "partRefs": [],
+          "variables": {}
+        },
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cadus",
+            "revisionId": 2710486
+          },
+          "partRefs": [],
+          "variables": {}
+        },
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cadus",
+            "revisionId": 2710486
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "卡德斯"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "item",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cadus",
+              "revisionId": 2710486
+            },
+            "partRefs": [],
+            "variables": {}
+          },
+          {
+            "type": "market-purchase",
+            "scope": "item",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cadus",
+              "revisionId": 2710486
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
         ],
@@ -68,8 +166,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cadus",
+              "revisionId": 2710486
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +277,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CADUS）曾经有一名孤身一人的 Tenno 以这柄单手杖击退了一整个群落的感染者。",
+  "summary": "曾经有一名孤身一人的 Tenno 以这柄单手杖击退了一整个群落的感染者。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +294,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
-    "blueprint": false,
+    "directItem": true,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

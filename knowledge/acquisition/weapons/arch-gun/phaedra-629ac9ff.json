@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Devastate free-space enemies with Phaedra, the Soma's big-sister.",
-    "display": "（英文：PHAEDRA）借由这把菲德菈——月神最年长的姊妹——纵横太空尽情毁灭敌人。",
+    "display": "借由这把菲德菈——月神最年长的姊妹——纵横太空尽情毁灭敌人。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,7 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "official-drop",
       "crafting"
     ],
@@ -55,15 +55,78 @@
       "status": null,
       "methods": [
         {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Phaedra",
+            "revisionId": 2659129
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
+          ],
+          "sourceCanonical": "Arbiters of Hexis, Authentic",
+          "sourceDisplayName": "均衡仲裁者",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "均衡仲裁者",
+          "requiredRankName": "Authentic",
+          "variables": {
+            "partName": "菲德菈 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Phaedra",
+            "revisionId": 2659129
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
+          ],
+          "variables": {
+            "partName": "菲德菈 枪管"
+          }
+        },
+        {
           "type": "mission-reward",
           "scope": "component",
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
           ],
           "sourceCanonical": "Event: Mercury/Caduceus (Exterminate)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
-          "locationId": null,
+          "sourceDisplayName": "水星 Caduceus（歼灭）",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.caduceus",
           "missionTypeId": "mission-type.exterminate",
           "chance": 0.0564,
           "sourceDropChance": null,
@@ -73,7 +136,7 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
@@ -128,13 +191,103 @@
             "source": "DE Official Drop Tables",
             "section": "Missions"
           }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
+          ],
+          "sourceCanonical": "The Perrin Sequence, Senior Associate",
+          "sourceDisplayName": "佩兰数列",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "佩兰数列",
+          "requiredRankName": "Senior Associate",
+          "variables": {
+            "partName": "菲德菈 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Phaedra",
+            "revisionId": 2659129
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
+          ],
+          "variables": {
+            "partName": "菲德菈 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
+          ],
+          "sourceCanonical": "New Loka, Bountiful",
+          "sourceDisplayName": "新世间",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "新世间",
+          "requiredRankName": "Bountiful",
+          "variables": {
+            "partName": "菲德菈 枪托"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Phaedra",
+            "revisionId": 2659129
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
+          ],
+          "variables": {
+            "partName": "菲德菈 枪托"
+          }
         }
       ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
         ],
@@ -145,12 +298,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Phaedra",
+              "revisionId": 2659129
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
         ],
@@ -160,8 +332,54 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
+            ],
+            "sourceCanonical": "Arbiters of Hexis, Authentic",
+            "sourceDisplayName": "均衡仲裁者",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "均衡仲裁者",
+            "requiredRankName": "Authentic",
+            "variables": {
+              "partName": "菲德菈 枪管"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Phaedra",
+              "revisionId": 2659129
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
+            ],
+            "variables": {
+              "partName": "菲德菈 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -183,9 +401,9 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
             ],
             "sourceCanonical": "Event: Mercury/Caduceus (Exterminate)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
-            "locationId": null,
+            "sourceDisplayName": "水星 Caduceus（歼灭）",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.caduceus",
             "missionTypeId": "mission-type.exterminate",
             "chance": 0.0564,
             "sourceDropChance": null,
@@ -195,7 +413,7 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
@@ -250,13 +468,58 @@
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
+            ],
+            "sourceCanonical": "The Perrin Sequence, Senior Associate",
+            "sourceDisplayName": "佩兰数列",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "佩兰数列",
+            "requiredRankName": "Senior Associate",
+            "variables": {
+              "partName": "菲德菈 枪机"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Phaedra",
+              "revisionId": 2659129
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
+            ],
+            "variables": {
+              "partName": "菲德菈 枪机"
+            }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
         ],
@@ -266,8 +529,54 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
+            ],
+            "sourceCanonical": "New Loka, Bountiful",
+            "sourceDisplayName": "新世间",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "新世间",
+            "requiredRankName": "Bountiful",
+            "variables": {
+              "partName": "菲德菈 枪托"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Phaedra",
+              "revisionId": 2659129
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
+            ],
+            "variables": {
+              "partName": "菲德菈 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -358,7 +667,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PHAEDRA）借由这把菲德菈——月神最年长的姊妹——纵横太空尽情毁灭敌人。",
+  "summary": "借由这把菲德菈——月神最年长的姊妹——纵横太空尽情毁灭敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -375,27 +684,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

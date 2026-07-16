@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Bring negotiations to an instant conclusion with this Corpus assault rifle. Switch effortlessly between charged explosive shots and rapid-fire electrical assault mode.",
-    "display": "（英文：AMBASSADOR）使用这支 Corpus 突击步枪让谈判立即结束。可以在充能爆炸狙击和速射电子突击模式之间自由切换。",
+    "display": "使用这支 Corpus 突击步枪让谈判立即结束。可以在充能爆炸狙击和速射电子突击模式之间自由切换。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -135,9 +135,9 @@
             "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
           ],
           "sourceCanonical": "Veil Proxima/Lu-Yan (Skirmish)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
-          "locationId": null,
+          "sourceDisplayName": "面纱比邻星域 Lu-Yan",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.lu-yan",
           "missionTypeId": "mission-type.skirmish",
           "chance": 0.16670000000000001,
           "sourceDropChance": null,
@@ -147,7 +147,7 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
@@ -402,9 +402,9 @@
               "/Lotus/Types/Recipes/Weapons/CrpArSniperBlueprint"
             ],
             "sourceCanonical": "Veil Proxima/Lu-Yan (Skirmish)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
-            "locationId": null,
+            "sourceDisplayName": "面纱比邻星域 Lu-Yan",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.lu-yan",
             "missionTypeId": "mission-type.skirmish",
             "chance": 0.16670000000000001,
             "sourceDropChance": null,
@@ -414,14 +414,14 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -701,7 +701,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AMBASSADOR）使用这支 Corpus 突击步枪让谈判立即结束。可以在充能爆炸狙击和速射电子突击模式之间自由切换。",
+  "summary": "使用这支 Corpus 突击步枪让谈判立即结束。可以在充能爆炸狙击和速射电子突击模式之间自由切换。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -718,15 +718,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpArSniperBarrel",

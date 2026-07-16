@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The favored side-arms of Perrin Sequence executives, these pistols have been modified to improve efficiency and killing potential.",
-    "display": "（英文：SECURA DUAL CESTRA）受佩兰数列高层人员青睐的贴身武器，这对手枪已经过改造来提升效率与击杀潜力。",
+    "display": "受佩兰数列高层人员青睐的贴身武器，这对手枪已经过改造来提升效率与击杀潜力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "The Perrin Sequence",
+          "sourceDisplayName": "佩兰数列",
+          "factionDisplayName": "佩兰数列",
+          "standing": 100000,
+          "requirements": {
+            "type": "standing",
+            "rankName": "Partner",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Secura Dual Cestra",
+            "revisionId": 2784073
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "保障·锡斯特双枪"
@@ -64,15 +86,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "The Perrin Sequence",
+            "sourceDisplayName": "佩兰数列",
+            "factionDisplayName": "佩兰数列",
+            "standing": 100000,
+            "requirements": {
+              "type": "standing",
+              "rankName": "Partner",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Secura Dual Cestra",
+              "revisionId": 2784073
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SECURA DUAL CESTRA）受佩兰数列高层人员青睐的贴身武器，这对手枪已经过改造来提升效率与击杀潜力。",
+  "summary": "受佩兰数列高层人员青睐的贴身武器，这对手枪已经过改造来提升效率与击杀潜力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +133,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

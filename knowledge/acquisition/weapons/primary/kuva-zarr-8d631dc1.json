@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "An even stronger Zarr cannon to meet the demands of Kuva Liches. With stronger explosive barrages, and long-range flak shots.",
-    "display": "（英文：KUVA ZARR）一把更强大的沙皇火炮，满足了赤毒玄骸的需求。拥有更强的爆裂弹幕和更远距离的高射炮弹。",
+    "display": "一把更强大的沙皇火炮，满足了赤毒玄骸的需求。拥有更强的爆裂弹幕和更远距离的高射炮弹。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Zarr",
+            "revisionId": 2791899
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaZarrBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·沙皇",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaZarrBlueprint"
+          "weaponName": "赤毒·沙皇"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·沙皇"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaZarrBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaZarrBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaZarrBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaZarrBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Zarr",
+              "revisionId": 2791899
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA ZARR）一把更强大的沙皇火炮，满足了赤毒玄骸的需求。拥有更强的爆裂弹幕和更远距离的高射炮弹。",
+  "summary": "一把更强大的沙皇火炮，满足了赤毒玄骸的需求。拥有更强的爆裂弹幕和更远距离的高射炮弹。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

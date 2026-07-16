@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The blade of the world-destroyer reaches its apotheosis, severing conflict itself. In forging this weapon, you have brought unrealized dreams to their ultimate conclusion.",
-    "display": "（英文：WAR PRIME）灭世之刃终于完成升华，锋芒所至，连战争与冲突本身都被斩断。锻造此武器的同时，你也让那些未能实现的梦想迎来了最终的结局。",
+    "display": "灭世之刃终于完成升华，锋芒所至，连战争与冲突本身都被斩断。锻造此武器的同时，你也让那些未能实现的梦想迎来了最终的结局。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,34 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
-      "kind": "prime-relic",
-      "status": "已入库",
-      "methods": []
+      "kind": "special-prime",
+      "status": "特殊来源",
+      "methods": [
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "sourceDisplayName": "制造 Hunhow 的饰品",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "War Prime",
+            "revisionId": 2789930
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "战争之剑 Prime"
@@ -64,15 +81,32 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "sourceDisplayName": "制造 Hunhow 的饰品",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "War Prime",
+              "revisionId": 2789930
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：WAR PRIME）灭世之刃终于完成升华，锋芒所至，连战争与冲突本身都被斩断。锻造此武器的同时，你也让那些未能实现的梦想迎来了最终的结局。",
+  "summary": "灭世之刃终于完成升华，锋芒所至，连战争与冲突本身都被斩断。锻造此武器的同时，你也让那些未能实现的梦想迎来了最终的结局。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +123,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

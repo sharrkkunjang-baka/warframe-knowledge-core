@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A cutting-edge, halogen-cooled electron accelerator capable of snap-freezing a target in moments.",
-    "display": "（英文：GLAXION VANDAL）一把用尖端技术打造的卤素冷却电子加速器，能够瞬间将目标冷冻起来。",
+    "display": "一把用尖端技术打造的卤素冷却电子加速器，能够瞬间将目标冷冻起来。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceCanonical": "Baro Ki'Teer",
+          "sourceDisplayName": "虚空商人",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Glaxion Vandal",
+            "revisionId": 2785424
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "冷冻光束步枪·破坏者"
@@ -64,15 +82,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceCanonical": "Baro Ki'Teer",
+            "sourceDisplayName": "虚空商人",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Glaxion Vandal",
+              "revisionId": 2785424
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：GLAXION VANDAL）一把用尖端技术打造的卤素冷却电子加速器，能够瞬间将目标冷冻起来。",
+  "summary": "一把用尖端技术打造的卤素冷却电子加速器，能够瞬间将目标冷冻起来。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

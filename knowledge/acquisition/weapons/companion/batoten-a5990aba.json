@@ -1,0 +1,172 @@
+{
+  "id": "knowledge.acquisition.weapon.batoten-a5990aba",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Batoten",
+  "subject": {
+    "canonical": "Batoten",
+    "displayName": "巴托腾",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponIP",
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "description": {
+    "canonical": "Hound melee attacks pierce hard with 冲击Impact and 穿刺Puncture Damage.",
+    "display": "猎犬近战攻击通过 冲击冲击和 穿刺穿刺伤害猛烈穿刺。",
+    "localizationStatus": "official-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.companion"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "companion",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 300,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "partRefs": [],
+          "sourceDisplayName": "对应型号猎犬",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportWeapons + Languages.bin",
+            "field": "compatibilityTags/HOUND_WEAPON"
+          },
+          "variables": {}
+        },
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "sourceCanonical": "a Hound configured with the Dorma Model",
+          "sourceDisplayName": "对应型号猎犬",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Batoten",
+            "revisionId": 2705899
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
+    },
+    "routes": [
+      {
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "巴托腾"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "partRefs": [],
+            "sourceDisplayName": "对应型号猎犬",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportWeapons + Languages.bin",
+              "field": "compatibilityTags/HOUND_WEAPON"
+            },
+            "variables": {}
+          },
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "sourceCanonical": "a Hound configured with the Dorma Model",
+            "sourceDisplayName": "对应型号猎犬",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Batoten",
+              "revisionId": 2705899
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "猎犬近战攻击通过 冲击冲击和 穿刺穿刺伤害猛烈穿刺。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": true,
+    "description": true,
+    "directItem": true,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
+}

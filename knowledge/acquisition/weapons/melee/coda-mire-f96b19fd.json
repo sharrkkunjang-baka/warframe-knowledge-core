@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "The Plague Year of 1999 will never be the same. With improved Critical Multipler, Critical Chance, and Status Chance, the Technocyte virus has turned the Coda Mire into a truly horrifying blade.",
-    "display": "（英文：CODA MIRE）1999 年的瘟疫年将不再一样。科技细胞病毒通过增加暴击倍率、暴击几率和触发几率，将终幕·米尔变成了一把真正可怕的利刃。",
+    "display": "1999 年的瘟疫年将不再一样。科技细胞病毒通过增加暴击倍率、暴击几率和触发几率，将终幕·米尔变成了一把真正可怕的利刃。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,17 +48,40 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "活体心细胞",
+                "amount": 10
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Coda Mire",
+            "revisionId": 2789935
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "终幕·米尔"
@@ -66,15 +89,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+            "requirements": {
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "活体心细胞",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Coda Mire",
+              "revisionId": 2789935
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CODA MIRE）1999 年的瘟疫年将不再一样。科技细胞病毒通过增加暴击倍率、暴击几率和触发几率，将终幕·米尔变成了一把真正可怕的利刃。",
+  "summary": "1999 年的瘟疫年将不再一样。科技细胞病毒通过增加暴击倍率、暴击几率和触发几率，将终幕·米尔变成了一把真正可怕的利刃。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -91,14 +137,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

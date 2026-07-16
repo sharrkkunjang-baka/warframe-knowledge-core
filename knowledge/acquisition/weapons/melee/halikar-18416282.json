@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "This jet powered Grineer throwing mace always comes back to its master and is even capable of disarming targets.",
-    "display": "（英文：HALIKAR）这个Grineer 喷射动力飞锤，其冲击足以解除被击中者的武装，且投掷后总是能回到使用者手上。",
+    "display": "这个Grineer 喷射动力飞锤，其冲击足以解除被击中者的武装，且投掷后总是能回到使用者手上。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Halikar",
+            "revisionId": 2786834
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnBoomerangBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrnBoomerangBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Halikar",
+              "revisionId": 2786834
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnBoomerangBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：HALIKAR）这个Grineer 喷射动力飞锤，其冲击足以解除被击中者的武装，且投掷后总是能回到使用者手上。",
+  "summary": "这个Grineer 喷射动力飞锤，其冲击足以解除被击中者的武装，且投掷后总是能回到使用者手上。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "During the darkest days of the Old War many a Tenno relied solely on the Tonbo to keep them alive.",
-    "display": "（英文：TONBO）在远古之战中最黑暗的那几天中，许多 Tenno 仅能靠着蜻蛉薙生还下来。",
+    "display": "在远古之战中最黑暗的那几天中，许多 Tenno 仅能靠着蜻蛉薙生还下来。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/FlowerPowerPolearmBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Tenno 实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tonbo",
+            "revisionId": 2785122
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/FlowerPowerPolearmBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/FlowerPowerPolearmBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/FlowerPowerPolearmBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Tenno 实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tonbo",
+              "revisionId": 2785122
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/FlowerPowerPolearmBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TONBO）在远古之战中最黑暗的那几天中，许多 Tenno 仅能靠着蜻蛉薙生还下来。",
+  "summary": "在远古之战中最黑暗的那几天中，许多 Tenno 仅能靠着蜻蛉薙生还下来。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +249,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

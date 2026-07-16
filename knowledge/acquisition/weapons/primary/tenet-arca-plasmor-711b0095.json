@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Custom variant of a Corpus classic. Staggering blasts now ricochet and have greater range at the cost of a slower fire and reload speed. Surviving enemies are consumed with radiation.",
-    "display": "（英文：TENET ARCA PLASMOR）Corpus 经典武器的特制变体。惊人的爆炸会反弹且拥有更高的射程，但代价是更低的射速和装填速度。幸存下来的敌人会被辐射耗尽生命。",
+    "display": "Corpus 经典武器的特制变体。惊人的爆炸会反弹且拥有更高的射程，但代价是更低的射速和装填速度。幸存下来的敌人会被辐射耗尽生命。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的 Corpus 姐妹",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Arca Plasmor",
+            "revisionId": 2785187
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEArcaPlasmorBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·弧电离子枪",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEArcaPlasmorBlueprint"
+          "weaponName": "信条·弧电离子枪"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "信条·弧电离子枪"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEArcaPlasmorBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEArcaPlasmorBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的 Corpus 姐妹",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEArcaPlasmorBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEArcaPlasmorBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Arca Plasmor",
+              "revisionId": 2785187
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET ARCA PLASMOR）Corpus 经典武器的特制变体。惊人的爆炸会反弹且拥有更高的射程，但代价是更低的射速和装填速度。幸存下来的敌人会被辐射耗尽生命。",
+  "summary": "Corpus 经典武器的特制变体。惊人的爆炸会反弹且拥有更高的射程，但代价是更低的射速和装填速度。幸存下来的敌人会被辐射耗尽生命。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

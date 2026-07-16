@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A short-blade melee weapon with an ace up its sleeve. Send nearby enemies flying with a powerful short-range shockwave.",
-    "display": "（英文：STROPHA）一件暗藏玄机的短刃近战武器。通过强大的短程冲击波来击飞附近的敌人。",
+    "display": "一件暗藏玄机的短刃近战武器。通过强大的短程冲击波来击飞附近的敌人。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -47,7 +47,6 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
     "prime": {
@@ -55,7 +54,6 @@
       "status": null,
       "methods": [
         {
-          "type": "enemy-drop",
           "scope": "blueprint",
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/CrpGunBladeWeaponBlueprint"
@@ -63,20 +61,108 @@
           "sourceCanonical": "Jackal",
           "sourceDisplayName": "豺狼",
           "sourceLocalizationStatus": "official-zh",
-          "locationId": null,
-          "missionTypeId": null,
           "chance": 0.15,
-          "sourceDropChance": 0.3,
-          "conditionalChance": 0.5,
-          "rotation": null,
-          "stage": null,
           "requirements": {
             "type": "none"
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Blueprint/Item Drops by Blueprint/Item"
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBarrel"
+          ],
+          "sourceCanonical": "Granum Void, Rotation C",
+          "sourceDisplayName": "格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2222,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "诡计之刃 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBlade"
+          ],
+          "sourceCanonical": "Granum Void, Rotation C",
+          "sourceDisplayName": "格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2222,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "诡计之刃 刀刃"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeReceiver"
+          ],
+          "sourceCanonical": "Extended Granum Void, Rotation C",
+          "sourceDisplayName": "扩展格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2963,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "诡计之刃 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeStock"
+          ],
+          "sourceCanonical": "Nightmare Granum Void, Rotation C",
+          "sourceDisplayName": "噩梦格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2963,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "诡计之刃 枪托"
           }
         }
       ]
@@ -97,7 +183,6 @@
         },
         "methods": [
           {
-            "type": "enemy-drop",
             "scope": "blueprint",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/CrpGunBladeWeaponBlueprint"
@@ -105,20 +190,55 @@
             "sourceCanonical": "Jackal",
             "sourceDisplayName": "豺狼",
             "sourceLocalizationStatus": "official-zh",
-            "locationId": null,
-            "missionTypeId": null,
             "chance": 0.15,
-            "sourceDropChance": 0.3,
-            "conditionalChance": 0.5,
-            "rotation": null,
-            "stage": null,
             "requirements": {
               "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Blueprint/Item Drops by Blueprint/Item"
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBarrel"
+        ],
+        "variables": {
+          "partName": "诡计之刃 枪管"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBarrel"
+            ],
+            "sourceCanonical": "Granum Void, Rotation C",
+            "sourceDisplayName": "格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2222,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "诡计之刃 枪管"
             }
           }
         ],
@@ -126,63 +246,120 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBarrel"
-        ],
-        "variables": {
-          "partName": "CrpGunbladeBarrel"
-        },
-        "requirements": {
-          "type": "none"
-        },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBlade"
         ],
         "variables": {
-          "partName": "CrpGunbladeBlade"
+          "partName": "诡计之刃 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBlade"
+            ],
+            "sourceCanonical": "Granum Void, Rotation C",
+            "sourceDisplayName": "格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2222,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "诡计之刃 刀刃"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeReceiver"
         ],
         "variables": {
-          "partName": "CrpGunbladeReceiver"
+          "partName": "诡计之刃 枪机"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeReceiver"
+            ],
+            "sourceCanonical": "Extended Granum Void, Rotation C",
+            "sourceDisplayName": "扩展格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2963,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "诡计之刃 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeStock"
         ],
         "variables": {
-          "partName": "CrpGunbladeStock"
+          "partName": "诡计之刃 枪托"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeStock"
+            ],
+            "sourceCanonical": "Nightmare Granum Void, Rotation C",
+            "sourceDisplayName": "噩梦格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2963,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "诡计之刃 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -216,7 +393,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -234,34 +411,34 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBarrel",
-          "canonical": "CrpGunbladeBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stropha Barrel",
+          "displayName": "诡计之刃 枪管",
+          "languageKey": "/Lotus/Language/Weapons/CrpGunbladeBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBlade",
-          "canonical": "CrpGunbladeBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stropha Blade",
+          "displayName": "诡计之刃 刀刃",
+          "languageKey": "/Lotus/Language/Weapons/CrpGunbladeBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeReceiver",
-          "canonical": "CrpGunbladeReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stropha Receiver",
+          "displayName": "诡计之刃 枪机",
+          "languageKey": "/Lotus/Language/Weapons/CrpGunbladeReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeStock",
-          "canonical": "CrpGunbladeStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stropha Stock",
+          "displayName": "诡计之刃 枪托",
+          "languageKey": "/Lotus/Language/Weapons/CrpGunbladeStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -273,7 +450,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：STROPHA）一件暗藏玄机的短刃近战武器。通过强大的短程冲击波来击飞附近的敌人。",
+  "summary": "一件暗藏玄机的短刃近战武器。通过强大的短程冲击波来击飞附近的敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -290,33 +467,35 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGunbladeStock",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Go on the hunt with Oraxia’s signature secondary. Fling a volley of toxin-laced barbs, or drop a cluster snare that scatters on impact, seizing nearby enemies and dragging them together.",
-    "display": "（英文：SCYOTID）使用 Oraxia 的标志性次要武器进行狩猎。你可以射出一连串充满毒素的倒钩，或者投放一个在撞击时散开的团状陷阱，抓住附近的敌人并将其拖到一起。",
+    "display": "使用 Oraxia 的标志性次要武器进行狩猎。你可以射出一连串充满毒素的倒钩，或者投放一个在撞击时散开的团状陷阱，抓住附近的敌人并将其拖到一起。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,80 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Scyotid",
+            "revisionId": 2742684
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ScyotidBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Scyotid",
+            "revisionId": 2742684
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidBarrel"
+          ],
+          "variables": {
+            "partName": "镰刃刺 枪管"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Scyotid",
+            "revisionId": 2742684
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidGauntlet"
+          ],
+          "variables": {
+            "partName": "镰刃刺 拳套"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ScyotidBlueprint"
         ],
@@ -68,12 +130,32 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Scyotid",
+              "revisionId": 2742684
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ScyotidBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidBarrel"
         ],
@@ -83,12 +165,34 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Scyotid",
+              "revisionId": 2742684
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidBarrel"
+            ],
+            "variables": {
+              "partName": "镰刃刺 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidGauntlet"
         ],
@@ -98,8 +202,30 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Scyotid",
+              "revisionId": 2742684
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidGauntlet"
+            ],
+            "variables": {
+              "partName": "镰刃刺 拳套"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -181,7 +307,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SCYOTID）使用 Oraxia 的标志性次要武器进行狩猎。你可以射出一连串充满毒素的倒钩，或者投放一个在撞击时散开的团状陷阱，抓住附近的敌人并将其拖到一起。",
+  "summary": "使用 Oraxia 的标志性次要武器进行狩猎。你可以射出一连串充满毒素的倒钩，或者投放一个在撞击时散开的团状陷阱，抓住附近的敌人并将其拖到一起。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -198,23 +324,25 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ScyotidGauntlet",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

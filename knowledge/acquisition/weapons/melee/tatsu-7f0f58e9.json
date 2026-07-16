@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Fearsome and noble, the elegant two-handed Nikana is the pride of any Arsenal. Kills build charges and seeking projectiles are unleashed with a Slide Attack to find and stun unwitting enemies. When Revenant wields this blade, Tatsu's charge cap is increased.",
-    "display": "（英文：TATSU）尊贵而令人畏惧，这把优雅的双手侍刃是任何军械库里的骄傲。击杀可以蓄能，而在施展滑行攻击时，积蓄的能量会转化为投射物，追踪并击晕那些浑然不觉的敌人。在被 Revenant 使用时，龙辰的蓄能次数上限会得到提升。",
+    "display": "尊贵而令人畏惧，这把优雅的双手侍刃是任何军械库里的骄傲。击杀可以蓄能，而在施展滑行攻击时，积蓄的能量会转化为投射物，追踪并击晕那些浑然不觉的敌人。在被 Revenant 使用时，龙辰的蓄能次数上限会得到提升。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tatsu",
+            "revisionId": 2680005
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tatsu",
+              "revisionId": 2680005
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnTwoHandedKatanaBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TATSU）尊贵而令人畏惧，这把优雅的双手侍刃是任何军械库里的骄傲。击杀可以蓄能，而在施展滑行攻击时，积蓄的能量会转化为投射物，追踪并击晕那些浑然不觉的敌人。在被 Revenant 使用时，龙辰的蓄能次数上限会得到提升。",
+  "summary": "尊贵而令人畏惧，这把优雅的双手侍刃是任何军械库里的骄傲。击杀可以蓄能，而在施展滑行攻击时，积蓄的能量会转化为投射物，追踪并击晕那些浑然不觉的敌人。在被 Revenant 使用时，龙辰的蓄能次数上限会得到提升。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

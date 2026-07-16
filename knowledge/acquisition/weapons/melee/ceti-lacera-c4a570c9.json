@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Forged for veterans of the Scarlet Spear conflict, this Lacera has been modified to enhance nimbleness and lethality.",
-    "display": "（英文：CETI LACERA）这款专为参与猩红之矛战役的老将所打造的悲痛之刃，经过了改造以提高敏捷性和杀伤力。",
+    "display": "这款专为参与猩红之矛战役的老将所打造的悲痛之刃，经过了改造以提高敏捷性和杀伤力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "event-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "限时活动商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Ceti Lacera",
+            "revisionId": 2719357
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "event-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "限时活动商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Ceti Lacera",
+              "revisionId": 2719357
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/OperationsLaceraBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CETI LACERA）这款专为参与猩红之矛战役的老将所打造的悲痛之刃，经过了改造以提高敏捷性和杀伤力。",
+  "summary": "这款专为参与猩红之矛战役的老将所打造的悲痛之刃，经过了改造以提高敏捷性和杀伤力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

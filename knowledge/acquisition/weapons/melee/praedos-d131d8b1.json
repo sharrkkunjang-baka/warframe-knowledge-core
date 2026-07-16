@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Orokin elites admired farmers in conquered regions, because they had learned to fight with modified farming tools despite being forbidden to own weapons. For their voyage, the Zariman were presented with Praedos in recognition of Zariman tenacity. The Void reinforces the strength of the spirited individual by fortifying the Praedos.",
-    "display": "（英文：PRAEDOS）奥罗金精英很佩服那些被征服地区的农夫，他们在武器禁令的压制下学会了通过改良的农具来进行战斗。当「扎里曼号」启航时，船上的人们获得了双雄以表彰他们坚韧不拔的精神。虚空通过增强双雄的力量来奖励使用该武器的人。",
+    "display": "奥罗金精英很佩服那些被征服地区的农夫，他们在武器禁令的压制下学会了通过改良的农具来进行战斗。当「扎里曼号」启航时，船上的人们获得了双雄以表彰他们坚韧不拔的精神。虚空通过增强双雄的力量来奖励使用该武器的人。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,41 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Cavalero",
+          "sourceDisplayName": "卡瓦莱罗",
+          "factionDisplayName": "卡瓦莱罗",
+          "standing": 9000,
+          "requirements": {
+            "type": "standing",
+            "amount": 9000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Praedos",
+            "revisionId": 2789920
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
         ],
@@ -68,8 +91,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Cavalero",
+            "sourceDisplayName": "卡瓦莱罗",
+            "factionDisplayName": "卡瓦莱罗",
+            "standing": 9000,
+            "requirements": {
+              "type": "standing",
+              "amount": 9000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Praedos",
+              "revisionId": 2789920
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanTonfaWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +206,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PRAEDOS）奥罗金精英很佩服那些被征服地区的农夫，他们在武器禁令的压制下学会了通过改良的农具来进行战斗。当「扎里曼号」启航时，船上的人们获得了双雄以表彰他们坚韧不拔的精神。虚空通过增强双雄的力量来奖励使用该武器的人。",
+  "summary": "奥罗金精英很佩服那些被征服地区的农夫，他们在武器禁令的压制下学会了通过改良的农具来进行战斗。当「扎里曼号」启航时，船上的人们获得了双雄以表彰他们坚韧不拔的精神。虚空通过增强双雄的力量来奖励使用该武器的人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +223,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

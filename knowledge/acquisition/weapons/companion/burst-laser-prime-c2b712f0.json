@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
-      "kind": "prime-relic",
-      "status": "已入库",
-      "methods": []
+      "kind": "special-prime",
+      "status": "特殊来源",
+      "methods": [
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "sourceCanonical": "Shade Prime",
+          "sourceDisplayName": "阴影 Prime",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Burst Laser Prime",
+            "revisionId": 2677625
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "激光点发 Prime"
@@ -64,8 +82,26 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "sourceCanonical": "Shade Prime",
+            "sourceDisplayName": "阴影 Prime",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Burst Laser Prime",
+              "revisionId": 2677625
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

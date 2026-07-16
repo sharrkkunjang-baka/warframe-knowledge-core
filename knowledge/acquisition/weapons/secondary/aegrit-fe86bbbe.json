@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "What the Aegrit lacks in quantity it makes up for in destructive power. Toss the Aegrit onto your enemy’s position then detonate remotely at the right moment for maximum destructive effect.",
-    "display": "（英文：AEGRIT）骇敌榴弹虽然数量稀少但威力来补。将骇敌榴弹投掷到敌人的位置，然后在适当的时机远程引爆，以获得最大的破坏效果。",
+    "display": "骇敌榴弹虽然数量稀少但威力来补。将骇敌榴弹投掷到敌人的位置，然后在适当的时机远程引爆，以获得最大的破坏效果。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
+          ],
+          "sourceCanonical": "Kahl's Garrison (Chipper), Settlement",
+          "sourceDisplayName": "卡尔驻军的 Chipper",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
         ],
@@ -68,8 +89,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
+            ],
+            "sourceCanonical": "Kahl's Garrison (Chipper), Settlement",
+            "sourceDisplayName": "卡尔驻军的 Chipper",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AEGRIT）骇敌榴弹虽然数量稀少但威力来补。将骇敌榴弹投掷到敌人的位置，然后在适当的时机远程引爆，以获得最大的破坏效果。",
+  "summary": "骇敌榴弹虽然数量稀少但威力来补。将骇敌榴弹投掷到敌人的位置，然后在适当的时机远程引爆，以获得最大的破坏效果。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +219,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

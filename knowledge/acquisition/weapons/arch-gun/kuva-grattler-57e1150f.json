@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Reconfigured for maximum lethality, the Kuva Grattler still shatters targets with explosive shells, but now reaches maximum fire-rate instantaneously.",
-    "display": "（英文：KUVA GRATTLER）重新调配以获得最大杀伤力，赤毒葛拉特勒仍使用爆裂弹来粉碎目标，但现在可以瞬间达到最高射速。",
+    "display": "重新调配以获得最大杀伤力，赤毒葛拉特勒仍使用爆裂弹来粉碎目标，但现在可以瞬间达到最高射速。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Grattler",
+            "revisionId": 2748297
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrattlerBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·葛拉特勒",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrattlerBlueprint"
+          "weaponName": "赤毒·葛拉特勒"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·葛拉特勒"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrattlerBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrattlerBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrattlerBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrattlerBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Grattler",
+              "revisionId": 2748297
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA GRATTLER）重新调配以获得最大杀伤力，赤毒葛拉特勒仍使用爆裂弹来粉碎目标，但现在可以瞬间达到最高射速。",
+  "summary": "重新调配以获得最大杀伤力，赤毒葛拉特勒仍使用爆裂弹来粉碎目标，但现在可以瞬间达到最高射速。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

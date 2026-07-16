@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A single blade for more precision. The Ether Sword cuts so cleanly that it was considered by the Tenno to be a more humane weapon for ‘cleansing’ infested allies.",
-    "display": "（英文：ETHER SWORD）苍穹之剑的斩切非常锐利，是一把精准的刀刃，被认为是 Tenno 用来清除受感染伙伴的慈悲武器。",
+    "display": "苍穹之剑的斩切非常锐利，是一把精准的刀刃，被认为是 Tenno 用来清除受感染伙伴的慈悲武器。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Ether Sword",
+            "revisionId": 2636921
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/EtherSwordBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/EtherSwordBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Ether Sword",
+              "revisionId": 2636921
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/EtherSwordBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ETHER SWORD）苍穹之剑的斩切非常锐利，是一把精准的刀刃，被认为是 Tenno 用来清除受感染伙伴的慈悲武器。",
+  "summary": "苍穹之剑的斩切非常锐利，是一把精准的刀刃，被认为是 Tenno 用来清除受感染伙伴的慈悲武器。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

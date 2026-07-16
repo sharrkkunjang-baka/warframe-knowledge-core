@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A multi-bladed whip that is adept at flaying skin from bone. In extreme cases, disobedient Grineer are sentenced to death by Atterax.",
-    "display": "（英文：ATTERAX）擅长将皮肤从骨头上剥下的多刃鞭。在极端情况下，不听话的 Grineer 可以用阿特拉克斯判处死刑。",
+    "display": "擅长将皮肤从骨头上剥下的多刃鞭。在极端情况下，不听话的 Grineer 可以用阿特拉克斯判处死刑。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Atterax",
+            "revisionId": 2691608
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrineerWhipBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrineerWhipBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Atterax",
+              "revisionId": 2691608
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrineerWhipBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ATTERAX）擅长将皮肤从骨头上剥下的多刃鞭。在极端情况下，不听话的 Grineer 可以用阿特拉克斯判处死刑。",
+  "summary": "擅长将皮肤从骨头上剥下的多刃鞭。在极端情况下，不听话的 Grineer 可以用阿特拉克斯判处死刑。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

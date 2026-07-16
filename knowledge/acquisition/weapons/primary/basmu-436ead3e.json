@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "This Sentient war instrument can either barrage targets with explosive bolts or draw on its regenerative battery to create twin plasma beams that chain through targets. When fully drained, Health is leeched from nearby foes for a short period.",
-    "display": "（英文：BASMU）这种 Sentient 军械可以用爆炸投射物密集轰击目标，也可以利用其可再生电池制造出两股将多个目标束缚在一起的等离子光束。当电量完全耗尽时，会在短时间内吸取附近敌人的生命值。",
+    "display": "这种 Sentient 军械可以用爆炸投射物密集轰击目标，也可以利用其可再生电池制造出两股将多个目标束缚在一起的等离子光束。当电量完全耗尽时，会在短时间内吸取附近敌人的生命值。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "event-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "限时活动商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Basmu",
+            "revisionId": 2719686
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SentRifleNewWarGunBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/SentRifleNewWarGunBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "event-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "限时活动商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Basmu",
+              "revisionId": 2719686
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SentRifleNewWarGunBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：BASMU）这种 Sentient 军械可以用爆炸投射物密集轰击目标，也可以利用其可再生电池制造出两股将多个目标束缚在一起的等离子光束。当电量完全耗尽时，会在短时间内吸取附近敌人的生命值。",
+  "summary": "这种 Sentient 军械可以用爆炸投射物密集轰击目标，也可以利用其可再生电池制造出两股将多个目标束缚在一起的等离子光束。当电量完全耗尽时，会在短时间内吸取附近敌人的生命值。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

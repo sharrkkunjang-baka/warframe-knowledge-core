@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "When the magazine reaches empty and is manually reloaded, the Coda Catabolyst launches not one but three powerful grenades. Also has a higher Status Chance, Damage, and Magazine Size.",
-    "display": "（英文：CODA CATABOLYST）当弹匣空了并且手动重新装填时，终幕·异化者会发射三枚威力极大的手榴弹，而不是一枚。同时还具有更高的触发几率、伤害和弹匣容量。",
+    "display": "当弹匣空了并且手动重新装填时，终幕·异化者会发射三枚威力极大的手榴弹，而不是一枚。同时还具有更高的触发几率、伤害和弹匣容量。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,17 +48,40 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "活体心细胞",
+                "amount": 10
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Coda Catabolyst",
+            "revisionId": 2790912
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "终幕·异化者"
@@ -66,15 +89,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+            "requirements": {
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "活体心细胞",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Coda Catabolyst",
+              "revisionId": 2790912
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CODA CATABOLYST）当弹匣空了并且手动重新装填时，终幕·异化者会发射三枚威力极大的手榴弹，而不是一枚。同时还具有更高的触发几率、伤害和弹匣容量。",
+  "summary": "当弹匣空了并且手动重新装填时，终幕·异化者会发射三枚威力极大的手榴弹，而不是一枚。同时还具有更高的触发几率、伤害和弹匣容量。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -91,14 +137,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The uniquely styled Viper Wraith is a powerful variation on the standard machine-pistol.",
-    "display": "（英文：VIPER WRAITH）这把风格独一无二的蝰蛇·亡魂是基于制式机关手枪的强力变体。",
+    "display": "这把风格独一无二的蝰蛇·亡魂是基于制式机关手枪的强力变体。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceCanonical": "Baro Ki'Teer",
+          "sourceDisplayName": "虚空商人",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Viper Wraith",
+            "revisionId": 2586228
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "蝰蛇·亡魂"
@@ -64,15 +82,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceCanonical": "Baro Ki'Teer",
+            "sourceDisplayName": "虚空商人",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Viper Wraith",
+              "revisionId": 2586228
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：VIPER WRAITH）这把风格独一无二的蝰蛇·亡魂是基于制式机关手枪的强力变体。",
+  "summary": "这把风格独一无二的蝰蛇·亡魂是基于制式机关手枪的强力变体。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

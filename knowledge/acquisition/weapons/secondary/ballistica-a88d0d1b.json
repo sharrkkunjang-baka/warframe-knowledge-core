@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Ballistica crossbow features a unique dual firing mechanism. Choose between a four bolt volley or a deadly accurate charged shot.",
-    "display": "（英文：BALLISTICA）这把布里斯提卡连弩采用独特的双击发装置，可在四连发或蓄力使用精准的致命射击之间选择。",
+    "display": "这把布里斯提卡连弩采用独特的双击发装置，可在四连发或蓄力使用精准的致命射击之间选择。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,7 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "official-drop",
+      "market",
       "crafting"
     ],
     "prime": {
@@ -60,9 +60,9 @@
             "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
-          "locationId": null,
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.the-circuit-tier-6",
           "missionTypeId": "mission-type.normal",
           "chance": 0.0103,
           "sourceDropChance": null,
@@ -72,18 +72,56 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
           }
+        },
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Ballistica",
+            "revisionId": 2787820
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
+          ],
+          "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.0103,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {}
         }
       ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-drop",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
         ],
@@ -102,9 +140,9 @@
               "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
-            "locationId": null,
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.the-circuit-tier-6",
             "missionTypeId": "mission-type.normal",
             "chance": 0.0103,
             "sourceDropChance": null,
@@ -114,14 +152,52 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Ballistica",
+              "revisionId": 2787820
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
+            ],
+            "variables": {}
+          },
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/AutoCrossBowBlueprint"
+            ],
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.0103,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {}
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -212,7 +288,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：BALLISTICA）这把布里斯提卡连弩采用独特的双击发装置，可在四连发或蓄力使用精准的致命射击之间选择。",
+  "summary": "这把布里斯提卡连弩采用独特的双击发装置，可在四连发或蓄力使用精准的致命射击之间选择。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -229,15 +305,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

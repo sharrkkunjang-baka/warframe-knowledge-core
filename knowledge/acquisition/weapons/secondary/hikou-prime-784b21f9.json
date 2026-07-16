@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "As deadly as any bullet without the associated noise or commotion.",
-    "display": "（英文：HIKOU PRIME）如同任何子弹一样致命，且不会引起噪音或骚动。",
+    "display": "如同任何子弹一样致命，且不会引起噪音或骚动。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -47,7 +47,7 @@
   "acquisition": {
     "routeCategoryRefs": [
       "prime-relic",
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
@@ -66,6 +66,54 @@
           "chance": 0.25329999999999997,
           "rarity": "Uncommon",
           "variables": {},
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars"
+          ],
+          "relicCanonical": "Axi V10",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.25329999999999997,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "飞扬 Prime 星镖"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster"
+          ],
+          "relicCanonical": "Lith C7",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.25329999999999997,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "飞扬 Prime 镖袋"
+          },
           "requirements": {
             "type": "none"
           },
@@ -186,33 +234,227 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars"
         ],
         "variables": {
-          "partName": "PrimeHikouStars"
+          "partName": "飞扬 Prime 星镖"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars"
+            ],
+            "relicCanonical": "Axi S3",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 星镖"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars"
+            ],
+            "relicCanonical": "Axi V10",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 星镖"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars"
+            ],
+            "relicCanonical": "Lith F2",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 星镖"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars"
+            ],
+            "relicCanonical": "Neo N1",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 星镖"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster"
         ],
         "variables": {
-          "partName": "PrimeHikouHolster"
+          "partName": "飞扬 Prime 镖袋"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster"
+            ],
+            "relicCanonical": "Axi K1",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 镖袋"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster"
+            ],
+            "relicCanonical": "Axi V2",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 镖袋"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster"
+            ],
+            "relicCanonical": "Lith C7",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 镖袋"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster"
+            ],
+            "relicCanonical": "Meso N6",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "飞扬 Prime 镖袋"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -245,7 +487,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -263,18 +505,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars",
-          "canonical": "PrimeHikouStars",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Hikou Prime Stars",
+          "displayName": "飞扬 Prime 星镖",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_NextPromoSecondaryPiece",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster",
-          "canonical": "PrimeHikouHolster",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Hikou Prime Pouch",
+          "displayName": "飞扬 Prime 镖袋",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_NextPromoSecondaryHolster",
+          "localizationStatus": "official-zh",
           "quantity": 2
         },
         {
@@ -294,7 +536,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：HIKOU PRIME）如同任何子弹一样致命，且不会引起噪音或骚动。",
+  "summary": "如同任何子弹一样致命，且不会引起噪音或骚动。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -311,25 +553,27 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouStars",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeHikouHolster",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A different take on the Grineer assault rifle, the Karak Wraith features unique styling.",
-    "display": "（英文：KARAK WRAITH）有别于 Grineer 制式的突击步枪，卡拉克·亡魂有着独一无二的风格。",
+    "display": "有别于 Grineer 制式的突击步枪，卡拉克·亡魂有着独一无二的风格。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,97 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "invasion-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Karak Wraith",
+            "revisionId": 2770810
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/KarakWraithBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Karak Wraith",
+            "revisionId": 2770810
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithBarrel"
+          ],
+          "variables": {
+            "partName": "卡拉克·亡魂 枪管"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Karak Wraith",
+            "revisionId": 2770810
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithReceiver"
+          ],
+          "variables": {
+            "partName": "卡拉克·亡魂 枪机"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Karak Wraith",
+            "revisionId": 2770810
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithStock"
+          ],
+          "variables": {
+            "partName": "卡拉克·亡魂 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/KarakWraithBlueprint"
         ],
@@ -68,12 +147,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Karak Wraith",
+              "revisionId": 2770810
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/KarakWraithBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithBarrel"
         ],
@@ -83,12 +181,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Karak Wraith",
+              "revisionId": 2770810
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithBarrel"
+            ],
+            "variables": {
+              "partName": "卡拉克·亡魂 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithReceiver"
         ],
@@ -98,12 +217,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Karak Wraith",
+              "revisionId": 2770810
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithReceiver"
+            ],
+            "variables": {
+              "partName": "卡拉克·亡魂 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithStock"
         ],
@@ -113,8 +253,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Karak Wraith",
+              "revisionId": 2770810
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithStock"
+            ],
+            "variables": {
+              "partName": "卡拉克·亡魂 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -196,7 +357,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KARAK WRAITH）有别于 Grineer 制式的突击步枪，卡拉克·亡魂有着独一无二的风格。",
+  "summary": "有别于 Grineer 制式的突击步枪，卡拉克·亡魂有着独一无二的风格。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -213,27 +374,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/KarakWraithStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

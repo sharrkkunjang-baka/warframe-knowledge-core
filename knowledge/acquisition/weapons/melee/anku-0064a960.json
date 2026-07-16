@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Reap havoc with this full sized Tenno-crafted scythe.",
-    "display": "（英文：ANKU）带来毁灭与收割生命的制式规格镰刀，由 Tenno 所锻造。",
+    "display": "带来毁灭与收割生命的制式规格镰刀，由 Tenno 所锻造。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,36 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ParisScytheBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ParisScytheBlueprint"
         ],
@@ -68,8 +86,26 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ParisScytheBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +196,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ANKU）带来毁灭与收割生命的制式规格镰刀，由 Tenno 所锻造。",
+  "summary": "带来毁灭与收割生命的制式规格镰刀，由 Tenno 所锻造。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +213,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

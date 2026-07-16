@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Ring the death knell. Headshots briefly turn this scoped pistol into a rapid-fire, Critical Damage fiend that uses no ammo. When used by Harrow, Knell has a 2-round mag.",
-    "display": "（英文：KNELL）鸣响死神的丧钟。爆头射击短暂地将这把带瞄准镜的手枪变成快速击发，不消耗弹药的暴击伤害恶魔。在被 Harrow 使用时，丧钟会拥有双发弹匣。",
+    "display": "鸣响死神的丧钟。爆头射击短暂地将这把带瞄准镜的手枪变成快速击发，不消耗弹药的暴击伤害恶魔。在被 Harrow 使用时，丧钟会拥有双发弹匣。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Knell",
+            "revisionId": 2789996
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnPriestPistolBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnPriestPistolBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Knell",
+              "revisionId": 2789996
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnPriestPistolBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KNELL）鸣响死神的丧钟。爆头射击短暂地将这把带瞄准镜的手枪变成快速击发，不消耗弹药的暴击伤害恶魔。在被 Harrow 使用时，丧钟会拥有双发弹匣。",
+  "summary": "鸣响死神的丧钟。爆头射击短暂地将这把带瞄准镜的手枪变成快速击发，不消耗弹药的暴击伤害恶魔。在被 Harrow 使用时，丧钟会拥有双发弹匣。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

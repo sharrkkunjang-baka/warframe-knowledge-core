@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "When bathed in Void energy and prisma crystal, the simple Tetra becomes a beacon of style and intimidation.",
-    "display": "（英文：PRISMA TETRA）在浸泡过虚空能量与棱晶后，这把单纯的特拉能量步枪成为了威吓与风格的指标。",
+    "display": "在浸泡过虚空能量与棱晶后，这把单纯的特拉能量步枪成为了威吓与风格的指标。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceCanonical": "Baro Ki'Teer",
+          "sourceDisplayName": "虚空商人",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Prisma Tetra",
+            "revisionId": 2784019
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "棱晶·特拉"
@@ -64,15 +82,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceCanonical": "Baro Ki'Teer",
+            "sourceDisplayName": "虚空商人",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Prisma Tetra",
+              "revisionId": 2784019
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PRISMA TETRA）在浸泡过虚空能量与棱晶后，这把单纯的特拉能量步枪成为了威吓与风格的指标。",
+  "summary": "在浸泡过虚空能量与棱晶后，这把单纯的特拉能量步枪成为了威吓与风格的指标。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

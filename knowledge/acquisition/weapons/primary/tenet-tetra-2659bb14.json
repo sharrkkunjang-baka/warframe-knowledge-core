@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Parvosian upgrade of the classic Tetra. Slower fire rate but with a larger magazine. Can now alt-fire entire clip as a large burst radius grenade launcher.",
-    "display": "（英文：TENET TETRA）经典特拉的帕尔沃斯式升级版。射速较慢但拥有更大的弹匣。次要射击可以将整个弹匣作为高爆炸范围的榴弹发射出去。",
+    "display": "经典特拉的帕尔沃斯式升级版。射速较慢但拥有更大的弹匣。次要射击可以将整个弹匣作为高爆炸范围的榴弹发射出去。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的 Corpus 姐妹",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Tetra",
+            "revisionId": 2789961
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBETetraBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·特拉",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBETetraBlueprint"
+          "weaponName": "信条·特拉"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "信条·特拉"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBETetraBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBETetraBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的 Corpus 姐妹",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBETetraBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBETetraBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Tetra",
+              "revisionId": 2789961
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET TETRA）经典特拉的帕尔沃斯式升级版。射速较慢但拥有更大的弹匣。次要射击可以将整个弹匣作为高爆炸范围的榴弹发射出去。",
+  "summary": "经典特拉的帕尔沃斯式升级版。射速较慢但拥有更大的弹匣。次要射击可以将整个弹匣作为高爆炸范围的榴弹发射出去。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

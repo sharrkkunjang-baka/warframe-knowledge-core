@@ -524,10 +524,10 @@ function createKnowledgeCore(options = {}) {
       const primeStatusText = prime?.kind === 'prime-relic' ? (prime.status === '已入库' ? `${weaponEntry.subject.displayName}当前已入库，官方当前掉落表中没有可刷取遗物。` : `Prime 状态：${prime.status}`) : null;
       const primeRelicText = prime?.kind === 'prime-relic' && prime.status !== '已入库' ? (() => { const { renderPrimePartGroups } = require('./prime-acquisition'); const componentNames = (weaponEntry.acquisition?.routes || []).filter(route => route.scope === 'component').map(route => route.variables?.partName).filter(Boolean); return `${weaponEntry.subject.displayName}当前可刷遗物：\n${renderPrimePartGroups(structuredMethods, { componentNames }).join('\n')}` })() : null;
       const acquisitionText = [primeStatusText, primeRelicText || renderAcquisition(structuredMethods, { displayName: weaponEntry.subject.displayName, registries: data, showProbabilities: false })].filter(Boolean).join('\n');
-      const missing = (weaponEntry.acquisition?.routes || []).filter(route => route.status !== 'complete').map(route => route.scope === 'blueprint' ? '总图来源' : route.scope === 'component' ? `${route.variables?.partName || '部件'}来源` : route.scope === 'item' ? '成品来源' : route.category === 'crafting' ? '制造数据' : route.scope).filter(Boolean);
-      const gapText = missing.length ? `尚未由 DE 官方结构闭环：${[...new Set(missing)].join('、')}。` : '';
-      const officialDescription = weaponEntry.description?.localizationStatus === 'official-zh' ? weaponEntry.description.display : '官方简体中文武器描述暂缺。';
-      const description = [officialDescription, acquisitionText || `${weaponEntry.subject.displayName}的获取路径尚未由 DE 官方结构闭环。`, gapText].filter(Boolean).join('\n\n');
+      const officialDescription = weaponEntry.description?.localizationStatus === 'official-zh' ? weaponEntry.description.display : '';
+      // 待审 route 属于维护报告，不是用户文案。运行时只发布已经结构化、批准并本地化的来源；
+      // 禁止将“缺哪个部件来源”这类内部质量门结果泄漏到群聊。
+      const description = [officialDescription, acquisitionText].filter(Boolean).join('\n\n');
       return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions: [], structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
     }
     const arcaneEntry = getArcane(raw);

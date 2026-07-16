@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A Prime Laser Rifle.",
-    "display": "（英文：PRIME LASER RIFLE）一把激光步枪 Prime。",
+    "display": "一把激光步枪 Prime。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "sourceCanonical": "Wyrm Prime",
+          "sourceDisplayName": "蛟龙 Prime",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Prime Laser Rifle",
+            "revisionId": 2677619
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "激光步枪 Prime"
@@ -64,15 +82,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "sourceCanonical": "Wyrm Prime",
+            "sourceDisplayName": "蛟龙 Prime",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Prime Laser Rifle",
+              "revisionId": 2677619
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PRIME LASER RIFLE）一把激光步枪 Prime。",
+  "summary": "一把激光步枪 Prime。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

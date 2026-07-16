@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Slice through mobs of unruly enemies with this fierce halberd; the signature weapon of the Kuva Guardians.",
-    "display": "（英文：KESHEG）用这柄凶猛的长戟割开群魔乱舞的敌人；这是赤毒守卫者标志性的武器。",
+    "display": "用这柄凶猛的长戟割开群魔乱舞的敌人；这是赤毒守卫者标志性的武器。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Chemical/GrnHalberdBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "化学实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kesheg",
+            "revisionId": 2677716
+          },
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Chemical/GrnHalberdBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Chemical/GrnHalberdBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/GrnHalberdBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "化学实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kesheg",
+              "revisionId": 2677716
+            },
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/GrnHalberdBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KESHEG）用这柄凶猛的长戟割开群魔乱舞的敌人；这是赤毒守卫者标志性的武器。",
+  "summary": "用这柄凶猛的长戟割开群魔乱舞的敌人；这是赤毒守卫者标志性的武器。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +249,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

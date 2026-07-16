@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A sturdy burst-rifle of considerable age and unknown origin collected by Teshin during his many years wandering the Origin System.",
-    "display": "（英文：THORNBAK）这是 Teshin 在始源星系流浪多年期间收集的一把坚固的点射步枪，年代久远且来历不明。",
+    "display": "这是 Teshin 在始源星系流浪多年期间收集的一把坚固的点射步枪，年代久远且来历不明。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,61 +46,61 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "quest"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "scope": "item",
+          "questCanonical": "The Teacher",
+          "questDisplayName": "导师",
+          "requirements": {
+            "type": "quest",
+            "questName": "导师"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Thornbak",
+            "revisionId": 2785466
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/TnModQuestRifleWeaponBlueprint"
-        ],
+        "scope": "item",
+        "category": "quest",
+        "partRefs": [],
         "variables": {
-          "weaponName": "棘背",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/TnModQuestRifleWeaponBlueprint"
+          "weaponName": "棘背"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [
-          "/Lotus/Types/Items/MiscItems/AlloyPlate",
-          "/Lotus/Types/Items/MiscItems/Neurode",
-          "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "/Lotus/Types/Items/MiscItems/Circuits"
-        ],
-        "variables": {
-          "productName": "棘背"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/TnModQuestRifleWeaponBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/TnModQuestRifleWeaponBlueprint",
+            "type": "quest-reward",
+            "scope": "item",
+            "questCanonical": "The Teacher",
+            "questDisplayName": "导师",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/TnModQuestRifleWeaponBlueprint"
+              "type": "quest",
+              "questName": "导师"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnModQuestRifleWeaponBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Thornbak",
+              "revisionId": 2785466
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -160,7 +160,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：THORNBAK）这是 Teshin 在始源星系流浪多年期间收集的一把坚固的点射步枪，年代久远且来历不明。",
+  "summary": "这是 Teshin 在始源星系流浪多年期间收集的一把坚固的点射步枪，年代久远且来历不明。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +177,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

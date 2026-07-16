@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Sobek is a rapid-firing Grineer shotgun that has reduced damage per shot but boasts extra large magazine capacity.",
-    "display": "（英文：SOBEK）鳄神是一把速射型 Grineer 霰弹枪，虽降低每一枪的伤害，但拥有超大弹匣容量。",
+    "display": "鳄神是一把速射型 Grineer 霰弹枪，虽降低每一枪的伤害，但拥有超大弹匣容量。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sobek",
+            "revisionId": 2785161
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sobek",
+              "revisionId": 2785161
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DoubleBarrelShotgunBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SOBEK）鳄神是一把速射型 Grineer 霰弹枪，虽降低每一枪的伤害，但拥有超大弹匣容量。",
+  "summary": "鳄神是一把速射型 Grineer 霰弹枪，虽降低每一枪的伤害，但拥有超大弹匣容量。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Each charged attack turns the enemy’s pain into a healing pulse that washes over allies. Also, creates resistance to Status Effects when held.",
-    "display": "（英文：SANCTI MAGISTAR）蓄力攻击将敌人的伤痛转化成波及战友的治愈脉冲。除此之外，持取时将产生对异常状态的抵抗力。",
+    "display": "蓄力攻击将敌人的伤痛转化成波及战友的治愈脉冲。除此之外，持取时将产生对异常状态的抵抗力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,38 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "New Loka",
+          "sourceDisplayName": "新世间",
+          "factionDisplayName": "新世间",
+          "requirements": {
+            "type": "standing",
+            "rankName": "Flawless",
+            "amount": 125000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sancti Magistar",
+            "revisionId": 2785108
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "圣洁·执法者"
@@ -64,15 +85,36 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "New Loka",
+            "sourceDisplayName": "新世间",
+            "factionDisplayName": "新世间",
+            "requirements": {
+              "type": "standing",
+              "rankName": "Flawless",
+              "amount": 125000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sancti Magistar",
+              "revisionId": 2785108
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SANCTI MAGISTAR）蓄力攻击将敌人的伤痛转化成波及战友的治愈脉冲。除此之外，持取时将产生对异常状态的抵抗力。",
+  "summary": "蓄力攻击将敌人的伤痛转化成波及战友的治愈脉冲。除此之外，持取时将产生对异常状态的抵抗力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +131,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

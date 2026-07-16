@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A shotgun with low accuracy and strong recoil, but able to deliver its payload in full-auto. The Boar is best used at close range.",
-    "display": "（英文：BOAR）野猪有着较低的精度和大后坐力，但可以全自动发射载弹。最适宜近距离使用。",
+    "display": "野猪有着较低的精度和大后坐力，但可以全自动发射载弹。最适宜近距离使用。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -85,9 +85,9 @@
             "/Lotus/Types/Recipes/Weapons/StrunShotgunBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
-          "locationId": null,
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.the-circuit-tier-6",
           "missionTypeId": "mission-type.normal",
           "chance": 0.0103,
           "sourceDropChance": null,
@@ -97,11 +97,31 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
           }
+        },
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/StrunShotgunBlueprint"
+          ],
+          "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.0103,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {}
         }
       ]
     },
@@ -152,9 +172,9 @@
               "/Lotus/Types/Recipes/Weapons/StrunShotgunBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
-            "locationId": null,
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.the-circuit-tier-6",
             "missionTypeId": "mission-type.normal",
             "chance": 0.0103,
             "sourceDropChance": null,
@@ -164,14 +184,34 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StrunShotgunBlueprint"
+            ],
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.0103,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {}
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -262,7 +302,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：BOAR）野猪有着较低的精度和大后坐力，但可以全自动发射载弹。最适宜近距离使用。",
+  "summary": "野猪有着较低的精度和大后坐力，但可以全自动发射载弹。最适宜近距离使用。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -279,15 +319,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

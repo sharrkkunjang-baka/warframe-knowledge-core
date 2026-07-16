@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Amprex rifle fires a continuous beam of high voltage electricity that arcs among nearby enemies. This weapon excels at Crowd Control.",
-    "display": "（英文：AMPREX）安培克斯步枪可持续发射致命电光束并在敌人中形成电弧。这件武器在群体控制方面很优秀。",
+    "display": "安培克斯步枪可持续发射致命电光束并在敌人中形成电弧。这件武器在群体控制方面很优秀。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,36 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Energy/ChainLightningRifleBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Energy/ChainLightningRifleBlueprint"
         ],
@@ -68,8 +86,26 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Energy/ChainLightningRifleBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +196,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AMPREX）安培克斯步枪可持续发射致命电光束并在敌人中形成电弧。这件武器在群体控制方面很优秀。",
+  "summary": "安培克斯步枪可持续发射致命电光束并在敌人中形成电弧。这件武器在群体控制方面很优秀。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +213,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Nail them to the wall! The Stahlta automatic rifle propels hardened steel rods at high speed, while a charged fire mode fuses a number of volatile rods together for a large radioactive explosion.",
-    "display": "（英文：STAHLTA）将敌人钉在墙上！这件钢刃自动步枪把硬化钢棒推进到高速状态，而蓄力射击模式会将大量不稳定的钢棒融合在一起，产生巨大的放射性爆炸。",
+    "display": "将敌人钉在墙上！这件钢刃自动步枪把硬化钢棒推进到高速状态，而蓄力射击模式会将大量不稳定的钢棒融合在一起，产生巨大的放射性爆炸。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -47,7 +47,6 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "unresolved",
       "crafting"
     ],
     "prime": {
@@ -55,7 +54,6 @@
       "status": null,
       "methods": [
         {
-          "type": "enemy-drop",
           "scope": "blueprint",
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
@@ -63,20 +61,85 @@
           "sourceCanonical": "Jackal",
           "sourceDisplayName": "豺狼",
           "sourceLocalizationStatus": "official-zh",
-          "locationId": null,
-          "missionTypeId": null,
           "chance": 0.15,
-          "sourceDropChance": 0.3,
-          "conditionalChance": 0.5,
-          "rotation": null,
-          "stage": null,
           "requirements": {
             "type": "none"
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Blueprint/Item Drops by Blueprint/Item"
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
+          ],
+          "sourceCanonical": "Nightmare Granum Void, Rotation C",
+          "sourceDisplayName": "噩梦格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2963,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "钢刃步枪 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver"
+          ],
+          "sourceCanonical": "Granum Void, Rotation C",
+          "sourceDisplayName": "格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2222,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "钢刃步枪 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock"
+          ],
+          "sourceCanonical": "Extended Granum Void, Rotation C",
+          "sourceDisplayName": "扩展格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2963,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "钢刃步枪 枪托"
           }
         }
       ]
@@ -97,7 +160,6 @@
         },
         "methods": [
           {
-            "type": "enemy-drop",
             "scope": "blueprint",
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
@@ -105,20 +167,55 @@
             "sourceCanonical": "Jackal",
             "sourceDisplayName": "豺狼",
             "sourceLocalizationStatus": "official-zh",
-            "locationId": null,
-            "missionTypeId": null,
             "chance": 0.15,
-            "sourceDropChance": 0.3,
-            "conditionalChance": 0.5,
-            "rotation": null,
-            "stage": null,
             "requirements": {
               "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Blueprint/Item Drops by Blueprint/Item"
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
+        ],
+        "variables": {
+          "partName": "钢刃步枪 枪管"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
+            ],
+            "sourceCanonical": "Nightmare Granum Void, Rotation C",
+            "sourceDisplayName": "噩梦格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2963,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "钢刃步枪 枪管"
             }
           }
         ],
@@ -126,48 +223,81 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
-        ],
-        "variables": {
-          "partName": "CrpRubanRifleBarrel"
-        },
-        "requirements": {
-          "type": "none"
-        },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver"
         ],
         "variables": {
-          "partName": "CrpRubanRifleReceiver"
+          "partName": "钢刃步枪 枪机"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver"
+            ],
+            "sourceCanonical": "Granum Void, Rotation C",
+            "sourceDisplayName": "格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2222,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "钢刃步枪 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock"
         ],
         "variables": {
-          "partName": "CrpRubanRifleStock"
+          "partName": "钢刃步枪 枪托"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock"
+            ],
+            "sourceCanonical": "Extended Granum Void, Rotation C",
+            "sourceDisplayName": "扩展格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2963,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "钢刃步枪 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -200,7 +330,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -218,26 +348,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel",
-          "canonical": "CrpRubanRifleBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stahlta Barrel",
+          "displayName": "钢刃步枪 枪管",
+          "languageKey": "/Lotus/Language/Weapons/CrpRubanRifleBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver",
-          "canonical": "CrpRubanRifleReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stahlta Receiver",
+          "displayName": "钢刃步枪 枪机",
+          "languageKey": "/Lotus/Language/Weapons/CrpRubanRifleReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock",
-          "canonical": "CrpRubanRifleStock",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Stahlta Stock",
+          "displayName": "钢刃步枪 枪托",
+          "languageKey": "/Lotus/Language/Weapons/CrpRubanRifleStock",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -249,7 +379,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：STAHLTA）将敌人钉在墙上！这件钢刃自动步枪把硬化钢棒推进到高速状态，而蓄力射击模式会将大量不稳定的钢棒融合在一起，产生巨大的放射性爆炸。",
+  "summary": "将敌人钉在墙上！这件钢刃自动步枪把硬化钢棒推进到高速状态，而蓄力射击模式会将大量不稳定的钢棒融合在一起，产生巨大的放射性爆炸。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -266,29 +396,31 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

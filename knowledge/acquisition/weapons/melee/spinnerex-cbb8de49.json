@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Each lash of Oraxia's whip injects its victim with a dose of deadly toxin. Upon death, afflicted enemies have a chance to burst, damaging nearby enemies and spreading the poison.",
-    "display": "（英文：SPINNEREX）Oraxia 的每一次鞭打都会将致命毒素注入敌人体内，受影响的敌人死亡时爆发毒素，对附近的敌人造成伤害并扩散毒素。",
+    "display": "Oraxia 的每一次鞭打都会将致命毒素注入敌人体内，受影响的敌人死亡时爆发毒素，对附近的敌人造成伤害并扩散毒素。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,101 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Spinnerex",
+            "revisionId": 2789881
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Spinnerex",
+            "revisionId": 2789881
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade"
+          ],
+          "variables": {
+            "partName": "丝蛛皇 刀刃"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Spinnerex",
+            "revisionId": 2789881
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString"
+          ],
+          "variables": {
+            "partName": "丝蛛皇 鞭绳"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境织域者任务",
+          "requirements": {
+            "type": "quest",
+            "questName": "六人组"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Spinnerex",
+            "revisionId": 2789881
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle"
+          ],
+          "variables": {
+            "partName": "丝蛛皇 握柄"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
         ],
@@ -68,12 +151,32 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Spinnerex",
+              "revisionId": 2789881
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SpinnerexBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade"
         ],
@@ -83,12 +186,34 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Spinnerex",
+              "revisionId": 2789881
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade"
+            ],
+            "variables": {
+              "partName": "丝蛛皇 刀刃"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString"
         ],
@@ -98,12 +223,34 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Spinnerex",
+              "revisionId": 2789881
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString"
+            ],
+            "variables": {
+              "partName": "丝蛛皇 鞭绳"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle"
         ],
@@ -113,8 +260,30 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境织域者任务",
+            "requirements": {
+              "type": "quest",
+              "questName": "六人组"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Spinnerex",
+              "revisionId": 2789881
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle"
+            ],
+            "variables": {
+              "partName": "丝蛛皇 握柄"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -196,7 +365,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SPINNEREX）Oraxia 的每一次鞭打都会将致命毒素注入敌人体内，受影响的敌人死亡时爆发毒素，对附近的敌人造成伤害并扩散毒素。",
+  "summary": "Oraxia 的每一次鞭打都会将致命毒素注入敌人体内，受影响的敌人死亡时爆发毒素，对附近的敌人造成伤害并扩散毒素。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -213,27 +382,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexString",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/SpinnerexHandle",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Slaytra is a powerful reiteration of the traditional Grineer Machete that doubles the duration of 切割Slash Status Effects.",
-    "display": "（英文：SLAYTRA）屠煞是对传统 Grineer 砍刀的强大重现，它可以使 切割切割伤害的出血持续时间加倍。",
+    "display": "屠煞是对传统 Grineer 砍刀的强大重现，它可以使 切割切割伤害的出血持续时间加倍。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnSharbolaWeaponBlueprint"
+          ],
+          "sourceCanonical": "Kahl's Garrison (Chipper), Encampment",
+          "sourceDisplayName": "卡尔驻军的 Chipper",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrnSharbolaWeaponBlueprint"
         ],
@@ -68,8 +89,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnSharbolaWeaponBlueprint"
+            ],
+            "sourceCanonical": "Kahl's Garrison (Chipper), Encampment",
+            "sourceDisplayName": "卡尔驻军的 Chipper",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SLAYTRA）屠煞是对传统 Grineer 砍刀的强大重现，它可以使 切割切割伤害的出血持续时间加倍。",
+  "summary": "屠煞是对传统 Grineer 砍刀的强大重现，它可以使 切割切割伤害的出血持续时间加倍。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +219,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

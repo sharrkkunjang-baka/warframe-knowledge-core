@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "From death blooms the Larkspur. A unique and menacing Archgun with a wild initial attack that locks onto a target then chains other targets close to the first. It also sports an explosive projectile mode. In Hildryn's grip the Larkspur carries more reserve ammo.",
-    "display": "（英文：LARKSPUR）从死亡之中生长的翠雀。一把独特且具有威胁性的曲翼枪械，初始攻击会锁定目标并将靠近第一个目标的其他敌人链在一起。它还配有爆炸性投弹模式。在 Hildryn 的握持之下，翠雀会携带更多的预备弹药。",
+    "display": "从死亡之中生长的翠雀。一把独特且具有威胁性的曲翼枪械，初始攻击会锁定目标并将靠近第一个目标的其他敌人链在一起。它还配有爆炸性投弹模式。在 Hildryn 的握持之下，翠雀会携带更多的预备弹药。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Tenno 实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Larkspur",
+            "revisionId": 2762123
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Tenno 实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Larkspur",
+              "revisionId": 2762123
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnShieldFrameArchGunBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：LARKSPUR）从死亡之中生长的翠雀。一把独特且具有威胁性的曲翼枪械，初始攻击会锁定目标并将靠近第一个目标的其他敌人链在一起。它还配有爆炸性投弹模式。在 Hildryn 的握持之下，翠雀会携带更多的预备弹药。",
+  "summary": "从死亡之中生长的翠雀。一把独特且具有威胁性的曲翼枪械，初始攻击会锁定目标并将靠近第一个目标的其他敌人链在一起。它还配有爆炸性投弹模式。在 Hildryn 的握持之下，翠雀会携带更多的预备弹药。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +249,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Allows the Helios Prime to violently disassemble and turn itself into a deadly projectile.",
-    "display": "（英文：DECONSTRUCTOR PRIME）使赫利俄斯 Prime 剧烈拆卸，并将自身变化为一颗致命的发射体。",
+    "display": "使赫利俄斯 Prime 剧烈拆卸，并将自身变化为一颗致命的发射体。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
-      "kind": "prime-relic",
-      "status": "已入库",
-      "methods": []
+      "kind": "special-prime",
+      "status": "特殊来源",
+      "methods": [
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "sourceCanonical": "Helios Prime",
+          "sourceDisplayName": "赫利俄斯 Prime",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Deconstructor Prime",
+            "revisionId": 2642318
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "分离 Prime"
@@ -64,15 +82,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "sourceCanonical": "Helios Prime",
+            "sourceDisplayName": "赫利俄斯 Prime",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Deconstructor Prime",
+              "revisionId": 2642318
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：DECONSTRUCTOR PRIME）使赫利俄斯 Prime 剧烈拆卸，并将自身变化为一颗致命的发射体。",
+  "summary": "使赫利俄斯 Prime 剧烈拆卸，并将自身变化为一颗致命的发射体。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

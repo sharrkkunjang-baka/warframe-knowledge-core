@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "The Kuva Kohm variant has a higher fire rate than the original. For every shot fired in rapid succession the Kuva Kohm releases an additional bolt and grows more lethal.",
-    "display": "（英文：KUVA KOHM ）这把赤毒寇恩热能枪变体拥有比原版更高的射速。赤毒寇恩热能枪在每一次高速连续的射击时都会额外击发出一发能量弹，使其更具杀伤力。",
+    "display": "这把赤毒寇恩热能枪变体拥有比原版更高的射速。赤毒寇恩热能枪在每一次高速连续的射击时都会额外击发出一发能量弹，使其更具杀伤力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Kohm",
+            "revisionId": 2789971
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaKohmBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·寇恩热能枪",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaKohmBlueprint"
+          "weaponName": "赤毒·寇恩热能枪"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·寇恩热能枪"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaKohmBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaKohmBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaKohmBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaKohmBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Kohm",
+              "revisionId": 2789971
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA KOHM ）这把赤毒寇恩热能枪变体拥有比原版更高的射速。赤毒寇恩热能枪在每一次高速连续的射击时都会额外击发出一发能量弹，使其更具杀伤力。",
+  "summary": "这把赤毒寇恩热能枪变体拥有比原版更高的射速。赤毒寇恩热能枪在每一次高速连续的射击时都会额外击发出一发能量弹，使其更具杀伤力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

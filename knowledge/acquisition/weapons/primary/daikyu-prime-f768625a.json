@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Long believed lost, the mighty Daikyu Prime was the pride of many a Tenno dojo. Designed to strike the foe where they are weakest, its powerful shots repay careful marksmanship.",
-    "display": "（英文：DAIKYU PRIME）长久以来，人们一直认为强大的大久和弓 Prime 早已失传，它是许多 Tenno 道场的骄傲。它旨在直击敌人的弱点，其强大的射击威力与精湛的射击技术相得益彰。",
+    "display": "长久以来，人们一直认为强大的大久和弓 Prime 早已失传，它是许多 Tenno 道场的骄傲。它旨在直击敌人的弱点，其强大的射击威力与精湛的射击技术相得益彰。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -47,7 +47,7 @@
   "acquisition": {
     "routeCategoryRefs": [
       "prime-relic",
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
@@ -88,6 +88,126 @@
           "chance": 0.25329999999999997,
           "rarity": "Uncommon",
           "variables": {},
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
+          ],
+          "relicCanonical": "Lith A12",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.11,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "大久和弓 Prime 下弓臂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
+          ],
+          "relicCanonical": "Meso Y2",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.11,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "大久和弓 Prime 上弓臂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
+          ],
+          "relicCanonical": "Neo C7",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.11,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "大久和弓 Prime 上弓臂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip"
+          ],
+          "relicCanonical": "Meso D8",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.02,
+          "rarity": "Rare",
+          "variables": {
+            "partName": "大久和弓 Prime 弓身"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Relics"
+          },
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
+          ],
+          "relicCanonical": "Lith S18",
+          "active": true,
+          "resurgence": false,
+          "chance": 0.25329999999999997,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "大久和弓 Prime 弓弦"
+          },
           "requirements": {
             "type": "none"
           },
@@ -230,63 +350,475 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
         ],
         "variables": {
-          "partName": "PrimeDaikyuLowerLimb"
+          "partName": "大久和弓 Prime 下弓臂"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
+            ],
+            "relicCanonical": "Axi C10",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 下弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
+            ],
+            "relicCanonical": "Axi C11",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 下弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
+            ],
+            "relicCanonical": "Lith A12",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 下弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
+            ],
+            "relicCanonical": "Lith A8",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 下弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb"
+            ],
+            "relicCanonical": "Meso A9",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 下弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
         ],
         "variables": {
-          "partName": "PrimeDaikyuUpperLimb"
+          "partName": "大久和弓 Prime 上弓臂"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
+            ],
+            "relicCanonical": "Meso E7",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 上弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
+            ],
+            "relicCanonical": "Meso P16",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 上弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
+            ],
+            "relicCanonical": "Meso Y2",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 上弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb"
+            ],
+            "relicCanonical": "Neo C7",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 上弓臂"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip"
         ],
         "variables": {
-          "partName": "PrimeDaikyuGrip"
+          "partName": "大久和弓 Prime 弓身"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip"
+            ],
+            "relicCanonical": "Lith D7",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "大久和弓 Prime 弓身"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip"
+            ],
+            "relicCanonical": "Meso D8",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "大久和弓 Prime 弓身"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip"
+            ],
+            "relicCanonical": "Neo D10",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "大久和弓 Prime 弓身"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
         ],
         "variables": {
-          "partName": "PrimeDaikyuString"
+          "partName": "大久和弓 Prime 弓弦"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
+            ],
+            "relicCanonical": "Axi A20",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 弓弦"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
+            ],
+            "relicCanonical": "Axi V12",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 弓弦"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
+            ],
+            "relicCanonical": "Lith N19",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 弓弦"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
+            ],
+            "relicCanonical": "Lith S18",
+            "active": true,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 弓弦"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          },
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString"
+            ],
+            "relicCanonical": "Neo A15",
+            "active": false,
+            "resurgence": false,
+            "chance": 0.25329999999999997,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "大久和弓 Prime 弓弦"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Relics"
+            },
+            "category": "prime-relic"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -320,7 +852,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -338,34 +870,34 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb",
-          "canonical": "PrimeDaikyuLowerLimb",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Daikyu Prime Lower Limb",
+          "displayName": "大久和弓 Prime 下弓臂",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_DaikyuPrimeLowerLimb",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb",
-          "canonical": "PrimeDaikyuUpperLimb",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Daikyu Prime Upper Limb",
+          "displayName": "大久和弓 Prime 上弓臂",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_DaikyuPrimeUpperLimb",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip",
-          "canonical": "PrimeDaikyuGrip",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Daikyu Prime Grip",
+          "displayName": "大久和弓 Prime 弓身",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_DaikyuPrimeGrip",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString",
-          "canonical": "PrimeDaikyuString",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Daikyu Prime String",
+          "displayName": "大久和弓 Prime 弓弦",
+          "languageKey": "/Lotus/Language/Primes/CraftingComponent_DaikyuPrimeString",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -377,7 +909,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：DAIKYU PRIME）长久以来，人们一直认为强大的大久和弓 Prime 早已失传，它是许多 Tenno 道场的骄傲。它旨在直击敌人的弱点，其强大的射击威力与精湛的射击技术相得益彰。",
+  "summary": "长久以来，人们一直认为强大的大久和弓 Prime 早已失传，它是许多 Tenno 道场的骄傲。它旨在直击敌人的弱点，其强大的射击威力与精湛的射击技术相得益彰。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -394,33 +926,35 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuLowerLimb",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuUpperLimb",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuGrip",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PrimeDaikyuString",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

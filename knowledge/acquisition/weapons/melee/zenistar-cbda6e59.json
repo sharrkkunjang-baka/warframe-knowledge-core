@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Scorch enemies with blistering blows, or set them ablaze with the flying fire disc.",
-    "display": "（英文：ZENISTAR）令敌人在炽烈的打击中焚灭，或用飞行的火盘将他们点燃。",
+    "display": "令敌人在炽烈的打击中焚灭，或用飞行的火盘将他们点燃。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,61 +46,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "daily-tribute",
+          "scope": "item",
+          "sourceDisplayName": "每日献礼里程碑",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Zenistar",
+            "revisionId": 2789054
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/SundialAxeBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "天顶之星",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialAxeBlueprint"
+          "weaponName": "天顶之星"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [
-          "/Lotus/Types/Items/MiscItems/Morphic",
-          "/Lotus/Types/Items/MiscItems/Circuits",
-          "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "/Lotus/Types/Items/MiscItems/Salvage"
-        ],
-        "variables": {
-          "productName": "天顶之星"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialAxeBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SundialAxeBlueprint",
+            "type": "daily-tribute",
+            "scope": "item",
+            "sourceDisplayName": "每日献礼里程碑",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/SundialAxeBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SundialAxeBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Zenistar",
+              "revisionId": 2789054
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -160,7 +156,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ZENISTAR）令敌人在炽烈的打击中焚灭，或用飞行的火盘将他们点燃。",
+  "summary": "令敌人在炽烈的打击中焚灭，或用飞行的火盘将他们点燃。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +173,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

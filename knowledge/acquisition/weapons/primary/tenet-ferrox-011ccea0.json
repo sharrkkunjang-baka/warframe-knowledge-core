@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "The expert engineers in Parvos Granum’s division have optimized the Ferrox’s lethal power.",
-    "display": "（英文：TENET FERROX）帕尔沃斯·格拉努部门的专业工程师优化了铁晶磁轨炮的杀伤力。",
+    "display": "帕尔沃斯·格拉努部门的专业工程师优化了铁晶磁轨炮的杀伤力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,69 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "任意中继站的 Ergo Glast",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "堕落全息密钥",
+                "amount": 40
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Ferrox",
+            "revisionId": 2789982
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEFerroxBlueprint"
-        ],
+        "scope": "item",
+        "category": "vendor",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·铁晶磁轨炮",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEFerroxBlueprint"
+          "weaponName": "信条·铁晶磁轨炮"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "信条·铁晶磁轨炮"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEFerroxBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEFerroxBlueprint",
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "任意中继站的 Ergo Glast",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEFerroxBlueprint"
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "堕落全息密钥",
+                  "amount": 40
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEFerroxBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Ferrox",
+              "revisionId": 2789982
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +137,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET FERROX）帕尔沃斯·格拉努部门的专业工程师优化了铁晶磁轨炮的杀伤力。",
+  "summary": "帕尔沃斯·格拉努部门的专业工程师优化了铁晶磁轨炮的杀伤力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +154,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

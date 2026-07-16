@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Styanax’s speargun matches his might. Throw Afentis to pin an enemy and nearby enemies will also be stunned. Throw Afentis onto the ground to buff nearby allies with Ballistarii Might. The buff increases reload speed, fire rate, and ammo pools and reduces recoil. Allies who kill enemies with Ballistarii Might maintain the buff temporarily when they move away from Afentis.",
-    "display": "（英文：AFENTIS）Styanax 的标枪与他的力量相匹配。投掷圣英来压制敌人，其附近的敌人也会被击晕。将圣英投掷到地上，可创造一个为友军带来增益的炮兵威能力场，可增加装填速度，射速，弹药最大值，并降低后坐力。当获得炮兵威能的友军击杀敌人后，炮兵威能效果则会在他们离开圣英力场后继续维持一小段时间。",
+    "display": "Styanax 的标枪与他的力量相匹配。投掷圣英来压制敌人，其附近的敌人也会被击晕。将圣英投掷到地上，可创造一个为友军带来增益的炮兵威能力场，可增加装填速度，射速，弹药最大值，并降低后坐力。当获得炮兵威能的友军击杀敌人后，炮兵威能效果则会在他们离开圣英力场后继续维持一小段时间。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
+          ],
+          "sourceCanonical": "Kahl's Garrison (Chipper), Home",
+          "sourceDisplayName": "卡尔驻军的 Chipper",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
         ],
@@ -68,8 +89,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
+            ],
+            "sourceCanonical": "Kahl's Garrison (Chipper), Home",
+            "sourceDisplayName": "卡尔驻军的 Chipper",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AFENTIS）Styanax 的标枪与他的力量相匹配。投掷圣英来压制敌人，其附近的敌人也会被击晕。将圣英投掷到地上，可创造一个为友军带来增益的炮兵威能力场，可增加装填速度，射速，弹药最大值，并降低后坐力。当获得炮兵威能的友军击杀敌人后，炮兵威能效果则会在他们离开圣英力场后继续维持一小段时间。",
+  "summary": "Styanax 的标枪与他的力量相匹配。投掷圣英来压制敌人，其附近的敌人也会被击晕。将圣英投掷到地上，可创造一个为友军带来增益的炮兵威能力场，可增加装填速度，射速，弹药最大值，并降低后坐力。当获得炮兵威能的友军击杀敌人后，炮兵威能效果则会在他们离开圣英力场后继续维持一小段时间。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +219,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Parvos Granum's engineers have made this already ferocious hand cannon even more deadly with the addition of an alternate fire mode that empties an entire clip in one devastating burst.",
-    "display": "（英文：TENET DETRON）帕尔沃斯·格拉努的工程师们为这把已经十分凶猛的手炮增加了一种新的射击模式，在一次毁灭性的爆发中清空整个弹匣，使这把武器更加致命。",
+    "display": "帕尔沃斯·格拉努的工程师们为这把已经十分凶猛的手炮增加了一种新的射击模式，在一次毁灭性的爆发中清空整个弹匣，使这把武器更加致命。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的 Corpus 姐妹",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Detron",
+            "revisionId": 2790022
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEDetronBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·德特昂",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEDetronBlueprint"
+          "weaponName": "信条·德特昂"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "信条·德特昂"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEDetronBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEDetronBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的 Corpus 姐妹",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEDetronBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBEDetronBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Detron",
+              "revisionId": 2790022
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET DETRON）帕尔沃斯·格拉努的工程师们为这把已经十分凶猛的手炮增加了一种新的射击模式，在一次毁灭性的爆发中清空整个弹匣，使这把武器更加致命。",
+  "summary": "帕尔沃斯·格拉努的工程师们为这把已经十分凶猛的手炮增加了一种新的射击模式，在一次毁灭性的爆发中清空整个弹匣，使这把武器更加致命。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

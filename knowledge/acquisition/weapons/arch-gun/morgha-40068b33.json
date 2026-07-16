@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Blast through enemies with a double-barreled shot of energized slugs. This siphons their life essence which is then used to generate the secondary fire's massive air-burst mortar. The ancient Entrati weapon was built for Necramechs but also functions as an Archgun.",
-    "display": "（英文：MORGHA）通过双管射出的充能弹头来轰击敌人。这会吸取他们的生命精华，然后将其用于生成次要射击的大规模空爆迫击炮。这件古老的英择谛武器是为殁世机甲打造的，但也可以作为一把曲翼枪械来使用。",
+    "display": "通过双管射出的充能弹头来轰击敌人。这会吸取他们的生命精华，然后将其用于生成次要射击的大规模空爆迫击炮。这件古老的英择谛武器是为殁世机甲打造的，但也可以作为一把曲翼枪械来使用。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,98 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ThanotechGrenadeLauncherBlueprint"
+          ],
+          "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
+          "sourceDisplayName": "殁世械灵的 Loid",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "殁世械灵的 Loid",
+          "requiredRankName": "Clearance Odima",
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem"
+          ],
+          "sourceDisplayName": "殁世幽都的洛德",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Languages.bin official route help",
+            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+          },
+          "variables": {
+            "partName": "置灵者 枪管"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem"
+          ],
+          "sourceDisplayName": "殁世幽都的洛德",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Languages.bin official route help",
+            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+          },
+          "variables": {
+            "partName": "置灵者 枪机"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem"
+          ],
+          "sourceDisplayName": "殁世幽都的洛德",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Languages.bin official route help",
+            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+          },
+          "variables": {
+            "partName": "置灵者 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ThanotechGrenadeLauncherBlueprint"
         ],
@@ -68,8 +148,136 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechGrenadeLauncherBlueprint"
+            ],
+            "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
+            "sourceDisplayName": "殁世械灵的 Loid",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "殁世械灵的 Loid",
+            "requiredRankName": "Clearance Odima",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem"
+        ],
+        "variables": {
+          "partName": "置灵者 枪管"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem"
+            ],
+            "sourceDisplayName": "殁世幽都的洛德",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Languages.bin official route help",
+              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+            },
+            "variables": {
+              "partName": "置灵者 枪管"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem"
+        ],
+        "variables": {
+          "partName": "置灵者 枪机"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem"
+            ],
+            "sourceDisplayName": "殁世幽都的洛德",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Languages.bin official route help",
+              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+            },
+            "variables": {
+              "partName": "置灵者 枪机"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem"
+        ],
+        "variables": {
+          "partName": "置灵者 枪托"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem"
+            ],
+            "sourceDisplayName": "殁世幽都的洛德",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Languages.bin official route help",
+              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+            },
+            "variables": {
+              "partName": "置灵者 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -102,7 +310,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -120,26 +328,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem",
-          "canonical": "ThanotechGrenadeLauncherBarrelItem",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Morgha Barrel",
+          "displayName": "置灵者 枪管",
+          "languageKey": "/Lotus/Language/Necromech/ThanotechGrenadeLauncherBarrelName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem",
-          "canonical": "ThanotechGrenadeLauncherReceiverItem",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Morgha Receiver",
+          "displayName": "置灵者 枪机",
+          "languageKey": "/Lotus/Language/Necromech/ThanotechGrenadeLauncherReceiverName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem",
-          "canonical": "ThanotechGrenadeLauncherStockItem",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Morgha Stock",
+          "displayName": "置灵者 枪托",
+          "languageKey": "/Lotus/Language/Necromech/ThanotechGrenadeLauncherStockName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -151,7 +359,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：MORGHA）通过双管射出的充能弹头来轰击敌人。这会吸取他们的生命精华，然后将其用于生成次要射击的大规模空爆迫击炮。这件古老的英择谛武器是为殁世机甲打造的，但也可以作为一把曲翼枪械来使用。",
+  "summary": "通过双管射出的充能弹头来轰击敌人。这会吸取他们的生命精华，然后将其用于生成次要射击的大规模空爆迫击炮。这件古老的英择谛武器是为殁世机甲打造的，但也可以作为一把曲翼枪械来使用。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -168,16 +376,31 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
-    "components": [],
-    "crafting": false
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem",
+        "complete": true
+      }
+    ],
+    "crafting": true
   }
 }

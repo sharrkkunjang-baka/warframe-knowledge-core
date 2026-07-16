@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Long before clone-rot set in, elite Grineer Commanders protected the surviving Orokin from rebelling Warframes with these formidable rifles. When Gotva Prime inflicts a Status Effect, its next shot has a chance to be a Super Critical hit.",
-    "display": "（英文：GOTVA PRIME）早在克隆基因衰变之前，精英 Grineer 指挥官就用这把强大的步枪从战甲的叛乱中保护幸存的奥罗金人。当骨葬 Prime 造成异常状态时，下一次射击有机会造成超级暴击。",
+    "display": "早在克隆基因衰变之前，精英 Grineer 指挥官就用这把强大的步枪从战甲的叛乱中保护幸存的奥罗金人。当骨葬 Prime 造成异常状态时，下一次射击有机会造成超级暴击。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,35 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
-      "kind": "prime-relic",
-      "status": "已入库",
-      "methods": []
+      "kind": "special-prime",
+      "status": "特殊来源",
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceCanonical": "Baro Ki'Teer",
+          "sourceDisplayName": "虚空商人",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Gotva Prime",
+            "revisionId": 2789303
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "骨葬 Prime"
@@ -64,15 +82,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceCanonical": "Baro Ki'Teer",
+            "sourceDisplayName": "虚空商人",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Gotva Prime",
+              "revisionId": 2789303
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：GOTVA PRIME）早在克隆基因衰变之前，精英 Grineer 指挥官就用这把强大的步枪从战甲的叛乱中保护幸存的奥罗金人。当骨葬 Prime 造成异常状态时，下一次射击有机会造成超级暴击。",
+  "summary": "早在克隆基因衰变之前，精英 Grineer 指挥官就用这把强大的步枪从战甲的叛乱中保护幸存的奥罗金人。当骨葬 Prime 造成异常状态时，下一次射击有机会造成超级暴击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +125,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "An ancient weapon designed by the Entrati for use by their Necramechs. Primary fire siphons life essence from the target to fuel a devastating secondary fire. A heavy flamethrower with surprising range. Secondary fire launches three projectiles in a fan pattern that explode, leaving a damaging area of effect for a short duration.",
-    "display": "（英文：CORTEGE）英择谛为其殁世机甲所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把重型火焰喷射器拥有惊人的射程。次要射击可扇形投射三枚爆炸弹丸，并在短时间内留下一片破坏性区域。",
+    "display": "英择谛为其殁世机甲所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把重型火焰喷射器拥有惊人的射程。次要射击可扇形投射三枚爆炸弹丸，并在短时间内留下一片破坏性区域。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,98 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ThanotechArchGunBlueprint"
+          ],
+          "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
+          "sourceDisplayName": "殁世械灵的 Loid",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "殁世械灵的 Loid",
+          "requiredRankName": "Clearance Odima",
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem"
+          ],
+          "sourceDisplayName": "殁世幽都的洛德",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Languages.bin official route help",
+            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextCortegeWeapon"
+          },
+          "variables": {
+            "partName": "送葬者 枪管"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem"
+          ],
+          "sourceDisplayName": "殁世幽都的洛德",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Languages.bin official route help",
+            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextCortegeWeapon"
+          },
+          "variables": {
+            "partName": "送葬者 枪机"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem"
+          ],
+          "sourceDisplayName": "殁世幽都的洛德",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Languages.bin official route help",
+            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextCortegeWeapon"
+          },
+          "variables": {
+            "partName": "送葬者 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ThanotechArchGunBlueprint"
         ],
@@ -68,8 +148,136 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechArchGunBlueprint"
+            ],
+            "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
+            "sourceDisplayName": "殁世械灵的 Loid",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "殁世械灵的 Loid",
+            "requiredRankName": "Clearance Odima",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem"
+        ],
+        "variables": {
+          "partName": "送葬者 枪管"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem"
+            ],
+            "sourceDisplayName": "殁世幽都的洛德",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Languages.bin official route help",
+              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextCortegeWeapon"
+            },
+            "variables": {
+              "partName": "送葬者 枪管"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem"
+        ],
+        "variables": {
+          "partName": "送葬者 枪机"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem"
+            ],
+            "sourceDisplayName": "殁世幽都的洛德",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Languages.bin official route help",
+              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextCortegeWeapon"
+            },
+            "variables": {
+              "partName": "送葬者 枪机"
+            }
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem"
+        ],
+        "variables": {
+          "partName": "送葬者 枪托"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem"
+            ],
+            "sourceDisplayName": "殁世幽都的洛德",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Languages.bin official route help",
+              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextCortegeWeapon"
+            },
+            "variables": {
+              "partName": "送葬者 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -102,7 +310,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -120,26 +328,26 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem",
-          "canonical": "ThanotechArchGunBarrelItem",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Cortege Barrel",
+          "displayName": "送葬者 枪管",
+          "languageKey": "/Lotus/Language/Necromech/ThanotechArchGunBarrelName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem",
-          "canonical": "ThanotechArchGunReceiverItem",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Cortege Receiver",
+          "displayName": "送葬者 枪机",
+          "languageKey": "/Lotus/Language/Necromech/ThanotechArchGunReceiverName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem",
-          "canonical": "ThanotechArchGunStockItem",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Cortege Stock",
+          "displayName": "送葬者 枪托",
+          "languageKey": "/Lotus/Language/Necromech/ThanotechArchGunStockName",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -151,7 +359,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CORTEGE）英择谛为其殁世机甲所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把重型火焰喷射器拥有惊人的射程。次要射击可扇形投射三枚爆炸弹丸，并在短时间内留下一片破坏性区域。",
+  "summary": "英择谛为其殁世机甲所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把重型火焰喷射器拥有惊人的射程。次要射击可扇形投射三枚爆炸弹丸，并在短时间内留下一片破坏性区域。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -168,16 +376,31 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
-    "components": [],
-    "crafting": false
+    "blueprint": true,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem",
+        "complete": true
+      },
+      {
+        "partRef": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem",
+        "complete": true
+      }
+    ],
+    "crafting": true
   }
 }

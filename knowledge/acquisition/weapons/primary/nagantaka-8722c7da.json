@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Slash targets with a single precise bolt from Garuda's signature crossbow. Alt-fire to let loose a barrage of bolts. All bolts have a chance to cause 切割Slash Status, and Headshots have a chance to increase Reload Speed. When wielded by Garuda Nagantaka gains a slight Punch Through.",
-    "display": "（英文：NAGANTAKA）Garuda 的标志性十字弓能以一支精准的弩矢斩断目标，而次要射击则能发射出弩矢弹幕；每支弩矢都有可能造成 切割切割异常状态，爆头射击则可加快装填速度。在被 Garuda 使用时，噬蛇弩会获得少量的穿透效果。",
+    "display": "Garuda 的标志性十字弓能以一支精准的弩矢斩断目标，而次要射击则能发射出弩矢弹幕；每支弩矢都有可能造成 切割切割异常状态，爆头射击则可加快装填速度。在被 Garuda 使用时，噬蛇弩会获得少量的穿透效果。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Nagantaka",
+            "revisionId": 2791895
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GarudaCrossbowBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GarudaCrossbowBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Nagantaka",
+              "revisionId": 2791895
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GarudaCrossbowBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：NAGANTAKA）Garuda 的标志性十字弓能以一支精准的弩矢斩断目标，而次要射击则能发射出弩矢弹幕；每支弩矢都有可能造成 切割切割异常状态，爆头射击则可加快装填速度。在被 Garuda 使用时，噬蛇弩会获得少量的穿透效果。",
+  "summary": "Garuda 的标志性十字弓能以一支精准的弩矢斩断目标，而次要射击则能发射出弩矢弹幕；每支弩矢都有可能造成 切割切割异常状态，爆头射击则可加快装填速度。在被 Garuda 使用时，噬蛇弩会获得少量的穿透效果。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Braton's high rate of fire and accuracy make it a favorite among the Tenno.",
-    "display": "（英文：BRATON）布莱顿是一支自动步枪。高射速和高精度使其成为了 Tenno 的最爱。",
+    "display": "布莱顿是一支自动步枪。高射速和高精度使其成为了 Tenno 的最爱。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,56 +46,89 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Braton",
+            "revisionId": 2773809
+          },
+          "partRefs": [],
+          "variables": {}
+        },
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Braton",
+            "revisionId": 2773809
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "布莱顿",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
+          "weaponName": "布莱顿"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "布莱顿"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint",
+            "type": "market-purchase",
+            "scope": "item",
+            "sourceDisplayName": "商店",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/BratonBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Braton",
+              "revisionId": 2773809
+            },
+            "partRefs": [],
+            "variables": {}
+          },
+          {
+            "type": "market-purchase",
+            "scope": "item",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Braton",
+              "revisionId": 2773809
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -122,7 +155,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：BRATON）布莱顿是一支自动步枪。高射速和高精度使其成为了 Tenno 的最爱。",
+  "summary": "布莱顿是一支自动步枪。高射速和高精度使其成为了 Tenno 的最爱。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -139,16 +172,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

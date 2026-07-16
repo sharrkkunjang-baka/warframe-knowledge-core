@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Bring down judgement, with this boltor crafted by the Arbiters of Hexis.",
-    "display": "（英文：TELOS BOLTOR）用这把均衡仲裁者锻造的螺钉步枪降下审判。",
+    "display": "用这把均衡仲裁者锻造的螺钉步枪降下审判。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "Arbiters of Hexis",
+          "sourceDisplayName": "均衡仲裁者",
+          "factionDisplayName": "均衡仲裁者",
+          "standing": 125000,
+          "requirements": {
+            "type": "standing",
+            "rankName": "Maxim",
+            "amount": 125000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Telos Boltor",
+            "revisionId": 2773239
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "终极·螺钉步枪"
@@ -64,15 +86,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "Arbiters of Hexis",
+            "sourceDisplayName": "均衡仲裁者",
+            "factionDisplayName": "均衡仲裁者",
+            "standing": 125000,
+            "requirements": {
+              "type": "standing",
+              "rankName": "Maxim",
+              "amount": 125000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Telos Boltor",
+              "revisionId": 2773239
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TELOS BOLTOR）用这把均衡仲裁者锻造的螺钉步枪降下审判。",
+  "summary": "用这把均衡仲裁者锻造的螺钉步枪降下审判。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +133,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

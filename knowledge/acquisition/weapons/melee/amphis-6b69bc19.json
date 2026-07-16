@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Fashioned with Grineer materials and balanced for marine infantry use, the Amphis is a traditional staff weapon that has received a monstrous makeover that enables shock damage on jump attacks. Connects with multiple enemies with each strike.",
-    "display": "（英文：AMPHIS）以 Grineer 材料制成，设计为海军陆战队使用，双头蛇是一把为了附带电击伤害而接受了大幅改造的传统棍棒武器——跳跃攻击附带电击伤害。可以同时打击多个敌人。",
+    "display": "以 Grineer 材料制成，设计为海军陆战队使用，双头蛇是一把为了附带电击伤害而接受了大幅改造的传统棍棒武器——跳跃攻击附带电击伤害。可以同时打击多个敌人。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,36 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
         ],
@@ -68,8 +86,26 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnStaffBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +196,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AMPHIS）以 Grineer 材料制成，设计为海军陆战队使用，双头蛇是一把为了附带电击伤害而接受了大幅改造的传统棍棒武器——跳跃攻击附带电击伤害。可以同时打击多个敌人。",
+  "summary": "以 Grineer 材料制成，设计为海军陆战队使用，双头蛇是一把为了附带电击伤害而接受了大幅改造的传统棍棒武器——跳跃攻击附带电击伤害。可以同时打击多个敌人。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +213,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

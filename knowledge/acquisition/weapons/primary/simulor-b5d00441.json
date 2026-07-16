@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Creates miniature gravitational singularities that can be used for scientific study or self-defense.",
-    "display": "（英文：SIMULOR）能制造出微型的重力奇异点，可用于科学研究或自我防卫。",
+    "display": "能制造出微型的重力奇异点，可用于科学研究或自我防卫。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,41 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Cephalon Simaris",
+          "sourceDisplayName": "中枢 Simaris",
+          "factionDisplayName": "中枢 Simaris",
+          "standing": 75000,
+          "requirements": {
+            "type": "standing",
+            "amount": 75000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Simulor",
+            "revisionId": 2768434
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/CephPrimaryBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/CephPrimaryBlueprint"
         ],
@@ -68,8 +91,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Cephalon Simaris",
+            "sourceDisplayName": "中枢 Simaris",
+            "factionDisplayName": "中枢 Simaris",
+            "standing": 75000,
+            "requirements": {
+              "type": "standing",
+              "amount": 75000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Simulor",
+              "revisionId": 2768434
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CephPrimaryBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +206,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SIMULOR）能制造出微型的重力奇异点，可用于科学研究或自我防卫。",
+  "summary": "能制造出微型的重力奇异点，可用于科学研究或自我防卫。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +223,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

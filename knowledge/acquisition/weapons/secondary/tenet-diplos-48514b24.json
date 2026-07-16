@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Itemize and execute with this pair of auto-lock-on, homing-projectile pistols. Shoot from-hip for a more conventional pistol experience. The patented Granum Attaché System reloads the pistols when holstered.",
-    "display": "（英文：TENET DIPLOS）用这对自动锁定追踪目标的双枪将敌人逐个击破。腰射模式与传统手枪无异。配备了获得专利批准的格拉努公文包系统，收起时自动装填。",
+    "display": "用这对自动锁定追踪目标的双枪将敌人逐个击破。腰射模式与传统手枪无异。配备了获得专利批准的格拉努公文包系统，收起时自动装填。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的 Corpus 姐妹",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Diplos",
+            "revisionId": 2789987
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseAkimboPistolBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·纵横双枪",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseAkimboPistolBlueprint"
+          "weaponName": "信条·纵横双枪"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "信条·纵横双枪"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseAkimboPistolBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseAkimboPistolBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的 Corpus 姐妹",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseAkimboPistolBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LawyerWeapons/CrpBriefcaseAkimboPistolBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Diplos",
+              "revisionId": 2789987
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET DIPLOS）用这对自动锁定追踪目标的双枪将敌人逐个击破。腰射模式与传统手枪无异。配备了获得专利批准的格拉努公文包系统，收起时自动装填。",
+  "summary": "用这对自动锁定追踪目标的双枪将敌人逐个击破。腰射模式与传统手枪无异。配备了获得专利批准的格拉努公文包系统，收起时自动装填。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

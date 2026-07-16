@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Drive the agenda with this massive impact hammer. Heavy attacks launch devastating energy disks.",
-    "display": "（英文：TENET AGENDUS）用这把重型冲击锤推动议程。重击会发射毁灭性的能量盘。",
+    "display": "用这把重型冲击锤推动议程。重击会发射毁灭性的能量盘。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,58 +48,69 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "任意中继站的 Ergo Glast",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "堕落全息密钥",
+                "amount": 40
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Agendus",
+            "revisionId": 2698638
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/CrpHammerShieldBlueprint"
-        ],
+        "scope": "item",
+        "category": "vendor",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·集议",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpHammerShieldBlueprint"
+          "weaponName": "信条·集议"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [
-          "/Lotus/Types/Items/MiscItems/Salvage"
-        ],
-        "variables": {
-          "productName": "信条·集议"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpHammerShieldBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpHammerShieldBlueprint",
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "任意中继站的 Ergo Glast",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpHammerShieldBlueprint"
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "堕落全息密钥",
+                  "amount": 40
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpHammerShieldBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Agendus",
+              "revisionId": 2698638
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -135,7 +146,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET AGENDUS）用这把重型冲击锤推动议程。重击会发射毁灭性的能量盘。",
+  "summary": "用这把重型冲击锤推动议程。重击会发射毁灭性的能量盘。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -152,16 +163,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

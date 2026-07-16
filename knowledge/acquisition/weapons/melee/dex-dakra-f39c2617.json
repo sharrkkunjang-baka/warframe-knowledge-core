@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A gift from the Lotus to commemorate the anniversary of the first Tenno waking from Cryo stasis.",
-    "display": "（英文：DEX DAKRA）这是 Lotus 为第一位从低温催眠中醒来的 Tenno 所准备的一份周年纪念礼物。",
+    "display": "这是 Lotus 为第一位从低温催眠中醒来的 Tenno 所准备的一份周年纪念礼物。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,34 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "anniversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "周年庆典警报",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dex Dakra",
+            "revisionId": 2728196
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "Dex 达克拉双剑"
@@ -64,15 +81,32 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "anniversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "周年庆典警报",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dex Dakra",
+              "revisionId": 2728196
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：DEX DAKRA）这是 Lotus 为第一位从低温催眠中醒来的 Tenno 所准备的一份周年纪念礼物。",
+  "summary": "这是 Lotus 为第一位从低温催眠中醒来的 Tenno 所准备的一份周年纪念礼物。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +123,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

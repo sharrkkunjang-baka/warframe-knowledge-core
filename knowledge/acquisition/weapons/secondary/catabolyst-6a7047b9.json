@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Splatter enemies with a short-range stream of corrosive bile and then toss the ammo bladder as a grenade when reloading. The emptier the pistol’s ammo bladder, the more potent its damage. A fully empty bladder packs the biggest punch.",
-    "display": "（英文：CATABOLYST）可在短距离内向敌人喷射腐蚀性胆汁，此外，弹药囊腔可在装填时被用作投掷手雷。手枪的弹药囊腔越空，其造成的伤害就越强。完全射空的囊腔能发挥出最大的威力。",
+    "display": "可在短距离内向敌人喷射腐蚀性胆汁，此外，弹药囊腔可在装填时被用作投掷手雷。手枪的弹药囊腔越空，其造成的伤害就越强。完全射空的囊腔能发挥出最大的威力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/InfBeamPistolBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "生物实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Catabolyst",
+            "revisionId": 2785507
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/InfBeamPistolBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/InfBeamPistolBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/InfBeamPistolBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "生物实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Catabolyst",
+              "revisionId": 2785507
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/InfBeamPistolBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CATABOLYST）可在短距离内向敌人喷射腐蚀性胆汁，此外，弹药囊腔可在装填时被用作投掷手雷。手枪的弹药囊腔越空，其造成的伤害就越强。完全射空的囊腔能发挥出最大的威力。",
+  "summary": "可在短距离内向敌人喷射腐蚀性胆汁，此外，弹药囊腔可在装填时被用作投掷手雷。手枪的弹药囊腔越空，其造成的伤害就越强。完全射空的囊腔能发挥出最大的威力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +249,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Perforate Techrot, and anyone else who stands in your way, with this Scaldra machine gun. Alternative fire pummels targets with Efervon laced buckshot.",
-    "display": "（英文：EFV-5 JUPITER）使用这把炽蛇军机枪扫射科腐者和任何胆敢阻挡你的人。次要射击使用涂有艾弗旺的霰弹重击目标。",
+    "display": "使用这把炽蛇军机枪扫射科腐者和任何胆敢阻挡你的人。次要射击使用涂有艾弗旺的霰弹重击目标。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,101 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceDisplayName": "六人组的 Minerva",
+          "factionDisplayName": "六人组",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "EFV-5 Jupiter",
+            "revisionId": 2791905
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六人组的 Minerva",
+          "factionDisplayName": "六人组",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "EFV-5 Jupiter",
+            "revisionId": 2791905
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel"
+          ],
+          "variables": {
+            "partName": "艾弗旺-5 木星 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六人组的 Minerva",
+          "factionDisplayName": "六人组",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "EFV-5 Jupiter",
+            "revisionId": 2791905
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver"
+          ],
+          "variables": {
+            "partName": "艾弗旺-5 木星 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六人组的 Minerva",
+          "factionDisplayName": "六人组",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "EFV-5 Jupiter",
+            "revisionId": 2791905
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock"
+          ],
+          "variables": {
+            "partName": "艾弗旺-5 木星 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
         ],
@@ -68,12 +151,32 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceDisplayName": "六人组的 Minerva",
+            "factionDisplayName": "六人组",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "EFV-5 Jupiter",
+              "revisionId": 2791905
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/LasGooAKPlayerWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel"
         ],
@@ -83,12 +186,34 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六人组的 Minerva",
+            "factionDisplayName": "六人组",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "EFV-5 Jupiter",
+              "revisionId": 2791905
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel"
+            ],
+            "variables": {
+              "partName": "艾弗旺-5 木星 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver"
         ],
@@ -98,12 +223,34 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六人组的 Minerva",
+            "factionDisplayName": "六人组",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "EFV-5 Jupiter",
+              "revisionId": 2791905
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver"
+            ],
+            "variables": {
+              "partName": "艾弗旺-5 木星 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock"
         ],
@@ -113,8 +260,30 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六人组的 Minerva",
+            "factionDisplayName": "六人组",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "EFV-5 Jupiter",
+              "revisionId": 2791905
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock"
+            ],
+            "variables": {
+              "partName": "艾弗旺-5 木星 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -196,7 +365,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：EFV-5 JUPITER）使用这把炽蛇军机枪扫射科腐者和任何胆敢阻挡你的人。次要射击使用涂有艾弗旺的霰弹重击目标。",
+  "summary": "使用这把炽蛇军机枪扫射科腐者和任何胆敢阻挡你的人。次要射击使用涂有艾弗旺的霰弹重击目标。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -213,27 +382,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooAKPlayerWeaponStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Bolts from this Corpus bow deliver a one-two punch of an icy pulse, followed by a conventional explosion. Excess ammo picked up for other weapons will be converted into charges for the Lenz. \r\n\r\nWarning: Safety-protocols do not exist on this prototype.",
-    "display": "（英文：LENZ）从这把 Corpus 弓箭中射出的箭矢将会放出极寒脉冲，紧接产生常规爆炸。额外拾取的其他武器弹药将会转化为楞次弓的电荷。\r\n\r\n警告：此原型机未使用安全协议。",
+    "display": "从这把 Corpus 弓箭中射出的箭矢将会放出极寒脉冲，紧接产生常规爆炸。额外拾取的其他武器弹药将会转化为楞次弓的电荷。\r\n\r\n警告：此原型机未使用安全协议。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "能源实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Lenz",
+            "revisionId": 2685444
+          },
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "能源实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Lenz",
+              "revisionId": 2685444
+            },
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Energy/CrpBowBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：LENZ）从这把 Corpus 弓箭中射出的箭矢将会放出极寒脉冲，紧接产生常规爆炸。额外拾取的其他武器弹药将会转化为楞次弓的电荷。\r\n\r\n警告：此原型机未使用安全协议。",
+  "summary": "从这把 Corpus 弓箭中射出的箭矢将会放出极寒脉冲，紧接产生常规爆炸。额外拾取的其他武器弹药将会转化为楞次弓的电荷。\r\n\r\n警告：此原型机未使用安全协议。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +249,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

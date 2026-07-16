@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The versatile Cinta can fire arrows in quick succession, quickly charge a shock wave, or fully charge a powerful focused shot.",
-    "display": "（英文：CINTA）遂心的功能非常多样化，可以快速连续地射出箭矢，迅速充能释放冲击震波，或完全充能并进行威力强大的聚焦式射击。",
+    "display": "遂心的功能非常多样化，可以快速连续地射出箭矢，迅速充能释放冲击震波，或完全充能并进行威力强大的聚焦式射击。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,117 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "双衍王境谜题",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cinta",
+            "revisionId": 2785191
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境谜题",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cinta",
+            "revisionId": 2785191
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString"
+          ],
+          "variables": {
+            "partName": "遂心 弓弦"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境谜题",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cinta",
+            "revisionId": 2785191
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip"
+          ],
+          "variables": {
+            "partName": "遂心 握把"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境谜题",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cinta",
+            "revisionId": 2785191
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb"
+          ],
+          "variables": {
+            "partName": "遂心 上弓臂"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "双衍王境谜题",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cinta",
+            "revisionId": 2785191
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
+          ],
+          "variables": {
+            "partName": "遂心 下弓臂"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
         ],
@@ -68,12 +167,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "双衍王境谜题",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cinta",
+              "revisionId": 2785191
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DaxDuviriAsymmetricalLongBowPlayerWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString"
         ],
@@ -83,12 +201,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境谜题",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cinta",
+              "revisionId": 2785191
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString"
+            ],
+            "variables": {
+              "partName": "遂心 弓弦"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip"
         ],
@@ -98,12 +237,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境谜题",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cinta",
+              "revisionId": 2785191
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip"
+            ],
+            "variables": {
+              "partName": "遂心 握把"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb"
         ],
@@ -113,12 +273,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境谜题",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cinta",
+              "revisionId": 2785191
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb"
+            ],
+            "variables": {
+              "partName": "遂心 上弓臂"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
         ],
@@ -128,8 +309,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "双衍王境谜题",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cinta",
+              "revisionId": 2785191
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb"
+            ],
+            "variables": {
+              "partName": "遂心 下弓臂"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -220,7 +422,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CINTA）遂心的功能非常多样化，可以快速连续地射出箭矢，迅速充能释放冲击震波，或完全充能并进行威力强大的聚焦式射击。",
+  "summary": "遂心的功能非常多样化，可以快速连续地射出箭矢，迅速充能释放冲击震波，或完全充能并进行威力强大的聚焦式射击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -237,31 +439,33 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowString",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowGrip",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowUpperLimb",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/DaxDuviriAsymmetricalLongBowLowerLimb",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

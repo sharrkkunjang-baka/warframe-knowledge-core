@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Powered by a bio-chemical reaction, the Infested Synapse rifle fries its targets with a steady stream of 腐蚀Corrosive energy.",
-    "display": "（英文：SYNAPSE）由生化反应驱动，被感染的突触生化枪通过一束稳定的腐蚀腐蚀能量炙烤目标。",
+    "display": "由生化反应驱动，被感染的突触生化枪通过一束稳定的腐蚀腐蚀能量炙烤目标。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "生物实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Synapse",
+            "revisionId": 2785427
+          },
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Bio/InfestedRifleBioWeaponBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Bio/InfestedRifleBioWeaponBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "生物实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Synapse",
+              "revisionId": 2785427
+            },
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Bio/InfestedRifleBioWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -103,7 +141,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -146,9 +184,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "fallback-en",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
           "quantity": 2
         }
       ],
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SYNAPSE）由生化反应驱动，被感染的突触生化枪通过一束稳定的腐蚀腐蚀能量炙烤目标。",
+  "summary": "由生化反应驱动，被感染的突触生化枪通过一束稳定的腐蚀腐蚀能量炙烤目标。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +215,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
-    "crafting": false
+    "crafting": true
   }
 }

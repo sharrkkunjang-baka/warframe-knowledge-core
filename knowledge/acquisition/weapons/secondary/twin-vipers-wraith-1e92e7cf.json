@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The uniquely styled Twin Vipers Wraith are a powerful variation on the standard akimbo machine-pistols.",
-    "display": "（英文：WRAITH TWIN VIPERS）独特风格的双子蝰蛇·亡魂拥有比原版更强的火力。",
+    "display": "独特风格的双子蝰蛇·亡魂拥有比原版更强的火力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,97 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "invasion-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Twin Vipers Wraith",
+            "revisionId": 2785045
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TwinVipersWraithBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Twin Vipers Wraith",
+            "revisionId": 2785045
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithBarrel"
+          ],
+          "variables": {
+            "partName": "双子蝰蛇·亡魂 枪管"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Twin Vipers Wraith",
+            "revisionId": 2785045
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithReceiver"
+          ],
+          "variables": {
+            "partName": "双子蝰蛇·亡魂 枪机"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Twin Vipers Wraith",
+            "revisionId": 2785045
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithLink"
+          ],
+          "variables": {
+            "partName": "双子蝰蛇·亡魂 连接器"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TwinVipersWraithBlueprint"
         ],
@@ -68,42 +147,103 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Twin Vipers Wraith",
+              "revisionId": 2785045
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TwinVipersWraithBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithBarrel"
         ],
         "variables": {
-          "partName": "TwinVipersWraithBarrel"
+          "partName": "双子蝰蛇·亡魂 枪管"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Twin Vipers Wraith",
+              "revisionId": 2785045
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithBarrel"
+            ],
+            "variables": {
+              "partName": "双子蝰蛇·亡魂 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithReceiver"
         ],
         "variables": {
-          "partName": "TwinVipersWraithReceiver"
+          "partName": "双子蝰蛇·亡魂 枪机"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Twin Vipers Wraith",
+              "revisionId": 2785045
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithReceiver"
+            ],
+            "variables": {
+              "partName": "双子蝰蛇·亡魂 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithLink"
         ],
@@ -113,8 +253,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Twin Vipers Wraith",
+              "revisionId": 2785045
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithLink"
+            ],
+            "variables": {
+              "partName": "双子蝰蛇·亡魂 连接器"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -147,7 +308,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -165,18 +326,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithBarrel",
-          "canonical": "TwinVipersWraithBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Twin Vipers Wraith Barrels",
+          "displayName": "双子蝰蛇·亡魂 枪管",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_TwinVipersWraithBarrels",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithReceiver",
-          "canonical": "TwinVipersWraithReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Twin Vipers Wraith Receivers",
+          "displayName": "双子蝰蛇·亡魂 枪机",
+          "languageKey": "/Lotus/Language/Menu/CraftingComponent_TwinVipersWraithReceivers",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -196,7 +357,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：WRAITH TWIN VIPERS）独特风格的双子蝰蛇·亡魂拥有比原版更强的火力。",
+  "summary": "独特风格的双子蝰蛇·亡魂拥有比原版更强的火力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -213,29 +374,31 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TwinVipersWraithLink",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Creates and focuses a high-frequency field of microwaves, literally cooking the target from within.",
-    "display": "（英文：NUKOR）创造并聚焦一个高频率的微波场，从内部将目标确确实实地烤熟。",
+    "display": "创造并聚焦一个高频率的微波场，从内部将目标确确实实地烤熟。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Chemical/GrnMicrowavePistolBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "化学实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Nukor",
+            "revisionId": 2785513
+          },
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Chemical/GrnMicrowavePistolBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Chemical/GrnMicrowavePistolBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/GrnMicrowavePistolBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "化学实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Nukor",
+              "revisionId": 2785513
+            },
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/GrnMicrowavePistolBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -103,7 +175,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -146,9 +218,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "fallback-en",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：NUKOR）创造并聚焦一个高频率的微波场，从内部将目标确确实实地烤熟。",
+  "summary": "创造并聚焦一个高频率的微波场，从内部将目标确确实实地烤熟。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +249,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
-    "crafting": false
+    "crafting": true
   }
 }

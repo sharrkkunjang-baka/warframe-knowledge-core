@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The MK1-Kunai is the standard issue throwing knives for all Tenno.",
-    "display": "（英文：MK1-KUNAI）MK1-苦无是给Tenno的标准配置投掷武器。",
+    "display": "MK1-苦无是给Tenno的标准配置投掷武器。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,65 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "partRefs": [],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportWeapons",
+            "field": "creditsCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Mk1-Kunai",
+            "revisionId": 2761861
+          },
+          "partRefs": [],
+          "variables": {}
+        },
+        {
+          "type": "market-purchase",
+          "scope": "item",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Mk1-Kunai",
+            "revisionId": 2761861
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "MK1-苦无"
@@ -64,15 +112,63 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "item",
+            "partRefs": [],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportWeapons",
+              "field": "creditsCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "market-purchase",
+            "scope": "item",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Mk1-Kunai",
+              "revisionId": 2761861
+            },
+            "partRefs": [],
+            "variables": {}
+          },
+          {
+            "type": "market-purchase",
+            "scope": "item",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Mk1-Kunai",
+              "revisionId": 2761861
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：MK1-KUNAI）MK1-苦无是给Tenno的标准配置投掷武器。",
+  "summary": "MK1-苦无是给Tenno的标准配置投掷武器。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +185,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "The custom weapon of a fearsome Kuva Lich. Unlike the basic version the Kuva Ogris fires detonite-infused casings semi-automatically, from a smaller magazine, while dealing greater damage per shot.",
-    "display": "（英文：KUVA OGRIS）某位可怕的赤毒玄骸所使用的改装武器。与原版不同，它拥有更小的弹匣，能以半自动的方式发射满载易爆物的炮弹，同时每一发能造成更多伤害。",
+    "display": "某位可怕的赤毒玄骸所使用的改装武器。与原版不同，它拥有更小的弹匣，能以半自动的方式发射满载易爆物的炮弹，同时每一发能造成更多伤害。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Ogris",
+            "revisionId": 2785490
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaOgrisBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·食人女魔",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaOgrisBlueprint"
+          "weaponName": "赤毒·食人女魔"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·食人女魔"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaOgrisBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaOgrisBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaOgrisBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaOgrisBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Ogris",
+              "revisionId": 2785490
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA OGRIS）某位可怕的赤毒玄骸所使用的改装武器。与原版不同，它拥有更小的弹匣，能以半自动的方式发射满载易爆物的炮弹，同时每一发能造成更多伤害。",
+  "summary": "某位可怕的赤毒玄骸所使用的改装武器。与原版不同，它拥有更小的弹匣，能以半自动的方式发射满载易爆物的炮弹，同时每一发能造成更多伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

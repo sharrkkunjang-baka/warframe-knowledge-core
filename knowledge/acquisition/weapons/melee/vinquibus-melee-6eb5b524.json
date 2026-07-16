@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Bring hell to the battlefield with Uriel's signature rifle and bayonet combination. Occupying both primary and melee slots, this unique weapon blends precision marksmanship with unrelenting melee combat.",
-    "display": "（英文：VINQUIBUS）通过 Uriel 的标志性步枪和刺刀组合，将地狱之火带入战场。这把独特的武器既可作为主要武器也可作为近战武器，完美融合了精准的射击和毫不留情的近战攻击。",
+    "display": "通过 Uriel 的标志性步枪和刺刀组合，将地狱之火带入战场。这把独特的武器既可作为主要武器也可作为近战武器，完美融合了精准的射击和毫不留情的近战攻击。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,33 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "included-with-equipment",
+          "scope": "item",
+          "partRefs": [],
+          "sourceDisplayName": "制胜者",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportWeapons",
+            "field": "bayonetOtherWeaponType"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "制胜者（近战）"
@@ -64,15 +80,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "included-with-equipment",
+            "scope": "item",
+            "partRefs": [],
+            "sourceDisplayName": "制胜者",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportWeapons",
+              "field": "bayonetOtherWeaponType"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：VINQUIBUS）通过 Uriel 的标志性步枪和刺刀组合，将地狱之火带入战场。这把独特的武器既可作为主要武器也可作为近战武器，完美融合了精准的射击和毫不留情的近战攻击。",
+  "summary": "通过 Uriel 的标志性步枪和刺刀组合，将地狱之火带入战场。这把独特的武器既可作为主要武器也可作为近战武器，完美融合了精准的射击和毫不留情的近战攻击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +121,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "An advanced blade that delivers high-damage attacks. Delivers a high percentage of critical strikes.",
-    "display": "（英文：PLASMA SWORD）这是一把先进的武器，有着高蓄力伤害和暴击几率。",
+    "display": "这是一把先进的武器，有着高蓄力伤害和暴击几率。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "nightwave-offering",
+          "scope": "blueprint",
+          "sourceDisplayName": "午夜电波商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Plasma Sword",
+            "revisionId": 2659102
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/PlasmaSwordBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/PlasmaSwordBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "nightwave-offering",
+            "scope": "blueprint",
+            "sourceDisplayName": "午夜电波商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Plasma Sword",
+              "revisionId": 2659102
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PlasmaSwordBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PLASMA SWORD）这是一把先进的武器，有着高蓄力伤害和暴击几率。",
+  "summary": "这是一把先进的武器，有着高蓄力伤害和暴击几率。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

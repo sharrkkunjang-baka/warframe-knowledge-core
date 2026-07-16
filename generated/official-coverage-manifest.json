@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-16T03:43:37.566Z",
+  "generatedAt": "2026-07-16T11:20:16.135Z",
   "sources": {
     "publicExport": "Warframe Public Export",
     "package": {
@@ -2779,11 +2779,11 @@
     "mod": {
       "name": "mod",
       "counts": {
-        "identities": 1733,
+        "identities": 1746,
         "included": 0,
-        "excluded-policy": 322,
+        "excluded-policy": 320,
         "stub": 0,
-        "covered": 605,
+        "covered": 620,
         "review-required": 806,
         "source-conflict": 0
       },
@@ -3134,7 +3134,20 @@
           "/Lotus/Weapons/CrewShip/MassDriver/AutoCannon/AutoCannonInnateDamageRandomMod",
           "/Lotus/Weapons/CrewShip/ShrapnelShotgun/ShrapnelShotgunInnateDamageRandomMod",
           "/Lotus/Weapons/Grineer/KuvaLich/Upgrades/InnateDamageRandomMod",
-          "/Lotus/Weapons/Tenno/Melee/MeleeTrees/SawBladeCmbOneMeleeTree"
+          "/Lotus/Weapons/Tenno/Melee/MeleeTrees/SawBladeCmbOneMeleeTree",
+          "language:/Lotus/Language/Suits/AlchemistTransmute_AbilityAugment1Name",
+          "language:/Lotus/Language/Suits/BrokenDestructAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/ChoirPoolAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/GeodeCrystalAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/GyreOverchargedAugment1Name",
+          "language:/Lotus/Language/Suits/HopliteBash_AbilityAugment1Name",
+          "language:/Lotus/Language/Suits/KoumeiStringsAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/LevTrapAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/PagemasterBookAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/PaxBladesAbilityAugment1Name",
+          "language:/Lotus/Language/Suits/SentientWhirlwindAugmentName",
+          "language:/Lotus/Language/Suits/TemplePassiveAugment1Name",
+          "language:/Lotus/Language/Suits/WorldOnFireAbilityAugment1Name"
         ]
       },
       "entries": [
@@ -3537,6 +3550,34 @@
             "publicExport": true,
             "package": true,
             "wiki": true
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Powersuits/BrokenFrame/EmbraceAugmentCard",
+          "canonical": "The Relentless Lost",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Powersuits/BrokenFrame/GraspAugmentCard",
+          "canonical": "Vampiric Grasp",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
           },
           "localPresence": true,
           "disposition": "covered",
@@ -22893,30 +22934,184 @@
           "reviewRequired": false
         },
         {
-          "identity": "/Lotus/Powersuits/BrokenFrame/EmbraceAugmentCard",
-          "canonical": "The Relentless Lost",
+          "identity": "language:/Lotus/Language/Suits/AlchemistTransmute_AbilityAugment1Name",
+          "canonical": "Lingering Transmutation",
           "sourcePresence": {
             "publicExport": true,
             "package": true,
             "wiki": false
           },
           "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "broken-frame-internal",
+          "disposition": "covered",
+          "excludedPolicy": null,
           "sourceConflict": false,
           "reviewRequired": false
         },
         {
-          "identity": "/Lotus/Powersuits/BrokenFrame/GraspAugmentCard",
-          "canonical": "Vampiric Grasp",
+          "identity": "language:/Lotus/Language/Suits/BrokenDestructAbilityAugment1Name",
+          "canonical": "Untime Rift",
           "sourcePresence": {
             "publicExport": true,
             "package": true,
             "wiki": false
           },
           "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "broken-frame-internal",
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/ChoirPoolAbilityAugment1Name",
+          "canonical": "Jade's Judgment",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/GeodeCrystalAbilityAugment1Name",
+          "canonical": "Prismatic Companion",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/GyreOverchargedAugment1Name",
+          "canonical": "Reverse Rotorswell",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/HopliteBash_AbilityAugment1Name",
+          "canonical": "Tharros Lethality",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/KoumeiStringsAbilityAugment1Name",
+          "canonical": "Kumihimo Loading",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/LevTrapAbilityAugment1Name",
+          "canonical": "Enduring Bastille",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/PagemasterBookAbilityAugment1Name",
+          "canonical": "Noctua Swarm",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/PaxBladesAbilityAugment1Name",
+          "canonical": "Volatile Recompense",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/SentientWhirlwindAugmentName",
+          "canonical": "Razor Mortar",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/TemplePassiveAugment1Name",
+          "canonical": "Rhythm Guard",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "language:/Lotus/Language/Suits/WorldOnFireAbilityAugment1Name",
+          "canonical": "Firequake",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": true,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "covered",
+          "excludedPolicy": null,
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -46861,10 +47056,10 @@
       "counts": {
         "identities": 842,
         "included": 0,
-        "excluded-policy": 224,
+        "excluded-policy": 223,
         "stub": 0,
-        "covered": 138,
-        "review-required": 480,
+        "covered": 464,
+        "review-required": 155,
         "source-conflict": 0
       },
       "differences": {
@@ -48562,8 +48757,106 @@
       },
       "entries": [
         {
-          "identity": "/Lotus/Types/Friendly/PlayerControllable/Weapons/DuviriDualSwords",
-          "canonical": "Sun & Moon",
+          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/CryoxionWeapon",
+          "canonical": "Cryotra",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/HextraWeapon",
+          "canonical": "Multron",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/SwarmerWeapon",
+          "canonical": "Helstrum",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/TazronWeapon",
+          "canonical": "Tazicor",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/ThermocorMoaWeapon",
+          "canonical": "Vulcax",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponIP",
+          "canonical": "Batoten",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponIS",
+          "canonical": "Lacerten",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponPS",
+          "canonical": "Akaten",
           "sourcePresence": {
             "publicExport": true,
             "package": false,
@@ -48598,10 +48891,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/DeconstructorPrime/PrimeHeliosGlaiveWeapon",
@@ -48612,10 +48905,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/DethMachineRifle",
@@ -48626,10 +48919,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/Gremlin",
@@ -48640,10 +48933,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/LaserRifle",
@@ -48654,10 +48947,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/PrimeBurstLaserPistol",
@@ -48668,10 +48961,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/PrimeDethMachineRifle",
@@ -48682,10 +48975,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/PrimeLaserRifle",
@@ -48696,10 +48989,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/PrimeSentShotgun",
@@ -48710,10 +49003,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/PrismaBurstLaserPistol",
@@ -48724,10 +49017,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/SentBioWeapon",
@@ -48738,10 +49031,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/SentElecRailgun",
@@ -48752,10 +49045,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/SentGlaiveWeapon",
@@ -48766,10 +49059,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/SentinelFreezeRayPrimeRifle",
@@ -48780,10 +49073,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/SentinelFreezeRayRifle",
@@ -48794,10 +49087,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Types/Sentinels/SentinelWeapons/SentShotgun",
@@ -48808,10 +49101,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Archon/Melee/DualDaggers/ArchonDualDaggersPlayerWep",
@@ -48822,10 +49115,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Archon/Melee/Trident/ArchonTridentPlayerWep",
@@ -48836,10 +49129,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Archon/Melee/Whip/ArchonWhipPlayerWep",
@@ -48850,10 +49143,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Cephalon/Melee/Hammer/CephHammerWeapon",
@@ -48906,10 +49199,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Chemical/FlameThrower",
@@ -48920,10 +49213,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Chemical/FlameThrowerWraith",
@@ -48948,10 +49241,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/CrpHeavyRifle",
@@ -48962,10 +49255,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/CrpLaserPistol",
@@ -48976,10 +49269,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/CrpLaserRifle",
@@ -48990,10 +49283,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/DeraVandal",
@@ -49004,10 +49297,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/ElectroProd",
@@ -49018,10 +49311,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/EnergyRifle",
@@ -49032,10 +49325,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/Railgun",
@@ -49046,10 +49339,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/ClanTech/Energy/VandalElectroProd",
@@ -49060,10 +49353,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/BoardExec/Primary/CrpBEArcaPlasmor/CrpBEArcaPlasmor",
@@ -49200,10 +49493,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Bow/Longbow/PrismaLenz/PrismaLenzWeapon",
@@ -49214,10 +49507,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/ChainLightningGun/ChainLightningRifle",
@@ -49242,10 +49535,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CorpusUMP/PrismaCorpusUMP",
@@ -49256,10 +49549,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpArSniper/CrpArSniperRifle",
@@ -49270,10 +49563,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpBFG/CrpBFG",
@@ -49284,10 +49577,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpBFG/Vandal/VandalCrpBFG",
@@ -49298,10 +49591,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpBriefcaseLauncher/CrpBriefcaseLauncher",
@@ -49326,10 +49619,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpFreezeRay/Vandal/CrpFreezeRayVandalRifle",
@@ -49340,10 +49633,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpRubanRifle/CrpRubanRifle",
@@ -49368,10 +49661,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpSentExperimentRifle/CrpSentExperimentRifle",
@@ -49382,10 +49675,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpShapeBlast/CrpShapeBlastShotgun",
@@ -49396,10 +49689,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpShockRifle/CrpShockRifle",
@@ -49410,10 +49703,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpShockRifle/QuantaVandal",
@@ -49424,10 +49717,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/CrpShotgun/CrpShotgun",
@@ -49452,10 +49745,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/GrenadeLauncher/CarminePenta",
@@ -49466,10 +49759,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/GrenadeLauncher/GrenadeLauncher",
@@ -49480,10 +49773,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/Machinegun/SupraVandal",
@@ -49494,10 +49787,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/LongGuns/Spears/Railgun/CorpusRailgun",
@@ -49508,10 +49801,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/CrpBriefcase2HKatana/CrpBriefcase2HKatana",
@@ -49550,10 +49843,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/CrpTonfa/CrpTonfa",
@@ -49564,10 +49857,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/CrpVenusHatchet/CrpVenusHatchet",
@@ -49578,10 +49871,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/Glaive/CrpGhostCatcherGlaive/CrpGhostCatcherGlaive",
@@ -49606,10 +49899,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/Gunblade/CrpGunBlade/CrpGunbladeWeapon",
@@ -49648,10 +49941,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/KickAndPunch/PrismaObex",
@@ -49662,10 +49955,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/Polearm/CorpusPolearm01/CorpusPolearmWeapon",
@@ -49676,10 +49969,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/ShieldAndSword/CrpHammerShield/CrpHammerShield",
@@ -49704,10 +49997,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Melee/Whips/CrpShockGrip/CrpShockGripWhipWeapon",
@@ -49718,10 +50011,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CorpusHandShotgun/CorpusHandCannon",
@@ -49746,10 +50039,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CorpusMinigun/DualCorpusMinigun",
@@ -49760,10 +50053,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CorpusModularPistol/Vandal/CrpLaserPistolVandal",
@@ -49788,10 +50081,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CrpBriefcaseAkimbo/CrpBriefcaseAkimboPistol",
@@ -49816,10 +50109,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CrpElectroMag/CrpElectroMag",
@@ -49830,10 +50123,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CrpHandRL/CorpusHandRocketLauncher",
@@ -49858,10 +50151,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CrpIgniterPistol/CrpIgniterPistol",
@@ -49886,10 +50179,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CrpSentExperimentPistol/CrpSentExperimentPistol",
@@ -49900,10 +50193,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/CrpSonificBlastor/CrpBlastorWeapon",
@@ -49914,10 +50207,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Corpus/Pistols/SniperPistol/CrpScopeGun",
@@ -49956,10 +50249,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerLightPistol",
@@ -49970,10 +50263,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/GrineerPistol/GrnHeavyPistol",
@@ -49984,10 +50277,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/GrineerPistol/GrnScopedPistolPlayer",
@@ -49998,10 +50291,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/HeavyWeapons/GrnHeavyGrenadeLauncher",
@@ -50264,10 +50557,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerAssaultRifle/GrnAssaultRifle",
@@ -50278,10 +50571,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerAssaultRifle/TwinGrakatas",
@@ -50292,10 +50585,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerFlakCannon/FlakCannon",
@@ -50306,10 +50599,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerLeverActionRifle/GLARifle",
@@ -50320,10 +50613,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerLeverActionRifle/PrismaGrinlokWeapon",
@@ -50334,10 +50627,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerM16Homage/GrineerM16Rifle",
@@ -50348,10 +50641,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerM16Homage/KarakWraith",
@@ -50362,10 +50655,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerSawbladeGun/SawBladeGun",
@@ -50376,10 +50669,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerSniperRifle/GrnSniperRifle",
@@ -50390,10 +50683,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrineerSniperRifle/VulkarWraith",
@@ -50404,10 +50697,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnCannon/GrnCannonWeapon",
@@ -50418,10 +50711,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnFlameSpear/GrnFlameSpear",
@@ -50432,10 +50725,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnFourBarrelRifle/GrnFourBarrelRifleWeapon",
@@ -50460,10 +50753,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnGrenadeLauncher/GrnGrenadeLauncher",
@@ -50474,10 +50767,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnHarpoonGun/GrnHarpoonGun",
@@ -50488,10 +50781,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnKuvaLichRifle/GrnKuvaLichRifleWeapon",
@@ -50516,10 +50809,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/GrnSpark/GrnSparkRifle",
@@ -50530,10 +50823,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/LaserAimRifle/LaserAimRifle",
@@ -50558,10 +50851,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/LongGuns/WraithGorgon/WraithGorgon",
@@ -50586,10 +50879,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerCombatKnife/GrineerCombatKnife",
@@ -50600,10 +50893,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerHalberd/GrnHalberd",
@@ -50614,10 +50907,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerJetPoweredPolearm/GrineerJetPolearm",
@@ -50628,10 +50921,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerMachetteAndCleaver/DualCleaverWeapon",
@@ -50642,10 +50935,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerMachetteAndCleaver/Machete",
@@ -50670,10 +50963,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerMachetteAndCleaver/PrismaMachete",
@@ -50684,10 +50977,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerMachetteAndCleaver/WraithMacheteWeapon",
@@ -50698,10 +50991,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrineerTylAxeAndBoar/RegorAxeShield",
@@ -50726,10 +51019,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnBoomerang/GrnBoomerang",
@@ -50740,10 +51033,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnBoomerang/HalikarWraithWeapon",
@@ -50754,10 +51047,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnDualFireAxe/GrnDualFireAxe",
@@ -50768,10 +51061,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnEgyptSwd/DualGrnEgyptSwdWeapon",
@@ -50782,10 +51075,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnEgyptSwd/GrnEgyptSwdWeapon",
@@ -50796,10 +51089,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnGhoulSaw/GrnGhoulSawPlayer",
@@ -50824,10 +51117,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GrnKuvaLichScythe/GrnKuvaLichScytheWeapon",
@@ -50894,10 +51187,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/GunBlade/GrnGunBlade/GrnGunblade",
@@ -50908,10 +51201,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Melee/Scythe/GrnDrillScythe/GrnDrillScythe",
@@ -50950,10 +51243,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrineerCrossbow/GrineerGooGun",
@@ -50964,10 +51257,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrineerHandShotgun/GrineerHandCannon",
@@ -50992,10 +51285,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrineerMicrowavegun/GrnMicrowavePistol",
@@ -51006,10 +51299,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrnAmphisPistol/GrnAmphisPistol",
@@ -51020,10 +51313,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrnDWUniques/GrnTwinKohmaks",
@@ -51034,10 +51327,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrnKohmPistol/GrnKohmPistol",
@@ -51048,10 +51341,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrnOrokinPistol/GrnOrokinPistol",
@@ -51076,10 +51369,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrnTorpedoPistol/GrnTorpedoPistol",
@@ -51090,10 +51383,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/GrnUzi/GrnUziWeapon",
@@ -51118,10 +51411,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/WraithSingleViper/WraithSingleViper",
@@ -51132,10 +51425,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Grineer/Pistols/WraithTwinVipers/WraithTwinVipers",
@@ -51174,10 +51467,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/LongGuns/1999InfShotgun/1999InfShotgunWeapon",
@@ -51188,10 +51481,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/LongGuns/CodaBubonico/CodaBubonicoCannon",
@@ -51202,10 +51495,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/LongGuns/CodaHema",
@@ -51216,10 +51509,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/LongGuns/CodaSporothrix",
@@ -51230,10 +51523,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/LongGuns/CodaSynapse",
@@ -51244,10 +51537,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Melee/CodaCaustacyst/CodaCaustacyst",
@@ -51258,10 +51551,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Melee/CodaHirudo",
@@ -51272,10 +51565,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Melee/CodaMire",
@@ -51286,10 +51579,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Melee/CodaPathocyst/CodaPathocyst",
@@ -51300,10 +51593,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Melee/InfestedHammer/InfLichHammerWeapon",
@@ -51314,10 +51607,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Pistols/1999InfSporePistol/1999InfSporePistolWeapon",
@@ -51328,10 +51621,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Pistols/CodaCatabolyst",
@@ -51342,10 +51635,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Pistols/CodaPox",
@@ -51356,10 +51649,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/InfestedLich/Pistols/CodaTysis",
@@ -51370,10 +51663,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/InfArmCannon/InfArmCannon",
@@ -51384,10 +51677,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/InfCrpShockSwarm/InfCrpShockSwarmRifle",
@@ -51398,10 +51691,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/InfestedRifle",
@@ -51412,10 +51705,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/InfSniperRifle/InfSniperRifle",
@@ -51426,10 +51719,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/InfWFAccompanyingPri/InfestedBurstRifle",
@@ -51440,10 +51733,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/QuantaFullyInfested/InfQuantaRifle",
@@ -51454,10 +51747,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/LongGuns/Tentacluster/InfestedShotgun",
@@ -51468,10 +51761,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/Glaives/PunctureGlaive/PunctureGlaiveWeapon",
@@ -51482,10 +51775,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/InfBoomerang/InfBoomerangWeapon",
@@ -51510,10 +51803,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/InfTransformClaw/InfTransformClawsWeapon",
@@ -51538,10 +51831,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/InfWFAccompanyingSparring/InfestedKogake",
@@ -51552,10 +51845,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/Nunchaku/InfNunchuck/InfNunchuck",
@@ -51566,10 +51859,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/Staff/InfStaff/InfStaff",
@@ -51580,10 +51873,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/Swords/Mios/Mios",
@@ -51594,10 +51887,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/Swords/Mire/MireSword",
@@ -51608,10 +51901,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/TipedoStaff/InfTipedoStaff",
@@ -51622,10 +51915,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Melee/Whip/InfestedWhip/InfestedWhipWeapon",
@@ -51636,10 +51929,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Pistols/InfBeamPistol/InfBeamPistol",
@@ -51650,10 +51943,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Pistols/InfestedDartPistol/InfestedDartPistol",
@@ -51664,10 +51957,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Pistols/InfestedPistol",
@@ -51678,10 +51971,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Pistols/InfProximityStars/InfProximityStars",
@@ -51692,10 +51985,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Infested/Pistols/InfUzi/InfUziWeapon",
@@ -51720,10 +52013,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Lasria/AK47/TC2024AK47Weapon",
@@ -51818,10 +52111,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/MK1Series/MK1Furax",
@@ -51832,10 +52125,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/MK1Series/MK1Furis",
@@ -51860,10 +52153,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/MK1Series/MK1Paris",
@@ -51874,10 +52167,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/MK1Series/MK1Strun",
@@ -51888,10 +52181,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Operator/Melee/DrifterTazer/DrifterTazerPlayerWep",
@@ -51944,10 +52237,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Sentients/SentOctaMiniGun/SentOctaMiniGun",
@@ -52042,10 +52335,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/CephalonSuda/Melee/CSHeliocor",
@@ -52070,10 +52363,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/CephalonSuda/Pistols/CSSynoidGammacor",
@@ -52084,10 +52377,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/NewLoka/LongGuns/NLTigris",
@@ -52098,10 +52391,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/NewLoka/Melee/NLMagistar",
@@ -52126,10 +52419,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/PerrinSequence/LongGuns/PSPenta",
@@ -52140,10 +52433,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/PerrinSequence/Melee/PSLecta",
@@ -52154,10 +52447,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/PerrinSequence/Pistols/PSDualCestra",
@@ -52168,10 +52461,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/RedVeil/Bows/RVCernos",
@@ -52196,10 +52489,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/RedVeil/Pistols/RVBallistica",
@@ -52224,10 +52517,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/SteelMeridian/Melee/SMSydon",
@@ -52238,10 +52531,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Syndicates/SteelMeridian/Pistols/SMMarelok",
@@ -52252,10 +52545,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Akimbo/AkimboAutoPistols",
@@ -52308,10 +52601,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Akimbo/AkimboViperPistols",
@@ -52322,10 +52615,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Akimbo/AkLexPistols",
@@ -52504,10 +52797,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Archwing/Melee/GrnArchHand/GrnArchHandWeapon",
@@ -52518,10 +52811,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Archwing/Melee/VoidTraderArchsword/VTArchSwordWeapon",
@@ -52532,10 +52825,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Archwing/Primary/ArchBurstGun/ArchBurstGun",
@@ -52588,10 +52881,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Archwing/Primary/FoldingMachineGun/ArchMachineGun",
@@ -52700,10 +52993,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Archwing/Primary/RocketArtillery/ArchRocketCrossbow",
@@ -52742,10 +53035,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Archwing/Primary/ThanoTechGrenadeLaunch/ThanoTechGrenadeLauncher",
@@ -52784,10 +53077,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Bayonet/TnBayonetMeleeWeapon",
@@ -52826,10 +53119,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Bows/AsymetricalBow/AsymetricalBow",
@@ -52840,10 +53133,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Bows/DaxDuviriAsymetricalBow/DaxDuviriAsymmetricalLongBowPlayerWeapon",
@@ -52868,10 +53161,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Bows/Omicrus/OmicrusPlayerWep",
@@ -52924,10 +53217,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Bows/PrimeHuntingBow",
@@ -52972,20 +53265,6 @@
           "reviewRequired": false
         },
         {
-          "identity": "/Lotus/Weapons/Tenno/Grimoire/TnDoppelgangerGrimoire",
-          "canonical": "Grimoire",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
           "identity": "/Lotus/Weapons/Tenno/Grimoire/TnGrimoire",
           "canonical": "Grimoire",
           "sourcePresence": {
@@ -53008,10 +53287,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/DoubleBarrelShotgun/TennoDoubleBarrelShotgun",
@@ -53022,10 +53301,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/DrakeRifle/DrakeRifle",
@@ -53036,10 +53315,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/FiveShotSniper/FiveShotSniper",
@@ -53050,10 +53329,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/GarudaCrossbow/GarudaCrossbow",
@@ -53064,10 +53343,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon",
@@ -53092,10 +53371,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/LoginPrimary/SundialRifle",
@@ -53120,10 +53399,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/PaxDuviricusShotgun/PaxDuviricusShotgun",
@@ -53512,10 +53791,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/RevenantShotgun/RevenantShotgun",
@@ -53526,10 +53805,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/RubicoPrime/RubicoPrimeWeapon",
@@ -53568,10 +53847,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnAlchemistShotgun/TnAlchemistShotgun",
@@ -53596,10 +53875,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnBeltFedRifle/TnBeltFedRifleWeapon",
@@ -53624,10 +53903,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnHeavyShotgun/TnHeavyShotgunGun",
@@ -53638,10 +53917,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnHopliteSpear/TnHopliteSpearGunWeapon",
@@ -53666,10 +53945,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnModQuestRifle/TnModQuestRifleWeapon",
@@ -53694,10 +53973,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnoLotusPodShotgun/TnoLotusPodShotgun",
@@ -53708,10 +53987,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnoPrmryXbow/TnoPrmryXbowWeapon",
@@ -53722,10 +54001,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnPriestSpear/TnPriestSpearGun",
@@ -53736,10 +54015,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnQuadSniper/TnQuadSniper",
@@ -53750,10 +54029,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnRailjackRifle/RailjackRifleGun",
@@ -53764,10 +54043,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnRevolverRifle/TnRevolverRifleGun",
@@ -53778,10 +54057,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnRifleErsatz/TnRifleErsatzWeapon",
@@ -53792,10 +54071,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnSMG/TnSMGWeapon",
@@ -53806,10 +54085,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/TnWispRifle/TnWispRifle",
@@ -53820,10 +54099,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/LongGuns/WraithLatron/WraithLatron",
@@ -53834,10 +54113,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Axe/AxeWeapon",
@@ -53848,10 +54127,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Axe/DualAxeWeapon",
@@ -53862,10 +54141,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Axe/DualInfestedAxesWeapon",
@@ -53876,10 +54155,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Axe/PrimeScindo/PrimeScindoWeapon",
@@ -53932,10 +54211,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/BrassKnuckles/BrassKnuckles",
@@ -53946,10 +54225,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Claws/TennoClaws",
@@ -53960,10 +54239,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/CronusSword/CronusLongSword",
@@ -53974,10 +54253,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/CronusSword/PrimeCronusLongSword",
@@ -54002,10 +54281,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Dagger/Dagger",
@@ -54016,10 +54295,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Dagger/DarkDagger",
@@ -54030,10 +54309,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/DualDagger/DualDagger",
@@ -54044,10 +54323,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/DualDagger/DualEtherDagger",
@@ -54086,10 +54365,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/DualKamas/SingleKama",
@@ -54100,10 +54379,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/DualShortSword/DualEtherSword",
@@ -54114,10 +54393,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/DualShortSword/DualHeatSwords",
@@ -54128,10 +54407,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/DualShortSword/DualShortSword",
@@ -54142,10 +54421,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Fist/Fist",
@@ -54156,10 +54435,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Fist/FuraxWraith",
@@ -54170,10 +54449,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Gauntlet/BrawlerKnuckles/BrawlerKnuckles",
@@ -54184,10 +54463,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Gauntlet/Gauntlet",
@@ -54198,10 +54477,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Gauntlet/PrimeAnkyros/PrimeAnkyros",
@@ -54226,10 +54505,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Glaives/LightGlaive/LightGlaiveWeapon",
@@ -54240,10 +54519,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Glaives/PrimeGlaive/PrimeGlaiveWeapon",
@@ -54296,10 +54575,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Gunblade/GunbladeAutomatic/TnoGunbladeAutomatic",
@@ -54310,10 +54589,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Gunblade/RedeemerPrime/RedeemerPrimeWep",
@@ -54338,24 +54617,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Hammer/DaxDuviriHammer/DaxDuviriHammerPlayerWeapon",
-          "canonical": "Sampotes",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Hammer/DaxDuviriHammer/DaxDuviriHammerWeapon",
@@ -54380,10 +54645,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Hammer/HammerWeapon",
@@ -54394,10 +54659,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Hammer/IceHammer/IceHammer",
@@ -54408,10 +54673,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Hammer/ThrowingHammer",
@@ -54436,10 +54701,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/HeavyScythe/TnOrionSiriusScythe/TnOrionScytheWeapon",
@@ -54478,10 +54743,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/LongSword/LongSword",
@@ -54520,10 +54785,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Nunchaku/Nunchaku/Nunchaku",
@@ -54534,10 +54799,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Nunchaku/TnoNunchaku/TnoNunchaku",
@@ -54548,10 +54813,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/PersianMachete/DjinnMachete",
@@ -54562,24 +54827,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Polearms/DaxDuviriPolearm/DaxDuviriPolearmSpearPlayerWeapon",
-          "canonical": "Edun",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Polearms/DaxDuviriPolearm/DaxDuviriPolearmWeapon",
@@ -54604,10 +54855,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Polearms/Naginata/ShrineMaidenNaginataWeapon",
@@ -54632,10 +54883,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Polearms/PrimeGuandao/PrimeGuandaoWeapon",
@@ -54674,10 +54925,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Polearms/TnHalberdPolearm/TnHalberdPolearmWeapon",
@@ -54688,10 +54939,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/PrimeDualKamas/PrimeDualKamas",
@@ -54814,10 +55065,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Scythe/ParisScythe/ParisScythe",
@@ -54898,10 +55149,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Staff/GrnStaff",
@@ -54926,10 +55177,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Staff/PrimeBo/PrimeBoWeapon",
@@ -54954,10 +55205,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Staff/Staff",
@@ -54968,10 +55219,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Staff/TipedoPrime/TipedoPrimeWeapon",
@@ -55024,10 +55275,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/CutlassAndPoignard/TennoCutlass",
@@ -55038,10 +55289,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DarkSword/DarkLongSword",
@@ -55052,10 +55303,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DarkSword/DarkSwordDaggerHybridWeapon",
@@ -55066,42 +55317,14 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriKatana/DaxDuviriKatanaPlayerWeapon",
-          "canonical": "Syam",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriKatana/DaxDuviriKatanaWeapon",
           "canonical": "Syam",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriTwoHandedKatana/DaxDuviriTwoHandedKatanaPlayerWeapon",
-          "canonical": "Azothane",
           "sourcePresence": {
             "publicExport": true,
             "package": false,
@@ -55136,10 +55359,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/GreatSword/TennoGreatSword",
@@ -55150,10 +55373,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/HeatSword/HeatLongSword",
@@ -55178,10 +55401,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/KatanaAndWakizashi/Dex2023Nikana/Dex2023Nikana",
@@ -55192,10 +55415,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/KatanaAndWakizashi/Katana",
@@ -55206,10 +55429,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/KatanaAndWakizashi/LowKatana",
@@ -55220,10 +55443,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/KrisDagger/KrisDagger",
@@ -55234,10 +55457,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/NWIIIOrokinSword/NWOrokinSword",
@@ -55262,10 +55485,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/PlasmaSword/PlasmaLongSword",
@@ -55276,10 +55499,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/PRapier/DestrezaPrime",
@@ -55458,10 +55681,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerMios/OperationsLacera",
@@ -55486,10 +55709,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/StalkerTwo/StalkerTwoGreatSword",
@@ -55528,98 +55751,14 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Swords/ThreeLeaf/ThreeLeaf",
           "canonical": "Endura",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnChiselKanabo/TnChiselKanabo",
-          "canonical": "Masseter",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnDagathBladeWhip/TnDagathBladeWhip",
-          "canonical": "Dorrclave",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnoRapier/TnoRapier",
-          "canonical": "Destreza",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnRailjackGreatKatana/TnRailJackGreatKatanaWeapon",
-          "canonical": "Pennant",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnTwoHandedKatana/TnTwoHandedKatana",
-          "canonical": "Tatsu",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": true,
-          "disposition": "review-required",
-          "excludedPolicy": null,
-          "sourceConflict": false,
-          "reviewRequired": true
-        },
-        {
-          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/UmbraKatana/UmbraKatana",
-          "canonical": "Skiajati",
           "sourcePresence": {
             "publicExport": true,
             "package": false,
@@ -55632,8 +55771,78 @@
           "reviewRequired": false
         },
         {
-          "identity": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/DaxDuviriMaceShieldPlayerWeapon",
-          "canonical": "Argo & Vel",
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnChiselKanabo/TnChiselKanabo",
+          "canonical": "Masseter",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnDagathBladeWhip/TnDagathBladeWhip",
+          "canonical": "Dorrclave",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnoRapier/TnoRapier",
+          "canonical": "Destreza",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnRailjackGreatKatana/TnRailJackGreatKatanaWeapon",
+          "canonical": "Pennant",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/TnTwoHandedKatana/TnTwoHandedKatana",
+          "canonical": "Tatsu",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": true,
+          "disposition": "covered",
+          "excludedPolicy": null,
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/UmbraKatana/UmbraKatana",
+          "canonical": "Skiajati",
           "sourcePresence": {
             "publicExport": true,
             "package": false,
@@ -55668,10 +55877,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/MortiforShieldAndSword/MortiforShieldAndSword",
@@ -55696,10 +55905,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/PrimeCobraAndCrane/PrimeCobraAndCraneWeapon",
@@ -55738,10 +55947,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Tonfa/TonfaContestWinner/TennoTonfa",
@@ -55752,10 +55961,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Tonfa/TonfaContestWinnerPrime/TonfaContestWinnerPrimeWeapon",
@@ -55808,10 +56017,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Warfan/TnMoonWarfan/MoonWarfanWeapon",
@@ -55822,10 +56031,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Warfan/WarfanWeapon",
@@ -55836,10 +56045,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Melee/Whips/SpiderWhip/SpiderWhipWeapon",
@@ -55864,10 +56073,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistol/BroncoPrime",
@@ -55892,10 +56101,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistol/CrossBow",
@@ -55906,10 +56115,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistol/HandShotGun",
@@ -55920,10 +56129,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistol/HeavyPistol",
@@ -55934,10 +56143,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistol/LatoPrime",
@@ -55990,10 +56199,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/1999EntHybridPistolWeapon/1999EntHybridPistolWeapon",
@@ -56032,10 +56241,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/ConclaveLeverPistol/ConclaveLeverPistol",
@@ -56046,10 +56255,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/DexFuris/DexFuris",
@@ -56060,10 +56269,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/HarlequinGun/HarlequinPistols",
@@ -56088,10 +56297,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/PrimeAfuris/PrimeAFurisWeapon",
@@ -56410,10 +56619,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/SapientPistol/SapientPistol",
@@ -56438,10 +56647,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/SomaSidearm/AkimboSomaPistols",
@@ -56508,10 +56717,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/TnGuandoPistol/TnGuandoPistolGun",
@@ -56522,10 +56731,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/TnJetTurbine/TnJetTurbinePistolWeapon",
@@ -56536,10 +56745,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/TnOdaliskSmg/TnOdaliskSmgPistol",
@@ -56564,10 +56773,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Pistols/TnWraitheSidearm/TnWraitheSidearmWeapon",
@@ -56606,10 +56815,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Rifle/BratonPrime",
@@ -56634,10 +56843,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Rifle/HeavyRifle",
@@ -56690,10 +56899,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Rifle/SniperRifle",
@@ -56732,10 +56941,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Rifle/TennoSniperRifle",
@@ -56746,10 +56955,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Rifle/VandalSniperRifle",
@@ -56760,10 +56969,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Rifle/VIPRifle",
@@ -56788,10 +56997,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Shotgun/FullAutoShotgun",
@@ -56802,10 +57011,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Shotgun/PrimeBoar",
@@ -56830,10 +57039,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Shotgun/Shotgun",
@@ -56844,10 +57053,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Shotgun/ShotgunVandal",
@@ -56858,10 +57067,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/ThrowingWeapons/GlassKunai/GlassKunaiWeapon",
@@ -56872,10 +57081,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/ThrowingWeapons/Kunai",
@@ -56886,10 +57095,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/ThrowingWeapons/LiDagger/LiDagger",
@@ -56900,10 +57109,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/ThrowingWeapons/PrimeLiDagger/PrimeLiDagger",
@@ -56956,10 +57165,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/ThrowingWeapons/TennoStars",
@@ -56970,10 +57179,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/ThrowingWeapons/TnChoirframeKunai/TnChoirframeKunai",
@@ -57012,10 +57221,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Tenno/Zariman/LongGuns/PumpShotgun/ZarimanPumpShotgun",
@@ -57110,10 +57319,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/Thanotech/EntratiWristGun/EntratiWristGunWeapon",
@@ -57180,10 +57389,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/VoidTrader/PrismaSkana",
@@ -57194,10 +57403,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Weapons/VoidTrader/VTDetron",
@@ -57208,10 +57417,10 @@
             "wiki": false
           },
           "localPresence": true,
-          "disposition": "review-required",
+          "disposition": "covered",
           "excludedPolicy": null,
           "sourceConflict": false,
-          "reviewRequired": true
+          "reviewRequired": false
         },
         {
           "identity": "/Lotus/Powersuits/Berserker/BerserkerMelee",
@@ -57727,7 +57936,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57741,7 +57950,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57755,7 +57964,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57769,7 +57978,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57783,7 +57992,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57797,7 +58006,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57811,7 +58020,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57825,7 +58034,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57839,7 +58048,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57853,7 +58062,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57867,7 +58076,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57881,7 +58090,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57895,7 +58104,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57909,7 +58118,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57923,7 +58132,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -57937,77 +58146,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/CryoxionWeapon",
-          "canonical": "Cryotra",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/HextraWeapon",
-          "canonical": "Multron",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/SwarmerWeapon",
-          "canonical": "Helstrum",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/TazronWeapon",
-          "canonical": "Tazicor",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/MoaPets/MoaPetComponents/ThermocorMoaWeapon",
-          "canonical": "Vulcax",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58021,7 +58160,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58035,7 +58174,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58049,7 +58188,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58063,7 +58202,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58077,7 +58216,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58091,7 +58230,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58105,7 +58244,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58119,7 +58258,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58133,7 +58272,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58147,7 +58286,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58161,7 +58300,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58175,7 +58314,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58189,7 +58328,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58203,7 +58342,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58217,7 +58356,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58231,7 +58370,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58245,7 +58384,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58259,7 +58398,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58273,7 +58412,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58287,7 +58426,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58301,49 +58440,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponIP",
-          "canonical": "Batoten",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponIS",
-          "canonical": "Lacerten",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
-          "sourceConflict": false,
-          "reviewRequired": false
-        },
-        {
-          "identity": "/Lotus/Types/Friendly/Pets/ZanukaPets/ZanukaPetMeleeWeaponPS",
-          "canonical": "Akaten",
-          "sourcePresence": {
-            "publicExport": true,
-            "package": false,
-            "wiki": false
-          },
-          "localPresence": false,
-          "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58357,7 +58454,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58371,7 +58468,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58385,7 +58482,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58399,7 +58496,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58413,7 +58510,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58427,7 +58524,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58441,7 +58538,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58455,7 +58552,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58469,7 +58566,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58483,7 +58580,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58497,7 +58594,7 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -58511,7 +58608,21 @@
           },
           "localPresence": false,
           "disposition": "excluded-policy",
-          "excludedPolicy": "companion-or-component",
+          "excludedPolicy": "companion-component",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Types/Friendly/PlayerControllable/Weapons/DuviriDualSwords",
+          "canonical": "Sun & Moon",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "drifter-duplicate-instance",
           "sourceConflict": false,
           "reviewRequired": false
         },
@@ -60346,6 +60457,90 @@
           "localPresence": false,
           "disposition": "excluded-policy",
           "excludedPolicy": "non-functional-placeholder",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Grimoire/TnDoppelgangerGrimoire",
+          "canonical": "Grimoire",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "internal-duplicate-instance",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Hammer/DaxDuviriHammer/DaxDuviriHammerPlayerWeapon",
+          "canonical": "Sampotes",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "drifter-duplicate-instance",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Polearms/DaxDuviriPolearm/DaxDuviriPolearmSpearPlayerWeapon",
+          "canonical": "Edun",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "drifter-duplicate-instance",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriKatana/DaxDuviriKatanaPlayerWeapon",
+          "canonical": "Syam",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "drifter-duplicate-instance",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/Swords/DaxDuviriTwoHandedKatana/DaxDuviriTwoHandedKatanaPlayerWeapon",
+          "canonical": "Azothane",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "drifter-duplicate-instance",
+          "sourceConflict": false,
+          "reviewRequired": false
+        },
+        {
+          "identity": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/DaxDuviriMaceShieldPlayerWeapon",
+          "canonical": "Argo & Vel",
+          "sourcePresence": {
+            "publicExport": true,
+            "package": false,
+            "wiki": false
+          },
+          "localPresence": false,
+          "disposition": "excluded-policy",
+          "excludedPolicy": "drifter-duplicate-instance",
           "sourceConflict": false,
           "reviewRequired": false
         }

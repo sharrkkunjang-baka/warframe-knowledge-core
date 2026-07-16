@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "With a high fire rate, ammo efficiency and rapid reload when emptied, this unusual sidearm can hand out carnage all day long. Ammo efficiency is further increased when Protea uses this, her signature weapon.",
-    "display": "（英文：VELOX）在高射速、高弹药效率以及高装填速度的加持下，这把非比寻常的次要武器能昼夜无休地大杀四方。作为 Protea 的标志性武器，弹药效率会在 Protea 使用它时更进一步地提升。",
+    "display": "在高射速、高弹药效率以及高装填速度的加持下，这把非比寻常的次要武器能昼夜无休地大杀四方。作为 Protea 的标志性武器，弹药效率会在 Protea 使用它时更进一步地提升。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,84 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Velox",
+            "revisionId": 2781435
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel"
+          ],
+          "sourceCanonical": "Granum Void, Rotation C",
+          "sourceDisplayName": "格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2222,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "逐电 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver"
+          ],
+          "sourceCanonical": "Extended Granum Void, Rotation C",
+          "sourceDisplayName": "扩展格拉努虚空",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.2963,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "mission-reward",
+          "rotation": "C",
+          "variables": {
+            "partName": "逐电 枪机"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
         ],
@@ -68,38 +134,105 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Velox",
+              "revisionId": 2781435
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel"
         ],
         "variables": {
-          "partName": "ProteaSMGBarrel"
+          "partName": "逐电 枪管"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel"
+            ],
+            "sourceCanonical": "Granum Void, Rotation C",
+            "sourceDisplayName": "格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2222,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "逐电 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver"
         ],
         "variables": {
-          "partName": "ProteaSMGReceiver"
+          "partName": "逐电 枪机"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver"
+            ],
+            "sourceCanonical": "Extended Granum Void, Rotation C",
+            "sourceDisplayName": "扩展格拉努虚空",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.2963,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "mission-reward",
+            "rotation": "C",
+            "variables": {
+              "partName": "逐电 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -132,7 +265,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -150,18 +283,18 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel",
-          "canonical": "ProteaSMGBarrel",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Velox Barrel",
+          "displayName": "逐电 枪管",
+          "languageKey": "/Lotus/Language/Weapons/ProteaSMGBarrel",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver",
-          "canonical": "ProteaSMGReceiver",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Velox Receiver",
+          "displayName": "逐电 枪机",
+          "languageKey": "/Lotus/Language/Weapons/ProteaSMGReceiver",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -181,7 +314,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：VELOX）在高射速、高弹药效率以及高装填速度的加持下，这把非比寻常的次要武器能昼夜无休地大杀四方。作为 Protea 的标志性武器，弹药效率会在 Protea 使用它时更进一步地提升。",
+  "summary": "在高射速、高弹药效率以及高装填速度的加持下，这把非比寻常的次要武器能昼夜无休地大杀四方。作为 Protea 的标志性武器，弹药效率会在 Protea 使用它时更进一步地提升。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -198,25 +331,27 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

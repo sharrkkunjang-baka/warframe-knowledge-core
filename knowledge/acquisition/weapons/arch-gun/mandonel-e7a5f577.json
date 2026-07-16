@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Mandonel fires 辐射Radiation Damage projectiles. Partially charged shots release a spread and fully charged shots release a beam that dissolves into a radiation field. Projectiles that pass through the field are empowered.",
-    "display": "（英文：MANDONEL）辐光弩炮发射 辐射辐射伤害投射物。未完全充能的射击会散射，而完全充能的射击则会释放出光束并生成辐射力场。穿过力场的投射物会被增强。",
+    "display": "辐光弩炮发射 辐射辐射伤害投射物。未完全充能的射击会散射，而完全充能的射击则会释放出光束并生成辐射力场。穿过力场的投射物会被增强。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,7 +46,6 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
       "official-drop",
       "crafting"
     ],
@@ -56,6 +55,24 @@
       "methods": [
         {
           "type": "mission-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "圣所解剖室赏金",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Mandonel",
+            "revisionId": 2701083
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "mission-reward",
           "scope": "component",
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunBarrel"
@@ -127,6 +144,26 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "阿尔布雷希特的实验室无尽任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Mandonel",
+            "revisionId": 2701083
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunBarrel"
+          ],
+          "variables": {
+            "partName": "辐光弩炮 枪管"
           }
         },
         {
@@ -207,6 +244,26 @@
         {
           "type": "mission-reward",
           "scope": "component",
+          "sourceDisplayName": "阿尔布雷希特的实验室无尽任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Mandonel",
+            "revisionId": 2701083
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunReceiver"
+          ],
+          "variables": {
+            "partName": "辐光弩炮 枪机"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunStock"
           ],
@@ -277,6 +334,26 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "阿尔布雷希特的实验室无尽任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Mandonel",
+            "revisionId": 2701083
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunStock"
+          ],
+          "variables": {
+            "partName": "辐光弩炮 枪托"
           }
         }
       ]
@@ -284,7 +361,7 @@
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
         ],
@@ -295,8 +372,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "圣所解剖室赏金",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Mandonel",
+              "revisionId": 2701083
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnConcreteArchgunBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -384,6 +480,26 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "阿尔布雷希特的实验室无尽任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Mandonel",
+              "revisionId": 2701083
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunBarrel"
+            ],
+            "variables": {
+              "partName": "辐光弩炮 枪管"
             }
           }
         ],
@@ -476,6 +592,26 @@
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "阿尔布雷希特的实验室无尽任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Mandonel",
+              "revisionId": 2701083
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunReceiver"
+            ],
+            "variables": {
+              "partName": "辐光弩炮 枪机"
+            }
           }
         ],
         "status": "complete"
@@ -566,6 +702,26 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "阿尔布雷希特的实验室无尽任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Mandonel",
+              "revisionId": 2701083
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunStock"
+            ],
+            "variables": {
+              "partName": "辐光弩炮 枪托"
             }
           }
         ],
@@ -660,7 +816,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：MANDONEL）辐光弩炮发射 辐射辐射伤害投射物。未完全充能的射击会散射，而完全充能的射击则会释放出光束并生成辐射力场。穿过力场的投射物会被增强。",
+  "summary": "辐光弩炮发射 辐射辐射伤害投射物。未完全充能的射击会散射，而完全充能的射击则会释放出光束并生成辐射力场。穿过力场的投射物会被增强。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -677,15 +833,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnConcreteArchgunBarrel",

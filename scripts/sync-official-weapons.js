@@ -16,6 +16,9 @@ const URLS = Object.freeze({ weapons: 'https://browse.wf/warframe-public-export-
 function read(file) { return JSON.parse(fs.readFileSync(file, 'utf8')) }
 function sha(file) { return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex') }
 function serialize(value) { return JSON.stringify(value, null, 2) + '\n' }
+function cleanLocalizedWeaponDescription(value) {
+  return renderGameText(value).replace(/^（英文：[^）]+）\s*/, '').trim()
+}
 const PLAYER_WEAPON_CATEGORIES = Object.freeze({
   Melee: 'melee', DrifterMelee: 'melee', Pistols: 'secondary', LongGuns: 'primary',
   SpaceGuns: 'arch-gun', SpaceMelee: 'arch-melee', OperatorAmps: 'secondary', SentinelWeapons: 'companion'
@@ -26,7 +29,11 @@ function classify(uniqueName, weapon) {
   if (!equipmentType) return { include: false, reason: category === 'SpecialItems' ? 'non-weapon-special-item' : 'unsupported-product-category' }
   const text = `${uniqueName} ${weapon.parentName || ''}`
   if (/\/Powersuits\/|\/Abilities\/|\/NPCs?\/|\/Enemies\//i.test(text)) return { include: false, reason: 'exalted-enemy-or-internal' }
-  if (/\/Types\/Friendly\/Pets\//i.test(text)) return { include: false, reason: 'companion-or-component' }
+  // Pets 路径同时包含真正可装备的恐鸟武器；只能排除构造部件，不能按目录整段误杀。
+  if (/\/Types\/Friendly\/Pets\//i.test(text) && category !== 'SentinelWeapons') return { include: false, reason: 'companion-component' }
+  // 漂泊者版本与战甲可装备版本共享解锁来源，目录仅保留可进入战甲军械库的实体。
+  if (category === 'DrifterMelee') return { include: false, reason: 'drifter-duplicate-instance' }
+  if (/Doppelganger/i.test(uniqueName)) return { include: false, reason: 'internal-duplicate-instance' }
   if (/\/Zaw\/|\/ModularMelee\d*\/(?:Tip|Handle|Balance)\/|\/OperatorAmplifiers\/(?:Prisms|Scaffolds|Grips)\//i.test(text)) return { include: false, reason: 'modular-component-or-assembled-instance' }
   if (weapon.codexSecret && !weapon.masteryReq && !weapon.omegaAttenuation && !weapon.totalDamage) return { include: false, reason: 'internal-placeholder' }
   if (!Number(weapon.totalDamage) && !Object.keys(weapon.fireModes || {}).length && !Array.isArray(weapon.behaviours)) return { include: false, reason: 'non-functional-placeholder' }
@@ -49,7 +56,7 @@ function build(generatedAt = new Date().toISOString()) {
     const canonical = renderGameText(en[weapon.name] || weapon.name || uniqueName)
     const displayName = renderGameText(zh[weapon.name] || '')
     const descriptionCanonical = renderGameText(en[weapon.description] || '')
-    const descriptionDisplay = renderGameText(zh[weapon.description] || '')
+    const descriptionDisplay = cleanLocalizedWeaponDescription(zh[weapon.description] || '')
     const identity = { uniqueName, canonical, displayName: displayName || canonical, nameLanguageKey: weapon.name || null, descriptionLanguageKey: weapon.description || null, description: { canonical: descriptionCanonical, display: descriptionDisplay, localizationStatus: descriptionDisplay ? 'official-zh' : 'official-zh-unavailable' }, localizationStatus: displayName ? 'official-zh' : 'official-zh-unavailable' }
     if (!boundary.include) { excluded.push({ ...identity, exclusionReason: boundary.reason }); continue }
     included.push({ ...identity, equipmentType: boundary.equipmentType, omegaAttenuation: Number.isFinite(weapon.omegaAttenuation) ? weapon.omegaAttenuation : null, disposition: Number.isFinite(weapon.disposition) ? weapon.disposition : null, masteryReq: weapon.masteryReq ?? null, productCategory: weapon.productCategory || null, attackClassification: attackClassification(weapon), classification: { categoryRefs: [`weapon.${boundary.equipmentType}`, ...(/Kuva|Lich/i.test(`${canonical} ${uniqueName}`) ? ['weapon.kuva'] : []), ...(/Tenet|Sister/i.test(`${canonical} ${uniqueName}`) ? ['weapon.tenet'] : [])] }, sourceFields: { identity: 'ExportWeapons', localization: displayName ? 'Languages.bin/zh' : 'missing', stats: 'ExportWeapons' }, status: displayName && Number.isFinite(weapon.omegaAttenuation) ? 'identity-complete' : 'review-required' })
@@ -61,7 +68,7 @@ function build(generatedAt = new Date().toISOString()) {
     if (included.some(item => item.nameLanguageKey === languageKey)) continue
     const displayName = renderGameText(zh[languageKey]), canonical = renderGameText(en[languageKey])
     if (!displayName || !canonical) continue
-    const descriptionLanguageKey = languageKey.replace(/Name$/, 'Desc'), descriptionCanonical = renderGameText(en[descriptionLanguageKey] || ''), descriptionDisplay = renderGameText(zh[descriptionLanguageKey] || '')
+    const descriptionLanguageKey = languageKey.replace(/Name$/, 'Desc'), descriptionCanonical = renderGameText(en[descriptionLanguageKey] || ''), descriptionDisplay = cleanLocalizedWeaponDescription(zh[descriptionLanguageKey] || '')
     included.push({ uniqueName: supplement.uniqueName, canonical, displayName, nameLanguageKey: languageKey, descriptionLanguageKey, description: { canonical: descriptionCanonical, display: descriptionDisplay, localizationStatus: descriptionDisplay ? 'official-zh' : 'official-zh-unavailable' }, localizationStatus: 'official-zh', equipmentType: supplement.equipmentType, omegaAttenuation: null, disposition: null, masteryReq: null, productCategory: 'LongGuns', attackClassification: { hitscan: 'unknown', projectile: 'unknown', aoe: 'unknown', punchThrough: 'unknown', lockOn: 'review-required', tracking: 'review-required', medium: 'review-required', modes: [] }, classification: { categoryRefs: [`weapon.${supplement.equipmentType}`, 'weapon.limited-event'] }, sourceFields: { identity: 'official-event-supplement', localization: 'Languages.bin/zh', stats: 'pending-ExportWeapons' }, acquisitionSupplement: supplement.acquisition, status: 'review-required' })
   }
   const languageOnlyWeapons = Object.entries(zh).filter(([key,value]) => /\/Language\/Weapons\/.+Name$/.test(key) && value === '哈尔武' && !included.some(item => item.nameLanguageKey === key) && !excluded.some(item => item.nameLanguageKey === key)).map(([key,value]) => ({ uniqueName: null, canonical: en[key] || value, displayName: value, nameLanguageKey: key, descriptionLanguageKey: key.replace(/Name$/, 'Desc'), localizationStatus: 'official-zh', equipmentType: null, omegaAttenuation: null, disposition: null, attackClassification: { hitscan: 'unknown', projectile: 'unknown', aoe: 'unknown', punchThrough: 'unknown', lockOn: 'review-required', tracking: 'review-required', medium: 'review-required', modes: [] }, classification: { categoryRefs: [] }, sourceFields: { identity: 'missing-from-ExportWeapons', localization: 'Languages.bin/zh', stats: 'missing' }, status: 'review-required', reviewReason: 'official-language-present-but-ExportWeapons-structure-missing' }))
@@ -72,4 +79,4 @@ function build(generatedAt = new Date().toISOString()) {
 }
 function run(argv=process.argv.slice(2)) { const check=argv.includes('--check'), current=fs.existsSync(OUTPUT)?read(OUTPUT):null, built=build(check&&current?.generatedAt?current.generatedAt:undefined); if(check){if(serialize(current)!==serialize(built.catalog)||serialize(fs.existsSync(SOURCES)?read(SOURCES):null)!==serialize(built.sources))throw new Error('官方武器目录已漂移');console.log(`官方武器目录无漂移：${built.catalog.counts.included} 项`);return built} fs.mkdirSync(path.dirname(OUTPUT),{recursive:true});fs.writeFileSync(OUTPUT,serialize(built.catalog));fs.writeFileSync(SOURCES,serialize(built.sources));console.log(`已生成 ${built.catalog.counts.included} 个武器身份；排除 ${built.catalog.counts.excluded}`);return built }
 if(require.main===module){try{run()}catch(e){console.error(e.stack||e);process.exit(1)}}
-module.exports={URLS,PLAYER_WEAPON_CATEGORIES,classify,attackClassification,build,run}
+module.exports={URLS,PLAYER_WEAPON_CATEGORIES,cleanLocalizedWeaponDescription,classify,attackClassification,build,run}

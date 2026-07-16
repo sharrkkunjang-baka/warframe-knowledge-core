@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "During parades and victory marches, the Laetum fired pigmented airburst rounds that rained onto festive crowds. The Orokin sent Laetum with the Zariman so they could properly celebrate a successful maiden voyage to Tau. There would be no such celebration, but the Void imbued the Laetum with a much more explosive capacity.",
-    "display": "（英文：LAETUM）在阅兵式和得胜行军期间，人们会用奏凯发射色彩缤纷的空爆弹化作鲜艳的雨点落在欢庆的人群身上。奥罗金人将奏凯送上了「扎里曼号」，以便他们能够好好庆祝前往 Tau 星系的成功首航。虽然这样的庆祝活动从未发生，但虚空给奏凯赋予了更强的爆炸之力。",
+    "display": "在阅兵式和得胜行军期间，人们会用奏凯发射色彩缤纷的空爆弹化作鲜艳的雨点落在欢庆的人群身上。奥罗金人将奏凯送上了「扎里曼号」，以便他们能够好好庆祝前往 Tau 星系的成功首航。虽然这样的庆祝活动从未发生，但虚空给奏凯赋予了更强的爆炸之力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,41 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Cavalero",
+          "sourceDisplayName": "卡瓦莱罗",
+          "factionDisplayName": "卡瓦莱罗",
+          "standing": 3000,
+          "requirements": {
+            "type": "standing",
+            "amount": 3000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Laetum",
+            "revisionId": 2790009
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
         ],
@@ -68,8 +91,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Cavalero",
+            "sourceDisplayName": "卡瓦莱罗",
+            "factionDisplayName": "卡瓦莱罗",
+            "standing": 3000,
+            "requirements": {
+              "type": "standing",
+              "amount": 3000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Laetum",
+              "revisionId": 2790009
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanHeavyPistolBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +206,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：LAETUM）在阅兵式和得胜行军期间，人们会用奏凯发射色彩缤纷的空爆弹化作鲜艳的雨点落在欢庆的人群身上。奥罗金人将奏凯送上了「扎里曼号」，以便他们能够好好庆祝前往 Tau 星系的成功首航。虽然这样的庆祝活动从未发生，但虚空给奏凯赋予了更强的爆炸之力。",
+  "summary": "在阅兵式和得胜行军期间，人们会用奏凯发射色彩缤纷的空爆弹化作鲜艳的雨点落在欢庆的人群身上。奥罗金人将奏凯送上了「扎里曼号」，以便他们能够好好庆祝前往 Tau 星系的成功首航。虽然这样的庆祝活动从未发生，但虚空给奏凯赋予了更强的爆炸之力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +223,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

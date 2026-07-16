@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Claim the power of Albrecht Entrati's knowledge. Customize the Grimoire with Tome Mods that enhance Warframe Abilities and reward strategic combat. Its alternate attack releases a voltaic orb with guaranteed ⚡Electricity Status.",
-    "display": "（英文：GRIMOIRE）获取阿尔布雷希特·英择谛的全知之力。使用典籍 Mod 增强战甲技能并获得战术优势。次要射击发射一颗必定造成 ⚡电击异常状态的电弧球。",
+    "display": "获取阿尔布雷希特·英择谛的全知之力。使用典籍 Mod 增强战甲技能并获得战术优势。次要射击发射一颗必定造成 ⚡电击异常状态的电弧球。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,41 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Bird 3",
+          "sourceDisplayName": "鸟三",
+          "factionDisplayName": "鸟三",
+          "standing": 50000,
+          "requirements": {
+            "type": "standing",
+            "amount": 50000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Grimoire",
+            "revisionId": 2787358
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
         ],
@@ -68,8 +91,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Bird 3",
+            "sourceDisplayName": "鸟三",
+            "factionDisplayName": "鸟三",
+            "standing": 50000,
+            "requirements": {
+              "type": "standing",
+              "amount": 50000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Grimoire",
+              "revisionId": 2787358
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrimoireBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +206,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：GRIMOIRE）获取阿尔布雷希特·英择谛的全知之力。使用典籍 Mod 增强战甲技能并获得战术优势。次要射击发射一颗必定造成 ⚡电击异常状态的电弧球。",
+  "summary": "获取阿尔布雷希特·英择谛的全知之力。使用典籍 Mod 增强战甲技能并获得战术优势。次要射击发射一颗必定造成 ⚡电击异常状态的电弧球。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +223,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

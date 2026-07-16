@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Forged of steel grafted from Umbra's flesh, this elegant Nikana unites with its Warframe to form a single being of seething purpose.",
-    "display": "（英文：SKIAJATI）这把优雅的侍刃从 Umbra 肉体移植的钢材锻造而成，并与其战甲结合形成拥有沸腾意志的整体。",
+    "display": "这把优雅的侍刃从 Umbra 肉体移植的钢材锻造而成，并与其战甲结合形成拥有沸腾意志的整体。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,9 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "quest",
-      "unresolved",
-      "crafting"
+      "quest"
     ],
     "prime": {
       "kind": "standard",
@@ -102,56 +100,6 @@
             "provenance": {
               "authority": "Digital Extremes Warframe Support",
               "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
-            }
-          }
-        ],
-        "status": "complete"
-      },
-      {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/UmbraKatanaBlueprint"
-        ],
-        "variables": {
-          "weaponName": "影生",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/UmbraKatanaBlueprint"
-        },
-        "requirements": {
-          "type": "none"
-        },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [
-          "/Lotus/Types/Items/MiscItems/OrokinCell",
-          "/Lotus/Types/Items/MiscItems/OxiumAlloy",
-          "/Lotus/Types/Items/MiscItems/Plastids",
-          "/Lotus/Types/Items/MiscItems/AlloyPlate"
-        ],
-        "variables": {
-          "productName": "影生"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/UmbraKatanaBlueprint"
-        },
-        "methods": [
-          {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/UmbraKatanaBlueprint",
-            "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/UmbraKatanaBlueprint"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/UmbraKatanaBlueprint"
             }
           }
         ],
@@ -212,7 +160,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SKIAJATI）这把优雅的侍刃从 Umbra 肉体移植的钢材锻造而成，并与其战甲结合形成拥有沸腾意志的整体。",
+  "summary": "这把优雅的侍刃从 Umbra 肉体移植的钢材锻造而成，并与其战甲结合形成拥有沸腾意志的整体。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -241,6 +189,6 @@
     "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

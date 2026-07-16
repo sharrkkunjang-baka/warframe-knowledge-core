@@ -46,17 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "Cephalon Suda",
+          "sourceDisplayName": "中枢苏达",
+          "factionDisplayName": "中枢苏达",
+          "standing": 125000,
+          "requirements": {
+            "type": "standing",
+            "rankName": "Genius",
+            "amount": 125000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Synoid Simulor",
+            "revisionId": 2723712
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "枢议·重力奇点拟成枪"
@@ -64,8 +86,30 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "Cephalon Suda",
+            "sourceDisplayName": "中枢苏达",
+            "factionDisplayName": "中枢苏达",
+            "standing": 125000,
+            "requirements": {
+              "type": "standing",
+              "rankName": "Genius",
+              "amount": 125000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Synoid Simulor",
+              "revisionId": 2723712
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
@@ -89,14 +133,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

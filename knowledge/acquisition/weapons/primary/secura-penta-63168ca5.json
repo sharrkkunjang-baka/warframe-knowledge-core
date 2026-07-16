@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Ruthless and efficient, just like the free-market.",
-    "display": "（英文：SECURA PENTA）如同自由市场一般，重效率，不讲情面。",
+    "display": "如同自由市场一般，重效率，不讲情面。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "The Perrin Sequence",
+          "sourceDisplayName": "佩兰数列",
+          "factionDisplayName": "佩兰数列",
+          "standing": 125000,
+          "requirements": {
+            "type": "standing",
+            "rankName": "Partner",
+            "amount": 125000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Secura Penta",
+            "revisionId": 2785498
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "保障·潘塔"
@@ -64,15 +86,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "The Perrin Sequence",
+            "sourceDisplayName": "佩兰数列",
+            "factionDisplayName": "佩兰数列",
+            "standing": 125000,
+            "requirements": {
+              "type": "standing",
+              "rankName": "Partner",
+              "amount": 125000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Secura Penta",
+              "revisionId": 2785498
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SECURA PENTA）如同自由市场一般，重效率，不讲情面。",
+  "summary": "如同自由市场一般，重效率，不讲情面。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +133,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

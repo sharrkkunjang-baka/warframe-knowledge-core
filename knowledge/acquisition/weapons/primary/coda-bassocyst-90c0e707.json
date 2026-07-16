@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Amplify shockwaves of devastating sound with this Technocyte virus infested shotgun that hungers for blood, and desires nothing more than to feed upon its enemies. Alternative fire at enemies not vulnerable to Mercy Kills to swarm them with infested mites, while firing at vulnerable ones will perform a ranged execution.",
-    "display": "（英文：CODA BASSOCYST）通过这把渴求饮血食肉的科技细胞病毒感染霰弹枪来放大毁灭性声音的冲击波。次要射击无法被怜悯之击攻击的敌人，用感染螨虫将他们包围，而射击能被怜悯之击攻击的敌人则可远程处决。",
+    "display": "通过这把渴求饮血食肉的科技细胞病毒感染霰弹枪来放大毁灭性声音的冲击波。次要射击无法被怜悯之击攻击的敌人，用感染螨虫将他们包围，而射击能被怜悯之击攻击的敌人则可远程处决。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,17 +48,40 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "活体心细胞",
+                "amount": 10
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Coda Bassocyst",
+            "revisionId": 2791924
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "vendor",
         "partRefs": [],
         "variables": {
           "weaponName": "终幕·低音爆囊"
@@ -66,15 +89,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "霍瓦尼亚中央商场的 Eleanor",
+            "requirements": {
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "活体心细胞",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Coda Bassocyst",
+              "revisionId": 2791924
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CODA BASSOCYST）通过这把渴求饮血食肉的科技细胞病毒感染霰弹枪来放大毁灭性声音的冲击波。次要射击无法被怜悯之击攻击的敌人，用感染螨虫将他们包围，而射击能被怜悯之击攻击的敌人则可远程处决。",
+  "summary": "通过这把渴求饮血食肉的科技细胞病毒感染霰弹枪来放大毁灭性声音的冲击波。次要射击无法被怜悯之击攻击的敌人，用感染螨虫将他们包围，而射击能被怜悯之击攻击的敌人则可远程处决。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -91,14 +137,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

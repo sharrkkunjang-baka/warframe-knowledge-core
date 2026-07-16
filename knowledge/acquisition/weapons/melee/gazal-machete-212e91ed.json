@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Each kill with this swooping blade adds bonus damage to the Djinn Sentinel’s next Fatal Attraction ability. In turn, Fatal Attraction bestows the weapon with a period of 腐蚀Corrosive Damage.",
-    "display": "（英文：GAZAL MACHETE）每次用这把俯冲样式的刀刃击杀会给引灵下一次释放的致命诱惑增加额外的伤害。作为回报，致命诱惑会赋予这把武器一段时间的 腐蚀腐蚀伤害。",
+    "display": "每次用这把俯冲样式的刀刃击杀会给引灵下一次释放的致命诱惑增加额外的伤害。作为回报，致命诱惑会赋予这把武器一段时间的 腐蚀腐蚀伤害。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Tenno 实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Gazal Machete",
+            "revisionId": 2596361
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Tenno 实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Gazal Machete",
+              "revisionId": 2596361
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DjinnMacheteBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：GAZAL MACHETE）每次用这把俯冲样式的刀刃击杀会给引灵下一次释放的致命诱惑增加额外的伤害。作为回报，致命诱惑会赋予这把武器一段时间的 腐蚀腐蚀伤害。",
+  "summary": "每次用这把俯冲样式的刀刃击杀会给引灵下一次释放的致命诱惑增加额外的伤害。作为回报，致命诱惑会赋予这把武器一段时间的 腐蚀腐蚀伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +249,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "An ancient weapon designed by the Entrati. Primary fire siphons life essence from the target to fuel a devastating secondary fire. A heavy, oversized automatic rifle with withering fire that delivers rapid heat damage. Secondary fire unleashes an arcing projectile that ricochets off surfaces and enemies, exploding on every impact.",
-    "display": "（英文：TRUMNA）一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把具有毁灭级火力的重型超大号自动步枪可迅速造成火焰伤害。次要射击可呈弧线抛射出一枚跳射弹丸，每次撞击到物体表面和敌人都会造成爆炸伤害。",
+    "display": "一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把具有毁灭级火力的重型超大号自动步枪可迅速造成火焰伤害。次要射击可呈弧线抛射出一枚跳射弹丸，每次撞击到物体表面和敌人都会造成爆炸伤害。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,207 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
+          ],
+          "sourceCanonical": "Entrati (Father), Associate",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Associate",
+          "variables": {}
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 5000,
+          "requirements": {
+            "type": "standing",
+            "amount": 5000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Trumna",
+            "revisionId": 2727969
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
+          ],
+          "sourceCanonical": "Entrati (Father), Associate",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Associate",
+          "variables": {
+            "partName": "灭杀者 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 2500,
+          "requirements": {
+            "type": "standing",
+            "amount": 2500
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Trumna",
+            "revisionId": 2727969
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
+          ],
+          "variables": {
+            "partName": "灭杀者 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
+          ],
+          "sourceCanonical": "Entrati (Father), Associate",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Associate",
+          "variables": {
+            "partName": "灭杀者 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 2500,
+          "requirements": {
+            "type": "standing",
+            "amount": 2500
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Trumna",
+            "revisionId": 2727969
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
+          ],
+          "variables": {
+            "partName": "灭杀者 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
+          ],
+          "sourceCanonical": "Entrati (Father), Associate",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Associate",
+          "variables": {
+            "partName": "灭杀者 枪托"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 2500,
+          "requirements": {
+            "type": "standing",
+            "amount": 2500
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Trumna",
+            "revisionId": 2727969
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
+          ],
+          "variables": {
+            "partName": "灭杀者 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
         ],
@@ -68,12 +257,57 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
+            ],
+            "sourceCanonical": "Entrati (Father), Associate",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Associate",
+            "variables": {}
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 5000,
+            "requirements": {
+              "type": "standing",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Trumna",
+              "revisionId": 2727969
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechRifleBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
         ],
@@ -83,12 +317,61 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
+            ],
+            "sourceCanonical": "Entrati (Father), Associate",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Associate",
+            "variables": {
+              "partName": "灭杀者 枪管"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 2500,
+            "requirements": {
+              "type": "standing",
+              "amount": 2500
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Trumna",
+              "revisionId": 2727969
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel"
+            ],
+            "variables": {
+              "partName": "灭杀者 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
         ],
@@ -98,12 +381,61 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
+            ],
+            "sourceCanonical": "Entrati (Father), Associate",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Associate",
+            "variables": {
+              "partName": "灭杀者 枪机"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 2500,
+            "requirements": {
+              "type": "standing",
+              "amount": 2500
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Trumna",
+              "revisionId": 2727969
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver"
+            ],
+            "variables": {
+              "partName": "灭杀者 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
         ],
@@ -113,8 +445,57 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
+            ],
+            "sourceCanonical": "Entrati (Father), Associate",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Associate",
+            "variables": {
+              "partName": "灭杀者 枪托"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 2500,
+            "requirements": {
+              "type": "standing",
+              "amount": 2500
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Trumna",
+              "revisionId": 2727969
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock"
+            ],
+            "variables": {
+              "partName": "灭杀者 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -205,7 +586,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TRUMNA）一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把具有毁灭级火力的重型超大号自动步枪可迅速造成火焰伤害。次要射击可呈弧线抛射出一枚跳射弹丸，每次撞击到物体表面和敌人都会造成爆炸伤害。",
+  "summary": "一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把具有毁灭级火力的重型超大号自动步枪可迅速造成火焰伤害。次要射击可呈弧线抛射出一枚跳射弹丸，每次撞击到物体表面和敌人都会造成爆炸伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -222,27 +603,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechRifleStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

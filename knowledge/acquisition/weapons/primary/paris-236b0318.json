@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Based on one of the world's oldest weapon designs, this Tenno-crafted weapon can be used both in stealth and in open combat. The Paris uses a chargeable magnetic field to launch arrows capable of impaling enemies to walls.",
-    "display": "（英文：PARIS）以世界最古老的武器设计为基础，Tenno 所制作的武器不论隐匿行动和交火接战均可使用。帕里斯可利用磁场蓄力，其射出的箭矢足以将敌人钉在墙上。",
+    "display": "以世界最古老的武器设计为基础，Tenno 所制作的武器不论隐匿行动和交火接战均可使用。帕里斯可利用磁场蓄力，其射出的箭矢足以将敌人钉在墙上。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Paris",
+            "revisionId": 2785197
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/HuntingBowBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/HuntingBowBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Paris",
+              "revisionId": 2785197
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/HuntingBowBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PARIS）以世界最古老的武器设计为基础，Tenno 所制作的武器不论隐匿行动和交火接战均可使用。帕里斯可利用磁场蓄力，其射出的箭矢足以将敌人钉在墙上。",
+  "summary": "以世界最古老的武器设计为基础，Tenno 所制作的武器不论隐匿行动和交火接战均可使用。帕里斯可利用磁场蓄力，其射出的箭矢足以将敌人钉在墙上。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Imperator Vandal has been customized by the Tenno with a blue-green metallic finish and Lotus branding on the barrel.",
-    "display": "（英文：IMPERATOR VANDAL）这款为 Tenno 量身打造的凯旋将军·破坏者带有蓝绿色的金属质感，枪管上还有 Lotus 的铭刻。",
+    "display": "这款为 Tenno 量身打造的凯旋将军·破坏者带有蓝绿色的金属质感，枪管上还有 Lotus 的铭刻。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,77 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Imperator Vandal",
+            "revisionId": 2792794
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Imperator Vandal",
+            "revisionId": 2792794
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel"
+          ],
+          "variables": {
+            "partName": "凯旋将军·破坏者 枪管"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Imperator Vandal",
+            "revisionId": 2792794
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver"
+          ],
+          "variables": {
+            "partName": "凯旋将军·破坏者 枪机"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
         ],
@@ -68,12 +127,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Imperator Vandal",
+              "revisionId": 2792794
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel"
         ],
@@ -83,12 +161,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Imperator Vandal",
+              "revisionId": 2792794
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel"
+            ],
+            "variables": {
+              "partName": "凯旋将军·破坏者 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver"
         ],
@@ -98,8 +197,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Imperator Vandal",
+              "revisionId": 2792794
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver"
+            ],
+            "variables": {
+              "partName": "凯旋将军·破坏者 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -181,7 +301,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：IMPERATOR VANDAL）这款为 Tenno 量身打造的凯旋将军·破坏者带有蓝绿色的金属质感，枪管上还有 Lotus 的铭刻。",
+  "summary": "这款为 Tenno 量身打造的凯旋将军·破坏者带有蓝绿色的金属质感，枪管上还有 Lotus 的铭刻。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -198,23 +318,25 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ImperatorVandalReceiver",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

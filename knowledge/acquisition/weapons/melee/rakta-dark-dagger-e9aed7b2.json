@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Infiltrate undetected; reduced visibility when held. Then strike with confidence; hits to irradiated targets restores shields and creates overshields.",
-    "display": "（英文：RAKTA DARK DAGGER）隐蔽入侵：持取时降低自身可见度。紧接着挥出自信一击：击中被辐射的目标可以恢复护盾并产生过载护盾。",
+    "display": "隐蔽入侵：持取时降低自身可见度。紧接着挥出自信一击：击中被辐射的目标可以恢复护盾并产生过载护盾。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "Red Veil",
+          "sourceDisplayName": "血色面纱",
+          "factionDisplayName": "血色面纱",
+          "standing": 125000,
+          "requirements": {
+            "type": "standing",
+            "rankName": "Exalted",
+            "amount": 125000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Rakta Dark Dagger",
+            "revisionId": 2687631
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "绯红·暗黑匕首"
@@ -64,15 +86,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "Red Veil",
+            "sourceDisplayName": "血色面纱",
+            "factionDisplayName": "血色面纱",
+            "standing": 125000,
+            "requirements": {
+              "type": "standing",
+              "rankName": "Exalted",
+              "amount": 125000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Rakta Dark Dagger",
+              "revisionId": 2687631
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：RAKTA DARK DAGGER）隐蔽入侵：持取时降低自身可见度。紧接着挥出自信一击：击中被辐射的目标可以恢复护盾并产生过载护盾。",
+  "summary": "隐蔽入侵：持取时降低自身可见度。紧接着挥出自信一击：击中被辐射的目标可以恢复护盾并产生过载护盾。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +133,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

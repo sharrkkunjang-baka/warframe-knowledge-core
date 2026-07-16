@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "This fiery sword and shield combination perfects the balance of Tenno offense and defense prowess. In the hands of a Master, even a defensive tool like a shield can be used as a weapon.",
-    "display": "（英文：SILVA & AEGIS）这一火焰般的剑盾组合使 Tenno 的攻击与防御技艺取得完美的平衡。在大师的手中，就连盾牌这样的防御工具也能被用作武器。",
+    "display": "这一火焰般的剑盾组合使 Tenno 的攻击与防御技艺取得完美的平衡。在大师的手中，就连盾牌这样的防御工具也能被用作武器。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TennoSwordShieldBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Tenno 实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Silva & Aegis",
+            "revisionId": 2785133
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TennoSwordShieldBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TennoSwordShieldBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TennoSwordShieldBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Tenno 实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Silva & Aegis",
+              "revisionId": 2785133
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TennoSwordShieldBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -103,7 +175,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -146,9 +218,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "fallback-en",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SILVA & AEGIS）这一火焰般的剑盾组合使 Tenno 的攻击与防御技艺取得完美的平衡。在大师的手中，就连盾牌这样的防御工具也能被用作武器。",
+  "summary": "这一火焰般的剑盾组合使 Tenno 的攻击与防御技艺取得完美的平衡。在大师的手中，就连盾牌这样的防御工具也能被用作武器。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +249,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
-    "crafting": false
+    "crafting": true
   }
 }

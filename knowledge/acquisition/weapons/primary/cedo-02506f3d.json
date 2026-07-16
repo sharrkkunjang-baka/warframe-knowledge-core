@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Launch a glaive that ricochets off surfaces in bursts of elemental damage, then perforate enemies with primary fire’s precision buck-shot. Damage increases with each Status Effect afflicting a target. Lavos will transmute a small portion of any ammo pickup to Primary Ammo when wielding his signature Cedo.",
-    "display": "（英文：CEDO）发射能在表面弹跳并爆发出元素伤害的战刃，然后通过主要射击的精准鹿弹来击穿敌人。伤害会随着目标所受到的每个异常状态而增加。当 Lavos 持有他标志性的塞多时，他会将一小部分拾取到的任意弹药转化为主要武器弹药。",
+    "display": "发射能在表面弹跳并爆发出元素伤害的战刃，然后通过主要射击的精准鹿弹来击穿敌人。伤害会随着目标所受到的每个异常状态而增加。当 Lavos 持有他标志性的塞多时，他会将一小部分拾取到的任意弹药转化为主要武器弹药。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,113 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
+          ],
+          "sourceCanonical": "Entrati (Father), Friend",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Friend",
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel"
+          ],
+          "sourceCanonical": "Entrati (Father), Family",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Family",
+          "variables": {
+            "partName": "塞多 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver"
+          ],
+          "sourceCanonical": "Entrati (Father), Family",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Family",
+          "variables": {
+            "partName": "塞多 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock"
+          ],
+          "sourceCanonical": "Entrati (Father), Family",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Family",
+          "variables": {
+            "partName": "塞多 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
         ],
@@ -68,12 +163,35 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
+            ],
+            "sourceCanonical": "Entrati (Father), Friend",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Friend",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel"
         ],
@@ -83,12 +201,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel"
+            ],
+            "sourceCanonical": "Entrati (Father), Family",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Family",
+            "variables": {
+              "partName": "塞多 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver"
         ],
@@ -98,12 +241,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver"
+            ],
+            "sourceCanonical": "Entrati (Father), Family",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Family",
+            "variables": {
+              "partName": "塞多 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock"
         ],
@@ -113,8 +281,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock"
+            ],
+            "sourceCanonical": "Entrati (Father), Family",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Family",
+            "variables": {
+              "partName": "塞多 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -148,7 +341,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -191,9 +384,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "fallback-en",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -205,7 +398,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CEDO）发射能在表面弹跳并爆发出元素伤害的战刃，然后通过主要射击的精准鹿弹来击穿敌人。伤害会随着目标所受到的每个异常状态而增加。当 Lavos 持有他标志性的塞多时，他会将一小部分拾取到的任意弹药转化为主要武器弹药。",
+  "summary": "发射能在表面弹跳并爆发出元素伤害的战刃，然后通过主要射击的精准鹿弹来击穿敌人。伤害会随着目标所受到的每个异常状态而增加。当 Lavos 持有他标志性的塞多时，他会将一小部分拾取到的任意弹药转化为主要武器弹药。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -222,29 +415,31 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

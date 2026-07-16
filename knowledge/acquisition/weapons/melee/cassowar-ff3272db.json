@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Light and nimble, the twin blades of this polearm will swoop and slice through throngs of hardened foes.",
-    "display": "（英文：CASSOWAR）轻盈且灵巧。即使是防护严密的成群敌人，也会被这件长柄武器上的双刃所肢解。",
+    "display": "轻盈且灵巧。即使是防护严密的成群敌人，也会被这件长柄武器上的双刃所肢解。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnHalberdPolearmWeaponBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Tenno 实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cassowar",
+            "revisionId": 2658739
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnHalberdPolearmWeaponBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TnHalberdPolearmWeaponBlueprint"
         ],
@@ -68,8 +104,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnHalberdPolearmWeaponBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Tenno 实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cassowar",
+              "revisionId": 2658739
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnHalberdPolearmWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -103,7 +175,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -122,9 +194,9 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
           "canonical": "Forma",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "fallback-en",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
@@ -160,7 +232,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CASSOWAR）轻盈且灵巧。即使是防护严密的成群敌人，也会被这件长柄武器上的双刃所肢解。",
+  "summary": "轻盈且灵巧。即使是防护严密的成群敌人，也会被这件长柄武器上的双刃所肢解。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +249,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
-    "crafting": false
+    "crafting": true
   }
 }

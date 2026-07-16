@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Unlike a standard Quartakk this Kuva Lich variant fires automatically from the hip while retaining its signature feature when aimed: annihilating targets with four simultaneous shots.",
-    "display": "（英文：KUVA QUARTAKK）与原版夸塔克不同，这种赤毒玄骸夸塔克变体能从腰际全自动开火射击，同时保持了瞄准时的特点：用 4 发同步射击来消灭目标。",
+    "display": "与原版夸塔克不同，这种赤毒玄骸夸塔克变体能从腰际全自动开火射击，同时保持了瞄准时的特点：用 4 发同步射击来消灭目标。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Quartakk",
+            "revisionId": 2789958
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaQuartakkBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·夸塔克",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaQuartakkBlueprint"
+          "weaponName": "赤毒·夸塔克"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·夸塔克"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaQuartakkBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaQuartakkBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaQuartakkBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaQuartakkBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Quartakk",
+              "revisionId": 2789958
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA QUARTAKK）与原版夸塔克不同，这种赤毒玄骸夸塔克变体能从腰际全自动开火射击，同时保持了瞄准时的特点：用 4 发同步射击来消灭目标。",
+  "summary": "与原版夸塔克不同，这种赤毒玄骸夸塔克变体能从腰际全自动开火射击，同时保持了瞄准时的特点：用 4 发同步射击来消灭目标。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

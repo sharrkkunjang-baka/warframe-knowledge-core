@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Taken from defeated Grineer commanders and rebuilt to improve combat efficiency and reliability.",
-    "display": "（英文：VAYKOR MARELOK）取自于战败的 Grineer 指挥官，并经过重构来提升作战效率和可靠性。",
+    "display": "取自于战败的 Grineer 指挥官，并经过重构来提升作战效率和可靠性。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,17 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "sourceCanonical": "Steel Meridian",
+          "sourceDisplayName": "钢铁防线",
+          "factionDisplayName": "钢铁防线",
+          "standing": 100000,
+          "requirements": {
+            "type": "standing",
+            "rankName": "General",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Vaykor Marelok",
+            "revisionId": 2785072
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [],
         "variables": {
           "weaponName": "勇气·玛瑞火枪"
@@ -64,15 +86,37 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "sourceCanonical": "Steel Meridian",
+            "sourceDisplayName": "钢铁防线",
+            "factionDisplayName": "钢铁防线",
+            "standing": 100000,
+            "requirements": {
+              "type": "standing",
+              "rankName": "General",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Vaykor Marelok",
+              "revisionId": 2785072
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
   "recipes": [],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：VAYKOR MARELOK）取自于战败的 Grineer 指挥官，并经过重构来提升作战效率和可靠性。",
+  "summary": "取自于战败的 Grineer 指挥官，并经过重构来提升作战效率和可靠性。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -89,14 +133,16 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false

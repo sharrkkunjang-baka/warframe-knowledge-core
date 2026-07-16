@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Cultivate a meaningful relationship with this deceptively simple battery-powered pistol. The Plinx rewards attention and investment from the wise.",
-    "display": "（英文：PLINX）与这把看似朴素的电池手枪培养出深厚的情感。漫射者最能回馈来自智者的关注与投资。",
+    "display": "与这把看似朴素的电池手枪培养出深厚的情感。漫射者最能回馈来自智者的关注与投资。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Plinx",
+            "revisionId": 2658019
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/CrpBlastorWeaponBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/CrpBlastorWeaponBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Plinx",
+              "revisionId": 2658019
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpBlastorWeaponBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PLINX）与这把看似朴素的电池手枪培养出深厚的情感。漫射者最能回馈来自智者的关注与投资。",
+  "summary": "与这把看似朴素的电池手枪培养出深厚的情感。漫射者最能回馈来自智者的关注与投资。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

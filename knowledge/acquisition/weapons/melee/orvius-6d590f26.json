@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Turn foes into puppets with Teshin’s versatile throwing disc.",
-    "display": "（英文：ORVIUS）使用 Teshin 灵活多变的飞盘将敌人变成你的提线木偶。",
+    "display": "使用 Teshin 灵活多变的飞盘将敌人变成你的提线木偶。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -47,7 +47,7 @@
   "acquisition": {
     "routeCategoryRefs": [
       "quest",
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
@@ -113,6 +113,50 @@
             "sourceCanonical": "Cephalon Simaris, Complete The War Within"
           },
           "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade"
+          ],
+          "sourceCanonical": "Kuva Guardian",
+          "sourceDisplayName": "赤毒守卫",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.05,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {
+            "partName": "灵枢 刀刃"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc"
+          ],
+          "sourceCanonical": "Kuva Jester",
+          "sourceDisplayName": "赤毒小丑",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.05,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {
+            "partName": "灵枢 圆盘"
+          }
         }
       ]
     },
@@ -196,7 +240,7 @@
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade"
         ],
@@ -206,12 +250,35 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade"
+            ],
+            "sourceCanonical": "Kuva Guardian",
+            "sourceDisplayName": "赤毒守卫",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.05,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {
+              "partName": "灵枢 刀刃"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc"
         ],
@@ -221,8 +288,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc"
+            ],
+            "sourceCanonical": "Kuva Jester",
+            "sourceDisplayName": "赤毒小丑",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.05,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {
+              "partName": "灵枢 圆盘"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -313,7 +403,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ORVIUS）使用 Teshin 灵活多变的飞盘将敌人变成你的提线木偶。",
+  "summary": "使用 Teshin 灵活多变的飞盘将敌人变成你的提线木偶。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -330,23 +420,25 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

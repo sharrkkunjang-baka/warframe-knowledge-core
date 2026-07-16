@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "Leverage bleeding-edge Granum tech with this massive heavy blade. Slam sends forth a cascading set of three shockwaves, while Heavy Slam unleashes a swath of shockwaves.",
-    "display": "（英文：TENET EXEC）这把重型巨刃使用了最前沿的格拉努科技。震地攻击会向前发射三道冲击波，而重型震地攻击则会发射大量冲击波。",
+    "display": "这把重型巨刃使用了最前沿的格拉努科技。震地攻击会向前发射三道冲击波，而重型震地攻击则会发射大量冲击波。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,69 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceDisplayName": "任意中继站的 Ergo Glast",
+          "requirements": {
+            "type": "currency",
+            "currency": [
+              {
+                "displayName": "堕落全息密钥",
+                "amount": 40
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Tenet Exec",
+            "revisionId": 2792713
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
-        ],
+        "scope": "item",
+        "category": "vendor",
+        "partRefs": [],
         "variables": {
-          "weaponName": "信条·枢密",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
+          "weaponName": "信条·枢密"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "信条·枢密"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint",
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceDisplayName": "任意中继站的 Ergo Glast",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
+              "type": "currency",
+              "currency": [
+                {
+                  "displayName": "堕落全息密钥",
+                  "amount": 40
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/CrpBigSlashBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tenet Exec",
+              "revisionId": 2792713
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +137,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：TENET EXEC）这把重型巨刃使用了最前沿的格拉努科技。震地攻击会向前发射三道冲击波，而重型震地攻击则会发射大量冲击波。",
+  "summary": "这把重型巨刃使用了最前沿的格拉努科技。震地攻击会向前发射三道冲击波，而重型震地攻击则会发射大量冲击波。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +154,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

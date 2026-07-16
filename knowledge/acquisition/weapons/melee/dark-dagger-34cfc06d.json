@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "This short blade weapon forged using dark metals has limited range but comes out fast.",
-    "display": "（英文：DARK DAGGER）这把用黑暗金属锻造的短刃武器，在有限的范围内可以快速出招。",
+    "display": "这把用黑暗金属锻造的短刃武器，在有限的范围内可以快速出招。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "nightwave-offering",
+          "scope": "blueprint",
+          "sourceDisplayName": "午夜电波商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dark Dagger",
+            "revisionId": 2702355
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DarkDaggerBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DarkDaggerBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "nightwave-offering",
+            "scope": "blueprint",
+            "sourceDisplayName": "午夜电波商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dark Dagger",
+              "revisionId": 2702355
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DarkDaggerBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：DARK DAGGER）这把用黑暗金属锻造的短刃武器，在有限的范围内可以快速出招。",
+  "summary": "这把用黑暗金属锻造的短刃武器，在有限的范围内可以快速出招。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

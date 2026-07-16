@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Each arrow spawns a swarm of sticky appendages on impact. These tongue-like probes latch onto nearby unfortunates and drag them close before bursting into a mess of diseased goo.",
-    "display": "（英文：PROBOSCIS CERNOS）每支箭在冲击时都会产生大量的粘稠附着物。这些像舌头一样的探针会吸附在附近的倒霉蛋身上，并把他们拖近，然后爆裂形成一团病害黏液。",
+    "display": "每支箭在冲击时都会产生大量的粘稠附着物。这些像舌头一样的探针会吸附在附近的倒霉蛋身上，并把他们拖近，然后爆裂形成一团病害黏液。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Proboscis Cernos",
+            "revisionId": 2785200
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Proboscis Cernos",
+              "revisionId": 2785200
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DerelictCernosBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：PROBOSCIS CERNOS）每支箭在冲击时都会产生大量的粘稠附着物。这些像舌头一样的探针会吸附在附近的倒霉蛋身上，并把他们拖近，然后爆裂形成一团病害黏液。",
+  "summary": "每支箭在冲击时都会产生大量的粘稠附着物。这些像舌头一样的探针会吸附在附近的倒霉蛋身上，并把他们拖近，然后爆裂形成一团病害黏液。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

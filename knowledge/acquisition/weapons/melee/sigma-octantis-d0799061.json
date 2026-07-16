@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Deadly slashes from the Sigma sword are matched only by the force of the Octantis shield when thrown from the air.",
-    "display": "（英文：SIGMA & OCTANTIS）西格玛剑的致命切砍唯有南极座空中掷出的力量能与之匹敌。",
+    "display": "西格玛剑的致命切砍唯有南极座空中掷出的力量能与之匹敌。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,61 +46,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "daily-tribute",
+          "scope": "item",
+          "sourceDisplayName": "每日献礼里程碑",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sigma & Octantis",
+            "revisionId": 2724064
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "西格玛 & 南极座",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+          "weaponName": "西格玛 & 南极座"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [
-          "/Lotus/Types/Items/MiscItems/Morphic",
-          "/Lotus/Types/Items/MiscItems/Circuits",
-          "/Lotus/Types/Items/MiscItems/PolymerBundle",
-          "/Lotus/Types/Items/MiscItems/Salvage"
-        ],
-        "variables": {
-          "productName": "西格玛 & 南极座"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint",
+            "type": "daily-tribute",
+            "scope": "item",
+            "sourceDisplayName": "每日献礼里程碑",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sigma & Octantis",
+              "revisionId": 2724064
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -160,7 +156,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SIGMA & OCTANTIS）西格玛剑的致命切砍唯有南极座空中掷出的力量能与之匹敌。",
+  "summary": "西格玛剑的致命切砍唯有南极座空中掷出的力量能与之匹敌。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,16 +173,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

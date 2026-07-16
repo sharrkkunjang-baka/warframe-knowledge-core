@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "An intimidating Tonfa set designed to match the briary design of the Boltor.",
-    "display": "（英文：BOLTACE）一对设计成与满身尖刺为造型的螺钉步枪相辅相成的拐刃，有着令人生畏的外观。",
+    "display": "一对设计成与满身尖刺为造型的螺钉步枪相辅相成的拐刃，有着令人生畏的外观。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Boltace",
+            "revisionId": 2785136
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Boltace",
+              "revisionId": 2785136
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/BoltonfaBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -151,7 +189,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：BOLTACE）一对设计成与满身尖刺为造型的螺钉步枪相辅相成的拐刃，有着令人生畏的外观。",
+  "summary": "一对设计成与满身尖刺为造型的螺钉步枪相辅相成的拐刃，有着令人生畏的外观。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -168,15 +206,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

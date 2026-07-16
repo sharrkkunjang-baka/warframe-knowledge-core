@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Quellor was standard-issue to Dax Railjack crews of the Old War, dating back to the earliest, pre-Sigma craft. A rapid-fire assault rifle with a hefty magazine-size, the Quellor is an all-round workhorse. Also capable of large, short-range cryo-blasts.",
-    "display": "（英文：QUELLOR）压制者是远古之战时禁卫航道星舰舰员的标准配置武器，其最早的铸造可追溯到西格玛系列之前。这是一种速射突击步枪，拥有较大的弹匣容量，是全能型的主战武器。而且也有着巨大的、短距离的冰冻冲击。",
+    "display": "压制者是远古之战时禁卫航道星舰舰员的标准配置武器，其最早的铸造可追溯到西格玛系列之前。这是一种速射突击步枪，拥有较大的弹匣容量，是全能型的主战武器。而且也有着巨大的、短距离的冰冻冲击。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -160,8 +160,8 @@
             "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
           ],
           "sourceCanonical": "Kuva Lich Agor Rok",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
+          "sourceDisplayName": "赤毒玄骸 Agor Rok",
+          "sourceLocalizationStatus": "official-zh",
           "locationId": null,
           "missionTypeId": null,
           "chance": 0.05,
@@ -172,7 +172,7 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Blueprint/Item Drops by Blueprint/Item"
@@ -302,8 +302,8 @@
               "/Lotus/Types/Recipes/Weapons/RailjackRifleGunBlueprint"
             ],
             "sourceCanonical": "Kuva Lich Agor Rok",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
+            "sourceDisplayName": "赤毒玄骸 Agor Rok",
+            "sourceLocalizationStatus": "official-zh",
             "locationId": null,
             "missionTypeId": null,
             "chance": 0.05,
@@ -314,14 +314,14 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Blueprint/Item Drops by Blueprint/Item"
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -412,7 +412,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：QUELLOR）压制者是远古之战时禁卫航道星舰舰员的标准配置武器，其最早的铸造可追溯到西格玛系列之前。这是一种速射突击步枪，拥有较大的弹匣容量，是全能型的主战武器。而且也有着巨大的、短距离的冰冻冲击。",
+  "summary": "压制者是远古之战时禁卫航道星舰舰员的标准配置武器，其最早的铸造可追溯到西格玛系列之前。这是一种速射突击步枪，拥有较大的弹匣容量，是全能型的主战武器。而且也有着巨大的、短距离的冰冻冲击。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -429,15 +429,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The Tenno forged Orthos is a rare double bladed polearm. Those who take the time to master it speak of its impressive striking distance and ability to hit multiple targets.",
-    "display": "（英文：ORTHOS）由 Tenno 所铸造的欧特鲁斯是把罕见的双刃长矛。对于投入时间掌握这把武器的人们总会谈起它令人印象深刻的攻击距离与群击能力。",
+    "display": "由 Tenno 所铸造的欧特鲁斯是把罕见的双刃长矛。对于投入时间掌握这把武器的人们总会谈起它令人印象深刻的攻击距离与群击能力。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,7 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "official-drop",
+      "market",
       "crafting"
     ],
     "prime": {
@@ -60,9 +60,9 @@
             "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
-          "locationId": null,
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.the-circuit-tier-6",
           "missionTypeId": "mission-type.normal",
           "chance": 0.0103,
           "sourceDropChance": null,
@@ -72,18 +72,56 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
           }
+        },
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Orthos",
+            "revisionId": 2693272
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
+          ],
+          "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.0103,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {}
         }
       ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-drop",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
         ],
@@ -102,9 +140,9 @@
               "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
-            "locationId": null,
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.the-circuit-tier-6",
             "missionTypeId": "mission-type.normal",
             "chance": 0.0103,
             "sourceDropChance": null,
@@ -114,14 +152,52 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Orthos",
+              "revisionId": 2693272
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
+            ],
+            "variables": {}
+          },
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PolearmBlueprint"
+            ],
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.0103,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {}
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -212,7 +288,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ORTHOS）由 Tenno 所铸造的欧特鲁斯是把罕见的双刃长矛。对于投入时间掌握这把武器的人们总会谈起它令人印象深刻的攻击距离与群击能力。",
+  "summary": "由 Tenno 所铸造的欧特鲁斯是把罕见的双刃长矛。对于投入时间掌握这把武器的人们总会谈起它令人印象深刻的攻击距离与群击能力。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -229,15 +305,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

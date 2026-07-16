@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "An ancient weapon designed by the Entrati. Primary fire siphons life essence from the target to fuel a devastating secondary fire. This large, weighty double-barreled pistol delivers twin projectiles that pack a punch, exploding on impact. Secondary fire puts the weapon in lock-on mode. Aim to lock onto multiple targets, then fire to unleash homing projectiles.",
-    "display": "（英文：SEPULCRUM）一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把大且沉的双管手枪可发出双股投射弹药，并在撞击时产生强力爆炸。次要射击会将手枪置于锁定状态，可追踪多个目标，并释放制导弹药。",
+    "display": "一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把大且沉的双管手枪可发出双股投射弹药，并在撞击时产生强力爆炸。次要射击会将手枪置于锁定状态，可追踪多个目标，并释放制导弹药。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,159 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+          ],
+          "sourceCanonical": "Entrati (Father), Acquaintance",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Acquaintance",
+          "variables": {}
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 4000,
+          "requirements": {
+            "type": "standing",
+            "amount": 4000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sepulcrum",
+            "revisionId": 2790003
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
+          ],
+          "sourceCanonical": "Entrati (Father), Acquaintance",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Acquaintance",
+          "variables": {
+            "partName": "追击者 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 2000,
+          "requirements": {
+            "type": "standing",
+            "amount": 2000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sepulcrum",
+            "revisionId": 2790003
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
+          ],
+          "variables": {
+            "partName": "追击者 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
+          ],
+          "sourceCanonical": "Entrati (Father), Acquaintance",
+          "sourceDisplayName": "英择谛的 Father",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "英择谛的 Father",
+          "requiredRankName": "Acquaintance",
+          "variables": {
+            "partName": "追击者 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceCanonical": "Father",
+          "sourceDisplayName": "父亲",
+          "factionDisplayName": "父亲",
+          "standing": 2000,
+          "requirements": {
+            "type": "standing",
+            "amount": 2000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sepulcrum",
+            "revisionId": 2790003
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
+          ],
+          "variables": {
+            "partName": "追击者 枪机"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
         ],
@@ -68,12 +209,57 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+            ],
+            "sourceCanonical": "Entrati (Father), Acquaintance",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Acquaintance",
+            "variables": {}
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 4000,
+            "requirements": {
+              "type": "standing",
+              "amount": 4000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sepulcrum",
+              "revisionId": 2790003
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechPistolBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
         ],
@@ -83,12 +269,61 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
+            ],
+            "sourceCanonical": "Entrati (Father), Acquaintance",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Acquaintance",
+            "variables": {
+              "partName": "追击者 枪管"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 2000,
+            "requirements": {
+              "type": "standing",
+              "amount": 2000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sepulcrum",
+              "revisionId": 2790003
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel"
+            ],
+            "variables": {
+              "partName": "追击者 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
         ],
@@ -98,8 +333,57 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
+            ],
+            "sourceCanonical": "Entrati (Father), Acquaintance",
+            "sourceDisplayName": "英择谛的 Father",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "英择谛的 Father",
+            "requiredRankName": "Acquaintance",
+            "variables": {
+              "partName": "追击者 枪机"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceCanonical": "Father",
+            "sourceDisplayName": "父亲",
+            "factionDisplayName": "父亲",
+            "standing": 2000,
+            "requirements": {
+              "type": "standing",
+              "amount": 2000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sepulcrum",
+              "revisionId": 2790003
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver"
+            ],
+            "variables": {
+              "partName": "追击者 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -181,7 +465,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SEPULCRUM）一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把大且沉的双管手枪可发出双股投射弹药，并在撞击时产生强力爆炸。次要射击会将手枪置于锁定状态，可追踪多个目标，并释放制导弹药。",
+  "summary": "一把由英择谛所设计的古老武器。主要射击可从目标身上吸取生命精华，以助燃次要射击带来的毁灭性攻击。这把大且沉的双管手枪可发出双股投射弹药，并在撞击时产生强力爆炸。次要射击会将手枪置于锁定状态，可追踪多个目标，并释放制导弹药。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -198,23 +482,25 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ThanotechPistolReceiver",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

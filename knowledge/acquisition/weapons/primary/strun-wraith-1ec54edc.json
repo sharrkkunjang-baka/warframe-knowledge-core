@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A different take on a familiar shotgun, the Strun Wraith features unique styling.",
-    "display": "（英文：STRUN WRAITH）熟知霰弹枪截然不同的造型，斯特朗·亡魂拥有着相当特殊的风格。",
+    "display": "熟知霰弹枪截然不同的造型，斯特朗·亡魂拥有着相当特殊的风格。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,97 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "invasion-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Strun Wraith",
+            "revisionId": 2785186
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/StrunWraithBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Strun Wraith",
+            "revisionId": 2785186
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithBarrel"
+          ],
+          "variables": {
+            "partName": "斯特朗·亡魂 枪管"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Strun Wraith",
+            "revisionId": 2785186
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithReceiver"
+          ],
+          "variables": {
+            "partName": "斯特朗·亡魂 枪机"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Strun Wraith",
+            "revisionId": 2785186
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithStock"
+          ],
+          "variables": {
+            "partName": "斯特朗·亡魂 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/StrunWraithBlueprint"
         ],
@@ -68,12 +147,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Strun Wraith",
+              "revisionId": 2785186
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/StrunWraithBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithBarrel"
         ],
@@ -83,12 +181,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Strun Wraith",
+              "revisionId": 2785186
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithBarrel"
+            ],
+            "variables": {
+              "partName": "斯特朗·亡魂 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithReceiver"
         ],
@@ -98,12 +217,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Strun Wraith",
+              "revisionId": 2785186
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithReceiver"
+            ],
+            "variables": {
+              "partName": "斯特朗·亡魂 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithStock"
         ],
@@ -113,8 +253,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Strun Wraith",
+              "revisionId": 2785186
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithStock"
+            ],
+            "variables": {
+              "partName": "斯特朗·亡魂 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -196,7 +357,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：STRUN WRAITH）熟知霰弹枪截然不同的造型，斯特朗·亡魂拥有着相当特殊的风格。",
+  "summary": "熟知霰弹枪截然不同的造型，斯特朗·亡魂拥有着相当特殊的风格。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -213,27 +374,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/StrunWraithStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

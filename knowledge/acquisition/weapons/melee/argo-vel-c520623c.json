@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Argo & Vel bolster the warrior who stands fast. Its Heavy Attack sends forth a glaive that ricochets off enemies.",
-    "display": "（英文：ARGO & VEL）星舟 & 帆为坚守阵地的战士提供支持。它的重击会射出一把会在敌人身上弹开的刀刃。",
+    "display": "星舟 & 帆为坚守阵地的战士提供支持。它的重击会射出一把会在敌人身上弹开的刀刃。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,48 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "blueprint",
+          "npcId": "npc.teshin",
+          "locationId": "location.duviri",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DaxDuviriMaceShieldBlueprint"
+          ],
+          "variables": {},
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.teshin",
+            "locationId": "location.duviri",
+            "currency": [
+              {
+                "currencyId": "currency.pathos-clamp",
+                "amount": 60
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportVendors",
+            "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/DrifterWeaponsVendorManifest",
+            "storeItem": "/Lotus/Types/StoreItems/Packages/DrifterWeaponBundles/DaxDuviriMaceShieldPlayerWeaponBundle"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DaxDuviriMaceShieldBlueprint"
         ],
@@ -68,8 +98,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint",
+            "npcId": "npc.teshin",
+            "locationId": "location.duviri",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DaxDuviriMaceShieldBlueprint"
+            ],
+            "variables": {},
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.teshin",
+              "locationId": "location.duviri",
+              "currency": [
+                {
+                  "currencyId": "currency.pathos-clamp",
+                  "amount": 60
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/DrifterWeaponsVendorManifest",
+              "storeItem": "/Lotus/Types/StoreItems/Packages/DrifterWeaponBundles/DaxDuviriMaceShieldPlayerWeaponBundle"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +220,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：ARGO & VEL）星舟 & 帆为坚守阵地的战士提供支持。它的重击会射出一把会在敌人身上弹开的刀刃。",
+  "summary": "星舟 & 帆为坚守阵地的战士提供支持。它的重击会射出一把会在敌人身上弹开的刀刃。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +237,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

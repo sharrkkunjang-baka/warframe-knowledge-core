@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A blade forged using dark metals, capable of delivering innate 辐射Radiation Damage with attacks.",
-    "display": "（英文：DARK SWORD）一把使用暗黑金属制作的长剑，每次攻击都会附带辐射辐射伤害。",
+    "display": "一把使用暗黑金属制作的长剑，每次攻击都会附带辐射辐射伤害。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "nightwave-offering",
+          "scope": "blueprint",
+          "sourceDisplayName": "午夜电波商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Dark Sword",
+            "revisionId": 2785135
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/DarkSwordBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/DarkSwordBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "nightwave-offering",
+            "scope": "blueprint",
+            "sourceDisplayName": "午夜电波商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Dark Sword",
+              "revisionId": 2785135
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/DarkSwordBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：DARK SWORD）一把使用暗黑金属制作的长剑，每次攻击都会附带辐射辐射伤害。",
+  "summary": "一把使用暗黑金属制作的长剑，每次攻击都会附带辐射辐射伤害。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

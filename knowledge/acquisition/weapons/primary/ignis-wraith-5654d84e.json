@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "A blood-red variant of this destructive flamethrower.",
-    "display": "（英文：IGNIS WRAITH）这款破坏性火焰喷射器的血红变体。",
+    "display": "这款破坏性火焰喷射器的血红变体。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,13 +46,31 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "official-drop",
+      "vendor",
+      "market",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "item",
+          "sourceCanonical": "Baro Ki'Teer",
+          "sourceDisplayName": "虚空商人",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Ignis Wraith",
+            "revisionId": 2785426
+          },
+          "partRefs": [],
+          "variables": {}
+        },
         {
           "type": "mission-reward",
           "scope": "blueprint",
@@ -152,13 +170,61 @@
             "source": "DE Official Drop Tables",
             "section": "Missions"
           }
+        },
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
         }
       ]
     },
     "routes": [
       {
+        "scope": "item",
+        "category": "vendor",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "伊格尼斯·亡魂"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "item",
+            "sourceCanonical": "Baro Ki'Teer",
+            "sourceDisplayName": "虚空商人",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Ignis Wraith",
+              "revisionId": 2785426
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
         "scope": "blueprint",
-        "category": "official-drop",
+        "category": "market",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
         ],
@@ -269,6 +335,23 @@
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -362,7 +445,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：IGNIS WRAITH）这款破坏性火焰喷射器的血红变体。",
+  "summary": "这款破坏性火焰喷射器的血红变体。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -388,7 +471,7 @@
     "autoComplete": true,
     "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": true,
     "components": [],
     "crafting": true

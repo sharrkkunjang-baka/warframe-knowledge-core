@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Teshin's twin blades.",
-    "display": "（英文：SUN & MOON）Teshin 的双侍刃。",
+    "display": "Teshin 的双侍刃。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "quest",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "scope": "blueprint",
+          "questCanonical": "The Duviri Paradox",
+          "questDisplayName": "双衍悖论",
+          "requirements": {
+            "type": "quest",
+            "questName": "双衍悖论"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sun & Moon",
+            "revisionId": 2789947
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "quest",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
         ],
@@ -68,8 +89,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "blueprint",
+            "questCanonical": "The Duviri Paradox",
+            "questDisplayName": "双衍悖论",
+            "requirements": {
+              "type": "quest",
+              "questName": "双衍悖论"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sun & Moon",
+              "revisionId": 2789947
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DuviriDualSwordsBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SUN & MOON）Teshin 的双侍刃。",
+  "summary": "Teshin 的双侍刃。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +219,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

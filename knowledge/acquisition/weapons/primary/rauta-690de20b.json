@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Kullervo's signature weapon boasts melee synergy. Every shot that lands increases the wielder's Melee Combo count. When Kullervo wields Rauta, it also increases his Melee Combo duration.",
-    "display": "（英文：RAUTA）Kullervo 的标志性武器具有近战协同的优势。每次命中都会增加持枪者的近战连击数。当 Kullervo 使用锐铁时，它也会增加他的近战连击持续时间。",
+    "display": "Kullervo 的标志性武器具有近战协同的优势。每次命中都会增加持枪者的近战连击数。当 Kullervo 使用锐铁时，它也会增加他的近战连击持续时间。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,141 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "blueprint",
+          "npcId": "npc.acrithis",
+          "locationId": "location.duviri",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+          ],
+          "variables": {},
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "currency": [
+              {
+                "currencyId": "currency.kullervos-bane",
+                "amount": 12
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportVendors",
+            "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+            "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "npcId": "npc.acrithis",
+          "locationId": "location.duviri",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel"
+          ],
+          "variables": {
+            "partName": "锐铁 枪管"
+          },
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "currency": [
+              {
+                "currencyId": "currency.kullervos-bane",
+                "amount": 6
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportVendors",
+            "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+            "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "npcId": "npc.acrithis",
+          "locationId": "location.duviri",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver"
+          ],
+          "variables": {
+            "partName": "锐铁 枪机"
+          },
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "currency": [
+              {
+                "currencyId": "currency.kullervos-bane",
+                "amount": 6
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportVendors",
+            "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+            "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver"
+          }
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "npcId": "npc.acrithis",
+          "locationId": "location.duviri",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
+          ],
+          "variables": {
+            "partName": "锐铁 枪托"
+          },
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "currency": [
+              {
+                "currencyId": "currency.kullervos-bane",
+                "amount": 6
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE ExportVendors",
+            "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+            "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
         ],
@@ -68,12 +191,42 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+            ],
+            "variables": {},
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.acrithis",
+              "locationId": "location.duviri",
+              "currency": [
+                {
+                  "currencyId": "currency.kullervos-bane",
+                  "amount": 12
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/PaxDuviricusShotgunBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel"
         ],
@@ -83,12 +236,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel"
+            ],
+            "variables": {
+              "partName": "锐铁 枪管"
+            },
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.acrithis",
+              "locationId": "location.duviri",
+              "currency": [
+                {
+                  "currencyId": "currency.kullervos-bane",
+                  "amount": 6
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver"
         ],
@@ -98,12 +283,44 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver"
+            ],
+            "variables": {
+              "partName": "锐铁 枪机"
+            },
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.acrithis",
+              "locationId": "location.duviri",
+              "currency": [
+                {
+                  "currencyId": "currency.kullervos-bane",
+                  "amount": 6
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
         ],
@@ -113,8 +330,40 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "npcId": "npc.acrithis",
+            "locationId": "location.duviri",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
+            ],
+            "variables": {
+              "partName": "锐铁 枪托"
+            },
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.acrithis",
+              "locationId": "location.duviri",
+              "currency": [
+                {
+                  "currencyId": "currency.kullervos-bane",
+                  "amount": 6
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportVendors",
+              "vendorManifest": "/Lotus/Types/Game/VendorManifests/Duviri/AcrithisKullervoShopManifest",
+              "storeItem": "/Lotus/StoreItems/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -205,7 +454,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：RAUTA）Kullervo 的标志性武器具有近战协同的优势。每次命中都会增加持枪者的近战连击数。当 Kullervo 使用锐铁时，它也会增加他的近战连击持续时间。",
+  "summary": "Kullervo 的标志性武器具有近战协同的优势。每次命中都会增加持枪者的近战连击数。当 Kullervo 使用锐铁时，它也会增加他的近战连击持续时间。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -222,27 +471,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/PaxDuviricusShotgunStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

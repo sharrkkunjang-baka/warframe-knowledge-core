@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Unload deadly accurate bursts of mayhem.",
-    "display": "（英文：CYNGAS）释放出致命般精准的爆发性混乱。",
+    "display": "释放出致命般精准的爆发性混乱。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,173 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cyngas",
+            "revisionId": 2779544
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ArchBurstGunBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel"
+          ],
+          "sourceCanonical": "Arbiters of Hexis, Lawful",
+          "sourceDisplayName": "均衡仲裁者",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "均衡仲裁者",
+          "requiredRankName": "Lawful",
+          "variables": {
+            "partName": "合成燃气炮 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cyngas",
+            "revisionId": 2779544
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel"
+          ],
+          "variables": {
+            "partName": "合成燃气炮 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver"
+          ],
+          "sourceCanonical": "Cephalon Suda, Intelligent",
+          "sourceDisplayName": "中枢苏达",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "中枢苏达",
+          "requiredRankName": "Intelligent",
+          "variables": {
+            "partName": "合成燃气炮 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cyngas",
+            "revisionId": 2779544
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver"
+          ],
+          "variables": {
+            "partName": "合成燃气炮 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock"
+          ],
+          "sourceCanonical": "The Perrin Sequence, Executive",
+          "sourceDisplayName": "佩兰数列",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "佩兰数列",
+          "requiredRankName": "Executive",
+          "variables": {
+            "partName": "合成燃气炮 枪托"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Cyngas",
+            "revisionId": 2779544
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock"
+          ],
+          "variables": {
+            "partName": "合成燃气炮 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ArchBurstGunBlueprint"
         ],
@@ -68,12 +223,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cyngas",
+              "revisionId": 2779544
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ArchBurstGunBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel"
         ],
@@ -83,12 +257,58 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel"
+            ],
+            "sourceCanonical": "Arbiters of Hexis, Lawful",
+            "sourceDisplayName": "均衡仲裁者",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "均衡仲裁者",
+            "requiredRankName": "Lawful",
+            "variables": {
+              "partName": "合成燃气炮 枪管"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cyngas",
+              "revisionId": 2779544
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel"
+            ],
+            "variables": {
+              "partName": "合成燃气炮 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver"
         ],
@@ -98,12 +318,58 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver"
+            ],
+            "sourceCanonical": "Cephalon Suda, Intelligent",
+            "sourceDisplayName": "中枢苏达",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "中枢苏达",
+            "requiredRankName": "Intelligent",
+            "variables": {
+              "partName": "合成燃气炮 枪机"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cyngas",
+              "revisionId": 2779544
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver"
+            ],
+            "variables": {
+              "partName": "合成燃气炮 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock"
         ],
@@ -113,8 +379,54 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock"
+            ],
+            "sourceCanonical": "The Perrin Sequence, Executive",
+            "sourceDisplayName": "佩兰数列",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "佩兰数列",
+            "requiredRankName": "Executive",
+            "variables": {
+              "partName": "合成燃气炮 枪托"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Cyngas",
+              "revisionId": 2779544
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock"
+            ],
+            "variables": {
+              "partName": "合成燃气炮 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -205,7 +517,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：CYNGAS）释放出致命般精准的爆发性混乱。",
+  "summary": "释放出致命般精准的爆发性混乱。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -222,27 +534,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchBurstGunStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

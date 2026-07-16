@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "The cruelest of weapons built for the crudest of Grineer soldiers. Rips through metal like flesh, and through flesh like day-old pudding.",
-    "display": "（英文：GHOULSAW）为那些最粗鲁的 Grineer 士兵所打造的最残忍的武器。削铁如肉，割肉如泥。",
+    "display": "为那些最粗鲁的 Grineer 士兵所打造的最残忍的武器。削铁如肉，割肉如泥。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,145 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+          ],
+          "sourceCanonical": "Operational Supply, Champion",
+          "sourceDisplayName": "行动补给",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade"
+          ],
+          "sourceCanonical": "Operational Supply, Champion",
+          "sourceDisplayName": "行动补给",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {
+            "partName": "尸鬼电锯 锯片"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis"
+          ],
+          "sourceCanonical": "Operational Supply, Champion",
+          "sourceDisplayName": "行动补给",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {
+            "partName": "尸鬼电锯 机体"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine"
+          ],
+          "sourceCanonical": "Operational Supply, Champion",
+          "sourceDisplayName": "行动补给",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {
+            "partName": "尸鬼电锯 引擎"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle"
+          ],
+          "sourceCanonical": "Operational Supply, Champion",
+          "sourceDisplayName": "行动补给",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {
+            "partName": "尸鬼电锯 握把"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
         ],
@@ -68,68 +195,198 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnGhoulSawBlueprint"
+            ],
+            "sourceCanonical": "Operational Supply, Champion",
+            "sourceDisplayName": "行动补给",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade"
         ],
         "variables": {
-          "partName": "GrnGhoulSawBlade"
+          "partName": "尸鬼电锯 锯片"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade"
+            ],
+            "sourceCanonical": "Operational Supply, Champion",
+            "sourceDisplayName": "行动补给",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {
+              "partName": "尸鬼电锯 锯片"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis"
         ],
         "variables": {
-          "partName": "GrnGhoulSawChassis"
+          "partName": "尸鬼电锯 机体"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis"
+            ],
+            "sourceCanonical": "Operational Supply, Champion",
+            "sourceDisplayName": "行动补给",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {
+              "partName": "尸鬼电锯 机体"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine"
         ],
         "variables": {
-          "partName": "GrnGhoulSawEngine"
+          "partName": "尸鬼电锯 引擎"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine"
+            ],
+            "sourceCanonical": "Operational Supply, Champion",
+            "sourceDisplayName": "行动补给",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {
+              "partName": "尸鬼电锯 引擎"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle"
         ],
         "variables": {
-          "partName": "GrnGhoulSawHandle"
+          "partName": "尸鬼电锯 握把"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle"
+            ],
+            "sourceCanonical": "Operational Supply, Champion",
+            "sourceDisplayName": "行动补给",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {
+              "partName": "尸鬼电锯 握把"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -163,7 +420,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -181,34 +438,34 @@
       "ingredients": [
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade",
-          "canonical": "GrnGhoulSawBlade",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Ghoulsaw Blade",
+          "displayName": "尸鬼电锯 锯片",
+          "languageKey": "/Lotus/Language/Weapons/GrnGhoulSawBlade",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis",
-          "canonical": "GrnGhoulSawChassis",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Ghoulsaw Chassis",
+          "displayName": "尸鬼电锯 机体",
+          "languageKey": "/Lotus/Language/Weapons/GrnGhoulSawChassis",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine",
-          "canonical": "GrnGhoulSawEngine",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Ghoulsaw Engine",
+          "displayName": "尸鬼电锯 引擎",
+          "languageKey": "/Lotus/Language/Weapons/GrnGhoulSawEngine",
+          "localizationStatus": "official-zh",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle",
-          "canonical": "GrnGhoulSawHandle",
-          "displayName": "",
-          "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "canonical": "Ghoulsaw Grip",
+          "displayName": "尸鬼电锯 握把",
+          "languageKey": "/Lotus/Language/Weapons/GrnGhoulSawHandle",
+          "localizationStatus": "official-zh",
           "quantity": 1
         }
       ],
@@ -220,7 +477,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：GHOULSAW）为那些最粗鲁的 Grineer 士兵所打造的最残忍的武器。削铁如肉，割肉如泥。",
+  "summary": "为那些最粗鲁的 Grineer 士兵所打造的最残忍的武器。削铁如肉，割肉如泥。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -237,33 +494,35 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawChassis",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawEngine",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrnGhoulSawHandle",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

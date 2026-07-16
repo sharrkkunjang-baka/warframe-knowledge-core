@@ -15,7 +15,7 @@
   },
   "description": {
     "canonical": "This Grineer bow delivers vengeance in the form of clusterbomb-tipped arrows that can be detonated mid-air or on impact. Low quiver capacity, arrows are recovered singly.",
-    "display": "（英文：KUVA BRAMMA）这把 Grineer 弓箭能射出尖端配有集束炸弹的复仇箭矢，可以在空中或遇到冲击时引爆。低箭袋容量，箭矢逐个恢复。",
+    "display": "这把 Grineer 弓箭能射出尖端配有集束炸弹的复仇箭矢，可以在空中或遇到冲击时引爆。低箭袋容量，箭矢逐个恢复。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -48,56 +48,57 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
-      "crafting"
+      "official-drop"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "adversary-reward",
+          "scope": "item",
+          "sourceDisplayName": "携带该武器的赤毒玄骸",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kuva Bramma",
+            "revisionId": 2785196
+          },
+          "partRefs": [],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
-        "scope": "blueprint",
-        "category": "unresolved",
-        "partRefs": [
-          "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
-        ],
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
         "variables": {
-          "weaponName": "赤毒·布拉玛",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
+          "weaponName": "赤毒·布拉玛"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
-      },
-      {
-        "scope": "components",
-        "category": "crafting",
-        "partRefs": [],
-        "variables": {
-          "productName": "赤毒·布拉玛"
-        },
-        "requirements": {
-          "type": "item",
-          "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
-        },
         "methods": [
           {
-            "type": "recipe",
-            "scope": "components",
-            "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint",
+            "type": "adversary-reward",
+            "scope": "item",
+            "sourceDisplayName": "携带该武器的赤毒玄骸",
             "requirements": {
-              "type": "item",
-              "recipeId": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
+              "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE ExportRecipes",
-              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/KuvaWeapons/KuvaGrnBowBlueprint"
-            }
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kuva Bramma",
+              "revisionId": 2785196
+            },
+            "partRefs": [],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +125,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：KUVA BRAMMA）这把 Grineer 弓箭能射出尖端配有集束炸弹的复仇箭矢，可以在空中或遇到冲击时引爆。低箭袋容量，箭矢逐个恢复。",
+  "summary": "这把 Grineer 弓箭能射出尖端配有集束炸弹的复仇箭矢，可以在空中或遇到冲击时引爆。低箭袋容量，箭矢逐个恢复。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -141,16 +142,18 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
-    "crafting": true
+    "crafting": false
   }
 }

@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Built for close combat, the Sheev's plasma blade slices through flesh and armor with equal ease.",
-    "display": "（英文：SHEEV）专为近身战斗设计，希芙的等离子刀刃能轻而易举切开肉体与护甲。",
+    "display": "专为近身战斗设计，希芙的等离子刀刃能轻而易举切开肉体与护甲。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,97 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "invasion-reward",
+          "scope": "blueprint",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sheev",
+            "revisionId": 2785089
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sheev",
+            "revisionId": 2785089
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade"
+          ],
+          "variables": {
+            "partName": "希芙 刀刃"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sheev",
+            "revisionId": 2785089
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink"
+          ],
+          "variables": {
+            "partName": "希芙 散热片"
+          }
+        },
+        {
+          "type": "invasion-reward",
+          "scope": "component",
+          "sourceDisplayName": "入侵任务",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Sheev",
+            "revisionId": 2785089
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt"
+          ],
+          "variables": {
+            "partName": "希芙 握柄"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
         ],
@@ -68,12 +147,31 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "blueprint",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sheev",
+              "revisionId": 2785089
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrineerCombatKnifeSortieBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade"
         ],
@@ -83,12 +181,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sheev",
+              "revisionId": 2785089
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade"
+            ],
+            "variables": {
+              "partName": "希芙 刀刃"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink"
         ],
@@ -98,12 +217,33 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sheev",
+              "revisionId": 2785089
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink"
+            ],
+            "variables": {
+              "partName": "希芙 散热片"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt"
         ],
@@ -113,8 +253,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "invasion-reward",
+            "scope": "component",
+            "sourceDisplayName": "入侵任务",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Sheev",
+              "revisionId": 2785089
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt"
+            ],
+            "variables": {
+              "partName": "希芙 握柄"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -196,7 +357,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SHEEV）专为近身战斗设计，希芙的等离子刀刃能轻而易举切开肉体与护甲。",
+  "summary": "专为近身战斗设计，希芙的等离子刀刃能轻而易举切开肉体与护甲。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -213,27 +374,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHeatsink",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

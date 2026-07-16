@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Azothane calls the visionary warrior to turn the tides of battle. Block and melee attack at the same time to plunge Azothane into the ground, damaging nearby enemies with a shockwave and adding to the combo counter.",
-    "display": "（英文：AZOTHANE）溶灵尊会召唤出有远见的战士来扭转战局。同时进行格挡和近战攻击来将溶灵尊插入地面，用其冲击波伤害附近的敌人，并增加连击数。",
+    "display": "溶灵尊会召唤出有远见的战士来扭转战局。同时进行格挡和近战攻击来将溶灵尊插入地面，用其冲击波伤害附近的敌人，并增加连击数。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,37 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "scope": "blueprint",
+          "sourceDisplayName": "Teshin 的洞穴",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Azothane",
+            "revisionId": 2723905
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DaxDuviriTwoHandedKatanaBlueprint"
+          ],
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DaxDuviriTwoHandedKatanaBlueprint"
         ],
@@ -68,8 +87,27 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint",
+            "sourceDisplayName": "Teshin 的洞穴",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Azothane",
+              "revisionId": 2723905
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DaxDuviriTwoHandedKatanaBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +198,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：AZOTHANE）溶灵尊会召唤出有远见的战士来扭转战局。同时进行格挡和近战攻击来将溶灵尊插入地面，用其冲击波伤害附近的敌人，并增加连击数。",
+  "summary": "溶灵尊会召唤出有远见的战士来扭转战局。同时进行格挡和近战攻击来将溶灵尊插入地面，用其冲击波伤害附近的敌人，并增加连击数。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +215,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

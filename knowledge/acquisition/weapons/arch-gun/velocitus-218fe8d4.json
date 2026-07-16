@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "When fully charged, the magnetized barrel of the Velocitus accelerates a metal slug to tremendous speeds, piercing hulls and obliterating armor.",
-    "display": "（英文：VELOCITUS）当充能完成后，极速电磁步枪的磁化枪管能将金属子弹加速至极限，使其轻易的摧毁装甲，贯穿船身。",
+    "display": "当充能完成后，极速电磁步枪的磁化枪管能将金属子弹加速至极限，使其轻易的摧毁装甲，贯穿船身。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,190 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "market",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ArchRailgunBlueprint"
+          ],
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "bpCost"
+          },
+          "variables": {}
+        },
+        {
+          "type": "dojo-research",
+          "scope": "blueprint",
+          "sourceDisplayName": "Tenno 实验室",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Velocitus",
+            "revisionId": 2789417
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ArchRailgunBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunBarrel"
+          ],
+          "sourceCanonical": "Cephalon Suda, Intriguing",
+          "sourceDisplayName": "中枢苏达",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "中枢苏达",
+          "requiredRankName": "Intriguing",
+          "variables": {
+            "partName": "极速电磁步枪 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Velocitus",
+            "revisionId": 2789417
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunBarrel"
+          ],
+          "variables": {
+            "partName": "极速电磁步枪 枪管"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunReceiver"
+          ],
+          "sourceCanonical": "Steel Meridian, Valiant",
+          "sourceDisplayName": "钢铁防线",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "钢铁防线",
+          "requiredRankName": "Valiant",
+          "variables": {
+            "partName": "极速电磁步枪 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Velocitus",
+            "revisionId": 2789417
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunReceiver"
+          ],
+          "variables": {
+            "partName": "极速电磁步枪 枪机"
+          }
+        },
+        {
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunStock"
+          ],
+          "sourceCanonical": "Red Veil, Honored",
+          "sourceDisplayName": "血色面纱",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "syndicate-exchange",
+          "factionDisplayName": "血色面纱",
+          "requiredRankName": "Honored",
+          "variables": {
+            "partName": "极速电磁步枪 枪托"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "sourceDisplayName": "六大集团商店",
+          "factionDisplayName": "六大集团",
+          "requirements": {
+            "type": "standing"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Velocitus",
+            "revisionId": 2789417
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunStock"
+          ],
+          "variables": {
+            "partName": "极速电磁步枪 枪托"
+          }
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ArchRailgunBlueprint"
         ],
@@ -68,12 +240,48 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ArchRailgunBlueprint"
+            ],
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "bpCost"
+            },
+            "variables": {}
+          },
+          {
+            "type": "dojo-research",
+            "scope": "blueprint",
+            "sourceDisplayName": "Tenno 实验室",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Velocitus",
+              "revisionId": 2789417
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ArchRailgunBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunBarrel"
         ],
@@ -83,12 +291,58 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunBarrel"
+            ],
+            "sourceCanonical": "Cephalon Suda, Intriguing",
+            "sourceDisplayName": "中枢苏达",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "中枢苏达",
+            "requiredRankName": "Intriguing",
+            "variables": {
+              "partName": "极速电磁步枪 枪管"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Velocitus",
+              "revisionId": 2789417
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunBarrel"
+            ],
+            "variables": {
+              "partName": "极速电磁步枪 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunReceiver"
         ],
@@ -98,12 +352,58 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunReceiver"
+            ],
+            "sourceCanonical": "Steel Meridian, Valiant",
+            "sourceDisplayName": "钢铁防线",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "钢铁防线",
+            "requiredRankName": "Valiant",
+            "variables": {
+              "partName": "极速电磁步枪 枪机"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Velocitus",
+              "revisionId": 2789417
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunReceiver"
+            ],
+            "variables": {
+              "partName": "极速电磁步枪 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunStock"
         ],
@@ -113,8 +413,54 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunStock"
+            ],
+            "sourceCanonical": "Red Veil, Honored",
+            "sourceDisplayName": "血色面纱",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "syndicate-exchange",
+            "factionDisplayName": "血色面纱",
+            "requiredRankName": "Honored",
+            "variables": {
+              "partName": "极速电磁步枪 枪托"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "sourceDisplayName": "六大集团商店",
+            "factionDisplayName": "六大集团",
+            "requirements": {
+              "type": "standing"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Velocitus",
+              "revisionId": 2789417
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunStock"
+            ],
+            "variables": {
+              "partName": "极速电磁步枪 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -205,7 +551,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：VELOCITUS）当充能完成后，极速电磁步枪的磁化枪管能将金属子弹加速至极限，使其轻易的摧毁装甲，贯穿船身。",
+  "summary": "当充能完成后，极速电磁步枪的磁化枪管能将金属子弹加速至极限，使其轻易的摧毁装甲，贯穿船身。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -222,27 +568,29 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRailgunStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

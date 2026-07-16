@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "Manufactured by the Corpus, the Snipetron is a powerful and accurate rifle that sports optical zoom capabilities. Perfect for long range engagements.",
-    "display": "（英文：SNIPETRON）由 Corpus 加工，狙击特昂是一把具备变焦能力的强力精准步枪。适合远距离战斗。",
+    "display": "由 Corpus 加工，狙击特昂是一把具备变焦能力的强力精准步枪。适合远距离战斗。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,18 +46,39 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
+          ],
+          "sourceCanonical": "Operational Supply, Collaborator",
+          "sourceDisplayName": "行动补给",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "vendor-exchange",
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
         ],
@@ -68,8 +89,29 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
+            ],
+            "sourceCanonical": "Operational Supply, Collaborator",
+            "sourceDisplayName": "行动补给",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "vendor-exchange",
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -160,7 +202,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：SNIPETRON）由 Corpus 加工，狙击特昂是一把具备变焦能力的强力精准步枪。适合远距离战斗。",
+  "summary": "由 Corpus 加工，狙击特昂是一把具备变焦能力的强力精准步枪。适合远距离战斗。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -177,15 +219,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

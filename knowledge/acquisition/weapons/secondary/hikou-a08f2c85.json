@@ -14,7 +14,7 @@
   },
   "description": {
     "canonical": "As an alternative to Kunai, these Tenno throwing stars do cause less Damage but they come with expanded Ammo Capacity and a higher Fire Rate.",
-    "display": "（英文：HIKOU）作为苦无的替代方案，飞扬用较低的伤害换得更高的携带量跟更快的射速。",
+    "display": "作为苦无的替代方案，飞扬用较低的伤害换得更高的携带量跟更快的射速。",
     "localizationStatus": "official-zh"
   },
   "classification": {
@@ -46,7 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "official-drop",
+      "market",
       "crafting"
     ],
     "prime": {
@@ -60,9 +60,9 @@
             "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-          "sourceDisplayName": "",
-          "sourceLocalizationStatus": "official-zh-unavailable",
-          "locationId": null,
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "locationId": "mission.the-circuit-tier-6",
           "missionTypeId": "mission-type.normal",
           "chance": 0.0103,
           "sourceDropChance": null,
@@ -72,18 +72,56 @@
           "requirements": {
             "type": "none"
           },
-          "reviewStatus": "review-required",
+          "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
           }
+        },
+        {
+          "type": "market-purchase",
+          "scope": "blueprint",
+          "sourceDisplayName": "商店",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Hikou",
+            "revisionId": 2785078
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
+          ],
+          "variables": {}
+        },
+        {
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
+          ],
+          "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+          "sourceLocalizationStatus": "official-zh",
+          "chance": 0.0103,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "installed-warframe-items",
+            "field": "components[].drops"
+          },
+          "type": "enemy-drop",
+          "variables": {}
         }
       ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "official-drop",
+        "category": "market",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
         ],
@@ -102,9 +140,9 @@
               "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-            "sourceDisplayName": "",
-            "sourceLocalizationStatus": "official-zh-unavailable",
-            "locationId": null,
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "locationId": "mission.the-circuit-tier-6",
             "missionTypeId": "mission-type.normal",
             "chance": 0.0103,
             "sourceDropChance": null,
@@ -114,14 +152,52 @@
             "requirements": {
               "type": "none"
             },
-            "reviewStatus": "review-required",
+            "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
             }
+          },
+          {
+            "type": "market-purchase",
+            "scope": "blueprint",
+            "sourceDisplayName": "商店",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Hikou",
+              "revisionId": 2785078
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
+            ],
+            "variables": {}
+          },
+          {
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TennoStarsBlueprint"
+            ],
+            "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
+            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
+            "sourceLocalizationStatus": "official-zh",
+            "chance": 0.0103,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "installed-warframe-items",
+              "field": "components[].drops"
+            },
+            "type": "enemy-drop",
+            "variables": {}
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -212,7 +288,7 @@
   ],
   "prerequisites": [],
   "methodRefs": [],
-  "summary": "（英文：HIKOU）作为苦无的替代方案，飞扬用较低的伤害换得更高的携带量跟更快的射速。",
+  "summary": "作为苦无的替代方案，飞扬用较低的伤害换得更高的携带量跟更快的射速。",
   "sources": [
     {
       "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
@@ -229,15 +305,17 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-16",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-evidence-closure"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

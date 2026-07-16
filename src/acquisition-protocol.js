@@ -114,6 +114,13 @@ function renderStructuredMethod(method, options = {}) {
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
   if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
+  if (method.type === 'dojo-research') return `${prefix}${source ? `在氏族道场「${source}」复制蓝图` : '在氏族道场研究并复制蓝图'}`
+  if (method.type === 'included-with-equipment') return `${prefix}${source ? `获得${source}时一并取得` : '随对应装备一并取得'}`
+  if (method.type === 'nightwave-offering') return `${prefix}在午夜电波商店轮换购买`
+  if (method.type === 'invasion-reward') return `${prefix}完成入侵任务概率获得`
+  if (method.type === 'daily-tribute') return `${prefix}从每日献礼里程碑奖励中选择获得`
+  if (method.type === 'anniversary-reward') return `${prefix}完成周年庆典警报获得`
+  if (method.type === 'adversary-reward') return `${prefix}击败并处决携带该武器的赤毒玄骸获得`
   if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${source ? `在${source}兑换` : '向指定 NPC 兑换'}`
   if (method.type === 'syndicate-exchange') {
     const faction = method.factionDisplayName || source || '指定集团'
