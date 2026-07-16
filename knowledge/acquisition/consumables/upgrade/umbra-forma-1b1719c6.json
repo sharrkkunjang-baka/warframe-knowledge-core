@@ -1,0 +1,257 @@
+{
+  "id": "knowledge.acquisition.consumable.umbra-forma-1b1719c6",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Umbra Forma",
+  "subject": {
+    "canonical": "Umbra Forma",
+    "displayName": "Umbra Forma",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/FormaUmbra",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Forma that can apply the UMBRA polarity.\n\nThis shape-altering component is fundamental to Orokin construction. Allows you to change the polarity of a mod slot on a Warframe or Melee Weapon to UMBRA polarity and then resets their affinity to Unranked. This can only be used on max Rank Warframes and Melee Weapons.",
+    "display": "可以设置 UMBRA 极性的 Forma。\n\n这个非固定形态的零件是 Orokin 时代建筑中不可或缺的基础构件。它可以改变战甲或武器的极性槽至 UMBRA 极性，并将其等级重置为无等级。这项物品只能用于满级的战甲及近战武器。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "adapter",
+      "craftable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint"
+          ],
+          "variables": {
+            "itemName": "Umbra Forma"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "钢铁之路荣誉商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Umbra Forma",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Forma",
+            "/Lotus/Types/Items/MiscItems/Neurode",
+            "/Lotus/Types/Items/MiscItems/Kuva",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "Umbra Forma",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Forma",
+                "displayName": "Forma",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Neurode",
+                "displayName": "神经元",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Kuva",
+                "displayName": "赤毒",
+                "amount": 500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 1100
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/FormaUmbra",
+          "blueprintCanonical": "UmbraFormaBlueprint",
+          "outputQuantity": 1,
+          "credits": 35000,
+          "buildTimeSeconds": 86400,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+              "canonical": "Forma",
+              "displayName": "Forma",
+              "languageKey": "/Lotus/Language/Items/Forma",
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+              "canonical": "Neurodes",
+              "displayName": "神经元",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Kuva",
+              "canonical": "Kuva",
+              "displayName": "赤毒",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1100
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/FormaUmbra",
+      "blueprintCanonical": "UmbraFormaBlueprint",
+      "outputQuantity": 1,
+      "credits": 35000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Kuva",
+          "canonical": "Kuva",
+          "displayName": "赤毒",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1100
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/UmbraFormaBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "可以设置 UMBRA 极性的 Forma。\n\n这个非固定形态的零件是 Orokin 时代建筑中不可或缺的基础构件。它可以改变战甲或武器的极性槽至 UMBRA 极性，并将其等级重置为无等级。这项物品只能用于满级的战甲及近战武器。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": false,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

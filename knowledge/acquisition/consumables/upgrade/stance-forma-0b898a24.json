@@ -1,0 +1,235 @@
+{
+  "id": "knowledge.acquisition.consumable.stance-forma-0b898a24",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Stance Forma",
+  "subject": {
+    "canonical": "Stance Forma",
+    "displayName": "架式 Forma",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/FormaStance",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Modifies a Stance slot on a melee weapon to be compatible with any Mod Polarity.",
+    "display": "改变近战武器上的架式槽位以与任何 MOD 的极性相容。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "adapter",
+      "craftable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/FormaStanceBlueprint"
+          ],
+          "variables": {
+            "itemName": "架式 Forma"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "钢铁之路荣誉商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Stance Forma",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Forma",
+            "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+            "/Lotus/Types/Items/MiscItems/Alertium"
+          ],
+          "variables": {
+            "productName": "架式 Forma",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Forma",
+                "displayName": "Forma",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+                "displayName": "氩结晶",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Alertium",
+                "displayName": "泥炭萃取物",
+                "amount": 5
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/FormaStance",
+          "blueprintCanonical": "FormaStanceBlueprint",
+          "outputQuantity": 1,
+          "credits": 100000,
+          "buildTimeSeconds": 86400,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+              "canonical": "Forma",
+              "displayName": "Forma",
+              "languageKey": "/Lotus/Language/Items/Forma",
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+              "canonical": "Argon Crystal",
+              "displayName": "氩结晶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
+              "canonical": "Nitain Extract",
+              "displayName": "泥炭萃取物",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/FormaStance",
+      "blueprintCanonical": "FormaStanceBlueprint",
+      "outputQuantity": 1,
+      "credits": 100000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
+          "canonical": "Nitain Extract",
+          "displayName": "泥炭萃取物",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/FormaStanceBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "改变近战武器上的架式槽位以与任何 MOD 的极性相容。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

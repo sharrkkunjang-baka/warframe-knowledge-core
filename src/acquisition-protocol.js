@@ -115,7 +115,8 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
   if (method.type === 'dojo-research') return `${prefix}${source ? `在氏族道场「${source}」复制蓝图` : '在氏族道场研究并复制蓝图'}`
-  if (method.type === 'included-with-equipment') return `${prefix}${source ? `获得${source}时一并取得` : '随对应装备一并取得'}`
+  if (method.type === 'included-with-equipment') return `${prefix}${source ? `达到${source}时获得` : '随对应装备一并取得'}`
+  if (method.type === 'open-world-gathering') return `${prefix}${source ? `在${source}采集获得` : '在开放世界采集获得'}`
   if (method.type === 'nightwave-offering') return `${prefix}在午夜电波商店轮换购买`
   if (method.type === 'invasion-reward') return `${prefix}完成入侵任务概率获得`
   if (method.type === 'daily-tribute') return `${prefix}从每日献礼里程碑奖励中选择获得`
@@ -140,7 +141,9 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'mission-reward') {
     const mission = [method.locationDisplayName || source, method.missionTypeDisplayName ? `（${method.missionTypeDisplayName}）` : ''].join('')
     const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
-    return `${prefix}${mission ? `完成${mission}${method.rotation ? ` ${method.rotation}轮` : ''}${chance ? '获得' : '概率获得'}` : `完成指定任务${chance ? '获得' : '概率获得'}`}${chance}`
+    const guaranteed = Number(method.chance) >= 1
+    const verb = guaranteed ? '获得' : chance ? '获得' : '概率获得'
+    return `${prefix}${mission ? `完成${mission}${method.rotation ? ` ${method.rotation}轮` : ''}${verb}` : `完成指定任务${verb}`}${chance}`
   }
   if (method.type === 'route') return variables.text || source || null
   return source ? `来源：${source}` : null

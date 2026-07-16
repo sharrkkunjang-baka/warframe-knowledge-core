@@ -1,0 +1,234 @@
+{
+  "id": "knowledge.acquisition.consumable.razorback-cipher-342ddc8b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Razorback Cipher",
+  "subject": {
+    "canonical": "Razorback Cipher",
+    "displayName": "利刃豺狼密码",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/RazorbackCipher",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Used to bypass security systems that protect the Razorback's holding cell.",
+    "display": "用来绕开保护利刃豺狼收容室的安保系统。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint"
+          ],
+          "variables": {
+            "itemName": "利刃豺狼密码"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "/Lotus/Types/Items/MiscItems/Gallium",
+            "/Lotus/Types/Items/MiscItems/RazorbackCipherPart"
+          ],
+          "variables": {
+            "productName": "利刃豺狼密码",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 1500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Gallium",
+                "displayName": "镓",
+                "amount": 3
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/RazorbackCipherPart",
+                "displayName": "暗号算术逻辑单元",
+                "amount": 4
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/RazorbackCipher",
+          "blueprintCanonical": "RazorbackCipherBlueprint",
+          "outputQuantity": 1,
+          "credits": 1250,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 5000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+              "canonical": "Gallium",
+              "displayName": "镓",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/RazorbackCipherPart",
+              "canonical": "Cryptographic Alu",
+              "displayName": "暗号算术逻辑单元",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/RazorbackCipher",
+      "blueprintCanonical": "RazorbackCipherBlueprint",
+      "outputQuantity": 1,
+      "credits": 1250,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 5000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "镓",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/RazorbackCipherPart",
+          "canonical": "Cryptographic Alu",
+          "displayName": "暗号算术逻辑单元",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/RazorbackCipherBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "用来绕开保护利刃豺狼收容室的安保系统。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

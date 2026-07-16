@@ -1,0 +1,92 @@
+{
+  "id": "knowledge.acquisition.consumable.desert-skate-specter-7a9bd6a2",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Desert Skate Specter",
+  "subject": {
+    "canonical": "Desert Skate Specter",
+    "displayName": "沙漠鳐鱼魅影",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/SkateBall",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.mission"
+    ]
+  },
+  "description": {
+    "canonical": "Deploys a DESERT SKATE unit to fight for you.",
+    "display": "设置一个为你战斗的沙漠鳐鱼魅影。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "mission",
+          "partRefs": [],
+          "variables": {
+            "itemName": "沙漠鳐鱼魅影"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "sourceDisplayName": "虚空商人每周任务",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportKeys",
+                "keyUniqueName": "/Lotus/Types/Keys/WeeklyMissions/BaroWeeklyMission",
+                "field": "missionReward.items"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "设置一个为你战斗的沙漠鳐鱼魅影。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

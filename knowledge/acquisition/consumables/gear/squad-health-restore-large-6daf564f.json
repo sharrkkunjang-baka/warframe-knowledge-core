@@ -1,0 +1,328 @@
+{
+  "id": "knowledge.acquisition.consumable.squad-health-restore-large-6daf564f",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Squad Health Restore (Large)",
+  "subject": {
+    "canonical": "Squad Health Restore (Large)",
+    "displayName": "团队生命补给（大型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamHealTotem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Restores Health to all squad members. Pulses 300 Health every 7.5s for 30s.",
+    "display": "恢复全团队的生命值。每次脉冲恢复 300 点生命。脉冲间隔 7.5 秒，共计 30 秒。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint",
+            "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint"
+          ],
+          "variables": {
+            "itemName": "团队生命补给（大型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Circuits",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队生命补给（大型）",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Circuits",
+                "displayName": "电路",
+                "amount": 600
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 4000
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Circuits",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队生命补给（大型）",
+            "outputQuantity": 100,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Circuits",
+                "displayName": "电路",
+                "amount": 6000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 40000
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamHealTotem",
+          "blueprintCanonical": "SyndicateTeamHealTenPackBlueprint",
+          "outputQuantity": 10,
+          "credits": 9000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 250000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+              "canonical": "Circuits",
+              "displayName": "电路",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 600
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4000
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamHealTotem",
+          "blueprintCanonical": "LargeHundredTeamHealBlueprint",
+          "outputQuantity": 100,
+          "credits": 90000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 9000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+              "canonical": "Circuits",
+              "displayName": "电路",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 6000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 40000
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamHealTotem",
+      "blueprintCanonical": "SyndicateTeamHealTenPackBlueprint",
+      "outputQuantity": 10,
+      "credits": 9000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 250000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+          "canonical": "Circuits",
+          "displayName": "电路",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamHealTenPackBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamHealTotem",
+      "blueprintCanonical": "LargeHundredTeamHealBlueprint",
+      "outputQuantity": 100,
+      "credits": 90000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 9000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+          "canonical": "Circuits",
+          "displayName": "电路",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 6000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 40000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Bio/LargeHundredTeamHealBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "恢复全团队的生命值。每次脉冲恢复 300 点生命。脉冲间隔 7.5 秒，共计 30 秒。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

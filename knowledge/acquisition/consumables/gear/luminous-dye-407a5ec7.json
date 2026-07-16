@@ -1,0 +1,211 @@
+{
+  "id": "knowledge.acquisition.consumable.luminous-dye-407a5ec7",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Luminous Dye",
+  "subject": {
+    "canonical": "Luminous Dye",
+    "displayName": "光亮染料",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/FishingBoosts/AnglerVision",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Dyes the waters with a compound that sticks to fish passing through it, making them easier to see from the shore.\n\nObtained from Fisher Hai-Luk in Cetus (Earth).",
+    "display": "用一种混合物给水域染色，这种混合物会附着在经过的鱼身上，使它们从岸边更容易被看到。\n\n从希图斯（地球）的渔人海露处获得。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "光亮染料"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "希图斯的渔人海露",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Luminous Dye",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+            "/Lotus/Types/Items/MiscItems/Ferrite"
+          ],
+          "variables": {
+            "productName": "光亮染料",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+                "displayName": "伊莱体",
+                "amount": 10
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 10
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/FishingBoosts/AnglerVision",
+          "blueprintCanonical": "AnglerVisionBlueprint",
+          "outputQuantity": 10,
+          "credits": 5000,
+          "buildTimeSeconds": 300,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+              "canonical": "Iradite",
+              "displayName": "伊莱体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/FishingBoosts/AnglerVision",
+      "blueprintCanonical": "AnglerVisionBlueprint",
+      "outputQuantity": 10,
+      "credits": 5000,
+      "buildTimeSeconds": 300,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+          "canonical": "Iradite",
+          "displayName": "伊莱体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Items/Fish/Eidolon/Boosters/AnglerVisionBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "用一种混合物给水域染色，这种混合物会附着在经过的鱼身上，使它们从岸边更容易被看到。\n\n从希图斯（地球）的渔人海露处获得。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

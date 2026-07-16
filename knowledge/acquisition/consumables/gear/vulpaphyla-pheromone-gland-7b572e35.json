@@ -1,0 +1,96 @@
+{
+  "id": "knowledge.acquisition.consumable.vulpaphyla-pheromone-gland-7b572e35",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Vulpaphyla Pheromone Gland",
+  "subject": {
+    "canonical": "Vulpaphyla Pheromone Gland",
+    "displayName": "狐帕菲拉费洛蒙腺体",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/Deimos/InfestedCritterRarityBoost",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Deploy just before using the echo-lure to increase the chance of attracting a rarer subspecies of Vulpaphyla.",
+    "display": "在使用回声诱饵前部署可以提升吸引一种狐帕菲拉稀有亚种的几率。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "狐帕菲拉费洛蒙腺体"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "item",
+              "sourceCanonical": "Entrati (Son), Stranger",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "殁世幽都的儿子",
+              "npcId": "npc.son",
+              "locationId": "hub.necralisk",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "在使用回声诱饵前部署可以提升吸引一种狐帕菲拉稀有亚种的几率。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

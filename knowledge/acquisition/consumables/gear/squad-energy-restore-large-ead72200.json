@@ -1,0 +1,342 @@
+{
+  "id": "knowledge.acquisition.consumable.squad-energy-restore-large-ead72200",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Squad Energy Restore (Large)",
+  "subject": {
+    "canonical": "Squad Energy Restore (Large)",
+    "displayName": "团队能量补给（大型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamEnergyTotem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.dojo",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Restores Energy to all squad members. Pulses 100 Energy every 7.5s for 30s.",
+    "display": "恢复全团队的能量。每次脉冲恢复 100 点能量。脉冲间隔 7.5 秒，共计 30 秒。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "dojo",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint",
+            "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint"
+          ],
+          "variables": {
+            "itemName": "团队能量补给（大型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint",
+                "field": "creditsCost"
+              }
+            },
+            {
+              "type": "dojo-research",
+              "scope": "blueprint",
+              "sourceDisplayName": "能源实验室",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队能量补给（大型）",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 3000
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队能量补给（大型）",
+            "outputQuantity": 100,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 5000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 30000
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamEnergyTotem",
+          "blueprintCanonical": "SyndicateTeamEnergyTenPackBlueprint",
+          "outputQuantity": 10,
+          "credits": 9000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 250000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3000
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamEnergyTotem",
+          "blueprintCanonical": "LargeHundredTeamEnergyBlueprint",
+          "outputQuantity": 100,
+          "credits": 90000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 9000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 30000
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamEnergyTotem",
+      "blueprintCanonical": "SyndicateTeamEnergyTenPackBlueprint",
+      "outputQuantity": 10,
+      "credits": 9000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 250000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamEnergyTenPackBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamEnergyTotem",
+      "blueprintCanonical": "LargeHundredTeamEnergyBlueprint",
+      "outputQuantity": 100,
+      "credits": 90000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 9000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 30000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/LargeHundredTeamEnergyBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "恢复全团队的能量。每次脉冲恢复 100 点能量。脉冲间隔 7.5 秒，共计 30 秒。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

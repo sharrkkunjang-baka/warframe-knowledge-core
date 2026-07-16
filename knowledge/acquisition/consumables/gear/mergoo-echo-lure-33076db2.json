@@ -1,0 +1,96 @@
+{
+  "id": "knowledge.acquisition.consumable.mergoo-echo-lure-33076db2",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Mergoo Echo-Lure",
+  "subject": {
+    "canonical": "Mergoo Echo-Lure",
+    "displayName": "秋沙鸟回声诱饵",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/OstronSeaBirdLureGearItem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Entice and attract nearby Mergoo with life-like animal calls. Mergoo inhabit the Plains of Eidolon.",
+    "display": "以拟真的动物叫声来诱惑、吸引附近的秋沙鸟。秋沙鸟栖息在夜灵平野。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "秋沙鸟回声诱饵"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "item",
+              "sourceCanonical": "Ostron (Master Teasonai), Visitor",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "希图斯的驯兽师泰森盖",
+              "npcId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "以拟真的动物叫声来诱惑、吸引附近的秋沙鸟。秋沙鸟栖息在夜灵平野。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

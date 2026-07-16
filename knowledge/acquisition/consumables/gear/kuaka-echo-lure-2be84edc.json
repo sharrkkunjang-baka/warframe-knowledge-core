@@ -1,0 +1,96 @@
+{
+  "id": "knowledge.acquisition.consumable.kuaka-echo-lure-2be84edc",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Kuaka Echo-Lure",
+  "subject": {
+    "canonical": "Kuaka Echo-Lure",
+    "displayName": "库阿卡回声诱饵",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/ForestRodentLureGearItem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Entice and attract nearby Kuaka with life-like animal calls. Kuaka inhabit the Plains of Eidolon.",
+    "display": "以拟真的动物叫声来诱惑、吸引附近的库阿卡。库阿卡栖息在夜灵平野。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "库阿卡回声诱饵"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "item",
+              "sourceCanonical": "Ostron (Master Teasonai), Neutral",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "希图斯的驯兽师泰森盖",
+              "npcId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "以拟真的动物叫声来诱惑、吸引附近的库阿卡。库阿卡栖息在夜灵平野。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

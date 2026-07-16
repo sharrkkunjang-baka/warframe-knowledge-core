@@ -1,0 +1,342 @@
+{
+  "id": "knowledge.acquisition.consumable.squad-ammo-restore-large-c5408804",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Squad Ammo Restore (Large)",
+  "subject": {
+    "canonical": "Squad Ammo Restore (Large)",
+    "displayName": "团队弹药补给（大型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamAmmoTotem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.dojo",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Restores 3x Primary and Secondary Ammo Pick Up Amount every 15s for 60s.",
+    "display": "每 15 秒恢复 3 倍主要和次要弹药拾取量，持续 60 秒。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "dojo",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint",
+            "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint"
+          ],
+          "variables": {
+            "itemName": "团队弹药补给（大型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint",
+                "field": "creditsCost"
+              }
+            },
+            {
+              "type": "dojo-research",
+              "scope": "blueprint",
+              "sourceDisplayName": "化学实验室",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队弹药补给（大型）",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 300
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 2500
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队弹药补给（大型）",
+            "outputQuantity": 100,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 3000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 25000
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamAmmoTotem",
+          "blueprintCanonical": "SyndicateTeamAmmoTenPackBlueprint",
+          "outputQuantity": 10,
+          "credits": 9000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 250000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 300
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamAmmoTotem",
+          "blueprintCanonical": "LargeHundredTeamAmmoBlueprint",
+          "outputQuantity": 100,
+          "credits": 90000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 9000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 25000
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamAmmoTotem",
+      "blueprintCanonical": "SyndicateTeamAmmoTenPackBlueprint",
+      "outputQuantity": 10,
+      "credits": 9000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 250000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 300
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SyndicateTeamAmmoTenPackBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SyndicateTeamAmmoTotem",
+      "blueprintCanonical": "LargeHundredTeamAmmoBlueprint",
+      "outputQuantity": 100,
+      "credits": 90000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 9000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 25000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Chemical/LargeHundredTeamAmmoBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "每 15 秒恢复 3 倍主要和次要弹药拾取量，持续 60 秒。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

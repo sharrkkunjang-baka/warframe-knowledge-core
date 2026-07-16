@@ -1,0 +1,256 @@
+{
+  "id": "knowledge.acquisition.consumable.sunrise-apothic-d3e465d4",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sunrise Apothic",
+  "subject": {
+    "canonical": "Sunrise Apothic",
+    "displayName": "日升药剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberon",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Creates an organic compound composed of rare plant species. Effects unknown.",
+    "display": "制作一种由稀有植物合成的有机混合物。效果未知。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint"
+          ],
+          "variables": {
+            "itemName": "日升药剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Morphic",
+            "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/WildGingerBPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/MossGroundCoverAPlantItem"
+          ],
+          "variables": {
+            "productName": "日升药剂",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+                "displayName": "日光玉叶",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/WildGingerBPlantItem",
+                "displayName": "霜叶",
+                "amount": 8
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/MossGroundCoverAPlantItem",
+                "displayName": "灶神藓",
+                "amount": 12
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberon",
+          "blueprintCanonical": "SpecterSummonFeyarchOberonBlueprint",
+          "outputQuantity": 1,
+          "credits": 500,
+          "buildTimeSeconds": 10,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "canonical": "Morphics",
+              "displayName": "非晶态合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+              "canonical": "Sunlight Jadeleaf",
+              "displayName": "日光玉叶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/WildGingerBPlantItem",
+              "canonical": "Frostleaf",
+              "displayName": "霜叶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 8
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/MossGroundCoverAPlantItem",
+              "canonical": "Vestan Moss",
+              "displayName": "灶神藓",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 12
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberon",
+      "blueprintCanonical": "SpecterSummonFeyarchOberonBlueprint",
+      "outputQuantity": 1,
+      "credits": 500,
+      "buildTimeSeconds": 10,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+          "canonical": "Sunlight Jadeleaf",
+          "displayName": "日光玉叶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/WildGingerBPlantItem",
+          "canonical": "Frostleaf",
+          "displayName": "霜叶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 8
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/MossGroundCoverAPlantItem",
+          "canonical": "Vestan Moss",
+          "displayName": "灶神藓",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 12
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TitaniaQuest/SpecterSummonFeyarchOberonBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "制作一种由稀有植物合成的有机混合物。效果未知。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

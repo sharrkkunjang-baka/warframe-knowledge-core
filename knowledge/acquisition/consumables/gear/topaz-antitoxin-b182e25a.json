@@ -1,0 +1,212 @@
+{
+  "id": "knowledge.acquisition.consumable.topaz-antitoxin-b182e25a",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Topaz Antitoxin",
+  "subject": {
+    "canonical": "Topaz Antitoxin",
+    "displayName": "黄玉解毒剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/NightUnCommonAntitoxin",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "This is a moderately effective antitoxin.",
+    "display": "这是一个比较有效的解毒剂。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint"
+          ],
+          "variables": {
+            "itemName": "黄玉解毒剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem"
+          ],
+          "variables": {
+            "productName": "黄玉解毒剂",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+                "displayName": "月光龙百合",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem",
+                "displayName": "月光去壳毬果",
+                "amount": 2
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/NightUnCommonAntitoxin",
+          "blueprintCanonical": "NightUnCommonAntitoxinBlueprint",
+          "outputQuantity": 1,
+          "credits": 500,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 1500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+              "canonical": "Moonlight Dragonlily",
+              "displayName": "月光龙百合",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem",
+              "canonical": "Moonlight Threshcone",
+              "displayName": "月光去壳毬果",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/NightUnCommonAntitoxin",
+      "blueprintCanonical": "NightUnCommonAntitoxinBlueprint",
+      "outputQuantity": 1,
+      "credits": 500,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 1500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+          "canonical": "Moonlight Dragonlily",
+          "displayName": "月光龙百合",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem",
+          "canonical": "Moonlight Threshcone",
+          "displayName": "月光去壳毬果",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/NightUnCommonAntitoxinBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这是一个比较有效的解毒剂。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

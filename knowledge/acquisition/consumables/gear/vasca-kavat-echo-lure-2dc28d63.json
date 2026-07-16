@@ -1,0 +1,96 @@
+{
+  "id": "knowledge.acquisition.consumable.vasca-kavat-echo-lure-2dc28d63",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Vasca Kavat Echo-Lure",
+  "subject": {
+    "canonical": "Vasca Kavat Echo-Lure",
+    "displayName": "噬血型库娃回声诱饵",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/VampireKavatLureGearItem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Entice and attract nearby Vasca Kavat with life-like animal calls. Vasca Kavat roam the Plains of Eidolon at night.",
+    "display": "以拟真的动物叫声来诱惑、吸引附近的噬血型库娃。噬血型库娃徘徊在晚上的夜灵平野。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "噬血型库娃回声诱饵"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "item",
+              "sourceCanonical": "Ostron (Master Teasonai), Trusted",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "希图斯的驯兽师泰森盖",
+              "npcId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "以拟真的动物叫声来诱惑、吸引附近的噬血型库娃。噬血型库娃徘徊在晚上的夜灵平野。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

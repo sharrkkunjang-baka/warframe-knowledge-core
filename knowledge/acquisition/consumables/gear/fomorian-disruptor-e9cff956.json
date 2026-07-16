@@ -1,0 +1,234 @@
+{
+  "id": "knowledge.acquisition.consumable.fomorian-disruptor-e9cff956",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Fomorian Disruptor",
+  "subject": {
+    "canonical": "Fomorian Disruptor",
+    "displayName": "巨人战舰干扰器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/FomorianNegator",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "When activated, it disrupts a Fomorian core's Omega energy field, making it vulnerable. Also shields Tenno from Omega radiation.",
+    "display": "启动时它会破坏巨人战舰核心的奥米伽能量力场，使其变得脆弱易损。并为暴露在奥米伽辐射中的 Tenno 提供庇护。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint"
+          ],
+          "variables": {
+            "itemName": "巨人战舰干扰器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Nanospores",
+            "/Lotus/Types/Items/MiscItems/Cryotic",
+            "/Lotus/Types/Items/MiscItems/OmegaIsotope"
+          ],
+          "variables": {
+            "productName": "巨人战舰干扰器",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 3500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Cryotic",
+                "displayName": "永冻晶矿",
+                "amount": 300
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/OmegaIsotope",
+                "displayName": "奥米伽同位素",
+                "amount": 4
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/FomorianNegator",
+          "blueprintCanonical": "FomorianNegatorBlueprint",
+          "outputQuantity": 1,
+          "credits": 1250,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 5000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+              "canonical": "Cryotic",
+              "displayName": "永冻晶矿",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 300
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/OmegaIsotope",
+              "canonical": "Omega Isotope",
+              "displayName": "奥米伽同位素",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/FomorianNegator",
+      "blueprintCanonical": "FomorianNegatorBlueprint",
+      "outputQuantity": 1,
+      "credits": 1250,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 5000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+          "canonical": "Cryotic",
+          "displayName": "永冻晶矿",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 300
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OmegaIsotope",
+          "canonical": "Omega Isotope",
+          "displayName": "奥米伽同位素",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/FomorianNegatorBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "启动时它会破坏巨人战舰核心的奥米伽能量力场，使其变得脆弱易损。并为暴露在奥米伽辐射中的 Tenno 提供庇护。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

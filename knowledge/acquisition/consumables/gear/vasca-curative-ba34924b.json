@@ -1,0 +1,257 @@
+{
+  "id": "knowledge.acquisition.consumable.vasca-curative-ba34924b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Vasca Curative",
+  "subject": {
+    "canonical": "Vasca Curative",
+    "displayName": "噬血治疗剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/CatbrowVampireDisinfect",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Known as 'lisau heisah' by the Ostrons, this is a traditionally-brewed remedy for the Vasca virus. Once applied any infected Kavats within a short radius are cured.",
+    "display": "这是一种用传统方式调制而成的噬血病毒治疗剂，Ostron 人称之为“lisau heisah”。一旦使用，小范围内所有被感染的库娃都会得到治愈。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint"
+          ],
+          "variables": {
+            "itemName": "噬血治疗剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "希图斯的驯兽师泰森盖",
+              "npcId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE item family",
+                "field": "Ostron Vasca gear"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+            "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+            "/Lotus/Types/Items/Fish/Eidolon/FishParts/NightRareFishAPartItem",
+            "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishBPartItem"
+          ],
+          "variables": {
+            "productName": "噬血治疗剂",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+                "displayName": "尼蒐荚",
+                "amount": 15
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+                "displayName": "马利可",
+                "amount": 15
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Fish/Eidolon/FishParts/NightRareFishAPartItem",
+                "displayName": "诺格鱼脑",
+                "amount": 3
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishBPartItem",
+                "displayName": "卡其那触须",
+                "amount": 3
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/CatbrowVampireDisinfect",
+          "blueprintCanonical": "CatbrowVampireDisinfectBlueprint",
+          "outputQuantity": 1,
+          "credits": 2000,
+          "buildTimeSeconds": 3600,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+              "canonical": "Nistlepod",
+              "displayName": "尼蒐荚",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 15
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+              "canonical": "Maprico",
+              "displayName": "马利可",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 15
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/NightRareFishAPartItem",
+              "canonical": "Norg Brain",
+              "displayName": "诺格鱼脑",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishBPartItem",
+              "canonical": "Karkina Antenna",
+              "displayName": "卡其那触须",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/CatbrowVampireDisinfect",
+      "blueprintCanonical": "CatbrowVampireDisinfectBlueprint",
+      "outputQuantity": 1,
+      "credits": 2000,
+      "buildTimeSeconds": 3600,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+          "canonical": "Nistlepod",
+          "displayName": "尼蒐荚",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+          "canonical": "Maprico",
+          "displayName": "马利可",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/NightRareFishAPartItem",
+          "canonical": "Norg Brain",
+          "displayName": "诺格鱼脑",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishBPartItem",
+          "canonical": "Karkina Antenna",
+          "displayName": "卡其那触须",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/CatbrowVampireDisinfectBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这是一种用传统方式调制而成的噬血病毒治疗剂，Ostron 人称之为“lisau heisah”。一旦使用，小范围内所有被感染的库娃都会得到治愈。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

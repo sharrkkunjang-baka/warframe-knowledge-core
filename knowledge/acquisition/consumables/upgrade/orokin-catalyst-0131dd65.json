@@ -1,0 +1,303 @@
+{
+  "id": "knowledge.acquisition.consumable.orokin-catalyst-0131dd65",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Orokin Catalyst",
+  "subject": {
+    "canonical": "Orokin Catalyst",
+    "displayName": "Orokin 催化剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/OrokinCatalyst",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.quest",
+      "acquisition.mission",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Orokin modification technology used to super-charge weaponry. Doubles the available Mod Capacity on a Weapon.",
+    "display": "用来大幅度强化武器的 Orokin 改造科技。能使武器获得两倍的 Mod 点数容量。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "craftable",
+      "droppable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "quest",
+          "partRefs": [],
+          "variables": {
+            "itemName": "Orokin 催化剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Orokin Catalyst",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "type": "quest-reward",
+              "scope": "item",
+              "questDisplayName": "Stolen Dreams",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Orokin Catalyst",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "mission",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint"
+          ],
+          "variables": {
+            "itemName": "Orokin 催化剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Sorties",
+              "chance": 0.025,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "突击任务",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Morphic",
+            "/Lotus/Types/Items/MiscItems/Gallium",
+            "/Lotus/Types/Items/MiscItems/ControlModule",
+            "/Lotus/Types/Items/MiscItems/OrokinCell"
+          ],
+          "variables": {
+            "productName": "Orokin 催化剂",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Gallium",
+                "displayName": "镓",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/ControlModule",
+                "displayName": "控制模块",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/OrokinCell",
+                "displayName": "Orokin 电池",
+                "amount": 1
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/OrokinCatalyst",
+          "blueprintCanonical": "OrokinCatalystBlueprint",
+          "outputQuantity": 1,
+          "credits": 25000,
+          "buildTimeSeconds": 82800,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "canonical": "Morphics",
+              "displayName": "非晶态合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+              "canonical": "Gallium",
+              "displayName": "镓",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+              "canonical": "Control Module",
+              "displayName": "控制模块",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+              "canonical": "Orokin Cell",
+              "displayName": "Orokin 电池",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/OrokinCatalyst",
+      "blueprintCanonical": "OrokinCatalystBlueprint",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 82800,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Gallium",
+          "canonical": "Gallium",
+          "displayName": "镓",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+          "canonical": "Control Module",
+          "displayName": "控制模块",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/OrokinCatalystBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "用来大幅度强化武器的 Orokin 改造科技。能使武器获得两倍的 Mod 点数容量。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

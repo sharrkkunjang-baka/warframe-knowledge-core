@@ -1,0 +1,415 @@
+{
+  "id": "knowledge.acquisition.consumable.air-support-charges-5da379be",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Air Support Charges",
+  "subject": {
+    "canonical": "Air Support Charges",
+    "displayName": "空中支援呼叫器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/LisetAirSupport",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Charges consumed by Landing Craft Air Support.",
+    "display": "登陆艇空中支援会消耗呼叫器。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint",
+            "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint"
+          ],
+          "variables": {
+            "itemName": "空中支援呼叫器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/Salvage",
+            "/Lotus/Types/Items/MiscItems/Plastids",
+            "/Lotus/Types/Items/MiscItems/Morphic"
+          ],
+          "variables": {
+            "productName": "空中支援呼叫器",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 1200
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Salvage",
+                "displayName": "回收金属",
+                "amount": 2000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Plastids",
+                "displayName": "生物质",
+                "amount": 700
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "amount": 1
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/Salvage",
+            "/Lotus/Types/Items/MiscItems/Plastids",
+            "/Lotus/Types/Items/MiscItems/Morphic"
+          ],
+          "variables": {
+            "productName": "空中支援呼叫器",
+            "outputQuantity": 100,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 12000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Salvage",
+                "displayName": "回收金属",
+                "amount": 20000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Plastids",
+                "displayName": "生物质",
+                "amount": 7000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "amount": 10
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/LisetAirSupport",
+          "blueprintCanonical": "LisetAirSupportBlueprint",
+          "outputQuantity": 10,
+          "credits": 4000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": true,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1200
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+              "canonical": "Salvage",
+              "displayName": "回收金属",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+              "canonical": "Plastids",
+              "displayName": "生物质",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 700
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "canonical": "Morphics",
+              "displayName": "非晶态合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/LisetAirSupport",
+          "blueprintCanonical": "LisetAirSupportHundredBlueprint",
+          "outputQuantity": 100,
+          "credits": 40000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 12000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+              "canonical": "Salvage",
+              "displayName": "回收金属",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 20000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+              "canonical": "Plastids",
+              "displayName": "生物质",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 7000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "canonical": "Morphics",
+              "displayName": "非晶态合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/LisetAirSupport",
+      "blueprintCanonical": "LisetAirSupportBlueprint",
+      "outputQuantity": 10,
+      "credits": 4000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": true,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1200
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "回收金属",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "生物质",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 700
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/LisetAirSupport",
+      "blueprintCanonical": "LisetAirSupportHundredBlueprint",
+      "outputQuantity": 100,
+      "credits": 40000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 12000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "回收金属",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 20000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "生物质",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 7000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/LisetAirSupportHundredBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "登陆艇空中支援会消耗呼叫器。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

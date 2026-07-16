@@ -1,0 +1,256 @@
+{
+  "id": "knowledge.acquisition.consumable.clotra-stim-350f6870",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Clotra Stim",
+  "subject": {
+    "canonical": "Clotra Stim",
+    "displayName": "凝血刺激剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/NpcBuffs/ReviveBuff",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Revives a target that is bleeding out, and provides a bonus revive to any allies in range.",
+    "display": "复活一名倒地出血的目标，并为范围内的友军提供一次额外的复活。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint"
+          ],
+          "variables": {
+            "itemName": "凝血刺激剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Eventium",
+            "/Lotus/Types/Items/MiscItems/Cryotic",
+            "/Lotus/Types/Items/MiscItems/Nanospores",
+            "/Lotus/Types/Items/MiscItems/Circuits"
+          ],
+          "variables": {
+            "productName": "凝血刺激剂",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Eventium",
+                "displayName": "合成刺激质",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Cryotic",
+                "displayName": "永冻晶矿",
+                "amount": 1500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 1000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Circuits",
+                "displayName": "电路",
+                "amount": 500
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/NpcBuffs/ReviveBuff",
+          "blueprintCanonical": "ReviveBuffBlueprint",
+          "outputQuantity": 1,
+          "credits": 10000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Eventium",
+              "canonical": "Synthula",
+              "displayName": "合成刺激质",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+              "canonical": "Cryotic",
+              "displayName": "永冻晶矿",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+              "canonical": "Circuits",
+              "displayName": "电路",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 500
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/NpcBuffs/ReviveBuff",
+      "blueprintCanonical": "ReviveBuffBlueprint",
+      "outputQuantity": 1,
+      "credits": 10000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Eventium",
+          "canonical": "Synthula",
+          "displayName": "合成刺激质",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+          "canonical": "Cryotic",
+          "displayName": "永冻晶矿",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+          "canonical": "Circuits",
+          "displayName": "电路",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/NpcBuffs/ReviveBuffBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "复活一名倒地出血的目标，并为范围内的友军提供一次额外的复活。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

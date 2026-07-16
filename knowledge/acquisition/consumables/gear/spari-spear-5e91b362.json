@@ -1,0 +1,96 @@
+{
+  "id": "knowledge.acquisition.consumable.spari-spear-5e91b362",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Spari Spear",
+  "subject": {
+    "canonical": "Spari Spear",
+    "displayName": "弯刃鱼叉",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/InfestedFishingSpearA",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Plumb the depths with this crafty fishing spear that's barely detectable to Infested and hybrid/Orokin fish. Due to its Infested aspect, it's one of the only known things that can pass through exocrine.\n\nObtained from Daughter in the Necralisk. This spear is most effective on fish found in the Cambion Drift (Deimos).",
+    "display": "用这把狡黠的鱼叉来探索深渊，感染者和感染者/Orokin 混种鱼类几乎无法察觉它。由于它的感染属性，它是已知的少数几种可以穿过外分泌液的鱼叉。\n\n从殁世幽都的”女儿“处获得。这根鱼叉对魔胎之境的鱼类最有效。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "弯刃鱼叉"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "item",
+              "sourceCanonical": "Entrati (Daughter), Neutral",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "殁世幽都的女儿",
+              "npcId": "npc.daughter",
+              "locationId": "hub.necralisk",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "用这把狡黠的鱼叉来探索深渊，感染者和感染者/Orokin 混种鱼类几乎无法察觉它。由于它的感染属性，它是已知的少数几种可以穿过外分泌液的鱼叉。\n\n从殁世幽都的”女儿“处获得。这根鱼叉对魔胎之境的鱼类最有效。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

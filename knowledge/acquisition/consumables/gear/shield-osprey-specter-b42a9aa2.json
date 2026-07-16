@@ -1,0 +1,235 @@
+{
+  "id": "knowledge.acquisition.consumable.shield-osprey-specter-b42a9aa2",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Shield Osprey Specter",
+  "subject": {
+    "canonical": "Shield Osprey Specter",
+    "displayName": "护盾鱼鹰魅影",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/ShieldDroneBall",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.unresolved",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Deploys a SHIELD OSPREY EXIMUS unit to fight for you.",
+    "display": "设置一个为你战斗的护盾鱼鹰卓越者魅影。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "unresolved",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint"
+          ],
+          "variables": {
+            "itemName": "护盾鱼鹰魅影"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "syndicate-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "集团贡品商店",
+              "factionDisplayName": "对应集团",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint",
+                "field": "syndicate specter recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Nanospores",
+            "/Lotus/Types/Items/MiscItems/Salvage",
+            "/Lotus/Types/Items/MiscItems/Ferrite"
+          ],
+          "variables": {
+            "productName": "护盾鱼鹰魅影",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 2500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Salvage",
+                "displayName": "回收金属",
+                "amount": 2500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 2500
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/ShieldDroneBall",
+          "blueprintCanonical": "ShieldDroneBallBlueprint",
+          "outputQuantity": 1,
+          "credits": 7500,
+          "buildTimeSeconds": 28800,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+              "canonical": "Salvage",
+              "displayName": "回收金属",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/ShieldDroneBall",
+      "blueprintCanonical": "ShieldDroneBallBlueprint",
+      "outputQuantity": 1,
+      "credits": 7500,
+      "buildTimeSeconds": 28800,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "回收金属",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/ShieldDroneBallBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "设置一个为你战斗的护盾鱼鹰卓越者魅影。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

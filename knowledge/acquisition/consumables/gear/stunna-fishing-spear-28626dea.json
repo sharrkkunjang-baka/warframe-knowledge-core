@@ -1,0 +1,257 @@
+{
+  "id": "knowledge.acquisition.consumable.stunna-fishing-spear-28626dea",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Stunna Fishing Spear",
+  "subject": {
+    "canonical": "Stunna Fishing Spear",
+    "displayName": "电震波鱼叉",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearC",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Successful electromagnetic pulses radiate outward also disabling any nearby Servofish.\n\nObtained from The Business in Fortuna. This spear is most effective on Servofish found in the Orb Vallis (Venus).",
+    "display": "成功发射的电磁脉冲往外散发同时瘫痪任何附近的伺服鱼。\n\n从福尔图娜的 The Business 处获得。这根鱼叉对奥布山谷（金星）的伺服鱼最有效。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint"
+          ],
+          "variables": {
+            "itemName": "电震波鱼叉"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "福尔图娜的生意人",
+              "locationId": "hub.fortuna",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+            "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+            "/Lotus/Types/Items/Gems/Eidolon/CommonOreAAlloyAItem",
+            "/Lotus/Types/Items/MiscItems/Ferrite"
+          ],
+          "variables": {
+            "productName": "电震波鱼叉",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+                "displayName": "尼蒐荚",
+                "amount": 55
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+                "displayName": "葛克度",
+                "amount": 35
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Gems/Eidolon/CommonOreAAlloyAItem",
+                "displayName": "炎晶合金",
+                "amount": 40
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 1000
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearC",
+          "blueprintCanonical": "RobofishSpearCBlueprint",
+          "outputQuantity": 1,
+          "credits": 2000,
+          "buildTimeSeconds": 3600,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+              "canonical": "Nistlepod",
+              "displayName": "尼蒐荚",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 55
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+              "canonical": "Grokdrul",
+              "displayName": "葛克度",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 35
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/CommonOreAAlloyAItem",
+              "canonical": "Pyrotic Alloy",
+              "displayName": "炎晶合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 40
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1000
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearC",
+      "blueprintCanonical": "RobofishSpearCBlueprint",
+      "outputQuantity": 1,
+      "credits": 2000,
+      "buildTimeSeconds": 3600,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+          "canonical": "Nistlepod",
+          "displayName": "尼蒐荚",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 55
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+          "canonical": "Grokdrul",
+          "displayName": "葛克度",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 35
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Gems/Eidolon/CommonOreAAlloyAItem",
+          "canonical": "Pyrotic Alloy",
+          "displayName": "炎晶合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 40
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1000
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/RobofishSpearCBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "成功发射的电磁脉冲往外散发同时瘫痪任何附近的伺服鱼。\n\n从福尔图娜的 The Business 处获得。这根鱼叉对奥布山谷（金星）的伺服鱼最有效。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

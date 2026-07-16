@@ -1,0 +1,442 @@
+{
+  "id": "knowledge.acquisition.consumable.squad-health-restore-small-988e7176",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Squad Health Restore (Small)",
+  "subject": {
+    "canonical": "Squad Health Restore (Small)",
+    "displayName": "团队生命补给（小型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Restores Health to all squad members. Pulses 30 Health every 7.5s for 30s.",
+    "display": "恢复全团队的生命。每次脉冲恢复 30 点生命。脉冲间隔 7.5 秒，共计 30 秒。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint",
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint",
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint"
+          ],
+          "variables": {
+            "itemName": "团队生命补给（小型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Nanospores",
+            "/Lotus/Types/Items/MiscItems/PolymerBundle"
+          ],
+          "variables": {
+            "productName": "团队生命补给（小型）",
+            "outputQuantity": 50,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 108000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 1800
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/PolymerBundle"
+          ],
+          "variables": {
+            "productName": "团队生命补给（小型）",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 300
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 50
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Nanospores",
+            "/Lotus/Types/Items/MiscItems/PolymerBundle"
+          ],
+          "variables": {
+            "productName": "团队生命补给（小型）",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 2700
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 450
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+          "blueprintCanonical": "HundredTeamHealTotemBlueprint",
+          "outputQuantity": 50,
+          "credits": 36000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 108000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1800
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+          "blueprintCanonical": "TeamHealTotemBlueprint",
+          "outputQuantity": 1,
+          "credits": 1000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 300
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 50
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+          "blueprintCanonical": "TenTeamHealTotemBlueprint",
+          "outputQuantity": 10,
+          "credits": 9000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 250000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2700
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 450
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+      "blueprintCanonical": "HundredTeamHealTotemBlueprint",
+      "outputQuantity": 50,
+      "credits": 36000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 108000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1800
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/HundredTeamHealTotemBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+      "blueprintCanonical": "TeamHealTotemBlueprint",
+      "outputQuantity": 1,
+      "credits": 1000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 300
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 50
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TeamHealTotemBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/TeamHealTotem",
+      "blueprintCanonical": "TenTeamHealTotemBlueprint",
+      "outputQuantity": 10,
+      "credits": 9000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 250000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2700
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 450
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/TenTeamHealTotemBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "恢复全团队的生命。每次脉冲恢复 30 点生命。脉冲间隔 7.5 秒，共计 30 秒。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

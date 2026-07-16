@@ -1,0 +1,256 @@
+{
+  "id": "knowledge.acquisition.consumable.antiserum-injector-03ac73f4",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Antiserum Injector",
+  "subject": {
+    "canonical": "Antiserum Injector",
+    "displayName": "抗血清注射器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/InfestedSyringe",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Injects antiserum into Vaporizers or the user to prevent armor degradation.",
+    "display": "将抗血清注入雾化器或是使用者本身，可防止护甲被侵蚀。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint"
+          ],
+          "variables": {
+            "itemName": "抗血清注射器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/Research/EnergyComponent",
+            "/Lotus/Types/Items/MiscItems/Salvage",
+            "/Lotus/Types/Items/MiscItems/SyringeComponent",
+            "/Lotus/Types/Items/MiscItems/Tellurium"
+          ],
+          "variables": {
+            "productName": "抗血清注射器",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/Research/EnergyComponent",
+                "displayName": "电磁力场装置",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Salvage",
+                "displayName": "回收金属",
+                "amount": 6000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/SyringeComponent",
+                "displayName": "抗血清注射器的碎片",
+                "amount": 500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Tellurium",
+                "displayName": "碲",
+                "amount": 2
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/InfestedSyringe",
+          "blueprintCanonical": "InfestedSyringeBlueprint",
+          "outputQuantity": 1,
+          "credits": 30000,
+          "buildTimeSeconds": 86400,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 30000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+              "canonical": "Fieldron",
+              "displayName": "电磁力场装置",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+              "canonical": "Salvage",
+              "displayName": "回收金属",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 6000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/SyringeComponent",
+              "canonical": "Antiserum Injector Fragment",
+              "displayName": "抗血清注射器的碎片",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
+              "canonical": "Tellurium",
+              "displayName": "碲",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/InfestedSyringe",
+      "blueprintCanonical": "InfestedSyringeBlueprint",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 30000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+          "canonical": "Fieldron",
+          "displayName": "电磁力场装置",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "回收金属",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 6000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/SyringeComponent",
+          "canonical": "Antiserum Injector Fragment",
+          "displayName": "抗血清注射器的碎片",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Tellurium",
+          "canonical": "Tellurium",
+          "displayName": "碲",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/InfestedSyringeBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "将抗血清注入雾化器或是使用者本身，可防止护甲被侵蚀。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

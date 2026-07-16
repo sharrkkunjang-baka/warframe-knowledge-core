@@ -1,0 +1,251 @@
+{
+  "id": "knowledge.acquisition.consumable.charger-specter-cf6bc24e",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Charger Specter",
+  "subject": {
+    "canonical": "Charger Specter",
+    "displayName": "疾冲者魅影",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/ChargerBall",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.mission",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Deploys a CHARGER EXIMUS unit to fight for you.",
+    "display": "设置一个为你战斗的疾冲卓越者魅影。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "mission",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/ChargerBallBlueprint"
+          ],
+          "variables": {
+            "itemName": "疾冲者魅影"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Hallowed Flame Endurance Caches, Rotation A",
+              "chance": 0.0737,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "万圣之焰活动任务缓存",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Hallowed Flame Mission Caches, Rotation A",
+              "chance": 0.0737,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "万圣之焰活动任务缓存",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Nanospores",
+            "/Lotus/Types/Items/MiscItems/Salvage",
+            "/Lotus/Types/Items/MiscItems/Ferrite"
+          ],
+          "variables": {
+            "productName": "疾冲者魅影",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 2500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Salvage",
+                "displayName": "回收金属",
+                "amount": 2500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 2500
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/ChargerBall",
+          "blueprintCanonical": "ChargerBallBlueprint",
+          "outputQuantity": 1,
+          "credits": 7500,
+          "buildTimeSeconds": 28800,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+              "canonical": "Salvage",
+              "displayName": "回收金属",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2500
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/ChargerBall",
+      "blueprintCanonical": "ChargerBallBlueprint",
+      "outputQuantity": 1,
+      "credits": 7500,
+      "buildTimeSeconds": 28800,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Salvage",
+          "canonical": "Salvage",
+          "displayName": "回收金属",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/ChargerBallBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "设置一个为你战斗的疾冲卓越者魅影。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

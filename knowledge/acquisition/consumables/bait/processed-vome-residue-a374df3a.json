@@ -1,0 +1,221 @@
+{
+  "id": "knowledge.acquisition.consumable.processed-vome-residue-a374df3a",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Processed Vome Residue",
+  "subject": {
+    "canonical": "Processed Vome Residue",
+    "displayName": "处理过的“秩序”残留物",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitB",
+    "categoryRefs": [
+      "consumable.bait",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "The flesh of Vome, refined, and ready for use. Used to attract Myxostomata in Cambion Drift cave hotspots during Vome.\n\nObtained from Daughter in the Necralisk (Deimos).",
+    "display": "“秩序”的肉，经过提炼且随时可用。可以用来吸引“秩序”期间魔胎之境洞穴鱼点中的独角米索鳎。\n\n从殁世幽都（火卫二）的“女儿”处获得。"
+  },
+  "classification": {
+    "type": "bait",
+    "semanticKinds": [
+      "craftable",
+      "fish-bait"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "处理过的“秩序”残留物"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "殁世幽都的女儿",
+              "npcId": "npc.daughter",
+              "locationId": "hub.necralisk",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Processed Vome Residue",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint"
+          ],
+          "variables": {
+            "itemName": "处理过的“秩序”残留物"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitA"
+          ],
+          "variables": {
+            "productName": "处理过的“秩序”残留物",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitA",
+                "displayName": "“秩序”残留物",
+                "amount": 5
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint",
+          "resultUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitB",
+          "blueprintCanonical": "OrokinFishBaitBBlueprint",
+          "outputQuantity": 1,
+          "credits": 30000,
+          "buildTimeSeconds": 43200,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 30000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitA",
+              "canonical": "Vome Residue",
+              "displayName": "“秩序”残留物",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint",
+      "resultUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitB",
+      "blueprintCanonical": "OrokinFishBaitBBlueprint",
+      "outputQuantity": 1,
+      "credits": 30000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 30000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitA",
+          "canonical": "Vome Residue",
+          "displayName": "“秩序”残留物",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Game/FishBait/Infested/OrokinFishBaitBBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "“秩序”的肉，经过提炼且随时可用。可以用来吸引“秩序”期间魔胎之境洞穴鱼点中的独角米索鳎。\n\n从殁世幽都（火卫二）的“女儿”处获得。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

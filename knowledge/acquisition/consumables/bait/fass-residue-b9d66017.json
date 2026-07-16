@@ -1,0 +1,155 @@
+{
+  "id": "knowledge.acquisition.consumable.fass-residue-b9d66017",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Fass Residue",
+  "subject": {
+    "canonical": "Fass Residue",
+    "displayName": "“混乱”残留物",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Game/FishBait/Infested/InfestedFishBaitA",
+    "categoryRefs": [
+      "consumable.bait",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "A chunk of the wyrm Fass, collected after his explosive death in the Cambion Drift. Used to attract Glutinox on the surface during Vome, Ostimyr at surface hotspots during Fass, and Vitreospina in caves during Fass/Vome.\n\nLocation: Cambion Drift on Deimos while Vome is active",
+    "display": "属于蛟龙“混乱”的一大块东西，是在他爆炸死亡后收集的。可以用来吸引“秩序”期间地面中的狍鸮胶蛳、“混乱”期间地面鱼点中的奥斯蒂剑鱼，以及“秩序”/“混乱”期间洞穴中的璃化脊鳎。\n\n获取地点：“秩序”活跃时的火卫二魔胎之境"
+  },
+  "classification": {
+    "type": "bait",
+    "semanticKinds": [
+      "droppable",
+      "fish-bait"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "“混乱”残留物"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "open-world-gathering",
+              "scope": "item",
+              "sourceDisplayName": "火卫二魔胎之境的蛟龙循环残留区域",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Fass Residue",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Cambion Drift Bounty), Rotation A",
+              "chance": 0.0323,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "火卫二魔胎之境赏金",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Cambion Drift Bounty), Rotation A",
+              "chance": 0.0411,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "火卫二魔胎之境赏金",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Deimos/Cambion Drift (Level 30 - 40 Cambion Drift Bounty), Rotation A",
+              "chance": 0.075,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "火卫二魔胎之境赏金",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Entrati (Daughter), Associate",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "殁世幽都的女儿",
+              "npcId": "npc.daughter",
+              "locationId": "hub.necralisk",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "属于蛟龙“混乱”的一大块东西，是在他爆炸死亡后收集的。可以用来吸引“秩序”期间地面中的狍鸮胶蛳、“混乱”期间地面鱼点中的奥斯蒂剑鱼，以及“秩序”/“混乱”期间洞穴中的璃化脊鳎。\n\n获取地点：“秩序”活跃时的火卫二魔胎之境",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

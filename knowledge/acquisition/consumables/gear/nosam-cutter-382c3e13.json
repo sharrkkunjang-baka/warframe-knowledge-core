@@ -1,0 +1,213 @@
+{
+  "id": "knowledge.acquisition.consumable.nosam-cutter-382c3e13",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Nosam Cutter",
+  "subject": {
+    "canonical": "Nosam Cutter",
+    "displayName": "诺萨姆切割器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/MiningLaser",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Standard tool for cutting ore and gems out of stone.\n\nTravel far from Hub settlements for the best chance of mining rare minerals.",
+    "display": "从石头中切割矿石和宝石的标准的工具。\n\n远离城镇中心，将有更高几率开采出稀有矿物。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint"
+          ],
+          "variables": {
+            "itemName": "诺萨姆切割器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "希图斯的老者 Suumbaat",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/Circuits"
+          ],
+          "variables": {
+            "productName": "诺萨姆切割器",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 2000
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Circuits",
+                "displayName": "电路",
+                "amount": 500
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/MiningLaser",
+          "blueprintCanonical": "MiningLaserBlueprint",
+          "outputQuantity": 1,
+          "credits": 3500,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2000
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+              "canonical": "Circuits",
+              "displayName": "电路",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 500
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/MiningLaser",
+      "blueprintCanonical": "MiningLaserBlueprint",
+      "outputQuantity": 1,
+      "credits": 3500,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2000
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+          "canonical": "Circuits",
+          "displayName": "电路",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 500
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/Prospecting/MiningLaserBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "从石头中切割矿石和宝石的标准的工具。\n\n远离城镇中心，将有更高几率开采出稀有矿物。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

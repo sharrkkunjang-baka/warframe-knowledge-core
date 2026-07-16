@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-15T04:20:50.959Z",
+  "generatedAt": "2026-07-16T14:14:01.163Z",
   "source": {
     "package": "warframe-items",
     "version": "1.1269.87",
@@ -15,12 +15,12 @@
   },
   "counts": {
     "input": 1519,
-    "items": 913,
-    "excluded": 606,
+    "items": 914,
+    "excluded": 605,
     "byKind": {
       "resources": 206,
       "gear": 183,
-      "misc": 368,
+      "misc": 369,
       "arcanes": 156
     },
     "excludedByReason": {
@@ -33,7 +33,7 @@
       "captura-scene": 156,
       "fusion-or-reward-bundle": 55,
       "semantic-kind-not-allowed": 18,
-      "weapon-amp-kitgun-component": 82,
+      "weapon-amp-kitgun-component": 81,
       "exalted-weapon": 36
     }
   },
@@ -29196,6 +29196,62 @@
       "buildQuantity": 1,
       "sourceCategory": "Resources",
       "sourceFile": "Resources.json"
+    },
+    {
+      "uniqueName": "/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst",
+      "canonical": "Gravimag",
+      "displayName": "重力磁抵器",
+      "localizationStatus": "official-zh",
+      "kind": "misc",
+      "semanticKinds": [
+        "craftable",
+        "upgrade-item"
+      ],
+      "description": {
+        "canonical": "Allows archwing guns to be deployed in terrestrial zones. Install this device on archwing guns to compensate for atmospheric and gravitational forces not experienced in space.\nNOTE: Deployment requires gear obtained from the Profit-Taker mission in Fortuna.",
+        "display": "允许曲翼枪械在陆地区域使用。陆地环境中存在着太空环境所没有的大气压力与重力，在曲翼枪械上安装这个装置就能抵消上述差异所带来的绝大部分影响。\n注意：在部署时需要用到福尔图娜的利润收割者任务中取得的道具。"
+      },
+      "tradable": false,
+      "drops": [],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst#recipe-1",
+          "outputQuantity": 1,
+          "credits": 25000,
+          "buildTimeSeconds": 86400,
+          "consumeOnBuild": true,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetBItem",
+              "canonical": "Atmo Systems",
+              "quantity": 5,
+              "drops": []
+            },
+            {
+              "uniqueName": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint",
+              "canonical": "Blueprint",
+              "quantity": 1,
+              "drops": []
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetAItem",
+              "canonical": "Gyromag Systems",
+              "quantity": 10,
+              "drops": []
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetCItem",
+              "canonical": "Repeller Systems",
+              "quantity": 2,
+              "drops": []
+            }
+          ]
+        }
+      ],
+      "recipeVariants": [],
+      "buildQuantity": 1,
+      "sourceCategory": "Misc",
+      "sourceFile": "Misc.json"
     },
     {
       "uniqueName": "/Lotus/Types/Items/MiscItems/HekNavCode",

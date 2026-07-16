@@ -1,0 +1,704 @@
+{
+  "id": "knowledge.acquisition.consumable.exilus-weapon-adapter-b9cbd10f",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Exilus Weapon Adapter",
+  "subject": {
+    "canonical": "Exilus Weapon Adapter",
+    "displayName": "武器特殊功能槽连接器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/WeaponUtilityUnlocker",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.vendor",
+      "acquisition.mission",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Fuses with a compatible weapon to unlock its Exilus Mod Slot.",
+    "display": "融入一把适用的武器来解锁其特殊功能槽。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "adapter",
+      "craftable",
+      "droppable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "武器特殊功能槽连接器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Exilus Weapon Adapter",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "mission",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+          ],
+          "variables": {
+            "itemName": "武器特殊功能槽连接器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Duviri/Endless: Tier 1 (Hard)",
+              "chance": 0.0443,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "双衍王境钢铁之路无尽回廊",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Duviri/Endless: Tier 3 (Hard)",
+              "chance": 0.0443,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "双衍王境钢铁之路无尽回廊",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Duviri/Endless: Tier 4 (Hard)",
+              "chance": 0.0443,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "mission-reward",
+              "sourceDisplayName": "双衍王境钢铁之路无尽回廊",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": [
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 1  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 3  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 4  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem I Relic",
+              "chance": 0.02,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem II Relic",
+              "chance": 0.02,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem III Relic",
+              "chance": 0.02,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem IV Relic",
+              "chance": 0.02,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem I Relic (Exceptional)",
+              "chance": 0.04,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem II Relic (Exceptional)",
+              "chance": 0.04,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem III Relic (Exceptional)",
+              "chance": 0.04,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem IV Relic (Exceptional)",
+              "chance": 0.04,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem I Relic (Flawless)",
+              "chance": 0.06,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem II Relic (Flawless)",
+              "chance": 0.06,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem III Relic (Flawless)",
+              "chance": 0.06,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem IV Relic (Flawless)",
+              "chance": 0.06,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem I Relic (Radiant)",
+              "chance": 0.1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem II Relic (Radiant)",
+              "chance": 0.1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem III Relic (Radiant)",
+              "chance": 0.1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Requiem IV Relic (Radiant)",
+              "chance": 0.1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Arbiters of Hexis, Maxim",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Cephalon Suda, Genius",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "New Loka, Flawless",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Red Veil, Exalted",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "Steel Meridian, General",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            },
+            {
+              "scope": "blueprint",
+              "sourceCanonical": "The Perrin Sequence, Partner",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "enemy-drop",
+              "sourceDisplayName": "",
+              "reviewStatus": "review-required"
+            }
+          ]
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Forma",
+            "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsUncommonDogTag",
+            "/Lotus/Types/Items/MiscItems/OrokinCell"
+          ],
+          "variables": {
+            "productName": "武器特殊功能槽连接器",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Forma",
+                "displayName": "Forma",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsUncommonDogTag",
+                "displayName": "卓越的 Sentient 核心",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/OrokinCell",
+                "displayName": "Orokin 电池",
+                "amount": 1
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/WeaponUtilityUnlocker",
+          "blueprintCanonical": "WeaponUtilityUnlockerBlueprint",
+          "outputQuantity": 1,
+          "credits": 25000,
+          "buildTimeSeconds": 82800,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+              "canonical": "Forma",
+              "displayName": "Forma",
+              "languageKey": "/Lotus/Language/Items/Forma",
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsUncommonDogTag",
+              "canonical": "Exceptional Sentient Core",
+              "displayName": "卓越的 Sentient 核心",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+              "canonical": "Orokin Cell",
+              "displayName": "Orokin 电池",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/WeaponUtilityUnlocker",
+      "blueprintCanonical": "WeaponUtilityUnlockerBlueprint",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 82800,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/QuillsUncommonDogTag",
+          "canonical": "Exceptional Sentient Core",
+          "displayName": "卓越的 Sentient 核心",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "融入一把适用的武器来解锁其特殊功能槽。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

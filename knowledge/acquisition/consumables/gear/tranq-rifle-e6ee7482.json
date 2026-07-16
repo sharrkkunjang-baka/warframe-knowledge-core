@@ -1,0 +1,129 @@
+{
+  "id": "knowledge.acquisition.consumable.tranq-rifle-e6ee7482",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Tranq Rifle",
+  "subject": {
+    "canonical": "Tranq Rifle",
+    "displayName": "麻醉步枪",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/TranqRifleGearItem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Tranquilizes animals for the purpose of safe relocation.",
+    "display": "以安全重新安置为目的镇静动物。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "麻醉步枪"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "殁世幽都的儿子",
+              "npcId": "npc.son",
+              "locationId": "hub.necralisk",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Tranq Rifle",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Entrati (Son), Neutral",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "殁世幽都的儿子",
+              "npcId": "npc.son",
+              "locationId": "hub.necralisk",
+              "reviewStatus": "approved"
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Solaris United (The Business), Neutral",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "福尔图娜的生意人",
+              "npcId": "npc.the-business",
+              "locationId": "hub.fortuna",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "以安全重新安置为目的镇静动物。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

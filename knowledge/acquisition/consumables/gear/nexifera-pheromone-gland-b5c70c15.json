@@ -1,0 +1,93 @@
+{
+  "id": "knowledge.acquisition.consumable.nexifera-pheromone-gland-b5c70c15",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Nexifera Pheromone Gland",
+  "subject": {
+    "canonical": "Nexifera Pheromone Gland",
+    "displayName": "悬匿兽费洛蒙腺体",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/Deimos/InfestedNexiferaRarityBoost",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Deploy just before using the echo-lure to increase the chance of attracting a rarer subspecies of Nexifera.",
+    "display": "在使用回声诱饵前部署可以提升吸引一种悬匿兽稀有亚种的几率。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "悬匿兽费洛蒙腺体"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "殁世幽都的儿子",
+              "npcId": "npc.son",
+              "locationId": "hub.necralisk",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE item family",
+                "field": "Deimos conservation gear"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "在使用回声诱饵前部署可以提升吸引一种悬匿兽稀有亚种的几率。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

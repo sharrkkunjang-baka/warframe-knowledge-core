@@ -1,0 +1,212 @@
+{
+  "id": "knowledge.acquisition.consumable.citrine-antitoxin-31aea48b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Citrine Antitoxin",
+  "subject": {
+    "canonical": "Citrine Antitoxin",
+    "displayName": "黄水晶解毒剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/DayUnCommonAntitoxin",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "This is a moderately effective antitoxin.",
+    "display": "这是一个比较有效的解毒剂。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint"
+          ],
+          "variables": {
+            "itemName": "黄水晶解毒剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem"
+          ],
+          "variables": {
+            "productName": "黄水晶解毒剂",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+                "displayName": "日光龙百合",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+                "displayName": "日光去壳毬果",
+                "amount": 2
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/DayUnCommonAntitoxin",
+          "blueprintCanonical": "DayUnCommonAntitoxinBlueprint",
+          "outputQuantity": 1,
+          "credits": 500,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 1500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+              "canonical": "Sunlight Dragonlily",
+              "displayName": "日光龙百合",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+              "canonical": "Sunlight Threshcone",
+              "displayName": "日光去壳毬果",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/DayUnCommonAntitoxin",
+      "blueprintCanonical": "DayUnCommonAntitoxinBlueprint",
+      "outputQuantity": 1,
+      "credits": 500,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 1500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+          "canonical": "Sunlight Dragonlily",
+          "displayName": "日光龙百合",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+          "canonical": "Sunlight Threshcone",
+          "displayName": "日光去壳毬果",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/DayUnCommonAntitoxinBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这是一个比较有效的解毒剂。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "id": "knowledge.acquisition.consumable.pobbers-echo-lure-143ceab6",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Pobbers Echo-Lure",
+  "subject": {
+    "canonical": "Pobbers Echo-Lure",
+    "displayName": "泡博回声诱饵",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Conservation/SnowRodentLureGearItem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Entice and attract nearby Pobbers with life-like animal calls. The Pobbers is most often found around the Mushroom Fields of Orb Vallis.",
+    "display": "以拟真的动物叫声来诱惑、吸引附近的泡博。通常可以在奥布山谷有蘑菇的地域周围发现泡博。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "泡博回声诱饵"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "scope": "item",
+              "sourceCanonical": "Solaris United (The Business), Neutral",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "福尔图娜的生意人",
+              "npcId": "npc.the-business",
+              "locationId": "hub.fortuna",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "以拟真的动物叫声来诱惑、吸引附近的泡博。通常可以在奥布山谷有蘑菇的地域周围发现泡博。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

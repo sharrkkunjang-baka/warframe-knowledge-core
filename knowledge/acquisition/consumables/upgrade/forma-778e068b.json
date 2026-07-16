@@ -1,0 +1,1238 @@
+{
+  "id": "knowledge.acquisition.consumable.forma-778e068b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Forma",
+  "subject": {
+    "canonical": "Forma",
+    "displayName": "Forma",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "This shape-altering component is fundamental to Orokin construction. Allows you to change the polarity of a mod slot on a Warframe, Companions or Weapon and then resets their affinity to Unranked. This can only be used on max Rank Warframes, Companions and Weapons.",
+    "display": "这个非固定形态的零件是 Orokin 时代建筑中不可或缺的。可以改变战甲、同伴或武器的极性槽，并将等级重置为无等级。只能用于满级的战甲、同伴及武器。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "adapter",
+      "craftable",
+      "droppable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "Forma"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Earth/Cervantes (Caches)",
+              "sourceDisplayName": "地球/Cervantes（Caches）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cervantes-solnode75",
+              "missionTypeId": "mission-type.caches",
+              "chance": 0.005,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "C",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Forma",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/FormaBlueprint"
+          ],
+          "variables": {
+            "itemName": "Forma"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "虚空商人 Baro Ki’Teer",
+              "npcId": "npc.baro-ki-teer",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Forma",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Earth/Cervantes (Caches)",
+              "sourceDisplayName": "地球/Cervantes（Caches）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cervantes-solnode75",
+              "missionTypeId": "mission-type.caches",
+              "chance": 0.02,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "C",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Mordo Cluster (Skirmish)",
+              "sourceDisplayName": "土星比邻星域/魔多星团（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.mordo-cluster-crewbattlenode501",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Kasio's Rest (Skirmish)",
+              "sourceDisplayName": "土星比邻星域/卡希欧安息处（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.kasio-s-rest-crewbattlenode530",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Nodo Gap (Skirmish)",
+              "sourceDisplayName": "土星比邻星域/诺朵星峡（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.nodo-gap-crewbattlenode533",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Lupal Pass (Skirmish)",
+              "sourceDisplayName": "土星比邻星域/卢帕星道（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.lupal-pass-crewbattlenode534",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Vand Cluster (Skirmish)",
+              "sourceDisplayName": "土星比邻星域/水域星团（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.vand-cluster-crewbattlenode535",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Cephalon Capture (Conclave)",
+              "sourceDisplayName": "土星/中枢争夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cephalon-capture-pvpnode0",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Cephalon Capture (Conclave) Extra",
+              "sourceDisplayName": "土星/中枢争夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cephalon-capture-pvpnode0",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Team Annihilation (Conclave)",
+              "sourceDisplayName": "土星/团队歼夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.team-annihilation-pvpnode9",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Team Annihilation (Conclave) Extra",
+              "sourceDisplayName": "土星/团队歼夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.team-annihilation-pvpnode9",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Annihilation (Conclave)",
+              "sourceDisplayName": "土星/歼夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.annihilation-pvpnode10",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Annihilation (Conclave) Extra",
+              "sourceDisplayName": "土星/歼夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.annihilation-pvpnode10",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Neptune/Cephalon Capture (Conclave)",
+              "sourceDisplayName": "土星/中枢争夺（Conclave）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cephalon-capture-pvpnode0",
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Sedna/Vodyanoi (Arena)",
+              "sourceDisplayName": "赛德娜/Vodyanoi（Arena）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.vodyanoi-solnode183",
+              "missionTypeId": "mission-type.arena",
+              "chance": 0.005,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Sedna/Nakki (Arena)",
+              "sourceDisplayName": "赛德娜/Nakki（Arena）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.nakki-solnode190",
+              "missionTypeId": "mission-type.arena",
+              "chance": 0.0034000000000000002,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Sedna/Yam (Arena)",
+              "sourceDisplayName": "赛德娜/Yam（Arena）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.yam-solnode199",
+              "missionTypeId": "mission-type.arena",
+              "chance": 0.005,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Deimos/Hyf (Defense)",
+              "sourceDisplayName": "火卫二/Hyf（Defense）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.hyf-solnode707",
+              "missionTypeId": "mission-type.defense",
+              "chance": 0.2256,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "C",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Veil Proxima/Flexa (Skirmish)",
+              "sourceDisplayName": "面纱比邻星域/弗雷沙（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.flexa-crewbattlenode553",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Veil Proxima/H-2 Cloud (Skirmish)",
+              "sourceDisplayName": "面纱比邻星域/H-2 星云（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.h-2-cloud-crewbattlenode554",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Veil Proxima/R-9 Cloud (Skirmish)",
+              "sourceDisplayName": "面纱比邻星域/R-9 星云（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.r-9-cloud-crewbattlenode555",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Veil Proxima/Nsu Grid (Skirmish)",
+              "sourceDisplayName": "面纱比邻星域/恩斯尤区格（Skirmish）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.nsu-grid-crewbattlenode550",
+              "missionTypeId": "mission-type.skirmish",
+              "chance": 0.025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": [
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Lunaro Arena (Conclave)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/Lunaro Arena (Conclave) Extra",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/(Variant) Cephalon Capture (Conclave)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/(Variant) Cephalon Capture (Conclave) Extra",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/(Variant) Team Annihilation (Conclave) Extra",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/(Variant) Annihilation (Conclave)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Saturn/(Variant) Annihilation (Conclave) Extra",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.conclave",
+              "chance": 0.0025,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "B",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Event: Sedna/Undine (Arena)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.arena",
+              "chance": 0.004,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 1  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 3  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 4  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Recall: Ten-Zero Week 1",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": null,
+              "chance": 0.0159,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Recall: Ten-Zero Week 2",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": null,
+              "chance": 0.0159,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Recall: Ten-Zero Week 3",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": null,
+              "chance": 0.0159,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Recall: Ten-Zero Week 4",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": null,
+              "chance": 0.0159,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              ],
+              "sourceCanonical": "Recall: Ten-Zero Week 5",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": null,
+              "chance": 0.0159,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            }
+          ]
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Morphic",
+            "/Lotus/Types/Items/MiscItems/Neurode",
+            "/Lotus/Types/Items/MiscItems/NeuralSensor",
+            "/Lotus/Types/Items/MiscItems/OrokinCell"
+          ],
+          "variables": {
+            "productName": "Forma",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/FormaBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Neurode",
+                "displayName": "神经元",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+                "displayName": "神经传感器",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/OrokinCell",
+                "displayName": "Orokin 电池",
+                "amount": 1
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/FormaBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/FormaBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/FormaBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "blueprintCanonical": "FormaBlueprint",
+          "outputQuantity": 1,
+          "credits": 35000,
+          "buildTimeSeconds": 82800,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "canonical": "Morphics",
+              "displayName": "非晶态合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+              "canonical": "Neurodes",
+              "displayName": "神经元",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+              "canonical": "Neural Sensors",
+              "displayName": "神经传感器",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+              "canonical": "Orokin Cell",
+              "displayName": "Orokin 电池",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/FormaBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/FormaBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+      "blueprintCanonical": "FormaBlueprint",
+      "outputQuantity": 1,
+      "credits": 35000,
+      "buildTimeSeconds": 82800,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+          "canonical": "Neurodes",
+          "displayName": "神经元",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+          "canonical": "Neural Sensors",
+          "displayName": "神经传感器",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/FormaBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这个非固定形态的零件是 Orokin 时代建筑中不可或缺的。可以改变战甲、同伴或武器的极性槽，并将等级重置为无等级。只能用于满级的战甲、同伴及武器。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": false,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

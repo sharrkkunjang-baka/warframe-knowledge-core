@@ -1,0 +1,224 @@
+{
+  "id": "knowledge.acquisition.consumable.decaying-dragon-key-317bc29f",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Decaying Dragon Key",
+  "subject": {
+    "canonical": "Decaying Dragon Key",
+    "displayName": "腐朽龙钥",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Upgraded/ShieldDebuffKey",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.dojo",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Shields are greatly reduced while key is equipped. Full Shield Gate duration is capped at 0.33s.\n\nBlueprint can be obtained via the Orokin Lab in a Clan Dojo.",
+    "display": "在装备钥匙时，护盾会大幅减少。满护盾保险持续时间的上限会限定在 0.33 秒。\n\n蓝图可以通过氏族道场中的 Orokin 实验室获得。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "dojo",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint"
+          ],
+          "variables": {
+            "itemName": "腐朽龙钥"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint",
+                "field": "creditsCost"
+              }
+            },
+            {
+              "type": "dojo-research",
+              "scope": "blueprint",
+              "sourceDisplayName": "氏族道场研究室",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE official item description"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/VoidTearDrop",
+            "/Lotus/Types/Items/MiscItems/Ferrite"
+          ],
+          "variables": {
+            "productName": "腐朽龙钥",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/VoidTearDrop",
+                "displayName": "虚空光体",
+                "amount": 10
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 250
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Upgraded/ShieldDebuffKey",
+          "blueprintCanonical": "ShieldDebuffKeyBlueprint",
+          "outputQuantity": 1,
+          "credits": 500,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/VoidTearDrop",
+              "canonical": "Void Traces",
+              "displayName": "虚空光体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 250
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Upgraded/ShieldDebuffKey",
+      "blueprintCanonical": "ShieldDebuffKeyBlueprint",
+      "outputQuantity": 1,
+      "credits": 500,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/VoidTearDrop",
+          "canonical": "Void Traces",
+          "displayName": "虚空光体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 250
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/ShieldDebuffKeyBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "在装备钥匙时，护盾会大幅减少。满护盾保险持续时间的上限会限定在 0.33 秒。\n\n蓝图可以通过氏族道场中的 Orokin 实验室获得。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "id": "knowledge.acquisition.consumable.lanzo-fishing-spear-43427ae1",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Lanzo Fishing Spear",
+  "subject": {
+    "canonical": "Lanzo Fishing Spear",
+    "displayName": "兰佐鱼叉",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpear",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "The barbed prongs on this fishing spear make it easier to catch fish with smooth skin.\n\nObtained from Fisher Hai-Luk in Cetus (Earth). This spear is most effective on the following Plains of Eidolon fish:\nCharc Eel\nCuthol\nGoopolla\nMurkray\nSharrac\nYogwun",
+    "display": "这把鱼叉有着带倒刺的叉齿，便于抓住表皮光滑的鱼类。\n\n从希图斯（地球）的渔人海露处获得。这根鱼叉对以下夜灵平野的鱼类最有效：\n查克鳗\n克苏尔\n古泊拉\n阴暗鳐\n鲨客\n约格温"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint"
+          ],
+          "variables": {
+            "itemName": "兰佐鱼叉"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "希图斯的渔人海露",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+            "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+            "/Lotus/Types/Items/MiscItems/Ferrite"
+          ],
+          "variables": {
+            "productName": "兰佐鱼叉",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+                "displayName": "尼蒐荚",
+                "amount": 10
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+                "displayName": "葛克度",
+                "amount": 10
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 1200
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpear",
+          "blueprintCanonical": "SpearFishingSpearBlueprint",
+          "outputQuantity": 1,
+          "credits": 1000,
+          "buildTimeSeconds": 300,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+              "canonical": "Nistlepod",
+              "displayName": "尼蒐荚",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+              "canonical": "Grokdrul",
+              "displayName": "葛克度",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1200
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpear",
+      "blueprintCanonical": "SpearFishingSpearBlueprint",
+      "outputQuantity": 1,
+      "credits": 1000,
+      "buildTimeSeconds": 300,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/NistlebrushItem",
+          "canonical": "Nistlepod",
+          "displayName": "尼蒐荚",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/GrokdrulItem",
+          "canonical": "Grokdrul",
+          "displayName": "葛克度",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1200
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Restoratives/Consumable/SpearFishingSpearBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这把鱼叉有着带倒刺的叉齿，便于抓住表皮光滑的鱼类。\n\n从希图斯（地球）的渔人海露处获得。这根鱼叉对以下夜灵平野的鱼类最有效：\n查克鳗\n克苏尔\n古泊拉\n阴暗鳐\n鲨客\n约格温",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

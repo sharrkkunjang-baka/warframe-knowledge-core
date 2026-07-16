@@ -1,0 +1,305 @@
+{
+  "id": "knowledge.acquisition.consumable.squad-shield-restore-medium-8925fcd4",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Squad Shield Restore (Medium)",
+  "subject": {
+    "canonical": "Squad Shield Restore (Medium)",
+    "displayName": "团队护盾补给（中型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/ClanTeamShieldTotem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.dojo",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Restores Shields to all squad members. Pulses 100 Shield every 7.5s for 30s.",
+    "display": "恢复全团队的护盾值。每次脉冲恢复 100 点护盾。脉冲间隔 7.5 秒，共计 30 秒。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "dojo",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint",
+            "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint"
+          ],
+          "variables": {
+            "itemName": "团队护盾补给（中型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "dojo-research",
+              "scope": "blueprint",
+              "sourceDisplayName": "能源实验室",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/AlloyPlate"
+          ],
+          "variables": {
+            "productName": "团队护盾补给（中型）",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 600
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+                "displayName": "合金板",
+                "amount": 150
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队护盾补给（中型）",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 3600
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamShieldTotem",
+          "blueprintCanonical": "ClanTeamShieldBlueprint",
+          "outputQuantity": 1,
+          "credits": 4000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 600
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+              "canonical": "Alloy Plate",
+              "displayName": "合金板",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 150
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamShieldTotem",
+          "blueprintCanonical": "ClanTenTeamShieldBlueprint",
+          "outputQuantity": 10,
+          "credits": 9000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3600
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamShieldTotem",
+      "blueprintCanonical": "ClanTeamShieldBlueprint",
+      "outputQuantity": 1,
+      "credits": 4000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 150
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTeamShieldBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamShieldTotem",
+      "blueprintCanonical": "ClanTenTeamShieldBlueprint",
+      "outputQuantity": 10,
+      "credits": 9000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3600
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamShieldBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "恢复全团队的护盾值。每次脉冲恢复 100 点护盾。脉冲间隔 7.5 秒，共计 30 秒。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

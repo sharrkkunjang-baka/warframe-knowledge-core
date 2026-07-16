@@ -1,0 +1,91 @@
+{
+  "id": "knowledge.acquisition.consumable.sacred-vessel-4a63a8ad",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sacred Vessel",
+  "subject": {
+    "canonical": "Sacred Vessel",
+    "displayName": "神圣容器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Keys/MummyQuest/MummyArtifact01GearItem",
+    "categoryRefs": [
+      "consumable.key",
+      "acquisition.quest"
+    ]
+  },
+  "description": {
+    "canonical": "A peculiar relic from the tomb of Inaros.",
+    "display": "来自 Inaros 古墓中的奇怪文物。"
+  },
+  "classification": {
+    "type": "key",
+    "semanticKinds": [
+      "key"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "quest",
+          "partRefs": [],
+          "variables": {
+            "itemName": "神圣容器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "quest-reward",
+              "scope": "item",
+              "questDisplayName": "Inaros 之沙",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE unique name",
+                "field": "MummyQuest"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "来自 Inaros 古墓中的奇怪文物。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

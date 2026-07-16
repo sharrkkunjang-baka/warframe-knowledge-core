@@ -1,0 +1,327 @@
+{
+  "id": "knowledge.acquisition.consumable.squad-energy-restore-medium-04549d9b",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Squad Energy Restore (Medium)",
+  "subject": {
+    "canonical": "Squad Energy Restore (Medium)",
+    "displayName": "团队能量补给（中型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/ClanTeamEnergyTotem",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.dojo",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Restores Energy to all squad members. Pulses 50 Energy every 5s for 20s.",
+    "display": "恢复全团队的能量。每次脉冲恢复 50 点能量。脉冲间隔 5 秒，共计 20 秒。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "dojo",
+          "partRefs": [
+            "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint",
+            "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint"
+          ],
+          "variables": {
+            "itemName": "团队能量补给（中型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "dojo-research",
+              "scope": "blueprint",
+              "sourceDisplayName": "能源实验室",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/AlloyPlate"
+          ],
+          "variables": {
+            "productName": "团队能量补给（中型）",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 600
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+                "displayName": "合金板",
+                "amount": 150
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "团队能量补给（中型）",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "amount": 225
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 2250
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamEnergyTotem",
+          "blueprintCanonical": "ClanTeamEnergyBlueprint",
+          "outputQuantity": 1,
+          "credits": 4000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 600
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+              "canonical": "Alloy Plate",
+              "displayName": "合金板",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 150
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint"
+          }
+        },
+        {
+          "id": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamEnergyTotem",
+          "blueprintCanonical": "ClanTenTeamEnergyBlueprint",
+          "outputQuantity": 10,
+          "credits": 9000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "canonical": "Polymer Bundle",
+              "displayName": "聚合物束",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 225
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2250
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamEnergyTotem",
+      "blueprintCanonical": "ClanTeamEnergyBlueprint",
+      "outputQuantity": 1,
+      "credits": 4000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 600
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 150
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTeamEnergyBlueprint"
+      }
+    },
+    {
+      "id": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/ClanTeamEnergyTotem",
+      "blueprintCanonical": "ClanTenTeamEnergyBlueprint",
+      "outputQuantity": 10,
+      "credits": 9000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "canonical": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 225
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2250
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Weapons/ClanTech/Energy/ClanTenTeamEnergyBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "恢复全团队的能量。每次脉冲恢复 50 点能量。脉冲间隔 5 秒，共计 20 秒。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

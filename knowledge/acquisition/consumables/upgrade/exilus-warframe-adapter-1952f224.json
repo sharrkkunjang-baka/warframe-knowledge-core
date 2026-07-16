@@ -1,0 +1,358 @@
+{
+  "id": "knowledge.acquisition.consumable.exilus-warframe-adapter-1952f224",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Exilus Warframe Adapter",
+  "subject": {
+    "canonical": "Exilus Warframe Adapter",
+    "displayName": "战甲特殊功能槽连接器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/UtilityUnlocker",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.quest",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Fuses with a Warframe to unlock the Exilus Mod Slot.",
+    "display": "融入一架战甲来解锁特殊功能槽。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "adapter",
+      "craftable",
+      "droppable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "quest",
+          "partRefs": [],
+          "variables": {
+            "itemName": "战甲特殊功能槽连接器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Exilus Warframe Adapter",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "type": "quest-reward",
+              "scope": "item",
+              "questDisplayName": "Natah",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Exilus Warframe Adapter",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+          ],
+          "variables": {
+            "itemName": "战甲特殊功能槽连接器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "中枢 Simaris",
+              "npcId": "npc.cephalon-simaris",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Exilus Warframe Adapter",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": [
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 1  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 3  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "blueprint",
+              "partRefs": [
+                "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+              ],
+              "sourceCanonical": "Duviri/Endless: Tier 4  (Hard)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.hard",
+              "chance": 0.0443,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            }
+          ]
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Forma",
+            "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+            "/Lotus/Types/Items/MiscItems/OrokinCell"
+          ],
+          "variables": {
+            "productName": "战甲特殊功能槽连接器",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Forma",
+                "displayName": "Forma",
+                "amount": 2
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+                "displayName": "氩结晶",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/OrokinCell",
+                "displayName": "Orokin 电池",
+                "amount": 1
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/UtilityUnlocker",
+          "blueprintCanonical": "UtilityUnlockerBlueprint",
+          "outputQuantity": 1,
+          "credits": 25000,
+          "buildTimeSeconds": 82800,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+              "canonical": "Forma",
+              "displayName": "Forma",
+              "languageKey": "/Lotus/Language/Items/Forma",
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+              "canonical": "Argon Crystal",
+              "displayName": "氩结晶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+              "canonical": "Orokin Cell",
+              "displayName": "Orokin 电池",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/UtilityUnlocker",
+      "blueprintCanonical": "UtilityUnlockerBlueprint",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 82800,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Forma",
+          "canonical": "Forma",
+          "displayName": "Forma",
+          "languageKey": "/Lotus/Language/Items/Forma",
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+          "canonical": "Argon Crystal",
+          "displayName": "氩结晶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Components/UtilityUnlockerBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "融入一架战甲来解锁特殊功能槽。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

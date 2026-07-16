@@ -1,0 +1,825 @@
+{
+  "id": "knowledge.acquisition.consumable.health-restore-large-a952d22d",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Health Restore (Large)",
+  "subject": {
+    "canonical": "Health Restore (Large)",
+    "displayName": "生命补给（大型）",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/SelfHealLarge",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.mission",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Instantly restores your Health to full.",
+    "display": "立即将你的生命恢复至全满"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "mission",
+          "partRefs": [],
+          "variables": {
+            "itemName": "生命补给（大型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Mercury/Elion (Capture)",
+              "sourceDisplayName": "水星/Elion（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.elion-solnode12",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Venus/Venera (Capture)",
+              "sourceDisplayName": "金星/Venera（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.venera-solnode107",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Earth/Mantle (Capture)",
+              "sourceDisplayName": "地球/Mantle（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.mantle-solnode63",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Earth/Cervantes (Caches)",
+              "sourceDisplayName": "地球/Cervantes（Caches）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cervantes-solnode75",
+              "missionTypeId": "mission-type.caches",
+              "chance": 0.151,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "C",
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Mars/Ara (Capture)",
+              "sourceDisplayName": "火星/Ara（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.ara-solnode45",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Jupiter/Ananke (Capture)",
+              "sourceDisplayName": "木星/Ananke（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.ananke-solnode73",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Saturn/Cassini (Capture)",
+              "sourceDisplayName": "土星/Cassini（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.cassini-solnode70",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Uranus/Ariel (Capture)",
+              "sourceDisplayName": "天王星/Ariel（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.ariel-solnode33",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Neptune/Galatea (Capture)",
+              "sourceDisplayName": "海王星/Galatea（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.galatea-solnode1",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Pluto/Hydra (Capture)",
+              "sourceDisplayName": "冥王星/Hydra（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.hydra-solnode76",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Ceres/Lex (Capture)",
+              "sourceDisplayName": "谷神星/Lex（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.lex-solnode139",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Eris/Isos (Capture)",
+              "sourceDisplayName": "阋神星/Isos（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.isos-solnode162",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Europa/Abaddon (Capture)",
+              "sourceDisplayName": "欧罗巴/Abaddon（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.abaddon-solnode203",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Phobos/Skyresh (Capture)",
+              "sourceDisplayName": "火卫一/Skyresh（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.skyresh-settlementnode2",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Lua/Copernicus (Capture)",
+              "sourceDisplayName": "月球/Copernicus（Capture）",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "mission.copernicus-solnode304",
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": [
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Mars/Quirinus (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Saturn/Phoebe (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Uranus/Trinculo (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Pluto/Corb (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Eris/Cosis (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Europa/Cryotic Front (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Europa/Beleth (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Phobos/Limtoc (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Event: Phobos/Todd (Capture)",
+              "sourceDisplayName": "",
+              "sourceLocalizationStatus": "official-zh-unavailable",
+              "locationId": null,
+              "missionTypeId": "mission-type.capture",
+              "chance": 0.1084,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": null,
+              "stage": null,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "review-required",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Missions"
+              }
+            }
+          ]
+        },
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint"
+          ],
+          "variables": {
+            "itemName": "生命补给（大型）"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem"
+          ],
+          "variables": {
+            "productName": "生命补给（大型）",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+                "displayName": "日光玉叶",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+                "displayName": "月光玉叶",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+                "displayName": "日光去壳毬果",
+                "amount": 15
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem",
+                "displayName": "月光去壳毬果",
+                "amount": 15
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/SelfHealLarge",
+          "blueprintCanonical": "SelfHealBlueprint",
+          "outputQuantity": 1,
+          "credits": 1000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 1500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+              "canonical": "Sunlight Jadeleaf",
+              "displayName": "日光玉叶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+              "canonical": "Moonlight Jadeleaf",
+              "displayName": "月光玉叶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+              "canonical": "Sunlight Threshcone",
+              "displayName": "日光去壳毬果",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 15
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem",
+              "canonical": "Moonlight Threshcone",
+              "displayName": "月光去壳毬果",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 15
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/SelfHealLarge",
+      "blueprintCanonical": "SelfHealBlueprint",
+      "outputQuantity": 1,
+      "credits": 1000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 1500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+          "canonical": "Sunlight Jadeleaf",
+          "displayName": "日光玉叶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+          "canonical": "Moonlight Jadeleaf",
+          "displayName": "月光玉叶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonDayPlantItem",
+          "canonical": "Sunlight Threshcone",
+          "displayName": "日光去壳毬果",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/CommonNightPlantItem",
+          "canonical": "Moonlight Threshcone",
+          "displayName": "月光去壳毬果",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 15
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/SelfHealBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "立即将你的生命恢复至全满",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

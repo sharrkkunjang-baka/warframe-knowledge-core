@@ -1,0 +1,256 @@
+{
+  "id": "knowledge.acquisition.consumable.vermillion-antitoxin-90902072",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Vermillion Antitoxin",
+  "subject": {
+    "canonical": "Vermillion Antitoxin",
+    "displayName": "辰砂解毒剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/SoloRareAntitoxin",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "This is an extremely effective antitoxin.",
+    "display": "这是一个非常有效的解毒剂。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint"
+          ],
+          "variables": {
+            "itemName": "辰砂解毒剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+            "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem"
+          ],
+          "variables": {
+            "productName": "辰砂解毒剂",
+            "outputQuantity": 1,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+                "displayName": "日光玉叶",
+                "amount": 4
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+                "displayName": "月光玉叶",
+                "amount": 4
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+                "displayName": "日光龙百合",
+                "amount": 4
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+                "displayName": "月光龙百合",
+                "amount": 4
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/SoloRareAntitoxin",
+          "blueprintCanonical": "SoloRareAntitoxinBlueprint",
+          "outputQuantity": 1,
+          "credits": 2000,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": false,
+          "alwaysAvailable": false,
+          "marketCredits": 1500,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+              "canonical": "Sunlight Jadeleaf",
+              "displayName": "日光玉叶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+              "canonical": "Moonlight Jadeleaf",
+              "displayName": "月光玉叶",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+              "canonical": "Sunlight Dragonlily",
+              "displayName": "日光龙百合",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+              "canonical": "Moonlight Dragonlily",
+              "displayName": "月光龙百合",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 4
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Toxins/SoloRareAntitoxin",
+      "blueprintCanonical": "SoloRareAntitoxinBlueprint",
+      "outputQuantity": 1,
+      "credits": 2000,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": false,
+      "alwaysAvailable": false,
+      "marketCredits": 1500,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareDayPlantItem",
+          "canonical": "Sunlight Jadeleaf",
+          "displayName": "日光玉叶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/RareNightPlantItem",
+          "canonical": "Moonlight Jadeleaf",
+          "displayName": "月光玉叶",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonDayPlantItem",
+          "canonical": "Sunlight Dragonlily",
+          "displayName": "日光龙百合",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Plants/MiscItems/UnCommonNightPlantItem",
+          "canonical": "Moonlight Dragonlily",
+          "displayName": "月光龙百合",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 4
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/StoreItems/Consumables/Restoratives/Toxins/SoloRareAntitoxinBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这是一个非常有效的解毒剂。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

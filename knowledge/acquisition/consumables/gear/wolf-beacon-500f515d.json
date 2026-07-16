@@ -1,0 +1,92 @@
+{
+  "id": "knowledge.acquisition.consumable.wolf-beacon-500f515d",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Wolf Beacon",
+  "subject": {
+    "canonical": "Wolf Beacon",
+    "displayName": "恶狼信标",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/AssassinBaitD",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Lures the Wolf out of hiding. One-time use gear item that can only be used in locations where the assassin would normally appear.",
+    "display": "吸引「恶狼」现身的物品。为一次性道具，仅能使用在刺客一般会出没的场景中。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "恶狼信标"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "nightwave-offering",
+              "scope": "item",
+              "sourceDisplayName": "午夜电波贡品界面",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Wolf Beacon",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "吸引「恶狼」现身的物品。为一次性道具，仅能使用在刺客一般会出没的场景中。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

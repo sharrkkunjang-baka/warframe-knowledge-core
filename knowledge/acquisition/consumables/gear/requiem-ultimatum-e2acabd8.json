@@ -1,0 +1,107 @@
+{
+  "id": "knowledge.acquisition.consumable.requiem-ultimatum-e2acabd8",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Requiem Ultimatum",
+  "subject": {
+    "canonical": "Requiem Ultimatum",
+    "displayName": "安魂通牒",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/NemesisBait",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Provokes an immediate confrontation with your Kuva Lich or Sister of Parvos: an insult which cannot be ignored.",
+    "display": "引发与你的赤毒玄骸或帕尔沃斯姐妹的直接对抗：这是一种不容忽视的侮辱。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "安魂通牒"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "钢铁防线的帕拉迪诺",
+              "npcId": "npc.palladino",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Requiem Ultimatum",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "type": "adversary-reward",
+              "scope": "item",
+              "sourceDisplayName": "击败或感化赤毒玄骸或帕尔沃斯的姐妹",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Requiem Ultimatum",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "引发与你的赤毒玄骸或帕尔沃斯姐妹的直接对抗：这是一种不容忽视的侮辱。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

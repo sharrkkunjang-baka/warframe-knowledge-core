@@ -45,12 +45,15 @@ function createKnowledgeCore(options = {}) {
   const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName]
     .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
   const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
+  const consumableNameCandidates = (data.consumables || []).flatMap(item => [item.subject?.canonical, item.subject?.displayName, ...(item.consumableAcquisition?.manual?.aliases || [])]
+    .filter(Boolean).map(alias => ({ alias, canonical: item.subject.canonical, category: 'consumable', priority: 32 })));
   const arcaneNameCandidates = (data.arcanes || []).flatMap(arcane => [arcane.subject?.canonical, arcane.subject?.displayName, ...(arcane.arcaneAcquisition?.manual?.aliases || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: arcane.subject.canonical, category: 'arcane', priority: 30 })));
   const officialNameCandidates = [
     ...officialMods.flatMap(mod => [mod.canonical, mod.displayName].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'official' }))),
     ...arcaneNameCandidates,
-    ...weaponNameCandidates
+    ...weaponNameCandidates,
+    ...consumableNameCandidates
   ];
   const baseResolveName = createResolver(data.aliases);
   const resolveName = (query, resolveOptions = {}) => {
@@ -172,6 +175,16 @@ function createKnowledgeCore(options = {}) {
     if (!q) return null;
     return (data.weapons || []).find(entry => [entry.subject?.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName].some(value => normalize(value) === q)) || null;
   };
+  const getConsumable = query => {
+    const q = normalize(query);
+    if (!q) return null;
+    return (data.consumables || []).find(entry => [entry.subject?.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName, ...(entry.consumableAcquisition?.manual?.aliases || [])].some(value => normalize(value) === q)) || null;
+  };
+  const resolveConsumable = (query, resolveOptions = {}) => {
+    const exact = getConsumable(query);
+    if (exact) return { alias: exact.subject.displayName, canonical: exact.subject.canonical, category: 'consumable', match: 'exact', score: 300 };
+    return resolveName(query, { minScore: 50, minLead: 5, ...resolveOptions, categories: ['consumable'], candidates: consumableNameCandidates });
+  };
   const getWeaponGap = query => {
     const q = normalize(query);
     return (data.officialWeapons?.languageOnlyWeapons || []).find(item => [item.canonical, item.displayName, item.nameLanguageKey].some(value => normalize(value) === q)) || null;
@@ -184,6 +197,8 @@ function createKnowledgeCore(options = {}) {
   const resolveItem = query => {
     const weapon = getWeapon(query);
     if (weapon) return { kind: 'weapon', item: weapon, recipeVariant: null };
+    const consumable = getConsumable(query);
+    if (consumable) return { kind: 'consumable', item: consumable, recipeVariant: null };
     const weaponGap = getWeaponGap(query);
     if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
     const arcane = getArcane(query);
@@ -514,6 +529,16 @@ function createKnowledgeCore(options = {}) {
     if (!raw) return null;
     const weaponGap = getWeaponGap(raw);
     if (weaponGap) return { query: raw, resolution: { canonical: weaponGap.canonical, exact: true }, entry: null, description: `${weaponGap.displayName}已在 DE 官方简体中文语言数据中出现，但当前 ExportWeapons 尚未提供完整 uniqueName、属性、倾向和来源结构，因此保持待审，禁止猜造获取路径。`, categories: [], methods: [], sourceOptions: [], structuredMethods: [], weaponGap, alternatives: [] };
+    const consumableEntry = getConsumable(raw);
+    if (consumableEntry) {
+      const structuredMethods = routesToMethods(consumableEntry.consumableAcquisition?.generated?.routes || [], data)
+        .filter(method => method.reviewStatus === 'approved' && method.type !== 'recipe');
+      const acquisitionText = renderAcquisition(structuredMethods, { displayName: consumableEntry.subject.displayName, registries: data, showProbabilities: false });
+      const officialDescription = consumableEntry.description?.display || '';
+      const tips = consumableEntry.consumableAcquisition?.manual?.tips || [];
+      const description = [officialDescription, acquisitionText, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n');
+      return { query: raw, resolution: { canonical: consumableEntry.subject.canonical, exact: true }, entry: consumableEntry, description, categories: consumableEntry.subject.categoryRefs || [], methods: [], sourceOptions: [], structuredMethods, recipes: consumableEntry.recipes || [], alternatives: [] };
+    }
     const weaponEntry = getWeapon(raw);
     if (weaponEntry) {
       const allStructuredMethods = routesToMethods(weaponEntry.acquisition?.routes || [], data).filter(method => method.reviewStatus !== 'review-required' || method.category !== 'unresolved');
@@ -685,6 +710,9 @@ function createKnowledgeCore(options = {}) {
     getWeapon,
     getWeaponGap,
     resolveWeapon,
+    getConsumable,
+    resolveConsumable,
+    consumables: data.consumables || [],
     getWeaponCrafting: query => { const entry = getWeapon(query); return entry ? { entry, text: renderCrafting(entry, weaponCraftingGraph), recipes: weaponCraftingGraph.recipesFor(entry.subject.officialUniqueName), craftTo: weaponCraftingGraph.craftTo(entry.subject.officialUniqueName) } : null; },
     weaponCraftingGraph,
     searchOfficialItems,

@@ -1,0 +1,288 @@
+{
+  "id": "knowledge.acquisition.consumable.mandachord-7a0319f6",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Mandachord",
+  "subject": {
+    "canonical": "Mandachord",
+    "displayName": "曼达和弦琴",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerItem",
+    "categoryRefs": [
+      "consumable.key",
+      "acquisition.quest",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "A rare Orokin instrument.",
+    "display": "一种罕见的 Orokin 乐器。"
+  },
+  "classification": {
+    "type": "key",
+    "semanticKinds": [
+      "craftable",
+      "droppable",
+      "key"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "quest",
+          "partRefs": [],
+          "variables": {
+            "itemName": "曼达和弦琴"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "quest-reward",
+              "scope": "item",
+              "questDisplayName": "Octavia's Anthem",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Mandachord",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint"
+          ],
+          "variables": {
+            "itemName": "曼达和弦琴"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "中枢 Simaris",
+              "npcId": "npc.cephalon-simaris",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Mandachord",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartA",
+            "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartB",
+            "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartC",
+            "/Lotus/Types/Items/MiscItems/Morphic"
+          ],
+          "variables": {
+            "productName": "曼达和弦琴",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartA",
+                "displayName": "曼达和弦琴 琴身",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartB",
+                "displayName": "曼达和弦琴 琴格",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartC",
+                "displayName": "曼达和弦琴琴马",
+                "amount": 1
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "amount": 3
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint",
+          "resultUniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerItem",
+          "blueprintCanonical": "BardQuestSequencerBlueprint",
+          "outputQuantity": 1,
+          "credits": 5000,
+          "buildTimeSeconds": 10,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartA",
+              "canonical": "Mandachord Body",
+              "displayName": "曼达和弦琴 琴身",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartB",
+              "canonical": "Mandachord Fret",
+              "displayName": "曼达和弦琴 琴格",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartC",
+              "canonical": "Mandachord Bridge",
+              "displayName": "曼达和弦琴琴马",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "canonical": "Morphics",
+              "displayName": "非晶态合金",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 3
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint",
+      "resultUniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerItem",
+      "blueprintCanonical": "BardQuestSequencerBlueprint",
+      "outputQuantity": 1,
+      "credits": 5000,
+      "buildTimeSeconds": 10,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartA",
+          "canonical": "Mandachord Body",
+          "displayName": "曼达和弦琴 琴身",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartB",
+          "canonical": "Mandachord Fret",
+          "displayName": "曼达和弦琴 琴格",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerPartC",
+          "canonical": "Mandachord Bridge",
+          "displayName": "曼达和弦琴琴马",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+          "canonical": "Morphics",
+          "displayName": "非晶态合金",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Keys/BardQuest/BardQuestSequencerBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "一种罕见的 Orokin 乐器。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

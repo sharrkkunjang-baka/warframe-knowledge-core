@@ -72,9 +72,13 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const weaponCategoriesPath = path.join(weaponDirectory, 'categories.json');
   const weaponCatalog = fs.existsSync(weaponCategoriesPath) ? deepFreeze(readJson(weaponCategoriesPath)) : null;
   const weapons = deepFreeze(readObjectDirectory(weaponDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'weapon'));
+  const consumableDirectory = path.join(knowledgeDirectory, 'acquisition', 'consumables');
+  const consumableCategoriesPath = path.join(consumableDirectory, 'categories.json');
+  const consumableCatalog = fs.existsSync(consumableCategoriesPath) ? deepFreeze(readJson(consumableCategoriesPath)) : null;
+  const consumables = deepFreeze(readObjectDirectory(consumableDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'consumable'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialItemSources, aliases, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, weaponCatalog, weapons, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialItemSources, aliases, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

@@ -1,0 +1,110 @@
+{
+  "id": "knowledge.acquisition.consumable.kinetic-siphon-trap-bc31be81",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Kinetic Siphon Trap",
+  "subject": {
+    "canonical": "Kinetic Siphon Trap",
+    "displayName": "动能吸收陷阱",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/HunterTool",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Specialized trap for attracting and slowing the movement of synthesis targets.",
+    "display": "用以吸引或减缓结合目标移动速度的特制陷阱。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "droppable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "动能吸收陷阱"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "中枢 Simaris",
+              "npcId": "npc.cephalon-simaris",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Kinetic Siphon Trap",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "scope": "item",
+              "sourceCanonical": "Cephalon Simaris, Kinetic Siphon Trap x 10",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "drops"
+              },
+              "type": "vendor-exchange",
+              "sourceDisplayName": "中枢 Simaris",
+              "npcId": "npc.cephalon-simaris",
+              "reviewStatus": "approved"
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "用以吸引或减缓结合目标移动速度的特制陷阱。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

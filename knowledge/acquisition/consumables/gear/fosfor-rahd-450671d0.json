@@ -1,0 +1,257 @@
+{
+  "id": "knowledge.acquisition.consumable.fosfor-rahd-450671d0",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Fosfor Rahd",
+  "subject": {
+    "canonical": "Fosfor Rahd",
+    "displayName": "赤色磷光",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/Synthetics/FlareRed",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Launch a bright red flare that significantly increases Affinity Range while active.",
+    "display": "发射一只亮红色的信号弹，有效期内大幅增加经验范围。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint"
+          ],
+          "variables": {
+            "itemName": "赤色磷光"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "sourceDisplayName": "中枢 Simaris",
+              "npcId": "npc.cephalon-simaris",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint",
+                "field": "recipe family"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+            "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+            "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothCommonFishAPartItem",
+            "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishAPartItem"
+          ],
+          "variables": {
+            "productName": "赤色磷光",
+            "outputQuantity": 20,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+                "displayName": "马利可",
+                "amount": 5
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+                "displayName": "伊莱体",
+                "amount": 5
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothCommonFishAPartItem",
+                "displayName": "查克放电腺体",
+                "amount": 5
+              },
+              {
+                "itemId": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishAPartItem",
+                "displayName": "鲨客牙齿",
+                "amount": 5
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Synthetics/FlareRed",
+          "blueprintCanonical": "FlareRedBlueprint",
+          "outputQuantity": 20,
+          "credits": 5000,
+          "buildTimeSeconds": 3600,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+              "canonical": "Maprico",
+              "displayName": "马利可",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+              "canonical": "Iradite",
+              "displayName": "伊莱体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothCommonFishAPartItem",
+              "canonical": "Charc Electroplax",
+              "displayName": "查克放电腺体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishAPartItem",
+              "canonical": "Sharrac Teeth",
+              "displayName": "鲨客牙齿",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/Synthetics/FlareRed",
+      "blueprintCanonical": "FlareRedBlueprint",
+      "outputQuantity": 20,
+      "credits": 5000,
+      "buildTimeSeconds": 3600,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/EidolonFruitItem",
+          "canonical": "Maprico",
+          "displayName": "马利可",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+          "canonical": "Iradite",
+          "displayName": "伊莱体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothCommonFishAPartItem",
+          "canonical": "Charc Electroplax",
+          "displayName": "查克放电腺体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/Fish/Eidolon/FishParts/BothUncommonFishAPartItem",
+          "canonical": "Sharrac Teeth",
+          "displayName": "鲨客牙齿",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/SynthicatorRecipes/FlareRedBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "发射一只亮红色的信号弹，有效期内大幅增加经验范围。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

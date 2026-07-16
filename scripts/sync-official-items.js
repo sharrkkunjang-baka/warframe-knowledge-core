@@ -32,7 +32,8 @@ const EXCLUSIONS = Object.freeze([
   ['captura-scene', item => item.type === 'Captura' || /(?:Photobooth|PhotoBooth|Captura|\bScene\b)/i.test(`${item.uniqueName} ${item.name}`)],
   ['exalted-weapon', item => item.type === 'Exalted Weapon' || /\/Powersuits\/.*(?:Weapon|Sword|Pistols|Claws|Melee|Bow)/i.test(item.uniqueName || '')],
   ['weapon-amp-kitgun-component', item => ['Amp', 'Kitgun Component', 'K-Drive Component', 'Pistol', 'Rifle'].includes(item.type)
-    && !/Arcane Adapter$/i.test(item.name || '')],
+    && !/Arcane Adapter$/i.test(item.name || '')
+    && item.uniqueName !== '/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst'],
   ['ship-or-ship-component', item => ['Ship Segment', 'Orbiter', 'Extractor'].includes(item.type)
     || /\/Types\/(?:Items\/Ships|Ship\/|Game\/CrewShip\/Ships)\//i.test(item.uniqueName || '')],
   ['fusion-or-reward-bundle', item => /(?:FusionBundles?|RewardBundles?|Randomized\/Raw)/i.test(`${item.uniqueName} ${item.name}`)],
@@ -55,6 +56,8 @@ const EXCLUSIONS = Object.freeze([
 function allowedSemanticKind(item, sourceCategory) {
   const type = String(item.type || '');
   if (sourceCategory === 'Misc' && /Arcane Adapter$/i.test(item.name || '')) return 'upgrade-item';
+  // Gravimag 的上游 type 错标为 Rifle，但它是安装在曲翼枪械上的一次性升级物品。
+  if (sourceCategory === 'Misc' && item.uniqueName === '/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst') return 'upgrade-item';
   if (!ALLOWED_TYPES[sourceCategory]?.has(type)) {
     if (sourceCategory === 'Misc' && type === 'Misc') {
       const text = `${item.name || ''} ${item.uniqueName || ''}`;

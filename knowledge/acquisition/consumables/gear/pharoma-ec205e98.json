@@ -1,0 +1,211 @@
+{
+  "id": "knowledge.acquisition.consumable.pharoma-ec205e98",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Pharoma",
+  "subject": {
+    "canonical": "Pharoma",
+    "displayName": "芳香信息素",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/FishingBoosts/SoftTouch",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "A compound that relaxes nearby fish.\n\nObtained from Fisher Hai-Luk in Cetus (Earth).",
+    "display": "一种可以让附近的鱼放松的混合物。\n\n从希图斯（地球）的渔人海露处获得。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "craftable",
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "芳香信息素"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "希图斯的渔人海露",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Pharoma",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+            "/Lotus/Types/Items/MiscItems/AlloyPlate"
+          ],
+          "variables": {
+            "productName": "芳香信息素",
+            "outputQuantity": 10,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+                "displayName": "伊莱体",
+                "amount": 10
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+                "displayName": "合金板",
+                "amount": 10
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint",
+          "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/FishingBoosts/SoftTouch",
+          "blueprintCanonical": "SoftTouchBlueprint",
+          "outputQuantity": 10,
+          "credits": 5000,
+          "buildTimeSeconds": 300,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+              "canonical": "Iradite",
+              "displayName": "伊莱体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+              "canonical": "Alloy Plate",
+              "displayName": "合金板",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint",
+      "resultUniqueName": "/Lotus/Types/Restoratives/Consumable/FishingBoosts/SoftTouch",
+      "blueprintCanonical": "SoftTouchBlueprint",
+      "outputQuantity": 10,
+      "credits": 5000,
+      "buildTimeSeconds": 300,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Eidolon/Resources/IraditeItem",
+          "canonical": "Iradite",
+          "displayName": "伊莱体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+          "canonical": "Alloy Plate",
+          "displayName": "合金板",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Items/Fish/Eidolon/Boosters/SoftTouchBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "一种可以让附近的鱼放松的混合物。\n\n从希图斯（地球）的渔人海露处获得。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

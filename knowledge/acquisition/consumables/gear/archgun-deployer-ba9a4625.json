@@ -1,0 +1,91 @@
+{
+  "id": "knowledge.acquisition.consumable.archgun-deployer-ba9a4625",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Archgun Deployer",
+  "subject": {
+    "canonical": "Archgun Deployer",
+    "displayName": "曲翼枪械设置器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/HeavyWeaponSummon",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.quest"
+    ]
+  },
+  "description": {
+    "canonical": "Deploy the selected archwing gun in any atmospheric environment using this gear item.",
+    "display": "使用此装备道具来在任何大气环境下使用选定的曲翼枪械。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "quest",
+          "partRefs": [],
+          "variables": {
+            "itemName": "曲翼枪械设置器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "quest-reward",
+              "scope": "item",
+              "questDisplayName": "利润收割者抢劫第 3 阶段",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "installed-warframe-items",
+                "field": "official item identity and Gravimag progression"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "使用此装备道具来在任何大气环境下使用选定的曲翼枪械。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

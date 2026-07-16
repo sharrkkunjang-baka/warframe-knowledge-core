@@ -1,0 +1,93 @@
+{
+  "id": "knowledge.acquisition.consumable.beckonsnare-01830c83",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Beckonsnare",
+  "subject": {
+    "canonical": "Beckonsnare",
+    "displayName": "引诱陷阱",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Restoratives/Consumable/Eidolon/LandscapeTrapLightGear",
+    "categoryRefs": [
+      "consumable.gear",
+      "acquisition.vendor"
+    ]
+  },
+  "description": {
+    "canonical": "Field-and-forget, the Beckonsnare emits an ultrasonic frequency enticing to targeted lifeforms. Upon entering they are comfortably contained within a one-way photon fence for easy collection at your convenience.",
+    "display": "一种采田忘野的装备，引诱陷阱可发出对目标生命体具有吸引力的超声波频率。目标进入后，它们轻松地被圈在一个单向光子围栏内，以便您轻松采收。"
+  },
+  "classification": {
+    "type": "gear",
+    "semanticKinds": [
+      "gear"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "vendor",
+          "partRefs": [],
+          "variables": {
+            "itemName": "引诱陷阱"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "item",
+              "sourceDisplayName": "希图斯的驯兽师泰森盖",
+              "npcId": "npc.master-teasonai",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE item family",
+                "field": "Eidolon landscape conservation gear"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        }
+      ],
+      "recipes": []
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "一种采田忘野的装备，引诱陷阱可发出对目标生命体具有吸引力的超声波频率。目标进入后，它们轻松地被圈在一个单向光子围栏内，以便您轻松采收。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": false,
+    "crafting": true
+  }
+}

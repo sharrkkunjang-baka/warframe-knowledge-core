@@ -1,0 +1,290 @@
+{
+  "id": "knowledge.acquisition.consumable.gravimag-2da32fa5",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Gravimag",
+  "subject": {
+    "canonical": "Gravimag",
+    "displayName": "重力磁抵器",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.mission",
+      "acquisition.vendor",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "Allows archwing guns to be deployed in terrestrial zones. Install this device on archwing guns to compensate for atmospheric and gravitational forces not experienced in space.\nNOTE: Deployment requires gear obtained from the Profit-Taker mission in Fortuna.",
+    "display": "允许曲翼枪械在陆地区域使用。陆地环境中存在着太空环境所没有的大气压力与重力，在曲翼枪械上安装这个装置就能抵消上述差异所带来的绝大部分影响。\n注意：在部署时需要用到福尔图娜的利润收割者任务中取得的道具。"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "craftable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "item",
+          "category": "mission",
+          "partRefs": [],
+          "variables": {
+            "itemName": "重力磁抵器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "partRefs": [],
+              "sourceCanonical": "Fortuna/Level 50 - 70 Orb Vallis Bounty",
+              "sourceDisplayName": "福尔图娜合一众赏金",
+              "sourceLocalizationStatus": "official-zh",
+              "locationId": "bounty.fortuna-narmer",
+              "missionTypeId": "mission-type.narmer-bounty",
+              "chance": 1,
+              "sourceDropChance": null,
+              "conditionalChance": null,
+              "rotation": "C",
+              "stage": "Final Stage",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE Official Drop Tables",
+                "section": "Bounty Rewards",
+                "sectionId": "solarisRewards"
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "item",
+              "sourceCanonical": "Phase 3 of the Profit-Taker Orb Heist",
+              "sourceDisplayName": "利润收割者抢劫第 3 阶段",
+              "chance": 1,
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "page": "Gravimag",
+                "section": "Acquisition"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "blueprint",
+          "category": "vendor",
+          "partRefs": [
+            "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint"
+          ],
+          "variables": {
+            "itemName": "重力磁抵器"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceDisplayName": "商店",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint",
+                "field": "creditsCost"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetAItem",
+            "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetBItem",
+            "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetCItem"
+          ],
+          "variables": {
+            "productName": "重力磁抵器",
+            "outputQuantity": 1,
+            "blueprintReusable": false
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetAItem",
+                "displayName": "陀螺磁抵系统",
+                "amount": 10
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetBItem",
+                "displayName": "大气系统",
+                "amount": 5
+              },
+              {
+                "itemId": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetCItem",
+                "displayName": "斥极系统",
+                "amount": 2
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst",
+          "blueprintCanonical": "HeavyWeaponCatalystBlueprint",
+          "outputQuantity": 1,
+          "credits": 25000,
+          "buildTimeSeconds": 86400,
+          "consumeOnBuild": true,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 35000,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetAItem",
+              "canonical": "Gyromag Systems",
+              "displayName": "陀螺磁抵系统",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 10
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetBItem",
+              "canonical": "Atmo Systems",
+              "displayName": "大气系统",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 5
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetCItem",
+              "canonical": "Repeller Systems",
+              "displayName": "斥极系统",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/MiscItems/HeavyWeaponCatalyst",
+      "blueprintCanonical": "HeavyWeaponCatalystBlueprint",
+      "outputQuantity": 1,
+      "credits": 25000,
+      "buildTimeSeconds": 86400,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 35000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetAItem",
+          "canonical": "Gyromag Systems",
+          "displayName": "陀螺磁抵系统",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 10
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetBItem",
+          "canonical": "Atmo Systems",
+          "displayName": "大气系统",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 5
+        },
+        {
+          "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetCItem",
+          "canonical": "Repeller Systems",
+          "displayName": "斥极系统",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/ArchwingRecipes/HeavyWeaponCatalystBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "允许曲翼枪械在陆地区域使用。陆地环境中存在着太空环境所没有的大气压力与重力，在曲翼枪械上安装这个装置就能抵消上述差异所带来的绝大部分影响。\n注意：在部署时需要用到福尔图娜的利润收割者任务中取得的道具。",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}

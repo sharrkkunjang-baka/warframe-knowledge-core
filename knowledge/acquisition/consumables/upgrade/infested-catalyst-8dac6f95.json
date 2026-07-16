@@ -1,0 +1,232 @@
+{
+  "id": "knowledge.acquisition.consumable.infested-catalyst-8dac6f95",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Infested Catalyst",
+  "subject": {
+    "canonical": "Infested Catalyst",
+    "displayName": "Infested 催化剂",
+    "category": "consumable",
+    "officialUniqueName": "/Lotus/Types/Items/Eidolon/InfestedEventClanIngredient",
+    "categoryRefs": [
+      "consumable.upgrade",
+      "acquisition.dojo",
+      "acquisition.crafting"
+    ]
+  },
+  "description": {
+    "canonical": "This refined toxin catalyst has been formulated to reinforce the Thrax Toxin and maximize damage to the Infested boil in Plague Star bounties.\n\nLocation: Bio Lab in Clan Dojo",
+    "display": "这种精制毒素催化剂的配方，可强化瑟拉斯毒素，并在《瘟疫之星》赏金任务中最大限度地提高对感染疖瘤产生的伤害。\n\n获取地点：氏族道场的生物实验室"
+  },
+  "classification": {
+    "type": "upgrade",
+    "semanticKinds": [
+      "craftable",
+      "upgrade-item"
+    ]
+  },
+  "consumableAcquisition": {
+    "generated": {
+      "routes": [
+        {
+          "scope": "blueprint",
+          "category": "dojo",
+          "partRefs": [
+            "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint"
+          ],
+          "variables": {
+            "itemName": "Infested 催化剂"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "methods": [
+            {
+              "type": "dojo-research",
+              "scope": "blueprint",
+              "sourceDisplayName": "生物实验室",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE official item description"
+              }
+            }
+          ],
+          "status": "complete",
+          "evidence": []
+        },
+        {
+          "scope": "components",
+          "category": "crafting",
+          "partRefs": [
+            "/Lotus/Types/Items/MiscItems/Plastids",
+            "/Lotus/Types/Items/MiscItems/Ferrite",
+            "/Lotus/Types/Items/MiscItems/Nanospores"
+          ],
+          "variables": {
+            "productName": "Infested 催化剂",
+            "outputQuantity": 5,
+            "blueprintReusable": true
+          },
+          "requirements": {
+            "type": "item",
+            "recipeId": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint",
+            "items": [
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Plastids",
+                "displayName": "生物质",
+                "amount": 500
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Ferrite",
+                "displayName": "铁氧体",
+                "amount": 2300
+              },
+              {
+                "itemId": "/Lotus/Types/Items/MiscItems/Nanospores",
+                "displayName": "纳米孢子",
+                "amount": 1800
+              }
+            ]
+          },
+          "methods": [
+            {
+              "type": "recipe",
+              "scope": "components",
+              "recipeId": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint",
+              "requirements": {
+                "type": "item",
+                "recipeId": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportRecipes",
+                "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint"
+              }
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint",
+          "resultUniqueName": "/Lotus/Types/Items/Eidolon/InfestedEventClanIngredient",
+          "blueprintCanonical": "InfestedEventClanIngredientBlueprint",
+          "outputQuantity": 5,
+          "credits": 500,
+          "buildTimeSeconds": 60,
+          "consumeOnBuild": false,
+          "excludeFromMarket": true,
+          "alwaysAvailable": false,
+          "marketCredits": 0,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+              "canonical": "Plastids",
+              "displayName": "生物质",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 500
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+              "canonical": "Ferrite",
+              "displayName": "铁氧体",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 2300
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+              "canonical": "Nano Spores",
+              "displayName": "纳米孢子",
+              "languageKey": null,
+              "localizationStatus": "official-zh",
+              "quantity": 1800
+            }
+          ],
+          "provenance": {
+            "source": "DE ExportRecipes",
+            "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint"
+          }
+        }
+      ]
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "methods": [],
+      "reviewedBy": []
+    }
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint",
+      "resultUniqueName": "/Lotus/Types/Items/Eidolon/InfestedEventClanIngredient",
+      "blueprintCanonical": "InfestedEventClanIngredientBlueprint",
+      "outputQuantity": 5,
+      "credits": 500,
+      "buildTimeSeconds": 60,
+      "consumeOnBuild": false,
+      "excludeFromMarket": true,
+      "alwaysAvailable": false,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+          "canonical": "Plastids",
+          "displayName": "生物质",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 500
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Ferrite",
+          "canonical": "Ferrite",
+          "displayName": "铁氧体",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2300
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/Nanospores",
+          "canonical": "Nano Spores",
+          "displayName": "纳米孢子",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 1800
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/EidolonRecipes/InfestedEventClanIngredientBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "这种精制毒素催化剂的配方，可强化瑟拉斯毒素，并在《瘟疫之星》赏金任务中最大限度地提高对感染疖瘤产生的伤害。\n\n获取地点：氏族道场的生物实验室",
+  "sources": [
+    {
+      "url": "https://github.com/WFCD/warframe-items",
+      "label": "warframe-items / DE Public Export"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "status": "complete",
+  "coverage": {
+    "identity": true,
+    "acquisition": true,
+    "blueprint": true,
+    "crafting": true
+  }
+}
