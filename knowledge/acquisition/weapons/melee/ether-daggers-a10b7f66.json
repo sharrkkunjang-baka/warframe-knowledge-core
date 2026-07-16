@@ -46,18 +46,59 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "quest",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "questCanonical": "Stolen Dreams",
+          "questDisplayName": "被偷走的梦",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.stolen-dreams"
+          },
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
+          ],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Unlock through Stolen Dreams"
+          },
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.stolen-dreams",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay"
+          },
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
+          ],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Unlock through Stolen Dreams"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "quest",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
         ],
@@ -68,8 +109,49 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "questCanonical": "Stolen Dreams",
+            "questDisplayName": "被偷走的梦",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.stolen-dreams"
+            },
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
+            ],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Unlock through Stolen Dreams"
+            },
+            "variables": {}
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.stolen-dreams",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay"
+            },
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
+            ],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Unlock through Stolen Dreams"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -176,16 +258,16 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-16",
   "reviewStatus": "review",
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
     "crafting": true
   }

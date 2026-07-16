@@ -1,0 +1,178 @@
+{
+  "id": "knowledge.acquisition.weapon.sirocco-5e978fb4",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Sirocco",
+  "subject": {
+    "canonical": "Sirocco",
+    "displayName": "赤风",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Operator/Pistols/DrifterPistol/DrifterPistolPlayerWeapon",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "description": {
+    "canonical": "A silent, pistol-style Amp for the Drifter. Generates its own ammunition from Void energy. A precisely timed reload over-charges the next shot.",
+    "display": "（英文：SIROCCO）一款为漂泊者设计的手枪式消音增幅器。从虚空能量中汲取弹药。在精准的时机进行装填会使下一次射击获得额外充能。",
+    "localizationStatus": "official-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "SEMI",
+          "projectileSpeed": null,
+          "totalDamage": 2000,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "quest"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "quest-reward",
+          "questCanonical": "The New War",
+          "questDisplayName": "新纪之战",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-new-war"
+          },
+          "scope": "item",
+          "partRefs": [],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete The New War"
+          },
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-new-war",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay"
+          },
+          "scope": "item",
+          "partRefs": [],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete The New War"
+          },
+          "variables": {}
+        }
+      ]
+    },
+    "routes": [
+      {
+        "scope": "item",
+        "category": "quest",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "赤风"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "quest-reward",
+            "questCanonical": "The New War",
+            "questDisplayName": "新纪之战",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-new-war"
+            },
+            "scope": "item",
+            "partRefs": [],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete The New War"
+            },
+            "variables": {}
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-new-war",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay"
+            },
+            "scope": "item",
+            "partRefs": [],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete The New War"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "（英文：SIROCCO）一款为漂泊者设计的手枪式消音增幅器。从虚空能量中汲取弹药。在精准的时机进行装填会使下一次射击获得额外充能。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": true,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": true,
+    "blueprint": false,
+    "components": [],
+    "crafting": false
+  }
+}

@@ -46,18 +46,60 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
+      "quest",
       "unresolved",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "questCanonical": "The War Within",
+          "questDisplayName": "内战",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-war-within"
+          },
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
+          ],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+          },
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-war-within",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay"
+          },
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
+          ],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "quest",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
         ],
@@ -68,8 +110,49 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "questCanonical": "The War Within",
+            "questDisplayName": "内战",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-war-within"
+            },
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
+            ],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+            },
+            "variables": {}
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-war-within",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay"
+            },
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
+            ],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -206,7 +289,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-16",
   "reviewStatus": "review",
   "reviewedBy": [],
   "status": "review-required",
@@ -215,7 +298,7 @@
     "auditedComplete": false,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade",

@@ -46,18 +46,204 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved",
+      "quest",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+          ],
+          "questCanonical": "The Deadlock Protocol",
+          "questDisplayName": "僵局协议",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-deadlock-protocol"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {},
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+          ],
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-deadlock-protocol",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {},
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "quest-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade"
+          ],
+          "questCanonical": "The Deadlock Protocol",
+          "questDisplayName": "僵局协议",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-deadlock-protocol"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {
+            "partName": "驱魔之刃 刀刃"
+          },
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade"
+          ],
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-deadlock-protocol",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 15000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {
+            "partName": "驱魔之刃 刀刃"
+          },
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "quest-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore"
+          ],
+          "questCanonical": "The Deadlock Protocol",
+          "questDisplayName": "僵局协议",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-deadlock-protocol"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {
+            "partName": "驱魔之刃 核心"
+          },
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore"
+          ],
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-deadlock-protocol",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 15000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {
+            "partName": "驱魔之刃 核心"
+          },
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "quest-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle"
+          ],
+          "questCanonical": "The Deadlock Protocol",
+          "questDisplayName": "僵局协议",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-deadlock-protocol"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {
+            "partName": "驱魔之刃 握柄"
+          },
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        },
+        {
+          "type": "vendor-exchange",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle"
+          ],
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-deadlock-protocol",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 15000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+          },
+          "variables": {
+            "partName": "驱魔之刃 握柄"
+          },
+          "displayGroupId": "xoris-quest-and-simaris",
+          "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+        }
+      ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "unresolved",
+        "category": "quest",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
         ],
@@ -68,53 +254,241 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+            ],
+            "questCanonical": "The Deadlock Protocol",
+            "questDisplayName": "僵局协议",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-deadlock-protocol"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {},
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/CrpGhostCatcherGlaiveBlueprint"
+            ],
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-deadlock-protocol",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {},
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade"
         ],
         "variables": {
-          "partName": "CrpGhostCatcherGlaivePartBlade"
+          "partName": "驱魔之刃 刀刃"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade"
+            ],
+            "questCanonical": "The Deadlock Protocol",
+            "questDisplayName": "僵局协议",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-deadlock-protocol"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {
+              "partName": "驱魔之刃 刀刃"
+            },
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade"
+            ],
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-deadlock-protocol",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 15000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {
+              "partName": "驱魔之刃 刀刃"
+            },
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore"
         ],
         "variables": {
-          "partName": "CrpGhostCatcherGlaivePartCore"
+          "partName": "驱魔之刃 核心"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore"
+            ],
+            "questCanonical": "The Deadlock Protocol",
+            "questDisplayName": "僵局协议",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-deadlock-protocol"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {
+              "partName": "驱魔之刃 核心"
+            },
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore"
+            ],
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-deadlock-protocol",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 15000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {
+              "partName": "驱魔之刃 核心"
+            },
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
-        "category": "unresolved",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle"
         ],
         "variables": {
-          "partName": "CrpGhostCatcherGlaivePartHandle"
+          "partName": "驱魔之刃 握柄"
         },
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle"
+            ],
+            "questCanonical": "The Deadlock Protocol",
+            "questDisplayName": "僵局协议",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-deadlock-protocol"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {
+              "partName": "驱魔之刃 握柄"
+            },
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          },
+          {
+            "type": "vendor-exchange",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle"
+            ],
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-deadlock-protocol",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 15000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE The Deadlock Protocol quest reward and Cephalon Simaris quest-reward repurchase record"
+            },
+            "variables": {
+              "partName": "驱魔之刃 握柄"
+            },
+            "displayGroupId": "xoris-quest-and-simaris",
+            "displaySummary": "总图与部件：完成任务「僵局协议」获得；完成后可在任意中继站找中枢 Simaris 回购（总图 100,000 声望，各部件 15,000 声望）"
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -147,7 +521,7 @@
             }
           }
         ],
-        "status": "review-required"
+        "status": "complete"
       }
     ]
   },
@@ -166,25 +540,25 @@
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade",
           "canonical": "CrpGhostCatcherGlaivePartBlade",
-          "displayName": "",
+          "displayName": "驱魔之刃 刀刃",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-audited",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore",
           "canonical": "CrpGhostCatcherGlaivePartCore",
-          "displayName": "",
+          "displayName": "驱魔之刃 核心",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-audited",
           "quantity": 1
         },
         {
           "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle",
           "canonical": "CrpGhostCatcherGlaivePartHandle",
-          "displayName": "",
+          "displayName": "驱魔之刃 握柄",
           "languageKey": null,
-          "localizationStatus": "official-zh-unavailable",
+          "localizationStatus": "official-audited",
           "quantity": 1
         }
       ],
@@ -212,30 +586,32 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-15",
-  "reviewStatus": "review",
-  "reviewedBy": [],
-  "status": "review-required",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-weapon-source-audit"
+  ],
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
-    "blueprint": false,
+    "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartCore",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpGhostCatcherGlaivePartHandle",
-        "complete": false
+        "complete": true
       }
     ],
-    "crafting": false
+    "crafting": true
   }
 }

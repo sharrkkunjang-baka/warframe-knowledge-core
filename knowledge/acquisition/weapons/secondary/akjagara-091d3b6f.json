@@ -1,0 +1,183 @@
+{
+  "id": "knowledge.acquisition.weapon.akjagara-091d3b6f",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Akjagara",
+  "subject": {
+    "canonical": "Akjagara",
+    "displayName": "觉醒双枪",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Pistols/TigrisRedeemerSetPistol/TnoBladedPistols",
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "description": {
+    "canonical": "The design of these hard-hitting dual pistols is a mix of organic and bladed elements.",
+    "display": "（英文：AKJAGARA）这组重击双手枪的设计是有机体和刀片元素的结合。",
+    "localizationStatus": "official-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.secondary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "secondary",
+    "omegaAttenuation": 1.1,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": "BURST",
+          "projectileSpeed": null,
+          "totalDamage": 36,
+          "range": null
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint"
+        ],
+        "variables": {
+          "weaponName": "觉醒双枪",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Weapons/Tenno/Akimbo/AkimboBolto",
+          "/Lotus/Weapons/Tenno/Melee/DualShortSword/DualShortSword",
+          "/Lotus/Types/Items/MiscItems/OrokinCell"
+        ],
+        "variables": {
+          "productName": "觉醒双枪"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Pistols/TigrisRedeemerSetPistol/TnoBladedPistols",
+      "blueprintCanonical": "TnoBladedPistolsBlueprint",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "excludeFromMarket": false,
+      "marketCredits": 20000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Weapons/Tenno/Akimbo/AkimboBolto",
+          "canonical": "Akbolto",
+          "displayName": "螺钉双枪",
+          "languageKey": "/Lotus/Language/Items/AkimboBoltoName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Weapons/Tenno/Melee/DualShortSword/DualShortSword",
+          "canonical": "Dual Skana",
+          "displayName": "空刃双刀",
+          "languageKey": "/Lotus/Language/Items/DualShortSwordName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/TnoBladedPistolsBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "（英文：AKJAGARA）这组重击双手枪的设计是有机体和刀片元素的结合。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [],
+    "crafting": true
+  }
+}

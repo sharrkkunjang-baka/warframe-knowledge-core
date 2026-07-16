@@ -1,0 +1,399 @@
+{
+  "id": "knowledge.acquisition.weapon.corufell-d74a9080",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Corufell",
+  "subject": {
+    "canonical": "Corufell",
+    "displayName": "闪劫",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ExaltedArchScythe/ExaltedAWScytheWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "description": {
+    "canonical": "Heavy attacks briefly transform the Corufell into a Gunblade. After the Gunblade fires, the Corufell returns to its Heavy Scythe state. Its transformation is fastest in Citrine's hands.",
+    "display": "（英文：CORUFELL）重击会在短时间内将闪劫变形为一把枪刃。枪刃开火后，闪劫返回其重型镰刀状态。Citrine 使用时，它的变形速度最为快速。",
+    "localizationStatus": "official-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 1.05,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 200,
+          "range": 2.6
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "official-drop",
+      "unresolved",
+      "crafting"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "mission-reward",
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+          ],
+          "sourceCanonical": "Mars/Tyana Pass (Defense)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": "mission.tyana-pass-solnode450",
+          "missionTypeId": "mission-type.defense",
+          "chance": 0.1,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": "A",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle"
+          ],
+          "sourceCanonical": "Mars/Tyana Pass (Defense)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": "mission.tyana-pass-solnode450",
+          "missionTypeId": "mission-type.defense",
+          "chance": 0.08,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": "B",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        },
+        {
+          "type": "mission-reward",
+          "scope": "component",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver"
+          ],
+          "sourceCanonical": "Mars/Tyana Pass (Defense)",
+          "sourceDisplayName": "",
+          "sourceLocalizationStatus": "official-zh-unavailable",
+          "locationId": "mission.tyana-pass-solnode450",
+          "missionTypeId": "mission-type.defense",
+          "chance": 0.08,
+          "sourceDropChance": null,
+          "conditionalChance": null,
+          "rotation": "B",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "review-required",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "section": "Missions"
+          }
+        }
+      ]
+    },
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+        ],
+        "variables": {
+          "weaponName": "闪劫",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+            ],
+            "sourceCanonical": "Mars/Tyana Pass (Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.tyana-pass-solnode450",
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.1,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "A",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade"
+        ],
+        "variables": {
+          "partName": "GunScytheBlade"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle"
+        ],
+        "variables": {
+          "partName": "闪劫 握柄"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle"
+            ],
+            "sourceCanonical": "Mars/Tyana Pass (Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.tyana-pass-solnode450",
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.08,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver"
+        ],
+        "variables": {
+          "partName": "闪劫 枪机"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "scope": "component",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver"
+            ],
+            "sourceCanonical": "Mars/Tyana Pass (Defense)",
+            "sourceDisplayName": "",
+            "sourceLocalizationStatus": "official-zh-unavailable",
+            "locationId": "mission.tyana-pass-solnode450",
+            "missionTypeId": "mission-type.defense",
+            "chance": 0.08,
+            "sourceDropChance": null,
+            "conditionalChance": null,
+            "rotation": "B",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "review-required",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "section": "Missions"
+            }
+          }
+        ],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver",
+          "/Lotus/Types/Items/MiscItems/OrokinCell"
+        ],
+        "variables": {
+          "productName": "闪劫"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+            }
+          }
+        ],
+        "status": "review-required"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/ExaltedArchScythe/ExaltedAWScytheWeapon",
+      "blueprintCanonical": "GunScytheBlueprint",
+      "outputQuantity": 1,
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 0,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade",
+          "canonical": "GunScytheBlade",
+          "displayName": "",
+          "languageKey": null,
+          "localizationStatus": "official-zh-unavailable",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle",
+          "canonical": "Corufell Handle",
+          "displayName": "闪劫 握柄",
+          "languageKey": "/Lotus/Language/LastWish/GunScytheHandleName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver",
+          "canonical": "Corufell Receiver",
+          "displayName": "闪劫 枪机",
+          "languageKey": "/Lotus/Language/LastWish/GunScytheReceiverName",
+          "localizationStatus": "official-zh",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "canonical": "Orokin Cell",
+          "displayName": "Orokin 电池",
+          "languageKey": null,
+          "localizationStatus": "official-zh",
+          "quantity": 3
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/GunScytheBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "（英文：CORUFELL）重击会在短时间内将闪劫变形为一把枪刃。枪刃开火后，闪劫返回其重型镰刀状态。Citrine 使用时，它的变形速度最为快速。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheHandle",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/GunScytheReceiver",
+        "complete": false
+      }
+    ],
+    "crafting": false
+  }
+}

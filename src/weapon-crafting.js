@@ -23,7 +23,7 @@ function createCraftingGraph(entries = []) {
 
 function renderRecipe(recipe, identity) {
   const name = identity?.subject?.displayName || identity?.subject?.canonical || recipe.resultUniqueName
-  const unresolved = recipe.ingredients.filter(item => item.localizationStatus !== 'official-zh')
+  const unresolved = recipe.ingredients.filter(item => !/^official-(?:zh|audited)$/.test(item.localizationStatus))
   if (unresolved.length) return `${name}的 DE 官方配方已收录，但有 ${unresolved.length} 项材料尚未接入官方简中身份，当前保持待审，禁止输出英文材料名。`
   const ingredients = recipe.ingredients.map(item => `${item.displayName} ×${item.quantity}`).join('、')
   return `${name}如何合成：${ingredients || '官方配方未列出材料'}${recipe.credits ? `；制造费用 ${recipe.credits} 星币` : ''}${recipe.buildTimeSeconds ? `；耗时 ${recipe.buildTimeSeconds} 秒` : ''}`

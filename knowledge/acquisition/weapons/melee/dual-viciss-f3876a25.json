@@ -1,0 +1,213 @@
+{
+  "id": "knowledge.acquisition.weapon.dual-viciss-f3876a25",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Dual Viciss",
+  "subject": {
+    "canonical": "Dual Viciss",
+    "displayName": "双子恶行",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Lasria/LasGooSickle/LasGooSicklePlayerWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "description": {
+    "canonical": "Reap what the Techrot have sown with this vicious pair of Scaldra hand-scythes.",
+    "display": "（英文：DUAL VICISS）用这对凶恶的炽蛇军镰刀来收获科腐者所播种的恶果。",
+    "localizationStatus": "official-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": 0.8,
+    "disposition": null,
+    "attackClassification": {
+      "modes": [
+        {
+          "trigger": null,
+          "projectileSpeed": null,
+          "totalDamage": 255,
+          "range": 2.4
+        }
+      ],
+      "hitscan": "unknown",
+      "projectile": "unknown",
+      "aoe": "unknown",
+      "punchThrough": "unknown",
+      "lockOn": "review-required",
+      "tracking": "review-required",
+      "medium": "review-required"
+    }
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "unresolved",
+      "crafting"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": []
+    },
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
+        ],
+        "variables": {
+          "weaponName": "双子恶行",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
+        ],
+        "variables": {
+          "partName": "双子恶行 刀刃"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "component",
+        "category": "unresolved",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
+        ],
+        "variables": {
+          "partName": "双子恶行 握柄"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [],
+        "status": "review-required"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
+        ],
+        "variables": {
+          "productName": "双子恶行"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
+            }
+          }
+        ],
+        "status": "complete"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint",
+      "resultUniqueName": "/Lotus/Weapons/Lasria/LasGooSickle/LasGooSicklePlayerWeapon",
+      "blueprintCanonical": "LasGooSicklesPlayerWeaponBlueprint",
+      "outputQuantity": 1,
+      "credits": 20000,
+      "buildTimeSeconds": 43200,
+      "consumeOnBuild": true,
+      "excludeFromMarket": true,
+      "marketCredits": 30000,
+      "ingredients": [
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade",
+          "canonical": "Dual Viciss Blade",
+          "displayName": "双子恶行 刀刃",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooSicklesPlayerWeaponBlade",
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt",
+          "canonical": "Dual Viciss Hilt",
+          "displayName": "双子恶行 握柄",
+          "languageKey": "/Lotus/Language/Weapons/CraftingComponent_LasGooSicklesPlayerWeaponHilt",
+          "localizationStatus": "official-zh",
+          "quantity": 2
+        }
+      ],
+      "provenance": {
+        "source": "DE ExportRecipes",
+        "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
+      }
+    }
+  ],
+  "prerequisites": [],
+  "methodRefs": [],
+  "summary": "（英文：DUAL VICISS）用这对凶恶的炽蛇军镰刀来收获科腐者所播种的恶果。",
+  "sources": [
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportWeapons.json",
+      "label": "DE ExportWeapons"
+    },
+    {
+      "url": "https://browse.wf/warframe-public-export-plus/ExportRecipes.json",
+      "label": "DE ExportRecipes"
+    },
+    {
+      "url": "https://www.warframe.com/droptables",
+      "label": "DE Official Drop Tables"
+    }
+  ],
+  "gameVersion": "current",
+  "updatedAt": "2026-07-16",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
+  "coverage": {
+    "autoComplete": false,
+    "auditedComplete": false,
+    "description": true,
+    "directItem": false,
+    "blueprint": false,
+    "components": [
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade",
+        "complete": false
+      },
+      {
+        "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt",
+        "complete": false
+      }
+    ],
+    "crafting": true
+  }
+}

@@ -16,17 +16,21 @@ const URLS = Object.freeze({ weapons: 'https://browse.wf/warframe-public-export-
 function read(file) { return JSON.parse(fs.readFileSync(file, 'utf8')) }
 function sha(file) { return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex') }
 function serialize(value) { return JSON.stringify(value, null, 2) + '\n' }
+const PLAYER_WEAPON_CATEGORIES = Object.freeze({
+  Melee: 'melee', DrifterMelee: 'melee', Pistols: 'secondary', LongGuns: 'primary',
+  SpaceGuns: 'arch-gun', SpaceMelee: 'arch-melee', OperatorAmps: 'secondary', SentinelWeapons: 'companion'
+})
 function classify(uniqueName, weapon) {
+  const category = weapon.productCategory || ''
+  const equipmentType = PLAYER_WEAPON_CATEGORIES[category]
+  if (!equipmentType) return { include: false, reason: category === 'SpecialItems' ? 'non-weapon-special-item' : 'unsupported-product-category' }
   const text = `${uniqueName} ${weapon.parentName || ''}`
-  if (/Powersuits|Exalted|Ability|NPC|Enemies|SentientWeapon|Operator/i.test(text)) return { include: false, reason: 'exalted-enemy-or-internal' }
-  if (/Zaw|Modular|Kitgun|Amp|OperatorAmp/i.test(text)) return { include: false, reason: 'modular-component-or-assembled-instance' }
+  if (/\/Powersuits\/|\/Abilities\/|\/NPCs?\/|\/Enemies\//i.test(text)) return { include: false, reason: 'exalted-enemy-or-internal' }
+  if (/\/Types\/Friendly\/Pets\//i.test(text)) return { include: false, reason: 'companion-or-component' }
+  if (/\/Zaw\/|\/ModularMelee\d*\/(?:Tip|Handle|Balance)\/|\/OperatorAmplifiers\/(?:Prisms|Scaffolds|Grips)\//i.test(text)) return { include: false, reason: 'modular-component-or-assembled-instance' }
   if (weapon.codexSecret && !weapon.masteryReq && !weapon.omegaAttenuation && !weapon.totalDamage) return { include: false, reason: 'internal-placeholder' }
-  if (/Archwing.*Melee|ArchMelee/i.test(text)) return { include: true, equipmentType: 'arch-melee' }
-  if (/Archwing|SpaceGun|ArchGun/i.test(text)) return { include: true, equipmentType: 'arch-gun' }
-  if (/Sentinel|Companion|Pet/i.test(text)) return { include: true, equipmentType: 'companion' }
-  if (/Melee|Sword|Blade|Scythe|Hammer|Staff|Polearm|Fist|Claw|Glaive|Dagger|Tonfa|Nikana|Whip/i.test(text)) return { include: true, equipmentType: 'melee' }
-  if (/Pistol|Secondary|Akimbo|Thrown/i.test(text)) return { include: true, equipmentType: 'secondary' }
-  return { include: true, equipmentType: 'primary' }
+  if (!Number(weapon.totalDamage) && !Object.keys(weapon.fireModes || {}).length && !Array.isArray(weapon.behaviours)) return { include: false, reason: 'non-functional-placeholder' }
+  return { include: true, equipmentType }
 }
 function attackClassification(weapon) {
   const modes = Object.values(weapon.fireModes || {}).length ? Object.values(weapon.fireModes) : [weapon]
@@ -68,4 +72,4 @@ function build(generatedAt = new Date().toISOString()) {
 }
 function run(argv=process.argv.slice(2)) { const check=argv.includes('--check'), current=fs.existsSync(OUTPUT)?read(OUTPUT):null, built=build(check&&current?.generatedAt?current.generatedAt:undefined); if(check){if(serialize(current)!==serialize(built.catalog)||serialize(fs.existsSync(SOURCES)?read(SOURCES):null)!==serialize(built.sources))throw new Error('官方武器目录已漂移');console.log(`官方武器目录无漂移：${built.catalog.counts.included} 项`);return built} fs.mkdirSync(path.dirname(OUTPUT),{recursive:true});fs.writeFileSync(OUTPUT,serialize(built.catalog));fs.writeFileSync(SOURCES,serialize(built.sources));console.log(`已生成 ${built.catalog.counts.included} 个武器身份；排除 ${built.catalog.counts.excluded}`);return built }
 if(require.main===module){try{run()}catch(e){console.error(e.stack||e);process.exit(1)}}
-module.exports={URLS,classify,attackClassification,build,run}
+module.exports={URLS,PLAYER_WEAPON_CATEGORIES,classify,attackClassification,build,run}

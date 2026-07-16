@@ -72,6 +72,46 @@
           }
         },
         {
+          "type": "quest-reward",
+          "questCanonical": "Erra (Quest)",
+          "questDisplayName": "Erra",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.erra"
+          },
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+          ],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete Erra (Quest)"
+          },
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.erra",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay"
+          },
+          "scope": "blueprint",
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+          ],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete Erra (Quest)"
+          },
+          "variables": {}
+        },
+        {
           "type": "enemy-drop",
           "scope": "component",
           "partRefs": [
@@ -200,6 +240,46 @@
               "source": "DE ExportKeys",
               "questUniqueName": "/Lotus/Types/Keys/NewWarIntroQuest/NewWarIntroKeyChain"
             }
+          },
+          {
+            "type": "quest-reward",
+            "questCanonical": "Erra (Quest)",
+            "questDisplayName": "Erra",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.erra"
+            },
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+            ],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete Erra (Quest)"
+            },
+            "variables": {}
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.erra",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay"
+            },
+            "scope": "blueprint",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SheduHeavyWeaponBlueprint"
+            ],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete Erra (Quest)"
+            },
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -469,7 +549,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-16",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-weapon-source-audit"

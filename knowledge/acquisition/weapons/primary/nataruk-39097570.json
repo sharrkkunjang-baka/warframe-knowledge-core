@@ -46,17 +46,54 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "unresolved"
+      "quest"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "questCanonical": "The New War",
+          "questDisplayName": "新纪之战",
+          "requirements": {
+            "type": "quest",
+            "questId": "quest.the-new-war"
+          },
+          "scope": "item",
+          "partRefs": [],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete The New War"
+          },
+          "variables": {}
+        },
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "prerequisiteQuestId": "quest.the-new-war",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay"
+          },
+          "scope": "item",
+          "partRefs": [],
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "compiled-simaris-weapon-sources",
+            "sourceCanonical": "Cephalon Simaris, Complete The New War"
+          },
+          "variables": {}
+        }
+      ]
     },
     "routes": [
       {
         "scope": "item",
-        "category": "unresolved",
+        "category": "quest",
         "partRefs": [],
         "variables": {
           "weaponName": "太始弓"
@@ -64,8 +101,45 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "quest-reward",
+            "questCanonical": "The New War",
+            "questDisplayName": "新纪之战",
+            "requirements": {
+              "type": "quest",
+              "questId": "quest.the-new-war"
+            },
+            "scope": "item",
+            "partRefs": [],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete The New War"
+            },
+            "variables": {}
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "prerequisiteQuestId": "quest.the-new-war",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay"
+            },
+            "scope": "item",
+            "partRefs": [],
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "compiled-simaris-weapon-sources",
+              "sourceCanonical": "Cephalon Simaris, Complete The New War"
+            },
+            "variables": {}
+          }
+        ],
+        "status": "complete"
       }
     ]
   },
@@ -88,15 +162,15 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-16",
   "reviewStatus": "review",
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": false
