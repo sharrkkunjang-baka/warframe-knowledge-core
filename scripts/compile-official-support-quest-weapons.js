@@ -1,0 +1,24 @@
+'use strict'
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto')
+const ROOT=path.resolve(__dirname,'..'),CATALOG=path.join(ROOT,'knowledge/generated/official-weapons.json'),RECIPES=path.join(ROOT,'cache/warframe-export-recipes.json'),KEYS=path.join(ROOT,'cache/warframe-export-keys.json'),EN=path.join(ROOT,'.cache/official-localization/languages.en.json'),ZH=path.join(ROOT,'.cache/official-localization/languages.zh.json'),OUTPUT=path.join(ROOT,'generated/official-support-quest-weapon-index.json')
+const SOURCES=Object.freeze({preSecondDream:'https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers',postSecondDream:'https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning'})
+const RECORDS=Object.freeze([
+ {weaponCanonical:'Heat Sword',questCanonical:'Once Awake',questDisplayName:'悲剧的开端',scope:'blueprint',sourceUrl:SOURCES.preSecondDream},
+ {weaponCanonical:'Imperator',questCanonical:'The Archwing',questDisplayName:'曲翼',scope:'item',sourceUrl:SOURCES.preSecondDream},
+ {weaponCanonical:'<ARCHWING> Veritux',questCanonical:'The Archwing',questDisplayName:'曲翼',scope:'item',sourceUrl:SOURCES.preSecondDream},
+ {weaponCanonical:'Ether Daggers',questCanonical:'Stolen Dreams',questDisplayName:'被偷走的梦',scope:'blueprint',sourceUrl:SOURCES.preSecondDream},
+ {weaponCanonical:'Broken War',questCanonical:'The Second Dream',questDisplayName:'第二场梦',scope:'item',sourceUrl:SOURCES.preSecondDream},
+ {weaponCanonical:'Broken Scepter',questCanonical:'The War Within',questDisplayName:'内战',scope:'item',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Orvius',questCanonical:'The War Within',questDisplayName:'内战',scope:'blueprint',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Skiajati',questCanonical:'The Sacrifice',questDisplayName:'牺牲',scope:'item',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Paracesis',questCanonical:'Chimera Prologue',questDisplayName:'虚妄嵌合序言',scope:'blueprint',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Nataruk',questCanonical:'The New War',questDisplayName:'新纪之战',scope:'item',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Rumblejack',questCanonical:'The New War',questDisplayName:'新纪之战',scope:'item',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Sirocco',questCanonical:'The New War',questDisplayName:'新纪之战',scope:'item',sourceUrl:SOURCES.postSecondDream},
+ {weaponCanonical:'Xoris',questCanonical:'The Deadlock Protocol',questDisplayName:'僵局协议',scope:'blueprint-and-components',sourceUrl:SOURCES.preSecondDream}
+])
+function read(file){return JSON.parse(fs.readFileSync(file,'utf8'))}function serialize(value){return JSON.stringify(value,null,2)+'\n'}
+function build(generatedAt=new Date().toISOString()){const catalog=read(CATALOG),recipes=read(RECIPES),keys=read(KEYS),en=read(EN),zh=read(ZH),questByCanonical=new Map(Object.entries(keys).filter(([,quest])=>Array.isArray(quest.chainStages)).map(([id,quest])=>[en[quest.name]||quest.name,{id,displayName:zh[quest.name]||''}])),byCanonical=new Map(catalog.weapons.map(item=>[item.canonical,item])),recipeByResult=new Map(Object.entries(recipes).filter(([,recipe])=>recipe.resultType).map(([id,recipe])=>[recipe.resultType,id])),byWeapon={};for(const record of RECORDS){const weapon=byCanonical.get(record.weaponCanonical);if(!weapon)throw new Error(`官方任务武器未进入目录：${record.weaponCanonical}`);const recipeId=recipeByResult.get(weapon.uniqueName)||null,quest=questByCanonical.get(record.questCanonical);if(!quest)throw new Error(`官方任务实体不存在：${record.questCanonical}`);if(quest.displayName!==record.questDisplayName)throw new Error(`官方任务中文漂移：${record.questCanonical} => ${quest.displayName}`);if(['blueprint','blueprint-and-components'].includes(record.scope)&&!recipeId)throw new Error(`官方任务武器缺配方 ID：${record.weaponCanonical}`);byWeapon[weapon.uniqueName]=[{...record,weaponUniqueName:weapon.uniqueName,recipeId,questUniqueName:quest.id,reviewStatus:'approved',provenance:{authority:'Digital Extremes Warframe Support',sourceUrl:record.sourceUrl}}]}return{schemaVersion:1,generatedAt,source:{authority:'Digital Extremes Warframe Support',urls:Object.values(SOURCES)},counts:{weapons:Object.keys(byWeapon).length,records:RECORDS.length},byWeapon}}
+function run(argv=process.argv.slice(2)){const check=argv.includes('--check'),current=fs.existsSync(OUTPUT)?read(OUTPUT):null,built=build(check&&current?.generatedAt?current.generatedAt:undefined);if(check){if(serialize(current)!==serialize(built))throw new Error('官方支持文档任务武器索引已漂移');console.log(`官方支持文档任务武器无漂移：${built.counts.weapons} 把`);return built}fs.writeFileSync(OUTPUT,serialize(built));console.log(`已编译官方支持文档任务武器：${built.counts.weapons} 把`);return built}
+if(require.main===module){try{run()}catch(error){console.error(error.stack||error);process.exit(1)}}
+module.exports={SOURCES,RECORDS,build,run}

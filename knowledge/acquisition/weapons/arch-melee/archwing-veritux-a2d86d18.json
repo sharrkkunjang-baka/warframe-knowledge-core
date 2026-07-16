@@ -55,6 +55,24 @@
       "methods": [
         {
           "type": "quest-reward",
+          "scope": "item",
+          "partRefs": [],
+          "questCanonical": "The Archwing",
+          "questDisplayName": "曲翼",
+          "questUniqueName": "/Lotus/Types/Keys/ArchwingQuest/ArchwingQuestKeyChain",
+          "requirements": {
+            "type": "quest",
+            "questName": "曲翼"
+          },
+          "variables": {},
+          "reviewStatus": "approved",
+          "provenance": {
+            "authority": "Digital Extremes Warframe Support",
+            "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
+          }
+        },
+        {
+          "type": "quest-reward",
           "questCanonical": "The Archwing (Quest)",
           "questDisplayName": "曲翼",
           "requirements": {
@@ -96,6 +114,38 @@
       ]
     },
     "routes": [
+      {
+        "scope": "item",
+        "category": "quest",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "<ARCHWING> 真理巨剑"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "item",
+            "partRefs": [],
+            "questCanonical": "The Archwing",
+            "questDisplayName": "曲翼",
+            "questUniqueName": "/Lotus/Types/Keys/ArchwingQuest/ArchwingQuestKeyChain",
+            "requirements": {
+              "type": "quest",
+              "questName": "曲翼"
+            },
+            "variables": {},
+            "reviewStatus": "approved",
+            "provenance": {
+              "authority": "Digital Extremes Warframe Support",
+              "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
+            }
+          }
+        ],
+        "status": "complete"
+      },
       {
         "scope": "blueprint",
         "category": "quest",
@@ -266,7 +316,7 @@
     "autoComplete": true,
     "auditedComplete": false,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": true,
     "components": [],
     "crafting": true

@@ -55,6 +55,24 @@
       "methods": [
         {
           "type": "quest-reward",
+          "scope": "item",
+          "partRefs": [],
+          "questCanonical": "The War Within",
+          "questDisplayName": "内战",
+          "questUniqueName": "/Lotus/Types/Keys/WarWithinQuest/WarWithinQuestKeyChain",
+          "requirements": {
+            "type": "quest",
+            "questName": "内战"
+          },
+          "variables": {},
+          "reviewStatus": "approved",
+          "provenance": {
+            "authority": "Digital Extremes Warframe Support",
+            "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
+          }
+        },
+        {
+          "type": "quest-reward",
           "questCanonical": "The War Within",
           "questDisplayName": "内战",
           "requirements": {
@@ -96,6 +114,38 @@
       ]
     },
     "routes": [
+      {
+        "scope": "item",
+        "category": "quest",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "破损珽杖"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "item",
+            "partRefs": [],
+            "questCanonical": "The War Within",
+            "questDisplayName": "内战",
+            "questUniqueName": "/Lotus/Types/Keys/WarWithinQuest/WarWithinQuestKeyChain",
+            "requirements": {
+              "type": "quest",
+              "questName": "内战"
+            },
+            "variables": {},
+            "reviewStatus": "approved",
+            "provenance": {
+              "authority": "Digital Extremes Warframe Support",
+              "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
+            }
+          }
+        ],
+        "status": "complete"
+      },
       {
         "scope": "blueprint",
         "category": "quest",
@@ -266,7 +316,7 @@
     "autoComplete": true,
     "auditedComplete": false,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": true,
     "components": [],
     "crafting": true

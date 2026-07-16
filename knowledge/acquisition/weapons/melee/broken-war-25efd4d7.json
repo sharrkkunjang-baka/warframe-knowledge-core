@@ -46,6 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
+      "quest",
       "official-drop",
       "crafting"
     ],
@@ -53,6 +54,24 @@
       "kind": "standard",
       "status": null,
       "methods": [
+        {
+          "type": "quest-reward",
+          "scope": "item",
+          "partRefs": [],
+          "questCanonical": "The Second Dream",
+          "questDisplayName": "第二场梦",
+          "questUniqueName": "/Lotus/Types/Keys/OrokinMoonQuest/OrokinMoonQuestKeyChain",
+          "requirements": {
+            "type": "quest",
+            "questName": "第二场梦"
+          },
+          "variables": {},
+          "reviewStatus": "approved",
+          "provenance": {
+            "authority": "Digital Extremes Warframe Support",
+            "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
+          }
+        },
         {
           "type": "enemy-drop",
           "scope": "blueprint",
@@ -440,6 +459,38 @@
       ]
     },
     "routes": [
+      {
+        "scope": "item",
+        "category": "quest",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "破碎的战争之剑"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "item",
+            "partRefs": [],
+            "questCanonical": "The Second Dream",
+            "questDisplayName": "第二场梦",
+            "questUniqueName": "/Lotus/Types/Keys/OrokinMoonQuest/OrokinMoonQuestKeyChain",
+            "requirements": {
+              "type": "quest",
+              "questName": "第二场梦"
+            },
+            "variables": {},
+            "reviewStatus": "approved",
+            "provenance": {
+              "authority": "Digital Extremes Warframe Support",
+              "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
+            }
+          }
+        ],
+        "status": "complete"
+      },
       {
         "scope": "blueprint",
         "category": "official-drop",
@@ -983,10 +1034,10 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": true,
     "components": [
       {

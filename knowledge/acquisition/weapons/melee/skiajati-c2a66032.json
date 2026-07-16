@@ -46,15 +46,67 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
+      "quest",
       "unresolved",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": []
+      "methods": [
+        {
+          "type": "quest-reward",
+          "scope": "item",
+          "partRefs": [],
+          "questCanonical": "The Sacrifice",
+          "questDisplayName": "牺牲",
+          "questUniqueName": "/Lotus/Types/Keys/SacrificeQuest/SacrificeQuestKeyChain",
+          "requirements": {
+            "type": "quest",
+            "questName": "牺牲"
+          },
+          "variables": {},
+          "reviewStatus": "approved",
+          "provenance": {
+            "authority": "Digital Extremes Warframe Support",
+            "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
+          }
+        }
+      ]
     },
     "routes": [
+      {
+        "scope": "item",
+        "category": "quest",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "影生"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "quest-reward",
+            "scope": "item",
+            "partRefs": [],
+            "questCanonical": "The Sacrifice",
+            "questDisplayName": "牺牲",
+            "questUniqueName": "/Lotus/Types/Keys/SacrificeQuest/SacrificeQuestKeyChain",
+            "requirements": {
+              "type": "quest",
+              "questName": "牺牲"
+            },
+            "variables": {},
+            "reviewStatus": "approved",
+            "provenance": {
+              "authority": "Digital Extremes Warframe Support",
+              "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
+            }
+          }
+        ],
+        "status": "complete"
+      },
       {
         "scope": "blueprint",
         "category": "unresolved",
@@ -181,10 +233,10 @@
   "reviewedBy": [],
   "status": "review-required",
   "coverage": {
-    "autoComplete": false,
+    "autoComplete": true,
     "auditedComplete": false,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": false,
     "components": [],
     "crafting": true
