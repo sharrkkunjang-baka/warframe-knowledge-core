@@ -4,12 +4,15 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { inspectWikiDatabase, ReadonlyWikiDatabase, resolveWikiDatabase } = require('../src/wiki-db')
 const { compileModWikiPage } = require('../src/mod-wiki-compiler')
+const { renderGameText } = require('../src/game-text')
 const { migrateManualModData } = require('../src/mod-entry-builder')
 const { readAcquisitionRecords, serialize } = require('./sync-mods')
 
 const ROOT = path.resolve(__dirname, '..')
 const ACQUISITION_DIR = path.join(ROOT, 'knowledge', 'acquisition')
 const REPORT_PATH = path.join(ROOT, 'generated', 'mod-wiki-unresolved.json')
+const OFFICIAL_EN = require(path.join(ROOT, '.cache', 'official-localization', 'languages.en.json'))
+const OFFICIAL_ZH = require(path.join(ROOT, '.cache', 'official-localization', 'languages.zh.json'))
 
 function argument(argv, name) {
   const index = argv.indexOf(name)
@@ -22,6 +25,26 @@ function comparable(value) {
   return JSON.stringify(copy)
 }
 function sourceInfo(report) { return { sha256: report.sha256, size: report.size } }
+function compileOfficialTemplateEffect(entry, page) {
+  if (!String(entry.effectDetails?.[0] || '').includes('官方效果模板包含')) return null
+  const nameKey = String(entry.officialUniqueName || '').replace(/^language:/, '')
+  const descriptionKey = nameKey.replace(/Name$/, 'Desc')
+  const stripGameIcons = value => renderGameText(value).replace(/[⚡🔥❄☠]/g, '')
+  const englishTemplate = stripGameIcons(OFFICIAL_EN[descriptionKey] || '')
+  const chineseTemplate = renderGameText(OFFICIAL_ZH[descriptionKey] || '')
+  if (!englishTemplate || !chineseTemplate) return null
+  const placeholders = [...englishTemplate.matchAll(/\|([A-Z][A-Z0-9_]*)\|/g)].map(match => match[1])
+  if (!placeholders.length) return chineseTemplate
+  const escape = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const pattern = englishTemplate.split(/\|[A-Z][A-Z0-9_]*\|/).map(escape).join('([+-]?\\d+(?:\\.\\d+)?)').replace(/\\ /g, '\\s+')
+  const lead = String((page.sections || []).find(section => String(section.title || '').trim().toLowerCase() === 'lead')?.text || '').replace(/\s+/g, ' ')
+  const description = lead.match(/Max Rank Description\s+(.+?)\s+General Information\b/i)?.[1]?.trim()
+  const values = description?.match(new RegExp(`^${pattern}$`, 'i'))
+  if (!values) return null
+  const variables = new Map(placeholders.map((name, index) => [name, values[index + 1]]))
+  const resolved = chineseTemplate.replace(/\|([A-Z][A-Z0-9_]*)\|/g, (token, name) => variables.get(name) ?? token)
+  return /\|[A-Z][A-Z0-9_]*\|/.test(resolved) ? null : resolved
+}
 function sameWikiSource(oldWiki, report, page) {
   return oldWiki?.wiki?.revisionId === page.revisionId && oldWiki?.wiki?.sourceDatabase?.sha256 === report.sha256
 }
@@ -46,7 +69,13 @@ function buildPlan(options = {}) {
       let generatedWiki
       if (!page) {
         counts.missing += 1
-        generatedWiki = { wiki: null, methods: [], evidence: [], mechanicsEvidence: { status: 'draft', notes: [], usage: [] }, unresolvedEntities: [{ kind: 'wiki-page', canonical }], status: 'unresolved' }
+        // 已由其他官方编译器生成完整标准条目的 Mod 不依赖 Wiki 页面。
+        // Wiki 是证据来源之一，不得因缺页覆盖 ExportSyndicates 等已闭环的官方获取方法。
+        const existingWiki = entry.modAcquisition?.generated?.wiki
+        const hasApprovedCompiledMethods = (existingWiki?.methods || []).some(method => method.reviewStatus === 'approved')
+        generatedWiki = hasApprovedCompiledMethods
+          ? existingWiki
+          : { wiki: null, methods: [], evidence: [], mechanicsEvidence: { status: 'draft', notes: [], usage: [] }, unresolvedEntities: [{ kind: 'wiki-page', canonical }], status: 'unresolved' }
       } else {
         counts.pages += 1
         const oldWiki = entry.modAcquisition?.generated?.wiki
@@ -63,6 +92,8 @@ function buildPlan(options = {}) {
       counts[generatedWiki.status] += 1
       for (const item of generatedWiki.unresolvedEntities || []) unresolved.push({ mod: canonical, ...item, pageTitle: generatedWiki.wiki?.pageTitle || null, revisionId: generatedWiki.wiki?.revisionId || null })
       const nextEntry = JSON.parse(JSON.stringify(entry))
+      const compiledEffect = page ? compileOfficialTemplateEffect(entry, page) : null
+      if (compiledEffect) nextEntry.effectDetails = [compiledEffect]
       nextEntry.modAcquisition = {
         generated: { ...(entry.modAcquisition?.generated || {}), wiki: generatedWiki },
         manual: migrateManualModData(entry)
@@ -122,4 +153,4 @@ function run(argv = process.argv.slice(2)) {
 if (require.main === module) {
   try { run() } catch (error) { console.error(error.stack || error); process.exit(1) }
 }
-module.exports = { REPORT_PATH, buildPlan, comparable, run, sameWikiSource }
+module.exports = { REPORT_PATH, buildPlan, comparable, compileOfficialTemplateEffect, run, sameWikiSource }

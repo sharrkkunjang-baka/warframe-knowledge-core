@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { renderGameText } = require('../src/game-text');
 const Items = require('warframe-items');
 const { filterPlayableMods } = require('../src/playable-mod-filter');
@@ -14,6 +15,7 @@ const packagePath = path.join(path.dirname(require.resolve('warframe-items')), '
 const officialEnglishPath = path.join(root, '.cache', 'official-localization', 'languages.en.json');
 const officialChinesePath = path.join(root, '.cache', 'official-localization', 'languages.zh.json');
 const officialSyndicatesPath = path.join(root, 'cache', 'warframe-export-syndicates.json');
+const supplementalEntryDirectory = path.join(root, 'knowledge', 'acquisition', 'mod', 'standardmod', 'warframe');
 
 const SYNDICATE_FACTION_IDS = Object.freeze({
   ArbitersSyndicate: 'faction.arbiters-of-hexis',
@@ -116,14 +118,85 @@ function compileOfficialSyndicateOffers() {
   return byStem;
 }
 
-function safeLanguageTemplate(value) {
+function renderSupplementalEffect(value) {
   const rendered = renderGameText(value);
   return /\|[A-Z][A-Z0-9_]*\|/.test(rendered)
     ? '官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。'
     : rendered;
 }
 
-function compileLanguageOnlyMods(rawItems) {
+function supplementalEntryIdentity(mod) {
+  const base = slug(mod.canonical) || 'mod';
+  const suffix = crypto.createHash('sha1').update(mod.uniqueName).digest('hex').slice(0, 8);
+  return { id: `knowledge.acquisition.mod.${base}-${suffix}`, file: path.join(supplementalEntryDirectory, `${base}-${suffix}.json`) };
+}
+
+function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(0, 10), previous = null) {
+  const identity = supplementalEntryIdentity(mod);
+  const previousWiki = previous?.modAcquisition?.generated?.wiki;
+  const approvedMethods = mod.acquisitionMethods || [];
+  const approvedKeys = new Set(approvedMethods.map(method => `${method.type}\0${method.factionId || method.sourceEntityId || method.sourceCanonical || ''}`));
+  const mergedWiki = previousWiki
+    ? {
+        ...previousWiki,
+        methods: [...approvedMethods, ...(previousWiki.methods || []).filter(method => !approvedKeys.has(`${method.type}\0${method.factionId || method.sourceEntityId || method.sourceCanonical || ''}`))]
+      }
+    : { status: 'complete', methods: approvedMethods, evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] };
+  return [{
+    id: identity.id,
+    kind: 'knowledge',
+    module: 'acquisition',
+    title: mod.displayName,
+    subject: { canonical: mod.canonical, displayName: mod.displayName, category: 'mod', categoryRefs: ['syndicatemod', 'warframemod', 'standardmod'] },
+    officialUniqueName: mod.uniqueName,
+    maxRank: mod.maxRank,
+    effectDetails: previous?.effectDetails?.length && !String(previous.effectDetails[0]).includes('官方效果模板包含')
+      ? previous.effectDetails
+      : mod.maxRankEffectsZh,
+    rarity: mod.rarity,
+    polarity: mod.polarity,
+    tradable: true,
+    prerequisites: [],
+    tips: [],
+    tipKeywords: ['本质机制', '具体计算公式', '加成层级', '与同类效果的叠加方式', '适用限制'],
+    methodRefs: [],
+    modAcquisition: {
+      generated: {
+        identity: { officialUniqueName: mod.uniqueName, canonical: mod.canonical, displayName: mod.displayName, maxRank: mod.maxRank, variant: 'standard', typeFolder: 'warframe' },
+        wiki: mergedWiki,
+        officialDrops: []
+      },
+      manual: { methods: [], methodRefs: [], overrides: {}, reviewStatus: 'approved', reviewedBy: ['official-sync:syndicate-exchange'] }
+    },
+    acquisitionStatus: 'complete',
+    sources: [],
+    gameVersion: 'DE Languages.bin + ExportSyndicates',
+    updatedAt,
+    reviewStatus: 'approved',
+    reviewedBy: ['official-sync:syndicate-exchange'],
+    tags: ['acquisition', 'mod', 'standard-mod', 'warframe-mod'],
+    generator: { name: 'sync-official-mods', version: 1 }
+  }];
+}
+
+function syncSupplementalEntries(mods, options = {}) {
+  const changes = [];
+  for (const mod of mods) {
+    const identity = supplementalEntryIdentity(mod);
+    const current = fs.existsSync(identity.file) ? fs.readFileSync(identity.file, 'utf8') : null;
+    const existing = current ? JSON.parse(current)?.[0] : null;
+    const next = `${JSON.stringify(buildSupplementalEntry(mod, existing?.updatedAt || options.updatedAt, existing), null, 2)}\n`;
+    if (current !== next) changes.push({ file: identity.file, current, next });
+  }
+  if (options.check) return changes;
+  for (const change of changes) {
+    fs.mkdirSync(path.dirname(change.file), { recursive: true });
+    fs.writeFileSync(change.file, change.next);
+  }
+  return changes;
+}
+
+function compileSupplementalMods(rawItems) {
   const en = JSON.parse(fs.readFileSync(officialEnglishPath, 'utf8'));
   const zh = JSON.parse(fs.readFileSync(officialChinesePath, 'utf8'));
   const syndicateOffers = compileOfficialSyndicateOffers();
@@ -154,8 +227,8 @@ function compileLanguageOnlyMods(rawItems) {
       rarity: null,
       polarity: null,
       maxRank: null,
-      maxRankEffects: [safeLanguageTemplate(description)],
-      maxRankEffectsZh: [safeLanguageTemplate(descriptionZh)],
+      maxRankEffects: [renderSupplementalEffect(description)],
+      maxRankEffectsZh: [renderSupplementalEffect(descriptionZh)],
       traits: { prime: false, augment: true, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
       modSet: null,
       officialCategoryIds: ['type.warframe-mod', 'trait.augment'],
@@ -250,20 +323,30 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         evidenceStatus: hasCompleteEntry ? 'approved-acquisition' : localEntryIds.length ? 'identity-present-acquisition-unapproved' : 'identity-missing'
       };
     });
-  const languageOnlyMods = compileLanguageOnlyMods(rawItems);
+  const supplementalMods = compileSupplementalMods(rawItems).map(mod => {
+    const localEntryIds = acquisitionsByCanonical.get(normalize(mod.canonical)) || [];
+    const hasCompleteEntry = localEntryIds.some(id => hasApprovedAcquisition(acquisitionById.get(id)));
+    return {
+      ...mod,
+      localEntryIds,
+      status: hasCompleteEntry ? 'complete' : mod.status,
+      reviewRequired: hasCompleteEntry ? false : mod.reviewRequired,
+      evidenceStatus: hasCompleteEntry ? 'approved-acquisition' : mod.evidenceStatus
+    };
+  });
   const linkedSyndicateOfferStems = new Set([
     ...items.map(item => augmentStem(item.uniqueName)),
-    ...languageOnlyMods.map(item => augmentStem(item.provenance.nameKey))
+    ...supplementalMods.map(item => augmentStem(item.provenance.nameKey))
   ]);
   const officialSyndicateOffers = compileOfficialSyndicateOffers();
   const unmatchedSyndicateOffers = [...officialSyndicateOffers.entries()]
     .filter(([stem]) => !linkedSyndicateOfferStems.has(stem))
     .map(([stem, methods]) => ({ stem, methods }));
-  for (const mod of languageOnlyMods) for (const id of mod.officialCategoryIds) {
+  for (const mod of supplementalMods) for (const id of mod.officialCategoryIds) {
     if (!officialCategoryMap.has(id)) addCategory(officialCategoryMap, id, id.startsWith('type.') ? 'type' : 'trait', id === 'type.warframe-mod' ? 'Warframe Mod' : 'Augment Mods');
     officialCategoryMap.get(id).count += 1;
   }
-  const mods = [...packageMods, ...languageOnlyMods].sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
+  const mods = [...packageMods, ...supplementalMods].sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
 
   const officialCategories = [...officialCategoryMap.values()]
     .sort((a, b) => a.id.localeCompare(b.id))
@@ -358,6 +441,13 @@ function main() {
   const check = process.argv.includes('--check');
   const current = fs.existsSync(outputPath) ? JSON.parse(fs.readFileSync(outputPath, 'utf8')) : null;
   const generatedAt = check && current?.generatedAt ? current.generatedAt : new Date().toISOString();
+  const rawItems = new Items({ category: ['Mods'], i18n: ['zh'] });
+  const supplementalChanges = syncSupplementalEntries(compileSupplementalMods(rawItems), { check, updatedAt: generatedAt.slice(0, 10) });
+  if (check && supplementalChanges.length) {
+    console.error(`标准 Mod 条目需要同步：${supplementalChanges.length}`);
+    process.exitCode = 1;
+    return;
+  }
   const next = buildOfficialCatalog(generatedAt);
   if (check) {
     if (!current || serialize(current) !== serialize(next)) {
@@ -374,4 +464,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { hasApprovedAcquisition, compileOfficialSyndicateOffers, compileLanguageOnlyMods, buildOfficialCatalog, serialize };
+module.exports = { hasApprovedAcquisition, compileOfficialSyndicateOffers, compileSupplementalMods, buildSupplementalEntry, syncSupplementalEntries, buildOfficialCatalog, serialize };

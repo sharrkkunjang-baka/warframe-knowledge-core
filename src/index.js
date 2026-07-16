@@ -570,15 +570,6 @@ function createKnowledgeCore(options = {}) {
       };
     }
     const officialMod = getOfficialMod(raw);
-    if (officialMod?.uniqueName?.startsWith('language:')) {
-      const effects = officialMod.maxRankEffectsZh?.filter(Boolean) || [];
-      const effectText = effects.length ? `官方效果：\n${effects.map(effect => `- ${effect}`).join('\n')}` : '官方简体中文效果暂缺。';
-      const structuredMethods = compileStructuredMethods((officialMod.acquisitionMethods || []).map(enrichModMethod), data);
-      const acquisitionText = structuredMethods.length
-        ? renderAcquisition(structuredMethods, { displayName: officialMod.displayName, registries: data })
-        : '获取路径尚未由 DE 官方结构闭环，当前保持待审，禁止猜造来源。';
-      return { query: raw, resolution: { canonical: officialMod.canonical, exact: true }, entry: null, officialMod, description: `【${officialMod.displayName}】\n类型：${officialMod.traits?.augment ? '战甲强化 Mod' : officialMod.type}\n\n${effectText}\n\n${acquisitionText}`, categories: officialMod.officialCategoryIds || [], methods: [], sourceOptions: [], structuredMethods, alternatives: [] };
-    }
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;
     const resourceResult = resourceAcquisition.getResourceAcquisition(raw);
@@ -592,11 +583,18 @@ function createKnowledgeCore(options = {}) {
     const exactFrameEntry = allKnowledge.find(item => item.module === 'acquisition'
       && item.subject?.category === 'frame'
       && normalize(item.subject?.canonical) === normalize(raw));
-    const resolution = exactFrameEntry ? { canonical: exactFrameEntry.subject.canonical, exact: true } : resolveName(raw, searchOptions.resolveOptions || {});
+    const resolution = exactFrameEntry
+      ? { canonical: exactFrameEntry.subject.canonical, exact: true }
+      : officialMod
+        ? { canonical: officialMod.canonical, exact: true }
+        : resolveName(raw, searchOptions.resolveOptions || {});
     if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
     const canonical = exactFrameEntry?.subject?.canonical || resolution?.canonical || raw;
+    // 所有 Mod 都必须在编译阶段生成同一种标准 acquisition entry；运行时禁止
+    // 根据 Languages.bin、warframe-items 或任何其他上游来源临时合成第二类条目。
     const entry = exactFrameEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
+    const resolvedOfficialMod = officialMod || getOfficialMod(entry.subject?.canonical || entry.subject?.displayName);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
     const requirements = normalizeRequirements(entry.modAcquisition?.manual?.requirements);
     const requirementLines = renderRequirements(requirements, data);
@@ -617,11 +615,12 @@ function createKnowledgeCore(options = {}) {
     const defaultDescription = frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry);
     const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
     const hasStructuredExchange = structuredMethods.some(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
-    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || (hasStructuredExchange && !/输入[“\"]刷/.test(defaultDescription));
+    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || ((hasStructuredExchange || structuredMethods.some(method => method.type === 'syndicate-exchange')) && !/输入[“\"]刷/.test(defaultDescription));
     return {
       query: raw,
       resolution,
       entry,
+      officialMod: resolvedOfficialMod,
       description: preferStructuredDescription && structuredDescription ? structuredDescription : defaultDescription,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),

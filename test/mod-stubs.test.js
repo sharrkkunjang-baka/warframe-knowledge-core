@@ -176,6 +176,26 @@ test('官方六大集团强化商品全量编译并显式报告未关联身份',
   }
 });
 
+test('全部 Mod 不按编译来源分流并返回同一标准 acquisition entry', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const cases = ['刀锋迫击', '夜枭群袭', '律动护卫', '狂热火球', '成长之力'];
+  for (const query of cases) {
+    const result = core.getAcquisition(query);
+    assert.equal(result.entry?.subject?.category, 'mod', `${query} 未进入标准 Mod entry`);
+    assert.equal(result.resolution?.canonical, result.entry.subject.canonical);
+    assert.ok(result.officialMod, `${query} 缺少统一 officialMod 关联`);
+    assert.ok(Array.isArray(result.structuredMethods));
+    assert.ok(result.structuredMethods.every(method => method.requirements && Array.isArray(method.requirementLines)));
+  }
+  const razorMortar = core.getAcquisition('刀锋迫击');
+  const fireballFrenzy = core.getAcquisition('狂热火球');
+  assert.deepEqual(
+    razorMortar.structuredMethods.map(method => method.type),
+    fireballFrenzy.structuredMethods.map(method => method.type)
+  );
+  assert.equal(razorMortar.entry.subject.categoryRefs[0], fireballFrenzy.entry.subject.categoryRefs[0]);
+});
+
 test('官方目录为全部上游记录给出完整、待审或排除状态', () => {
   const catalog = buildOfficialCatalog('2026-07-15T00:00:00.000Z');
   assert.equal(catalog.counts.upstreamRecords, 1733);
