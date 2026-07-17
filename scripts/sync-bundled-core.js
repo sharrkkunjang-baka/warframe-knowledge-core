@@ -1,6 +1,6 @@
 'use strict'
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto')
-const ROOT=path.resolve(__dirname,'..'),TARGET=path.resolve(ROOT,'..','qq-bot','warframe-knowledge-core')
+const ROOT=path.resolve(__dirname,'..'),TARGET=path.resolve(ROOT,'..','..','qq-bot','warframe-knowledge-core')
 const ROOT_FILES=['package.json','ARCHITECTURE.md'],DIRS=['src','knowledge','schema','generated']
 function walk(dir){return fs.existsSync(dir)?fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name)).flatMap(x=>x.isDirectory()?walk(path.join(dir,x.name)):x.isFile()?[path.join(dir,x.name)]:[]):[]}
 function relativeFiles(base){return [...ROOT_FILES.filter(f=>fs.existsSync(path.join(base,f))),...DIRS.flatMap(d=>walk(path.join(base,d)).map(f=>path.relative(base,f)))].map(x=>x.replace(/\\/g,'/')).sort()}
