@@ -61,23 +61,23 @@
             "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
           ],
           "questCanonical": "The War Within",
-          "questDisplayName": "内战",
           "questUniqueName": "/Lotus/Types/Keys/WarWithinQuest/WarWithinQuestKeyChain",
           "requirements": {
             "type": "quest",
-            "questName": "内战"
+            "questName": "内战",
+            "questId": "quest.the-war-within"
           },
           "variables": {},
           "reviewStatus": "approved",
           "provenance": {
             "authority": "Digital Extremes Warframe Support",
             "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
-          }
+          },
+          "questId": "quest.the-war-within"
         },
         {
           "type": "quest-reward",
           "questCanonical": "The War Within",
-          "questDisplayName": "内战",
           "requirements": {
             "type": "quest",
             "questId": "quest.the-war-within"
@@ -91,7 +91,8 @@
             "source": "compiled-simaris-weapon-sources",
             "sourceCanonical": "Cephalon Simaris, Complete The War Within"
           },
-          "variables": {}
+          "variables": {},
+          "questId": "quest.the-war-within"
         },
         {
           "type": "vendor-exchange",
@@ -120,7 +121,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade"
           ],
           "sourceCanonical": "Kuva Guardian",
-          "sourceDisplayName": "赤毒守卫",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.05,
           "requirements": {
@@ -134,7 +134,8 @@
           "type": "enemy-drop",
           "variables": {
             "partName": "灵枢 刀刃"
-          }
+          },
+          "sourceEntityId": "enemy.kuva-guardian"
         },
         {
           "scope": "component",
@@ -142,7 +143,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc"
           ],
           "sourceCanonical": "Kuva Jester",
-          "sourceDisplayName": "赤毒小丑",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.05,
           "requirements": {
@@ -156,7 +156,8 @@
           "type": "enemy-drop",
           "variables": {
             "partName": "灵枢 圆盘"
-          }
+          },
+          "sourceEntityId": "enemy.kuva-jester"
         }
       ]
     },
@@ -182,23 +183,23 @@
               "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
             ],
             "questCanonical": "The War Within",
-            "questDisplayName": "内战",
             "questUniqueName": "/Lotus/Types/Keys/WarWithinQuest/WarWithinQuestKeyChain",
             "requirements": {
               "type": "quest",
-              "questName": "内战"
+              "questName": "内战",
+              "questId": "quest.the-war-within"
             },
             "variables": {},
             "reviewStatus": "approved",
             "provenance": {
               "authority": "Digital Extremes Warframe Support",
               "sourceUrl": "https://support.warframe.com/hc/en-us/articles/9503863772557-Quest-Tips-Post-Second-Dream-Spoilers-Warning"
-            }
+            },
+            "questId": "quest.the-war-within"
           },
           {
             "type": "quest-reward",
             "questCanonical": "The War Within",
-            "questDisplayName": "内战",
             "requirements": {
               "type": "quest",
               "questId": "quest.the-war-within"
@@ -212,7 +213,8 @@
               "source": "compiled-simaris-weapon-sources",
               "sourceCanonical": "Cephalon Simaris, Complete The War Within"
             },
-            "variables": {}
+            "variables": {},
+            "questId": "quest.the-war-within"
           },
           {
             "type": "vendor-exchange",
@@ -257,7 +259,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveBlade"
             ],
             "sourceCanonical": "Kuva Guardian",
-            "sourceDisplayName": "赤毒守卫",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.05,
             "requirements": {
@@ -271,7 +272,8 @@
             "type": "enemy-drop",
             "variables": {
               "partName": "灵枢 刀刃"
-            }
+            },
+            "sourceEntityId": "enemy.kuva-guardian"
           }
         ],
         "status": "complete"
@@ -295,7 +297,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/TeshinGlaiveDisc"
             ],
             "sourceCanonical": "Kuva Jester",
-            "sourceDisplayName": "赤毒小丑",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.05,
             "requirements": {
@@ -309,7 +310,8 @@
             "type": "enemy-drop",
             "variables": {
               "partName": "灵枢 圆盘"
-            }
+            },
+            "sourceEntityId": "enemy.kuva-jester"
           }
         ],
         "status": "complete"
@@ -360,6 +362,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -419,7 +422,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

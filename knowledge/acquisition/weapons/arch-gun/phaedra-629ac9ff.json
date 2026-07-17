@@ -57,7 +57,6 @@
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -70,7 +69,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "scope": "component",
@@ -78,7 +78,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
           ],
           "sourceCanonical": "Arbiters of Hexis, Authentic",
-          "sourceDisplayName": "均衡仲裁者",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -90,17 +89,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "均衡仲裁者",
           "requiredRankName": "Authentic",
           "variables": {
             "partName": "菲德菈 枪管"
-          }
+          },
+          "factionId": "faction.arbiters-of-hexis"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -115,7 +112,15 @@
           ],
           "variables": {
             "partName": "菲德菈 枪管"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "type": "mission-reward",
@@ -124,7 +129,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
           ],
           "sourceCanonical": "Event: Mercury/Caduceus (Exterminate)",
-          "sourceDisplayName": "水星 Caduceus（歼灭）",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.caduceus",
           "missionTypeId": "mission-type.exterminate",
@@ -140,7 +144,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.caduceus"
         },
         {
           "type": "mission-reward",
@@ -149,7 +154,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
           ],
           "sourceCanonical": "Venus/Montes (Exterminate)",
-          "sourceDisplayName": "金星/Montes（Exterminate）",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.montes-solnode902",
           "missionTypeId": "mission-type.exterminate",
@@ -165,7 +169,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.montes-solnode902"
         },
         {
           "type": "mission-reward",
@@ -174,7 +179,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
           ],
           "sourceCanonical": "Mars/Syrtis (Exterminate)",
-          "sourceDisplayName": "火星/Syrtis（Exterminate）",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.syrtis-solnode904",
           "missionTypeId": "mission-type.exterminate",
@@ -190,7 +194,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.syrtis-solnode904"
         },
         {
           "scope": "component",
@@ -198,7 +203,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
           ],
           "sourceCanonical": "The Perrin Sequence, Senior Associate",
-          "sourceDisplayName": "佩兰数列",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -210,17 +214,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "佩兰数列",
           "requiredRankName": "Senior Associate",
           "variables": {
             "partName": "菲德菈 枪机"
-          }
+          },
+          "factionId": "faction.the-perrin-sequence"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -235,7 +237,15 @@
           ],
           "variables": {
             "partName": "菲德菈 枪机"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "scope": "component",
@@ -243,7 +253,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
           ],
           "sourceCanonical": "New Loka, Bountiful",
-          "sourceDisplayName": "新世间",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -255,17 +264,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "新世间",
           "requiredRankName": "Bountiful",
           "variables": {
             "partName": "菲德菈 枪托"
-          }
+          },
+          "factionId": "faction.new-loka"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -280,7 +287,15 @@
           ],
           "variables": {
             "partName": "菲德菈 枪托"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         }
       ]
     },
@@ -302,7 +317,6 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -315,7 +329,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchLongRifleBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -339,7 +354,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleBarrel"
             ],
             "sourceCanonical": "Arbiters of Hexis, Authentic",
-            "sourceDisplayName": "均衡仲裁者",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -351,17 +365,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "均衡仲裁者",
             "requiredRankName": "Authentic",
             "variables": {
               "partName": "菲德菈 枪管"
-            }
+            },
+            "factionId": "faction.arbiters-of-hexis"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -376,7 +388,15 @@
             ],
             "variables": {
               "partName": "菲德菈 枪管"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -401,7 +421,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
             ],
             "sourceCanonical": "Event: Mercury/Caduceus (Exterminate)",
-            "sourceDisplayName": "水星 Caduceus（歼灭）",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.caduceus",
             "missionTypeId": "mission-type.exterminate",
@@ -417,7 +436,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.caduceus"
           },
           {
             "type": "mission-reward",
@@ -426,7 +446,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
             ],
             "sourceCanonical": "Venus/Montes (Exterminate)",
-            "sourceDisplayName": "金星/Montes（Exterminate）",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.montes-solnode902",
             "missionTypeId": "mission-type.exterminate",
@@ -442,7 +461,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.montes-solnode902"
           },
           {
             "type": "mission-reward",
@@ -451,7 +471,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
             ],
             "sourceCanonical": "Mars/Syrtis (Exterminate)",
-            "sourceDisplayName": "火星/Syrtis（Exterminate）",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.syrtis-solnode904",
             "missionTypeId": "mission-type.exterminate",
@@ -467,7 +486,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.syrtis-solnode904"
           },
           {
             "scope": "component",
@@ -475,7 +495,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleReceiver"
             ],
             "sourceCanonical": "The Perrin Sequence, Senior Associate",
-            "sourceDisplayName": "佩兰数列",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -487,17 +506,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "佩兰数列",
             "requiredRankName": "Senior Associate",
             "variables": {
               "partName": "菲德菈 枪机"
-            }
+            },
+            "factionId": "faction.the-perrin-sequence"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -512,7 +529,15 @@
             ],
             "variables": {
               "partName": "菲德菈 枪机"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -536,7 +561,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchLongRifleStock"
             ],
             "sourceCanonical": "New Loka, Bountiful",
-            "sourceDisplayName": "新世间",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -548,17 +572,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "新世间",
             "requiredRankName": "Bountiful",
             "variables": {
               "partName": "菲德菈 枪托"
-            }
+            },
+            "factionId": "faction.new-loka"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -573,7 +595,15 @@
             ],
             "variables": {
               "partName": "菲德菈 枪托"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -624,6 +654,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 35000,
       "ingredients": [
         {
@@ -683,7 +714,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

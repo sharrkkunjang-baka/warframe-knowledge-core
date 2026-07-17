@@ -60,10 +60,9 @@
             "/Lotus/Types/Recipes/Weapons/CrpAirPistolArrayBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.the-circuit-tier-6",
-          "missionTypeId": "mission-type.normal",
+          "missionTypeId": "mission-type.exterminate",
           "chance": 0.0103,
           "sourceDropChance": null,
           "conditionalChance": null,
@@ -76,12 +75,12 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.the-circuit-tier-6"
         },
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -94,7 +93,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/CrpAirPistolArrayBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "scope": "blueprint",
@@ -102,7 +102,6 @@
             "/Lotus/Types/Recipes/Weapons/CrpAirPistolArrayBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
-          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.0103,
           "requirements": {
@@ -113,8 +112,9 @@
             "source": "installed-warframe-items",
             "field": "components[].drops"
           },
-          "type": "enemy-drop",
-          "variables": {}
+          "type": "mission-reward",
+          "variables": {},
+          "sourceEntityId": "mission.the-circuit-tier-6"
         }
       ]
     },
@@ -140,10 +140,9 @@
               "/Lotus/Types/Recipes/Weapons/CrpAirPistolArrayBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.the-circuit-tier-6",
-            "missionTypeId": "mission-type.normal",
+            "missionTypeId": "mission-type.exterminate",
             "chance": 0.0103,
             "sourceDropChance": null,
             "conditionalChance": null,
@@ -156,12 +155,12 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.the-circuit-tier-6"
           },
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -174,7 +173,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/CrpAirPistolArrayBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           },
           {
             "scope": "blueprint",
@@ -182,7 +182,6 @@
               "/Lotus/Types/Recipes/Weapons/CrpAirPistolArrayBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
-            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.0103,
             "requirements": {
@@ -193,8 +192,9 @@
               "source": "installed-warframe-items",
               "field": "components[].drops"
             },
-            "type": "enemy-drop",
-            "variables": {}
+            "type": "mission-reward",
+            "variables": {},
+            "sourceEntityId": "mission.the-circuit-tier-6"
           }
         ],
         "status": "complete"
@@ -245,6 +245,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -304,7 +305,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

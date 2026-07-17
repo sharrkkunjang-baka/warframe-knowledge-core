@@ -59,7 +59,6 @@
             "/Lotus/Types/Recipes/Weapons/ThanotechArchGunBlueprint"
           ],
           "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
-          "sourceDisplayName": "殁世械灵的 Loid",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -71,9 +70,9 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "殁世械灵的 Loid",
           "requiredRankName": "Clearance Odima",
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.loid"
         },
         {
           "type": "vendor-exchange",
@@ -81,7 +80,6 @@
           "partRefs": [
             "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem"
           ],
-          "sourceDisplayName": "殁世幽都的洛德",
           "requirements": {
             "type": "standing"
           },
@@ -92,7 +90,8 @@
           },
           "variables": {
             "partName": "送葬者 枪管"
-          }
+          },
+          "npcId": "npc.loid"
         },
         {
           "type": "vendor-exchange",
@@ -100,7 +99,6 @@
           "partRefs": [
             "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem"
           ],
-          "sourceDisplayName": "殁世幽都的洛德",
           "requirements": {
             "type": "standing"
           },
@@ -111,7 +109,8 @@
           },
           "variables": {
             "partName": "送葬者 枪机"
-          }
+          },
+          "npcId": "npc.loid"
         },
         {
           "type": "vendor-exchange",
@@ -119,7 +118,6 @@
           "partRefs": [
             "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem"
           ],
-          "sourceDisplayName": "殁世幽都的洛德",
           "requirements": {
             "type": "standing"
           },
@@ -130,7 +128,8 @@
           },
           "variables": {
             "partName": "送葬者 枪托"
-          }
+          },
+          "npcId": "npc.loid"
         }
       ]
     },
@@ -155,7 +154,6 @@
               "/Lotus/Types/Recipes/Weapons/ThanotechArchGunBlueprint"
             ],
             "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
-            "sourceDisplayName": "殁世械灵的 Loid",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -167,9 +165,9 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "殁世械灵的 Loid",
             "requiredRankName": "Clearance Odima",
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.loid"
           }
         ],
         "status": "complete"
@@ -193,7 +191,6 @@
             "partRefs": [
               "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunBarrelItem"
             ],
-            "sourceDisplayName": "殁世幽都的洛德",
             "requirements": {
               "type": "standing"
             },
@@ -204,7 +201,8 @@
             },
             "variables": {
               "partName": "送葬者 枪管"
-            }
+            },
+            "npcId": "npc.loid"
           }
         ],
         "status": "complete"
@@ -228,7 +226,6 @@
             "partRefs": [
               "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunReceiverItem"
             ],
-            "sourceDisplayName": "殁世幽都的洛德",
             "requirements": {
               "type": "standing"
             },
@@ -239,7 +236,8 @@
             },
             "variables": {
               "partName": "送葬者 枪机"
-            }
+            },
+            "npcId": "npc.loid"
           }
         ],
         "status": "complete"
@@ -263,7 +261,6 @@
             "partRefs": [
               "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechArchGunStockItem"
             ],
-            "sourceDisplayName": "殁世幽都的洛德",
             "requirements": {
               "type": "standing"
             },
@@ -274,7 +271,8 @@
             },
             "variables": {
               "partName": "送葬者 枪托"
-            }
+            },
+            "npcId": "npc.loid"
           }
         ],
         "status": "complete"
@@ -324,6 +322,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 15000,
       "ingredients": [
         {
@@ -375,7 +374,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

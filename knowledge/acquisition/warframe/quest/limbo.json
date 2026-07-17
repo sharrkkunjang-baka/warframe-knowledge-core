@@ -52,7 +52,7 @@
             "pageId": 570036,
             "revisionId": 2760561,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -70,7 +70,46 @@
           "blueprintSource": "official-bp-cost",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceEntityId": "interface.market",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Limbo",
+                "section": "Acquisition"
+              }
+            },
+            {
+              "type": "vendor-exchange",
+              "scope": "component",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.cephalon-simaris",
+                "locationId": "hub.any-relay",
+                "rank": null,
+                "rankName": null,
+                "blueprintRank": null,
+                "blueprintRankName": null,
+                "amount": 25000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Limbo",
+                "section": "Acquisition",
+                "excerpt": " Limbo's main blueprint can be purchased from the Market . Component blueprints are awarded from The Limbo Theorem quest, obtainable by completing the Europa Junction on Jupiter . Additional component blueprints can be bought from Cephalon Simaris for 25,000 Standing 25,000 ."
+              }
+            }
+          ]
         }
       },
       "manual": {}

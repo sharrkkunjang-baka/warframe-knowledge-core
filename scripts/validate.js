@@ -294,12 +294,16 @@ for (const entry of entries) {
       if (wiki && (!['complete', 'partial', 'unresolved'].includes(wiki.status) || !Array.isArray(wiki.methods) || !Array.isArray(wiki.evidence) || !wiki.mechanicsEvidence || !Array.isArray(wiki.unresolvedEntities))) errors.push(`${entry.id}: generated.wiki 字段不完整`);
       for (const method of wiki?.methods || []) {
         if (method.type === 'syndicate-exchange') {
-          if (method.provenance?.source !== 'warframe-items' || !method.provenance?.canonical) errors.push(`${entry.id}: 集团 method 缺少官方 provenance`);
+          const officialSyndicate = method.provenance?.source === 'DE ExportSyndicates' && method.provenance?.syndicateId && method.provenance?.storeItem;
+          const packageSyndicate = method.provenance?.source === 'warframe-items' && method.provenance?.canonical;
+          if (!officialSyndicate && !packageSyndicate) errors.push(`${entry.id}: 集团 method 缺少官方 provenance`);
           continue;
         }
         if (method.provenance?.source === 'local-wiki-sqlite') {
-          if (!method.type || !method.provenance.pageTitle || !method.provenance.section || !method.provenance.excerpt) errors.push(`${entry.id}: 本地跨页 method 缺少类型或 provenance`);
-          if (method.reviewStatus !== 'approved') errors.push(`${entry.id}: 本地跨页 method 必须显式审核通过`);
+          if (!method.type || !method.provenance.pageTitle || !method.provenance.section || !method.provenance.excerpt) errors.push(`${entry.id}: 本地 Wiki method 缺少类型或 provenance`);
+          const crossPage = String(method.provenance.pageTitle).normalize('NFKC').toLowerCase() !== String(entry.subject?.canonical || '').normalize('NFKC').toLowerCase();
+          if (crossPage && method.reviewStatus !== 'approved') errors.push(`${entry.id}: 本地跨页 method 必须显式审核通过`);
+          if (!crossPage && !['draft', 'approved'].includes(method.reviewStatus)) errors.push(`${entry.id}: 本页 Wiki method 审核状态无效`);
           continue;
         }
         if (!method.type || !method.provenance?.pageTitle || !method.provenance?.revisionId || !method.provenance?.section || !method.provenance?.excerpt) errors.push(`${entry.id}: Wiki method 缺少类型或 provenance`);
@@ -394,8 +398,10 @@ if (!officialCatalog) {
 
   if (officialCatalog.schemaVersion !== 1) errors.push('official.json: schemaVersion 必须为 1');
   const excludedMods = officialCatalog.excludedMods || [];
-  if (officialMods.length + excludedMods.length !== 1733) errors.push(`official.json: 应为全部 1733 条上游记录确定状态，实际 ${officialMods.length + excludedMods.length}`);
-  if (officialCatalog.counts?.upstreamRecords !== officialMods.length + excludedMods.length) errors.push('official.json: counts.upstreamRecords 不一致');
+  const packageModCount = new (require('warframe-items'))({ category: ['Mods'], i18n: ['zh'] }).length;
+  const supplementalModCount = officialMods.filter(mod => String(mod.uniqueName).startsWith('language:')).length;
+  if (officialMods.length + excludedMods.length !== packageModCount + supplementalModCount) errors.push(`official.json: 应覆盖 ${packageModCount} 条上游记录和 ${supplementalModCount} 条官方语言补充记录，实际 ${officialMods.length + excludedMods.length}`);
+  if (officialCatalog.counts?.upstreamRecords !== packageModCount) errors.push('official.json: counts.upstreamRecords 不一致');
   if (officialCatalog.counts?.mods !== officialMods.length) errors.push('official.json: counts.mods 不一致');
   if (officialCatalog.counts?.excludedMods !== excludedMods.length) errors.push('official.json: counts.excludedMods 不一致');
   if (officialCatalog.counts?.officialCategories !== officialCategories.length) errors.push('official.json: counts.officialCategories 不一致');

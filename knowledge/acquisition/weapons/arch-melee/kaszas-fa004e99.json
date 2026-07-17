@@ -57,7 +57,6 @@
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -70,7 +69,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "scope": "component",
@@ -78,7 +78,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade"
           ],
           "sourceCanonical": "Red Veil, Honored",
-          "sourceDisplayName": "血色面纱",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -90,17 +89,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "血色面纱",
           "requiredRankName": "Honored",
           "variables": {
             "partName": "死亡使徒 刀刃"
-          }
+          },
+          "factionId": "faction.red-veil"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -115,7 +112,15 @@
           ],
           "variables": {
             "partName": "死亡使徒 刀刃"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "scope": "component",
@@ -123,7 +128,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle"
           ],
           "sourceCanonical": "Steel Meridian, Valiant",
-          "sourceDisplayName": "钢铁防线",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -135,17 +139,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "钢铁防线",
           "requiredRankName": "Valiant",
           "variables": {
             "partName": "死亡使徒 握柄"
-          }
+          },
+          "factionId": "faction.steel-meridian"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -160,7 +162,15 @@
           ],
           "variables": {
             "partName": "死亡使徒 握柄"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         }
       ]
     },
@@ -182,7 +192,6 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -195,7 +204,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchScytheBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -219,7 +229,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheBlade"
             ],
             "sourceCanonical": "Red Veil, Honored",
-            "sourceDisplayName": "血色面纱",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -231,17 +240,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "血色面纱",
             "requiredRankName": "Honored",
             "variables": {
               "partName": "死亡使徒 刀刃"
-            }
+            },
+            "factionId": "faction.red-veil"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -256,7 +263,15 @@
             ],
             "variables": {
               "partName": "死亡使徒 刀刃"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -280,7 +295,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchScytheHandle"
             ],
             "sourceCanonical": "Steel Meridian, Valiant",
-            "sourceDisplayName": "钢铁防线",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -292,17 +306,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "钢铁防线",
             "requiredRankName": "Valiant",
             "variables": {
               "partName": "死亡使徒 握柄"
-            }
+            },
+            "factionId": "faction.steel-meridian"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -317,7 +329,15 @@
             ],
             "variables": {
               "partName": "死亡使徒 握柄"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -367,6 +387,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 35000,
       "ingredients": [
         {
@@ -418,7 +439,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

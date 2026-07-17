@@ -52,7 +52,7 @@
             "pageId": 1586696,
             "revisionId": 2782454,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -81,7 +81,33 @@
           "blueprintSource": "official-component-drop",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "all-blueprints",
+              "sourceEntityId": "acquisition-source.koumei-shrine",
+              "locationId": "hub.cetus",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "locationId": "hub.cetus",
+                "currency": [
+                  {
+                    "currencyId": "currency.fate-pearl",
+                    "amount": 330
+                  }
+                ],
+                "isBuffUseless": true
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "audited-current-wiki-acquisition",
+                "pageTitle": "Koumei",
+                "section": "Acquisition"
+              }
+            }
+          ]
         }
       },
       "manual": {

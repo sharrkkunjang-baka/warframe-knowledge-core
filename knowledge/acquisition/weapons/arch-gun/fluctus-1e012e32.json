@@ -60,7 +60,6 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
           ],
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -69,12 +68,12 @@
             "source": "installed-warframe-items",
             "field": "bpCost"
           },
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "dojo-research",
           "scope": "blueprint",
-          "sourceDisplayName": "Tenno 实验室",
           "requirements": {
             "type": "none"
           },
@@ -87,7 +86,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "dojo.tenno-lab"
         },
         {
           "scope": "component",
@@ -95,7 +95,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowBarrel"
           ],
           "sourceCanonical": "Cephalon Suda, Intelligent",
-          "sourceDisplayName": "中枢苏达",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -107,17 +106,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "中枢苏达",
           "requiredRankName": "Intelligent",
           "variables": {
             "partName": "巨浪 枪管"
-          }
+          },
+          "factionId": "faction.cephalon-suda"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -132,7 +129,15 @@
           ],
           "variables": {
             "partName": "巨浪 枪管"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "scope": "component",
@@ -140,7 +145,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowReceiver"
           ],
           "sourceCanonical": "Steel Meridian, Defender",
-          "sourceDisplayName": "钢铁防线",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -152,17 +156,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "钢铁防线",
           "requiredRankName": "Defender",
           "variables": {
             "partName": "巨浪 枪托"
-          }
+          },
+          "factionId": "faction.steel-meridian"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -177,13 +179,19 @@
           ],
           "variables": {
             "partName": "巨浪 枪托"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -198,7 +206,15 @@
           ],
           "variables": {
             "partName": "巨浪 弓臂"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         }
       ]
     },
@@ -223,7 +239,6 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
             ],
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -232,12 +247,12 @@
               "source": "installed-warframe-items",
               "field": "bpCost"
             },
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           },
           {
             "type": "dojo-research",
             "scope": "blueprint",
-            "sourceDisplayName": "Tenno 实验室",
             "requirements": {
               "type": "none"
             },
@@ -250,7 +265,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "dojo.tenno-lab"
           }
         ],
         "status": "complete"
@@ -274,7 +290,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowBarrel"
             ],
             "sourceCanonical": "Cephalon Suda, Intelligent",
-            "sourceDisplayName": "中枢苏达",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -286,17 +301,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "中枢苏达",
             "requiredRankName": "Intelligent",
             "variables": {
               "partName": "巨浪 枪管"
-            }
+            },
+            "factionId": "faction.cephalon-suda"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -311,7 +324,15 @@
             ],
             "variables": {
               "partName": "巨浪 枪管"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -335,7 +356,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchRocketCrossbowReceiver"
             ],
             "sourceCanonical": "Steel Meridian, Defender",
-            "sourceDisplayName": "钢铁防线",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -347,17 +367,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "钢铁防线",
             "requiredRankName": "Defender",
             "variables": {
               "partName": "巨浪 枪托"
-            }
+            },
+            "factionId": "faction.steel-meridian"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -372,7 +390,15 @@
             ],
             "variables": {
               "partName": "巨浪 枪托"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -393,8 +419,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -409,7 +433,15 @@
             ],
             "variables": {
               "partName": "巨浪 弓臂"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -460,6 +492,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 35000,
       "ingredients": [
         {
@@ -519,7 +552,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

@@ -59,7 +59,6 @@
             "/Lotus/Types/Recipes/Weapons/GrnSharbolaWeaponBlueprint"
           ],
           "sourceCanonical": "Kahl's Garrison (Chipper), Encampment",
-          "sourceDisplayName": "卡尔驻军的 Chipper",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -71,7 +70,8 @@
             "field": "components[].drops"
           },
           "type": "vendor-exchange",
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.chipper"
         }
       ]
     },
@@ -96,7 +96,6 @@
               "/Lotus/Types/Recipes/Weapons/GrnSharbolaWeaponBlueprint"
             ],
             "sourceCanonical": "Kahl's Garrison (Chipper), Encampment",
-            "sourceDisplayName": "卡尔驻军的 Chipper",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -108,7 +107,8 @@
               "field": "components[].drops"
             },
             "type": "vendor-exchange",
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.chipper"
           }
         ],
         "status": "complete"
@@ -159,6 +159,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -218,7 +219,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

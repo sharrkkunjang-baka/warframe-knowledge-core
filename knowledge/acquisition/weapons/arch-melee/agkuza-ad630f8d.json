@@ -60,7 +60,6 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchHookSwordBlueprint"
           ],
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -69,7 +68,8 @@
             "source": "installed-warframe-items",
             "field": "bpCost"
           },
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "scope": "component",
@@ -77,7 +77,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
           ],
           "sourceCanonical": "New Loka, Benevolent",
-          "sourceDisplayName": "新世间",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -89,11 +88,11 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "新世间",
           "requiredRankName": "Benevolent",
           "variables": {
             "partName": "驯象钩刃 刀刃"
-          }
+          },
+          "factionId": "faction.new-loka"
         },
         {
           "scope": "component",
@@ -101,7 +100,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
           ],
           "sourceCanonical": "Red Veil, Esteemed",
-          "sourceDisplayName": "血色面纱",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -113,11 +111,11 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "血色面纱",
           "requiredRankName": "Esteemed",
           "variables": {
             "partName": "驯象钩刃 握柄"
-          }
+          },
+          "factionId": "faction.red-veil"
         },
         {
           "scope": "component",
@@ -125,7 +123,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
           ],
           "sourceCanonical": "Steel Meridian, Defender",
-          "sourceDisplayName": "钢铁防线",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -137,11 +134,11 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "钢铁防线",
           "requiredRankName": "Defender",
           "variables": {
             "partName": "驯象钩刃 护手"
-          }
+          },
+          "factionId": "faction.steel-meridian"
         }
       ]
     },
@@ -166,7 +163,6 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchHookSwordBlueprint"
             ],
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -175,7 +171,8 @@
               "source": "installed-warframe-items",
               "field": "bpCost"
             },
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -199,7 +196,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
             ],
             "sourceCanonical": "New Loka, Benevolent",
-            "sourceDisplayName": "新世间",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -211,11 +207,11 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "新世间",
             "requiredRankName": "Benevolent",
             "variables": {
               "partName": "驯象钩刃 刀刃"
-            }
+            },
+            "factionId": "faction.new-loka"
           }
         ],
         "status": "complete"
@@ -239,7 +235,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
             ],
             "sourceCanonical": "Red Veil, Esteemed",
-            "sourceDisplayName": "血色面纱",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -251,11 +246,11 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "血色面纱",
             "requiredRankName": "Esteemed",
             "variables": {
               "partName": "驯象钩刃 握柄"
-            }
+            },
+            "factionId": "faction.red-veil"
           }
         ],
         "status": "complete"
@@ -279,7 +274,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
             ],
             "sourceCanonical": "Steel Meridian, Defender",
-            "sourceDisplayName": "钢铁防线",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -291,11 +285,11 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "钢铁防线",
             "requiredRankName": "Defender",
             "variables": {
               "partName": "驯象钩刃 护手"
-            }
+            },
+            "factionId": "faction.steel-meridian"
           }
         ],
         "status": "complete"
@@ -345,6 +339,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 35000,
       "ingredients": [
         {
@@ -396,7 +391,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

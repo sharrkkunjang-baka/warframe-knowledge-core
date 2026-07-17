@@ -57,8 +57,6 @@
           "type": "syndicate-exchange",
           "scope": "blueprint",
           "sourceCanonical": "Cephalon Simaris",
-          "sourceDisplayName": "中枢 Simaris",
-          "factionDisplayName": "中枢 Simaris",
           "standing": 100000,
           "requirements": {
             "type": "standing",
@@ -73,7 +71,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/MacheteBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.cephalon-simaris"
         }
       ]
     },
@@ -96,8 +95,6 @@
             "type": "syndicate-exchange",
             "scope": "blueprint",
             "sourceCanonical": "Cephalon Simaris",
-            "sourceDisplayName": "中枢 Simaris",
-            "factionDisplayName": "中枢 Simaris",
             "standing": 100000,
             "requirements": {
               "type": "standing",
@@ -112,7 +109,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/MacheteBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.cephalon-simaris"
           }
         ],
         "status": "complete"
@@ -163,6 +161,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 25000,
       "ingredients": [
         {
@@ -222,7 +221,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

@@ -51,17 +51,17 @@ test('手枪元素师显示实体化敌人及布鲁图斯扬升来源', () => {
   const result = createKnowledgeCore({ approvedOnly: false }).getAcquisition('手枪元素师');
   const method = result.structuredMethods.find(item => item.type === 'enemy-drop');
   assert.deepEqual(method && { sourceEntityId: method.sourceEntityId, sourceDisplayName: method.sourceDisplayName, planetDisplayName: method.planetDisplayName, locationDisplayName: method.locationDisplayName, missionTypeDisplayName: method.missionTypeDisplayName, chance: method.chance }, {
-    sourceEntityId: 'enemy.juno-sapper-moa', sourceDisplayName: '朱诺工兵恐鸟', planetDisplayName: '天王星', locationDisplayName: '布鲁图斯', missionTypeDisplayName: '扬升', chance: 0.4287
+    sourceEntityId: 'enemy.juno-sapper-moa', sourceDisplayName: '朱诺工兵恐鸟', planetDisplayName: '天王星', locationDisplayName: '布鲁图斯', missionTypeDisplayName: '扬升', chance: 0.004287
   });
 });
 
 test('所有获取方法引用的 NPC 实体均已注册且仲裁商店保留官方名称', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
   const preparation = core.getAcquisition('有备而来');
-  assert.match(preparation.description, /任意中继站找仲裁阁下兑换，需要30个生息精华/);
-  assert.equal(preparation.structuredMethods[0].sourceDisplayName, '仲裁阁下');
-  assert.ok(core.getNpc('npc.arbitration-honors'));
-  assert.ok(core.getNpc('npc.koumei-shrine'));
+  assert.match(preparation.description, /在仲裁阁下的奖励处兑换[\s\S]*任意中继站兑换，需要30个生息精华/);
+  assert.equal(preparation.structuredMethods[0].sourceDisplayName, '仲裁阁下的奖励');
+  assert.equal(preparation.structuredMethods[0].sourceEntityId, 'acquisition-source.arbitration-honors');
+  assert.equal(core.getAcquisition('Amanata Pressure').structuredMethods[0].sourceEntityId, 'acquisition-source.koumei-shrine');
 });
 
 test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
@@ -138,12 +138,12 @@ test('Wiki 编译幂等且样本表格解析可靠', () => {
   assert.deepEqual(growing.entry.methodRefs, ['gameplay.silver-grove-specters']);
   assert.deepEqual(growing.entry.modAcquisition.manual.methodRefs, growing.entry.methodRefs);
   const condition = core.getAcquisition('Condition Overload');
-  assert.ok(condition.structuredMethods.some(method => method.type === 'circuit-reward' && method.chance === 0.0149));
+  assert.ok(condition.structuredMethods.some(method => method.chance === 0.0149 && /Tier 4|Tier 6/.test(method.sourceCanonical || '')));
   assert.ok(condition.structuredMethods.some(method => method.type === 'enemy-drop' && method.sourceCanonical === 'Kuva Bombard'));
   assert.ok(condition.mechanicsEvidence.notes.length > 0);
   const frostbite = core.getAcquisition('Frostbite');
   assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'C' && method.chance === 0.086 && method.nodes.length === 4));
-  assert.ok(frostbite.structuredMethods.some(method => method.rotation === 'B' && method.chance === 0.1));
+  assert.ok(frostbite.structuredMethods.some(method => method.chance === 0.1 && /Pago.*Rotation B/.test(method.sourceCanonical || '')));
   assert.equal(frostbite.structuredMethods.some(method => method.type === 'enemy-drop'), false);
 });
 
@@ -198,14 +198,15 @@ test('全部 Mod 不按编译来源分流并返回同一标准 acquisition entry
 
 test('官方目录为全部上游记录给出完整、待审或排除状态', () => {
   const catalog = buildOfficialCatalog('2026-07-15T00:00:00.000Z');
-  assert.equal(catalog.counts.upstreamRecords, 1733);
+  const upstreamRecords = new (require('warframe-items'))({ category: ['Mods'], i18n: ['zh'] }).length;
+  assert.equal(catalog.counts.upstreamRecords, upstreamRecords);
   assert.equal(catalog.counts.mods, catalog.mods.length);
   assert.ok(catalog.counts.mods > playable.length);
   assert.equal(catalog.counts.excludedMods, excluded.length);
   assert.equal(catalog.counts.completeMods + catalog.counts.reviewRequiredMods, catalog.mods.length);
   assert.equal(catalog.mods.every(mod => ['complete', 'review-required'].includes(mod.status)), true);
   assert.equal(catalog.excludedMods.every(mod => mod.status === 'excluded-policy' && mod.exclusionReason), true);
-  assert.equal(new Set([...catalog.mods, ...catalog.excludedMods].map(mod => mod.uniqueName)).size, 1733 + (catalog.mods.length - playable.length));
+  assert.equal(new Set([...catalog.mods, ...catalog.excludedMods].map(mod => mod.uniqueName)).size, upstreamRecords + (catalog.mods.length - playable.length));
   const pressurePoint = catalog.mods.find(mod => mod.uniqueName === '/Lotus/Upgrades/Mods/Melee/WeaponMeleeDamageMod');
   const narrowMinded = catalog.mods.find(mod => mod.canonical === 'Narrow Minded');
   assert.equal(pressurePoint.status, 'review-required');
@@ -222,11 +223,11 @@ test('最后本地边界项有明确的发布或排除结论', () => {
     prerequisite: method.prerequisite,
     requirements: method.requirements
   }, {
-    sourceEntityId: 'npc.koumei-shrine',
+    sourceEntityId: 'acquisition-source.koumei-shrine',
     locationId: 'hub.cetus',
     prerequisite: 'steel-path',
     requirements: {
-      type: 'currency', usage: 'exchange', npcId: 'npc.koumei-shrine', locationId: 'hub.cetus',
+      type: 'currency', usage: 'exchange', npcId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus',
       currency: [{ currencyId: 'currency.fate-pearl', amount: 150 }], isBuffUseless: true
     }
   });

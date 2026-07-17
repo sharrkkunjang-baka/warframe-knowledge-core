@@ -52,7 +52,7 @@
             "pageId": 1544338,
             "revisionId": 2760633,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -88,7 +88,27 @@
           "blueprintSource": "official-component-drop",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.cephalon-simaris",
+                "locationId": "hub.any-relay",
+                "amount": 50000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "audited-current-wiki-acquisition",
+                "pageTitle": "Sevagoth",
+                "section": "Acquisition"
+              }
+            }
+          ]
         }
       },
       "manual": {}

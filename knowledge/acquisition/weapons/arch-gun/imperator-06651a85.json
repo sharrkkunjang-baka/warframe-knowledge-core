@@ -58,23 +58,23 @@
           "scope": "item",
           "partRefs": [],
           "questCanonical": "The Archwing",
-          "questDisplayName": "曲翼",
           "questUniqueName": "/Lotus/Types/Keys/ArchwingQuest/ArchwingQuestKeyChain",
           "requirements": {
             "type": "quest",
-            "questName": "曲翼"
+            "questName": "曲翼",
+            "questId": "quest.the-archwing"
           },
           "variables": {},
           "reviewStatus": "approved",
           "provenance": {
             "authority": "Digital Extremes Warframe Support",
             "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
-          }
+          },
+          "questId": "quest.the-archwing"
         },
         {
           "type": "quest-reward",
           "questCanonical": "The Archwing (Quest)",
-          "questDisplayName": "曲翼",
           "requirements": {
             "type": "quest",
             "questId": "quest.the-archwing"
@@ -88,7 +88,8 @@
             "source": "compiled-simaris-weapon-sources",
             "sourceCanonical": "Cephalon Simaris, Complete The Archwing (Quest)"
           },
-          "variables": {}
+          "variables": {},
+          "questId": "quest.the-archwing"
         },
         {
           "type": "vendor-exchange",
@@ -130,18 +131,19 @@
             "scope": "item",
             "partRefs": [],
             "questCanonical": "The Archwing",
-            "questDisplayName": "曲翼",
             "questUniqueName": "/Lotus/Types/Keys/ArchwingQuest/ArchwingQuestKeyChain",
             "requirements": {
               "type": "quest",
-              "questName": "曲翼"
+              "questName": "曲翼",
+              "questId": "quest.the-archwing"
             },
             "variables": {},
             "reviewStatus": "approved",
             "provenance": {
               "authority": "Digital Extremes Warframe Support",
               "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
-            }
+            },
+            "questId": "quest.the-archwing"
           }
         ],
         "status": "complete"
@@ -163,7 +165,6 @@
           {
             "type": "quest-reward",
             "questCanonical": "The Archwing (Quest)",
-            "questDisplayName": "曲翼",
             "requirements": {
               "type": "quest",
               "questId": "quest.the-archwing"
@@ -177,7 +178,8 @@
               "source": "compiled-simaris-weapon-sources",
               "sourceCanonical": "Cephalon Simaris, Complete The Archwing (Quest)"
             },
-            "variables": {}
+            "variables": {},
+            "questId": "quest.the-archwing"
           },
           {
             "type": "vendor-exchange",
@@ -249,6 +251,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -308,7 +311,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

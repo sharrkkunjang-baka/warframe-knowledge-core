@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemA",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-location"
     ]
   },
   "prerequisites": [],
@@ -69,11 +69,14 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-location",
         "variables": {
-          "resourceName": "虚空胶丸"
+          "resourceName": "虚空胶丸",
+          "locationIds": [
+            "planet.zariman"
+          ]
         },
-        "status": "review-required"
+        "status": "compiled"
       }
     },
     "manual": {
@@ -91,8 +94,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "虚空胶丸的资源身份与获取证据。",
   "tags": [
     "acquisition",

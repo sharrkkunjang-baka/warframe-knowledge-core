@@ -57,7 +57,6 @@
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -70,7 +69,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "scope": "component",
@@ -78,7 +78,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel"
           ],
           "sourceCanonical": "Granum Void, Rotation C",
-          "sourceDisplayName": "格拉努虚空",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.2222,
           "requirements": {
@@ -93,7 +92,9 @@
           "rotation": "C",
           "variables": {
             "partName": "逐电 枪管"
-          }
+          },
+          "missionTypeId": "mission-type.granum-void",
+          "sourceEntityId": "mission-type.granum-void"
         },
         {
           "scope": "component",
@@ -101,7 +102,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver"
           ],
           "sourceCanonical": "Extended Granum Void, Rotation C",
-          "sourceDisplayName": "扩展格拉努虚空",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.2963,
           "requirements": {
@@ -116,7 +116,9 @@
           "rotation": "C",
           "variables": {
             "partName": "逐电 枪机"
-          }
+          },
+          "missionTypeId": "mission-type.extended-granum-void",
+          "sourceEntityId": "mission-type.extended-granum-void"
         }
       ]
     },
@@ -138,7 +140,6 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -151,7 +152,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ProteaSMGWeaponBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -175,7 +177,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGBarrel"
             ],
             "sourceCanonical": "Granum Void, Rotation C",
-            "sourceDisplayName": "格拉努虚空",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.2222,
             "requirements": {
@@ -190,7 +191,9 @@
             "rotation": "C",
             "variables": {
               "partName": "逐电 枪管"
-            }
+            },
+            "missionTypeId": "mission-type.granum-void",
+            "sourceEntityId": "mission-type.granum-void"
           }
         ],
         "status": "complete"
@@ -214,7 +217,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ProteaSMGReceiver"
             ],
             "sourceCanonical": "Extended Granum Void, Rotation C",
-            "sourceDisplayName": "扩展格拉努虚空",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.2963,
             "requirements": {
@@ -229,7 +231,9 @@
             "rotation": "C",
             "variables": {
               "partName": "逐电 枪机"
-            }
+            },
+            "missionTypeId": "mission-type.extended-granum-void",
+            "sourceEntityId": "mission-type.extended-granum-void"
           }
         ],
         "status": "complete"
@@ -279,6 +283,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 25000,
       "ingredients": [
         {
@@ -330,7 +335,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

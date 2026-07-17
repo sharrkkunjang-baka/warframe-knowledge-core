@@ -55,7 +55,6 @@
         {
           "type": "market-purchase",
           "scope": "item",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -66,12 +65,12 @@
             "revisionId": 2773809
           },
           "partRefs": [],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "market-purchase",
           "scope": "item",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -82,7 +81,8 @@
             "revisionId": 2773809
           },
           "partRefs": [],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         }
       ]
     },
@@ -101,7 +101,6 @@
           {
             "type": "market-purchase",
             "scope": "item",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -112,12 +111,12 @@
               "revisionId": 2773809
             },
             "partRefs": [],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           },
           {
             "type": "market-purchase",
             "scope": "item",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -128,7 +127,8 @@
               "revisionId": 2773809
             },
             "partRefs": [],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -145,6 +145,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 15000,
       "ingredients": [],
       "provenance": {
@@ -171,7 +172,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

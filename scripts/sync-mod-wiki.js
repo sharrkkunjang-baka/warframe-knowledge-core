@@ -25,6 +25,31 @@ function comparable(value) {
   return JSON.stringify(copy)
 }
 function sourceInfo(report) { return { sha256: report.sha256, size: report.size } }
+function methodKey(method) {
+  return JSON.stringify({ type: method.type || '', source: method.sourceCanonical || method.sourceEntityId || '', factionIds: method.factionIds || [], currency: method.currency || method.requirements?.currency || [], pageTitle: method.provenance?.pageTitle || '', section: method.provenance?.section || '' })
+}
+function normalizeEntityReferences(method) {
+  const next = JSON.parse(JSON.stringify(method))
+  const sourceAliases = {
+    'npc.arbitration-honors': 'acquisition-source.arbitration-honors',
+    'npc.koumei-shrine': 'acquisition-source.koumei-shrine'
+  }
+  function visit(value) {
+    if (!value || typeof value !== 'object') return
+    for (const [key, item] of Object.entries(value)) {
+      if (typeof item === 'string' && sourceAliases[item]) value[key] = sourceAliases[item]
+      else if (item && typeof item === 'object') visit(item)
+    }
+    for (const currency of value.currency || []) {
+      if (!currency.currencyId && currency.currencyCanonical === 'Fate Pearl') {
+        currency.currencyId = 'currency.fate-pearl'
+        delete currency.currencyCanonical
+      }
+    }
+  }
+  visit(next)
+  return next
+}
 function compileOfficialTemplateEffect(entry, page) {
   if (!String(entry.effectDetails?.[0] || '').includes('官方效果模板包含')) return null
   const nameKey = String(entry.officialUniqueName || '').replace(/^language:/, '')
@@ -83,10 +108,13 @@ function buildPlan(options = {}) {
         generatedWiki = compileModWikiPage(page, sourceInfo(report), compiledAt)
         counts.compiled += 1
       }
-      const maintainedMethods = (entry.modAcquisition?.generated?.wiki?.methods || []).filter(method => method.type === 'syndicate-exchange' || method.provenance?.source === 'local-wiki-sqlite')
+      generatedWiki.methods = (generatedWiki.methods || []).map(normalizeEntityReferences)
+      const officialSyndicateKeys = new Set(generatedWiki.methods.filter(method => method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates').map(method => method.factionId))
+      generatedWiki.methods = generatedWiki.methods.filter(method => !(method.provenance?.source === 'local-wiki-sqlite' && ['syndicate-exchange','syndicate-exchange-group'].includes(method.type) && (method.factionIds || [method.factionId]).filter(Boolean).every(id => officialSyndicateKeys.has(id))))
+      const maintainedMethods = (entry.modAcquisition?.generated?.wiki?.methods || []).filter(method => method.type === 'syndicate-exchange' || (method.provenance?.source === 'local-wiki-sqlite' && method.reviewStatus === 'approved')).map(normalizeEntityReferences)
       if (maintainedMethods.length) {
-        const maintainedKeys = new Set(maintainedMethods.map(method => `${method.type}\0${method.sourceCanonical || method.sourceEntityId || (method.factionIds || []).join(',')}`))
-        generatedWiki.methods = [...maintainedMethods, ...(generatedWiki.methods || []).filter(method => !maintainedKeys.has(`${method.type}\0${method.sourceCanonical || method.sourceEntityId || (method.factionIds || []).join(',')}`))]
+        const maintainedKeys = new Set(maintainedMethods.map(methodKey))
+        generatedWiki.methods = [...maintainedMethods, ...(generatedWiki.methods || []).filter(method => !maintainedKeys.has(methodKey(method)))]
         if (generatedWiki.status === 'unresolved') generatedWiki.status = 'complete'
       }
       counts[generatedWiki.status] += 1
@@ -120,6 +148,23 @@ function buildPlan(options = {}) {
   return { report, counts, unresolved, expectedFiles }
 }
 
+function buildEntityMigrationPlan(options = {}) {
+  const records = readAcquisitionRecords(options.acquisitionDirectory || ACQUISITION_DIR)
+    .filter(record => record.entry.subject?.category === 'mod')
+  const updates = new Map()
+  for (const record of records) {
+    const methods = record.entry.modAcquisition?.generated?.wiki?.methods
+    if (!Array.isArray(methods)) continue
+    const normalized = methods.map(normalizeEntityReferences)
+    if (JSON.stringify(methods) === JSON.stringify(normalized)) continue
+    const update = updates.get(record.file) || { file: record.file, value: JSON.parse(JSON.stringify(record.value)), current: record.raw }
+    const values = Array.isArray(update.value) ? update.value : [update.value]
+    values[record.index].modAcquisition.generated.wiki.methods = normalized
+    update.value = Array.isArray(update.value) ? values : values[0]
+    updates.set(record.file, update)
+  }
+  return { expectedFiles: [...updates.values()].map(update => ({ ...update, content: serialize(update.value) })), counts: { selected: records.length, changed: updates.size } }
+}
 function printPlan(plan) {
   const c = plan.counts
   console.log(`wiki-db=${plan.report.filename}`)
@@ -131,6 +176,13 @@ function run(argv = process.argv.slice(2)) {
   const check = argv.includes('--check')
   const dryRun = argv.includes('--dry-run')
   const canonical = argument(argv, '--canonical')
+  if (argv.includes('--normalize-entities')) {
+    const plan = buildEntityMigrationPlan()
+    if (check && plan.counts.changed) throw new Error(`Mod 实体引用已漂移：${plan.counts.changed} 个文件`)
+    if (!check && !dryRun) for (const update of plan.expectedFiles) fs.writeFileSync(update.file, update.content)
+    console.log(`mod-entity-references selected=${plan.counts.selected} changed=${plan.counts.changed}${dryRun ? ' dry-run' : ''}`)
+    return plan
+  }
   const limitValue = argument(argv, '--limit')
   const limit = limitValue == null ? null : Number(limitValue)
   if (limitValue != null && (!Number.isInteger(limit) || limit < 1)) throw new Error('--limit 必须是正整数')
@@ -153,4 +205,4 @@ function run(argv = process.argv.slice(2)) {
 if (require.main === module) {
   try { run() } catch (error) { console.error(error.stack || error); process.exit(1) }
 }
-module.exports = { REPORT_PATH, buildPlan, comparable, compileOfficialTemplateEffect, run, sameWikiSource }
+module.exports = { REPORT_PATH, buildEntityMigrationPlan, buildPlan, comparable, compileOfficialTemplateEffect, normalizeEntityReferences, run, sameWikiSource }

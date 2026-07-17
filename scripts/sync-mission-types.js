@@ -20,6 +20,12 @@ const SPECIAL_TYPES = Object.freeze([
   { canonical: 'Void Storm', displayName: '', category: 'railjack', officialSource: 'official-drop-canonical' },
   { canonical: 'Orphix', displayName: '奥影', category: 'railjack', officialSource: 'DE official zh-hans Operation: Orphix Venom terminology' },
   { canonical: 'Operation: Orphix Venom', displayName: '行动代号：奥影之毒', category: 'event', officialSource: 'DE official zh-hans news' },
+  { canonical: 'Arbitration', displayName: '仲裁', category: 'special', officialSource: 'DE official zh-hans terminology' },
+  { canonical: 'Archimedea', displayName: '科研任务', category: 'special', officialSource: 'Warframe official mode terminology' },
+  { canonical: 'Bounty', displayName: '赏金', category: 'bounty', officialSource: 'official-drop-canonical' },
+  { canonical: 'Narmer Bounty', displayName: '合一众赏金', category: 'bounty', officialSource: 'official-drop-canonical' },
+  { canonical: 'Normal', displayName: '普通任务', category: 'standard', officialSource: 'official-drop-canonical' },
+  { canonical: 'Hard', displayName: '钢铁之路', category: 'special', officialSource: 'official-drop-canonical' },
   ...['Cetus Bounty','Orb Vallis Bounty','Cambion Drift Bounty','Entrati Lab Bounty','Zariman Bounty','WF1999 Bounty','Plague Star'].map(canonical => ({ canonical, displayName: '', category: canonical === 'Plague Star' ? 'event' : 'bounty', officialSource: 'official-drop-canonical' }))
 ])
 const ENDLESS = /DEFENSE|SURVIVAL|DISRUPTION|TERRITORY|EXCAVATE|DEFECTION|SALVAGE|ASCENSION/i

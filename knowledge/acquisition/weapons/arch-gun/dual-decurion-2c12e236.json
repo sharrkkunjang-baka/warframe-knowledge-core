@@ -57,7 +57,6 @@
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -70,13 +69,12 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchHeavyPistolsBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -91,13 +89,19 @@
           ],
           "variables": {
             "partName": "什长双枪 枪管"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -112,7 +116,15 @@
           ],
           "variables": {
             "partName": "什长双枪 枪机"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         }
       ]
     },
@@ -134,7 +146,6 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -147,7 +158,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchHeavyPistolsBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -168,8 +180,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -184,7 +194,15 @@
             ],
             "variables": {
               "partName": "什长双枪 枪管"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -205,8 +223,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -221,7 +237,15 @@
             ],
             "variables": {
               "partName": "什长双枪 枪机"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -271,6 +295,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 35000,
       "ingredients": [
         {
@@ -322,7 +347,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

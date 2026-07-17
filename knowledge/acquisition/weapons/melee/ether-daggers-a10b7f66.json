@@ -60,23 +60,23 @@
             "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
           ],
           "questCanonical": "Stolen Dreams",
-          "questDisplayName": "被偷走的梦",
           "questUniqueName": "/Lotus/Types/Keys/SpyQuestKeyChain/SpyQuestKeyChain",
           "requirements": {
             "type": "quest",
-            "questName": "被偷走的梦"
+            "questName": "被偷走的梦",
+            "questId": "quest.stolen-dreams"
           },
           "variables": {},
           "reviewStatus": "approved",
           "provenance": {
             "authority": "Digital Extremes Warframe Support",
             "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
-          }
+          },
+          "questId": "quest.stolen-dreams"
         },
         {
           "type": "quest-reward",
           "questCanonical": "Stolen Dreams",
-          "questDisplayName": "被偷走的梦",
           "requirements": {
             "type": "quest",
             "questId": "quest.stolen-dreams"
@@ -90,7 +90,8 @@
             "source": "compiled-simaris-weapon-sources",
             "sourceCanonical": "Cephalon Simaris, Unlock through Stolen Dreams"
           },
-          "variables": {}
+          "variables": {},
+          "questId": "quest.stolen-dreams"
         },
         {
           "type": "vendor-exchange",
@@ -119,7 +120,6 @@
             "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
           ],
           "sourceCanonical": "Operational Supply, Collaborator",
-          "sourceDisplayName": "行动补给",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -131,7 +131,8 @@
             "field": "components[].drops"
           },
           "type": "vendor-exchange",
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "acquisition-source.operational-supply"
         }
       ]
     },
@@ -157,23 +158,23 @@
               "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
             ],
             "questCanonical": "Stolen Dreams",
-            "questDisplayName": "被偷走的梦",
             "questUniqueName": "/Lotus/Types/Keys/SpyQuestKeyChain/SpyQuestKeyChain",
             "requirements": {
               "type": "quest",
-              "questName": "被偷走的梦"
+              "questName": "被偷走的梦",
+              "questId": "quest.stolen-dreams"
             },
             "variables": {},
             "reviewStatus": "approved",
             "provenance": {
               "authority": "Digital Extremes Warframe Support",
               "sourceUrl": "https://support.warframe.com/hc/en-us/articles/218290327-Quest-Tips-Up-to-Second-Dream-Minimal-Spoilers"
-            }
+            },
+            "questId": "quest.stolen-dreams"
           },
           {
             "type": "quest-reward",
             "questCanonical": "Stolen Dreams",
-            "questDisplayName": "被偷走的梦",
             "requirements": {
               "type": "quest",
               "questId": "quest.stolen-dreams"
@@ -187,7 +188,8 @@
               "source": "compiled-simaris-weapon-sources",
               "sourceCanonical": "Cephalon Simaris, Unlock through Stolen Dreams"
             },
-            "variables": {}
+            "variables": {},
+            "questId": "quest.stolen-dreams"
           },
           {
             "type": "vendor-exchange",
@@ -216,7 +218,6 @@
               "/Lotus/Types/Recipes/Weapons/DualEtherDaggerBlueprint"
             ],
             "sourceCanonical": "Operational Supply, Collaborator",
-            "sourceDisplayName": "行动补给",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -228,7 +229,8 @@
               "field": "components[].drops"
             },
             "type": "vendor-exchange",
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "acquisition-source.operational-supply"
           }
         ],
         "status": "complete"
@@ -279,6 +281,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -338,7 +341,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

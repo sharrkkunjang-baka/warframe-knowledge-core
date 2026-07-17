@@ -57,9 +57,7 @@
           "type": "syndicate-exchange",
           "scope": "blueprint",
           "sourceCanonical": "Legs",
-          "sourceDisplayName": "LEGS",
           "locationDisplayName": "福尔图娜",
-          "factionDisplayName": "索拉里斯联盟",
           "requiredLevel": 5,
           "requiredRankName": "Old Mate with Solaris United",
           "standing": 10000,
@@ -80,7 +78,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.legs"
         }
       ]
     },
@@ -103,9 +102,7 @@
             "type": "syndicate-exchange",
             "scope": "blueprint",
             "sourceCanonical": "Legs",
-            "sourceDisplayName": "LEGS",
             "locationDisplayName": "福尔图娜",
-            "factionDisplayName": "索拉里斯联盟",
             "requiredLevel": 5,
             "requiredRankName": "Old Mate with Solaris United",
             "standing": 10000,
@@ -126,7 +123,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/SentinelTazronWeaponBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.legs"
           }
         ],
         "status": "complete"
@@ -177,6 +175,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 30000,
       "ingredients": [
         {
@@ -236,7 +235,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

@@ -52,7 +52,7 @@
             "pageId": 1476802,
             "revisionId": 2586804,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -84,7 +84,32 @@
           "blueprintSource": "official-bp-cost",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.cephalon-simaris",
+                "locationId": "hub.any-relay",
+                "rank": null,
+                "rankName": null,
+                "blueprintRank": null,
+                "blueprintRankName": null,
+                "amount": 50000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Protea",
+                "section": "Acquisition",
+                "excerpt": "Protea's main blueprint is rewarded upon completion of The Deadlock Protocol quest. Additional main blueprints can be bought from Cephalon Simaris for 50,000 Standing 50,000 . Component blueprints can be acquired from within the Granum Void , a special location only accessible from the Corpus Ship tileset."
+              }
+            }
+          ]
         }
       },
       "manual": {

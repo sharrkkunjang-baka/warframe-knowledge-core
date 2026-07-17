@@ -59,7 +59,6 @@
             "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
           ],
           "sourceCanonical": "Entrati (Father), Friend",
-          "sourceDisplayName": "英择谛的 Father",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -71,9 +70,9 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "英择谛的 Father",
           "requiredRankName": "Friend",
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.father"
         },
         {
           "scope": "component",
@@ -81,7 +80,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel"
           ],
           "sourceCanonical": "Entrati (Father), Family",
-          "sourceDisplayName": "英择谛的 Father",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -93,11 +91,11 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "英择谛的 Father",
           "requiredRankName": "Family",
           "variables": {
             "partName": "塞多 枪管"
-          }
+          },
+          "npcId": "npc.father"
         },
         {
           "scope": "component",
@@ -105,7 +103,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver"
           ],
           "sourceCanonical": "Entrati (Father), Family",
-          "sourceDisplayName": "英择谛的 Father",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -117,11 +114,11 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "英择谛的 Father",
           "requiredRankName": "Family",
           "variables": {
             "partName": "塞多 枪机"
-          }
+          },
+          "npcId": "npc.father"
         },
         {
           "scope": "component",
@@ -129,7 +126,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock"
           ],
           "sourceCanonical": "Entrati (Father), Family",
-          "sourceDisplayName": "英择谛的 Father",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -141,11 +137,11 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "英择谛的 Father",
           "requiredRankName": "Family",
           "variables": {
             "partName": "塞多 枪托"
-          }
+          },
+          "npcId": "npc.father"
         }
       ]
     },
@@ -170,7 +166,6 @@
               "/Lotus/Types/Recipes/Weapons/TnAlchemistShotgunBlueprint"
             ],
             "sourceCanonical": "Entrati (Father), Friend",
-            "sourceDisplayName": "英择谛的 Father",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -182,9 +177,9 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "英择谛的 Father",
             "requiredRankName": "Friend",
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.father"
           }
         ],
         "status": "complete"
@@ -208,7 +203,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunBarrel"
             ],
             "sourceCanonical": "Entrati (Father), Family",
-            "sourceDisplayName": "英择谛的 Father",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -220,11 +214,11 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "英择谛的 Father",
             "requiredRankName": "Family",
             "variables": {
               "partName": "塞多 枪管"
-            }
+            },
+            "npcId": "npc.father"
           }
         ],
         "status": "complete"
@@ -248,7 +242,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunReceiver"
             ],
             "sourceCanonical": "Entrati (Father), Family",
-            "sourceDisplayName": "英择谛的 Father",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -260,11 +253,11 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "英择谛的 Father",
             "requiredRankName": "Family",
             "variables": {
               "partName": "塞多 枪机"
-            }
+            },
+            "npcId": "npc.father"
           }
         ],
         "status": "complete"
@@ -288,7 +281,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/TnAlchemistShotgunStock"
             ],
             "sourceCanonical": "Entrati (Father), Family",
-            "sourceDisplayName": "英择谛的 Father",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -300,11 +292,11 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "英择谛的 Father",
             "requiredRankName": "Family",
             "variables": {
               "partName": "塞多 枪托"
-            }
+            },
+            "npcId": "npc.father"
           }
         ],
         "status": "complete"
@@ -355,6 +347,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -414,7 +407,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

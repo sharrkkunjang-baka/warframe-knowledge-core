@@ -60,7 +60,6 @@
             "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
           ],
           "sourceCanonical": "Shadow Stalker",
-          "sourceDisplayName": "黑影追猎者",
           "sourceLocalizationStatus": "official-zh",
           "locationId": null,
           "missionTypeId": null,
@@ -76,7 +75,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Blueprint/Item Drops by Blueprint/Item"
-          }
+          },
+          "sourceEntityId": "enemy.shadow-stalker"
         },
         {
           "type": "enemy-drop",
@@ -85,7 +85,6 @@
             "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
           ],
           "sourceCanonical": "Protector Stalker",
-          "sourceDisplayName": "卫护追猎者",
           "sourceLocalizationStatus": "official-zh",
           "locationId": null,
           "missionTypeId": null,
@@ -101,7 +100,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Blueprint/Item Drops by Blueprint/Item"
-          }
+          },
+          "sourceEntityId": "enemy.protector-stalker"
         }
       ]
     },
@@ -127,7 +127,6 @@
               "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
             ],
             "sourceCanonical": "Shadow Stalker",
-            "sourceDisplayName": "黑影追猎者",
             "sourceLocalizationStatus": "official-zh",
             "locationId": null,
             "missionTypeId": null,
@@ -143,7 +142,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Blueprint/Item Drops by Blueprint/Item"
-            }
+            },
+            "sourceEntityId": "enemy.shadow-stalker"
           },
           {
             "type": "enemy-drop",
@@ -152,7 +152,6 @@
               "/Lotus/Types/Recipes/Weapons/StalkerTwoGreatswordBlueprint"
             ],
             "sourceCanonical": "Protector Stalker",
-            "sourceDisplayName": "卫护追猎者",
             "sourceLocalizationStatus": "official-zh",
             "locationId": null,
             "missionTypeId": null,
@@ -168,7 +167,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Blueprint/Item Drops by Blueprint/Item"
-            }
+            },
+            "sourceEntityId": "enemy.protector-stalker"
           }
         ],
         "status": "complete"
@@ -219,6 +219,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -278,7 +279,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

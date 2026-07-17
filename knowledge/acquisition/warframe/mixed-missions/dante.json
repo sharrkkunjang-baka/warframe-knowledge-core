@@ -52,7 +52,7 @@
             "pageId": 1582726,
             "revisionId": 2782451,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -98,7 +98,34 @@
               }
             ],
             "isBuffUseless": true
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "all-blueprints",
+              "npcId": "npc.loid",
+              "locationId": "hub.sanctum-anatomica",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.loid",
+                "locationId": "hub.sanctum-anatomica",
+                "currency": [
+                  {
+                    "currencyId": "currency.vessel-capillaries",
+                    "amount": 540
+                  }
+                ],
+                "isBuffUseless": true
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "audited-current-wiki-acquisition",
+                "pageTitle": "Dante",
+                "section": "Acquisition"
+              }
+            }
+          ]
         }
       },
       "manual": {}

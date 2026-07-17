@@ -60,7 +60,6 @@
             "/Lotus/Types/Recipes/CronusBlueprint"
           ],
           "sourceCanonical": "Captain Vor",
-          "sourceDisplayName": "沃尔上尉",
           "sourceLocalizationStatus": "official-zh",
           "locationId": null,
           "missionTypeId": null,
@@ -76,7 +75,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Blueprint/Item Drops by Blueprint/Item"
-          }
+          },
+          "sourceEntityId": "enemy.captain-vor"
         },
         {
           "type": "enemy-drop",
@@ -85,7 +85,6 @@
             "/Lotus/Types/Recipes/CronusBlueprint"
           ],
           "sourceCanonical": "Janus Captain Vor",
-          "sourceDisplayName": "雅努斯沃尔上尉",
           "sourceLocalizationStatus": "official-zh",
           "locationId": null,
           "missionTypeId": null,
@@ -101,7 +100,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Blueprint/Item Drops by Blueprint/Item"
-          }
+          },
+          "sourceEntityId": "enemy.janus-captain-vor"
         },
         {
           "type": "mission-reward",
@@ -110,10 +110,9 @@
             "/Lotus/Types/Recipes/CronusBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.the-circuit-tier-6",
-          "missionTypeId": "mission-type.normal",
+          "missionTypeId": "mission-type.exterminate",
           "chance": 0.0103,
           "sourceDropChance": null,
           "conditionalChance": null,
@@ -126,7 +125,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.the-circuit-tier-6"
         },
         {
           "scope": "blueprint",
@@ -134,7 +134,6 @@
             "/Lotus/Types/Recipes/CronusBlueprint"
           ],
           "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
-          "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.0103,
           "requirements": {
@@ -145,8 +144,9 @@
             "source": "installed-warframe-items",
             "field": "components[].drops"
           },
-          "type": "enemy-drop",
-          "variables": {}
+          "type": "mission-reward",
+          "variables": {},
+          "sourceEntityId": "mission.the-circuit-tier-6"
         }
       ]
     },
@@ -172,7 +172,6 @@
               "/Lotus/Types/Recipes/CronusBlueprint"
             ],
             "sourceCanonical": "Captain Vor",
-            "sourceDisplayName": "沃尔上尉",
             "sourceLocalizationStatus": "official-zh",
             "locationId": null,
             "missionTypeId": null,
@@ -188,7 +187,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Blueprint/Item Drops by Blueprint/Item"
-            }
+            },
+            "sourceEntityId": "enemy.captain-vor"
           },
           {
             "type": "enemy-drop",
@@ -197,7 +197,6 @@
               "/Lotus/Types/Recipes/CronusBlueprint"
             ],
             "sourceCanonical": "Janus Captain Vor",
-            "sourceDisplayName": "雅努斯沃尔上尉",
             "sourceLocalizationStatus": "official-zh",
             "locationId": null,
             "missionTypeId": null,
@@ -213,7 +212,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Blueprint/Item Drops by Blueprint/Item"
-            }
+            },
+            "sourceEntityId": "enemy.janus-captain-vor"
           },
           {
             "type": "mission-reward",
@@ -222,10 +222,9 @@
               "/Lotus/Types/Recipes/CronusBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6  (Normal)",
-            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.the-circuit-tier-6",
-            "missionTypeId": "mission-type.normal",
+            "missionTypeId": "mission-type.exterminate",
             "chance": 0.0103,
             "sourceDropChance": null,
             "conditionalChance": null,
@@ -238,7 +237,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.the-circuit-tier-6"
           },
           {
             "scope": "blueprint",
@@ -246,7 +246,6 @@
               "/Lotus/Types/Recipes/CronusBlueprint"
             ],
             "sourceCanonical": "Duviri/Endless: Tier 6 (Normal)",
-            "sourceDisplayName": "双衍王境无尽回廊第 6 阶段",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.0103,
             "requirements": {
@@ -257,8 +256,9 @@
               "source": "installed-warframe-items",
               "field": "components[].drops"
             },
-            "type": "enemy-drop",
-            "variables": {}
+            "type": "mission-reward",
+            "variables": {},
+            "sourceEntityId": "mission.the-circuit-tier-6"
           }
         ],
         "status": "complete"
@@ -308,6 +308,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 15000,
       "ingredients": [
         {
@@ -359,7 +360,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

@@ -52,7 +52,7 @@
             "pageId": 1597745,
             "revisionId": 2782457,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -88,7 +88,34 @@
               }
             ],
             "isBuffUseless": true
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "all-blueprints",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.acrithis",
+                "locationId": "hub.dormizone",
+                "currency": [
+                  {
+                    "currencyId": "currency.scuttler-husks",
+                    "amount": 120
+                  }
+                ],
+                "isBuffUseless": true
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "audited-current-wiki-acquisition",
+                "pageTitle": "Oraxia",
+                "section": "Acquisition"
+              }
+            }
+          ]
         }
       },
       "manual": {}

@@ -1,0 +1,9 @@
+'use strict'
+const test=require('node:test'),assert=require('node:assert/strict')
+const core=require('../src').createKnowledgeCore({approvedOnly:false})
+const audit=require('../scripts/audit-semantic-coverage')
+
+test('全类别语义覆盖 manifest 对 2420 项运行时输出无缺口',()=>{const manifest=require('../generated/semantic-coverage-audit.json');assert.equal(manifest.counts.entries,2420);assert.equal(manifest.counts.failed,0);for(const category of ['warframe','weapon','arcane','consumable','mod'])assert.equal(manifest.counts.byCategory[category].failed,0)})
+test('刷 09 显示任务首获和 Amir 两级官方简中兑换条件',()=>{const result=core.getAcquisition('09');assert.match(result.description,/完成《六人组》获得总图/);assert.match(result.description,/Amir.*2级（现烤披萨片）.*20,000声望/);assert.match(result.description,/Amir.*4级（新鲜出炉）.*50,000声望/);assert.doesNotMatch(result.description,/Höllvania|WF1999 Bounty|Rotation|Fresh Slice|Hot & Fresh/);assert.equal(result.structuredMethods.filter(method=>method.type==='vendor-exchange').length,2)})
+test('Mod 百分比统一为小数且同显示敌人只渲染一次',()=>{assert.equal(require('../src/mod-wiki-compiler').percentage('0.1005%'),0.001005);const flawed=core.getAcquisition('Flawed Berserker Fury');assert.equal(flawed.entry.subject.canonical,'Flawed Berserker Fury');assert.doesNotMatch(flawed.description,/3\.03%|60%/);const metal=core.getAcquisition('Metal Fiber').description;assert.equal((metal.match(/击败Corpus 能量运送者获得/g)||[]).length,1)})
+test('语义输出检查拒绝英文获取术语与真实重复来源',()=>{assert.deepEqual(audit.outputIssues('来源：霍瓦尼亚 1999 赏金 C轮'),[]);assert.deepEqual(audit.outputIssues('来源：Höllvania WF1999 Bounty Rotation C'),['unlocalized-acquisition-term']);assert.deepEqual(audit.outputIssues('击败敌人获得（综合概率1%）\n击败敌人获得（综合概率2%）'),['duplicate-user-visible-line'])})

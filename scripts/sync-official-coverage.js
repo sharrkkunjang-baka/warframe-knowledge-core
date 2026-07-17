@@ -151,7 +151,7 @@ function buildManifest(generatedAt = new Date().toISOString()) {
 function run(argv = process.argv.slice(2)) {
   const check = argv.includes('--check');
   const current = fs.existsSync(OUTPUT) ? readJson(OUTPUT) : null;
-  const manifest = buildManifest(check && current?.generatedAt ? current.generatedAt : new Date().toISOString());
+  const manifest = buildManifest(current?.generatedAt || new Date().toISOString());
   if (check) {
     if (serialize(current) !== serialize(manifest)) throw new Error('官方覆盖 manifest 已漂移，请运行 npm run sync:coverage');
     if (!manifest.qualityGate.passed) throw new Error(`官方覆盖质量门失败：${manifest.qualityGate.failures.map(item => item.canonical).join('、')}`);

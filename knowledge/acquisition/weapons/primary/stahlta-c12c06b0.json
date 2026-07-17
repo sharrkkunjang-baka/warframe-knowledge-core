@@ -59,7 +59,6 @@
             "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
           ],
           "sourceCanonical": "Jackal",
-          "sourceDisplayName": "豺狼",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.15,
           "requirements": {
@@ -71,7 +70,8 @@
             "field": "components[].drops"
           },
           "type": "enemy-drop",
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "enemy.jackal"
         },
         {
           "scope": "component",
@@ -79,7 +79,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
           ],
           "sourceCanonical": "Nightmare Granum Void, Rotation C",
-          "sourceDisplayName": "噩梦格拉努虚空",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.2963,
           "requirements": {
@@ -94,7 +93,9 @@
           "rotation": "C",
           "variables": {
             "partName": "钢刃步枪 枪管"
-          }
+          },
+          "missionTypeId": "mission-type.nightmare-granum-void",
+          "sourceEntityId": "mission-type.nightmare-granum-void"
         },
         {
           "scope": "component",
@@ -102,7 +103,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver"
           ],
           "sourceCanonical": "Granum Void, Rotation C",
-          "sourceDisplayName": "格拉努虚空",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.2222,
           "requirements": {
@@ -117,7 +117,9 @@
           "rotation": "C",
           "variables": {
             "partName": "钢刃步枪 枪机"
-          }
+          },
+          "missionTypeId": "mission-type.granum-void",
+          "sourceEntityId": "mission-type.granum-void"
         },
         {
           "scope": "component",
@@ -125,7 +127,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock"
           ],
           "sourceCanonical": "Extended Granum Void, Rotation C",
-          "sourceDisplayName": "扩展格拉努虚空",
           "sourceLocalizationStatus": "official-zh",
           "chance": 0.2963,
           "requirements": {
@@ -140,7 +141,9 @@
           "rotation": "C",
           "variables": {
             "partName": "钢刃步枪 枪托"
-          }
+          },
+          "missionTypeId": "mission-type.extended-granum-void",
+          "sourceEntityId": "mission-type.extended-granum-void"
         }
       ]
     },
@@ -165,7 +168,6 @@
               "/Lotus/Types/Recipes/Weapons/CrpRubanRifleBlueprint"
             ],
             "sourceCanonical": "Jackal",
-            "sourceDisplayName": "豺狼",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.15,
             "requirements": {
@@ -177,7 +179,8 @@
               "field": "components[].drops"
             },
             "type": "enemy-drop",
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "enemy.jackal"
           }
         ],
         "status": "complete"
@@ -201,7 +204,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleBarrel"
             ],
             "sourceCanonical": "Nightmare Granum Void, Rotation C",
-            "sourceDisplayName": "噩梦格拉努虚空",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.2963,
             "requirements": {
@@ -216,7 +218,9 @@
             "rotation": "C",
             "variables": {
               "partName": "钢刃步枪 枪管"
-            }
+            },
+            "missionTypeId": "mission-type.nightmare-granum-void",
+            "sourceEntityId": "mission-type.nightmare-granum-void"
           }
         ],
         "status": "complete"
@@ -240,7 +244,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleReceiver"
             ],
             "sourceCanonical": "Granum Void, Rotation C",
-            "sourceDisplayName": "格拉努虚空",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.2222,
             "requirements": {
@@ -255,7 +258,9 @@
             "rotation": "C",
             "variables": {
               "partName": "钢刃步枪 枪机"
-            }
+            },
+            "missionTypeId": "mission-type.granum-void",
+            "sourceEntityId": "mission-type.granum-void"
           }
         ],
         "status": "complete"
@@ -279,7 +284,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/CrpRubanRifleStock"
             ],
             "sourceCanonical": "Extended Granum Void, Rotation C",
-            "sourceDisplayName": "扩展格拉努虚空",
             "sourceLocalizationStatus": "official-zh",
             "chance": 0.2963,
             "requirements": {
@@ -294,7 +298,9 @@
             "rotation": "C",
             "variables": {
               "partName": "钢刃步枪 枪托"
-            }
+            },
+            "missionTypeId": "mission-type.extended-granum-void",
+            "sourceEntityId": "mission-type.extended-granum-void"
           }
         ],
         "status": "complete"
@@ -344,6 +350,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 40000,
       "ingredients": [
         {
@@ -395,7 +402,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

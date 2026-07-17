@@ -56,7 +56,6 @@
         {
           "type": "mission-reward",
           "scope": "blueprint",
-          "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
           "requirements": {
             "type": "none"
           },
@@ -69,12 +68,12 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "acquisition-source.balor-fomorian-sabotage"
         },
         {
           "type": "mission-reward",
           "scope": "component",
-          "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
           "requirements": {
             "type": "none"
           },
@@ -89,12 +88,12 @@
           ],
           "variables": {
             "partName": "凯旋将军·破坏者 枪管"
-          }
+          },
+          "sourceEntityId": "acquisition-source.balor-fomorian-sabotage"
         },
         {
           "type": "mission-reward",
           "scope": "component",
-          "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
           "requirements": {
             "type": "none"
           },
@@ -109,7 +108,8 @@
           ],
           "variables": {
             "partName": "凯旋将军·破坏者 枪机"
-          }
+          },
+          "sourceEntityId": "acquisition-source.balor-fomorian-sabotage"
         }
       ]
     },
@@ -131,7 +131,6 @@
           {
             "type": "mission-reward",
             "scope": "blueprint",
-            "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
             "requirements": {
               "type": "none"
             },
@@ -144,7 +143,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ImperatorVandalBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "acquisition-source.balor-fomorian-sabotage"
           }
         ],
         "status": "complete"
@@ -165,7 +165,6 @@
           {
             "type": "mission-reward",
             "scope": "component",
-            "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
             "requirements": {
               "type": "none"
             },
@@ -180,7 +179,8 @@
             ],
             "variables": {
               "partName": "凯旋将军·破坏者 枪管"
-            }
+            },
+            "sourceEntityId": "acquisition-source.balor-fomorian-sabotage"
           }
         ],
         "status": "complete"
@@ -201,7 +201,6 @@
           {
             "type": "mission-reward",
             "scope": "component",
-            "sourceDisplayName": "巴罗尔巨人战舰破坏任务",
             "requirements": {
               "type": "none"
             },
@@ -216,7 +215,8 @@
             ],
             "variables": {
               "partName": "凯旋将军·破坏者 枪机"
-            }
+            },
+            "sourceEntityId": "acquisition-source.balor-fomorian-sabotage"
           }
         ],
         "status": "complete"
@@ -266,6 +266,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -317,7 +318,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

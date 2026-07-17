@@ -124,7 +124,7 @@ test('全部发布赋能都有官方中文满级效果和实体化来源', () =>
 
 test('官方包延迟时从 Wiki 官方分类补齐全部赋能且过滤都有理由', () => {
   const sculptor = core.getAcquisition('Arcane Sculptor');
-  assert.equal(core.arcanes.length, 169);
+  assert.equal(core.arcanes.length, core.arcaneCatalog.counts.arcanes);
   assert.equal(sculptor.entry.arcaneAcquisition.generated.identity.localizationStatus, 'official-zh');
   assert.equal(sculptor.entry.arcaneAcquisition.generated.stats.localizationStatus, 'official-zh');
   assert.match(sculptor.description, /类型：战甲赋能/);
@@ -161,7 +161,7 @@ test('多货币的相同任务奖励规则合并为一个依赖段落', () => {
   const lines = exchange.requirementLines;
   assert.equal(lines.filter(line => /普通难度 12-16 个/.test(line)).length, 1);
   assert.match(lines.join('\n'), /翠绿天赋和猩红天赋（各需要10个）/);
-  assert.match(lines.join('\n'), /翠绿天赋完成赤毒女巫号获得；猩红天赋完成火山石天使号获得/);
+  assert.match(lines.join('\n'), /翠绿天赋完成赤毒女巫号（前哨战）获得；猩红天赋完成火山石天使号（前哨战）获得/);
 });
 
 test('充沛使用官方奥影任务类型，不把第三方 Erato Skirmish 字符串当来源', () => {

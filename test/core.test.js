@@ -194,10 +194,12 @@ test('默认批准的刷取知识直接进入生产核心', () => {
   assert.equal(core.getAcquisition('电妹').entry.id, 'knowledge.acquisition.warframe.gyre');
 });
 
-test('官方 Mod 快照为全部 1733 条上游记录给出可用或排除状态', () => {
-  assert.equal(core.officialCatalog.counts.upstreamRecords, 1733);
-  assert.equal(core.officialCatalog.mods.length + core.officialCatalog.excludedMods.length, 1733);
-  assert.equal(new Set([...core.officialCatalog.mods, ...core.officialCatalog.excludedMods].map(mod => mod.uniqueName)).size, 1733);
+test('官方 Mod 快照为全部当前上游记录给出可用或排除状态', () => {
+  const upstreamRecords = new (require('warframe-items'))({ category: ['Mods'], i18n: ['zh'] }).length;
+  assert.equal(core.officialCatalog.counts.upstreamRecords, upstreamRecords);
+  const supplementalRecords = core.officialCatalog.mods.filter(mod => String(mod.uniqueName).startsWith('language:')).length;
+  assert.equal(core.officialCatalog.mods.length + core.officialCatalog.excludedMods.length, upstreamRecords + supplementalRecords);
+  assert.equal(new Set([...core.officialCatalog.mods, ...core.officialCatalog.excludedMods].map(mod => mod.uniqueName)).size, upstreamRecords + supplementalRecords);
   assert.equal(core.officialCatalog.source.version, '1.1269.87');
   assert.equal(core.categories.some(category => category.schemaVersion === 1), false);
 });

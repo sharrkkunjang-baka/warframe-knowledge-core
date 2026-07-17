@@ -58,7 +58,6 @@
           "type": "vendor-exchange",
           "scope": "item",
           "sourceCanonical": "Baro Ki'Teer",
-          "sourceDisplayName": "虚空商人",
           "requirements": {
             "type": "none"
           },
@@ -69,7 +68,8 @@
             "revisionId": 2785426
           },
           "partRefs": [],
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.baro-ki-teer"
         },
         {
           "type": "mission-reward",
@@ -177,7 +177,6 @@
           "partRefs": [
             "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
           ],
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -186,7 +185,8 @@
             "source": "installed-warframe-items",
             "field": "bpCost"
           },
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         }
       ]
     },
@@ -206,7 +206,6 @@
             "type": "vendor-exchange",
             "scope": "item",
             "sourceCanonical": "Baro Ki'Teer",
-            "sourceDisplayName": "虚空商人",
             "requirements": {
               "type": "none"
             },
@@ -217,7 +216,8 @@
               "revisionId": 2785426
             },
             "partRefs": [],
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.baro-ki-teer"
           }
         ],
         "status": "complete"
@@ -342,7 +342,6 @@
             "partRefs": [
               "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
             ],
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -351,7 +350,8 @@
               "source": "installed-warframe-items",
               "field": "bpCost"
             },
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -402,6 +402,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -461,7 +462,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

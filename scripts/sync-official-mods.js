@@ -169,7 +169,7 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
       manual: { methods: [], methodRefs: [], overrides: {}, reviewStatus: 'approved', reviewedBy: ['official-sync:syndicate-exchange'] }
     },
     acquisitionStatus: 'complete',
-    sources: [],
+    sources: [{ url: 'https://www.warframe.com/', label: 'DE Languages.bin + ExportSyndicates' }],
     gameVersion: 'DE Languages.bin + ExportSyndicates',
     updatedAt,
     reviewStatus: 'approved',
@@ -226,7 +226,7 @@ function compileSupplementalMods(rawItems) {
       compatName: null,
       rarity: null,
       polarity: null,
-      maxRank: null,
+      maxRank: 3,
       maxRankEffects: [renderSupplementalEffect(description)],
       maxRankEffectsZh: [renderSupplementalEffect(descriptionZh)],
       traits: { prime: false, augment: true, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
@@ -324,7 +324,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
       };
     });
   const supplementalMods = compileSupplementalMods(rawItems).map(mod => {
-    const localEntryIds = acquisitionsByCanonical.get(normalize(mod.canonical)) || [];
+    const localEntryIds = [...new Set([...(acquisitionsByUniqueName.get(mod.uniqueName) || []), ...(acquisitionsByCanonical.get(normalize(mod.canonical)) || [])])].sort();
     const hasCompleteEntry = localEntryIds.some(id => hasApprovedAcquisition(acquisitionById.get(id)));
     return {
       ...mod,

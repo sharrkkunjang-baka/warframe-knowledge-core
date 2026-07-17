@@ -6,7 +6,10 @@ const { buildRegistryPlan, applyRegistryPlan } = require('./entity-registry-io')
 const ROOT = path.resolve(__dirname, '..')
 const SOURCE = path.join(ROOT, 'knowledge', 'generated', 'official-quests.json')
 const TARGET = path.join(ROOT, 'knowledge', 'quests')
-const MANUAL = Object.freeze([{ id: 'quest.jade-shadows-constellations', canonical: 'Jade Shadows: Constellations', displayName: 'Jade 之影：众星', kind: 'quest', aliases: [], officialSource: 'wf_en_cn_full.json' }])
+const MANUAL = Object.freeze([
+  { id: 'quest.jade-shadows-constellations', canonical: 'Jade Shadows: Constellations', displayName: 'Jade 之影：众星', kind: 'quest', aliases: [], officialSource: 'wf_en_cn_full.json' },
+  { id: 'quest.the-teacher', canonical: 'The Teacher', displayName: '导师', kind: 'quest', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' }
+])
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') }
 function categoryOf(entry) { return /MainQuest|NewWar|ZarimanQuest|SecondDream|WarWithin|Sacrifice|Apostasy|Chimera/i.test(entry.officialUniqueName || '') ? 'main' : entry.officialSource === 'wf_en_cn_full.json' ? 'manual-audited' : 'side' }
 function build() {

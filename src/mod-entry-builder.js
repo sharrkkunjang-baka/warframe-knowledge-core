@@ -37,9 +37,9 @@ const LOCAL_CROSS_PAGE_METHODS = Object.freeze({
   'Amalgam Serration': [{ type: 'event-milestone-reward', sourceCanonical: 'Thermia Fractures', points: 25, chance: null, quantity: 1, availability: 'recurring-event', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Thermia Fractures', section: 'Rewards', excerpt: '25 Points: Amalgam Shotgun Barrage and Amalgam Serration' } }],
   'Amalgam Barrel Diffusion': [{ type: 'event-milestone-reward', sourceCanonical: 'Thermia Fractures', points: 50, chance: null, quantity: 1, availability: 'recurring-event', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Thermia Fractures', section: 'Rewards', excerpt: '50 Points: Amalgam Barrel Diffusion and Amalgam Organ Shatter' } }],
   'Amalgam Organ Shatter': [{ type: 'event-milestone-reward', sourceCanonical: 'Thermia Fractures', points: 50, chance: null, quantity: 1, availability: 'recurring-event', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Thermia Fractures', section: 'Rewards', excerpt: '50 Points: Amalgam Barrel Diffusion and Amalgam Organ Shatter' } }],
-  'Aerial Ace': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: 30 }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Vitus Essence', section: 'Arbitration Honors', excerpt: '30 Aerial Ace' } }],
-  'Archgun Riven Mod': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: 35 }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Vitus Essence', section: 'Arbitration Honors', excerpt: '35 Archgun Riven Mod' } }],
-  'Amanata Pressure': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.koumei-shrine', locationId: 'hub.cetus', prerequisite: 'steel-path', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.koumei-shrine', locationId: 'hub.cetus', currency: [{ currencyId: 'currency.fate-pearl', amount: 150 }], isBuffUseless: true }, chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: "Koumei's Shrine", section: 'Offer Fate Pearls', excerpt: 'Players who have access to The Steel Path can purchase Amanata Pressure for 150 Fate Pearl.' } }],
+  'Aerial Ace': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: 30 }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Vitus Essence', section: 'Arbitration Honors', excerpt: '30 Aerial Ace' } }],
+  'Archgun Riven Mod': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: 35 }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Vitus Essence', section: 'Arbitration Honors', excerpt: '35 Archgun Riven Mod' } }],
+  'Amanata Pressure': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus', prerequisite: 'steel-path', requirements: { type: 'currency', usage: 'exchange', npcId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus', currency: [{ currencyId: 'currency.fate-pearl', amount: 150 }], isBuffUseless: true }, chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: "Koumei's Shrine", section: 'Offer Fate Pearls', excerpt: 'Players who have access to The Steel Path can purchase Amanata Pressure for 150 Fate Pearl.' } }],
   'Aegis Gale': [{ type: 'syndicate-exchange-group', factionIds: ['faction.cephalon-suda', 'faction.the-perrin-sequence'], standing: 25000, rankRequirement: 'max', chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Cephalon Suda / The Perrin Sequence', section: 'Offerings', excerpt: 'Aegis Gale (Hildryn), Rank 5, 25,000 Standing' } }],
   Oull: [{ type: 'adversary-drop', sourceCanonical: 'Kuva Lich', chance: 25, quantity: 1, availability: 'farmable', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Kuva Lich', section: 'Requiem Mods', excerpt: 'Oull drops from the Kuva Lich at a 25% chance once they flee to the Saturn Proxima.' } }]
 })
@@ -252,15 +252,18 @@ function migrateManualModData(entry = {}) {
   }
 }
 
+function methodKey(method) {
+  return JSON.stringify({ type: method.type || '', source: method.sourceCanonical || method.sourceEntityId || '', factionIds: method.factionIds || [], currency: method.currency || method.requirements?.currency || [], pageTitle: method.provenance?.pageTitle || '', section: method.provenance?.section || '' })
+}
 function mergeGeneratedWiki(generatedWiki, oldWiki) {
   if (!generatedWiki) return oldWiki || null
   if (!oldWiki) return generatedWiki
   const maintainedMethods = (generatedWiki.methods || []).filter(method => method.type === 'syndicate-exchange' || method.provenance?.source === 'local-wiki-sqlite')
   if (!maintainedMethods.length) return oldWiki
-  const maintainedKeys = new Set(maintainedMethods.map(method => `${method.type}\0${method.sourceCanonical || method.sourceEntityId || (method.factionIds || []).join(',')}`))
+  const maintainedKeys = new Set(maintainedMethods.map(methodKey))
   return {
     ...oldWiki,
-    methods: [...maintainedMethods, ...(oldWiki.methods || []).filter(method => !maintainedKeys.has(`${method.type}\0${method.sourceCanonical || method.sourceEntityId || (method.factionIds || []).join(',')}`))],
+    methods: [...maintainedMethods, ...(oldWiki.methods || []).filter(method => !maintainedKeys.has(methodKey(method)))],
     status: oldWiki.status === 'unresolved' ? 'complete' : oldWiki.status
   }
 }

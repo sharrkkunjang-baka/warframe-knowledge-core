@@ -59,7 +59,6 @@
             "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
           ],
           "sourceCanonical": "Operational Supply, Collaborator",
-          "sourceDisplayName": "行动补给",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -71,7 +70,8 @@
             "field": "components[].drops"
           },
           "type": "vendor-exchange",
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "acquisition-source.operational-supply"
         }
       ]
     },
@@ -96,7 +96,6 @@
               "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
             ],
             "sourceCanonical": "Operational Supply, Collaborator",
-            "sourceDisplayName": "行动补给",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -108,7 +107,8 @@
               "field": "components[].drops"
             },
             "type": "vendor-exchange",
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "acquisition-source.operational-supply"
           }
         ],
         "status": "complete"
@@ -159,6 +159,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -218,7 +219,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

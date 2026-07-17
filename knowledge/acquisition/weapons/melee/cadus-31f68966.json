@@ -57,7 +57,6 @@
         {
           "type": "market-purchase",
           "scope": "item",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -65,15 +64,15 @@
           "provenance": {
             "source": "local-wiki-sqlite",
             "pageTitle": "Cadus",
-            "revisionId": 2710486
+            "revisionId": 2793376
           },
           "partRefs": [],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "market-purchase",
           "scope": "item",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -81,15 +80,15 @@
           "provenance": {
             "source": "local-wiki-sqlite",
             "pageTitle": "Cadus",
-            "revisionId": 2710486
+            "revisionId": 2793376
           },
           "partRefs": [],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -97,12 +96,13 @@
           "provenance": {
             "source": "local-wiki-sqlite",
             "pageTitle": "Cadus",
-            "revisionId": 2710486
+            "revisionId": 2793376
           },
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         }
       ]
     },
@@ -121,7 +121,6 @@
           {
             "type": "market-purchase",
             "scope": "item",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -129,15 +128,15 @@
             "provenance": {
               "source": "local-wiki-sqlite",
               "pageTitle": "Cadus",
-              "revisionId": 2710486
+              "revisionId": 2793376
             },
             "partRefs": [],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           },
           {
             "type": "market-purchase",
             "scope": "item",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -145,10 +144,11 @@
             "provenance": {
               "source": "local-wiki-sqlite",
               "pageTitle": "Cadus",
-              "revisionId": 2710486
+              "revisionId": 2793376
             },
             "partRefs": [],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -170,7 +170,6 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -178,12 +177,13 @@
             "provenance": {
               "source": "local-wiki-sqlite",
               "pageTitle": "Cadus",
-              "revisionId": 2710486
+              "revisionId": 2793376
             },
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/SingleStaffBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -234,6 +234,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 50000,
       "ingredients": [
         {
@@ -293,7 +294,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

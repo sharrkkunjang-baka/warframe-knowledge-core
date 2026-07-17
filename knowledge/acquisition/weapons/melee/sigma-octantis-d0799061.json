@@ -55,7 +55,6 @@
         {
           "type": "daily-tribute",
           "scope": "item",
-          "sourceDisplayName": "每日献礼里程碑",
           "requirements": {
             "type": "none"
           },
@@ -66,7 +65,8 @@
             "revisionId": 2724064
           },
           "partRefs": [],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "acquisition-source.daily-tribute"
         }
       ]
     },
@@ -85,7 +85,6 @@
           {
             "type": "daily-tribute",
             "scope": "item",
-            "sourceDisplayName": "每日献礼里程碑",
             "requirements": {
               "type": "none"
             },
@@ -96,7 +95,8 @@
               "revisionId": 2724064
             },
             "partRefs": [],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "acquisition-source.daily-tribute"
           }
         ],
         "status": "complete"
@@ -113,6 +113,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -172,7 +173,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

@@ -145,6 +145,7 @@ function resolveWarframeMention(input) {
     .replace(/^\s*(?:刷|查|普通|原版|非\s*Prime|非P版)\s*/i, '')
     .replace(/\s*(?:要|该)?(?:怎么|怎样|如何)(?:刷|获得|获取|得到|取得|入手)(?:的|到)?(?:呢|啊|呀|吗)?\s*$/i, '')
     .replace(/\s*(?:在哪|哪里|哪儿|什么地方)(?:刷|获得|获取|掉落|出)(?:呢|啊|呀|吗)?\s*$/i, '')
+    .replace(/\s*战甲\s*$/i, '')
     .trim();
   const exact = resolveWarframe(entityText);
   if (exact) return { frame: exact, matched: entityText, rest: raw.replace(entityText, '').trim(), match: 'intent-stripped-exact' };
@@ -665,7 +666,7 @@ function renderRoutedAcquisition(frameOrName) {
   const lines = [];
   if (route.blueprintCategory) {
     const blueprintLine = route.blueprintCategory === 'quest' && routing.blueprintVariables?.questId
-      ? renderQuestRoute(routing.blueprintVariables || {}, '总图', 'blueprints')
+      ? applyTemplate(methodTemplate('blueprints', 'quest'), { questName: entityName(QUEST_REGISTRY, routing.blueprintVariables.questId) })
       : ['mixed-missions', 'specific-mission'].includes(route.blueprintCategory) && routing.blueprintVariables?.type === 'mission-node'
         ? applyTemplate(methodTemplate('blueprints', route.blueprintCategory), { sourceText: renderMissionSource(routing.blueprintVariables) })
         : applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {});

@@ -50,9 +50,9 @@
             "type": "wiki-page",
             "pageTitle": "Cyte-09",
             "pageId": 1586681,
-            "revisionId": 2782449,
+            "revisionId": 2793456,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -60,12 +60,12 @@
           "componentCategory": "frame-bounty",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "factionId": null,
-            "hubs": [],
-            "levelRange": {
-              "min": 65,
-              "max": 70
-            },
+            "hubs": [
+              {
+                "locationId": "acquisition-source.hollvania-missions",
+                "npcId": "npc.amir"
+              }
+            ],
             "sourceCanonical": [
               "Höllvania (Level  65 - 70 WF1999 Bounty), Rotation C",
               "Höllvania (Level  55 - 60 WF1999 Bounty), Rotation C",
@@ -73,12 +73,60 @@
             ]
           },
           "blueprintVariables": {
-            "questName": "Hex quest"
+            "questId": "quest.the-hex"
           },
-          "blueprintSource": "wiki-acquisition",
+          "blueprintSource": "manual-override",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "component",
+              "npcId": "npc.amir",
+              "locationId": "acquisition-source.hollvania-missions",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.amir",
+                "locationId": "acquisition-source.hollvania-missions",
+                "rank": 2,
+                "rankName": "现烤披萨片",
+                "blueprintRank": null,
+                "blueprintRankName": null,
+                "amount": 20000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Cyte-09",
+                "section": "Acquisition",
+                "excerpt": " Alternatively Cyte-09's blueprints can be purchased from Amir of The Hex ; component blueprints for 20,000 Standing 20,000 and requires Rank 2 - Fresh Slice , and the main blueprint for 50,000 Standing 50,000 and requires Rank 4 - Hot & Fresh ."
+              }
+            },
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "npcId": "npc.amir",
+              "locationId": "acquisition-source.hollvania-missions",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.amir",
+                "locationId": "acquisition-source.hollvania-missions",
+                "rank": 4,
+                "rankName": "新鲜出炉",
+                "blueprintRank": null,
+                "blueprintRankName": null,
+                "amount": 50000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Cyte-09",
+                "section": "Acquisition",
+                "excerpt": " Alternatively Cyte-09's blueprints can be purchased from Amir of The Hex ; component blueprints for 20,000 Standing 20,000 and requires Rank 2 - Fresh Slice , and the main blueprint for 50,000 Standing 50,000 and requires Rank 4 - Hot & Fresh ."
+              }
+            }
+          ]
         }
       },
       "manual": {}

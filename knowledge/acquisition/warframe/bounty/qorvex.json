@@ -52,7 +52,7 @@
             "pageId": 1581338,
             "revisionId": 2782458,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -60,12 +60,12 @@
           "componentCategory": "frame-bounty",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "factionId": null,
-            "hubs": [],
-            "levelRange": {
-              "min": 55,
-              "max": 60
-            },
+            "hubs": [
+              {
+                "locationId": "acquisition-source.sanctum-anatomica-bounty",
+                "npcId": "npc.fibonacci"
+              }
+            ],
             "sourceCanonical": [
               "Deimos/Albrecht's Laboratories (Level  55 - 60 Entrati Lab Bounty), Rotation C",
               "Deimos/Albrecht's Laboratories (Level  65 - 70 Entrati Lab Bounty), Rotation C",
@@ -73,12 +73,60 @@
             ]
           },
           "blueprintVariables": {
-            "questName": "Whispers in the Walls quest"
+            "questId": "quest.whispers-in-the-walls"
           },
-          "blueprintSource": "wiki-acquisition",
+          "blueprintSource": "manual-override",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "component",
+              "npcId": "npc.bird-3",
+              "locationId": "hub.sanctum-anatomica",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.bird-3",
+                "locationId": "hub.sanctum-anatomica",
+                "rank": 2,
+                "rankName": "研究者",
+                "blueprintRank": null,
+                "blueprintRankName": null,
+                "amount": 20000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Qorvex",
+                "section": "Acquisition",
+                "excerpt": " Alternatively Qorvex's blueprints can be purchased from Bird 3 of Cavia ; component blueprints for 20,000 Standing 20,000 and requires Rank 2 - Researcher , and the main blueprint for 50,000 Standing 50,000 and requires Rank 4 - Scholar ."
+              }
+            },
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "npcId": "npc.bird-3",
+              "locationId": "hub.sanctum-anatomica",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.bird-3",
+                "locationId": "hub.sanctum-anatomica",
+                "rank": 4,
+                "rankName": "学者",
+                "blueprintRank": null,
+                "blueprintRankName": null,
+                "amount": 50000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Qorvex",
+                "section": "Acquisition",
+                "excerpt": " Alternatively Qorvex's blueprints can be purchased from Bird 3 of Cavia ; component blueprints for 20,000 Standing 20,000 and requires Rank 2 - Researcher , and the main blueprint for 50,000 Standing 50,000 and requires Rank 4 - Scholar ."
+              }
+            }
+          ]
         }
       },
       "manual": {}

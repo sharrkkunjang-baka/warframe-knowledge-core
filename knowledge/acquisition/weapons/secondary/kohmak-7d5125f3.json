@@ -59,7 +59,6 @@
           "partRefs": [
             "/Lotus/Weapons/ClanTech/Chemical/GrnKohmPistolBlueprint"
           ],
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -68,12 +67,12 @@
             "source": "installed-warframe-items",
             "field": "bpCost"
           },
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "dojo-research",
           "scope": "blueprint",
-          "sourceDisplayName": "化学实验室",
           "requirements": {
             "type": "none"
           },
@@ -86,7 +85,8 @@
           "partRefs": [
             "/Lotus/Weapons/ClanTech/Chemical/GrnKohmPistolBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "dojo.chem-lab"
         }
       ]
     },
@@ -111,7 +111,6 @@
             "partRefs": [
               "/Lotus/Weapons/ClanTech/Chemical/GrnKohmPistolBlueprint"
             ],
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -120,12 +119,12 @@
               "source": "installed-warframe-items",
               "field": "bpCost"
             },
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           },
           {
             "type": "dojo-research",
             "scope": "blueprint",
-            "sourceDisplayName": "化学实验室",
             "requirements": {
               "type": "none"
             },
@@ -138,7 +137,8 @@
             "partRefs": [
               "/Lotus/Weapons/ClanTech/Chemical/GrnKohmPistolBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "dojo.chem-lab"
           }
         ],
         "status": "complete"
@@ -189,6 +189,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -248,7 +249,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

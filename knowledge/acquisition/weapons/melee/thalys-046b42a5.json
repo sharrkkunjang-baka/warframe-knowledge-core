@@ -56,7 +56,6 @@
         {
           "type": "vendor-exchange",
           "scope": "blueprint",
-          "sourceDisplayName": "宿舍的 Acrithis 或 Dominus Thrax",
           "requirements": {
             "type": "currency",
             "currency": [
@@ -75,7 +74,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ZarimanHeavyScytheIncarnonBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "acquisition-source.acrithis-or-dominus-thrax"
         }
       ]
     },
@@ -97,7 +97,6 @@
           {
             "type": "vendor-exchange",
             "scope": "blueprint",
-            "sourceDisplayName": "宿舍的 Acrithis 或 Dominus Thrax",
             "requirements": {
               "type": "currency",
               "currency": [
@@ -116,7 +115,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ZarimanHeavyScytheIncarnonBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "acquisition-source.acrithis-or-dominus-thrax"
           }
         ],
         "status": "complete"
@@ -167,6 +167,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 25000,
       "ingredients": [
         {
@@ -226,7 +227,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

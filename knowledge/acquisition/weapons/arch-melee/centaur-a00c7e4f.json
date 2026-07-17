@@ -57,7 +57,6 @@
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -70,7 +69,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ArchSwordShieldBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "scope": "component",
@@ -78,7 +78,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldBlade"
           ],
           "sourceCanonical": "The Perrin Sequence, Executive",
-          "sourceDisplayName": "佩兰数列",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -90,17 +89,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "佩兰数列",
           "requiredRankName": "Executive",
           "variables": {
             "partName": "半人马 剑刃"
-          }
+          },
+          "factionId": "faction.the-perrin-sequence"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -115,7 +112,15 @@
           ],
           "variables": {
             "partName": "半人马 剑刃"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "scope": "component",
@@ -123,7 +128,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldAegis"
           ],
           "sourceCanonical": "Arbiters of Hexis, Lawful",
-          "sourceDisplayName": "均衡仲裁者",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -135,17 +139,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "均衡仲裁者",
           "requiredRankName": "Lawful",
           "variables": {
             "partName": "半人马 盾"
-          }
+          },
+          "factionId": "faction.arbiters-of-hexis"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -160,7 +162,15 @@
           ],
           "variables": {
             "partName": "半人马 盾"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         },
         {
           "scope": "component",
@@ -168,7 +178,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldHandle"
           ],
           "sourceCanonical": "New Loka, Benevolent",
-          "sourceDisplayName": "新世间",
           "sourceLocalizationStatus": "official-zh",
           "chance": 1,
           "requirements": {
@@ -180,17 +189,15 @@
             "field": "components[].drops"
           },
           "type": "syndicate-exchange",
-          "factionDisplayName": "新世间",
           "requiredRankName": "Benevolent",
           "variables": {
             "partName": "半人马 握柄"
-          }
+          },
+          "factionId": "faction.new-loka"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六大集团商店",
-          "factionDisplayName": "六大集团",
           "requirements": {
             "type": "standing"
           },
@@ -205,7 +212,15 @@
           ],
           "variables": {
             "partName": "半人马 握柄"
-          }
+          },
+          "factionIds": [
+            "faction.arbiters-of-hexis",
+            "faction.cephalon-suda",
+            "faction.new-loka",
+            "faction.the-perrin-sequence",
+            "faction.red-veil",
+            "faction.steel-meridian"
+          ]
         }
       ]
     },
@@ -227,7 +242,6 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -240,7 +254,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/ArchSwordShieldBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           }
         ],
         "status": "complete"
@@ -264,7 +279,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldBlade"
             ],
             "sourceCanonical": "The Perrin Sequence, Executive",
-            "sourceDisplayName": "佩兰数列",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -276,17 +290,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "佩兰数列",
             "requiredRankName": "Executive",
             "variables": {
               "partName": "半人马 剑刃"
-            }
+            },
+            "factionId": "faction.the-perrin-sequence"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -301,7 +313,15 @@
             ],
             "variables": {
               "partName": "半人马 剑刃"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -325,7 +345,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldAegis"
             ],
             "sourceCanonical": "Arbiters of Hexis, Lawful",
-            "sourceDisplayName": "均衡仲裁者",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -337,17 +356,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "均衡仲裁者",
             "requiredRankName": "Lawful",
             "variables": {
               "partName": "半人马 盾"
-            }
+            },
+            "factionId": "faction.arbiters-of-hexis"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -362,7 +379,15 @@
             ],
             "variables": {
               "partName": "半人马 盾"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -386,7 +411,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchSwordShieldHandle"
             ],
             "sourceCanonical": "New Loka, Benevolent",
-            "sourceDisplayName": "新世间",
             "sourceLocalizationStatus": "official-zh",
             "chance": 1,
             "requirements": {
@@ -398,17 +422,15 @@
               "field": "components[].drops"
             },
             "type": "syndicate-exchange",
-            "factionDisplayName": "新世间",
             "requiredRankName": "Benevolent",
             "variables": {
               "partName": "半人马 握柄"
-            }
+            },
+            "factionId": "faction.new-loka"
           },
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六大集团商店",
-            "factionDisplayName": "六大集团",
             "requirements": {
               "type": "standing"
             },
@@ -423,7 +445,15 @@
             ],
             "variables": {
               "partName": "半人马 握柄"
-            }
+            },
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.cephalon-suda",
+              "faction.new-loka",
+              "faction.the-perrin-sequence",
+              "faction.red-veil",
+              "faction.steel-meridian"
+            ]
           }
         ],
         "status": "complete"
@@ -473,6 +503,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": false,
+      "alwaysAvailable": false,
       "marketCredits": 35000,
       "ingredients": [
         {
@@ -524,7 +555,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

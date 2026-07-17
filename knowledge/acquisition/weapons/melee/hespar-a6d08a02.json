@@ -60,10 +60,9 @@
             "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
           ],
           "sourceCanonical": "Zariman/Level  90 - 95 Zariman Bounty",
-          "sourceDisplayName": "扎里曼号赏金",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "bounty.zariman",
-          "missionTypeId": "mission-type.bounty",
+          "missionTypeId": "mission-type.cetus-bounty",
           "chance": 0.12990000000000002,
           "sourceDropChance": null,
           "conditionalChance": null,
@@ -77,7 +76,8 @@
             "source": "DE Official Drop Tables",
             "section": "Bounty Rewards",
             "sectionId": "zarimanRewards"
-          }
+          },
+          "sourceEntityId": "bounty.zariman"
         },
         {
           "type": "mission-reward",
@@ -86,7 +86,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade"
           ],
           "sourceCanonical": "Zariman/Oro Works (Void Armageddon)",
-          "sourceDisplayName": "扎里曼号/奥金工场（Void Armageddon）",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.oro-works-solnode233",
           "missionTypeId": "mission-type.void-armageddon",
@@ -102,7 +101,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.oro-works-solnode233"
         },
         {
           "type": "mission-reward",
@@ -111,7 +111,6 @@
             "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle"
           ],
           "sourceCanonical": "Zariman/Tuvul Commons (Void Cascade)",
-          "sourceDisplayName": "扎里曼号/涂沃主厅（Void Cascade）",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "mission.tuvul-commons-solnode232",
           "missionTypeId": "mission-type.void-cascade",
@@ -127,7 +126,8 @@
           "provenance": {
             "source": "DE Official Drop Tables",
             "section": "Missions"
-          }
+          },
+          "sourceEntityId": "mission.tuvul-commons-solnode232"
         }
       ]
     },
@@ -153,10 +153,9 @@
               "/Lotus/Types/Recipes/Weapons/DuviriHeavyScytheBlueprint"
             ],
             "sourceCanonical": "Zariman/Level  90 - 95 Zariman Bounty",
-            "sourceDisplayName": "扎里曼号赏金",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "bounty.zariman",
-            "missionTypeId": "mission-type.bounty",
+            "missionTypeId": "mission-type.cetus-bounty",
             "chance": 0.12990000000000002,
             "sourceDropChance": null,
             "conditionalChance": null,
@@ -170,7 +169,8 @@
               "source": "DE Official Drop Tables",
               "section": "Bounty Rewards",
               "sectionId": "zarimanRewards"
-            }
+            },
+            "sourceEntityId": "bounty.zariman"
           }
         ],
         "status": "complete"
@@ -195,7 +195,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheBlade"
             ],
             "sourceCanonical": "Zariman/Oro Works (Void Armageddon)",
-            "sourceDisplayName": "扎里曼号/奥金工场（Void Armageddon）",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.oro-works-solnode233",
             "missionTypeId": "mission-type.void-armageddon",
@@ -211,7 +210,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.oro-works-solnode233"
           }
         ],
         "status": "complete"
@@ -236,7 +236,6 @@
               "/Lotus/Types/Recipes/Weapons/WeaponParts/DuviriHeavyScytheHandle"
             ],
             "sourceCanonical": "Zariman/Tuvul Commons (Void Cascade)",
-            "sourceDisplayName": "扎里曼号/涂沃主厅（Void Cascade）",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "mission.tuvul-commons-solnode232",
             "missionTypeId": "mission-type.void-cascade",
@@ -252,7 +251,8 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "sourceEntityId": "mission.tuvul-commons-solnode232"
           }
         ],
         "status": "complete"
@@ -302,6 +302,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -353,7 +354,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

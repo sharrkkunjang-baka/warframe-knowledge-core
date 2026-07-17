@@ -229,12 +229,12 @@ test('manual overrides and recursive exchange dependencies render before generic
   assert.match(kullervo, /恐惧、愤怒或悲伤心情阶段/);
   assert.match(kullervo, /击败 Kullervo.*击败奥金魇龙后结算获得/);
   const sirius = acquisition.renderAcquisition(acquisition.resolveWarframe('红绿'));
-  assert.match(sirius, /总图：首次完成《Jade 之影：众星》获得；或刷天王星比邻星域的赤毒女巫号或火山石天使号/);
-  assert.match(sirius, /部件蓝图：天王星比邻星域的赤毒女巫号或火山石天使号/);
+  assert.match(sirius, /总图：首次完成《Jade 之影：众星》获得；或刷天王星比邻星域的赤毒女巫号（前哨战）或火山石天使号（前哨战）/);
+  assert.match(sirius, /部件蓝图：天王星比邻星域的赤毒女巫号（前哨战）或火山石天使号（前哨战）/);
   assert.match(sirius, /兑换：在渡界之塔向 Hunhow 使用翠绿天赋或猩红天赋兑换/);
   assert.doesNotMatch(sirius, /补充：|A轮掉落总图、头、机体、系统/);
   assert.match(sirius, /翠绿天赋（需要 545）：完成天王星比邻星域赤毒女巫号/);
-  assert.match(sirius, /猩红天赋（需要 545）：完成天王星比邻星域火山石天使号；数量与额外获取规则同上/);
+  assert.match(sirius, /猩红天赋（需要 545）：完成天王星比邻星域火山石天使号（前哨战）；数量与额外获取规则同上/);
   assert.equal((sirius.match(/普通难度结算 12-16 个/g) || []).length, 1);
   assert.equal((sirius.match(/钢铁之路 16-20 个/g) || []).length, 1);
   assert.doesNotMatch(sirius, /Jade Shadows: Constellations|The Kuva Wytch|Scoria's Angel/);

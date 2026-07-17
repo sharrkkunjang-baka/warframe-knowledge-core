@@ -36,6 +36,8 @@ function enrichMethod(method, registries) {
   )
   const npc = entity(registries, 'npcs', method.npcId || method.requirements?.npcId)
   const location = entity(registries, 'locations', method.locationId || method.requirements?.locationId || npc?.locationId)
+  const quest = entity(registries, 'quests', method.questId || method.requirements?.questId)
+  const faction = entity(registries, 'factions', method.factionId || method.requirements?.factionId)
   const missionType = entity(registries, 'missionTypes', method.missionTypeId)
   const requirements = normalizeRequirements(method.requirements)
   return {
@@ -43,7 +45,10 @@ function enrichMethod(method, registries) {
     requirements,
     requirementLines: renderRequirements(requirements, registries),
     ...(source ? { sourceDisplayName: displayEntityName(source), sourceKind: source.kind || null } : {}),
+    ...(npc ? { npcId: npc.id, npcDisplayName: displayEntityName(npc) } : {}),
     ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
+    ...(quest ? { questId: quest.id, questDisplayName: displayEntityName(quest) } : {}),
+    ...(faction ? { factionId: faction.id, factionDisplayName: displayEntityName(faction) } : {}),
     ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
   }
 }

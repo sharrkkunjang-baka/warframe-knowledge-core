@@ -63,7 +63,11 @@ function currencyAcquisitionSummary(entity, registries) {
     return `在${name(registries.locations, node.parentId)}的${name(registries.locations, node.id)}（${name(registries.missionTypes, dependency.missionTypeId)}）击败爆破使获得，普通每只 ${dependency.normalAmount.min}-${dependency.normalAmount.max}，钢铁之路每只 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max}`
   }
   if (dependency.type === 'bounty-completion-or-compost') return `完成${dependency.bountyName}获得：普通难度 ${dependency.normalAmount.min}-${dependency.normalAmount.max} 个，钢铁之路 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max} 个；多余蘑菇样本每个可堆肥获得 ${dependency.compostAmount} 个`
-  if (dependency.type === 'mission-completion') return `完成${name(registries.locations, dependency.locationId)}（${name(registries.missionTypes, dependency.missionTypeId)}）获得`
+  if (dependency.type === 'mission-completion') {
+    const location = name(registries.locations, dependency.locationId)
+    const missionType = name(registries.missionTypes, dependency.missionTypeId)
+    return `完成${location}${missionType && !location.includes(`（${missionType}）`) ? `（${missionType}）` : ''}获得`
+  }
   if (dependency.acquisition?.type === 'mission-completion') return `完成${name(registries.locations, dependency.acquisition.locationId)}获得：普通难度 ${dependency.acquisition.normalAmount.min}-${dependency.acquisition.normalAmount.max} 个，钢铁之路 ${dependency.acquisition.steelPathAmount.min}-${dependency.acquisition.steelPathAmount.max} 个；${dependency.acquisition.bonus}`
   return null
 }
@@ -106,9 +110,15 @@ function renderRequirements(value, registries) {
   return [route, ...(dependencies.length ? ['所需货币怎么刷：', ...dependencies] : []), requirement.isBuffUseless ? '资源数量加成无效' : '资源数量加成有效'].filter(Boolean)
 }
 
+function localizeAcquisitionText(value) {
+  return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望')
+}
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
-  const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
+  const location = localizeAcquisitionText(method.locationDisplayName || variables.locationName || '')
+  const npc = localizeAcquisitionText(method.npcDisplayName || variables.npcName || '')
+  const source = localizeAcquisitionText(method.sourceDisplayName || location || variables.sourceName || '')
+  const exchangeSource = npc ? `${location ? `${location}的` : ''}${npc}` : source
   const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'item' ? '成品' : ''
   const prefix = scopeName ? `${scopeName}：` : ''
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
@@ -122,7 +132,7 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'daily-tribute') return `${prefix}从每日献礼里程碑奖励中选择获得`
   if (method.type === 'anniversary-reward') return `${prefix}完成周年庆典警报获得`
   if (method.type === 'adversary-reward') return `${prefix}击败并处决携带该武器的赤毒玄骸获得`
-  if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${source ? `在${source}兑换` : '向指定 NPC 兑换'}`
+  if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${exchangeSource ? `在${exchangeSource}处兑换` : '向指定 NPC 兑换'}`
   if (method.type === 'syndicate-exchange') {
     const faction = method.factionDisplayName || source || '指定集团'
     const rank = Number.isInteger(method.requiredLevel) ? `达到 ${method.requiredLevel} 级后` : ''
@@ -139,7 +149,9 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}${source ? `击败${source}${chance ? '获得' : '概率获得'}` : `击败指定敌人${chance ? '获得' : '概率获得'}`}${chance}`
   }
   if (method.type === 'mission-reward') {
-    const mission = [method.locationDisplayName || source, method.missionTypeDisplayName ? `（${method.missionTypeDisplayName}）` : ''].join('')
+    const locationName = method.locationDisplayName || source
+    const missionTypeSuffix = method.missionTypeDisplayName && !String(locationName).includes(method.missionTypeDisplayName) ? `（${method.missionTypeDisplayName}）` : ''
+    const mission = [locationName, missionTypeSuffix].join('')
     const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
     const guaranteed = Number(method.chance) >= 1
     const verb = guaranteed ? '获得' : chance ? '获得' : '概率获得'
@@ -161,7 +173,17 @@ function joinPartNames(partNames) {
 
 function mergeAlternativeSources(methods, options = {}) {
   const groups = new Map(), passthrough = []
+  const canonicalEnemy = name => localizeAcquisitionText(name).replace(/\s*\([^)]*\)\s*$/g, '').trim()
+  const canonicalMethods = []
+  const seenEnemies = new Map()
   for (const method of methods || []) {
+    if (method.type !== 'enemy-drop') { canonicalMethods.push(method); continue }
+    const key = JSON.stringify([method.scope || 'item', method.variables?.partName || '', canonicalEnemy(method.sourceDisplayName || method.sourceCanonical || '')])
+    const previous = seenEnemies.get(key)
+    if (!previous || String(method.provenance?.source) === 'local-wiki-sqlite') seenEnemies.set(key, method)
+  }
+  canonicalMethods.push(...seenEnemies.values())
+  for (const method of canonicalMethods) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type)) { passthrough.push(method); continue }
     const variables = method.variables || {}
     const probabilityKey = options.showProbabilities === false ? [] : [method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null]
@@ -174,7 +196,7 @@ function mergeAlternativeSources(methods, options = {}) {
     if (group.length === 1) { merged.push(group[0]); continue }
     const names = [...new Set(group.map(method => method.sourceDisplayName || method.locationDisplayName).filter(Boolean))]
     if (!names.length) { merged.push(...group); continue }
-    merged.push({ ...group[0], sourceDisplayName: names.join('、'), sourceCanonical: group.map(method => method.sourceCanonical).filter(Boolean).join(' | '), mergedSourceCount: group.length })
+    merged.push({ ...group[0], sourceDisplayName: names.join('、'), locationDisplayName: names.join('、'), sourceCanonical: group.map(method => method.sourceCanonical).filter(Boolean).join(' | '), mergedSourceCount: group.length })
   }
   return [...merged, ...passthrough]
 }
@@ -238,4 +260,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, renderAcquisition }
+module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, renderAcquisition }

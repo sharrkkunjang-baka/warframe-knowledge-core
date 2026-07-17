@@ -56,8 +56,6 @@
         {
           "type": "syndicate-exchange",
           "scope": "blueprint",
-          "sourceDisplayName": "通风小子的 Roky",
-          "factionDisplayName": "通风小子",
           "requirements": {
             "type": "standing",
             "rank": 5,
@@ -72,13 +70,12 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.roky"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "通风小子的 Roky",
-          "factionDisplayName": "通风小子",
           "requirements": {
             "type": "standing",
             "rank": 5,
@@ -95,13 +92,12 @@
           ],
           "variables": {
             "partName": "卡帕压力枪 枪管"
-          }
+          },
+          "npcId": "npc.roky"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "通风小子的 Roky",
-          "factionDisplayName": "通风小子",
           "requirements": {
             "type": "standing",
             "rank": 5,
@@ -118,7 +114,8 @@
           ],
           "variables": {
             "partName": "卡帕压力枪 枪机"
-          }
+          },
+          "npcId": "npc.roky"
         }
       ]
     },
@@ -140,8 +137,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "blueprint",
-            "sourceDisplayName": "通风小子的 Roky",
-            "factionDisplayName": "通风小子",
             "requirements": {
               "type": "standing",
               "rank": 5,
@@ -156,7 +151,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.roky"
           }
         ],
         "status": "complete"
@@ -177,8 +173,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "通风小子的 Roky",
-            "factionDisplayName": "通风小子",
             "requirements": {
               "type": "standing",
               "rank": 5,
@@ -195,7 +189,8 @@
             ],
             "variables": {
               "partName": "卡帕压力枪 枪管"
-            }
+            },
+            "npcId": "npc.roky"
           }
         ],
         "status": "complete"
@@ -216,8 +211,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "通风小子的 Roky",
-            "factionDisplayName": "通风小子",
             "requirements": {
               "type": "standing",
               "rank": 5,
@@ -234,7 +227,8 @@
             ],
             "variables": {
               "partName": "卡帕压力枪 枪机"
-            }
+            },
+            "npcId": "npc.roky"
           }
         ],
         "status": "complete"
@@ -284,6 +278,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 40000,
       "ingredients": [
         {
@@ -335,7 +330,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

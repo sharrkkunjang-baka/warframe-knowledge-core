@@ -266,12 +266,13 @@ test('所有非 Prime 分类路由都不会意外回退到旧详情渲染', () =
   }
 })
 
-test('核心查询对全部普通战甲强制返回分类 method 路由', () => {
+test('核心查询对全部普通战甲保留分类 method 路由并仅追加缺失兑换', () => {
   const core = createKnowledgeCore()
   for (const item of INDEX.frames.filter(frame => !/ Prime$/.test(frame.canonical))) {
     const result = core.getAcquisition(item.canonical)
     assert.ok(result.frameRoute, item.canonical)
-    assert.equal(result.description, result.frameRoute.lines.join('\n'), item.canonical)
+    assert.ok(result.description.startsWith(result.frameRoute.lines.join('\n')), item.canonical)
+    if (result.description !== result.frameRoute.lines.join('\n')) assert.ok(result.structuredMethods.some(method => method.type === 'vendor-exchange'), item.canonical)
   }
 })
 

@@ -60,10 +60,9 @@
             "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
           ],
           "sourceCanonical": "Zariman/Level  70 - 75 Zariman Bounty",
-          "sourceDisplayName": "扎里曼号赏金",
           "sourceLocalizationStatus": "official-zh",
           "locationId": "bounty.zariman",
-          "missionTypeId": "mission-type.bounty",
+          "missionTypeId": "mission-type.cetus-bounty",
           "chance": 0.0794,
           "sourceDropChance": null,
           "conditionalChance": null,
@@ -77,7 +76,8 @@
             "source": "DE Official Drop Tables",
             "section": "Bounty Rewards",
             "sectionId": "zarimanRewards"
-          }
+          },
+          "sourceEntityId": "bounty.zariman"
         }
       ]
     },
@@ -103,10 +103,9 @@
               "/Lotus/Types/Recipes/Weapons/GyreRifleWeaponBlueprint"
             ],
             "sourceCanonical": "Zariman/Level  70 - 75 Zariman Bounty",
-            "sourceDisplayName": "扎里曼号赏金",
             "sourceLocalizationStatus": "official-zh",
             "locationId": "bounty.zariman",
-            "missionTypeId": "mission-type.bounty",
+            "missionTypeId": "mission-type.cetus-bounty",
             "chance": 0.0794,
             "sourceDropChance": null,
             "conditionalChance": null,
@@ -120,7 +119,8 @@
               "source": "DE Official Drop Tables",
               "section": "Bounty Rewards",
               "sectionId": "zarimanRewards"
-            }
+            },
+            "sourceEntityId": "bounty.zariman"
           }
         ],
         "status": "complete"
@@ -171,6 +171,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -230,7 +231,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

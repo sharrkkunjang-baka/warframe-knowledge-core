@@ -59,7 +59,6 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/AsymetricalBowBlueprint"
           ],
-          "sourceDisplayName": "商店",
           "requirements": {
             "type": "none"
           },
@@ -68,12 +67,12 @@
             "source": "installed-warframe-items",
             "field": "bpCost"
           },
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "interface.market"
         },
         {
           "type": "dojo-research",
           "scope": "blueprint",
-          "sourceDisplayName": "Tenno 实验室",
           "requirements": {
             "type": "none"
           },
@@ -86,7 +85,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/AsymetricalBowBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "dojo.tenno-lab"
         }
       ]
     },
@@ -111,7 +111,6 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/AsymetricalBowBlueprint"
             ],
-            "sourceDisplayName": "商店",
             "requirements": {
               "type": "none"
             },
@@ -120,12 +119,12 @@
               "source": "installed-warframe-items",
               "field": "bpCost"
             },
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "interface.market"
           },
           {
             "type": "dojo-research",
             "scope": "blueprint",
-            "sourceDisplayName": "Tenno 实验室",
             "requirements": {
               "type": "none"
             },
@@ -138,7 +137,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/AsymetricalBowBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "dojo.tenno-lab"
           }
         ],
         "status": "complete"
@@ -189,6 +189,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 20000,
       "ingredients": [
         {
@@ -248,7 +249,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

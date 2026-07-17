@@ -56,8 +56,6 @@
         {
           "type": "syndicate-exchange",
           "scope": "blueprint",
-          "sourceDisplayName": "六人组的 Minerva",
-          "factionDisplayName": "六人组",
           "requirements": {
             "type": "standing"
           },
@@ -70,13 +68,12 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.minerva"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六人组的 Minerva",
-          "factionDisplayName": "六人组",
           "requirements": {
             "type": "standing"
           },
@@ -91,13 +88,12 @@
           ],
           "variables": {
             "partName": "双子恶行 刀刃"
-          }
+          },
+          "npcId": "npc.minerva"
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
-          "sourceDisplayName": "六人组的 Minerva",
-          "factionDisplayName": "六人组",
           "requirements": {
             "type": "standing"
           },
@@ -112,7 +108,8 @@
           ],
           "variables": {
             "partName": "双子恶行 握柄"
-          }
+          },
+          "npcId": "npc.minerva"
         }
       ]
     },
@@ -134,8 +131,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "blueprint",
-            "sourceDisplayName": "六人组的 Minerva",
-            "factionDisplayName": "六人组",
             "requirements": {
               "type": "standing"
             },
@@ -148,7 +143,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.minerva"
           }
         ],
         "status": "complete"
@@ -169,8 +165,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六人组的 Minerva",
-            "factionDisplayName": "六人组",
             "requirements": {
               "type": "standing"
             },
@@ -185,7 +179,8 @@
             ],
             "variables": {
               "partName": "双子恶行 刀刃"
-            }
+            },
+            "npcId": "npc.minerva"
           }
         ],
         "status": "complete"
@@ -206,8 +201,6 @@
           {
             "type": "syndicate-exchange",
             "scope": "component",
-            "sourceDisplayName": "六人组的 Minerva",
-            "factionDisplayName": "六人组",
             "requirements": {
               "type": "standing"
             },
@@ -222,7 +215,8 @@
             ],
             "variables": {
               "partName": "双子恶行 握柄"
-            }
+            },
+            "npcId": "npc.minerva"
           }
         ],
         "status": "complete"
@@ -271,6 +265,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 30000,
       "ingredients": [
         {
@@ -314,7 +309,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

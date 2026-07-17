@@ -56,7 +56,6 @@
         {
           "type": "invasion-reward",
           "scope": "blueprint",
-          "sourceDisplayName": "入侵任务",
           "requirements": {
             "type": "none"
           },
@@ -69,12 +68,12 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/TwinVipersWraithBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "sourceEntityId": "acquisition-source.invasion"
         },
         {
           "type": "invasion-reward",
           "scope": "component",
-          "sourceDisplayName": "入侵任务",
           "requirements": {
             "type": "none"
           },
@@ -89,12 +88,12 @@
           ],
           "variables": {
             "partName": "双子蝰蛇·亡魂 枪管"
-          }
+          },
+          "sourceEntityId": "acquisition-source.invasion"
         },
         {
           "type": "invasion-reward",
           "scope": "component",
-          "sourceDisplayName": "入侵任务",
           "requirements": {
             "type": "none"
           },
@@ -109,12 +108,12 @@
           ],
           "variables": {
             "partName": "双子蝰蛇·亡魂 枪机"
-          }
+          },
+          "sourceEntityId": "acquisition-source.invasion"
         },
         {
           "type": "invasion-reward",
           "scope": "component",
-          "sourceDisplayName": "入侵任务",
           "requirements": {
             "type": "none"
           },
@@ -129,7 +128,8 @@
           ],
           "variables": {
             "partName": "双子蝰蛇·亡魂 连接器"
-          }
+          },
+          "sourceEntityId": "acquisition-source.invasion"
         }
       ]
     },
@@ -151,7 +151,6 @@
           {
             "type": "invasion-reward",
             "scope": "blueprint",
-            "sourceDisplayName": "入侵任务",
             "requirements": {
               "type": "none"
             },
@@ -164,7 +163,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TwinVipersWraithBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "sourceEntityId": "acquisition-source.invasion"
           }
         ],
         "status": "complete"
@@ -185,7 +185,6 @@
           {
             "type": "invasion-reward",
             "scope": "component",
-            "sourceDisplayName": "入侵任务",
             "requirements": {
               "type": "none"
             },
@@ -200,7 +199,8 @@
             ],
             "variables": {
               "partName": "双子蝰蛇·亡魂 枪管"
-            }
+            },
+            "sourceEntityId": "acquisition-source.invasion"
           }
         ],
         "status": "complete"
@@ -221,7 +221,6 @@
           {
             "type": "invasion-reward",
             "scope": "component",
-            "sourceDisplayName": "入侵任务",
             "requirements": {
               "type": "none"
             },
@@ -236,7 +235,8 @@
             ],
             "variables": {
               "partName": "双子蝰蛇·亡魂 枪机"
-            }
+            },
+            "sourceEntityId": "acquisition-source.invasion"
           }
         ],
         "status": "complete"
@@ -257,7 +257,6 @@
           {
             "type": "invasion-reward",
             "scope": "component",
-            "sourceDisplayName": "入侵任务",
             "requirements": {
               "type": "none"
             },
@@ -272,7 +271,8 @@
             ],
             "variables": {
               "partName": "双子蝰蛇·亡魂 连接器"
-            }
+            },
+            "sourceEntityId": "acquisition-source.invasion"
           }
         ],
         "status": "complete"
@@ -322,6 +322,7 @@
       "buildTimeSeconds": 43200,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -373,7 +374,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

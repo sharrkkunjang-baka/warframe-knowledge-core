@@ -12,6 +12,12 @@ const SUPPLEMENTS = path.join(ROOT, 'generated', 'official-arcane-supplements.js
 const REGIONS = path.join(ROOT, 'cache', 'warframe-export-regions.json')
 const EN = path.join(ROOT, '.cache', 'official-localization', 'languages.en.json')
 const ZH = path.join(ROOT, '.cache', 'official-localization', 'languages.zh.json')
+const GENERIC_SOURCE_RELATIONS = Object.freeze([
+  [/^Arbitrations, Rotation [ABC]$/, { sourceEntityId: 'acquisition-source.arbitration-honors', missionTypeId: 'mission-type.arbitration' }],
+  [/^(?:Deep|Temporal) Archimedea/, { locationId: 'hub.sanctum-anatomica', missionTypeId: 'mission-type.archimedea' }],
+  [/^Duviri\/Endless:/, { locationId: 'landscape.duviri', missionTypeId: 'mission-type.the-circuit' }],
+  [/^Höllvania\/Antivirus Bounty \(Caches\)$/, { sourceEntityId: 'acquisition-source.hollvania-missions', missionTypeId: 'mission-type.wf1999-bounty' }]
+])
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 100) || 'source' }
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
 function createMissionSourceOverrides() {
@@ -32,11 +38,18 @@ function resolveMissionSource(canonical, overrides) {
   const displayName = `${node.planetDisplayName}/${node.nodeDisplayName}（${node.missionDisplayName}）${match[4] ? `，轮次 ${match[4]}` : ''}`
   return { ...node, rotation: match[4] || null, displayName }
 }
+function sourceRelation(canonical, mission) {
+  if (mission) {
+    const isBounty = /Bount(?:y|ies)|Isolation Vault/i.test(canonical)
+    return { locationId: isBounty ? (/Cambion Drift/i.test(canonical) ? 'landscape.cambion-drift' : `planet.${slug(mission.planetCanonical.replace(/ Proxima$/,''))}`) : `mission.${slug(mission.nodeCanonical)}-${String(mission.officialNodeId).toLowerCase()}`, missionTypeId: isBounty ? (/Cambion Drift/i.test(canonical) ? 'mission-type.cambion-drift-bounty' : `mission-type.${slug(mission.missionCanonical)}`) : `mission-type.${slug(mission.missionCanonical)}` }
+  }
+  return GENERIC_SOURCE_RELATIONS.find(([pattern]) => pattern.test(canonical))?.[1] || null
+}
 function buildPlan() {
   const missionOverrides = createMissionSourceOverrides()
   const supplementMethods = fs.existsSync(SUPPLEMENTS) ? (JSON.parse(fs.readFileSync(SUPPLEMENTS, 'utf8')).entries || []).flatMap(entry => entry.methods || []) : []
   const canonicals = [...new Set([...ARCANES.filter(item => item.name !== 'Arcane' && !item.excludeFromCodex).flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...MODS.flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...supplementMethods.map(method => method.sourceCanonical).filter(Boolean)])].sort()
-  const entries = canonicals.map(canonical => { const mission = resolveMissionSource(canonical, missionOverrides), displayName = mission?.displayName || displaySource(canonical); return { id: sourceId(canonical), canonical, displayName, kind: mission ? 'mission-reward' : sourceKind(canonical), aliases: [], ...(mission ? { mission: { officialNodeId: mission.officialNodeId, planetCanonical: mission.planetCanonical, nodeCanonical: mission.nodeCanonical, missionTypeCanonical: mission.missionCanonical, missionTypeDisplayName: mission.missionDisplayName, rotation: mission.rotation } } : {}), localization: { status: displayName === canonical ? 'canonical-fallback' : mission ? 'official-zh' : 'official-or-audited', rule: '禁止运行时猜译' }, source: mission ? 'DE ExportRegions + Languages.bin; route from warframe-items' : 'warframe-items Arcanes.json/Mods.json + official i18n/audited mapping' } })
+  const entries = canonicals.map(canonical => { const mission = resolveMissionSource(canonical, missionOverrides), displayName = mission?.displayName || displaySource(canonical), kind = mission ? 'mission-reward' : sourceKind(canonical), relation = kind === 'mission-reward' ? sourceRelation(canonical, mission) : null; return { id: sourceId(canonical), canonical, displayName, kind, aliases: [], ...(relation ? { relation } : {}), ...(mission ? { mission: { officialNodeId: mission.officialNodeId, planetCanonical: mission.planetCanonical, nodeCanonical: mission.nodeCanonical, missionTypeCanonical: mission.missionCanonical, missionTypeDisplayName: mission.missionDisplayName, rotation: mission.rotation } } : {}), localization: { status: displayName === canonical ? 'canonical-fallback' : mission ? 'official-zh' : 'official-or-audited', rule: '禁止运行时猜译' }, source: mission ? 'DE ExportRegions + Languages.bin; route from warframe-items' : 'warframe-items Arcanes.json/Mods.json + official i18n/audited mapping' } })
   const categories = [...new Set(entries.map(entry => entry.kind))].sort().map(id => ({ id, count: entries.filter(entry => entry.kind === id).length }))
   return { entries, index: { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0, 10), type: 'arcane-sources', count: entries.length, categories, variables: entries.map(entry => ({ id: entry.id, canonical: entry.canonical, displayName: entry.displayName, kind: entry.kind, category: entry.kind, file: `${entry.kind}/${slug(entry.canonical)}-${entry.id.slice(-8)}.json` })) } }
 }
@@ -51,4 +64,4 @@ function run(argv = process.argv.slice(2)) {
   console.log(`已同步 ${plan.entries.length} 个赋能源变量；写入 ${changes.length} 项`);return plan
 }
 if(require.main===module){try{run()}catch(error){console.error(error.stack||error);process.exit(1)}}
-module.exports={createMissionSourceOverrides,resolveMissionSource,buildPlan,run}
+module.exports={GENERIC_SOURCE_RELATIONS,createMissionSourceOverrides,resolveMissionSource,sourceRelation,buildPlan,run}

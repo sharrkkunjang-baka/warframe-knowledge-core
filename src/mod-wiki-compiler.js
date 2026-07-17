@@ -22,14 +22,14 @@ function baseLocationCanonical(value) { return cleanCell(String(value || '').spl
 function normalizeSection(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim() }
 function percentage(value) {
   const match = String(value || '').match(/(\d+(?:\.\d+)?)\s*%/)
-  return match ? Number(match[1]) : null
+  return match ? Number(match[1]) / 100 : null
 }
 function integer(value) {
   const match = String(value || '').match(/\d+/)
   return match ? Number(match[0]) : null
 }
 function evidenceProvenance(page, section, excerpt) {
-  return { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, section: section.title, excerpt: cleanCell(excerpt) }
+  return { source: 'local-wiki-sqlite', pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, section: section.title, excerpt: cleanCell(excerpt) }
 }
 function entityLocalization(canonical, kind) {
   const registry = kind === 'enemy' ? REGISTRIES.enemies : kind === 'missionType' ? REGISTRIES.missionTypes : REGISTRIES.locations
@@ -110,7 +110,7 @@ function compileAcquisitionProseMethod(excerpt, page, section) {
   match = excerpt.match(/(?:obtained|reaching Rank\s+(\d+))[^.]*?Nightwave[^.]*?(?:Rank\s+(\d+))?/i)
   if (match) return { type: 'legacy-nightwave-reward', locationId: 'interface.nightwave', rank: Number(match[1] || match[2] || 0) || null, chance: null, quantity: 1, availability: 'legacy-or-future-rotation', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Arbitrations vendor[^.]*?for\s+(\d+)\s+Vitus Essence/i)
-  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Teshin[^.]*?for\s+(\d+)\s+Steel Essence/i)
   if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.teshin', locationId: 'hub.any-relay', currency: [{ currencyCanonical: 'Steel Essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   const factionIds = { 'Arbiters of Hexis': 'faction.arbiters-of-hexis', 'Cephalon Suda': 'faction.cephalon-suda', 'New Loka': 'faction.new-loka', 'The Perrin Sequence': 'faction.the-perrin-sequence', 'Steel Meridian': 'faction.steel-meridian', 'Red Veil': 'faction.red-veil' }
@@ -123,7 +123,7 @@ function compileAcquisitionProseMethod(excerpt, page, section) {
   match = excerpt.match(/Rank\s+(\d+)[^.]*?Entrati[^.]*?purchased for\s+([\d,]+)\s+Standing/i)
   if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.father', locationId: 'hub.necralisk', requirements: { type: 'standing', npcId: 'npc.father', locationId: 'hub.necralisk', rank: Number(match[1]) }, standing: Number(match[2].replace(/,/g, '')), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Koumei['’]s Shrine[^.]*?for\s+(\d+)\s+Fate Pearl/i)
-  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.koumei-shrine', locationId: 'hub.cetus', prerequisite: 'steel-path', currency: [{ currencyCanonical: 'Fate Pearl', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus', prerequisite: 'steel-path', currency: [{ currencyId: 'currency.fate-pearl', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   const exchangeProviders = [{ pattern: /The Business/i, sourceEntityId: 'npc.the-business', locationId: 'hub.fortuna' }, { pattern: /Master Teasonai/i, sourceEntityId: 'npc.master-teasonai', locationId: 'hub.cetus' }, { pattern: /\bSon\b/i, sourceEntityId: 'npc.son', locationId: 'hub.necralisk' }]
   const provider = exchangeProviders.find(item => item.pattern.test(excerpt))
   if (provider && /(?:purchased|bought)/i.test(excerpt)) {

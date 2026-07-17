@@ -12,6 +12,9 @@ const LOCALIZATION_SNAPSHOT = path.join(ROOT, 'generated', 'official-localizatio
 const AUDITED_ENEMY_OVERRIDES = Object.freeze({
   'Juno Sapper MOA': { locationId: 'mission-node.brutus', missionTypeId: 'mission-type.ascension' }
 })
+const ACQUISITION_ENEMIES = Object.freeze([
+  ['Hunhow','Hunhow'],['Decaying Conculyst','腐朽震荡使'],['Typholyst','巨锤使'],['Archimedean Itzam','哲士伊赞'],['Kuva Lich Agor Rok','赤毒玄骸 Agor Rok'],['Garv','加弗'],['Narmer Gunner Warden','合一众机枪手典狱长'],['Razorback','鬣狗舰队'],['Zanuka Hunter','Zanuka 猎犬']
+].map(([canonical,displayName])=>({id:`enemy.${slug(canonical)}`,canonical,displayName,kind:'enemy',category:'enemy',aliases:[],factionId:null,internalPaths:[],languageKey:null,localization:{status:'audited-acquisition-evidence',source:'Warframe Wiki'},source:{source:'Warframe Wiki acquisition evidence'}})))
 function officialEnemyEntries() {
   if (!fs.existsSync(LOCALIZATION_SNAPSHOT)) throw new Error('缺少官方本地化快照，请先运行 npm run sync:localization')
   const snapshot = JSON.parse(fs.readFileSync(LOCALIZATION_SNAPSHOT, 'utf8'))
@@ -38,7 +41,7 @@ function readLegacy(name, directory) {
   if (fs.existsSync(legacyPath)) return JSON.parse(fs.readFileSync(legacyPath, 'utf8'))
   const indexed = readIndexedEntries(ROOT, directory)
   const loose = walkJson(path.join(KNOWLEDGE, directory)).filter(file => path.basename(file) !== 'categories.json').map(file => JSON.parse(fs.readFileSync(file, 'utf8')))
-  const supplements = directory === 'enemies' ? officialEnemyEntries() : []
+  const supplements = directory === 'enemies' ? [...officialEnemyEntries(), ...ACQUISITION_ENEMIES] : []
   const byId = new Map([...indexed, ...loose, ...supplements].map(entry => [entry.id, entry]))
   return [...byId.values()]
 }
@@ -52,4 +55,4 @@ function run(argv = process.argv.slice(2)) {
   console.log(check ? '基础实体变量目录无漂移' : `已同步 ${Object.keys(DEFINITIONS).length} 类基础实体变量；写入 ${changes} 项`)
 }
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
-module.exports = { LOCALIZATION_SNAPSHOT, AUDITED_ENEMY_OVERRIDES, officialEnemyEntries, DEFINITIONS, buildPlans, run }
+module.exports = { LOCALIZATION_SNAPSHOT, AUDITED_ENEMY_OVERRIDES, ACQUISITION_ENEMIES, officialEnemyEntries, DEFINITIONS, buildPlans, run }

@@ -7,7 +7,7 @@ const { resolveWikiDatabase, inspectWikiDatabase } = require('../src/wiki-db')
 const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'generated', 'official-arcane-supplements.json')
 const OFFICIAL = require(path.join(path.dirname(require.resolve('warframe-items')), 'data/json/Arcanes.json'))
-const EXCLUSIONS = Object.freeze({ Vosfor: 'resource-not-arcane' })
+const EXCLUSIONS = Object.freeze({ Vosfor: 'resource-not-arcane', 'Arcane Enhancement': 'category-overview-not-arcane' })
 const CATEGORY_MAP = Object.freeze({ Warframe: 'warframe', Primary: 'primary', Secondary: 'secondary', Melee: 'melee', 'Tektolyst Artifacts': 'tektolyst' })
 const PATCH_URLS = Object.freeze({ '43.0': 'https://www.warframe.com/zh-hans/patch-notes/psn/43-0-0', '41.0': 'https://www.warframe.com/zh-hans/patch-notes/pc/41-0-0' })
 const LANGUAGE_CACHE = path.join(ROOT, '.cache', 'official-localization')
@@ -60,7 +60,8 @@ function buildPlan(options = {}) {
   return { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0,10), sourceDatabase: { sha256: report.sha256, size: report.size }, counts: { wikiCategory: pages.length, packageCurrent: officialNames.size, supplementalArcanes: entries.length, explicitExclusions: exclusions.length, totalCurrent: officialNames.size + entries.length }, entries, exclusions }
 }
 function run(argv = process.argv.slice(2)) {
-  const check=argv.includes('--check'); const plan=buildPlan({db:process.env.WF_WIKI_DB}); const next=serialize(plan), old=fs.existsSync(TARGET)?fs.readFileSync(TARGET,'utf8'):null
+  const dbIndex=argv.indexOf('--db'); const db=dbIndex>=0?argv[dbIndex+1]:process.env.WF_WIKI_DB
+  const check=argv.includes('--check'); const plan=buildPlan({db}); const next=serialize(plan), old=fs.existsSync(TARGET)?fs.readFileSync(TARGET,'utf8'):null
   if(check){if(next!==old)throw new Error('官方赋能补充层已漂移');console.log(`赋能补充层无漂移：${plan.counts.supplementalArcanes} 个补充赋能，${plan.counts.totalCurrent} 个当前赋能`);return plan}
   fs.mkdirSync(path.dirname(TARGET),{recursive:true});fs.writeFileSync(TARGET,next);console.log(`已生成 ${plan.counts.supplementalArcanes} 个补充赋能；当前总数 ${plan.counts.totalCurrent}`);return plan
 }

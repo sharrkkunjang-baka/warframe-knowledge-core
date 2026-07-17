@@ -10,7 +10,7 @@
     "officialUniqueName": "/Lotus/Types/Restoratives/HeavyWeaponSummon",
     "categoryRefs": [
       "consumable.gear",
-      "acquisition.quest"
+      "acquisition.mission"
     ]
   },
   "description": {
@@ -28,7 +28,7 @@
       "routes": [
         {
           "scope": "item",
-          "category": "quest",
+          "category": "mission",
           "partRefs": [],
           "variables": {
             "itemName": "曲翼枪械设置器"
@@ -38,9 +38,9 @@
           },
           "methods": [
             {
-              "type": "quest-reward",
+              "type": "mission-reward",
               "scope": "item",
-              "questDisplayName": "利润收割者抢劫第 3 阶段",
+              "sourceEntityId": "acquisition-source.profit-taker-phase-3",
               "requirements": {
                 "type": "none"
               },

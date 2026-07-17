@@ -306,9 +306,18 @@ function createKnowledgeCore(options = {}) {
   const generatedAcquisitionMethods = entry => {
     const rawWikiMethods = entry?.modAcquisition?.generated?.wiki?.methods || [];
     const individualFactions = new Set(rawWikiMethods.filter(method => method.type === 'syndicate-exchange').map(method => method.factionId));
-    const wikiMethods = rawWikiMethods.filter(method => method.type !== 'syndicate-exchange-group' || !(method.factionIds || []).every(id => individualFactions.has(id)));
+    const rawOfficialDrops = entry?.modAcquisition?.generated?.officialDrops || [];
+    const hasOfficialChance = method => ['mission-reward', 'circuit-reward'].includes(method.type) && Number.isFinite(method.chance) && rawOfficialDrops.some(drop => Number.isFinite(drop.chance) && Math.abs(drop.chance - method.chance) < 1e-8 && /\//.test(drop.sourceCanonical || ''));
+    const wikiMethods = rawWikiMethods.filter(method => (method.type !== 'syndicate-exchange-group' || !(method.factionIds || []).every(id => individualFactions.has(id))) && !hasOfficialChance(method));
     const hasSyndicateRoute = wikiMethods.some(method => method.type === 'syndicate-exchange' || method.type === 'syndicate-exchange-group');
-    const officialDrops = (entry?.modAcquisition?.generated?.officialDrops || []).filter(method => !(hasSyndicateRoute && /^(?:Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence),/i.test(method.sourceCanonical || '')));
+    const sourceKey = value => normalize(value).replace(/archwing/g, '').replace(/[^a-z0-9\u3400-\u9fff]/g, '');
+    const wikiSourceKeys = new Set(wikiMethods.filter(method => method.sourceCanonical).map(method => `${method.type}:${sourceKey(method.sourceCanonical)}`));
+    const officialDrops = rawOfficialDrops.filter(method => {
+      if (hasSyndicateRoute && /^(?:Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence),/i.test(method.sourceCanonical || '')) return false;
+      const source = sourceKey(method.sourceCanonical);
+      if (!source) return true;
+      return !wikiSourceKeys.has(`${method.type}:${source}`) && !wikiSourceKeys.has(`official-drop:${source}`) && !wikiSourceKeys.has(`enemy-drop:${source}`);
+    });
     return [...wikiMethods, ...officialDrops];
   };
   const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
@@ -502,10 +511,24 @@ function createKnowledgeCore(options = {}) {
     if (resolved.kind === 'official-item') {
       const evidence = [
         ...(resolved.item.drops || []).map(drop => createAcquisitionEvidence({ type: 'drop', source: drop.location || 'Warframe Public Export', chance: drop.chance ?? null })),
-        ...(!resolved.recipeVariant?.pendingWikiEvidence ? (resolved.item.recipes || []).map(recipe => createAcquisitionEvidence({ type: 'recipe', source: resolved.item.sourceFile, sourceId: recipe.id, quantity: recipe.outputQuantity })) : [])
+        ...(!resolved.recipeVariant?.pendingWikiEvidence ? (resolved.item.recipes || []).map(recipe => createAcquisitionEvidence({ type: 'recipe', source: resolved.item.sourceFile || recipe.provenance?.source || 'Warframe Public Export', sourceId: recipe.id, quantity: recipe.outputQuantity })) : [])
       ];
       const notes = resolved.recipeVariant?.pendingWikiEvidence ? [resolved.recipeVariant.note] : [];
       return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: resolved.recipeVariant ? [resolved.recipeVariant] : resolved.item.recipeVariants, notes });
+    }
+    if (resolved.kind === 'weapon' || resolved.kind === 'consumable') {
+      const local = getAcquisition(query, acquisitionOptions);
+      const evidence = (local?.structuredMethods || []).map(method => createAcquisitionEvidence({
+        type: method.type,
+        source: method.sourceDisplayName || method.sourceCanonical || method.sourceEntityId || method.npcId || method.factionId || method.questId || method.locationId || method.missionTypeId || method.provenance?.source || 'structured-acquisition',
+        sourceId: method.sourceEntityId || null,
+        locationId: method.locationId || null,
+        npcId: method.npcId || null,
+        chance: method.chance ?? null,
+        quantity: method.quantity ?? null,
+        note: method.provenance?.source || null
+      }));
+      return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: local?.recipes || [], status: local ? 'resolved' : 'review-required' });
     }
     if (resolved.kind === 'arcane') {
       const generated = resolved.item.arcaneAcquisition?.generated?.acquisition;
@@ -522,7 +545,7 @@ function createKnowledgeCore(options = {}) {
       const local = getAcquisition(query, acquisitionOptions);
       return createAcquisitionResult({ query, item: resolved.item, evidence: local ? [createAcquisitionEvidence({ type: 'knowledge', source: local.entry?.id || 'official-mod-catalog' })] : [], status: 'resolved' });
     }
-    return createAcquisitionResult({ query, item: resolved.item, evidence: [createAcquisitionEvidence({ type: 'warframe', source: resolved.item.uniqueName })], status: 'resolved' });
+    return createAcquisitionResult({ query, item: resolved.item, evidence: [createAcquisitionEvidence({ type: 'warframe', source: resolved.item.uniqueName || resolved.item.officialUniqueName || resolved.item.subject?.officialUniqueName || resolved.item.id || 'warframe-catalog' })], status: 'resolved' });
   };
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
@@ -605,19 +628,19 @@ function createKnowledgeCore(options = {}) {
     };
     // 战甲规范名已经由命令层完成解析时必须精确锁定；通用别名解析可能把
     // "Wukong Prime" 之类的名称再次降级为普通 "Wukong"。
-    const exactFrameEntry = allKnowledge.find(item => item.module === 'acquisition'
-      && item.subject?.category === 'frame'
-      && normalize(item.subject?.canonical) === normalize(raw));
-    const resolution = exactFrameEntry
-      ? { canonical: exactFrameEntry.subject.canonical, exact: true }
+    const exactKnowledgeEntry = allKnowledge.find(item => item.module === 'acquisition'
+      && [item.subject?.canonical, item.subject?.displayName, item.officialUniqueName].some(value => normalize(value) === normalize(raw)));
+    const exactFrameEntry = exactKnowledgeEntry?.subject?.category === 'frame' ? exactKnowledgeEntry : null;
+    const resolution = exactKnowledgeEntry
+      ? { canonical: exactKnowledgeEntry.subject.canonical, exact: true }
       : officialMod
         ? { canonical: officialMod.canonical, exact: true }
         : resolveName(raw, searchOptions.resolveOptions || {});
     if (resolution?.ambiguous) return { query: raw, resolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
-    const canonical = exactFrameEntry?.subject?.canonical || resolution?.canonical || raw;
+    const canonical = exactKnowledgeEntry?.subject?.canonical || resolution?.canonical || raw;
     // 所有 Mod 都必须在编译阶段生成同一种标准 acquisition entry；运行时禁止
     // 根据 Languages.bin、warframe-items 或任何其他上游来源临时合成第二类条目。
-    const entry = exactFrameEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
+    const entry = exactKnowledgeEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const resolvedOfficialMod = officialMod || getOfficialMod(entry.subject?.canonical || entry.subject?.displayName);
     const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
@@ -630,7 +653,8 @@ function createKnowledgeCore(options = {}) {
     }
     const frameStructuredMethods = isFrame && frameRoute ? compileStructuredMethods([
       { type: 'route', scope: 'components', category: entry.frameAcquisition?.generated?.routing?.componentCategory || entry.subject?.categoryRefs?.[0], variables: { text: frameRoute.componentLine || frameRoute.lines?.[0] || '' }, requirements: entry.frameAcquisition?.generated?.routing?.requirements || { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } },
-      ...(frameRoute.blueprintLine ? [{ type: 'route', scope: 'blueprint', category: entry.frameAcquisition?.generated?.routing?.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } }] : [])
+      ...(frameRoute.blueprintLine ? [{ type: 'route', scope: 'blueprint', category: entry.frameAcquisition?.generated?.routing?.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } }] : []),
+      ...(entry.frameAcquisition?.generated?.routing?.methods || [])
     ], data) : [];
     const structuredMethods = compileStructuredMethods([
       ...mergeStructuredMethods(entry).map(enrichModMethod).map(method => Number.isFinite(method.chance) && method.chance > 1 ? { ...method, chance: method.chance / 100 } : method).filter(method => method.type !== 'unresolved-source'),
@@ -639,14 +663,17 @@ function createKnowledgeCore(options = {}) {
     ], data);
     const defaultDescription = frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry);
     const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
-    const hasStructuredExchange = structuredMethods.some(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
-    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || ((hasStructuredExchange || structuredMethods.some(method => method.type === 'syndicate-exchange')) && !/输入[“\"]刷/.test(defaultDescription));
+    const exchangeMethods = structuredMethods.filter(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
+    const hasStructuredExchange = exchangeMethods.length > 0;
+    const frameExchangeSupplement = isFrame && hasStructuredExchange && !/兑换/.test(defaultDescription || '')
+      ? renderAcquisition(exchangeMethods, { registries: data }) : null;
+    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || (entry.subject?.category === 'weapon' && Boolean(structuredDescription));
     return {
       query: raw,
       resolution,
       entry,
       officialMod: resolvedOfficialMod,
-      description: preferStructuredDescription && structuredDescription ? structuredDescription : defaultDescription,
+      description: frameExchangeSupplement ? [defaultDescription, frameExchangeSupplement].filter(Boolean).join('\n') : preferStructuredDescription && structuredDescription ? structuredDescription : defaultDescription,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
@@ -747,6 +774,7 @@ function createKnowledgeCore(options = {}) {
     searchMissionTypes: data.missionTypes.search,
     renderGameText,
     renderStructuredMethod: require('./acquisition-protocol').renderStructuredMethod,
+    renderAcquisition: (methods, options = {}) => renderAcquisition(methods, { ...options, registries: data }),
     createAcquisitionEvidence,
     createAcquisitionResult,
     createRenderResult,

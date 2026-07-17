@@ -57,8 +57,6 @@
           "type": "syndicate-exchange",
           "scope": "blueprint",
           "sourceCanonical": "Cavalero",
-          "sourceDisplayName": "卡瓦莱罗",
-          "factionDisplayName": "卡瓦莱罗",
           "standing": 5500,
           "requirements": {
             "type": "standing",
@@ -73,7 +71,8 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanDaggerWeaponBlueprint"
           ],
-          "variables": {}
+          "variables": {},
+          "npcId": "npc.cavalero"
         }
       ]
     },
@@ -96,8 +95,6 @@
             "type": "syndicate-exchange",
             "scope": "blueprint",
             "sourceCanonical": "Cavalero",
-            "sourceDisplayName": "卡瓦莱罗",
-            "factionDisplayName": "卡瓦莱罗",
             "standing": 5500,
             "requirements": {
               "type": "standing",
@@ -112,7 +109,8 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/Evolving/ZarimanDaggerWeaponBlueprint"
             ],
-            "variables": {}
+            "variables": {},
+            "npcId": "npc.cavalero"
           }
         ],
         "status": "complete"
@@ -163,6 +161,7 @@
       "buildTimeSeconds": 86400,
       "consumeOnBuild": true,
       "excludeFromMarket": true,
+      "alwaysAvailable": false,
       "marketCredits": 0,
       "ingredients": [
         {
@@ -222,7 +221,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

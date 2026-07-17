@@ -9,6 +9,7 @@ const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'knowledge', 'locations')
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'))
 const WARFRAMES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Warframes.json'))
+const OFFICIAL_DROPS = path.join(ROOT, 'generated', 'official-drop-table-index.json')
 
 const PLANET_ZH = Object.freeze({ Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一', Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', Void: '虚空', 'Kuva Fortress': '赤毒要塞', Höllvania: '霍瓦尼亚' })
 const NODE_ZH = Object.freeze({ Armatus: '卫城区', 'Solstice Square': '至日广场', Brutus: '布鲁图斯' })
@@ -24,6 +25,14 @@ function parseSource(value) {
 function generatedEntries() {
   const entries = Object.entries(PLANET_ZH).map(([canonical, displayName]) => ({ id: `planet.${slug(canonical)}`, canonical, displayName, kind: 'planet', aliases: [], officialSource: 'audited-official-zh' }))
   entries.push(
+    { id: 'hub.cetus', canonical: 'Cetus', displayName: '希图斯', kind: 'hub', aliases: [], parentId: 'planet.earth', officialSource: 'audited-official-zh' },
+    { id: 'hub.fortuna', canonical: 'Fortuna', displayName: '福尔图娜', kind: 'hub', aliases: [], parentId: 'planet.venus', officialSource: 'audited-official-zh' },
+    { id: 'hub.necralisk', canonical: 'Necralisk', displayName: '殁世幽都', kind: 'hub', aliases: [], parentId: 'planet.deimos', officialSource: 'audited-official-zh' },
+    { id: 'hub.zariman', canonical: 'Zariman', displayName: '扎里曼号', kind: 'hub', aliases: ['Zariman Ten Zero'], officialSource: 'audited-official-zh' },
+    { id: 'hub.sanctum-anatomica', canonical: 'Sanctum Anatomica', displayName: '解剖圣所', kind: 'hub', aliases: [], parentId: 'planet.deimos', officialSource: 'audited-official-zh' },
+    { id: 'landscape.cambion-drift', canonical: 'Cambion Drift', displayName: '魔胎之境', kind: 'landscape', aliases: [], parentId: 'planet.deimos', officialSource: 'audited-official-zh' },
+    { id: 'landscape.plains-of-eidolon', canonical: 'Plains of Eidolon', displayName: '夜灵平野', kind: 'landscape', aliases: [], parentId: 'planet.earth', officialSource: 'audited-official-zh' },
+    { id: 'landscape.orb-vallis', canonical: 'Orb Vallis', displayName: '奥布山谷', kind: 'landscape', aliases: [], parentId: 'planet.venus', officialSource: 'audited-official-zh' },
     { id: 'hub.fortuna-airlock', canonical: 'The Airlock', displayName: '气密舱', kind: 'hub', aliases: [], parentId: 'hub.fortuna', officialSource: 'Warframe Update 40 official zh-hans patch notes' },
     { id: 'hub.drifters-camp', canonical: "Drifter's Camp", displayName: '漂泊者营地', kind: 'hub', aliases: [], parentId: 'planet.earth', officialSource: 'audited-official-zh' },
     { id: 'hub.dormizone', canonical: 'Dormizone', displayName: '宿舍', kind: 'hub', aliases: [], parentId: 'hub.zariman', officialSource: 'audited-official-zh' },
@@ -34,10 +43,54 @@ function generatedEntries() {
     { id: 'mission.scorias-angel', canonical: "Scoria's Angel", displayName: '火山石天使号', kind: 'railjack-mission', aliases: [], parentId: 'region.uranus-proxima', missionTypeId: 'mission-type.skirmish', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/GarudaRJMissionName' },
     { id: 'hub.clan-dojo', canonical: 'Clan Dojo', displayName: '氏族道场的 Dagath 空阁', kind: 'hub', aliases: [], officialSource: 'Warframe Wiki - Dagath' },
     { id: 'interface.nightwave', canonical: 'Nightwave Cred Offerings', displayName: '午夜电波贡品界面', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki - Vauban' },
+    { id: 'acquisition-source.profit-taker-phase-3', canonical: 'Phase 3 of the Profit-Taker Orb Heist', displayName: '利润收割者抢劫第 3 阶段', kind: 'acquisition-source', aliases: [], parentId: 'hub.fortuna', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.baro-weekly-mission', canonical: 'Baro Weekly Mission', displayName: '虚空商人每周任务', kind: 'acquisition-source', aliases: [], officialSource: 'DE ExportKeys BaroWeeklyMission' },
+    { id: 'acquisition-source.jade-shadows-event-store', canonical: 'Jade Shadows Event Store', displayName: '「行动代号：兽之腹」活动商店', kind: 'acquisition-source', aliases: [], officialSource: 'DE ExportVendors JadeShadowsEventVendorManifest' },
+    { id: 'acquisition-source.hallowed-flame-cache', canonical: 'Hallowed Flame Cache Rewards', displayName: '万圣之焰活动任务缓存', kind: 'acquisition-source', aliases: [], officialSource: 'warframe-items drop evidence' },
+    { id: 'acquisition-source.clem-weekly-mission', canonical: 'Help Clem Retrieve The Relic', displayName: '每周帮助 Clem 取回遗物任务', kind: 'acquisition-source', aliases: [], officialSource: 'warframe-items drop evidence' },
+    { id: 'interface.market', canonical: 'Market', displayName: '商店', kind: 'acquisition-source', aliases: [], officialSource: 'DE ExportWeapons/ExportRecipes creditsCost' },
+    { id: 'interface.nightwave-offerings', canonical: 'Nightwave Offerings', displayName: '午夜电波商店', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.arbitration-honors', canonical: 'Arbitration Honors', displayName: '仲裁阁下的奖励', kind: 'acquisition-source', aliases: [], parentId: 'hub.any-relay', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.koumei-shrine', canonical: "Koumei's Shrine", displayName: 'Koumei 的神龛', kind: 'acquisition-source', aliases: [], parentId: 'hub.cetus', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.archimedean-yonta', canonical: 'Archimedean Yonta', displayName: '执刑官 Yonta', kind: 'acquisition-source', aliases: ['Yonta'], parentId: 'hub.zariman', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.operational-supply', canonical: 'Operational Supply', displayName: '行动补给', kind: 'acquisition-source', aliases: [], officialSource: 'warframe-items acquisition evidence' },
+    { id: 'acquisition-source.hollvania-missions', canonical: 'Höllvania Missions', displayName: '霍瓦尼亚任务', kind: 'acquisition-source', aliases: [], officialSource: 'warframe-items acquisition evidence' },
+    { id: 'acquisition-source.teshins-cave', canonical: "Teshin's Cave", displayName: 'Teshin 的洞穴', kind: 'acquisition-source', aliases: [], parentId: 'landscape.duviri', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.dagaths-hollow', canonical: "Dagath's Hollow", displayName: 'Dagath 的空阁', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.duviri-enigma', canonical: 'Duviri Enigma Puzzles', displayName: '双衍王境谜题', kind: 'acquisition-source', aliases: [], parentId: 'landscape.duviri', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.limited-event-store', canonical: 'Limited-time Event Store', displayName: '限时活动商店', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.acrithis-or-dominus-thrax', canonical: 'Acrithis or Dominus Thrax', displayName: '宿舍的 Acrithis 或 Dominus Thrax', kind: 'acquisition-source', aliases: [], parentId: 'hub.dormizone', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.albrecht-laboratories-endless', canonical: "Albrecht's Laboratories Endless Mission", displayName: '阿尔布雷希特的实验室无尽任务', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.balor-fomorian-sabotage', canonical: 'Balor Fomorian Sabotage', displayName: '巴罗尔巨人战舰破坏任务', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.sanctum-anatomica-bounty', canonical: 'Sanctum Anatomica Bounty', displayName: '圣所解剖室赏金', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.roathes-oblivion', canonical: "Roathe's Oblivion", displayName: "The Descendia 的 Roathe 遗忘之境", kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.earth-proxima-void-storm', canonical: 'Earth Proxima Void Storm', displayName: '地球比邻星虚空风暴', kind: 'acquisition-source', aliases: [], officialSource: 'DE official drop tables' },
+    { id: 'acquisition-source.venus-proxima-void-storm', canonical: 'Venus Proxima Void Storm', displayName: '金星比邻星虚空风暴', kind: 'acquisition-source', aliases: [], officialSource: 'DE official drop tables' },
+    { id: 'acquisition-source.saturn-proxima-void-storm', canonical: 'Saturn Proxima Void Storm', displayName: '土星比邻星虚空风暴', kind: 'acquisition-source', aliases: [], officialSource: 'DE official drop tables' },
+    { id: 'acquisition-source.invasion', canonical: 'Invasion Reward', displayName: '入侵任务', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.daily-tribute', canonical: 'Daily Tribute', displayName: '每日献礼里程碑', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.anniversary-alert', canonical: 'Anniversary Alert', displayName: '周年庆典警报', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.founder-package', canonical: 'Founder Package', displayName: '创始人礼包', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.kuva-lich-weapon', canonical: 'Kuva Lich Weapon Reward', displayName: '携带该武器的赤毒玄骸', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.sister-weapon', canonical: 'Sister of Parvos Weapon Reward', displayName: '携带该武器的 Corpus 姐妹', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'dojo.tenno-lab', canonical: 'Tenno Lab', displayName: 'Tenno 实验室', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'dojo.chem-lab', canonical: 'Chem Lab', displayName: '化学实验室', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'dojo.energy-lab', canonical: 'Energy Lab', displayName: '能源实验室', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'dojo.bio-lab', canonical: 'Bio Lab', displayName: '生物实验室', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'dojo.orokin-lab', canonical: 'Orokin Lab', displayName: '奥罗金实验室', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
     { id: 'region.veil-proxima', canonical: 'Veil Proxima', displayName: '面纱比邻星域', kind: 'proxima-region', aliases: [], officialSource: 'DE official zh-hans terminology' },
     { id: 'landscape.duviri', canonical: 'Duviri', displayName: '双衍王境', kind: 'landscape', aliases: [], officialSource: 'Warframe Update 39 official zh-hans patch notes' },
     { id: 'mission-node.isleweaver', canonical: 'Isleweaver', displayName: '织屿人', kind: 'mission-node', aliases: [], parentId: 'landscape.duviri', officialSource: 'Warframe Update 39 official zh-hans patch notes' }
   )
+  if (fs.existsSync(OFFICIAL_DROPS)) {
+    const dropIndex = JSON.parse(fs.readFileSync(OFFICIAL_DROPS, 'utf8'))
+    for (const methods of Object.values(dropIndex.byItem || {})) for (const method of methods) {
+      if (!method.locationId) continue
+      const parsed = parseSource(method.sourceCanonical)
+      if (parsed?.location) entries.push({ id: `planet.${slug(parsed.location)}`, canonical: parsed.location, displayName: PLANET_ZH[parsed.location] || '', kind: 'planet', aliases: [], officialSource: PLANET_ZH[parsed.location] ? 'audited-official-zh' : 'official-drop-canonical' })
+      entries.push({ id: method.locationId, canonical: method.sourceCanonical, displayName: method.sourceDisplayName || '', kind: method.provenance?.section === 'Bounty Rewards' ? 'acquisition-source' : 'mission-node', aliases: [], parentId: parsed?.location ? `planet.${slug(parsed.location)}` : null, missionTypeId: method.missionTypeId || null, officialSource: method.provenance?.source || 'DE Official Drop Tables' })
+    }
+  }
   for (const frame of WARFRAMES.filter(item => !item.isPrime)) for (const component of frame.components || []) for (const drop of component.drops || []) {
     const raw = String(drop.location || '').trim()
     const parsed = parseSource(raw)
@@ -52,12 +105,13 @@ function generatedEntries() {
   return entries
 }
 function build() {
-  const byId = new Map(readIndexedEntries(ROOT, 'locations').map(entry => [entry.id, entry]))
+  const byId = new Map()
+  const legacyById = new Map(readIndexedEntries(ROOT, 'locations').map(entry => [entry.id, entry]))
   for (const entry of generatedEntries()) {
-    const previous = byId.get(entry.id)
+    const previous = legacyById.get(entry.id)
     const legacyType = previous?.missionTypeCanonical
-    const officialOverride = ['hub.pontis-tower','region.uranus-proxima','mission.the-kuva-wytch','mission.scorias-angel'].includes(entry.id)
-    byId.set(entry.id, previous ? { ...entry, ...previous, displayName: officialOverride ? entry.displayName : previous.displayName || entry.displayName, aliases: officialOverride ? entry.aliases : previous.aliases || entry.aliases, officialSource: officialOverride ? entry.officialSource : previous.officialSource || entry.officialSource, parentId: previous.parentId || entry.parentId, missionTypeId: previous.missionTypeId || entry.missionTypeId || (legacyType ? `mission-type.${slug(legacyType)}` : null), missionTypeCanonical: undefined, missionTypeDisplayName: undefined } : entry)
+    const officialOverride = ['hub.zariman','hub.pontis-tower','region.uranus-proxima','mission.the-kuva-wytch','mission.scorias-angel'].includes(entry.id)
+    byId.set(entry.id, previous ? { ...entry, ...previous, displayName: officialOverride ? entry.displayName : previous.displayName || entry.displayName, aliases: officialOverride ? entry.aliases : previous.aliases || entry.aliases, officialSource: officialOverride ? entry.officialSource : previous.officialSource || entry.officialSource, parentId: entry.parentId || previous.parentId, missionTypeId: entry.missionTypeId || previous.missionTypeId || (legacyType ? `mission-type.${slug(legacyType)}` : null), missionTypeCanonical: undefined, missionTypeDisplayName: undefined } : entry)
   }
   return [...byId.values()]
 }

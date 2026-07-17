@@ -52,7 +52,7 @@
             "pageId": 6212,
             "revisionId": 2760626,
             "sourceDatabase": {
-              "sha256": "53869CC38887A16102730CA4E6D3F2F14F87E08171D1AFE3A2FFB4B5B7DFACF2"
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
             }
           }
         },
@@ -68,7 +68,23 @@
           "blueprintSource": "official-bp-cost",
           "requirements": {
             "type": "none"
-          }
+          },
+          "methods": [
+            {
+              "type": "market-purchase",
+              "scope": "blueprint",
+              "sourceEntityId": "interface.market",
+              "requirements": {
+                "type": "none"
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Saryn",
+                "section": "Acquisition"
+              }
+            }
+          ]
         }
       },
       "manual": {}
