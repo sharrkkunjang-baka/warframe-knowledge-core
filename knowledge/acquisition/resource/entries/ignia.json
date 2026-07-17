@@ -1,0 +1,81 @@
+{
+  "id": "knowledge.acquisition.resource.ignia",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "热火核",
+  "subject": {
+    "canonical": "Ignia",
+    "displayName": "热火核",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Ignia",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Ignia",
+      "canonical": "Ignia",
+      "displayName": "热火核",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • The Descendia :\n • Potentially awarded in quantities of 25 on Inferums 2, 4, 9, 11, 16, and 18.\n\n• Potentially awarded in quantities of 75 on Infernums 2, 9, and 16 on The Steel Path .\n\n• Dropped from Storage Containers .\n\n• Drops are not affected by Resource Booster or Loyal Retriever / Resourceful Retriever .\n\n• Can be bought from Marie Leroux in La Cathédrale , Sanctum Anatomica , in quantities of 100 in exchange for Agnovidisc , Laudavi , and/or Servoris . These purchases are limited to one per day.",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "热火核"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceCanonical": "The Descendia",
+            "sourceDisplayName": "沉沦之地",
+            "locationId": "acquisition-source.roathes-oblivion",
+            "requirements": {
+              "type": "none"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Ignia",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 41.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "热火核的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

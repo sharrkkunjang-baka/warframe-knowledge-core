@@ -9,12 +9,11 @@ const OFFICIAL_PATH = path.join(KNOWLEDGE_ROOT, 'generated', 'official-warframes
 const KNOWLEDGE_DIR = path.join(KNOWLEDGE_ROOT, 'acquisition', 'warframe');
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
-const EXCLUDED = Object.freeze({
-  '/Lotus/Powersuits/DemonFrame/DemonFrame': '明显内部占位（Demon Frame）'
-});
+const EXCLUDED = Object.freeze({});
 const CANONICAL_OVERRIDES = Object.freeze({
   '/Lotus/Powersuits/SiriusOrion/SiriusSuit': 'Sirius & Orion',
-  '/Lotus/Powersuits/Inkblot/Inkblot': 'Follie'
+  '/Lotus/Powersuits/Inkblot/Inkblot': 'Follie',
+  '/Lotus/Powersuits/DemonFrame/DemonFrame': 'Uriel'
 });
 
 function slugify(value) {
@@ -33,7 +32,7 @@ function readEntries(directory = KNOWLEDGE_DIR) {
   return entries;
 }
 function displayName(frame, canonical) {
-  return I18N[frame.uniqueName]?.zh?.name || canonical;
+  return canonical === 'Uriel' ? 'Uriel' : I18N[frame.uniqueName]?.zh?.name || canonical;
 }
 function migrateManual(entry) {
   const acquisition = entry?.frameAcquisition || {};
@@ -58,6 +57,16 @@ function buildEntry(frame, existing) {
   const canonical = CANONICAL_OVERRIDES[frame.uniqueName] || frame.name;
   const generated = { ...(existing?.frameAcquisition?.generated || {}), ...generatedData(frame) };
   if (canonical === 'Sirius & Orion' && generated.routing?.requirements?.type === 'currency') generated.routing = { ...generated.routing, requirements: { ...generated.routing.requirements, currency: (generated.routing.requirements.currency || []).map(item => item.currencyId === 'currency.jade-talent' ? { ...item, currencyId: 'currency.emerald-talent' } : item) } };
+  if (canonical === 'Uriel') generated.routing = {
+    componentCategory: 'frame-specific-mission', blueprintCategory: 'quest',
+    blueprintVariables: { questName: '旧日和平' }, blueprintSource: 'official-wiki-acquisition',
+    componentVariables: { sourceCanonical: ['The Descendia Infernum 21 Roathe'], unresolvedSources: [] },
+    methods: [
+      { type: 'quest-reward', scope: 'blueprint', questCanonical: 'The Old Peace', questDisplayName: '旧日和平', requirements: { type: 'quest', questName: '旧日和平' }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2794079 } },
+      { type: 'mission-reward', scope: 'components', locationId: 'acquisition-source.roathes-oblivion', sourceCanonical: 'Roathe (Descendia, Infernum 21)', sourceDisplayName: '沉沦之地第 21 层的罗瑟遗忘之境', probability: 0.125, chancePercent: 12.5, reviewStatus: 'approved', provenance: { source: 'official-drop-tables-via-current-wiki', pageTitle: 'Uriel', revisionId: 2794079 } },
+      { type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.maphica', amount: 150 }], isBuffUseless: true }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2794079 } }
+    ]
+  };
   const manual = migrateManual(existing);
   if (canonical === 'Sirius & Orion') {
     if (manual.specialFrame?.acquisition?.vendorExchange?.currencyIds) manual.specialFrame.acquisition.vendorExchange.currencyIds = manual.specialFrame.acquisition.vendorExchange.currencyIds.map(id => id === 'currency.jade-talent' ? 'currency.emerald-talent' : id);

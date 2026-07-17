@@ -10,7 +10,7 @@ const { displayEntityName } = require('./entities');
 const { renderGameText } = require('./game-text');
 const { normalizeRequirements, renderRequirements, renderAcquisition } = require('./acquisition-protocol');
 const { structuredMethods: compileStructuredMethods, routesToMethods } = require('./acquisition-core');
-const { createCraftingGraph, renderCrafting } = require('./weapon-crafting');
+const { createCraftingGraph, renderCraftingUses, renderCrafting } = require('./weapon-crafting');
 const { parseWeaponCraftingCommand } = require('./weapon-command');
 
 function scoreEntry(query, entry) {
@@ -165,8 +165,8 @@ function createKnowledgeCore(options = {}) {
     const exact = getArcane(raw) || getArcane(name);
     if (exact) return { alias: exact.subject.displayName, canonical: exact.subject.canonical, category: 'arcane', match: 'exact', score: 300 };
     return resolveName(name, {
-      minScore: 50,
-      minLead: 5,
+      minScore: 70,
+      minLead: 8,
       ...resolveOptions,
       categories: ['arcane'],
       candidates: arcaneNameCandidates
@@ -459,6 +459,7 @@ function createKnowledgeCore(options = {}) {
     if (entry.summary || entry.content) return entry.summary || entry.content;
     const primaryCategory = getCategory(entry.subject?.categoryRefs?.[0]);
     const methods = expandMethodRefs(entry);
+    if (methods.length === 1 && methods[0].id === 'gameplay.baro-ki-teer') return `${entry.subject?.displayName || entry.title} 通常由虚空商人的轮换库存出售\n输入“刷 奸商”可了解兑换准备与轮换规则`;
     if (methods.length === 1 && methods[0].title) return `${entry.subject?.displayName || entry.title}从${methods[0].title}奖励中获得`;
     const acquisitionQuery = entry.acquisitionQuery
       || methods.find(method => method.acquisitionQuery)?.acquisitionQuery
@@ -725,7 +726,22 @@ function createKnowledgeCore(options = {}) {
     resolveSlang,
     getSlangDomain,
     parseWeaponCraftingCommand: text => parseWeaponCraftingCommand(text, data.weapons || []),
-    renderWeaponCraftingCommand: text => { const parsed = parseWeaponCraftingCommand(text, data.weapons || []); return parsed ? parsed.items.map(({ entry }) => renderCrafting(entry, weaponCraftingGraph)).join('\n\n') : null; },
+    renderWeaponCraftingCommand: text => {
+      const parsed = parseWeaponCraftingCommand(text, data.weapons || []);
+      if (!parsed) return null;
+      const lines = parsed.items.map(({ entry }) => renderCraftingUses(entry, weaponCraftingGraph)).filter(Boolean);
+      return lines.length ? lines.join('\n') : '这些武器不能用于合成其他武器';
+    },
+    renderWeaponCraftingUses: queries => {
+      const unique = new Map();
+      for (const query of queries || []) {
+        const resolution = resolveWeapon(query, { minScore: 70, minLead: 8 });
+        if (!resolution || resolution.ambiguous || !resolution.canonical) continue;
+        const entry = getWeapon(resolution.canonical);
+        if (entry) unique.set(entry.subject.officialUniqueName, entry);
+      }
+      return [...unique.values()].map(entry => renderCraftingUses(entry, weaponCraftingGraph)).join('\n');
+    },
     searchFacts,
     searchKnowledge,
     searchAcquisition,

@@ -63,6 +63,8 @@ function currencyAcquisitionSummary(entity, registries) {
     return `在${name(registries.locations, node.parentId)}的${name(registries.locations, node.id)}（${name(registries.missionTypes, dependency.missionTypeId)}）击败爆破使获得，普通每只 ${dependency.normalAmount.min}-${dependency.normalAmount.max}，钢铁之路每只 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max}`
   }
   if (dependency.type === 'bounty-completion-or-compost') return `完成${dependency.bountyName}获得：普通难度 ${dependency.normalAmount.min}-${dependency.normalAmount.max} 个，钢铁之路 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max} 个；多余蘑菇样本每个可堆肥获得 ${dependency.compostAmount} 个`
+  if (dependency.type === 'mission-completion-or-container') return `完成${name(registries.locations, dependency.locationId)}获得：普通难度 ${dependency.normalAmount} 个，钢铁之路 ${dependency.steelPathAmount} 个；破坏${dependency.containerName}可额外获得，普通每个 ${dependency.normalContainerAmount.min}-${dependency.normalContainerAmount.max} 个，钢铁之路每个 ${dependency.steelPathContainerAmount.min}-${dependency.steelPathContainerAmount.max} 个`
+  if (dependency.type === 'mission-reward-or-container') return `在${name(registries.locations, dependency.locationId)}通过层级结算或储存容器获得：普通结算 ${dependency.normalAmount} 个，钢铁之路结算 ${dependency.steelPathAmount} 个`
   if (dependency.type === 'mission-completion') {
     const location = name(registries.locations, dependency.locationId)
     const missionType = name(registries.missionTypes, dependency.missionTypeId)

@@ -8,10 +8,11 @@ const { createKnowledgeCore } = require('../src')
 const { buildPlan } = require('../scripts/sync-npcs')
 
 const root = path.resolve(__dirname, '..')
+const wikiDb = path.join(root, '.cache', 'warframe-wiki.sqlite')
 
 test('NPC categories 索引覆盖 Wiki Characters 全量角色页', () => {
   const index = JSON.parse(fs.readFileSync(path.join(root, 'knowledge', 'npc', 'categories.json'), 'utf8'))
-  const plan = buildPlan()
+  const plan = buildPlan(wikiDb)
   assert.equal(index.count, plan.records.length)
   assert.equal(new Set(index.npcs.map(item => item.id)).size, index.count)
   assert.ok(index.npcs.some(item => item.canonical === 'Lotus' && item.file === 'lotus.json'))

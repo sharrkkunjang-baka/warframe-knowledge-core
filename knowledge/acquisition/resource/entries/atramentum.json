@@ -1,0 +1,95 @@
+{
+  "id": "knowledge.acquisition.resource.atramentum",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "墨痕",
+  "subject": {
+    "canonical": "Atramentum",
+    "displayName": "墨痕",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Atramentum",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Atramentum",
+      "canonical": "Atramentum",
+      "displayName": "墨痕",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n After completing the Chains of Harrow quest, the Vesper Relay becomes a playable gamemode - Follie's Hunt .\n\n Completing Follie's Hunt will reward 15 Atramentum ( 25 in The Steel Path ).\n\n During Follie's Hunt, 12 Atramentum Balloons will spawn in, with each dropping 2 - 4 Atramentum ( 3 - 6 in The Steel Path ). Atramentum Balloons can only be destroyed with weapon damage; Atramentum Balloons are immune to ability damage.\n\n Atramentum is not affected by Resource Booster , Resourceful Retriever , or Loyal Retriever .",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "墨痕"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "locationId": "mission.follies-hunt",
+            "sourceCanonical": "Venus/Vesper Relay (Follie's Hunt)",
+            "quantity": 15,
+            "requirements": {
+              "type": "quest",
+              "questName": "Harrow 的枷锁"
+            }
+          },
+          {
+            "type": "container-drop",
+            "locationId": "mission.follies-hunt",
+            "sourceCanonical": "Follie's Hunt Atramentum Balloons",
+            "sourceDisplayName": "Follie 的狩猎中的墨痕气球",
+            "quantityRange": [
+              2,
+              4
+            ],
+            "requirements": {
+              "type": "none"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Atramentum",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 42.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "墨痕的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

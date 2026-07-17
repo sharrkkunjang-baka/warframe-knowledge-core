@@ -1,19 +1,29 @@
 {
-  "acquisitionDependency": {
-    "acquisitionSummary": "完成《Harrow 的枷锁》后刷金星维斯佩中继站的“Follie 的狩猎”：普通难度结算 15 个、钢铁之路 25 个；任务中的 Atramentum 气球、敌人也会掉落",
-    "canonical": "Atramentum",
-    "displayName": "Atramentum",
-    "reviewStatus": "approved",
-    "sourceRefs": [
-      "https://wiki.warframe.com/w/Atramentum",
-      "https://wiki.warframe.com/w/Follie%27s_Hunt"
-    ]
-  },
-  "aliases": [],
-  "canonical": "Atramentum",
-  "category": "exchange-token",
-  "displayName": "Atramentum",
   "id": "currency.atramentum",
+  "canonical": "Atramentum",
+  "displayName": "墨痕",
   "kind": "exchange-token",
+  "aliases": [],
+  "officialUniqueName": "/Lotus/Types/Gameplay/Shadowgrapher/Resources/ShadowgrapherResource",
+  "officialSource": "DE Languages.bin /Lotus/Language/Shadowgrapher/ShadowgrapherResourceName",
+  "acquisitionDependency": {
+    "type": "mission-completion-or-container",
+    "questId": "quest.chains-of-harrow",
+    "locationId": "mission.follies-hunt",
+    "normalAmount": 15,
+    "steelPathAmount": 25,
+    "containerName": "墨痕气球",
+    "normalContainerAmount": {
+      "min": 2,
+      "max": 4
+    },
+    "steelPathContainerAmount": {
+      "min": 3,
+      "max": 6
+    },
+    "source": "Official Wiki Atramentum acquisition",
+    "reviewStatus": "approved"
+  },
+  "category": "exchange-token",
   "reviewStatus": "approved"
 }

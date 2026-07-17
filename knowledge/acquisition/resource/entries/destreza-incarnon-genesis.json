@@ -1,0 +1,104 @@
+{
+  "id": "knowledge.acquisition.resource.destreza-incarnon-genesis",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "技巧之剑灵化之源",
+  "subject": {
+    "canonical": "Destreza Incarnon Genesis",
+    "displayName": "技巧之剑灵化之源",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Destreza Incarnon Genesis",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Destreza Incarnon Genesis",
+      "canonical": "Destreza Incarnon Genesis",
+      "displayName": "技巧之剑灵化之源",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Upon completion of The Duviri Paradox and Angels of the Zariman , and unlocking The Steel Path , players can earn Destreza Incarnon Genesis from The Circuit 's Steel Path to place on their Destreza with the help of Cavalero in the Chrysalith . This Incarnon Genesis form grants it evolutions to a transformation and newfound strength.\n\n• Purchased from Cavalero for 120 Platinum 120 , complete with the resources used in its installation. This purchase can only be made once .",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "技巧之剑灵化之源"
+        },
+        "methods": [
+          {
+            "type": "circuit-reward",
+            "missionTypeEntityId": "mission-type.the-circuit",
+            "missionTypeDisplayName": "无尽回廊",
+            "difficulty": "steel-path",
+            "sourceCanonical": "The Circuit Steel Path",
+            "requirements": {
+              "type": "quest-list",
+              "quests": [
+                "双衍王境悖论",
+                "扎里曼的天使"
+              ],
+              "steelPath": true
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.cavalero",
+            "locationId": "hub.zariman",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.cavalero",
+              "locationId": "hub.zariman",
+              "currency": [
+                {
+                  "currencyId": "currency.platinum",
+                  "amount": 120
+                }
+              ]
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Destreza_Incarnon_Genesis",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 43.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "技巧之剑灵化之源的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

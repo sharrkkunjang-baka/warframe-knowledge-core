@@ -1,0 +1,81 @@
+{
+  "id": "knowledge.acquisition.resource.ascaris-prime",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "蛔虫 Prime",
+  "subject": {
+    "canonical": "Ascaris Prime",
+    "displayName": "蛔虫 Prime",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Ascaris Prime",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Ascaris Prime",
+      "canonical": "Ascaris Prime",
+      "displayName": "蛔虫 Prime",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • 75 Ascaris Prime is awarded upon completion of The Old Peace quest.\n\n• Awarded from The Perita Rebellion 's Recall: Vanguard:\n • Every Order completed in the Recall: Vanguard awards 1 Ascaris Prime.\n\n• Defeating the Prime Vanguard awards 10 Ascaris Prime.\n\n• In The Steel Path , defeating Commandeered Warframes (outside of the Prime Vanguard fight) may drop 2 Ascaris Prime, regardless of the Recall mission.\n\n• Not affected by Resource booster.\n\n• Can be bought from Marie Leroux in La Cathédrale , Sanctum Anatomica , in quantities of 15 in exchange for Agnovidisc , Laudavi , and/or Servoris . These purchases are limited to one per day, and are on a rotating basis.\n\n• Can be bought from the Market as part of the Tektolyst Artifact Acquisition Pack , in quantities of 150 for 175 Platinum 175 . This bundle can only be purchased once.",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "蛔虫 Prime"
+        },
+        "methods": [
+          {
+            "type": "event-mission-reward",
+            "sourceCanonical": "Recall: Prime Vanguard",
+            "sourceDisplayName": "佩里塔叛乱：回忆·Prime 先锋",
+            "locationId": null,
+            "requirements": {
+              "type": "none"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Ascaris_Prime",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 41.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "蛔虫 Prime的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

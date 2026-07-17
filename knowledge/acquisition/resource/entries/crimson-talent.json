@@ -1,0 +1,85 @@
+{
+  "id": "knowledge.acquisition.resource.crimson-talent",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "猩红天赋",
+  "subject": {
+    "canonical": "Crimson Talent",
+    "displayName": "猩红天赋",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Crimson Talent",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Crimson Talent",
+      "canonical": "Crimson Talent",
+      "displayName": "猩红天赋",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n After completing Jade Shadows: Constellations , Scoria's Angel node becomes available. It can be started either from within Pontis Tower , or directly from Railjack Navigation.\n\n • Completing Scoria's Angel , Uranus Proxima will reward 12 - 16 Crimson Talent ( 18 - 22 in The Steel Path ).\n\n• Additional Crimson Talent (up to 12?) can be rewarded by taking down all targets during the Ramsled transition phase.",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "猩红天赋"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "locationId": "mission.scorias-angel",
+            "missionTypeId": "mission-type.skirmish",
+            "quantityRange": [
+              12,
+              16
+            ],
+            "requirements": {
+              "type": "quest",
+              "questName": "翠玉之影：星座"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Crimson_Talent",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 43.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "猩红天赋的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

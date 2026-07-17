@@ -10,6 +10,11 @@ const OFFICIAL = require(path.join(path.dirname(require.resolve('warframe-items'
 const EXCLUSIONS = Object.freeze({ Vosfor: 'resource-not-arcane', 'Arcane Enhancement': 'category-overview-not-arcane' })
 const CATEGORY_MAP = Object.freeze({ Warframe: 'warframe', Primary: 'primary', Secondary: 'secondary', Melee: 'melee', 'Tektolyst Artifacts': 'tektolyst' })
 const PATCH_URLS = Object.freeze({ '43.0': 'https://www.warframe.com/zh-hans/patch-notes/psn/43-0-0', '41.0': 'https://www.warframe.com/zh-hans/patch-notes/pc/41-0-0' })
+const PATCH_41_ARCANES = Object.freeze({
+  'Arcane Concentration': { displayName: '赋能·专注', description: 'On Ability Cast: +60% Duration for 3s', languageKey: '/Lotus/Language/Arcanes/AbilityDurationOnCastName' },
+  'Arcane Circumvent': { displayName: '赋能·规避', description: 'Roll through enemies to steal 50% of their defenses for yourself. Stolen Armor lasts 15s.', languageKey: '/Lotus/Language/Arcanes/StealDefensiveStatsOnRollName' },
+  'Arcane Expertise': { displayName: '赋能·精湛', description: '100% of Ability Strength modifiers are also applied to Max Shields.', languageKey: '/Lotus/Language/Arcanes/ShieldMaxForAbilityStrengthName' }
+})
 const LANGUAGE_CACHE = path.join(ROOT, '.cache', 'official-localization')
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
 function normalize(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, '') }
@@ -41,6 +46,22 @@ function parsePage(page) {
   if (/Can be bought from Marie for a randomly determined amount of Perita resources/.test(text)) methods.push({ type: 'vendor-or-syndicate-exchange', sourceCanonical: 'Marie rotating shop (random Perita resources)', quantity: 1 })
   return { officialUniqueName: `wiki-arcane:${page.title}`, canonical: page.title, displayName: '', localizationStatus: 'official-zh-unavailable', category: CATEGORY_MAP[type], arcaneType: type === 'Tektolyst Artifacts' ? type : `${type} Arcane`, equipmentClass: type, rarity, maxRank, maxRankEffectCanonical: description, methods, introduced, source: { wiki: { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, timestamp: page.timestamp }, patchNotesUrl: PATCH_URLS[introduced] || null } }
 }
+function patch41Entries(languages) {
+  return Object.entries(PATCH_41_ARCANES).map(([canonical, definition]) => {
+    const displayName = String(languages.zh[definition.languageKey] || definition.displayName).trim()
+    if (displayName !== definition.displayName) throw new Error(`${canonical}: 官方简中与 41.0 补充定义不一致`)
+    return {
+      officialUniqueName: `patch-arcane:${canonical}`, canonical, displayName, localizationStatus: 'official-zh', languageKey: definition.languageKey,
+      category: 'warframe', arcaneType: 'Warframe Arcane', equipmentClass: 'Warframe', rarity: 'Rare', maxRank: 5,
+      maxRankEffectCanonical: definition.description,
+      methods: [
+        { type: 'vendor-or-syndicate-exchange', sourceCanonical: 'Roathe at La Cathédrale (5 Maphica)', quantity: 1 },
+        { type: 'reward-or-drop', sourceCanonical: 'Steel Path The Descendia weekly reward', probability: null, chancePercent: null, quantity: 1 }
+      ],
+      introduced: '41.0', source: { wiki: { pageTitle: canonical, pageId: null, revisionId: 0, timestamp: null }, patchNotesUrl: PATCH_URLS['41.0'] }
+    }
+  })
+}
 function buildPlan(options = {}) {
   const languages = options.languages || loadLanguages()
   const filename = resolveWikiDatabase(options.db)
@@ -50,10 +71,13 @@ function buildPlan(options = {}) {
   let pages
   try { pages = db.prepare("SELECT p.page_id pageId,p.title,p.revision_id revisionId,p.timestamp,p.text FROM categories c JOIN pages p ON p.page_id=c.page_id WHERE c.category='Arcane_Enhancements' ORDER BY p.title").all() } finally { db.close() }
   const missing = pages.filter(page => !officialNames.has(page.title.toLowerCase()))
-  const entries = missing.filter(page => !EXCLUSIONS[page.title]).map(parsePage).filter(Boolean).map(entry => {
+  const wikiEntries = missing.filter(page => !EXCLUSIONS[page.title]).map(parsePage).filter(Boolean).map(entry => {
     const localized = officialLocalization(entry.canonical, languages)
     return localized ? { ...entry, displayName: localized.displayName, localizationStatus: 'official-zh', languageKey: localized.languageKey } : entry
   })
+  const byCanonical = new Map(wikiEntries.map(entry => [entry.canonical, entry]))
+  for (const entry of patch41Entries(languages)) if (!officialNames.has(entry.canonical.toLowerCase()) && !byCanonical.has(entry.canonical)) byCanonical.set(entry.canonical, entry)
+  const entries = [...byCanonical.values()].sort((a, b) => a.canonical.localeCompare(b.canonical))
   const exclusions = missing.filter(page => EXCLUSIONS[page.title]).map(page => ({ canonical: page.title, reason: EXCLUSIONS[page.title] }))
   const unclassified = missing.filter(page => !EXCLUSIONS[page.title] && !entries.some(entry => entry.canonical === page.title)).map(page => page.title)
   if (unclassified.length) throw new Error(`Wiki 赋能分类存在未分类页面：${unclassified.join('、')}`)
@@ -66,4 +90,4 @@ function run(argv = process.argv.slice(2)) {
   fs.mkdirSync(path.dirname(TARGET),{recursive:true});fs.writeFileSync(TARGET,next);console.log(`已生成 ${plan.counts.supplementalArcanes} 个补充赋能；当前总数 ${plan.counts.totalCurrent}`);return plan
 }
 if(require.main===module){try{run()}catch(error){console.error(error.stack||error);process.exit(1)}}
-module.exports={EXCLUSIONS,CATEGORY_MAP,loadLanguages,officialLocalization,parsePage,buildPlan,run}
+module.exports={EXCLUSIONS,CATEGORY_MAP,PATCH_41_ARCANES,loadLanguages,officialLocalization,parsePage,patch41Entries,buildPlan,run}

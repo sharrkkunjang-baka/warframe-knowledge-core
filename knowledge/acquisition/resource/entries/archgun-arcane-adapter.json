@@ -1,0 +1,102 @@
+{
+  "id": "knowledge.acquisition.resource.archgun-arcane-adapter",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "曲翼枪械赋能槽连接器",
+  "subject": {
+    "canonical": "Archgun Arcane Adapter",
+    "displayName": "曲翼枪械赋能槽连接器",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Archgun Arcane Adapter",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Archgun Arcane Adapter",
+      "canonical": "Archgun Arcane Adapter",
+      "displayName": "曲翼枪械赋能槽连接器",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Awarded from Deepmines Bounties .\n\n• Purchased from Nightcap for 80 Fergolyte , requiring Rank 3 - Seeker with him to purchase.\n\n• Purchased from the Market for 20 Platinum 20 .\n[ edit | edit source ]",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "曲翼枪械赋能槽连接器"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "rank": 3,
+              "rankName": "Seeker with him to purchase",
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 80
+                }
+              ]
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Archgun_Arcane_Adapter",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "曲翼枪械赋能槽连接器的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

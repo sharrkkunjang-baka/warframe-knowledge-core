@@ -1,0 +1,102 @@
+{
+  "id": "knowledge.acquisition.resource.spring-popper",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "春爆菇",
+  "subject": {
+    "canonical": "Spring Popper",
+    "displayName": "春爆菇",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Spring Popper",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Spring Popper",
+      "canonical": "Spring Popper",
+      "displayName": "春爆菇",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Spring Popper can be harvested in the Deepmines Forward Base of Corporate Restructuring Deepmines Bounty .\n • May be awarded randomly as a bonus bounty reward at the end of the mission, appearing just beside the extraction elevator.\n\n• Can be purchased for 10 Fergolyte from Nightcap , requiring Rank 2 - Curious .\n\n | Location\n |\n | Mushroom |\n | Effect\n |\n\n | Deepmines Forward Base\n(Stage 2-5 zone in Corporate Restructuring bounty)\n |\n | Winter Spear\n |\n | Weapons inflict Cold Damage. Greatly increases Movement Speed and Parkour Velocity , and greatly reduces Friction .\n |\n\n | Ironwood\n |\n | Weapons inflict Impact Damage. Player is surrounded by particle effects similar to those of Prism . Enemies hit will likewise produce said particle effects.\n |\n\n | Spring Popper\n |\n | Weapons inflict Blast Damage. Enemies hit by weapons are thrown upwards with a Ragdoll effect.\n |\n\n | Borica\n |\n | Weapons inflict Corrosive Damage.\n |",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "春爆菇"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "rank": 2,
+              "rankName": "Curious",
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Spring_Popper",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "春爆菇的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

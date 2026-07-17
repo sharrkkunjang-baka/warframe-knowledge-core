@@ -44,6 +44,13 @@ function renderRecipe(recipe, identity) {
   return `${name}如何合成：${ingredients || '官方配方未列出材料'}${recipe.credits ? `；制造费用 ${recipe.credits} 星币` : ''}${recipe.buildTimeSeconds ? `；耗时 ${formatDuration(recipe.buildTimeSeconds)}` : ''}`
 }
 
+function renderCraftingUses(entry, graph) {
+  const uniqueName = entry.subject.officialUniqueName
+  const outgoing = graph.craftTo(uniqueName)
+  const targets = [...new Set(outgoing.map(item => item.result?.subject?.displayName || item.result?.subject?.canonical).filter(Boolean))]
+  return targets.length ? `1把${entry.subject.displayName}可合成为 ${targets.join('、')}` : ''
+}
+
 function renderCrafting(entry, graph) {
   const uniqueName = entry.subject.officialUniqueName
   const outgoing = graph.craftTo(uniqueName)
@@ -53,4 +60,4 @@ function renderCrafting(entry, graph) {
   return `【${entry.subject.displayName}】\n可以用于合成什么：\n${outgoingText}\n\n如何合成：\n${recipeText}`
 }
 
-module.exports = { createCraftingGraph, formatDuration, renderRecipe, renderCrafting }
+module.exports = { createCraftingGraph, formatDuration, renderRecipe, renderCraftingUses, renderCrafting }

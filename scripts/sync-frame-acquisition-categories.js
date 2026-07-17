@@ -35,8 +35,10 @@ function buildPlan(dbPath) {
   try {
     for (const item of framePlan.included) {
       const old = item.entry; const runtimeFrame = require('../src/frame-acquisition').resolveWarframe(old.subject.canonical) || item.frame; const page = item.frame.isPrime ? null : wiki.getPage(old.subject.canonical); const refs = classifyFrameAcquisition(runtimeFrame, page); const componentCategory = refs[0] || null
-      const routing = componentCategory ? buildRouting(runtimeFrame, componentCategory, page) : { componentCategory: null, blueprintCategory: 'unresolved', componentVariables: {}, blueprintVariables: {}, blueprintSource: 'unresolved' }
-      const directory = categoryDirectory(componentCategory); const relativePath = directory ? `${directory}/${syncFrames.slugify(old.subject.canonical)}.json` : null
+      let routing = componentCategory ? buildRouting(runtimeFrame, componentCategory, page) : { componentCategory: null, blueprintCategory: 'unresolved', componentVariables: {}, blueprintVariables: {}, blueprintSource: 'unresolved' }
+      if (old.subject.canonical === 'Uriel' && old.frameAcquisition.generated?.routing) routing = old.frameAcquisition.generated.routing
+      const effectiveCategory = routing.componentCategory || componentCategory
+      const directory = categoryDirectory(effectiveCategory); const relativePath = directory ? `${directory}/${syncFrames.slugify(old.subject.canonical)}.json` : null
       const existingGenerated = old.frameAcquisition.generated || {}
       const generated = { ...existingGenerated, acquisitionCategories: { categoryRefs: refs, status: refs.length === 1 ? 'classified' : 'review-required', source: item.frame.isPrime ? { type: 'official-item-data', canonical: 'Prime' } : page ? { type: 'wiki-page', pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, sourceDatabase: { sha256: dbHash } } : { type: 'missing-wiki-page' } }, routing }
       let manual = old.frameAcquisition.manual || {}
@@ -44,7 +46,7 @@ function buildPlan(dbPath) {
       if (componentCategory === 'frame-specific-mission' && !manual.acquisitionText && !routing.componentVariables?.missionNodeId && routing.requirements?.type !== 'currency') {
         if (runtimeFrame) manual = { ...manual, acquisitionText: require('../src/frame-acquisition').renderAcquisition({ frame: runtimeFrame, materials: { available: false, reason: '制造材料数据由运行时补充' } }).split('\n材料统计：')[0] }
       }
-      const entry = { ...old, subject: { ...old.subject, categoryRefs: refs }, frameAcquisition: { ...old.frameAcquisition, generated, manual } }
+      const entry = { ...old, subject: { ...old.subject, categoryRefs: effectiveCategory ? [effectiveCategory] : refs }, frameAcquisition: { ...old.frameAcquisition, generated, manual } }
       entries.push({ frame: item.frame, relativePath, target: relativePath ? path.join(FRAME_ROOT, ...relativePath.split('/')) : null, entry, routing })
     }
   } finally { wiki.close() }

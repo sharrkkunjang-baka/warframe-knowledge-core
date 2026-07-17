@@ -12,8 +12,8 @@ test('官方赋能目录排除基类并按 officialUniqueName 唯一索引', () 
   const catalog = core.arcaneCatalog;
   assert.equal(catalog.counts.input, 172);
   assert.equal(catalog.counts.placeholdersExcluded, 17);
-  assert.equal(catalog.counts.supplementalArcanes, 15);
-  assert.equal(catalog.counts.arcanes, 170);
+  assert.equal(catalog.counts.supplementalArcanes, 18);
+  assert.equal(catalog.counts.arcanes, 173);
   assert.equal(catalog.counts.reviewRequired, 7);
   assert.equal(new Set(catalog.arcanes.map(item => item.officialUniqueName)).size, catalog.counts.arcanes);
   assert.deepEqual(catalog.categories.map(item => item.id), ['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'tektolyst', 'legacy']);

@@ -1,0 +1,85 @@
+{
+  "id": "knowledge.acquisition.resource.emerald-talent",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "翠绿天赋",
+  "subject": {
+    "canonical": "Emerald Talent",
+    "displayName": "翠绿天赋",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Emerald Talent",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Emerald Talent",
+      "canonical": "Emerald Talent",
+      "displayName": "翠绿天赋",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n After completing Jade Shadows: Constellations , The Kuva Wytch node becomes available. The mission can be started either from within Pontis Tower , or directly from Railjack Navigation.\n\n • Completing The Kuva Wytch , Uranus Proxima will reward 12 - 16 Emerald Talent ( 18 - 22 in The Steel Path ).\n\n• Additional Emerald Talent (up to 11?) can be rewarded by taking down all targets during the Orowyrm transition phase.",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "翠绿天赋"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "locationId": "mission.the-kuva-wytch",
+            "missionTypeId": "mission-type.skirmish",
+            "quantityRange": [
+              12,
+              16
+            ],
+            "requirements": {
+              "type": "quest",
+              "questName": "翠玉之影：星座"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Emerald_Talent",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 43.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "翠绿天赋的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

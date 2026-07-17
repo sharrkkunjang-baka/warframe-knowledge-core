@@ -1,0 +1,90 @@
+{
+  "id": "knowledge.acquisition.resource.chromatic-atramentum",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "彩色墨痕",
+  "subject": {
+    "canonical": "Chromatic Atramentum",
+    "displayName": "彩色墨痕",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Chromatic Atramentum",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Chromatic Atramentum",
+      "canonical": "Chromatic Atramentum",
+      "displayName": "彩色墨痕",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n Chromatic Atramentum is purchased from Aspirant Zorba for 360 Atramentum .",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "彩色墨痕"
+        },
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.aspirant-zorba",
+            "locationId": "hub.any-relay",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.aspirant-zorba",
+              "locationId": "hub.any-relay",
+              "currency": [
+                {
+                  "currencyId": "currency.atramentum",
+                  "amount": 360
+                }
+              ],
+              "isBuffUseless": true
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Chromatic_Atramentum",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 42.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "彩色墨痕的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

@@ -13,9 +13,9 @@ function route(name) { return INDEX.frames.find(item => item.canonical === name)
 function entry(name) { const item = route(name); return JSON.parse(fs.readFileSync(path.join(FRAME_ROOT, item.file), 'utf8'))[0] }
 
 test('categories.json 完整、互斥且路径归属主分类', () => {
-  assert.equal(INDEX.count, 116)
-  assert.equal(INDEX.frames.length, 116)
-  assert.equal(new Set(INDEX.frames.map(item => item.officialUniqueName)).size, 116)
+  assert.equal(INDEX.count, 117)
+  assert.equal(INDEX.frames.length, 117)
+  assert.equal(new Set(INDEX.frames.map(item => item.officialUniqueName)).size, 117)
   for (const item of INDEX.frames) {
     assert.match(item.componentCategory, /^frame-/)
     assert.ok(item.file.startsWith(`${item.componentCategory.replace(/^frame-/, '')}/`), item.canonical)
@@ -200,13 +200,14 @@ test('全部 currency require 都有地点、货币、数量和唯一语义段�
   const core = createKnowledgeCore()
   for (const item of INDEX.frames) {
     const routing = entry(item.canonical).frameAcquisition.generated.routing
-    if (routing.requirements.type !== 'currency') continue
+    if (routing.requirements?.type !== 'currency') continue
     assert.ok(routing.requirements.locationId, item.canonical)
     assert.ok(routing.requirements.currency.length, item.canonical)
     for (const currency of routing.requirements.currency) assert.ok(currency.currencyId && Number.isFinite(currency.amount), `${item.canonical}: ${currency.currencyId}`)
     const description = core.getAcquisition(item.canonical).description
     const lines = description.split('\n')
-    assert.equal(lines.filter(line => line === '所需货币怎么刷：').length, 1, item.canonical)
+    const hasDependency = routing.requirements.currency.some(currency => core.getCurrency(currency.currencyId)?.acquisitionDependency)
+    assert.equal(lines.filter(line => line === '所需货币怎么刷：').length, hasDependency ? 1 : 0, item.canonical)
     assert.equal(lines.filter(line => /^资源数量加成(有效|无效)$/.test(line)).length, 1, item.canonical)
     const dependencyLines = lines.filter(line => /（(?:需要\d+个|各需要\d+个)）/.test(line))
     const representedCurrencies = dependencyLines.reduce((count, line) => count + routing.requirements.currency.filter(currency => {
@@ -239,7 +240,7 @@ test('Oraxia 蜘蛛别名通过织屿人独立任务与急行蛛外壳路由', (
 
 test('method 模板与编译路由可自动发布', () => {
   const core = createKnowledgeCore()
-  assert.equal(core.frameCategories.count, 116)
+  assert.equal(core.frameCategories.count, 117)
   assert.ok(core.frameMethods.some(item => item.scope === 'components' && item.category === 'frame-assassination'))
   assert.ok(core.frameMethods.some(item => item.scope === 'blueprint' && item.category === 'market'))
 })

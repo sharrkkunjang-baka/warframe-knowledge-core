@@ -1,0 +1,91 @@
+{
+  "id": "knowledge.acquisition.resource.maphica",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "怒火核",
+  "subject": {
+    "canonical": "Maphica",
+    "displayName": "怒火核",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Maphica",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Maphica",
+      "canonical": "Maphica",
+      "displayName": "怒火核",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • The Descendia :\n • Potentially awarded in quantities of 5 on Infernums 2, 4, 9, 11, 16, and 18.\n\n• Potentially awarded in quantities of 15 on Infernums 2, 9, and 16 on The Steel Path .\n\n• Dropped from Storage Containers .\n\n• Drops are not affected by Resource Booster or Loyal Retriever / Resourceful Retriever .\n\n• Can be bought from Marie Leroux in La Cathédrale , Sanctum Anatomica , in quantities of 10 in exchange for Agnovidisc , Laudavi , and/or Servoris . These purchases are limited to one per day.",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "怒火核"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "locationId": "acquisition-source.roathes-oblivion",
+            "sourceCanonical": "The Descendia Infernum rewards",
+            "sourceDisplayName": "沉沦之地层级奖励",
+            "quantity": 5,
+            "requirements": {
+              "type": "none"
+            }
+          },
+          {
+            "type": "container-drop",
+            "locationId": "acquisition-source.roathes-oblivion",
+            "sourceCanonical": "The Descendia Storage Containers",
+            "sourceDisplayName": "沉沦之地储存容器",
+            "requirements": {
+              "type": "none"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Maphica",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 41.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "怒火核的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

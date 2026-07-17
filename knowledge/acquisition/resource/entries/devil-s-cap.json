@@ -1,0 +1,102 @@
+{
+  "id": "knowledge.acquisition.resource.devil-s-cap",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "魔鬼帽",
+  "subject": {
+    "canonical": "Devil's Cap",
+    "displayName": "魔鬼帽",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Devil's Cap",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Devil's Cap",
+      "canonical": "Devil's Cap",
+      "displayName": "魔鬼帽",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Devil's Cap can be harvested in the Deepmines Labs of the Critter Liberation Deepmines Bounty .\n • May be awarded randomly as a bonus bounty reward at the end of the mission, appearing just beside the extraction elevator.\n\n• Can be purchased for 10 Fergolyte from Nightcap at Rank 0 - Neutral .\n\n | Location\n |\n | Mushroom |\n | Effect\n |\n\n | Deepmines Lab\n(Stage 2-5 zone in Critter Liberation bounty)\n |\n | Thunder-Button\n |\n | Weapons inflict Electricity Damage. The player's movement speed and melee attack speed increases, as if under the effects of Speed .\n |\n\n | Devil's Cap\n |\n | Weapons inflict Slash Damage. The player's eyes glow bright red. Damaging enemies will cosmetically sever limbs and create additional blood and gore effects.\n |\n\n | Ferrofungus\n |\n | Weapons inflict Magnetic Damage. Player is followed by a group of Sprodlings that match their Warframe's colors.\n |\n\n | Vomval Trumpet\n |\n | Weapons inflict Tau Damage. Spawns a false Eidolon Vomvalyst that floats near the player.\n |",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "魔鬼帽"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "rank": null,
+              "rankName": null,
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Devil's_Cap",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "魔鬼帽的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

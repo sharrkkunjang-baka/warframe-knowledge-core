@@ -1,0 +1,82 @@
+{
+  "id": "knowledge.acquisition.resource.fergolyte",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "铁离石",
+  "subject": {
+    "canonical": "Fergolyte",
+    "displayName": "铁离石",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Fergolyte",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Fergolyte",
+      "canonical": "Fergolyte",
+      "displayName": "铁离石",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Completing a Deepmines Bounty , awarded in quantities of 11-15 (15-19 on The Steel Path ).\n\n• Fully analyzing a mushroom in Nightcap 's Field Guide gives you the ability to compost said mushroom, giving you 1 Fergolyte for every mushroom that gets composted.",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "铁离石"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Fergolyte",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "铁离石的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

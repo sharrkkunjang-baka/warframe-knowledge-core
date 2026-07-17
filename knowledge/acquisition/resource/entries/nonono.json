@@ -1,0 +1,102 @@
+{
+  "id": "knowledge.acquisition.resource.nonono",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "不不不菇",
+  "subject": {
+    "canonical": "Nonono",
+    "displayName": "不不不菇",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Nonono",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Nonono",
+      "canonical": "Nonono",
+      "displayName": "不不不菇",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Nonono can be harvested in the Deepmines Nutrient Plant of Weed The Garden Deepmines Bounty .\n • May be awarded randomly as a bonus bounty reward at the end of the mission, appearing just beside the extraction elevator.\n\n• Can be purchased for 10 Fergolyte from Nightcap , requiring Rank 2 - Curious .\n\n | Location\n |\n | Mushroom |\n | Effect\n |\n\n | Deepmines Nutrient Plant\n(Stage 2-5 zone in Weed The Garden bounty)\n |\n | Blister Stalk\n |\n | Weapons inflict Heat Damage. Spawns six false Syzygy Shockwave MOAs that surround and follow the player while dancing in place.\n |\n\n | Thorn Tooth\n |\n | Weapons inflict Puncture Damage. Both the player and any enemies they damage will be impaled with ethereal Skana s.\n |\n\n | Gamma Berry\n |\n | Weapons inflict Radiation Damage. The player's head temporarily inflates.\n |\n\n | Nonono\n |\n | Weapons inflict Void Damage. Player is surrounded by Void energy, audible laughter plays on pickup, and the buff description reads \"Is someone watching?\"\n |",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "不不不菇"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "rank": 2,
+              "rankName": "Curious",
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Nonono",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "不不不菇的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

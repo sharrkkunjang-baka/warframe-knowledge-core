@@ -1,0 +1,102 @@
+{
+  "id": "knowledge.acquisition.resource.thunder-button",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "雷纽菇",
+  "subject": {
+    "canonical": "Thunder-Button",
+    "displayName": "雷纽菇",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Thunder-Button",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Thunder-Button",
+      "canonical": "Thunder-Button",
+      "displayName": "雷纽菇",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Thunder-Button can be harvested in the Deepmines Labs of the Critter Liberation Deepmines Bounty .\n • May be awarded randomly as a bonus bounty reward at the end of the mission, appearing just beside the extraction elevator.\n\n• Can be purchased for 10 Fergolyte from Nightcap , requiring Rank 1 - Unknowing .\n\n | Location\n |\n | Mushroom |\n | Effect\n |\n\n | Deepmines Lab\n(Stage 2-5 zone in Critter Liberation bounty)\n |\n | Thunder-Button\n |\n | Weapons inflict Electricity Damage. The player's movement speed and melee attack speed increases, as if under the effects of Speed .\n |\n\n | Devil's Cap\n |\n | Weapons inflict Slash Damage. The player's eyes glow bright red. Damaging enemies will cosmetically sever limbs and create additional blood and gore effects.\n |\n\n | Ferrofungus\n |\n | Weapons inflict Magnetic Damage. Player is followed by a group of Sprodlings that match their Warframe's colors.\n |\n\n | Vomval Trumpet\n |\n | Weapons inflict Tau Damage. Spawns a false Eidolon Vomvalyst that floats near the player.\n |",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "雷纽菇"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "rank": 1,
+              "rankName": "Unknowing",
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Thunder-Button",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "雷纽菇的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

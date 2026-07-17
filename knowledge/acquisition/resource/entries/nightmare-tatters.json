@@ -1,0 +1,81 @@
+{
+  "id": "knowledge.acquisition.resource.nightmare-tatters",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "噩梦残片",
+  "subject": {
+    "canonical": "Nightmare Tatters",
+    "displayName": "噩梦残片",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Nightmare Tatters",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Nightmare Tatters",
+      "canonical": "Nightmare Tatters",
+      "displayName": "噩梦残片",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n Nightmare Tatters can be obtained by:\n\n • Completing the operation variant of Follie's Hunt during the event; where each completion of the mission will reward 3 Nightmare Tatters , or 4 on Steel Path .\n • Pick up to 3 pickups resembling Maxim Medallions while in the operation variant of the gamemode, which rewards everyone with 2 Nightmare Tatters per medallion, or 3 on Steel Path .\n\n• Completing any Nightmare Mode missions that appears across the Origin System, which rewards players with 10 Nightmare Tatters .",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "噩梦残片"
+        },
+        "methods": [
+          {
+            "type": "event-mission-reward",
+            "sourceCanonical": "Follie's Hunt",
+            "sourceDisplayName": "Follie 的狩猎",
+            "locationId": "mission.follies-hunt",
+            "requirements": {
+              "type": "none"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Nightmare_Tatters",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 42.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "噩梦残片的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

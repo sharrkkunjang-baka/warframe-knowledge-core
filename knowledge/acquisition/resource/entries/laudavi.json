@@ -1,0 +1,81 @@
+{
+  "id": "knowledge.acquisition.resource.laudavi",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "荣誉勋章",
+  "subject": {
+    "canonical": "Laudavi",
+    "displayName": "荣誉勋章",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Laudavi",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Laudavi",
+      "canonical": "Laudavi",
+      "displayName": "荣誉勋章",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "荣誉勋章"
+        },
+        "methods": [
+          {
+            "type": "event-mission-reward",
+            "sourceCanonical": "The Perita Rebellion",
+            "sourceDisplayName": "佩里塔叛乱",
+            "locationId": null,
+            "requirements": {
+              "type": "none"
+            }
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Laudavi",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 41.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "荣誉勋章的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

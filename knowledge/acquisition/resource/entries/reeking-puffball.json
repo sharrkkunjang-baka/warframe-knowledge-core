@@ -1,0 +1,102 @@
+{
+  "id": "knowledge.acquisition.resource.reeking-puffball",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "臭屎菇",
+  "subject": {
+    "canonical": "Reeking Puffball",
+    "displayName": "臭屎菇",
+    "category": "resource",
+    "officialUniqueName": "wiki-current:resource:Reeking Puffball",
+    "categoryRefs": [
+      "resource-current-wiki"
+    ]
+  },
+  "prerequisites": [],
+  "methodRefs": [],
+  "resourceAcquisition": {
+    "generated": {
+      "officialUniqueName": "wiki-current:resource:Reeking Puffball",
+      "canonical": "Reeking Puffball",
+      "displayName": "臭屎菇",
+      "localizationStatus": "official-zh",
+      "semanticKinds": [
+        "resource"
+      ],
+      "evidence": [
+        {
+          "type": "wiki-acquisition",
+          "canonical": "[ edit | edit source ]\n • Reeking Puffball can be harvested in the entrance caves of all Deepmines Bounties .\n • May be awarded randomly as a bonus bounty reward at the end of the mission, appearing just beside the extraction elevator.\n\n• Can be purchased for 10 Fergolyte from Nightcap , requiring Rank 2 - Curious .\n\n | Location\n |\n | Mushroom |\n | Effect\n |\n\n | Deepmines Caves\n(Stage 1 zone in all bounties)\n |\n | Muck Bonnet\n |\n | Weapons inflict Toxin Damage.\n |\n\n | Reeking Puffball\n |\n | Weapons inflict Gas Damage. Player is surrounded by cloudy green effects.\n |\n\n | Dull Button\n |\n | Clears existing Mushroom effects.\n |\n\n | Violet's Bane\n |\n | Weapons inflict Viral Damage. Spawns four Clems that follow the player, but their gunfire will harmlessly phase through enemies.\n |",
+          "reviewStatus": "approved"
+        }
+      ],
+      "routing": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "臭屎菇"
+        },
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "hub.fortuna-airlock",
+            "sourceCanonical": "Deepmines Bounties",
+            "sourceDisplayName": "深矿赏金",
+            "requirements": {
+              "type": "quest",
+              "questName": "新纪之战"
+            }
+          },
+          {
+            "type": "vendor-exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "rank": 2,
+              "rankName": "Curious",
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 10
+                }
+              ]
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      }
+    },
+    "manual": {
+      "tips": [],
+      "tipKeywords": [],
+      "routingOverride": null,
+      "reviewedBy": []
+    }
+  },
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Reeking_Puffball",
+      "label": "Official Warframe Wiki"
+    }
+  ],
+  "gameVersion": "Update 40.0",
+  "updatedAt": "2026-07-17",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-supplement"
+  ],
+  "summary": "臭屎菇的当前版本资源身份与获取证据。",
+  "tags": [
+    "acquisition",
+    "resource",
+    "current-version-supplement"
+  ],
+  "generator": {
+    "name": "sync-current-wiki-supplements",
+    "version": 1
+  }
+}

@@ -384,7 +384,39 @@ function getFrameAbilities(frameOrName) {
   });
 }
 
+function resolveWarframeAbilityQueries(input) {
+  const raw = String(input || '').normalize('NFKC').trim();
+  if (!raw) return [];
+  const mentions = [];
+  for (const alias of FRAME_ALIASES) {
+    if (!alias.text || alias.frame.override) continue;
+    const escaped = alias.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = /^[A-Za-z0-9]/.test(alias.text)
+      ? new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'ig')
+      : new RegExp(escaped, 'ig');
+    let hit;
+    while ((hit = pattern.exec(raw)) !== null) {
+      const matched = hit[2] || hit[0], index = hit.index + (hit[2] ? hit[0].indexOf(hit[2]) : 0);
+      if (!mentions.some(item => index < item.end && index + matched.length > item.index)) mentions.push({ alias, matched, index, end: index + matched.length });
+      if (!pattern.global) break;
+    }
+  }
+  mentions.sort((a, b) => a.index - b.index || b.matched.length - a.matched.length);
+  return mentions.map((mention, i) => {
+    const segment = raw.slice(mention.end, mentions[i + 1]?.index ?? raw.length).replace(/^\s*(?:的)?\s*/, '');
+    const abilityFrame = mention.alias.frame.isPrime ? (ALL_WARFRAMES.find(frame => frame.name === mention.alias.frame.name.replace(/ Prime$/, '')) || mention.alias.frame) : mention.alias.frame;
+    const abilities = getFrameAbilities(mention.alias.frame);
+    let ability = null, question = segment;
+    const number = segment.match(/^([1-4])(?:\s*技能)?(?:\s+|(?=[\u4e00-\u9fff])|$)/);
+    if (number) { ability = abilities[Number(number[1]) - 1]; question = segment.slice(number[0].length).trim(); }
+    if (!ability) ability = abilities.find(item => [item.zhName, item.name].filter(Boolean).some(name => normalize(segment).startsWith(normalize(name))));
+    return { frame: mention.alias.frame, abilityFrame, ability, question, abilities, matched: mention.matched, index: mention.index };
+  }).filter(item => item.ability);
+}
+
 function resolveWarframeAbilityQuery(input) {
+  const multiple = resolveWarframeAbilityQueries(input);
+  if (multiple.length) return multiple[0];
   const raw = String(input || '').trim();
   const compact = normalize(raw);
   const alias = FRAME_ALIASES.find(item => compact.startsWith(item.normalized));
@@ -760,7 +792,7 @@ function renderAcquisition(data) {
 }
 
 module.exports = {
-  RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery,
+  RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery, resolveWarframeAbilityQueries,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
   listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
