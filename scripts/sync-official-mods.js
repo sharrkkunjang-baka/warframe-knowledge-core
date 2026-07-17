@@ -5,7 +5,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { renderGameText } = require('../src/game-text');
 const Items = require('warframe-items');
-const { filterPlayableMods } = require('../src/playable-mod-filter');
+const { filterPlayableMods, getTypeDisplayName } = require('../src/playable-mod-filter');
 const { readCategoryDirectory, readEntryDirectory } = require('../src/loader');
 
 const root = path.join(__dirname, '..');
@@ -296,6 +296,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         displayName: hasChineseName ? localized.name : item.name,
         localizationStatus: hasChineseName ? 'official-zh' : 'missing-zh',
         type: item.type,
+        typeDisplayName: getTypeDisplayName(item.type),
         category: item.category || null,
         compatName: item.compatName || null,
         rarity: item.rarity || null,

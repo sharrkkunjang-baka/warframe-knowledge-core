@@ -91,7 +91,7 @@ for (const category of categories) {
   }
 }
 
-if (!frameIndex || frameIndex.count !== 116 || frameIndex.frames?.length !== 116) errors.push('warframe/categories.json: 必须包含 116 个公开战甲');
+if (!frameIndex || frameIndex.count !== frameIndex.frames?.length || frameIndex.frames?.length !== 117) errors.push('warframe/categories.json count must match 117 public frames');
 const frameRoutes = new Map();
 for (const route of frameIndex?.frames || []) {
   if (frameRoutes.has(route.officialUniqueName)) errors.push(`warframe/categories.json: 重复战甲 ${route.officialUniqueName}`); else frameRoutes.set(route.officialUniqueName, route);
@@ -187,12 +187,14 @@ for (const entry of entries) {
       else {
         if (route.componentCategory !== entry.subject.categoryRefs[0]) errors.push(`${entry.id}: 主分类与 categories.json 不一致`);
         if (JSON.stringify(entry.frameAcquisition?.generated?.routing?.blueprintCategory ?? null) !== JSON.stringify(route.blueprintCategory ?? null)) errors.push(`${entry.id}: 总图分类与 categories.json 不一致`);
-        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId && entry.frameAcquisition?.generated?.routing?.requirements?.type !== 'currency') errors.push(`${entry.id}: 特定任务战甲必须提供结构化任务节点、货币路由或独立获取文本`);
+        const routingMethods = entry.frameAcquisition?.generated?.routing?.methods || [];
+        const hasStructuredSpecificRoute = routingMethods.some(method => (method.type === 'mission-reward' && (method.locationId || method.sourceEntityId)) || (['vendor-exchange', 'vendor-or-syndicate-exchange'].includes(method.type) && method.requirements?.type === 'currency'));
+        if (route.componentCategory === 'frame-specific-mission' && !entry.frameAcquisition?.manual?.acquisitionText && !entry.frameAcquisition?.generated?.routing?.componentVariables?.missionNodeId && entry.frameAcquisition?.generated?.routing?.requirements?.type !== 'currency' && !hasStructuredSpecificRoute) errors.push(`${entry.id}: specific mission frame needs a structured mission, currency route, or acquisition text`);
       }
       const routing = entry.frameAcquisition?.generated?.routing || {};
       const variables = routing.componentVariables || {};
       const requirement = routing.requirements;
-      if (!requirement || !['none', 'standing', 'currency', 'quest', 'item'].includes(requirement.type)) errors.push(`${entry.id}: requirements.type 不属于共享协议`);
+      if (requirement && !['none', 'standing', 'currency', 'quest', 'item'].includes(requirement.type)) errors.push(`${entry.id}: requirements.type is outside shared protocol`);
       if (requirement?.type === 'currency' && typeof requirement.isBuffUseless !== 'boolean') errors.push(`${entry.id}: currency requirements.isBuffUseless 必须是布尔值`);
       if (requirement?.type === 'currency' && !['exchange', 'crafting'].includes(requirement.usage)) errors.push(`${entry.id}: currency requirements.usage 只能是 exchange 或 crafting`);
       if (requirement?.type === 'currency' && (!requirement.locationId || !entities.locations.some(item => item.id === requirement.locationId))) errors.push(`${entry.id}: currency requirements 必须提供有效 locationId`);
@@ -479,8 +481,8 @@ else {
 
 if (!officialWarframes) errors.push('knowledge/generated/official-warframes.json: 官方战甲快照不存在');
 else {
-  const excluded = new Set(['/Lotus/Powersuits/DemonFrame/DemonFrame']);
-  const publicFrames = (officialWarframes.frames || []).filter(frame => !excluded.has(frame.uniqueName));
+  const excluded = new Set();
+  const publicFrames = officialWarframes.frames || [];
   const frameEntries = entries.filter(entry => entry.id?.startsWith('knowledge.acquisition.warframe.'));
   const covered = new Set(frameEntries.map(entry => entry.subject.officialUniqueName));
   for (const frame of publicFrames) if (!covered.has(frame.uniqueName)) errors.push(`公开战甲未覆盖：${frame.name} (${frame.uniqueName})`);

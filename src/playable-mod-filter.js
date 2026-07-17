@@ -19,6 +19,37 @@ const TYPE_FOLDERS = Object.freeze({
   'Posture Mod': 'posture'
 })
 
+const TYPE_DISPLAY_NAMES = Object.freeze({
+  'Warframe Mod': '战甲 Mod',
+  'Primary Mod': '主要武器 Mod',
+  'Shotgun Mod': '霰弹枪 Mod',
+  'Secondary Mod': '次要武器 Mod',
+  'Melee Mod': '近战 Mod',
+  'Companion Mod': '同伴 Mod',
+  'Stance Mod': '架式 Mod',
+  'Plexus Mod': '航电系统 Mod',
+  'Parazon Mod': '灭骸之刃 Mod',
+  'Necramech Mod': '殁世机甲 Mod',
+  'Archwing Mod': 'Archwing Mod',
+  'Arch-Gun Mod': 'Archwing 枪械 Mod',
+  'Arch-Melee Mod': 'Archwing 近战 Mod',
+  'Railjack Mod': '九重天 Mod',
+  'K-Drive Mod': 'K 式悬浮板 Mod',
+  'Posture Mod': '姿态 Mod',
+  'Rifle Riven Mod': '步枪裂罅 Mod',
+  'Shotgun Riven Mod': '霰弹枪裂罅 Mod',
+  'Pistol Riven Mod': '手枪裂罅 Mod',
+  'Melee Riven Mod': '近战裂罅 Mod',
+  'Zaw Riven Mod': 'Zaw 裂罅 Mod',
+  'Kitgun Riven Mod': '组合枪裂罅 Mod',
+  'Companion Weapon Riven Mod': '同伴武器裂罅 Mod',
+  'Archgun Riven Mod': 'Archwing 枪械裂罅 Mod'
+})
+
+function getTypeDisplayName(type) {
+  return TYPE_DISPLAY_NAMES[type] || (type === 'Peculiar Mod' ? '奇特 Mod' : 'Mod')
+}
+
 function normalizeCanonical(value) {
   return String(value || '').normalize('NFKC').trim().toLowerCase()
 }
@@ -124,6 +155,7 @@ function filterPlayableMods(items) {
 
 module.exports = {
   TYPE_FOLDERS,
+  TYPE_DISPLAY_NAMES,
   filterPlayableMods,
   getCanonical,
   getDisplayName,
@@ -131,6 +163,7 @@ module.exports = {
   getModVariant,
   getTypeCategory,
   getTypeFolder,
+  getTypeDisplayName,
   hasWikiIdentity,
   isFlawedMod,
   normalizeCanonical

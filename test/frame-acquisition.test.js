@@ -213,11 +213,12 @@ test('ability query resolves number, official Chinese ability and Prime base ski
 
 test('frame knowledge covers public official suits and excludes internal placeholders', () => {
   const frames = acquisition.listWarframes();
-  assert.equal(frames.length, 116);
+  assert.equal(frames.length, 117);
   assert.ok(frames.some(frame => frame.canonical === 'Sirius & Orion' && frame.officialUniqueName.endsWith('/SiriusSuit')));
   assert.ok(!frames.some(frame => /Demon Frame|Inkblot/.test(frame.canonical)));
   assert.ok(frames.some(frame => frame.canonical === 'Follie' && frame.officialUniqueName.endsWith('/Inkblot')));
   assert.equal(acquisition.resolveWarframe('Demon Frame'), null);
+  assert.equal(acquisition.resolveWarframe('Uriel').name, 'Uriel');
   assert.equal(acquisition.resolveWarframe('Inkblot'), null);
   assert.equal(acquisition.resolveWarframe('墨水').name, 'Follie');
 });
@@ -239,13 +240,13 @@ test('manual overrides and recursive exchange dependencies render before generic
   assert.equal((sirius.match(/钢铁之路 16-20 个/g) || []).length, 1);
   assert.doesNotMatch(sirius, /Jade Shadows: Constellations|The Kuva Wytch|Scoria's Angel/);
   const follie = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('墨水'), materials: { available: false } });
-  assert.match(follie, /全部蓝图：先完成[^\n]+\n兑换道具怎么刷：\nAtramentum（需要 2400）：完成《Harrow 的枷锁》后刷金星维斯佩中继站/);
+  assert.match(follie, /全部蓝图：先完成[^\n]+\n兑换道具怎么刷：\n墨痕（需要 2400）：完成金星 Vesper 中继站「Follie 的狩猎」获得/);
 });
 
 test('frame maintenance report exposes exclusions without publishing them', () => {
   const report = acquisition.getWarframeMaintenanceReport();
-  assert.equal(report.publicCount, 116);
-  assert.deepEqual(report.excluded.map(item => item.name).sort(), ['Demon Frame']);
+  assert.equal(report.publicCount, 117);
+  assert.deepEqual(report.excluded, []);
   assert.equal(acquisition.getWarframeKnowledge('Dagath').frameAcquisition.manual.dependencies[0].currencyId, 'currency.vainthorn');
 });
 

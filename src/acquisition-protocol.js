@@ -147,8 +147,14 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
   if (method.type === 'enemy-drop') {
-    const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（综合概率${Number((method.chance * 100).toFixed(4))}%${Number.isFinite(method.sourceDropChance) && Number.isFinite(method.conditionalChance) ? `；来源掉落触发${Number((method.sourceDropChance * 100).toFixed(4))}%，触发后占${Number((method.conditionalChance * 100).toFixed(4))}%` : ''}）` : ''
-    return `${prefix}${source ? `击败${source}${chance ? '获得' : '概率获得'}` : `击败指定敌人${chance ? '获得' : '概率获得'}`}${chance}`
+    const missionType = localizeAcquisitionText(method.missionTypeDisplayName || '')
+    const node = localizeAcquisitionText(method.locationDisplayName || '')
+    const planet = localizeAcquisitionText(method.planetDisplayName || '')
+    const locationText = [...new Set([planet, node].filter(Boolean))].join('')
+    const missionContext = locationText || missionType
+      ? `（仅在${locationText ? `${locationText}${missionType ? `的${missionType}任务` : ''}` : missionType}中出现）`
+      : ''
+    return `${prefix}${source ? `击败${source}` : '击败指定敌人'}${missionContext}概率获得`
   }
   if (method.type === 'mission-reward') {
     const locationName = method.locationDisplayName || source

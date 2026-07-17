@@ -25,7 +25,7 @@ const FACTION_REGISTRY = ENTITY_REGISTRIES.factions;
 const NPC_REGISTRY = ENTITY_REGISTRIES.npcs;
 const ENEMY_REGISTRY = ENTITY_REGISTRIES.enemies;
 const MISSION_TYPE_REGISTRY = ENTITY_REGISTRIES.missionTypes;
-const { renderRequirements } = require('./acquisition-protocol');
+const { renderRequirements, currencyAcquisitionSummary } = require('./acquisition-protocol');
 const { localizeRelicName, relicRewardTier, classifyPrimeAcquisition } = require('./prime-acquisition');
 
 const RECIPES_URL = 'https://browse.wf/warframe-public-export-plus/ExportRecipes.json';
@@ -409,7 +409,10 @@ function resolveWarframeAbilityQueries(input) {
     let ability = null, question = segment;
     const number = segment.match(/^([1-4])(?:\s*技能)?(?:\s+|(?=[\u4e00-\u9fff])|$)/);
     if (number) { ability = abilities[Number(number[1]) - 1]; question = segment.slice(number[0].length).trim(); }
-    if (!ability) ability = abilities.find(item => [item.zhName, item.name].filter(Boolean).some(name => normalize(segment).startsWith(normalize(name))));
+    if (!ability) {
+      const named = abilities.map(item => ({ item, name: [item.zhName, item.name].filter(Boolean).find(name => normalize(segment).startsWith(normalize(name))) })).find(match => match.name);
+      if (named) { ability = named.item; question = segment.slice(named.name.length).trim(); }
+    }
     return { frame: mention.alias.frame, abilityFrame, ability, question, abilities, matched: mention.matched, index: mention.index };
   }).filter(item => item.ability);
 }
@@ -537,7 +540,7 @@ function renderAcquisitionDependencies(frame) {
     seen.add(key);
     const amount = dependency.amount == null ? '' : `（需要 ${dependency.amount}）`;
     const review = dependency.reviewStatus === 'pending' ? '【待人工审核】' : '';
-    let summary = dependency.acquisitionSummary;
+    let summary = dependency.acquisitionSummary || (entity?.acquisitionDependency?.type === 'mission-completion-or-container' ? currencyAcquisitionSummary(entity, ENTITY_REGISTRIES) : null);
     const ruleKey = acquisitionRuleKey(dependency.acquisition);
     if (!summary && dependency.acquisition?.type === 'mission-completion') {
       const mission = entityName(LOCATION_REGISTRY, dependency.acquisition.locationId);

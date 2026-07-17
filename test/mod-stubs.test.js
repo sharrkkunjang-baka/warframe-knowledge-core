@@ -8,6 +8,7 @@ const { readEntryDirectory } = require('../src/loader');
 const {
   filterPlayableMods,
   getCanonical,
+  getTypeDisplayName,
   isFlawedMod
 } = require('../src/playable-mod-filter');
 const fs = require('node:fs');
@@ -15,6 +16,7 @@ const { createSyncPlan } = require('../scripts/sync-mods');
 const { buildOfficialCatalog } = require('../scripts/sync-official-mods');
 const { buildPlan: buildWikiPlan } = require('../scripts/sync-mod-wiki');
 const { createKnowledgeCore } = require('../src');
+const { renderStructuredMethod } = require('../src/acquisition-protocol');
 const { buildPlans: buildEntityPlans } = require('../scripts/migrate-entity-registries');
 
 const root = path.join(__dirname, '..');
@@ -36,6 +38,36 @@ test('真实 Mod 过滤排除专精、转换核心与内部重复记录', () => 
     assert.equal(Boolean(record?.item.excludeFromCodex), true);
     assert.equal(Boolean(record?.item.wikiaUrl), false);
     assert.equal((record?.item.drops || []).length, 0);
+  }
+});
+
+test('全部公开 Mod 类型都有稳定中文展示名且不泄漏英文类型', () => {
+  const publicTypes = [...new Set(playable.map(item => item.type).filter(Boolean))];
+  for (const type of publicTypes) {
+    const display = getTypeDisplayName(type);
+    assert.ok(display.endsWith('Mod'), type);
+    assert.doesNotMatch(display, /^(?:Primary|Secondary|Shotgun|Melee|Warframe|Companion|Stance|Plexus|Parazon|Necramech|Railjack|Posture) Mod$/, type);
+  }
+  assert.equal(getTypeDisplayName('Primary Mod'), '主要武器 Mod');
+});
+
+test('Mod 敌人掉落统一省略精确概率并在已知时写清限定任务', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  for (const query of ['步枪元素师', '手枪元素师']) {
+    const result = core.getAcquisition(query);
+    assert.ok(result.description.includes('击败朱诺工兵恐鸟（仅在天王星布鲁图斯的扬升任务中出现）概率获得'));
+    assert.doesNotMatch(result.description, /0\.4287|综合概率|%/);
+  }
+  const publishedMods = core.officialCatalog.mods.filter(item => item.status === 'complete');
+  for (const mod of publishedMods) {
+    const result = core.getAcquisition(mod.canonical);
+    for (const method of result?.structuredMethods?.filter(item => item.type === 'enemy-drop') || []) {
+      const line = renderStructuredMethod(method);
+      assert.ok(line.endsWith('概率获得'), mod.canonical);
+      assert.equal([ '综合概率', '来源掉落触发', '触发后占' ].some(value => line.includes(value)), false, mod.canonical);
+      assert.doesNotMatch(line, /\d+(?:\.\d+)?%/, mod.canonical);
+      if (method.locationDisplayName || method.missionTypeDisplayName) assert.ok(line.includes('仅在') && line.includes('中出现'), mod.canonical);
+    }
   }
 });
 
