@@ -2,7 +2,7 @@
 
 const path = require('path');
 const { loadData } = require('./loader');
-const { createResolver, normalize } = require('./resolver');
+const { createResolver, resolveDomainAlias, normalize } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
 const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
@@ -72,6 +72,8 @@ function createKnowledgeCore(options = {}) {
     for (const key of Object.keys(data.aliases.normalization || {}).sort((a, b) => b.length - a.length)) output = output.split(key).join(data.aliases.normalization[key]);
     return output;
   };
+  const resolveSlang = (domain, query) => resolveDomainAlias(data.aliases, domain, query);
+  const getSlangDomain = domain => JSON.parse(JSON.stringify(data.aliases?.[domain] || {}));
   const searchFacts = (query, searchOptions) => searchEntries(query, data.facts, searchOptions);
   const searchKnowledge = (query, searchOptions) => searchEntries(query, data.knowledge, searchOptions);
   const parseAcquisitionCommand = text => {
@@ -457,6 +459,7 @@ function createKnowledgeCore(options = {}) {
     if (entry.summary || entry.content) return entry.summary || entry.content;
     const primaryCategory = getCategory(entry.subject?.categoryRefs?.[0]);
     const methods = expandMethodRefs(entry);
+    if (methods.length === 1 && methods[0].title) return `${entry.subject?.displayName || entry.title}从${methods[0].title}奖励中获得`;
     const acquisitionQuery = entry.acquisitionQuery
       || methods.find(method => method.acquisitionQuery)?.acquisitionQuery
       || methods[0]?.aliases?.[0]
@@ -719,6 +722,8 @@ function createKnowledgeCore(options = {}) {
     resolveAcquisitionCommand,
     parseGameplayCommand,
     parseCategoryCommand,
+    resolveSlang,
+    getSlangDomain,
     parseWeaponCraftingCommand: text => parseWeaponCraftingCommand(text, data.weapons || []),
     renderWeaponCraftingCommand: text => { const parsed = parseWeaponCraftingCommand(text, data.weapons || []); return parsed ? parsed.items.map(({ entry }) => renderCrafting(entry, weaponCraftingGraph)).join('\n\n') : null; },
     searchFacts,

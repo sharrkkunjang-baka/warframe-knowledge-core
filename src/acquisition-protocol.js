@@ -150,12 +150,14 @@ function renderStructuredMethod(method, options = {}) {
   }
   if (method.type === 'mission-reward') {
     const locationName = method.locationDisplayName || source
-    const missionTypeSuffix = method.missionTypeDisplayName && !String(locationName).includes(method.missionTypeDisplayName) ? `（${method.missionTypeDisplayName}）` : ''
+    const missionTypeName = method.missionTypeDisplayName || ''
+    if (/赏金/.test(missionTypeName)) return `${prefix}从${missionTypeName}奖励中获得`
+    const missionTypeSuffix = missionTypeName && !String(locationName).includes(missionTypeName) ? `（${missionTypeName}）` : ''
     const mission = [locationName, missionTypeSuffix].join('')
     const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
     const guaranteed = Number(method.chance) >= 1
     const verb = guaranteed ? '获得' : chance ? '获得' : '概率获得'
-    return `${prefix}${mission ? `完成${mission}${method.rotation ? ` ${method.rotation}轮` : ''}${verb}` : `完成指定任务${verb}`}${chance}`
+    return `${prefix}${mission ? `完成${mission}${method.rotation && !/赏金/.test(mission) ? ` ${method.rotation}轮` : ''}${verb}` : `获取任务名称待审核，暂不发布空泛任务描述`}${chance}`
   }
   if (method.type === 'route') return variables.text || source || null
   return source ? `来源：${source}` : null

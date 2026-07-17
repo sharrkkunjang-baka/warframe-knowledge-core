@@ -8,11 +8,17 @@ const normalize = value => {
   return result;
 };
 const pinyinTokens = value => pinyin(String(value || ''), { toneType: 'none', type: 'array' }).filter(Boolean);
+const compactPinyin = value => pinyinTokens(value).join('').replace(/[^a-z0-9]/g, '');
+const mixedPinyin = value => String(value || '').normalize('NFKC').toLowerCase().split(/([\u3400-\u9fff]+)/)
+  .map(part => /[\u3400-\u9fff]/.test(part) ? compactPinyin(part) : part.replace(/[^a-z0-9]/g, '')).join('');
 
 function textScore(query, candidate) {
   const q = normalize(query), c = normalize(candidate);
   if (!q || !c) return -Infinity;
   if (q === c) return 300;
+  const qPinyin = mixedPinyin(query), cPinyin = compactPinyin(candidate);
+  if (qPinyin && cPinyin && qPinyin === cPinyin) return 290;
+  if (qPinyin.length >= 3 && cPinyin.startsWith(qPinyin)) return 175 + qPinyin.length / cPinyin.length * 20;
   if (c.startsWith(q)) return 180 + q.length / c.length * 20;
   if (q.startsWith(c) && c.length >= 2) return 160 + c.length / q.length * 20;
   const shared = [...new Set(q)].filter(char => c.includes(char)).length;
@@ -61,6 +67,27 @@ function buildCandidates(aliases) {
   return result;
 }
 
+function domainEntries(aliases, domain) {
+  const source = aliases?.[domain] || {};
+  if (domain === 'fissures') return [];
+  return Object.entries(source).flatMap(([canonical, names]) => [canonical, ...(Array.isArray(names) ? names : [])]
+    .map(alias => ({ alias, canonical, category: domain })));
+}
+
+function resolveDomainAlias(aliases, domain, query) {
+  const raw = String(query || '').trim();
+  if (!raw) return null;
+  const entries = domainEntries(aliases, domain);
+  const direct = entries.find(item => normalize(item.alias) === normalize(raw));
+  if (direct) return { ...direct, match: 'exact', score: 300 };
+  const ranked = entries.map(item => ({ ...item, score: Math.max(textScore(raw, item.alias), phoneticScore(raw, item.alias)) }))
+    .filter(item => item.score >= 50).sort((a, b) => b.score - a.score || b.alias.length - a.alias.length);
+  if (!ranked.length) return null;
+  const second = ranked.find(item => item.canonical !== ranked[0].canonical);
+  if (second && ranked[0].score - second.score < 5) return { ambiguous: ranked.filter(item => ranked[0].score - item.score < 5).slice(0, 8), score: ranked[0].score };
+  return { ...ranked[0], match: 'pinyin-weighted' };
+}
+
 function createResolver(aliases) {
   const staticCandidates = buildCandidates(aliases);
   return function resolveName(query, options = {}) {
@@ -94,4 +121,4 @@ function createResolver(aliases) {
   };
 }
 
-module.exports = { createResolver, phoneticScore, textScore, normalize };
+module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize };

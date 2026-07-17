@@ -38,7 +38,8 @@ function enrichMethod(method, registries) {
   const location = entity(registries, 'locations', method.locationId || method.requirements?.locationId || npc?.locationId)
   const quest = entity(registries, 'quests', method.questId || method.requirements?.questId)
   const faction = entity(registries, 'factions', method.factionId || method.requirements?.factionId)
-  const missionType = entity(registries, 'missionTypes', method.missionTypeId)
+  const inferredMissionTypeId = /^Narmer\b/i.test(String(method.sourceCanonical || '')) ? 'mission-type.narmer-bounty' : null
+  const missionType = entity(registries, 'missionTypes', inferredMissionTypeId || method.missionTypeId || method.missionTypeEntityId)
   const requirements = normalizeRequirements(method.requirements)
   return {
     ...method,

@@ -71,7 +71,7 @@ const BLUEPRINT_OVERRIDES = Object.freeze({
 })
 const COMPONENT_OVERRIDES = Object.freeze({
   Baruuk: {},
-  'Cyte-09': { hubs: [{ locationId: 'acquisition-source.hollvania-missions', npcId: 'npc.amir' }], sourceCanonical: ['Höllvania (Level  65 - 70 WF1999 Bounty), Rotation C','Höllvania (Level  55 - 60 WF1999 Bounty), Rotation C','Höllvania (Level  75 - 80 WF1999 Bounty), Rotation C'] },
+  'Cyte-09': { hubs: [{ locationId: 'acquisition-source.hollvania-missions', npcId: 'npc.arthur' }], sourceCanonical: ['Höllvania (Level  65 - 70 WF1999 Bounty), Rotation C','Höllvania (Level  55 - 60 WF1999 Bounty), Rotation C','Höllvania (Level  75 - 80 WF1999 Bounty), Rotation C'] },
   'Excalibur Umbra': { npcId: 'npc.cephalon-simaris', questId: 'quest.the-sacrifice', sourceCanonical: ['The Sacrifice'] },
   Qorvex: { hubs: [{ locationId: 'acquisition-source.sanctum-anatomica-bounty', npcId: 'npc.fibonacci' }], sourceCanonical: ["Deimos/Albrecht's Laboratories (Level  55 - 60 Entrati Lab Bounty), Rotation C","Deimos/Albrecht's Laboratories (Level  65 - 70 Entrati Lab Bounty), Rotation C","Deimos/Albrecht's Laboratories (Level  75 - 80 Entrati Lab Bounty), Rotation C"] },
   Hildryn: { enemyName: '剥削者圆蛛' },
