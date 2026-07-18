@@ -93,7 +93,7 @@ function createKnowledgeCore(options = {}) {
   };
   const parseGameplayCommand = text => {
     const raw = String(text || '').trim();
-    const match = raw.match(/^\/玩法(?:\s+(.+))?$/i);
+    const match = raw.match(/^\/?\u73a9\u6cd5(?:\s*(.*))$/i);
     return match ? { intent: 'gameplay', query: String(match[1] || '').trim() } : null;
   };
   const parseCategoryCommand = text => {
@@ -102,27 +102,35 @@ function createKnowledgeCore(options = {}) {
     return match ? { intent: 'category', query: String(match[1] || '').trim() } : null;
   };
   const searchAcquisition = (query, searchOptions = {}) => searchEntries(query, data.knowledge.filter(entry => entry.module === 'acquisition'), searchOptions);
-  const searchGameplay = (query, searchOptions = {}) => searchEntries(query, data.knowledge.filter(entry => entry.module === 'gameplay'), searchOptions);
+  const gameplayEntries = data.knowledge.filter(entry => entry.module === 'gameplay');
+  const gameplayResolver = createResolver({ frames: {}, terms: {} });
+  const gameplayCandidates = gameplayEntries.flatMap(entry => [entry.title, entry.acquisitionQuery, ...(entry.aliases || [])].filter(Boolean).map(alias => ({ alias, canonical: entry.id, category: 'gameplay', priority: 20 })));
+  const searchGameplay = (query, searchOptions = {}) => searchEntries(query, gameplayEntries, searchOptions);
+  const resolveGameplayEntry = query => {
+    const resolution = gameplayResolver(query, { candidates: gameplayCandidates, categories: ['gameplay'], minScore: 70, minLead: 8 });
+    if (!resolution || resolution.ambiguous) return { resolution, entry: null };
+    return { resolution, entry: gameplayEntries.find(item => item.id === resolution.canonical) || null };
+  };
   const getGameplay = query => {
     const raw = String(query || '').trim();
     if (!raw) return null;
-    let entries = [];
     let rewardTier = null;
-    const optionMatch = raw.match(/^(.+?)\s+(\S+)$/);
+    let baseQuery = raw;
+    const optionMatch = raw.match(/^(.+?)\s+(\S+)$/i);
     if (optionMatch) {
-      const baseEntries = searchGameplay(optionMatch[1], { limit: 8 });
-      if (baseEntries[0]?.rewardGroups) {
-        rewardTier = optionMatch[2].toUpperCase();
-        if (!['A', 'B', 'C'].includes(rewardTier)) return null;
-        entries = baseEntries;
+      const resolvedBase = resolveGameplayEntry(optionMatch[1].trim());
+      if (resolvedBase.entry?.rewardGroups) {
+        const option = optionMatch[2].toUpperCase();
+        if (!['A', 'B', 'C'].includes(option)) return null;
+        baseQuery = optionMatch[1].trim(); rewardTier = option;
       }
     }
-    if (!entries.length) entries = searchGameplay(raw, { limit: 8 });
-    if (!entries.length) return null;
-    const entry = entries[0];
-    const rewardGroup = rewardTier ? entry.rewardGroups?.[rewardTier] : null;
-    if (rewardTier && !rewardGroup) return null;
-    return { query: raw, entry, rewardTier, rewardGroup, alternatives: entries.slice(1) };
+    let { resolution, entry } = resolveGameplayEntry(baseQuery);
+    if (!entry && !rewardTier) ({ resolution, entry } = resolveGameplayEntry(raw));
+    if (!entry) return null;
+    if (rewardTier && !entry.rewardGroups?.[rewardTier]) return null;
+    const rewardGroup = rewardTier ? entry.rewardGroups[rewardTier] : null;
+    return { query: raw, entry, rewardTier, rewardGroup, resolution, alternatives: [] };
   };
   const searchCategories = query => {
     const q = normalize(query);
@@ -347,6 +355,10 @@ function createKnowledgeCore(options = {}) {
     return enemy ? enrichModMethod({ ...method, type: 'enemy-drop', sourceEntityId: enemy.id }) : { ...method, type: 'unresolved-source', sourceDisplayName: null };
   };
   const enrichModMethod = method => {
+    if (method.type === 'mission-reward' && method.missionTypeCanonical) {
+      const missionType = data.missionTypes.get(method.missionTypeCanonical);
+      return { ...method, missionTypeId: missionType?.id || null, missionTypeDisplayName: missionType ? displayEntityName(missionType) : method.missionTypeCanonical };
+    }
     if (method.type === 'official-drop') return enrichOfficialDrop(method);
     if (method.type === 'syndicate-exchange') {
       const faction = data.factions.get(method.factionId);
@@ -647,7 +659,11 @@ function createKnowledgeCore(options = {}) {
     const entry = exactKnowledgeEntry || allKnowledge.find(item => item.module === 'acquisition' && normalize(item.subject?.canonical) === normalize(canonical));
     if (!entry) return getAcquisitionCollection(raw);
     const resolvedOfficialMod = officialMod || getOfficialMod(entry.subject?.canonical || entry.subject?.displayName);
-    const { methods, sourceOptions } = aggregateAcquisitionMethods([entry]);
+    const { methods, sourceOptions: inheritedSourceOptions } = aggregateAcquisitionMethods([entry]);
+    const hasSyndicateMethods = mergeStructuredMethods(entry).some(method => ['syndicate-exchange', 'syndicate-exchange-group'].includes(method.type));
+    const sourceOptions = hasSyndicateMethods && !inheritedSourceOptions.some(source => source.id === 'gameplay.syndicate-offerings')
+      ? [...inheritedSourceOptions, { id: 'gameplay.syndicate-offerings', title: '\u96c6\u56e2\u4f9b\u54c1', query: '\u96c6\u56e2' }]
+      : inheritedSourceOptions;
     const requirements = normalizeRequirements(entry.modAcquisition?.manual?.requirements);
     const requirementLines = renderRequirements(requirements, data);
     const isFrame = entry.subject?.category === 'frame';
@@ -671,7 +687,7 @@ function createKnowledgeCore(options = {}) {
     const hasStructuredExchange = exchangeMethods.length > 0;
     const frameExchangeSupplement = isFrame && hasStructuredExchange && !/兑换/.test(defaultDescription || '')
       ? renderAcquisition(exchangeMethods, { registries: data }) : null;
-    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || (entry.subject?.category === 'weapon' && Boolean(structuredDescription));
+    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || (entry.subject?.category === 'weapon' && Boolean(structuredDescription)) || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription));
     return {
       query: raw,
       resolution,

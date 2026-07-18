@@ -79,10 +79,10 @@ test('刷取模块只响应明确命令句式', () => {
   assert.equal(reviewCore.parseAcquisitionCommand('刷电妹'), null);
 });
 
-test('玩法模块只响应明确的斜杠命令', () => {
+test('玩法模块响应有无斜杠的明确命令', () => {
   assert.deepEqual(reviewCore.parseGameplayCommand('/玩法'), { intent: 'gameplay', query: '' });
   assert.deepEqual(reviewCore.parseGameplayCommand('/玩法 火卫二orikon 宝库'), { intent: 'gameplay', query: '火卫二orikon 宝库' });
-  assert.equal(reviewCore.parseGameplayCommand('玩法 火卫二宝库'), null);
+  assert.deepEqual(reviewCore.parseGameplayCommand('玩法 火卫二宝库'), { intent: 'gameplay', query: '火卫二宝库' });
   assert.equal(reviewCore.parseGameplayCommand('我想玩火卫二宝库'), null);
 });
 
@@ -101,6 +101,9 @@ test('玩法查询支持别名并返回结构化步骤', () => {
   const acquisitionGameplay = reviewCore.getGameplay('4k');
   assert.equal(acquisitionGameplay.entry.id, 'gameplay.deimos-orokin-vault');
   assert.equal(acquisitionGameplay.entry.acquisitionQuery, '4k');
+  assert.equal(reviewCore.getGameplay('heyiz').entry.id, 'gameplay.narmer-bounty');
+  assert.equal(reviewCore.getGameplay('heyizhong').entry.id, 'gameplay.narmer-bounty');
+  assert.equal(reviewCore.getGameplay('合一众赏金').entry.id, 'gameplay.narmer-bounty');
 });
 
 test('分类别名独立解析且不进入物品名称索引', () => {
@@ -120,7 +123,7 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   const narrow = reviewCore.getAcquisition('心智狭');
   assert.equal(narrow.entry.id, 'knowledge.acquisition.narrow-minded');
   assert.equal(narrow.entry.subject.displayName, '心志偏狭');
-  assert.equal(narrow.description, '心志偏狭是火卫二 Orokin 宝库的堕落 Mod（4k Mod）其一\n输入“刷 4k”可了解刷取要求/小知识');
+  assert.match(narrow.description, /Orokin Vault A\u8f6e\uff08\u6982\u73874\.17%\uff09/);
   assert.equal(narrow.entry.subject.category, 'mod');
   assert.deepEqual(narrow.entry.subject.categoryRefs.slice(0, 3), ['4kmod', 'duration4kmod', 'durationmod']);
   assert.ok(narrow.entry.subject.categoryRefs.includes('warframemod'));
@@ -134,7 +137,7 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.ok(taintedShell.entry.subject.categoryRefs.includes('shotgunmod'));
   assert.equal(taintedShell.entry.summary, undefined);
   assert.equal(taintedShell.entry.content, undefined);
-  assert.equal(taintedShell.description, '污秽弹药是火卫二 Orokin 宝库的堕落 Mod（4k Mod）其一\n输入“刷 4k”可了解刷取要求/小知识');
+  assert.match(taintedShell.description, /Orokin Vault A\u8f6e\uff08\u6982\u73874\.17%\uff09/);
   assert.equal(reviewCore.getCategory('精准4k卡').id, 'accuracy4kmod');
   assert.equal(reviewCore.getCategory('精准卡').id, 'accuracymod');
   assert.equal(reviewCore.getCategory('爆击4k卡').id, 'criticalchance4kmod');
@@ -238,7 +241,7 @@ test('噩梦 Mod 完整关联分类、玩法与官方目录', () => {
     resolveOptions: { candidates: [{ alias: 'Constitution', canonical: 'Constitution', category: 'official' }] }
   });
   assert.equal(constitution.entry.rewardTier, 'C');
-  assert.equal(constitution.description, '百折不挠是噩梦模式任务奖励中的噩梦 Mod\n输入“刷 噩梦 c”可了解刷取要求/小知识');
+  assert.match(constitution.description, /\u5669\u68a6\u6a21\u5f0f C\u8f6e\uff08\u6982\u738715\.49%\uff09/);
   assert.deepEqual(
     Object.fromEntries(['A', 'B', 'C'].map(tier => [tier, detail.entries.filter(entry => entry.rewardTier === tier).length])),
     { A: 7, B: 6, C: 6 }

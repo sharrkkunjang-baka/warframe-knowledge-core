@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 const assert = require('node:assert/strict');
 const path = require('node:path');
@@ -292,3 +292,18 @@ test('多来源 Mod 返回全部可展示刷取入口', () => {
     { id: 'gameplay.enemy-and-mission-drops', title: '敌人与任务掉落', query: '敌人与任务掉落' }
   ]);
 });
+test('\u81f4\u547d\u6d2a\u6d41\u4fdd\u7559\u5669\u68a6\u68af\u7ea7\u4e14\u4e0d\u91cd\u590d\u901a\u7528\u6765\u6e90', () => {
+  const result = createKnowledgeCore({ approvedOnly: false }).getAcquisition('Lethal Torrent');
+  assert.ok(result.description.includes('噩梦模式 C轮（概率15.49%）'));
+  assert.equal(result.description.includes('获取任务名称待审核'), false);
+  assert.equal(result.description.includes('细节'), false);
+  assert.equal(result.description.includes('刷 噩梦'), false);
+  assert.equal((result.structuredMethods || []).filter(method => method.type === 'mission-reward').length, 2);
+});
+test('集团 Mod 统一提供刷集团入口', () => {
+  for (const query of ['Iron Shrapnel', 'Razor Mortar']) {
+    const result = createKnowledgeCore({ approvedOnly: false }).getAcquisition(query);
+    assert.ok(result.sourceOptions.some(source => source.id === 'gameplay.syndicate-offerings' && source.query === '集团'));
+  }
+});
+

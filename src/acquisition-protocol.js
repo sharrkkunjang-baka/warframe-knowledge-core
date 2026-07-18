@@ -113,7 +113,7 @@ function renderRequirements(value, registries) {
 }
 
 function localizeAcquisitionText(value) {
-  return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望')
+  return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/Nightmare Mode/g, '\u5669\u68a6\u6a21\u5f0f').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望')
 }
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
@@ -157,9 +157,12 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}${source ? `击败${source}` : '击败指定敌人'}${missionContext}概率获得`
   }
   if (method.type === 'mission-reward') {
-    const locationName = method.locationDisplayName || source
-    const missionTypeName = method.missionTypeDisplayName || ''
+    const rawSource = String(method.sourceCanonical || '')
+    const isGenericNightmareSource = /^Nightmare Mode(?: Missions| Rescue)?$/i.test(rawSource)
+    const locationName = isGenericNightmareSource ? '' : (method.locationDisplayName || source)
+    const missionTypeName = localizeAcquisitionText(method.missionTypeDisplayName || method.missionTypeCanonical || '')
     if (/赏金/.test(missionTypeName)) return `${prefix}从${missionTypeName}奖励中获得`
+    if (!locationName && missionTypeName) { const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : '\uff08\u6982\u7387' + Number((method.chance * 100).toFixed(4)) + '%\uff09'; return prefix + missionTypeName + (method.rotation ? ' ' + method.rotation + '\u8f6e' : '') + probability }
     const missionTypeSuffix = missionTypeName && !String(locationName).includes(missionTypeName) ? `（${missionTypeName}）` : ''
     const mission = [locationName, missionTypeSuffix].join('')
     const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
