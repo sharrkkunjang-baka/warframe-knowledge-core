@@ -288,13 +288,25 @@ function createKnowledgeCore(options = {}) {
     const manual = entry?.arcaneAcquisition?.manual?.methods || [];
     const official = entry?.arcaneAcquisition?.generated?.acquisition?.methods || [];
     // Wiki 表格保留为 evidence 供审计；未经过实体变量审核的 draft method 不直接发布给用户。
+    const wiki = entry?.arcaneAcquisition?.generated?.wiki?.methods || [];
     const methods = [];
     const seen = new Set();
-    for (const method of [...manual.filter(item => item.reviewStatus === 'approved'), ...official]) {
+    for (const method of [...manual.filter(item => item.reviewStatus === 'approved'), ...official, ...wiki.filter(item => item.reviewStatus === 'approved')]) {
       const key = arcaneMethodIdentity(method);
       if (!seen.has(key)) { seen.add(key); methods.push(method); }
     }
     return methods;
+  };
+  const enrichArcaneMethod = method => {
+    const arcaneSource = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;
+    if (arcaneSource) method = { ...method, sourceDisplayName: displayEntityName(arcaneSource), sourceKind: arcaneSource.kind };
+    if (method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange') {
+      const npc = method.sourceEntityId ? data.npcs.get(method.sourceEntityId) : null;
+      const location = data.locations.get(method.locationId || npc?.locationId);
+      const requirements = normalizeRequirements(method.requirements);
+      return { ...method, requirements, requirementLines: renderRequirements(requirements, data), ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
+    }
+    return method;
   };
   const renderArcaneAcquisition = entry => {
     const generated = entry.arcaneAcquisition?.generated || {};
@@ -602,7 +614,7 @@ function createKnowledgeCore(options = {}) {
       const generated = arcaneEntry.arcaneAcquisition?.generated || {};
       const category = generated.classification?.category || 'legacy';
       const maxRank = Number(arcaneEntry.maxRank ?? generated.stats?.maxRank ?? 0);
-      const structuredMethods = mergeArcaneMethods(arcaneEntry);
+      const structuredMethods = mergeArcaneMethods(arcaneEntry).map(enrichArcaneMethod);
       const methodRequirements = structuredMethods.map(method => normalizeRequirements(method.requirements)).filter(requirement => requirement.type !== 'none');
       const requirements = methodRequirements.length === 1 ? methodRequirements[0] : normalizeRequirements(generated.acquisition?.requirements);
       const requirementLines = methodRequirements.flatMap(requirement => renderRequirements(requirement, data));
@@ -611,7 +623,7 @@ function createKnowledgeCore(options = {}) {
         query: raw,
         resolution: { canonical: arcaneEntry.subject.canonical, exact: true },
         entry: arcaneEntry,
-        description: renderArcaneAcquisition(arcaneEntry),
+        description: [renderArcaneAcquisition(arcaneEntry), renderAcquisition(structuredMethods, { displayName: arcaneEntry.subject?.displayName || arcaneEntry.title, registries: data, showProbabilities: false })].filter(Boolean).join('\n\n'),
         categories: [{ id: category, displayName: arcaneMethodDefinition?.categoryLabels?.[category] || category }],
         methods: [],
         sourceOptions: [],
@@ -627,6 +639,7 @@ function createKnowledgeCore(options = {}) {
             requirements: methodRequirements,
             requirementLines: renderRequirements(methodRequirements, data),
             ...(entity ? { sourceDisplayName: displayEntityName(entity), sourceKind: entity.kind } : {}),
+            ...(method.sourceEntityId && data.npcs.get(method.sourceEntityId) ? { sourceDisplayName: displayEntityName(data.npcs.get(method.sourceEntityId)) } : {}),
             ...(location ? { locationDisplayName: displayEntityName(location) } : {}),
             ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
           };

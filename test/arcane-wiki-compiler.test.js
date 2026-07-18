@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict')
 const test = require('node:test')
 const { extractHtmlTables, tableMatrix } = require('../src/mediawiki-html-table')
-const { SUPPORTED_METHODS, compileArcaneWikiPage } = require('../src/arcane-wiki-compiler')
+const { SUPPORTED_METHODS, compileArcaneWikiPage, compileVendorProse } = require('../src/arcane-wiki-compiler')
 const { officialDirectory, mergeManual } = require('../scripts/sync-arcane-wiki')
 
 const page = { title: 'Fixture Arcane', pageId: 7, revisionId: 9, timestamp: '2026-01-01T00:00:00Z', html: '<h2>Acquisition</h2><p>Available from a vendor after review.</p><table><tr><th rowspan="2">Item Source</th><th colspan="2">Reward</th></tr><tr><th>Chance</th><th>Expected</th></tr><tr><td>Thrax Centurion</td><td>0.33%</td><td>299 Kills</td></tr></table>' }
@@ -10,3 +10,4 @@ test('HTML table 保留 th/td、rowspan 与 colspan 语义', () => { const table
 test('正文 evidence 与表格 method provenance 分离', () => { const result = compileArcaneWikiPage(page, { sha256: 'ABC', size: 1 }, 'fixed'); assert.equal(result.methods.length, 1); assert.equal(result.methods[0].type, 'enemy'); assert.equal(result.methods.at(-1).provenance.sourceType, 'table'); assert.equal(result.evidence.length, 1); assert.equal(result.evidence[0].provenance.sourceType, 'prose'); assert.equal(result.wiki.compiledAt, 'fixed') })
 test('方式目录覆盖需求且官方过滤排除占位 Arcane', () => { assert.deepEqual(SUPPORTED_METHODS, ['enemy','mission','bounty','vendor','syndicate','eidolon','event','rotating','dissolution']); const index = officialDirectory([{ name: 'Arcane', excludeFromCodex: true }, { name: 'Arcane Test', uniqueName: '/Test' }]); assert.deepEqual([...index.keys()], ['arcane test']) })
 test('manual 合并保持人工内容', () => { assert.deepEqual(mergeManual({ reviewStatus: 'approved', reviewedBy: ['human'], methodRefs: ['x'], arcaneAcquisition: { manual: { methods: [{ type: 'vendor' }], overrides: { a: 1 } } } }), { methods: [{ type: 'vendor' }], methodRefs: ['x'], overrides: { a: 1 }, reviewStatus: 'approved', reviewedBy: ['human'] }) })
+test('Bird 3 赋能兑换 prose 编译为实体化声望方法', () => { const method = compileVendorProse('Can be bought from Bird 3 of Cavia for 7,500 Standing 7,500 , requiring Rank 4 - Scholar .', { title: 'Melee Animosity', pageId: 1, revisionId: 2 }, { sha256: 'x', size: 1 }, 'Acquisition'); assert.equal(method.type, 'vendor-or-syndicate-exchange'); assert.equal(method.sourceEntityId, 'npc.bird-3'); assert.deepEqual(method.requirements, { type: 'standing', npcId: 'npc.bird-3', locationId: 'hub.sanctum-anatomica', rank: 4, rankName: '学者', amount: 7500 }); assert.equal(method.reviewStatus, 'approved') })

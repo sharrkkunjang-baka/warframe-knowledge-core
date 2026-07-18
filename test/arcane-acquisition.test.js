@@ -29,6 +29,18 @@ test('Primary Merciless merges official methods before Wiki evidence', () => {
   assert.ok(result.wikiEvidence.length > 0);
 });
 
+test('近战憎恶显示低语掉落和鸟三声望兑换', () => {
+  const result = core.getAcquisition('近战·憎恶');
+  assert.match(result.description, /击败嘲讽低语概率获得/);
+  assert.match(result.description, /击败严酷低语概率获得/);
+  assert.match(result.description, /击败碎裂者·君主概率获得/);
+  assert.match(result.description, /在解剖圣所的鸟三处兑换/);
+  assert.match(result.description, /4级（学者）/);
+  assert.match(result.description, /7,500声望/);
+  assert.ok(result.structuredMethods.some(method => method.sourceCanonical === 'Mocking Whisper'));
+  assert.ok(result.structuredMethods.some(method => method.type === 'vendor-or-syndicate-exchange' && method.sourceEntityId === 'npc.bird-3'));
+});
+
 test('Shotgun Vendetta accepts the common full category alias', () => {
   const result = core.getAcquisition('霰弹枪·仇杀');
   assert.equal(result.entry.subject.displayName, '霰弹·仇杀');

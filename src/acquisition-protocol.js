@@ -118,7 +118,7 @@ function localizeAcquisitionText(value) {
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
   const location = localizeAcquisitionText(method.locationDisplayName || variables.locationName || '')
-  const npc = localizeAcquisitionText(method.npcDisplayName || variables.npcName || '')
+  const npc = localizeAcquisitionText(method.npcDisplayName || (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange' ? method.sourceDisplayName : '') || variables.npcName || '')
   const source = localizeAcquisitionText(method.sourceDisplayName || location || variables.sourceName || '')
   const exchangeSource = npc ? `${location ? `${location}的` : ''}${npc}` : source
   const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'item' ? '成品' : ''
@@ -147,6 +147,7 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
   if (method.type === 'reward-or-drop' && method.sourceKind === 'relic-reward' && source) return `${prefix}开启${source}概率获得`
+  if (method.type === 'reward-or-drop' && method.sourceKind === 'enemy-drop') return `${prefix}${source ? `击败${source}` : '击败指定敌人'}概率获得`
   if (method.type === 'adversary-drop') {
     const adversary = localizeAcquisitionText(method.sourceDisplayName || method.sourceCanonical || '')
       .replace(/Kuva Lich/gi, '\u8d64\u6bd2\u7384\u9ab8')

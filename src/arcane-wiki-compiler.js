@@ -54,8 +54,29 @@ function compileTables(page, sourceDatabase) {
   return methods
 }
 function stripTables(html) { return String(html || '').replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, ' ') }
+const VENDOR_PROSE_ENTITIES = Object.freeze({
+  'Bird 3': { sourceEntityId: 'npc.bird-3', locationId: 'hub.sanctum-anatomica' }
+})
+const RANK_ZH = Object.freeze({ Assistant: '助手', Researcher: '研究者', Colleague: '同僚', Scholar: '学者' })
+function compileVendorProse(excerpt, page, sourceDatabase, section) {
+  const match = normalize(excerpt).match(/Can be bought from (Bird 3) of Cavia for ([\d,]+) Standing(?:\s+[\d,]+)?\s*,?\s*requiring Rank (\d+)\s*-\s*([A-Za-z ]+?)\s*\.?$/i)
+  if (!match) return null
+  const entity = VENDOR_PROSE_ENTITIES[match[1]]
+  if (!entity) return null
+  const rankCanonical = match[4].trim()
+  return {
+    type: 'vendor-or-syndicate-exchange',
+    sourceCanonical: match[1],
+    sourceEntityId: entity.sourceEntityId,
+    locationId: entity.locationId,
+    requirements: { type: 'standing', npcId: entity.sourceEntityId, locationId: entity.locationId, rank: Number(match[3]), rankName: RANK_ZH[rankCanonical] || rankCanonical, amount: Number(match[2].replace(/,/g, '')) },
+    availability: 'guaranteed-when-requirements-met',
+    reviewStatus: 'approved',
+    provenance: provenance(page, sourceDatabase, 'prose', section, excerpt)
+  }
+}
 function compileProse(page, sourceDatabase) {
-  const evidence = []
+  const evidence = [], methods = []
   const html = stripTables(page.html)
   const headingPattern = /<h([2-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi
   const headings = [...html.matchAll(headingPattern)]
@@ -64,14 +85,19 @@ function compileProse(page, sourceDatabase) {
   for (const range of ranges) {
     if (!/acquisition|drop|reward|vendor|dissolution|source/i.test(range.title)) continue
     const paragraphs = [...html.slice(range.start, range.end).matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(match => normalize(textContent(match[1]))).filter(Boolean)
-    for (const excerpt of paragraphs) evidence.push({ type: 'acquisition-prose', reviewStatus: 'draft', provenance: provenance(page, sourceDatabase, 'prose', range.title, excerpt) })
+    for (const excerpt of paragraphs) {
+      evidence.push({ type: 'acquisition-prose', reviewStatus: 'draft', provenance: provenance(page, sourceDatabase, 'prose', range.title, excerpt) })
+      const vendor = compileVendorProse(excerpt, page, sourceDatabase, range.title)
+      if (vendor) methods.push(vendor)
+    }
   }
-  return evidence
+  return { evidence, methods }
 }
 function compileArcaneWikiPage(page, sourceDatabase, compiledAt = new Date().toISOString()) {
-  const methods = compileTables(page, sourceDatabase)
-  const evidence = compileProse(page, sourceDatabase)
+  const prose = compileProse(page, sourceDatabase)
+  const methods = [...compileTables(page, sourceDatabase), ...prose.methods]
+  const evidence = prose.evidence
   const unresolved = methods.filter(method => method.reviewStatus === 'review-required').map(method => ({ kind: 'method', canonical: method.provenance.excerpt, reason: '无法可靠分类或实体化表格行', provenance: method.provenance }))
   return { wiki: { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId, pageTimestamp: page.timestamp, compiledAt, sourceDatabase }, methods, evidence, unresolved, status: unresolved.length ? (methods.length ? 'partial' : 'unresolved') : (methods.length ? 'complete' : 'unresolved') }
 }
-module.exports = { SUPPORTED_METHODS, classifyMethod, compileArcaneWikiPage, compileProse, compileTables }
+module.exports = { SUPPORTED_METHODS, classifyMethod, compileArcaneWikiPage, compileProse, compileVendorProse, compileTables }
