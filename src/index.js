@@ -344,6 +344,8 @@ function createKnowledgeCore(options = {}) {
   const enrichOfficialDrop = method => {
     if (method.type !== 'official-drop') return method;
     const raw = String(method.sourceCanonical || '');
+    const requiemRelic = raw.match(/^Requiem\s+([IVX]+)\s+Relic(?:\s+\([^)]+\))?$/i);
+    if (requiemRelic) return { ...method, type: 'reward-or-drop', sourceDisplayName: `安魂遗物 ${requiemRelic[1].toUpperCase()}`, sourceKind: 'relic-reward' };
     const source = data.arcaneSources.get(raw);
     if (source && source.localization?.status !== 'canonical-fallback') return { ...method, type: source.kind === 'enemy-drop' ? 'enemy-drop' : 'reward-or-drop', sourceEntityId: source.id, sourceDisplayName: displayEntityName(source), sourceKind: source.kind };
     const mission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i);

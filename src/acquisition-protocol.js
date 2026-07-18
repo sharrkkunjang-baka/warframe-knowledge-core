@@ -146,6 +146,7 @@ function renderStructuredMethod(method, options = {}) {
     const { localizeRelicName, relicRewardTier } = require('./prime-acquisition')
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
+  if (method.type === 'reward-or-drop' && method.sourceKind === 'relic-reward' && source) return `${prefix}开启${source}概率获得`
   if (method.type === 'adversary-drop') {
     const adversary = localizeAcquisitionText(method.sourceDisplayName || method.sourceCanonical || '')
       .replace(/Kuva Lich/gi, '\u8d64\u6bd2\u7384\u9ab8')

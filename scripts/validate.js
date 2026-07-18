@@ -287,7 +287,8 @@ for (const entry of entries) {
     if (entry.subject?.category === 'mod') {
       const hasStructuredEffects = Array.isArray(entry.effects) && entry.effects.length > 0;
       const hasEffectDetails = Array.isArray(entry.effectDetails) && entry.effectDetails.length > 0;
-      if (!Number.isInteger(entry.maxRank) || (!hasStructuredEffects && !hasEffectDetails)) errors.push(`${entry.id}: Mod 条目缺少 maxRank 或有效效果`);
+      const isRequiemMod = Array.isArray(entry.subject?.categoryRefs) && entry.subject.categoryRefs.includes('requiemmod');
+      if (!Number.isInteger(entry.maxRank) || (!isRequiemMod && !hasStructuredEffects && !hasEffectDetails)) errors.push(`${entry.id}: Mod 条目缺少 maxRank 或有效效果`);
       if (!entry.modAcquisition?.generated || !entry.modAcquisition?.manual) errors.push(`${entry.id}: Mod 必须分离 modAcquisition.generated/manual`);
       const manual = entry.modAcquisition?.manual;
       if (manual && (!Array.isArray(manual.methods) || !Array.isArray(manual.methodRefs) || !manual.overrides || !Array.isArray(manual.reviewedBy))) errors.push(`${entry.id}: modAcquisition.manual 字段不完整`);

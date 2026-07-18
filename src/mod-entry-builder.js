@@ -86,6 +86,9 @@ function cleanEffectDetail(value) {
 }
 
 function getEffectDetails(item, localized = {}) {
+  // Requiem words are passphrases, not stat-bearing Mods. Their package descriptions
+  // are flavor verses and must never be presented to users as gameplay effects.
+  if (isRequiemMod(item)) return []
   const candidates = [
     localized.levelStats?.at(-1)?.stats,
     localized.stats,
@@ -165,11 +168,16 @@ function standingExchangeMethod(drop, item) {
   }
 }
 function officialDropMethods(item) {
+  const canonical = getCanonical(item)
   const drops = RAW_MOD_DROPS_BY_UNIQUE_NAME.get(item.uniqueName) || item.drops || []
-  return drops.filter(drop => drop.location && Number.isFinite(Number(drop.chance))).map(drop => standingExchangeMethod(drop, item) || ({
+  // warframe-items may attach drops for similarly named items to the same record
+  // (for example Xata Invocation to Xata and Khra Canticle to Khra). Keep only
+  // rows explicitly belonging to this Mod when the row carries an item identity.
+  const ownDrops = drops.filter(drop => !drop.type || String(drop.type).trim().toLowerCase() === canonical.toLowerCase())
+  return ownDrops.filter(drop => drop.location && Number.isFinite(Number(drop.chance))).map(drop => standingExchangeMethod(drop, item) || ({
     type: 'official-drop', sourceCanonical: String(drop.location).trim(), chance: Number(drop.chance), quantity: 1,
-    rarity: drop.rarity || null, reviewStatus: 'draft',
-    provenance: { source: 'warframe-items', input: 'Mods.json', officialUniqueName: item.uniqueName }
+    rarity: drop.rarity || null, reviewStatus: isRequiemMod(item) ? 'approved' : 'draft',
+    provenance: { source: 'warframe-items', input: 'Mods.json', officialUniqueName: item.uniqueName, itemCanonical: canonical }
   }))
 }
 
