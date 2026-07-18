@@ -725,17 +725,30 @@ function createKnowledgeCore(options = {}) {
       factionId: entry.factionId || null
     }))).filter(variable => !seen.has(variable.id) && seen.add(variable.id));
   };
+  const wikiKnowledgeBody = entry => {
+    const direct = [entry.content, entry.summary].find(value => typeof value === 'string' && value.trim());
+    if (direct) return direct.trim();
+    if (entry.module !== 'acquisition') return null;
+    const effectLines = (entry.effectDetails || []).filter(value => typeof value === 'string' && value.trim());
+    const acquisition = getAcquisition(entry.subject?.canonical || entry.title);
+    const parts = [
+      effectLines.length ? `效果：${effectLines.join('；')}` : null,
+      acquisition?.description ? `获取方式：${acquisition.description}` : null,
+      ...(entry.tips || []).filter(value => typeof value === 'string' && value.trim())
+    ].filter(Boolean);
+    return parts.length ? parts.join('\n') : null;
+  };
   const buildWikiContext = query => {
     const resolution = resolveName(query);
     const facts = searchFacts(query);
-    const knowledge = searchKnowledge(query);
+    const knowledge = searchKnowledge(query).map(item => ({ ...item, contextBody: wikiKnowledgeBody(item) })).filter(item => item.contextBody);
     const entityVariables = resolveEntityVariables(query);
     if (!facts.length && !knowledge.length && !resolution && !entityVariables.length) return null;
     const sections = [];
     if (resolution && !resolution.ambiguous) sections.push(`名称解析：${query} → ${resolution.canonical}`);
     if (entityVariables.length) sections.push(`实体变量（NPC/地点/阵营/任务/货币/敌人/任务类型）：\n${entityVariables.map(item => `${item.id} = ${item.displayName} [canonical: ${item.canonical}]`).join('\n')}\n输出规则：需要提及这些实体时必须使用变量的 displayName；localized=false 表示没有已审核官方中文，只能保留 canonical 英文，禁止自行翻译、音译或补中文。不要输出未被当前问题需要的变量。`);
     if (facts.length) sections.push(`基础事实：\n${facts.map(item => `【${item.title}】\n${item.content}\n来源：${item.sources.map(source => `${source.label} ${source.url}`).join('、')}`).join('\n\n')}`);
-    if (knowledge.length) sections.push(`加工知识：\n${knowledge.map(item => `【${item.title}】\n${item.content}`).join('\n\n')}`);
+    if (knowledge.length) sections.push(`加工知识：\n${knowledge.map(item => `【${item.title}】\n${item.contextBody}`).join('\n\n')}`);
     return { query, resolution, facts, knowledge, entityVariables, text: sections.join('\n\n') };
   };
   return {

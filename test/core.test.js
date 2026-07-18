@@ -23,6 +23,15 @@ test('知识检索区分事实与加工知识', () => {
   assert.equal(core.searchKnowledge('九重天')[0].id, 'knowledge.railjack.outpost-carry');
 });
 
+test('获取类知识进入 Wiki 上下文时使用效果与获取描述且禁止 undefined', () => {
+  const context = reviewCore.buildWikiContext('库狛蛋是否享受资源数量加成和富足寻回者');
+  assert.match(context.text, /【富足寻回者】/);
+  assert.match(context.text, /18% 几率使资源拾取数量翻倍/);
+  assert.doesNotMatch(context.text, /undefined|null/);
+  const entry = context.knowledge.find(item => item.title === '富足寻回者');
+  assert.ok(entry.contextBody);
+});
+
 test('术语归一化复用单一表', () => {
   assert.equal(core.normalizeTerms('法穆里安与夜幕安神香'), '巨人战舰与夜幕药剂');
 });
