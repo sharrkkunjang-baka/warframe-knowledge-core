@@ -334,7 +334,7 @@ for (const entry of entries) {
     if (entry.kind !== 'knowledge') errors.push(`${entry.id}: gameplay 必须属于 knowledge`);
     if (!Array.isArray(entry.aliases) || !entry.aliases.length || !entry.summary || !Array.isArray(entry.steps) || !Array.isArray(entry.notes)) errors.push(`${entry.id}: gameplay 缺少 aliases/summary/steps/notes`);
     for (const [tier, group] of Object.entries(entry.rewardGroups || {})) {
-      if (!['A', 'B', 'C'].includes(tier) || !Array.isArray(group.planets) || !group.planets.length) errors.push(`${entry.id}: rewardGroups.${tier} 缺少有效星球列表`);
+      if (!/^[A-Z0-9_-]+$/.test(tier) || !Array.isArray(group.planets) || !group.planets.length) errors.push(`${entry.id}: rewardGroups.${tier} 缺少有效星球列表`);
     }
     if (entry.acquisitionQuery !== undefined) {
       const query = String(entry.acquisitionQuery).normalize('NFKC').trim().toLowerCase();

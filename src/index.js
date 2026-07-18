@@ -120,8 +120,9 @@ function createKnowledgeCore(options = {}) {
     if (optionMatch) {
       const resolvedBase = resolveGameplayEntry(optionMatch[1].trim());
       if (resolvedBase.entry?.rewardGroups) {
-        const option = optionMatch[2].toUpperCase();
-        if (!['A', 'B', 'C'].includes(option)) return null;
+        const requestedOption = optionMatch[2].toUpperCase();
+        const option = Object.keys(resolvedBase.entry.rewardGroups).find(key => key.toUpperCase() === requestedOption);
+        if (!option) return null;
         baseQuery = optionMatch[1].trim(); rewardTier = option;
       }
     }
@@ -390,7 +391,7 @@ function createKnowledgeCore(options = {}) {
     const missionType = enemy?.missionTypeId ? data.missionTypes.get(enemy.missionTypeId) : null;
     return {
       ...method,
-      ...(enemy ? { sourceDisplayName: displayEntityName(enemy) } : {}),
+      ...(enemy ? { sourceDisplayName: (() => { const name = displayEntityName(enemy); const faction = enemy.factionId ? data.factions.get(enemy.factionId) : null; return faction ? name.replace(new RegExp(`^${faction.canonical}\\s*`, 'i'), displayEntityName(faction)) : name; })() } : {}),
       ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
       ...(parent ? { planetId: parent.id, planetDisplayName: displayEntityName(parent) } : {}),
       ...(missionType ? { missionTypeId: missionType.id, missionTypeDisplayName: displayEntityName(missionType) } : {})
@@ -660,10 +661,12 @@ function createKnowledgeCore(options = {}) {
     if (!entry) return getAcquisitionCollection(raw);
     const resolvedOfficialMod = officialMod || getOfficialMod(entry.subject?.canonical || entry.subject?.displayName);
     const { methods, sourceOptions: inheritedSourceOptions } = aggregateAcquisitionMethods([entry]);
-    const hasSyndicateMethods = mergeStructuredMethods(entry).some(method => ['syndicate-exchange', 'syndicate-exchange-group'].includes(method.type));
-    const sourceOptions = hasSyndicateMethods && !inheritedSourceOptions.some(source => source.id === 'gameplay.syndicate-offerings')
-      ? [...inheritedSourceOptions, { id: 'gameplay.syndicate-offerings', title: '\u96c6\u56e2\u4f9b\u54c1', query: '\u96c6\u56e2' }]
-      : inheritedSourceOptions;
+    const rawStructuredMethods = mergeStructuredMethods(entry);
+    const hasSyndicateMethods = rawStructuredMethods.some(method => ['syndicate-exchange', 'syndicate-exchange-group'].includes(method.type));
+    const hasSpyMethods = rawStructuredMethods.some(method => method.type === 'mission-reward' && /^Spy$/i.test(String(method.missionTypeCanonical || '')));
+    const sourceOptions = [...inheritedSourceOptions];
+    if (hasSyndicateMethods && !sourceOptions.some(source => source.id === 'gameplay.syndicate-offerings')) sourceOptions.push({ id: 'gameplay.syndicate-offerings', title: '\u96c6\u56e2\u4f9b\u54c1', query: '\u96c6\u56e2' });
+    if (hasSpyMethods && !sourceOptions.some(source => source.id === 'gameplay.spy-missions')) sourceOptions.push({ id: 'gameplay.spy-missions', title: '\u95f4\u8c0d\u4efb\u52a1', query: '\u95f4\u8c0d' });
     const requirements = normalizeRequirements(entry.modAcquisition?.manual?.requirements);
     const requirementLines = renderRequirements(requirements, data);
     const isFrame = entry.subject?.category === 'frame';
@@ -677,7 +680,7 @@ function createKnowledgeCore(options = {}) {
       ...(entry.frameAcquisition?.generated?.routing?.methods || [])
     ], data) : [];
     const structuredMethods = compileStructuredMethods([
-      ...mergeStructuredMethods(entry).map(enrichModMethod).map(method => Number.isFinite(method.chance) && method.chance > 1 ? { ...method, chance: method.chance / 100 } : method).filter(method => method.type !== 'unresolved-source'),
+      ...rawStructuredMethods.map(enrichModMethod).map(method => Number.isFinite(method.chance) && method.chance > 1 ? { ...method, chance: method.chance / 100 } : method).filter(method => method.type !== 'unresolved-source'),
       ...structuredGameplayMethods(entry),
       ...frameStructuredMethods
     ], data);

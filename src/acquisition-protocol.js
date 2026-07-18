@@ -165,6 +165,10 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'mission-reward') {
     const rawSource = String(method.sourceCanonical || '')
     const isGenericNightmareSource = /^Nightmare Mode(?: Missions| Rescue)?$/i.test(rawSource)
+    const isSpyMission = /^Spy$/i.test(String(method.missionTypeCanonical || '')) || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || ''))
+    const spyTier = /^Tier\s*(\d+)\s*Spy$/i.exec(rawSource)?.[1]
+    if (isSpyMission && spyTier) return `${prefix}T${spyTier}\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
+    if (isSpyMission && /^Lua Spy$/i.test(rawSource)) return `${prefix}\u6708\u7403\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
     const locationName = isGenericNightmareSource ? '' : (method.locationDisplayName || source)
     const missionTypeName = localizeAcquisitionText(method.missionTypeDisplayName || method.missionTypeCanonical || '')
     if (/赏金/.test(missionTypeName)) return `${prefix}从${missionTypeName}奖励中获得`
@@ -215,7 +219,8 @@ function mergeAlternativeSources(methods, options = {}) {
     if (group.length === 1) { merged.push(group[0]); continue }
     const names = [...new Set(group.map(method => method.sourceDisplayName || method.locationDisplayName).filter(Boolean))]
     if (!names.length) { merged.push(...group); continue }
-    merged.push({ ...group[0], sourceDisplayName: names.join('、'), locationDisplayName: names.join('、'), sourceCanonical: group.map(method => method.sourceCanonical).filter(Boolean).join(' | '), mergedSourceCount: group.length })
+    const locations = [...new Set(group.map(method => method.locationDisplayName).filter(Boolean))]
+    merged.push({ ...group[0], sourceDisplayName: names.join('、'), locationDisplayName: locations.length === 1 ? locations[0] : '', sourceCanonical: group.map(method => method.sourceCanonical).filter(Boolean).join(' | '), mergedSourceCount: group.length })
   }
   return [...merged, ...passthrough]
 }

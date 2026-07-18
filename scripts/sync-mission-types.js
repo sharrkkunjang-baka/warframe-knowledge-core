@@ -21,12 +21,22 @@ const SPECIAL_TYPES = Object.freeze([
   { canonical: 'Orphix', displayName: '奥影', category: 'railjack', officialSource: 'DE official zh-hans Operation: Orphix Venom terminology' },
   { canonical: 'Operation: Orphix Venom', displayName: '行动代号：奥影之毒', category: 'event', officialSource: 'DE official zh-hans news' },
   { canonical: 'Arbitration', displayName: '仲裁', category: 'special', officialSource: 'DE official zh-hans terminology' },
+  { canonical: 'Orokin Vault', displayName: '\u5965\u7f57\u91d1\u5b9d\u5e93', aliases: ['Orokin Derelict Vault'], category: 'reward-source', officialSource: 'DE official zh-hans terminology' },
+  { canonical: 'Profit-Taker Bounty', displayName: '利润收割者赏金', aliases: [], category: 'bounty', officialSource: 'audited-official-zh' },
+  { canonical: 'Ghoul Bounty', displayName: '尸鬼赏金', aliases: [], category: 'bounty', officialSource: 'audited-official-zh' },
+  { canonical: 'Necralisk Bounty', displayName: '殿世幽都赏金', aliases: [], category: 'bounty', officialSource: 'audited-official-zh' },
+  { canonical: 'Team Annihilation', displayName: '团队歼夺', aliases: [], category: 'reward-source', officialSource: 'audited-official-zh' },
+  { canonical: 'Lunaro', displayName: 'Lunaro', aliases: [], category: 'reward-source', officialSource: 'audited-official-zh' },
+  { canonical: 'Cephalon Capture', displayName: '中枢夺取', aliases: [], category: 'reward-source', officialSource: 'audited-official-zh' },
+  { canonical: 'Annihilation', displayName: '歼夺', aliases: [], category: 'reward-source', officialSource: 'audited-official-zh' },
+  { canonical: 'Nightmare Mode', displayName: '噩梦模式', aliases: [], category: 'reward-source', officialSource: 'audited-official-zh' },
+  { canonical: 'Arbitrations', displayName: '仲裁', aliases: [], category: 'special', officialSource: 'audited-official-zh' },
   { canonical: 'Archimedea', displayName: '科研任务', category: 'special', officialSource: 'Warframe official mode terminology' },
   { canonical: 'Bounty', displayName: '赏金', category: 'bounty', officialSource: 'official-drop-canonical' },
   { canonical: 'Narmer Bounty', displayName: '合一众赏金', category: 'bounty', officialSource: 'official-drop-canonical' },
   { canonical: 'Normal', displayName: '普通任务', category: 'standard', officialSource: 'official-drop-canonical' },
   { canonical: 'Hard', displayName: '钢铁之路', category: 'special', officialSource: 'official-drop-canonical' },
-  ...['Cetus Bounty','Orb Vallis Bounty','Cambion Drift Bounty','Entrati Lab Bounty','Zariman Bounty','WF1999 Bounty','Plague Star'].map(canonical => ({ canonical, displayName: '', category: canonical === 'Plague Star' ? 'event' : 'bounty', officialSource: 'official-drop-canonical' }))
+  ...Object.entries({ 'Cetus Bounty': { displayName: '夜灵平野赏金', aliases: [] }, 'Orb Vallis Bounty': { displayName: '奥布山谷赏金', aliases: ['Fortuna Bounty'] }, 'Cambion Drift Bounty': { displayName: '魔胎之境赏金', aliases: [] }, 'Entrati Lab Bounty': { displayName: '阿尔布雷希特的实验室赏金', aliases: [] }, 'Zariman Bounty': { displayName: '扎里曼赏金', aliases: [] }, 'WF1999 Bounty': { displayName: '1999 赏金', aliases: [] }, 'Plague Star': { displayName: '瘟疫之星', aliases: [] } }).map(([canonical, localized]) => ({ canonical, ...localized, category: canonical === 'Plague Star' ? 'event' : 'bounty', officialSource: 'audited-official-zh' }))
 ])
 const ENDLESS = /DEFENSE|SURVIVAL|DISRUPTION|TERRITORY|EXCAVATE|DEFECTION|SALVAGE|ASCENSION/i
 function categoryOf(entry) { if (entry.categoryOverride) return entry.categoryOverride; if (entry.canonical === 'Caches') return 'reward-source'; if (/Skirmish/i.test(entry.canonical)) return 'railjack'; if (ENDLESS.test(entry.officialCode || entry.canonical)) return 'endless'; return entry.officialCode ? 'standard' : 'special' }
@@ -48,7 +58,7 @@ async function build() {
     const entry = { id: `mission-type.${slug(canonical)}`, canonical, displayName: chinese[node.missionName] || AUDITED_ZH[canonical] || '', kind: 'mission-type', aliases: [], officialCode: node.missionType, officialNameKey: node.missionName, officialSource: chinese[node.missionName] ? 'ExportRegions + dict.zh' : 'ExportRegions canonical' }
     byCanonical.set(canonical, entry)
   }
-  for (const definition of SPECIAL_TYPES) byCanonical.set(definition.canonical, { id: `mission-type.${slug(definition.canonical)}`, canonical: definition.canonical, displayName: definition.displayName, kind: 'mission-type', aliases: [], officialCode: null, officialNameKey: null, officialSource: definition.officialSource, categoryOverride: definition.category })
+  for (const definition of SPECIAL_TYPES) byCanonical.set(definition.canonical, { id: `mission-type.${slug(definition.canonical)}`, canonical: definition.canonical, displayName: definition.displayName, kind: 'mission-type', aliases: definition.aliases || [], officialCode: null, officialNameKey: null, officialSource: definition.officialSource, categoryOverride: definition.category })
   for (const canonical of syntheticTypes()) {
     const id = `mission-type.${slug(canonical)}`
     const existing = [...byCanonical.values()].find(entry => entry.id === id)

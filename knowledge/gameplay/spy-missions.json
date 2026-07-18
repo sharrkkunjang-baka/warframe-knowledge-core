@@ -1,0 +1,75 @@
+[
+  {
+    "id": "gameplay.spy-missions",
+    "kind": "knowledge",
+    "module": "gameplay",
+    "title": "间谍任务",
+    "aliases": [
+      "间谍",
+      "间谍任务",
+      "spy"
+    ],
+    "acquisitionQuery": "间谍",
+    "summary": "破解三个数据金库，根据成功破解数量获得对应奖励轮次；Mod 掉落按任务层级分为 T1、T2、T3 和月球间谍。",
+    "steps": [
+      "进入间谍任务并寻找三个数据金库",
+      "在不触发销毁倒计时或倒计时结束前破解金库",
+      "成功破解三个金库以获取 C 轮奖励"
+    ],
+    "rewardGroups": {
+      "T1": {
+        "planets": [
+          "水星",
+          "金星",
+          "地球",
+          "火星",
+          "火卫一"
+        ]
+      },
+      "T2": {
+        "planets": [
+          "谷神星",
+          "木星",
+          "欧罗巴",
+          "土星"
+        ]
+      },
+      "T3": {
+        "planets": [
+          "天王星",
+          "海王星",
+          "冥王星",
+          "赛德娜"
+        ]
+      },
+      "LUA": {
+        "planets": [
+          "月球"
+        ]
+      }
+    },
+    "notes": [
+      "T1、T2、T3 表示间谍掉落表层级，不是任务轮次",
+      "破解一个、两个、三个金库分别对应 A、B、C 轮奖励",
+      "查询“刷 间谍 T1”或“玩法 间谍 T1”可只查看对应层级"
+    ],
+    "content": "间谍任务需要破解数据金库；指定 Mod 的来源应按 T1、T2、T3 或月球间谍掉落表查询。",
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Spy",
+        "label": "Warframe Wiki - Spy"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-18",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "sharrkkunjang-baka"
+    ],
+    "tags": [
+      "gameplay",
+      "spy",
+      "mission-rewards"
+    ]
+  }
+]

@@ -300,6 +300,17 @@ test('\u81f4\u547d\u6d2a\u6d41\u4fdd\u7559\u5669\u68a6\u68af\u7ea7\u4e14\u4e0d\u
   assert.equal(result.description.includes('刷 噩梦'), false);
   assert.equal((result.structuredMethods || []).filter(method => method.type === 'mission-reward').length, 2);
 });
+test('\u95f4\u8c0d Mod \u6309\u6389\u843d\u8868 T \u7ea7\u5206\u884c\u5e76\u63d0\u4f9b\u95f4\u8c0d\u73a9\u6cd5', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const result = core.getAcquisition('Heavy Impact');
+  const spyLines = result.structuredMethods.filter(method => method.type === 'mission-reward' && method.missionTypeCanonical === 'Spy').map(method => core.renderStructuredMethod(method));
+  assert.deepEqual(spyLines, ['T1\u95f4\u8c0d C\u8f6e']);
+  assert.equal(spyLines.some(line => /Cyath|Gnathos|Cambria/.test(line)), false);
+  assert.ok(result.sourceOptions.some(source => source.id === 'gameplay.spy-missions' && source.query === '\u95f4\u8c0d'));
+  assert.equal(core.getGameplay('\u95f4\u8c0d').entry.id, 'gameplay.spy-missions');
+  assert.equal(core.getGameplay('\u95f4\u8c0d T1').rewardTier, 'T1');
+  assert.deepEqual(core.getGameplay('\u95f4\u8c0d T1').rewardGroup.planets, ['\u6c34\u661f', '\u91d1\u661f', '\u5730\u7403', '\u706b\u661f', '\u706b\u536b\u4e00']);
+});
 test('集团 Mod 统一提供刷集团入口', () => {
   for (const query of ['Iron Shrapnel', 'Razor Mortar']) {
     const result = createKnowledgeCore({ approvedOnly: false }).getAcquisition(query);
@@ -321,4 +332,20 @@ test('\u5b89\u9b42 Mod \u7531\u5185\u90e8\u8eab\u4efd\u7edf\u4e00\u5f52\u7c7b\u5
   assert.equal(core.getGameplay('anhun').entry.id, 'gameplay.requiem-mods');
   const oull = core.getAcquisition('Oull');
   assert.equal(core.renderStructuredMethod(oull.structuredMethods[0]), '\u51fb\u8d25\u8d64\u6bd2\u7384\u9ab8\u6982\u7387\u83b7\u5f97');
+});
+
+test('\u5df2\u53d1\u5e03 Mod \u4efb\u52a1\u6765\u6e90\u4e0d\u6cc4\u6f0f\u53ef\u672c\u5730\u5316\u82f1\u6587', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  for (const entry of core.knowledge.filter(item => item.subject?.category === 'mod' && item.reviewStatus === 'approved')) {
+    const result = core.getAcquisition(entry.subject.canonical);
+    for (const method of result.structuredMethods || []) {
+      if (method.type !== 'mission-reward') continue;
+      assert.doesNotMatch(method.missionTypeDisplayName || '', /^(?:Fortuna Bounty|Orokin Vault|Arbitrations|Nightmare Mode|Annihilation|Cephalon Capture|Team Annihilation|Necralisk Bounty|Ghoul Bounty|Profit-Taker Bounty)$/);
+    }
+  }
+  const synth = core.getAcquisition('Synth Fiber').description;
+  assert.match(synth, /\u4ece\u5965\u5e03\u5c71\u8c37\u8d4f\u91d1\u5956\u52b1\u4e2d\u83b7\u5f97/);
+  assert.match(synth, /\u79d1\u666e\u65af\u72d9\u51fb\u624b\u76ee\u6807\u3001\u79d1\u666e\u65af\u82cf\u666e\u62c9\u76ee\u6807/);
+  assert.equal((synth.match(/\u5965\u5e03\u5c71\u8c37\u8d4f\u91d1/g) || []).length, 1);
+  assert.match(core.getAcquisition('Critical Deceleration').description, /\u5965\u7f57\u91d1\u5b9d\u5e93 A\u8f6e/);
 });
