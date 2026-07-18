@@ -47,6 +47,7 @@ test('所有已批准资源都能通过 method 模板渲染且不含原始英文
   }
 })
 
+test('生息精华仲裁来源不泄漏游戏富文本图标',()=>{const core=coreModule.createKnowledgeCore({approvedOnly:false}),text=core.getAcquisition('生息精华').description;assert.match(text,/完成仲裁任务的轮次奖励/);assert.doesNotMatch(text,/<DT_|[⚡🔥☠❄]/)});
 test('资源 method 目录覆盖索引中的全部分类', () => {
   const index = JSON.parse(fs.readFileSync(path.join(RESOURCE_ROOT, 'categories.json'), 'utf8'))
   const methods = coreModule.resourceAcquisition.METHODS

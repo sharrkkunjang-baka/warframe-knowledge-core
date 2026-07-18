@@ -391,7 +391,7 @@ function createKnowledgeCore(options = {}) {
     const missionType = enemy?.missionTypeId ? data.missionTypes.get(enemy.missionTypeId) : null;
     return {
       ...method,
-      ...(enemy ? { sourceDisplayName: (() => { const name = displayEntityName(enemy); const faction = enemy.factionId ? data.factions.get(enemy.factionId) : null; return faction ? name.replace(new RegExp(`^${faction.canonical}\\s*`, 'i'), displayEntityName(faction)) : name; })() } : {}),
+      ...(enemy ? { sourceDisplayName: (() => { const name = displayEntityName(enemy); const faction = enemy.factionId ? data.factions.get(enemy.factionId) : null; return faction ? name.replace(new RegExp(`^${faction.canonical}\\s*`, 'i'), displayEntityName(faction)) : name; })(), ...(enemy.bossLocation ? { bossLocation: enemy.bossLocation } : {}) } : {}),
       ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
       ...(parent ? { planetId: parent.id, planetDisplayName: displayEntityName(parent) } : {}),
       ...(missionType ? { missionTypeId: missionType.id, missionTypeDisplayName: displayEntityName(missionType) } : {})
@@ -684,8 +684,10 @@ function createKnowledgeCore(options = {}) {
       ...structuredGameplayMethods(entry),
       ...frameStructuredMethods
     ], data);
-    const defaultDescription = frameRoute?.lines?.join('\n') || renderModAcquisition(entry) || getAcquisitionDescription(entry);
+    const syndicateDescription = renderModAcquisition(entry);
+    const defaultDescription = frameRoute?.lines?.join('\n') || syndicateDescription || getAcquisitionDescription(entry);
     const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
+    const syndicateHeader = hasSyndicateMethods && syndicateDescription ? syndicateDescription.split(/\n\n获取来源：/)[0] : null;
     const exchangeMethods = structuredMethods.filter(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
     const hasStructuredExchange = exchangeMethods.length > 0;
     const frameExchangeSupplement = isFrame && hasStructuredExchange && !/兑换/.test(defaultDescription || '')
@@ -696,7 +698,7 @@ function createKnowledgeCore(options = {}) {
       resolution,
       entry,
       officialMod: resolvedOfficialMod,
-      description: frameExchangeSupplement ? [defaultDescription, frameExchangeSupplement].filter(Boolean).join('\n') : preferStructuredDescription && structuredDescription ? structuredDescription : defaultDescription,
+      description: frameExchangeSupplement ? [defaultDescription, frameExchangeSupplement].filter(Boolean).join('\n') : preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : defaultDescription,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,

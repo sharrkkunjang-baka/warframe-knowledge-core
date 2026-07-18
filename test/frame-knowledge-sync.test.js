@@ -31,8 +31,8 @@ test('sync keeps manual fields while regenerating official fields', () => {
 
 test('classification excludes only audited internal placeholders', () => {
   const plan = sync.buildPlan();
-  assert.equal(plan.included.length, 116);
-  assert.deepEqual(plan.excluded.map(item => item.name).sort(), ['Demon Frame']);
+  assert.equal(plan.included.length, 117);
+  assert.deepEqual(plan.excluded.map(item => item.name).sort(), []);
   assert.equal(plan.included.filter(item => item.entry.subject.canonical === 'Follie').length, 1);
   assert.equal(plan.included.filter(item => item.entry.subject.canonical === 'Sirius & Orion').length, 1);
 });

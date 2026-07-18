@@ -123,7 +123,8 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   const narrow = reviewCore.getAcquisition('心智狭');
   assert.equal(narrow.entry.id, 'knowledge.acquisition.narrow-minded');
   assert.equal(narrow.entry.subject.displayName, '心志偏狭');
-  assert.match(narrow.description, /Orokin Vault A\u8f6e\uff08\u6982\u73874\.17%\uff09/);
+  assert.match(narrow.description, /奥罗金宝库概率获得/);
+  assert.doesNotMatch(narrow.description, /[ABC]轮|4\.17%|Orokin Vault/);
   assert.equal(narrow.entry.subject.category, 'mod');
   assert.deepEqual(narrow.entry.subject.categoryRefs.slice(0, 3), ['4kmod', 'duration4kmod', 'durationmod']);
   assert.ok(narrow.entry.subject.categoryRefs.includes('warframemod'));
@@ -137,7 +138,8 @@ test('刷取查询只通过统一名称索引关联 canonical', () => {
   assert.ok(taintedShell.entry.subject.categoryRefs.includes('shotgunmod'));
   assert.equal(taintedShell.entry.summary, undefined);
   assert.equal(taintedShell.entry.content, undefined);
-  assert.match(taintedShell.description, /Orokin Vault A\u8f6e\uff08\u6982\u73874\.17%\uff09/);
+  assert.match(taintedShell.description, /奥罗金宝库概率获得/);
+  assert.doesNotMatch(taintedShell.description, /[ABC]轮|4\.17%|Orokin Vault/);
   assert.equal(reviewCore.getCategory('精准4k卡').id, 'accuracy4kmod');
   assert.equal(reviewCore.getCategory('精准卡').id, 'accuracymod');
   assert.equal(reviewCore.getCategory('爆击4k卡').id, 'criticalchance4kmod');

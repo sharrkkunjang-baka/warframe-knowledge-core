@@ -113,7 +113,7 @@ function renderRequirements(value, registries) {
 }
 
 function localizeAcquisitionText(value) {
-  return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/Nightmare Mode/g, '\u5669\u68a6\u6a21\u5f0f').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望')
+  return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/Nightmare Mode/g, '\u5669\u68a6\u6a21\u5f0f').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望').replace(/\s*[（(](?:Void Armageddon|Void Cascade)[）)]/gi, '')
 }
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
@@ -153,6 +153,8 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}\u51fb\u8d25${adversary || '\u5bf9\u624b'}\u6982\u7387\u83b7\u5f97`
   }
   if (method.type === 'enemy-drop') {
+    const bossPlanet = localizeAcquisitionText(method.bossLocation?.planetDisplayName || '')
+    if (bossPlanet) return `${prefix}${source ? `击败${source}` : '击败指定头目'}（${bossPlanet}刺杀）概率获得`
     const missionType = localizeAcquisitionText(method.missionTypeDisplayName || '')
     const node = localizeAcquisitionText(method.locationDisplayName || '')
     const planet = localizeAcquisitionText(method.planetDisplayName || '')
@@ -169,9 +171,14 @@ function renderStructuredMethod(method, options = {}) {
     const spyTier = /^Tier\s*(\d+)\s*Spy$/i.exec(rawSource)?.[1]
     if (isSpyMission && spyTier) return `${prefix}T${spyTier}\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
     if (isSpyMission && /^Lua Spy$/i.test(rawSource)) return `${prefix}\u6708\u7403\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
-    const locationName = isGenericNightmareSource ? '' : (method.locationDisplayName || source)
+    const locationName = isGenericNightmareSource ? '' : localizeAcquisitionText(method.locationDisplayName || source)
     const missionTypeName = localizeAcquisitionText(method.missionTypeDisplayName || method.missionTypeCanonical || '')
-    if (/赏金/.test(missionTypeName)) return `${prefix}从${missionTypeName}奖励中获得`
+    const isOrokinVault = method.missionTypeId === 'mission-type.orokin-vault' || /^(?:Orokin Vault|奥罗金宝库)$/i.test(missionTypeName)
+    if (isOrokinVault) return `${prefix}奥罗金宝库概率获得`
+    if (/赏金/.test(missionTypeName)) {
+      const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (locationName || missionTypeName)
+      return `${prefix}从${bountyName}奖励中获得`
+    }
     if (!locationName && missionTypeName) { const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : '\uff08\u6982\u7387' + Number((method.chance * 100).toFixed(4)) + '%\uff09'; return prefix + missionTypeName + (method.rotation ? ' ' + method.rotation + '\u8f6e' : '') + probability }
     const missionTypeSuffix = missionTypeName && !String(locationName).includes(missionTypeName) ? `（${missionTypeName}）` : ''
     const mission = [locationName, missionTypeSuffix].join('')

@@ -45,7 +45,7 @@ function enrichMethod(method, registries) {
     ...method,
     requirements,
     requirementLines: renderRequirements(requirements, registries),
-    ...(source ? { sourceDisplayName: (() => { const name = displayEntityName(source); const sourceFaction = source.factionId ? entity(registries, 'factions', source.factionId) : null; return sourceFaction ? name.replace(new RegExp(`^${sourceFaction.canonical}\\s*`, 'i'), displayEntityName(sourceFaction)) : name; })(), sourceKind: source.kind || null } : {}),
+    ...(source ? { sourceDisplayName: (() => { const name = displayEntityName(source); const sourceFaction = source.factionId ? entity(registries, 'factions', source.factionId) : null; return sourceFaction ? name.replace(new RegExp(`^${sourceFaction.canonical}\\s*`, 'i'), displayEntityName(sourceFaction)) : name; })(), sourceKind: source.kind || null, ...(source.bossLocation ? { bossLocation: source.bossLocation } : {}) } : {}),
     ...(npc ? { npcId: npc.id, npcDisplayName: displayEntityName(npc) } : {}),
     ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
     ...(quest ? { questId: quest.id, questDisplayName: displayEntityName(quest) } : {}),

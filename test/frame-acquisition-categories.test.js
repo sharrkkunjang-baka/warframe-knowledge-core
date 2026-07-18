@@ -8,7 +8,7 @@ const { CATEGORY_DEFINITIONS, classifyFrameAcquisition } = require('../src/frame
 
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'))
 const WARFRAMES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Warframes.json'))
-const DB_PATH = process.env.WF_WIKI_DB || 'D:/Minecraft/qq-bot/data/warframe-wiki.sqlite.download'
+const DB_PATH = process.env.WF_WIKI_DB || path.join(__dirname, '..', '.cache', 'warframe-wiki.sqlite')
 function frame(name) { const value = WARFRAMES.find(item => item.name === name); assert.ok(value, `缺少官方战甲 ${name}`); return value }
 
 test('战甲获取分类定义完整且互不重复', () => {

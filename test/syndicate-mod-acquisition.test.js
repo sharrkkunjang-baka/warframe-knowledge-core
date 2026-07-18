@@ -40,7 +40,7 @@ test('全部已发布集团 Mod 都能渲染且不泄露英文集团名', () => 
     const result = core.getAcquisition(entry.subject.canonical)
     assert.match(result.description, /的.+强化MOD/)
     assert.doesNotMatch(result.description, /\{集团卡\}/)
-    assert.match(result.description, /获取来源：/)
+    assert.match(result.description, /获取(?:来源|方式)：/)
     assert.doesNotMatch(result.description, /Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence/)
   }
 })

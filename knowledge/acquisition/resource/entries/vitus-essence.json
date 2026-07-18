@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/MiscItems/Elitium",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-arbitration"
     ]
   },
   "prerequisites": [],
@@ -65,8 +65,16 @@
     "manual": {
       "tips": [],
       "tipKeywords": [],
-      "routingOverride": null,
-      "reviewedBy": []
+      "routingOverride": {
+        "category": "resource-arbitration",
+        "variables": {
+          "resourceName": "生息精华"
+        },
+        "status": "audited"
+      },
+      "reviewedBy": [
+        "official-drop-table-audit"
+      ]
     }
   },
   "sources": [
@@ -77,8 +85,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-drop-table-audit"
+  ],
   "summary": "生息精华的资源身份与获取证据。",
   "tags": [
     "acquisition",

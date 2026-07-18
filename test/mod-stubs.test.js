@@ -51,6 +51,7 @@ test('全部公开 Mod 类型都有稳定中文展示名且不泄漏英文类型
   assert.equal(getTypeDisplayName('Primary Mod'), '主要武器 Mod');
 });
 
+test('头目 Mod 掉落由官方区域映射显示对应星球刺杀',()=>{const core=createKnowledgeCore({approvedOnly:false}),result=core.getAcquisition('酸性弹药'),method=result.structuredMethods.find(item=>item.type==='enemy-drop');assert.equal(method.bossLocation.planetCanonical,'Sedna');assert.equal(method.bossLocation.planetDisplayName,'赛德娜');assert.match(result.description,/击败Kela De Thaym（赛德娜刺杀）概率获得/)});
 test('Mod 敌人掉落统一省略精确概率并在已知时写清限定任务', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
   for (const query of ['步枪元素师', '手枪元素师']) {
@@ -113,7 +114,7 @@ test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
     assert.equal(result.structuredMethods.some(method => method.type === 'enemy-drop'), false);
   }
   for (const query of ['执行官卡', '执刑官卡']) assert.equal(core.getGameplay(query)?.entry.id, 'gameplay.kahl-chipper');
-  assert.equal(core.renderGameText('+45% 技能范围；造成 <DT_ELECTRICITY_COLOR>电击伤害'), '+45% 技能范围；造成 ⚡电击伤害');
+  assert.equal(core.renderGameText('+45% 技能范围；造成 <DT_ELECTRICITY_COLOR>电击伤害'), '+45% 技能范围；造成 电击伤害');
 });
 
 test('普通、残缺与 Prime 代表 Mod 保持独立身份', () => {
@@ -347,5 +348,7 @@ test('\u5df2\u53d1\u5e03 Mod \u4efb\u52a1\u6765\u6e90\u4e0d\u6cc4\u6f0f\u53ef\u6
   assert.match(synth, /\u4ece\u5965\u5e03\u5c71\u8c37\u8d4f\u91d1\u5956\u52b1\u4e2d\u83b7\u5f97/);
   assert.match(synth, /\u79d1\u666e\u65af\u72d9\u51fb\u624b\u76ee\u6807\u3001\u79d1\u666e\u65af\u82cf\u666e\u62c9\u76ee\u6807/);
   assert.equal((synth.match(/\u5965\u5e03\u5c71\u8c37\u8d4f\u91d1/g) || []).length, 1);
-  assert.match(core.getAcquisition('Critical Deceleration').description, /\u5965\u7f57\u91d1\u5b9d\u5e93 A\u8f6e/);
+  const vault=core.getAcquisition('Critical Deceleration').description;
+  assert.match(vault, /\u5965\u7f57\u91d1\u5b9d\u5e93\u6982\u7387\u83b7\u5f97/);
+  assert.doesNotMatch(vault, /[ABC]\u8f6e|Orokin Vault|4\.17%/);
 });

@@ -1,13 +1,14 @@
 'use strict'
 
 const STYLE_TAGS = Object.freeze({
-  DT_ELECTRIC_COLOR: '⚡',
-  DT_ELECTRICITY_COLOR: '⚡',
-  DT_FIRE_COLOR: '🔥',
-  DT_FREEZE_COLOR: '❄',
-  DT_COLD_COLOR: '❄',
-  DT_POISON_COLOR: '☠',
-  DT_TOXIN_COLOR: '☠',
+  // DT_* 是游戏富文本颜色标签，不是用户可见内容。统一移除，禁止把颜色误渲染成图标。
+  DT_ELECTRIC_COLOR: '',
+  DT_ELECTRICITY_COLOR: '',
+  DT_FIRE_COLOR: '',
+  DT_FREEZE_COLOR: '',
+  DT_COLD_COLOR: '',
+  DT_POISON_COLOR: '',
+  DT_TOXIN_COLOR: '',
   DT_SLASH_COLOR: '切割',
   DT_PUNCTURE_COLOR: '穿刺',
   DT_IMPACT_COLOR: '冲击',
