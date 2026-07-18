@@ -373,6 +373,14 @@ function getPrimeRelics(frameOrName, varziaManifest, missionRewards) {
   };
 }
 
+const AUDITED_ABILITY_MECHANICS = Object.freeze({
+  '/Lotus/Powersuits/PowersuitAbilities/DragonPeltAbility': [
+    '利欲龙骸击杀敌人时，额外掉落现金的概率为 15% / 30% / 45% / 60%。',
+    '在利欲龙骸 10 米范围内拾取的现金增加 25% / 50% / 75% / 100%；现金拾取由小队共享，只需玩家位于龙骸范围内即可获得该加成。',
+    '两项机制可同时作用。由龙骸击杀并在范围内拾取时，现金平均收益为基础的 43.75% / 95% / 153.75% / 220%；满级相对基础平均增加 120%，不是无条件固定增加 220%。'
+  ]
+});
+
 function getFrameAbilities(frameOrName) {
   const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
   if (!frame || frame.override) return [];
@@ -380,7 +388,14 @@ function getFrameAbilities(frameOrName) {
   const localizedAbilities = I18N[abilityFrame.uniqueName]?.zh?.abilities || [];
   return (abilityFrame.abilities || []).map((ability, index) => {
     const localized = localizedAbilities.find(item => item.abilityUniqueName === ability.uniqueName) || localizedAbilities[index] || {};
-    return { index: index + 1, name: ability.name, zhName: localized.abilityName || null, description: localized.description || ability.description || '', uniqueName: ability.uniqueName };
+    return {
+      index: index + 1,
+      name: ability.name,
+      zhName: localized.abilityName || null,
+      description: localized.description || ability.description || '',
+      uniqueName: ability.uniqueName,
+      auditedMechanics: AUDITED_ABILITY_MECHANICS[ability.uniqueName] || []
+    };
   });
 }
 
@@ -392,7 +407,8 @@ function resolveWarframeAbilityQueries(input) {
     if (!alias.text || alias.frame.override) continue;
     const escaped = alias.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const pattern = /^[A-Za-z0-9]/.test(alias.text)
-      ? new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'ig')
+      // 英文战甲名后允许直接接技能序号（如 chroma4），但不能吞掉 ChromaPrime 这类更长英文词。
+      ? new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z])`, 'ig')
       : new RegExp(escaped, 'ig');
     let hit;
     while ((hit = pattern.exec(raw)) !== null) {
@@ -795,7 +811,7 @@ function renderAcquisition(data) {
 }
 
 module.exports = {
-  RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery, resolveWarframeAbilityQueries,
+  RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, AUDITED_ABILITY_MECHANICS, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery, resolveWarframeAbilityQueries,
   getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
   listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport

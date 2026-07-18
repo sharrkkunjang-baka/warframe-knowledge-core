@@ -38,6 +38,19 @@ test('sentence-level resolver locks the frame before intent and related entries'
   assert.equal(acquisition.resolveWarframeMention('幻彩之刃怎么刷'), null);
 });
 
+test('龙和无空格 Chroma 都锁定四技能现金机制', () => {
+  for (const query of ['龙4技能现金加成', 'Chroma 4技能现金加成', 'chroma4技能现金加成']) {
+    const [resolved] = acquisition.resolveWarframeAbilityQueries(query);
+    assert.equal(resolved.frame.name, 'Chroma', query);
+    assert.equal(resolved.ability.name, 'Effigy', query);
+    assert.equal(resolved.question, '现金加成', query);
+    assert.match(resolved.ability.auditedMechanics.join('\n'), /60%/);
+    assert.match(resolved.ability.auditedMechanics.join('\n'), /10 米/);
+    assert.match(resolved.ability.auditedMechanics.join('\n'), /平均增加 120%/);
+  }
+  assert.equal(acquisition.resolveWarframeAbilityQueries('Chromatic Blade 4技能').length, 0);
+});
+
 test('Wisp exposes four blueprint drops and decimal probabilities', () => {
   const drops = acquisition.getComponentDrops('Wisp');
   assert.deepEqual(drops.map(item => item.part), acquisition.PARTS);

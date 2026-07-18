@@ -42,7 +42,7 @@ function createKnowledgeCore(options = {}) {
   const officialMods = data.officialCatalog?.mods || [];
   const officialItems = data.officialItems?.items || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
-  const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName]
+  const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName, ...(data.aliases?.weapons?.[weapon.subject?.canonical] || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
   const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
   const consumableNameCandidates = (data.consumables || []).flatMap(item => [item.subject?.canonical, item.subject?.displayName, ...(item.consumableAcquisition?.manual?.aliases || [])]
