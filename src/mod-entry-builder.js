@@ -7,6 +7,7 @@ const {
   getDisplayName,
   getModVariant,
   getTypeCategory,
+  isRequiemMod,
   getTypeFolder
 } = require('./playable-mod-filter')
 
@@ -119,6 +120,7 @@ function getCategoryRefs(item) {
   const typeCategory = getTypeCategory(item)
   if (variant === 'prime') return ['primemod', typeCategory]
   if (variant === 'flawed') return ['flawedmod', typeCategory]
+  if (isRequiemMod(item)) return ['requiemmod', typeCategory, 'standardmod']
   if (getSyndicateMethods(item).length) return ['syndicatemod', typeCategory, 'standardmod']
   return [typeCategory, 'standardmod']
 }

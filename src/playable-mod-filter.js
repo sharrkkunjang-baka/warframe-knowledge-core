@@ -85,6 +85,10 @@ function getTypeCategory(item) {
   return `${getTypeFolder(item)}mod`
 }
 
+function isRequiemMod(item) {
+  return /^\/Lotus\/Upgrades\/Mods\/Immortal\/Immortal(?:One|Two|Three|Four|Five|Six|Seven|Eight|Wildcard)Mod$/i.test(item?.uniqueName || '')
+}
+
 function getCanonical(item) {
   return isFlawedMod(item) ? `Flawed ${item.name}` : item.name
 }
@@ -166,5 +170,6 @@ module.exports = {
   getTypeDisplayName,
   hasWikiIdentity,
   isFlawedMod,
+  isRequiemMod,
   normalizeCanonical
 }

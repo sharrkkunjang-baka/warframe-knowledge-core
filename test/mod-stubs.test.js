@@ -307,3 +307,16 @@ test('集团 Mod 统一提供刷集团入口', () => {
   }
 });
 
+
+test('\u5b89\u9b42 Mod \u7531\u5185\u90e8\u8eab\u4efd\u7edf\u4e00\u5f52\u7c7b\u5e76\u5173\u8054\u5b89\u9b42\u73a9\u6cd5', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const expected = ['Lohk', 'Xata', 'Jahu', 'Vome', 'Fass', 'Ris', 'Khra', 'Netra', 'Oull'];
+  for (const query of expected) {
+    const result = core.getAcquisition(query);
+    assert.equal(result.entry.subject.categoryRefs[0], 'requiemmod');
+    assert.ok(result.sourceOptions.some(source => source.id === 'gameplay.requiem-mods' && source.query === '\u5b89\u9b42'));
+  }
+  assert.equal(core.getCategoryDetail('\u5b89\u9b42').entries.length, 9);
+  assert.equal(core.getGameplay('\u5b89\u9b42').entry.id, 'gameplay.requiem-mods');
+  assert.equal(core.getGameplay('anhun').entry.id, 'gameplay.requiem-mods');
+});
