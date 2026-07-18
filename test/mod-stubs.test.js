@@ -319,4 +319,6 @@ test('\u5b89\u9b42 Mod \u7531\u5185\u90e8\u8eab\u4efd\u7edf\u4e00\u5f52\u7c7b\u5
   assert.equal(core.getCategoryDetail('\u5b89\u9b42').entries.length, 9);
   assert.equal(core.getGameplay('\u5b89\u9b42').entry.id, 'gameplay.requiem-mods');
   assert.equal(core.getGameplay('anhun').entry.id, 'gameplay.requiem-mods');
+  const oull = core.getAcquisition('Oull');
+  assert.equal(core.renderStructuredMethod(oull.structuredMethods[0]), '\u51fb\u8d25\u8d64\u6bd2\u7384\u9ab8\u6982\u7387\u83b7\u5f97');
 });

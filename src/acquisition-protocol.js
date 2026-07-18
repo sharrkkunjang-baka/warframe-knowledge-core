@@ -146,6 +146,12 @@ function renderStructuredMethod(method, options = {}) {
     const { localizeRelicName, relicRewardTier } = require('./prime-acquisition')
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
+  if (method.type === 'adversary-drop') {
+    const adversary = localizeAcquisitionText(method.sourceDisplayName || method.sourceCanonical || '')
+      .replace(/Kuva Lich/gi, '\u8d64\u6bd2\u7384\u9ab8')
+      .replace(/Sister of Parvos/gi, '\u5e15\u5c14\u6c83\u65af\u7684\u59d0\u59b9')
+    return `${prefix}\u51fb\u8d25${adversary || '\u5bf9\u624b'}\u6982\u7387\u83b7\u5f97`
+  }
   if (method.type === 'enemy-drop') {
     const missionType = localizeAcquisitionText(method.missionTypeDisplayName || '')
     const node = localizeAcquisitionText(method.locationDisplayName || '')
