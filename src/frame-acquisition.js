@@ -579,12 +579,13 @@ function getWarframeKnowledge(query) {
   const frame = resolveWarframe(query);
   return frame ? FRAME_KNOWLEDGE_INDEX.get(frame.name) || null : null;
 }
-function renderAssassinationRoute(variables) {
+function renderAssassinationRoute(variables, options = {}) {
   const locationId = variables?.locationId || variables?.acquisitionSourceId;
   const locationName = locationId ? entityName(LOCATION_REGISTRY, locationId) : '';
   const enemyName = variables?.enemyId ? entityName(ENEMY_REGISTRY, variables.enemyId) : '';
   if (!locationName || !enemyName) return null;
-  return applyTemplate(methodTemplate('components', 'frame-assassination'), { locationName, enemyName });
+  const rendered = applyTemplate(methodTemplate('components', 'frame-assassination'), { locationName, enemyName });
+  return options.includesBlueprint ? rendered.replace(/刷取部件$/, '刷取总图与部件') : rendered;
 }
 function renderQuestRoute(variables, itemLabel = '部件蓝图', scope = 'components') {
   const npc = entityName(NPC_REGISTRY, variables?.npcId);
@@ -738,7 +739,7 @@ function renderRoutedAcquisition(frameOrName) {
       : route.componentCategory === 'frame-quest'
         ? renderQuestRoute(routing.componentVariables || {})
         : route.componentCategory === 'frame-assassination'
-          ? renderAssassinationRoute(routing.componentVariables || {})
+          ? renderAssassinationRoute(routing.componentVariables || {}, { includesBlueprint: !route.blueprintCategory && routing.blueprintSource === 'official-component-drop' })
           : route.componentCategory === 'frame-mixed-missions' && (routing.componentVariables?.sources || routing.componentVariables?.missionNodeId)
             ? renderMissionNodeRoute(routing.componentVariables || {})
             : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});

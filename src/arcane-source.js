@@ -48,7 +48,7 @@ const EXACT_ZH = Object.freeze({
   'Arcana Isolation Vault': '奥秘隔离库',
   'Isolation Vault': '隔离库',
   'Capture': '捕获',
-  'Uranus Proxima Completion Bonuses': '天王星比邻星域任务完成奖励',
+  'Uranus Proxima Completion Bonuses': '天王星比邻星域任务',
   'Otak at Necralisk': '殁世幽都的奥塔克',
   'Hunhow at Pontis Tower': '边界之塔的 Hunhow',
   'Emerald Talent': '翠绿天赋',
@@ -95,7 +95,7 @@ function replaceTerms(value) {
 }
 function sourceKind(canonical) {
   if (/Ostron|Solaris|Holdfasts|Quills|Vox Solaris|Operational Supply/i.test(canonical)) return 'exchange'
-  if (/Bounty|Arbitrations|Archimedea|Rotation|Duviri\/Endless|Caches|Vault/i.test(canonical)) return 'mission-reward'
+  if (/Bounty|Arbitrations|Archimedea|Rotation|Duviri\/Endless|Caches|Vault|Completion Bonuses|weekly reward/i.test(canonical)) return 'mission-reward'
   return 'enemy-drop'
 }
 function displaySource(canonical) {

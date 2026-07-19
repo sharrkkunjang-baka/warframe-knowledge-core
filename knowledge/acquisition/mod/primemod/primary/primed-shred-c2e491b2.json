@@ -40,10 +40,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-17",
+    "updatedAt": "2026-07-19",
     "reviewStatus": "approved",
     "reviewedBy": [
-      "category-default:primemod"
+      "category-default:primemod",
+      "local-wiki-cross-page-sync"
     ],
     "tags": [
       "acquisition",
@@ -77,7 +78,22 @@
               "size": 2322874368
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "daily-tribute",
+              "sourceEntityId": "acquisition-source.daily-tribute",
+              "chance": null,
+              "quantity": 1,
+              "availability": "milestone-choice",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Primed Shred",
+                "section": "Acquisition",
+                "excerpt": "This mod is exclusive to the Daily Tribute system. It will become available at day 200, 400, 600 and 900, until chosen as the Milestone reward."
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -178,7 +194,7 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
+          "status": "complete"
         },
         "officialDrops": []
       },
@@ -188,7 +204,8 @@
         "overrides": {},
         "reviewStatus": "approved",
         "reviewedBy": [
-          "category-default:primemod"
+          "category-default:primemod",
+          "local-wiki-cross-page-sync"
         ]
       }
     }

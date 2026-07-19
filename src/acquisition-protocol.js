@@ -147,6 +147,7 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
   if (method.type === 'reward-or-drop' && method.sourceKind === 'relic-reward' && source) return `${prefix}开启${source}概率获得`
+  if (method.type === 'reward-or-drop' && method.sourceKind === 'mission-reward') return `${prefix}${source ? `完成${source}` : '完成指定任务'}概率获得`
   if (method.type === 'reward-or-drop' && method.sourceKind === 'enemy-drop') return `${prefix}${source ? `击败${source}` : '击败指定敌人'}概率获得`
   if (method.type === 'adversary-drop') {
     const adversary = localizeAcquisitionText(method.sourceDisplayName || method.sourceCanonical || '')
@@ -284,7 +285,7 @@ function renderAcquisition(methods, options = {}) {
         const quest = options.registries?.quests?.get(method.prerequisiteQuestId)
         lines.push(`${scopeName}兑换前置：完成任务「${quest?.displayName || quest?.canonical || method.prerequisiteQuestId}」`)
       }
-      for (const line of method.requirementLines || []) lines.push(/^资源数量加成/.test(line) ? line : `${scopeName}兑换条件：${line}`)
+      for (const line of method.requirementLines || []) lines.push(line)
     }
     if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
   }

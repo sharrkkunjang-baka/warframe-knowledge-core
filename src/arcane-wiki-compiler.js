@@ -59,7 +59,7 @@ const VENDOR_PROSE_ENTITIES = Object.freeze({
 })
 const RANK_ZH = Object.freeze({ Assistant: '助手', Researcher: '研究者', Colleague: '同僚', Scholar: '学者' })
 function compileVendorProse(excerpt, page, sourceDatabase, section) {
-  const match = normalize(excerpt).match(/Can be bought from (Bird 3) of Cavia for ([\d,]+) Standing(?:\s+[\d,]+)?\s*,?\s*requiring Rank (\d+)\s*-\s*([A-Za-z ]+?)\s*\.?$/i)
+  const match = normalize(excerpt).match(/Can be bought from (Bird 3)(?: of Cavia)? for ([\d,]+) Standing(?:\s+[\d,]+)?\s*,?\s*requiring Rank (\d+)\s*-\s*([A-Za-z ]+?)\s*\.?$/i)
   if (!match) return null
   const entity = VENDOR_PROSE_ENTITIES[match[1]]
   if (!entity) return null

@@ -39,7 +39,7 @@ function parsePage(page) {
   const methods = []
   if (/Uranus Proxima Completion Bonuses/.test(text)) methods.push({ type: 'reward-or-drop', sourceCanonical: 'Uranus Proxima Completion Bonuses', probability: 0.25, chancePercent: 25, quantity: 1 })
   const hunhow = text.match(/Can be bought from Hunhow at Pontis Tower for (\d+) Emerald Talent and (\d+) Crimson Talent/)
-  if (hunhow) methods.push({ type: 'vendor-or-syndicate-exchange', sourceCanonical: `Hunhow at Pontis Tower (${hunhow[1]} Emerald Talent + ${hunhow[2]} Crimson Talent)`, quantity: 1 })
+  if (hunhow) methods.push({ type: 'vendor-or-syndicate-exchange', sourceCanonical: 'Hunhow at Pontis Tower', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currency: [{ currencyId: 'currency.emerald-talent', amount: Number(hunhow[1]) }, { currencyId: 'currency.crimson-talent', amount: Number(hunhow[2]) }], isBuffUseless: true }, quantity: 1 })
   const roathe = text.match(/Can be bought from Roathe at La Cathédrale in the Sanctum Anatomica for (\d+) Maphica/)
   if (roathe) methods.push({ type: 'vendor-or-syndicate-exchange', sourceCanonical: `Roathe at La Cathédrale (${roathe[1]} Maphica)`, quantity: 1 })
   if (/Steel Path The Descendia reward/.test(text)) methods.push({ type: 'reward-or-drop', sourceCanonical: 'Steel Path The Descendia weekly reward', probability: null, chancePercent: null, quantity: 1 })

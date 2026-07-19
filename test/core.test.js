@@ -115,6 +115,15 @@ test('玩法查询支持别名并返回结构化步骤', () => {
   assert.equal(reviewCore.getGameplay('合一众赏金').entry.id, 'gameplay.narmer-bounty');
 });
 
+test('科技细胞终幕者覆盖I玄骸、科腐者安可和终幕别名', () => {
+  for (const query of ['I玄骸', 'i玄骸', 'I佬玄骸', '科腐者安可', '终幕', '终幕者', '科技细胞终幕者', 'Technocyte Coda']) {
+    const result = reviewCore.getGameplay(query);
+    assert.equal(result?.entry?.id, 'gameplay.technocyte-coda', query);
+    assert.match(result.entry.summary, /混音带/);
+    assert.match(result.entry.steps.join('\n'), /地球比邻星/);
+  }
+});
+
 test('分类别名独立解析且不进入物品名称索引', () => {
   assert.equal(reviewCore.getCategory('4kmod').canonical, 'Corrupted Mods');
   assert.equal(reviewCore.getCategory('堕落mod').id, '4kmod');

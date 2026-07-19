@@ -193,7 +193,7 @@ function existingEntries() {
 }
 
 function buildSupplementEntry(item, previous, languages = loadLanguages()) {
-  const methods = (item.methods || []).map(method => ({ ...method, sourceEntityId: sourceId(method.sourceCanonical), sourceDisplayName: displaySource(method.sourceCanonical), requirements: supplementRequirements(method.sourceCanonical), provenance: { source: 'official-wiki-supplement', pageTitle: item.source.wiki.pageTitle, revisionId: item.source.wiki.revisionId, patchNotesUrl: item.source.patchNotesUrl } }))
+  const methods = (item.methods || []).map(method => ({ ...method, sourceEntityId: sourceId(method.sourceCanonical), sourceDisplayName: displaySource(method.sourceCanonical), requirements: method.requirements || supplementRequirements(method.sourceCanonical), provenance: { source: 'official-wiki-supplement', pageTitle: item.source.wiki.pageTitle, revisionId: item.source.wiki.revisionId, patchNotesUrl: item.source.patchNotesUrl } }))
   const manualPrevious = previous?.arcaneAcquisition?.manual || {}
   const manual = { aliases: Array.isArray(manualPrevious.aliases) ? manualPrevious.aliases : [], methods: Array.isArray(manualPrevious.methods) ? manualPrevious.methods : [], methodRefs: Array.isArray(manualPrevious.methodRefs) ? manualPrevious.methodRefs : [], notes: Array.isArray(manualPrevious.notes) ? manualPrevious.notes : [], overrides: manualPrevious.overrides && typeof manualPrevious.overrides === 'object' ? manualPrevious.overrides : {}, reviewStatus: manualPrevious.reviewStatus || 'draft', reviewedBy: Array.isArray(manualPrevious.reviewedBy) ? manualPrevious.reviewedBy : [] }
   const officialStats = officialSupplementStats(item, languages)

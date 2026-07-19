@@ -283,6 +283,13 @@ test('Prime Mod 默认继承奸商玩法且保留明确来源例外', () => {
   assert.equal(primedPressurePoint.entry.reviewStatus, 'approved');
   assert.equal(primedPressurePoint.description, '压迫点 Prime 通常由虚空商人的轮换库存出售\n输入“刷 奸商”可了解兑换准备与轮换规则');
   assert.deepEqual(primedSureFooted.methods.map(method => method.id), ['gameplay.daily-tribute']);
+  for (const canonical of ['Primed Vigor', 'Primed Shred', 'Primed Fury']) {
+    const result = core.getAcquisition(canonical);
+    assert.deepEqual(result.methods, []);
+    assert.deepEqual(result.structuredMethods.map(method => method.type), ['daily-tribute']);
+    assert.match(result.description, /每日献礼里程碑奖励中选择获得/);
+    assert.doesNotMatch(result.description, /虚空商人|奸商/);
+  }
 });
 
 test('多来源 Mod 返回全部可展示刷取入口', () => {

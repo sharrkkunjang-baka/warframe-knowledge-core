@@ -443,7 +443,8 @@ function createKnowledgeCore(options = {}) {
   };
   const expandMethodRefs = entry => {
     const explicitRefs = entry.modAcquisition?.manual?.methodRefs || entry.methodRefs || [];
-    const inheritedRefs = explicitRefs.length
+    const hasApprovedSourceOverride = mergeStructuredMethods(entry).some(method => method.reviewStatus === 'approved' && method.type === 'daily-tribute');
+    const inheritedRefs = explicitRefs.length || hasApprovedSourceOverride
       ? []
       : (entry.subject?.categoryRefs || [])
         .flatMap(id => getCategory(id)?.defaultMethodRefs || []);
@@ -620,8 +621,9 @@ function createKnowledgeCore(options = {}) {
       const maxRank = Number(arcaneEntry.maxRank ?? generated.stats?.maxRank ?? 0);
       const structuredMethods = mergeArcaneMethods(arcaneEntry).map(enrichArcaneMethod);
       const methodRequirements = structuredMethods.map(method => normalizeRequirements(method.requirements)).filter(requirement => requirement.type !== 'none');
-      const requirements = methodRequirements.length === 1 ? methodRequirements[0] : normalizeRequirements(generated.acquisition?.requirements);
-      const requirementLines = methodRequirements.flatMap(requirement => renderRequirements(requirement, data));
+      // 多来源赋能的条件属于各自 method，不能再提升到结果顶层重复渲染。
+      const requirements = { type: 'none' };
+      const requirementLines = [];
       const wikiEvidence = generated.wiki?.evidence || [];
       return {
         query: raw,
@@ -706,12 +708,13 @@ function createKnowledgeCore(options = {}) {
     const syndicateDescription = renderModAcquisition(entry);
     const defaultDescription = frameRoute?.lines?.join('\n') || syndicateDescription || getAcquisitionDescription(entry);
     const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
+    const hasApprovedDailyTribute = structuredMethods.some(method => method.type === 'daily-tribute' && method.reviewStatus === 'approved');
     const syndicateHeader = hasSyndicateMethods && syndicateDescription ? syndicateDescription.split(/\n\n获取来源：/)[0] : null;
     const exchangeMethods = structuredMethods.filter(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
     const hasStructuredExchange = exchangeMethods.length > 0;
     const frameExchangeSupplement = isFrame && hasStructuredExchange && !/兑换/.test(defaultDescription || '')
       ? renderAcquisition(exchangeMethods, { registries: data }) : null;
-    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || (entry.subject?.category === 'weapon' && Boolean(structuredDescription)) || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription));
+    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute || (entry.subject?.category === 'weapon' && Boolean(structuredDescription)) || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription));
     return {
       query: raw,
       resolution,
