@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-18T08:34:19.129Z",
+  "generatedAt": "2026-07-19T06:22:45.474Z",
   "source": {
     "package": "warframe-items",
     "version": "1.1269.87",
@@ -9,12 +9,12 @@
   },
   "counts": {
     "upstreamRecords": 1733,
-    "mods": 1426,
-    "excludedMods": 320,
+    "mods": 1438,
+    "excludedMods": 308,
     "officialCategories": 260,
     "localCategories": 77,
     "completeMods": 620,
-    "reviewRequiredMods": 806,
+    "reviewRequiredMods": 818,
     "coveredOfficialCategories": 26,
     "missingOfficialCategories": 234,
     "missingChineseNames": 9,
@@ -1049,7 +1049,7 @@
       "id": "compat.melee",
       "dimension": "compatibility",
       "canonical": "Melee",
-      "count": 110,
+      "count": 113,
       "localCategoryIds": [],
       "status": "missing"
     },
@@ -1281,7 +1281,7 @@
       "id": "compat.pistol",
       "dimension": "compatibility",
       "canonical": "Pistol",
-      "count": 110,
+      "count": 113,
       "localCategoryIds": [],
       "status": "missing"
     },
@@ -1377,7 +1377,7 @@
       "id": "compat.rifle",
       "dimension": "compatibility",
       "canonical": "Rifle",
-      "count": 88,
+      "count": 91,
       "localCategoryIds": [],
       "status": "missing"
     },
@@ -1465,7 +1465,7 @@
       "id": "compat.shotgun",
       "dimension": "compatibility",
       "canonical": "Shotgun",
-      "count": 93,
+      "count": 96,
       "localCategoryIds": [],
       "status": "missing"
     },
@@ -2013,7 +2013,7 @@
       "id": "trait.utility",
       "dimension": "trait",
       "canonical": "Utility Mods",
-      "count": 155,
+      "count": 156,
       "localCategoryIds": [],
       "status": "missing"
     },
@@ -2095,7 +2095,7 @@
       "id": "type.melee-mod",
       "dimension": "type",
       "canonical": "Melee Mod",
-      "count": 140,
+      "count": 143,
       "localCategoryIds": [
         "meleemod"
       ],
@@ -2169,7 +2169,7 @@
       "id": "type.primary-mod",
       "dimension": "type",
       "canonical": "Primary Mod",
-      "count": 184,
+      "count": 187,
       "localCategoryIds": [
         "primarymod"
       ],
@@ -2187,7 +2187,7 @@
       "id": "type.secondary-mod",
       "dimension": "type",
       "canonical": "Secondary Mod",
-      "count": 139,
+      "count": 142,
       "localCategoryIds": [
         "secondarymod"
       ],
@@ -2197,7 +2197,7 @@
       "id": "type.shotgun-mod",
       "dimension": "type",
       "canonical": "Shotgun Mod",
-      "count": 95,
+      "count": 98,
       "localCategoryIds": [
         "shotgunmod"
       ],
@@ -3910,18 +3910,11 @@
       "exclusionReason": "unreleased-expert"
     },
     {
-      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritChanceSPMod",
-      "canonical": "Galvanized Steel",
-      "type": "Melee Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritChanceSPSubMod",
       "canonical": "Galvanized Steel",
       "type": "Melee Mod",
       "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
+      "exclusionReason": "steel-path-internal-submod"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritDamageModExpert",
@@ -3973,18 +3966,11 @@
       "exclusionReason": "unreleased-expert"
     },
     {
-      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponHeavyAttackEfficiencySPMod",
-      "canonical": "Galvanized Reflex",
-      "type": "Melee Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponHeavyAttackEfficiencySPSubMod",
       "canonical": "Galvanized Reflex",
       "type": "Melee Mod",
       "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
+      "exclusionReason": "steel-path-internal-submod"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponMeleeChannelingEfficiencyModExpert",
@@ -4001,18 +3987,11 @@
       "exclusionReason": "unreleased-expert"
     },
     {
-      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponMeleeStatusChanceSPMod",
-      "canonical": "Galvanized Elementalist",
-      "type": "Melee Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponMeleeStatusChanceSPSubMod",
       "canonical": "Galvanized Elementalist",
       "type": "Melee Mod",
       "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
+      "exclusionReason": "steel-path-internal-submod"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponPowerDamageModExpert",
@@ -4111,13 +4090,6 @@
       "type": "Secondary Mod",
       "status": "excluded-policy",
       "exclusionReason": "non-flawed-beginner"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Event/CritChanceWhileAimingPistolSPMod",
-      "canonical": "Galvanized Crosshairs",
-      "type": "Secondary Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Expert/PrimedWeaponElectricityDamageMod",
@@ -4258,20 +4230,6 @@
       "type": "Secondary Mod",
       "status": "excluded-policy",
       "exclusionReason": "duplicate-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponFireIterationsSPMod",
-      "canonical": "Galvanized Diffusion",
-      "type": "Secondary Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponStatusChanceSPMod",
-      "canonical": "Galvanized Shot",
-      "type": "Secondary Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Railjack/Engineering/BaseChemReductionAura",
@@ -4589,13 +4547,6 @@
       "exclusionReason": "non-flawed-beginner"
     },
     {
-      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/Event/CritChanceWhileAimingRifleSPMod",
-      "canonical": "Galvanized Scope",
-      "type": "Primary Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
       "uniqueName": "/Lotus/Upgrades/Mods/Rifle/Expert/BowExplosionChanceModExpert",
       "canonical": "Thunderbolt",
       "type": "Primary Mod",
@@ -4797,20 +4748,6 @@
       "type": "Primary Mod",
       "status": "excluded-policy",
       "exclusionReason": "duplicate-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsSPMod",
-      "canonical": "Galvanized Chamber",
-      "type": "Primary Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponStatusChanceSPMod",
-      "canonical": "Galvanized Aptitude",
-      "type": "Primary Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Sentinel/Kubrow/ChargerFinisherMod",
@@ -5098,27 +5035,6 @@
       "type": "Shotgun Mod",
       "status": "excluded-policy",
       "exclusionReason": "duplicate-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsSPMod",
-      "canonical": "Galvanized Hell",
-      "type": "Shotgun Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponProjectileSpeedSPMod",
-      "canonical": "Galvanized Acceleration",
-      "type": "Shotgun Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
-    },
-    {
-      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponStatusChanceSPMod",
-      "canonical": "Galvanized Savvy",
-      "type": "Shotgun Mod",
-      "status": "excluded-policy",
-      "exclusionReason": "steel-path-internal"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/TransmuteCores/AttackTransmuteCore",
@@ -30322,6 +30238,53 @@
       "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritChanceSPMod",
+      "canonical": "Galvanized Steel",
+      "displayName": "镀层 斩铁",
+      "localizationStatus": "official-zh",
+      "type": "Melee Mod",
+      "typeDisplayName": "近战 Mod",
+      "category": "Mods",
+      "compatName": "Melee",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+110% Critical Chance (x2 for Heavy Attacks)",
+        "On Melee Kill:\n+30% Critical Damage for 20s. Stacks up to 4x."
+      ],
+      "maxRankEffectsZh": [
+        "+110% 暴击几率（重击时 x2）",
+        "近战击杀时：\n+30% 暴击伤害，持续 20 秒。最多叠加到 4 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.melee-mod",
+        "compat.melee"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Steel"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-steel-77c852f0"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponFireRateModExpert",
       "canonical": "Primed Fury",
       "displayName": "狂暴 Prime",
@@ -30366,6 +30329,53 @@
       "status": "complete",
       "reviewRequired": false,
       "evidenceStatus": "approved-acquisition"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponHeavyAttackEfficiencySPMod",
+      "canonical": "Galvanized Reflex",
+      "displayName": "镀层 增幅线圈",
+      "localizationStatus": "official-zh",
+      "type": "Melee Mod",
+      "typeDisplayName": "近战 Mod",
+      "category": "Mods",
+      "compatName": "Melee",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+50% Heavy Attack Efficiency",
+        "On Melee Kill:\n+20 Initial Combo for 20s. Stacks up to 4x."
+      ],
+      "maxRankEffectsZh": [
+        "+50% 重击效率",
+        "近战击杀时：\n+20 初始连击，持续 20 秒。最多叠加到 4 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.melee-mod",
+        "compat.melee"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Reflex"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-reflex-232f373d"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponImpactDamageModExpert",
@@ -30688,6 +30698,53 @@
       "status": "complete",
       "reviewRequired": false,
       "evidenceStatus": "approved-acquisition"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponMeleeStatusChanceSPMod",
+      "canonical": "Galvanized Elementalist",
+      "displayName": "镀层 元素师",
+      "localizationStatus": "official-zh",
+      "type": "Melee Mod",
+      "typeDisplayName": "近战 Mod",
+      "category": "Mods",
+      "compatName": "Melee",
+      "rarity": "Rare",
+      "polarity": "vazarin",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+80% Status Damage",
+        "On Melee Kill:\n+30% Status Chance for 20s. Stacks up to 4x."
+      ],
+      "maxRankEffectsZh": [
+        "+80% 异常状态伤害",
+        "近战击杀时：\n+30% 触发几率，持续 20 秒。最多叠加到 4 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.melee-mod",
+        "compat.melee"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Elementalist"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-elementalist-9e4c20a9"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
       "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponToxinDamageModExpert",
@@ -36372,6 +36429,51 @@
       "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Event/CritChanceWhileAimingPistolSPMod",
+      "canonical": "Galvanized Crosshairs",
+      "displayName": "镀层 液压准心",
+      "localizationStatus": "official-zh",
+      "type": "Secondary Mod",
+      "typeDisplayName": "次要武器 Mod",
+      "category": "Mods",
+      "compatName": "Pistol",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "On Headshot:\n+120% Critical Chance when Aiming for 12s\nOn Headshot Kill:\n+40% Critical Chance when Aiming for 12s. Stacks up to 5x."
+      ],
+      "maxRankEffectsZh": [
+        "造成爆头后：\n瞄准时增加 +120% 暴击几率，持续 12 秒\n爆头击杀时：\n瞄准时增加 +40% 暴击几率，持续 12 秒。最多叠加到 5 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.secondary-mod",
+        "compat.pistol"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Crosshairs"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-crosshairs-0dd34ba9"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Event/CritDamageWhileAimingPistolMod",
       "canonical": "Sharpened Bullets",
       "displayName": "尖锐子弹",
@@ -37920,6 +38022,53 @@
       "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponFireIterationsSPMod",
+      "canonical": "Galvanized Diffusion",
+      "displayName": "镀层 弹头扩散",
+      "localizationStatus": "official-zh",
+      "type": "Secondary Mod",
+      "typeDisplayName": "次要武器 Mod",
+      "category": "Mods",
+      "compatName": "Pistol",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+110% Multishot",
+        "On Kill:\n+30% Multishot for 20s. Stacks up to 4x."
+      ],
+      "maxRankEffectsZh": [
+        "+110% 多重射击",
+        "击杀时：\n+30% 多重射击，持续 20 秒。最多叠加到 4 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.secondary-mod",
+        "compat.pistol"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Diffusion"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-diffusion-94c57cb2"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponFireRateMod",
       "canonical": "Gunslinger",
       "displayName": "神枪手",
@@ -38684,6 +38833,53 @@
       },
       "localEntryIds": [
         "knowledge.acquisition.mod.razor-shot-029ccaf3"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponStatusChanceSPMod",
+      "canonical": "Galvanized Shot",
+      "displayName": "镀层 准确射手",
+      "localizationStatus": "official-zh",
+      "type": "Secondary Mod",
+      "typeDisplayName": "次要武器 Mod",
+      "category": "Mods",
+      "compatName": "Pistol",
+      "rarity": "Rare",
+      "polarity": "vazarin",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+80% Status Chance",
+        "On Kill:\n+40% Direct Damage per Status Type affecting the target for 14s. Stacks up to 3x."
+      ],
+      "maxRankEffectsZh": [
+        "+80% 触发几率",
+        "击杀时：\n目标身上的每种异常状态可增加 +40% 直接伤害，持续 14 秒。最多叠加到 3 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.secondary-mod",
+        "compat.pistol"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Shot"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-shot-d785c634"
       ],
       "status": "review-required",
       "reviewRequired": true,
@@ -49574,6 +49770,51 @@
       "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/Event/CritChanceWhileAimingRifleSPMod",
+      "canonical": "Galvanized Scope",
+      "displayName": "镀层 氩晶瞄具",
+      "localizationStatus": "official-zh",
+      "type": "Primary Mod",
+      "typeDisplayName": "主要武器 Mod",
+      "category": "Mods",
+      "compatName": "Rifle",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "On Headshot:\n+120% Critical Chance when Aiming for 12s\nOn Headshot Kill:\n+40% Critical Chance when Aiming for 12s. Stacks up to 5x."
+      ],
+      "maxRankEffectsZh": [
+        "造成爆头后：\n瞄准时增加 +120% 暴击几率，持续 12 秒\n爆头击杀时：\n瞄准时增加 +40% 暴击几率，持续 12 秒。最多叠加到 5 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.primary-mod",
+        "compat.rifle"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Scope"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-scope-64d82f6a"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Rifle/Event/CritDamageWhileAimingRifleMod",
       "canonical": "Bladed Rounds",
       "displayName": "尖刃弹头",
@@ -52032,6 +52273,53 @@
       "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireIterationsSPMod",
+      "canonical": "Galvanized Chamber",
+      "displayName": "镀层 分裂膛室",
+      "localizationStatus": "official-zh",
+      "type": "Primary Mod",
+      "typeDisplayName": "主要武器 Mod",
+      "category": "Mods",
+      "compatName": "Rifle",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+80% Multishot",
+        "On Kill:\n+30% Multishot for 20s. Stacks up to 5x."
+      ],
+      "maxRankEffectsZh": [
+        "+80% 多重射击",
+        "击杀时：\n+30% 多重射击，持续 20 秒。最多叠加到 5 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.primary-mod",
+        "compat.rifle"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Chamber"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-chamber-d3f0c6f3"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireRateMod",
       "canonical": "Speed Trigger",
       "displayName": "灵敏扳机",
@@ -52753,6 +53041,53 @@
       },
       "localEntryIds": [
         "knowledge.acquisition.mod.shivering-contagion-5f473d1e"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponStatusChanceSPMod",
+      "canonical": "Galvanized Aptitude",
+      "displayName": "镀层 步枪才能",
+      "localizationStatus": "official-zh",
+      "type": "Primary Mod",
+      "typeDisplayName": "主要武器 Mod",
+      "category": "Mods",
+      "compatName": "Rifle",
+      "rarity": "Rare",
+      "polarity": "vazarin",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+80% Status Chance",
+        "On Kill:\n+40% Direct Damage per Status Type affecting the target for 20s. Stacks up to 2x."
+      ],
+      "maxRankEffectsZh": [
+        "+80% 触发几率",
+        "击杀时：\n目标身上的每种异常状态可增加 +40% 直接伤害，持续 20 秒。最多叠加到 2 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.primary-mod",
+        "compat.rifle"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Aptitude"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-aptitude-cf0c8c44"
       ],
       "status": "review-required",
       "reviewRequired": true,
@@ -60974,6 +61309,53 @@
       "evidenceStatus": "identity-present-acquisition-unapproved"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireIterationsSPMod",
+      "canonical": "Galvanized Hell",
+      "displayName": "镀层 地狱弹膛",
+      "localizationStatus": "official-zh",
+      "type": "Shotgun Mod",
+      "typeDisplayName": "霰弹枪 Mod",
+      "category": "Mods",
+      "compatName": "Shotgun",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+110% Multishot",
+        "On Kill:\n+30% Multishot for 20s. Stacks up to 4x."
+      ],
+      "maxRankEffectsZh": [
+        "+110% 多重射击",
+        "击杀时：\n+30% 多重射击，持续 20 秒。最多叠加到 4 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.shotgun-mod",
+        "compat.shotgun"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Hell"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-hell-a306708e"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireRateMod",
       "canonical": "Shotgun Barrage",
       "displayName": "霰弹弹幕",
@@ -61239,6 +61621,54 @@
       },
       "localEntryIds": [
         "knowledge.acquisition.mod.fatal-acceleration-e8c114d7"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponProjectileSpeedSPMod",
+      "canonical": "Galvanized Acceleration",
+      "displayName": "镀层 致死加速",
+      "localizationStatus": "official-zh",
+      "type": "Shotgun Mod",
+      "typeDisplayName": "霰弹枪 Mod",
+      "category": "Mods",
+      "compatName": "Shotgun",
+      "rarity": "Rare",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+30% Projectile Speed/Beam Length",
+        "On Kill:\n+30% Projectile Speed/Beam Length for 10s. Stacks up to 2x."
+      ],
+      "maxRankEffectsZh": [
+        "+30% 投射物速度/光束长度",
+        "击杀时：\n+30% 投射物速度/光束长度，持续 10 秒。最多叠加到 2 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": true,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.shotgun-mod",
+        "compat.shotgun",
+        "trait.utility"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Acceleration"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-acceleration-d01320d1"
       ],
       "status": "review-required",
       "reviewRequired": true,
@@ -61691,6 +62121,53 @@
       },
       "localEntryIds": [
         "knowledge.acquisition.mod.shredder-17d0a158"
+      ],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponStatusChanceSPMod",
+      "canonical": "Galvanized Savvy",
+      "displayName": "镀层 通晓霰弹枪",
+      "localizationStatus": "official-zh",
+      "type": "Shotgun Mod",
+      "typeDisplayName": "霰弹枪 Mod",
+      "category": "Mods",
+      "compatName": "Shotgun",
+      "rarity": "Rare",
+      "polarity": "vazarin",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+80% Status Chance",
+        "On Kill:\n+40% Direct Damage per Status Type affecting the target for 20s. Stacks up to 2x."
+      ],
+      "maxRankEffectsZh": [
+        "+80% 触发几率",
+        "击杀时：\n目标身上的每种异常状态可增加 +40% 直接伤害，持续 20 秒。最多叠加到 2 层。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.shotgun-mod",
+        "compat.shotgun"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Galvanized_Savvy"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.galvanized-savvy-35e9fa28"
       ],
       "status": "review-required",
       "reviewRequired": true,

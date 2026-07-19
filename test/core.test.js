@@ -115,6 +115,70 @@ test('玩法查询支持别名并返回结构化步骤', () => {
   assert.equal(reviewCore.getGameplay('合一众赏金').entry.id, 'gameplay.narmer-bounty');
 });
 
+test('材料和生存别名统一进入材料车玩法', () => {
+  for (const query of ['材料', '材料车', '生存', '生存材料车']) {
+    assert.equal(reviewCore.getGameplay(query)?.entry?.id, 'gameplay.material-farming', query);
+  }
+});
+
+test('圣殿突袭玩法统一普通与精英模式并说明轮次和主要奖励', () => {
+  for (const query of ['圣殿突袭', '普通圣殿', '精英圣殿', 'ESO', 'Sanctuary Onslaught']) {
+    const result = reviewCore.getGameplay(query);
+    assert.equal(result?.entry?.id, 'gameplay.sanctuary-onslaught', query);
+    assert.match(result.entry.steps.join('\n'), /第2\/10\/18区为A轮.*第8\/16\/24区为C轮/);
+    assert.match(result.entry.notes.join('\n'), /Khora.*普通圣殿突袭 A、B、C轮/);
+    assert.match(result.entry.notes.join('\n'), /布莱顿·破坏者和拉托·破坏者.*精英圣殿突袭 A、B、C轮/);
+  }
+});
+
+test('统一获取卡片按来源分区并使用审核变种家族', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const growingPower = core.getAcquisitionCard('成长之力');
+  assert.deepEqual(growingPower.sections.enemy, ['- 无赖魅影']);
+  assert.deepEqual(growingPower.detailOptions, [{ id: 'gameplay.silver-grove-specters', title: '药剂', query: '药剂' }]);
+  const flameGland = core.getAcquisitionCard('火焰腺体');
+  assert.deepEqual(flameGland.sections.enemy, ['- 炉渣翻打鬣狗', '- 回旋鬣狗', '- 冰沼鬣狗', '- 奥布山谷航天站内的敌人', '- 烈背鬣狗']);
+  const galvanized = core.getAcquisitionCard('镀层斩铁');
+  assert.equal(galvanized.kind, 'mod');
+  assert.deepEqual(galvanized.sections.enemy, []);
+  assert.match(galvanized.sections.exchange.join('\n'), /20个生息精华/);
+  assert.deepEqual(galvanized.variants.map(item => item.displayName), ['斩铁', '残缺 斩铁', '镀层 斩铁']);
+  const trueSteel = core.getAcquisitionCard('斩铁');
+  assert.ok(trueSteel.sections.enemy.length >= 2);
+  assert.match(trueSteel.sections.enemy.join('\n'), /^\- 轰击者/m);
+  assert.ok(trueSteel.sections.enemy.every(line => /^\- [^、]+$/.test(line)), '敌人必须逐条显示，不得用顿号拼接');
+  assert.equal(new Set(trueSteel.sections.enemy).size, trueSteel.sections.enemy.length);
+  const pressure = core.getAcquisitionCard('压迫点 Prime');
+  assert.deepEqual(pressure.variants.map(item => item.displayName), ['压迫点', '残缺 压迫点', '压迫点 Prime']);
+  assert.match(pressure.sections.exchange.join('\n'), /虚空商人|Baro/);
+  const energize = core.getAcquisitionCard('赋能·充沛');
+  assert.equal(energize.kind, 'arcane');
+  assert.deepEqual(energize.variants, []);
+  assert.match(energize.sections.enemy.join('\n'), /夜灵水力使/);
+  assert.ok(energize.sections.other.length > 0);
+  const braton = core.getAcquisitionCard('布莱顿·破坏者');
+  assert.deepEqual(braton.variants.map(item => item.displayName), ['布莱顿', 'MK1-布莱顿', '布莱顿 Prime', '布莱顿·破坏者']);
+  assert.equal(braton.materials.length, 3);
+  const magnumForce = core.getAcquisitionCard('重装火力');
+  assert.deepEqual(magnumForce.detailOptions, [{ id: 'gameplay.deimos-orokin-vault', title: '火卫二奥罗金宝库', query: '4k' }]);
+  const augurAccord = core.getAcquisitionCard('预言 协约');
+  assert.deepEqual(augurAccord.sections.other, ['从夜灵平野赏金奖励中获得']);
+  assert.deepEqual(augurAccord.detailOptions, [{ id: 'gameplay.cetus-bounty-set-mods', title: '希图斯赏金', query: '希图斯赏金' }]);
+  const pistolPestilence = core.getAcquisitionCard('瘟疫手枪');
+  assert.deepEqual(pistolPestilence.detailOptions, [{ id: 'gameplay.corrupted-vor', title: '堕落的沃尔', query: '堕落的沃尔' }]);
+  assert.equal(core.getGameplay('堕落的沃尔').entry.id, 'gameplay.corrupted-vor');
+  const razorGyre = core.getAcquisitionCard('刀锋环流');
+  assert.equal(razorGyre.identity.displayName, '刀锋迫击');
+  assert.deepEqual(razorGyre.detailOptions, [{ id: 'gameplay.syndicate-offerings', title: '集团供品', query: '集团' }]);
+});
+
+test('圣殿突袭来源统一附加刷取玩法入口', () => {
+  for (const query of ['Khora', '布莱顿破坏者', '拉托破坏者']) {
+    const result = reviewCore.getAcquisition(query);
+    assert.ok(result.sourceOptions.some(source => source.id === 'gameplay.sanctuary-onslaught' && source.query === '圣殿突袭'), query);
+  }
+});
+
 test('科技细胞终幕者覆盖I玄骸、科腐者安可和终幕别名', () => {
   for (const query of ['I玄骸', 'i玄骸', 'I佬玄骸', '科腐者安可', '终幕', '终幕者', '科技细胞终幕者', 'Technocyte Coda']) {
     const result = reviewCore.getGameplay(query);
@@ -288,7 +352,7 @@ test('新增 Mod 系列完整关联分类、玩法与官方目录', () => {
   const pvp = core.getAcquisition('Air Martial');
   assert.equal(pvp.entry.subject.displayName, '空中武术');
   assert.equal(pvp.methods[0].id, 'gameplay.conclave-offerings');
-  assert.equal(core.getGameplay('精英圣殿').entry.id, 'gameplay.elite-sanctuary-onslaught');
+  assert.equal(core.getGameplay('精英圣殿').entry.id, 'gameplay.sanctuary-onslaught');
   assert.equal(core.getAcquisition('Peculiar Growth').entry.rewardTier, 'B');
 
   const officialPvp = core.listOfficialCategories().find(category => category.id === 'trait.pvp');

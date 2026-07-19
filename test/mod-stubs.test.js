@@ -24,12 +24,16 @@ const items = new Items({ category: ['Mods'], i18n: ['zh'] });
 const { playable, excluded } = filterPlayableMods(items);
 
 test('真实 Mod 过滤排除专精、转换核心与内部重复记录', () => {
-  assert.equal(playable.length + excluded.length, 1733);
+  assert.equal(playable.length + excluded.length, items.length);
   assert.equal(playable.some(item => item.type === 'Focus Way'), false);
   assert.equal(playable.some(item => item.type === 'Transmutation Mod'), false);
   assert.equal(playable.some(item => item.type === 'Mod Set Mod'), false);
   assert.equal(playable.some(item => item.name === 'Unfused Artifact'), false);
-  assert.equal(playable.some(item => /SP(?:Sub)?Mod/i.test(item.uniqueName)), false);
+  assert.equal(playable.some(item => /SPSubMod/i.test(item.uniqueName)), false);
+  assert.equal(playable.some(item => item.uniqueName === '/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritChanceSPMod' && item.name === 'Galvanized Steel'), true);
+  for (const item of items.filter(item => /SPMod/i.test(item.uniqueName) && !/SPSubMod/i.test(item.uniqueName) && item.wikiaUrl && item.wikiAvailable !== false)) {
+    assert.equal(playable.includes(item), true, `${item.name} 被 SP 路径规则误排除`);
+  }
   assert.equal(playable.some(item => item.name === 'Primed Streamline'), false);
   assert.equal(excluded.some(({ item }) => item.name === 'Pathogen Rounds' && /\/Expert\//.test(item.uniqueName)), true);
   for (const canonical of ['Fizzbang Flourish', 'Necramech Stamina']) {
@@ -38,6 +42,21 @@ test('真实 Mod 过滤排除专精、转换核心与内部重复记录', () => 
     assert.equal(Boolean(record?.item.excludeFromCodex), true);
     assert.equal(Boolean(record?.item.wikiaUrl), false);
     assert.equal((record?.item.drops || []).length, 0);
+  }
+});
+
+test('镀层近战主 Mod 不能因 SP 内部路径规则被排除', () => {
+  const galvanizedSteel = playable.find(item => item.uniqueName === '/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritChanceSPMod');
+  const internalSubMod = excluded.find(({ item }) => item.uniqueName === '/Lotus/Upgrades/Mods/Melee/Expert/WeaponCritChanceSPSubMod');
+  assert.equal(galvanizedSteel?.name, 'Galvanized Steel');
+  assert.equal(items.i18n[galvanizedSteel.uniqueName]?.zh?.name, '镀层 斩铁');
+  assert.equal(internalSubMod?.reason, 'steel-path-internal-submod');
+  const core = createKnowledgeCore({ approvedOnly: false });
+  for (const query of ['镀层斩铁', '镀层 斩铁', 'Galvanized Steel']) {
+    const result = core.getAcquisition(query);
+    assert.equal(result?.entry?.officialUniqueName, galvanizedSteel.uniqueName);
+    assert.equal(result?.structuredMethods?.[0]?.sourceEntityId, 'acquisition-source.arbitration-honors');
+    assert.deepEqual(result?.structuredMethods?.[0]?.requirements?.currency, [{ currencyId: 'currency.vitus-essence', amount: 20 }]);
   }
 });
 
@@ -91,7 +110,7 @@ test('手枪元素师显示实体化敌人及布鲁图斯扬升来源', () => {
 test('所有获取方法引用的 NPC 实体均已注册且仲裁商店保留官方名称', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
   const preparation = core.getAcquisition('有备而来');
-  assert.match(preparation.description, /在仲裁阁下的奖励处兑换[\s\S]*任意中继站兑换，需要30个生息精华/);
+  assert.match(preparation.description, /仲裁阁下的奖励处兑换[\s\S]*任意中继站兑换，需要30个生息精华/);
   assert.equal(preparation.structuredMethods[0].sourceDisplayName, '仲裁阁下的奖励');
   assert.equal(preparation.structuredMethods[0].sourceEntityId, 'acquisition-source.arbitration-honors');
   assert.equal(core.getAcquisition('Amanata Pressure').structuredMethods[0].sourceEntityId, 'acquisition-source.koumei-shrine');
@@ -306,7 +325,11 @@ test('\u81f4\u547d\u6d2a\u6d41\u4fdd\u7559\u5669\u68a6\u68af\u7ea7\u4e14\u4e0d\u
   assert.equal(result.description.includes('获取任务名称待审核'), false);
   assert.equal(result.description.includes('细节'), false);
   assert.equal(result.description.includes('刷 噩梦'), false);
-  assert.equal((result.structuredMethods || []).filter(method => method.type === 'mission-reward').length, 2);
+  const nightmareMethods = (result.structuredMethods || []).filter(method => method.type === 'mission-reward');
+  assert.equal(nightmareMethods.length, 1);
+  assert.equal(nightmareMethods[0].provenanceAlternatives.length, 2);
+  assert.deepEqual(nightmareMethods.map(method => createKnowledgeCore().renderStructuredMethod(method)), ['噩梦模式 C轮（概率15.49%）']);
+  assert.deepEqual(createKnowledgeCore({ approvedOnly: false }).getAcquisitionCard('致命洪流').sections.other, ['噩梦模式 C轮']);
 });
 test('\u95f4\u8c0d Mod \u6309\u6389\u843d\u8868 T \u7ea7\u5206\u884c\u5e76\u63d0\u4f9b\u95f4\u8c0d\u73a9\u6cd5', () => {
   const core = createKnowledgeCore({ approvedOnly: false });

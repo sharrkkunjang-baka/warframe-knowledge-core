@@ -30,7 +30,17 @@
         "variant": "standard"
       },
       "wiki": {
-        "status": "complete",
+        "wiki": {
+          "pageTitle": "Rhythm Guard",
+          "pageId": 1640589,
+          "revisionId": 2787828,
+          "pageTimestamp": "2026-06-22T10:35:16Z",
+          "compiledAt": "2026-07-19T06:22:36.013Z",
+          "sourceDatabase": {
+            "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+            "size": 2322874368
+          }
+        },
         "methods": [
           {
             "type": "syndicate-exchange",
@@ -57,22 +67,128 @@
               "rank": 5
             },
             "reviewStatus": "approved"
+          },
+          {
+            "type": "syndicate-exchange-group",
+            "factionIds": [
+              "faction.new-loka",
+              "faction.steel-meridian"
+            ],
+            "standing": 25000,
+            "rankRequirement": "max",
+            "chance": null,
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Rhythm Guard",
+              "pageId": 1640589,
+              "revisionId": 2787828,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Flawless under the New Loka , or the rank of General under the Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
         "evidence": [
           {
             "type": "acquisition-prose",
-            "reviewStatus": "approved",
+            "reviewStatus": "draft",
             "provenance": {
-              "source": "current-wiki-sqlite",
+              "source": "local-wiki-sqlite",
               "pageTitle": "Rhythm Guard",
-              "revisionId": 2787828
-            },
-            "excerpt": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Flawless under the New Loka , or the rank of General under the Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
+              "pageId": 1640589,
+              "revisionId": 2787828,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Flawless under the New Loka , or the rank of General under the Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
-        "mechanicsEvidence": {},
-        "unresolvedEntities": []
+        "mechanicsEvidence": {
+          "status": "draft",
+          "notes": [
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Adds an additional UI element under normal metronome UI , visualising consecutive casts as 4 filling dots."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Missing a beat only refers to casting out of sync with the backbeat; skipping a beat by not casting does not reset stacks."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Does not reset on hitting reset zones (e.g. falling out of map borders)."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Respects timed casts of subsumed abilities."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Does not activate nor resets from Lizzie alt fire."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Overguard granted grows exponentially on each cast. At max rank of mod, it gives 100 , 200 , 400 , 800 and 1600 Overguard based on amount of timed casts. Maximal amount of overguard granted by mod equals 8 casts at max stacks."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Rhythm Guard",
+                "pageId": 1640589,
+                "revisionId": 2787828,
+                "section": "Notes",
+                "excerpt": "Amount of Overguard does not scale with Ability Strength , or any other stat besides the rank of the mod."
+              }
+            }
+          ],
+          "usage": []
+        },
+        "unresolvedEntities": [],
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -92,7 +208,7 @@
     }
   ],
   "gameVersion": "Update 43.0",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement"

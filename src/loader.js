@@ -63,10 +63,14 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   }) : null;
   const officialWeaponsPath = path.join(knowledgeDirectory, 'generated', 'official-weapons.json');
   const officialWeapons = fs.existsSync(officialWeaponsPath) ? deepFreeze(readJson(officialWeaponsPath)) : null;
+  const officialAbilitiesPath = path.join(knowledgeDirectory, 'generated', 'official-abilities.json');
+  const officialAbilities = fs.existsSync(officialAbilitiesPath) ? deepFreeze(readJson(officialAbilitiesPath)) : { schemaVersion: 1, abilities: [] };
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
   const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
   const aliasesPath = path.join(knowledgeDirectory, 'facts', 'aliases.json');
   const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, terms: {}, normalization: {} };
+  const acquisitionVariantFamiliesPath = path.join(knowledgeDirectory, 'families', 'acquisition-variants.json');
+  const acquisitionVariantFamilies = fs.existsSync(acquisitionVariantFamiliesPath) ? deepFreeze(readJson(acquisitionVariantFamiliesPath)) : { schemaVersion: 1, families: [] };
   const frameDirectory = path.join(knowledgeDirectory, 'acquisition', 'warframe');
   const frameCategoriesPath = path.join(frameDirectory, 'categories.json');
   const frameCategories = fs.existsSync(frameCategoriesPath) ? deepFreeze(readJson(frameCategoriesPath)) : null;
@@ -87,7 +91,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const consumables = deepFreeze(readObjectDirectory(consumableDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'consumable'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialItemSources, aliases, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialAbilities, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

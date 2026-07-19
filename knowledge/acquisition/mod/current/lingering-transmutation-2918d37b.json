@@ -30,7 +30,17 @@
         "variant": "standard"
       },
       "wiki": {
-        "status": "complete",
+        "wiki": {
+          "pageTitle": "Lingering Transmutation",
+          "pageId": 1600660,
+          "revisionId": 2730131,
+          "pageTimestamp": "2026-02-14T09:46:10Z",
+          "compiledAt": "2026-07-19T06:22:35.916Z",
+          "sourceDatabase": {
+            "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+            "size": 2322874368
+          }
+        },
         "methods": [
           {
             "type": "syndicate-exchange",
@@ -57,22 +67,62 @@
               "rank": 5
             },
             "reviewStatus": "approved"
+          },
+          {
+            "type": "syndicate-exchange-group",
+            "factionIds": [
+              "faction.new-loka",
+              "faction.red-veil"
+            ],
+            "standing": 25000,
+            "rankRequirement": "max",
+            "chance": null,
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Lingering Transmutation",
+              "pageId": 1600660,
+              "revisionId": 2730131,
+              "section": "Acquisition",
+              "excerpt": "Can be acquired by attaining the rank of Exalted under Red Veil , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
         "evidence": [
           {
             "type": "acquisition-prose",
-            "reviewStatus": "approved",
+            "reviewStatus": "draft",
             "provenance": {
-              "source": "current-wiki-sqlite",
+              "source": "local-wiki-sqlite",
               "pageTitle": "Lingering Transmutation",
-              "revisionId": 2730131
-            },
-            "excerpt": "[ edit | edit source ]\n • Can be acquired by attaining the rank of Exalted under Red Veil , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+              "pageId": 1600660,
+              "revisionId": 2730131,
+              "section": "Acquisition",
+              "excerpt": "Can be acquired by attaining the rank of Exalted under Red Veil , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
-        "mechanicsEvidence": {},
-        "unresolvedEntities": []
+        "mechanicsEvidence": {
+          "status": "draft",
+          "notes": [
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Lingering Transmutation",
+                "pageId": 1600660,
+                "revisionId": 2730131,
+                "section": "Notes",
+                "excerpt": "The lingering probe will reduce the cooldowns of all other Lavos' abilities every time it deals damage, as opposed to the standard probe which can only reduce cooldowns once per enemy hit."
+              }
+            }
+          ],
+          "usage": []
+        },
+        "unresolvedEntities": [],
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -92,7 +142,7 @@
     }
   ],
   "gameVersion": "Update 40.0",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement"

@@ -1,0 +1,302 @@
+[
+  {
+    "id": "knowledge.acquisition.mod.galvanized-savvy-35e9fa28",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "镀层 通晓霰弹枪",
+    "subject": {
+      "canonical": "Galvanized Savvy",
+      "displayName": "镀层 通晓霰弹枪",
+      "category": "mod",
+      "categoryRefs": [
+        "shotgunmod",
+        "standardmod"
+      ]
+    },
+    "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponStatusChanceSPMod",
+    "maxRank": 10,
+    "effectDetails": [
+      "+80% 触发几率",
+      "击杀时： 目标身上的每种异常状态可增加 +40% 直接伤害，持续 20 秒。最多叠加到 2 层。"
+    ],
+    "rarity": "Rare",
+    "polarity": "vazarin",
+    "tradable": true,
+    "prerequisites": [],
+    "tips": [],
+    "tipKeywords": [
+      "本质机制",
+      "具体计算公式",
+      "加成层级",
+      "与同类效果的叠加方式",
+      "适用限制"
+    ],
+    "methodRefs": [],
+    "modAcquisition": {
+      "generated": {
+        "identity": {
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponStatusChanceSPMod",
+          "canonical": "Galvanized Savvy",
+          "displayName": "镀层 通晓霰弹枪",
+          "maxRank": 10,
+          "variant": "standard",
+          "typeFolder": "shotgun"
+        },
+        "wiki": {
+          "wiki": {
+            "pageTitle": "Galvanized Savvy",
+            "pageId": 1549354,
+            "revisionId": 2654939,
+            "pageTimestamp": "2025-01-06T03:42:58Z",
+            "compiledAt": "2026-07-19T06:22:43.030Z",
+            "sourceDatabase": {
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+              "size": 2322874368
+            }
+          },
+          "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "acquisition-source.arbitration-honors",
+              "locationId": "hub.any-relay",
+              "currency": [
+                {
+                  "currencyId": "currency.vitus-essence",
+                  "amount": 20
+                }
+              ],
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Galvanized Savvy",
+                "pageId": 1549354,
+                "revisionId": 2654939,
+                "section": "Acquisition",
+                "excerpt": "This mod can be bought from the Arbitrations vendor in the Arbiters of Hexis room in Relays for 20 Vitus Essence ."
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Galvanized Savvy",
+                "pageId": 1549354,
+                "revisionId": 2654939,
+                "section": "Acquisition",
+                "excerpt": "This mod can be bought from the Arbitrations vendor in the Arbiters of Hexis room in Relays for 20 Vitus Essence ."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "The damage increase is usually additive with other damage mods like Point Blank , with exceptions where it is multiplicative. See Condition Overload (Mechanic) for more details."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "The damage increase is not applied on the hit that procs a new status effect, it is only applied on following hits ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "For example: Galvanized Aptitude has 2 stacks, weapon has 100 base damage and Primed Point Blank for a total of 100 * (1 + 1.65 ) = 265 damage. First hit procs Impact and deals 265 damage. Then on the following hit the +80% damage from the 2 stacks is applied for a total of 100 * (1 + 1.65 + 0.8 ) = 345 damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "However, Multishot instances are treated as sequential hits, allowing a weapon with multishot to benefit from the damage increase even on the first trigger pull. For example: Galvanized Aptitude has 2 stacks, weapon has 100 base damage, Primed Point Blank , and a multishot of 3. The first multishot instance deals 100 * (1 + 1.65 ) = 265 damage and procs Impact . The second multishot instance will then apply the +80% damage from 2 stacks, for a total of 100 * (1 + 1.65 + 0.8 ) = 345 damage. If the second instance procs Puncture , then the third instance will apply +160% damage (80% for two stacks times 2 different status effects), for a total of 100 * (1 + 1.65 + 1.6 ) = 425 damage. Thus, in one trigger pull the weapon will have dealt 1035 total damage, instead of the 795 that would have been dealt otherwise."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "When the buff times out, one stack is lost and the buff duration resets."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Only kills from a weapon equipped with this mod will give stacks, and only the weapon equipped with this mod will benefit from the buff. If equipped on both a normal weapon and an Exalted Weapon , it will affect both weapons."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Kills from status procs (including from Hunter Munitions ) from a weapon equipped with this mod will give stacks."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Bonus damage from status procs may originate from any source, including primary and secondary weapons, Warframe abilities, companions, other players, or the environment."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Impact , Puncture , Slash , Cold , Electricity , Heat , Toxin , Blast , Corrosive , Gas , Magnetic , Radiation , Viral , and Void procs all count for the damage bonus."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Lifted from Melee Heavy Attacks also counts."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Nukor and Kuva Nukor apply a unique invisible status called Microwave to enemies touched by its beam."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Microwave procs have infinite duration."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Although knockdown does not cause any icon on the enemy, it still counts as a status."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Note that conditions or abilities that prevent knockdowns (e.g. Bastille ) will prevent it from increasing damage."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Galvanized Savvy",
+                  "pageId": 1549354,
+                  "revisionId": 2654939,
+                  "section": "Notes",
+                  "excerpt": "Since Lifted and knockdown will cancel out each other, the maximum number of status effects that can be applied to an enemy is 16."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "complete"
+        },
+        "officialDrops": []
+      },
+      "manual": {
+        "methods": [],
+        "methodRefs": [],
+        "overrides": {},
+        "reviewStatus": "draft",
+        "reviewedBy": []
+      }
+    },
+    "acquisitionStatus": "complete",
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Galvanized_Savvy",
+        "label": "Warframe Wiki - Galvanized Savvy"
+      }
+    ],
+    "gameVersion": "warframe-items@1.1269.87",
+    "updatedAt": "2026-07-19",
+    "reviewStatus": "draft",
+    "reviewedBy": [],
+    "tags": [
+      "acquisition",
+      "mod",
+      "standard-mod",
+      "shotgun-mod"
+    ],
+    "generator": {
+      "name": "sync-mods",
+      "version": 4
+    }
+  }
+]

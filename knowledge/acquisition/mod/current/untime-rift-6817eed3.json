@@ -30,7 +30,17 @@
         "variant": "standard"
       },
       "wiki": {
-        "status": "complete",
+        "wiki": {
+          "pageTitle": "Untime Rift",
+          "pageId": 1600602,
+          "revisionId": 2702749,
+          "pageTimestamp": "2025-10-29T19:35:02Z",
+          "compiledAt": "2026-07-19T06:22:36.074Z",
+          "sourceDatabase": {
+            "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+            "size": 2322874368
+          }
+        },
         "methods": [
           {
             "type": "syndicate-exchange",
@@ -57,22 +67,95 @@
               "rank": 5
             },
             "reviewStatus": "approved"
+          },
+          {
+            "type": "syndicate-exchange-group",
+            "factionIds": [
+              "faction.cephalon-suda",
+              "faction.steel-meridian"
+            ],
+            "standing": 25000,
+            "rankRequirement": "max",
+            "chance": null,
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Untime Rift",
+              "pageId": 1600602,
+              "revisionId": 2702749,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of General under the Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
         "evidence": [
           {
             "type": "acquisition-prose",
-            "reviewStatus": "approved",
+            "reviewStatus": "draft",
             "provenance": {
-              "source": "current-wiki-sqlite",
+              "source": "local-wiki-sqlite",
               "pageTitle": "Untime Rift",
-              "revisionId": 2702749
-            },
-            "excerpt": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of General under the Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
+              "pageId": 1600602,
+              "revisionId": 2702749,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of General under the Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
-        "mechanicsEvidence": {},
-        "unresolvedEntities": []
+        "mechanicsEvidence": {
+          "status": "draft",
+          "notes": [
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Untime Rift",
+                "pageId": 1600602,
+                "revisionId": 2702749,
+                "section": "Notes",
+                "excerpt": "Instead of doubling The Vast Untime's Damage Vulnerability, this augment applies a second instance of it, meaning enemies take 125% more Void damage instead of 100%."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Untime Rift",
+                "pageId": 1600602,
+                "revisionId": 2702749,
+                "section": "Notes",
+                "excerpt": "Because Xata's Whisper is the only way for Xaku to gain Void status, this ability is effectively mandatory to properly use this augment mod."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Untime Rift",
+                "pageId": 1600602,
+                "revisionId": 2702749,
+                "section": "Notes",
+                "excerpt": "Untime Rift will continue to tether to new enemies affected by Void status after the initial casting of The Vast Untime ."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Untime Rift",
+                "pageId": 1600602,
+                "revisionId": 2702749,
+                "section": "Notes",
+                "excerpt": "The Slow is capped at 95% , with Untime Rift it can be achieved using less Ability Strength ."
+              }
+            }
+          ],
+          "usage": []
+        },
+        "unresolvedEntities": [],
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -92,7 +175,7 @@
     }
   ],
   "gameVersion": "Update 40.0",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement"

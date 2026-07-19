@@ -113,8 +113,10 @@ function getExclusionReason(item, recordsByCanonical) {
   if (item?.type === 'Transmutation Mod') return 'transmutation'
   if (item?.type === 'Mod Set Mod') return 'internal-mod-set-marker'
   if (item?.name === 'Unfused Artifact') return 'unfused-artifact-internal'
-  // BrokenFrame 是 Xaku 的官方内部目录名，不能按目录整体排除；其中已包含正式发布的强化 Mod。
-  if (/SP(?:Sub)?Mod/i.test(uniqueName)) return 'steel-path-internal'
+  // SPMod 既可能是正式发布的镀层近战 Mod，也可能是其仅供效果叠加使用的 SubMod。
+  // 不能按路径统统排除：有 Wiki 身份的主 Mod 必须进入公开目录，只有 SubMod 才是内部记录。
+  if (/SPSubMod/i.test(uniqueName)) return 'steel-path-internal-submod'
+  if (/SPMod/i.test(uniqueName) && !hasWikiIdentity(item)) return 'steel-path-internal'
   if (uniqueName === '/Lotus/Upgrades/Mods/Sentinel/Kubrow/ChargerFinisherMod') return 'removed-replaced-mod'
   if (uniqueName === '/Lotus/Upgrades/Mods/Warframe/AvatarDamageResistanceStun') return 'retrieved-unreleased-mod'
   if (uniqueName === '/Lotus/Upgrades/Mods/Hoverboard/HBFireWorksMod') return 'codex-hidden-no-acquisition-evidence'

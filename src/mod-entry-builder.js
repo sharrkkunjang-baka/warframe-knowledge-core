@@ -176,7 +176,8 @@ function officialDropMethods(item) {
   // warframe-items may attach drops for similarly named items to the same record
   // (for example Xata Invocation to Xata and Khra Canticle to Khra). Keep only
   // rows explicitly belonging to this Mod when the row carries an item identity.
-  const ownDrops = drops.filter(drop => !drop.type || String(drop.type).trim().toLowerCase() === canonical.toLowerCase())
+  const normalizeDropIdentity = value => String(value || '').trim().replace(/\s+\((?:companion|warframe|rifle|shotgun|pistol|melee|archwing)\)$/i, '').toLowerCase()
+  const ownDrops = drops.filter(drop => !drop.type || !canonical || normalizeDropIdentity(drop.type) === normalizeDropIdentity(canonical))
   return ownDrops.filter(drop => drop.location && Number.isFinite(Number(drop.chance))).map(drop => standingExchangeMethod(drop, item) || ({
     type: 'official-drop', sourceCanonical: String(drop.location).trim(), chance: Number(drop.chance), quantity: 1,
     rarity: drop.rarity || null, reviewStatus: isRequiemMod(item) ? 'approved' : 'draft',

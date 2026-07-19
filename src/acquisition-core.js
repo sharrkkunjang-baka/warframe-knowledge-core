@@ -55,7 +55,45 @@ function enrichMethod(method, registries) {
 }
 
 function structuredMethods(methods, registries) {
-  return mergeMethods(methods).map(method => enrichMethod(method, registries))
+  const enriched = mergeMethods(methods).map(method => enrichMethod(method, registries))
+  const output = [], byPublicIdentity = new Map()
+  for (const method of enriched) {
+    // 上游表格可能把同一奖励池拆成多条内部来源（例如 Nightmare Mode
+    // Missions / Rescue），但实体化后对用户是完全相同的方法。这里在共享
+    // DTO 层按所有用户可见字段去重，避免每个文字/图片渲染器各自补丁。
+    const key = JSON.stringify({
+      scope: method.scope || 'item',
+      type: method.type || null,
+      category: method.category || null,
+      sourceEntityId: method.sourceEntityId || null,
+      sourceDisplayName: method.sourceDisplayName || null,
+      locationId: method.locationId || null,
+      locationDisplayName: method.locationDisplayName || null,
+      missionTypeId: method.missionTypeId || method.missionTypeEntityId || null,
+      missionTypeDisplayName: method.missionTypeDisplayName || null,
+      factionId: method.factionId || null,
+      npcId: method.npcId || null,
+      rotation: method.rotation || null,
+      chance: method.chance ?? method.probability ?? null,
+      relicCanonical: method.relicCanonical || null,
+      partRefs: method.partRefs || [],
+      variables: method.variables || {},
+      requirements: method.requirements || { type: 'none' }
+    })
+    const existingIndex = byPublicIdentity.get(key)
+    if (existingIndex == null) {
+      byPublicIdentity.set(key, output.length)
+      output.push(method)
+      continue
+    }
+    const existing = output[existingIndex]
+    const alternatives = [
+      ...(existing.provenanceAlternatives || [existing.provenance].filter(Boolean)),
+      method.provenance
+    ].filter(Boolean)
+    output[existingIndex] = { ...existing, provenanceAlternatives: alternatives }
+  }
+  return output
 }
 
 function normalizeRoute(route = {}) {

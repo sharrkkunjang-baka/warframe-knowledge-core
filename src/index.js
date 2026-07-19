@@ -8,7 +8,7 @@ const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
 const { renderGameText } = require('./game-text');
-const { normalizeRequirements, renderRequirements, renderAcquisition } = require('./acquisition-protocol');
+const { normalizeRequirements, renderRequirements, renderAcquisition, acquisitionCardSections } = require('./acquisition-protocol');
 const { structuredMethods: compileStructuredMethods, routesToMethods } = require('./acquisition-core');
 const { createCraftingGraph, renderCraftingUses, renderCrafting } = require('./weapon-crafting');
 const { parseWeaponCraftingCommand } = require('./weapon-command');
@@ -42,9 +42,28 @@ function createKnowledgeCore(options = {}) {
   const officialMods = data.officialCatalog?.mods || [];
   const officialItems = data.officialItems?.items || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
+  const localModEntries = allKnowledge.filter(entry => entry.module === 'acquisition' && entry.subject?.category === 'mod');
+  const modLookupAliases = new Map();
+  for (const entry of localModEntries) {
+    const inferredAbilityAliases = (entry.effectDetails || []).map(text => String(text).match(/^(.+?)强化[：:]/)?.[1]).filter(Boolean);
+    for (const alias of [...(entry.aliases || []), ...inferredAbilityAliases]) {
+      const key = normalize(alias);
+      if (!key) continue;
+      const targets = modLookupAliases.get(key) || new Set();
+      targets.add(entry.subject.canonical);
+      modLookupAliases.set(key, targets);
+    }
+  }
   const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName, ...(data.aliases?.weapons?.[weapon.subject?.canonical] || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
   const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
+  const acquisitionIdentityEntries = [
+    ...allKnowledge.filter(entry => ['mod', 'arcane', 'weapon'].includes(entry.subject?.category)),
+    ...(data.weapons || []), ...(data.arcanes || [])
+  ];
+  const acquisitionIdentityByUniqueName = new Map(acquisitionIdentityEntries.map(entry => [entry.officialUniqueName || entry.subject?.officialUniqueName, entry]).filter(([id]) => id));
+  const acquisitionVariantFamilyByMember = new Map();
+  for (const family of data.acquisitionVariantFamilies?.families || []) for (const member of family.members || []) acquisitionVariantFamilyByMember.set(member, family);
   const consumableNameCandidates = (data.consumables || []).flatMap(item => [item.subject?.canonical, item.subject?.displayName, ...(item.consumableAcquisition?.manual?.aliases || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: item.subject.canonical, category: 'consumable', priority: 32 })));
   const arcaneNameCandidates = (data.arcanes || []).flatMap(arcane => [arcane.subject?.canonical, arcane.subject?.displayName, ...(arcane.arcaneAcquisition?.manual?.aliases || [])]
@@ -68,6 +87,27 @@ function createKnowledgeCore(options = {}) {
         ...officialNameCandidates.filter(candidate => !suppliedAliases.has(normalize(candidate.alias)))
       ]
     });
+  };
+  const abilityEntries = data.officialAbilities?.abilities || [];
+  const listAbilities = options => abilityEntries.filter(ability => {
+    const frame = normalize(options?.frame || options?.warframe || '');
+    const form = normalize(options?.form || '');
+    const slot = Number(options?.slot || 0);
+    return (!frame || ability.owners.some(owner => [owner.frameCanonical, owner.frameDisplayName].some(value => normalize(value) === frame)))
+      && (!form || ability.owners.some(owner => normalize(owner.form) === form))
+      && (!slot || ability.owners.some(owner => owner.slot === slot));
+  });
+  const resolveAbility = (query, options = {}) => {
+    const q = normalize(query);
+    if (!q) return null;
+    const frame = normalize(options.frame || options.warframe || '');
+    const slot = Number(options.slot || 0);
+    const matches = abilityEntries.filter(ability => ability.aliases.some(alias => normalize(alias) === q))
+      .filter(ability => !frame || ability.owners.some(owner => [owner.frameCanonical, owner.frameDisplayName, owner.form].some(value => normalize(value) === frame)))
+      .filter(ability => !slot || ability.owners.some(owner => owner.slot === slot));
+    if (!matches.length) return null;
+    if (matches.length > 1) return { ambiguous: true, query: String(query), candidates: matches };
+    return { ambiguous: false, query: String(query), ability: matches[0] };
   };
   const normalizeTerms = text => {
     let output = String(text || '');
@@ -160,7 +200,10 @@ function createKnowledgeCore(options = {}) {
   const getOfficialMod = query => {
     const q = normalize(query);
     if (!q) return null;
-    return officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q)) || null;
+    const direct = officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q));
+    if (direct) return direct;
+    const targets = [...(modLookupAliases.get(q) || [])];
+    return targets.length === 1 ? officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null : null;
   };
   const normalizeArcaneName = value => normalize(value).replace(/^霰弹枪(?=仇杀)/, '霰弹');
   const getArcane = query => {
@@ -612,7 +655,10 @@ function createKnowledgeCore(options = {}) {
       // 待审 route 属于维护报告，不是用户文案。运行时只发布已经结构化、批准并本地化的来源；
       // 禁止将“缺哪个部件来源”这类内部质量门结果泄漏到群聊。
       const description = [officialDescription, acquisitionText].filter(Boolean).join('\n\n');
-      return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions: [], structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
+      const sourceOptions = structuredMethods.some(method => /Sanctuary(?:\/|\s|.*\()|Sanctuary Onslaught/i.test(String(method.sourceCanonical || method.missionTypeCanonical || method.sourceDisplayName || '')))
+        ? [{ id: 'gameplay.sanctuary-onslaught', title: '\u5723\u6bbf\u7a81\u88ad', query: '\u5723\u6bbf\u7a81\u88ad' }]
+        : [];
+      return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions, structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
     }
     const arcaneEntry = getArcane(raw);
     if (arcaneEntry) {
@@ -705,6 +751,17 @@ function createKnowledgeCore(options = {}) {
       ...structuredGameplayMethods(entry),
       ...frameStructuredMethods
     ], data);
+    for (const gameplay of gameplayEntries) {
+      const sourceEntityIds = new Set(gameplay.sourceEntityIds || []);
+      const missionTypeIds = new Set(gameplay.missionTypeIds || []);
+      const matches = structuredMethods.some(method => sourceEntityIds.has(method.sourceEntityId) || missionTypeIds.has(method.missionTypeId));
+      if (matches && !sourceOptions.some(source => source.id === gameplay.id)) {
+        sourceOptions.push({ id: gameplay.id, title: gameplay.title, query: gameplay.acquisitionQuery || gameplay.aliases?.[0] || gameplay.title });
+      }
+    }
+    const hasSanctuaryMethods = structuredMethods.some(method => /Sanctuary(?:\/|\s|.*\()|Sanctuary Onslaught/i.test(String(method.sourceCanonical || method.missionTypeCanonical || method.sourceDisplayName || '')))
+      || /Sanctuary Onslaught/i.test(JSON.stringify(entry.acquisition?.prime?.methods || []));
+    if (hasSanctuaryMethods && !sourceOptions.some(source => source.id === 'gameplay.sanctuary-onslaught')) sourceOptions.push({ id: 'gameplay.sanctuary-onslaught', title: '\u5723\u6bbf\u7a81\u88ad', query: '\u5723\u6bbf\u7a81\u88ad' });
     const syndicateDescription = renderModAcquisition(entry);
     const defaultDescription = frameRoute?.lines?.join('\n') || syndicateDescription || getAcquisitionDescription(entry);
     const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
@@ -731,6 +788,36 @@ function createKnowledgeCore(options = {}) {
       wikiEvidence: entry.modAcquisition?.generated?.wiki?.evidence || [],
       mechanicsEvidence: entry.modAcquisition?.generated?.wiki?.mechanicsEvidence || null,
       alternatives: []
+    };
+  };
+  const getAcquisitionCard = query => {
+    const result = getAcquisition(query);
+    const entry = result?.entry;
+    const kind = entry?.subject?.category;
+    if (!result || !['mod', 'arcane', 'weapon'].includes(kind)) return null;
+    const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
+    const family = acquisitionVariantFamilyByMember.get(uniqueName);
+    const variants = (family?.members || []).map(member => acquisitionIdentityByUniqueName.get(member)).filter(Boolean).map(variant => ({
+      canonical: variant.subject?.canonical,
+      displayName: variant.subject?.displayName || variant.title,
+      uniqueName: variant.officialUniqueName || variant.subject?.officialUniqueName,
+      current: (variant.officialUniqueName || variant.subject?.officialUniqueName) === uniqueName
+    }));
+    const sections = acquisitionCardSections(result.structuredMethods || [], { registries: data });
+    const recipe = kind === 'weapon' ? (result.recipes || entry.recipes || [])[0] : null;
+    return {
+      query: String(query), kind,
+      identity: { canonical: entry.subject?.canonical, displayName: entry.subject?.displayName || entry.title, uniqueName },
+      variants: variants.length > 1 ? variants : [],
+      sections: {
+        exchange: sections.exchange.map(item => item.text),
+        enemy: sections.enemy.map(item => item.text),
+        other: sections.other.map(item => item.text)
+      },
+      materials: (recipe?.ingredients || []).map(item => ({ uniqueName: item.uniqueName, canonical: item.canonical, displayName: item.displayName || item.canonical, count: item.quantity })),
+      detailOptions: (result.sourceOptions || []).map(source => ({ id: source.id, title: source.title, query: source.query })).filter(source => source.query),
+      credits: recipe?.credits || null,
+      wikiUrl: entry.sources?.find(source => /wiki\.warframe\.com\/w\//i.test(source.url || ''))?.url || result.officialMod?.wiki?.url || null
     };
   };
   const resolveEntityVariables = query => {
@@ -807,6 +894,7 @@ function createKnowledgeCore(options = {}) {
     getCategoryDetail,
     getGameplay,
     getAcquisition,
+    getAcquisitionCard,
     getAcquisitionCollection,
     getResourceAcquisition: resourceAcquisition.getResourceAcquisition,
     listResources: resourceAcquisition.listResources,
@@ -856,6 +944,8 @@ function createKnowledgeCore(options = {}) {
     createAcquisitionResult,
     createRenderResult,
     listWarframes: frameAcquisition.listWarframes,
+    listAbilities,
+    resolveAbility,
     getWarframeKnowledge: frameAcquisition.getWarframeKnowledge,
     getWarframeMaintenanceReport: frameAcquisition.getWarframeMaintenanceReport,
     frameAcquisition,

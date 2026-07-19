@@ -1,42 +1,66 @@
 [
   {
-    "id": "gameplay.elite-sanctuary-onslaught",
+    "id": "gameplay.material-farming",
     "kind": "knowledge",
     "module": "gameplay",
-    "title": "精英圣殿突袭",
-    "aliases": ["精英圣殿", "精英圣殿猛攻", "ESO", "Elite Sanctuary Onslaught", "jy"],
-    "acquisitionQuery": "精英圣殿",
-    "summary": "使用满级战甲进入精英圣殿突袭，维持效率并每完成两个区域领取一次 AABC 轮次奖励。",
+    "title": "材料",
+    "aliases": ["材料", "材料车", "生存", "生存材料车", "刷材料", "刷生存"],
+    "acquisitionQuery": "材料",
+    "summary": "材料车通过 Khora 聚怪增掉落、Nova 加速敌人、Nekros 掠夺尸体来提高生存任务中的资源产量。",
+    "steps": [],
+    "notes": [],
+    "content": "材料车组队与挂机判定说明由可热更新 Markdown 提供。",
+    "sources": [{ "url": "https://wiki.warframe.com/w/Survival", "label": "Warframe Wiki - Survival" }],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-19",
+    "reviewStatus": "approved",
+    "reviewedBy": ["sharrkkunjang-baka"],
+    "tags": ["gameplay", "survival", "material-farming"]
+  },
+  {
+    "id": "gameplay.sanctuary-onslaught",
+    "kind": "knowledge",
+    "module": "gameplay",
+    "title": "圣殿突袭",
+    "aliases": ["圣殿", "圣殿突袭", "普通圣殿", "普通圣殿突袭", "圣殿猛攻", "精英圣殿", "精英圣殿突袭", "精英圣殿猛攻", "SO", "ESO", "Sanctuary Onslaught", "Elite Sanctuary Onslaught", "jy"],
+    "acquisitionQuery": "圣殿突袭",
+    "summary": "圣殿突袭分为普通与精英两种模式；持续击杀维持效率，每完成两个区域领取一次 AABC 轮次奖励。",
     "steps": [
-      "完成《新疑谜团》并配备30级战甲",
-      "点击星图右上角的图标，或在中继站通过大黄脸进入精英圣殿突袭",
-      "持续击杀敌人维持效率并通过数据导管推进区域",
-      "完成第 6、14、22 等区域取得 B 轮次奖励，完成第 8、16、24 等区域取得 C 轮次奖励"
+      "完成《新疑谜团》，点击星图右上角图标，或在中继站通过中枢 Simaris 进入",
+      "普通圣殿突袭可使用任意战甲；精英圣殿突袭要求30级战甲",
+      "持续击杀敌人维持效率，并在区域结束后穿过数据导管",
+      "每两个区域结算一次奖励：第2/10/18区为A轮，第4/12/20区为A轮，第6/14/22区为B轮，第8/16/24区为C轮"
     ],
     "notes": [
-      "奖励顺序按每两个区域一次的 AABC 循环",
-      "生长怪奇位于 B 轮次，花开怪奇位于 C 轮次，当前掉落表中两者单次对应轮次概率均为 2.01%",
-      "每个区域持续 2 分 30 秒，进入下一数据导管前需保持效率"
+      "轮次按 AABC 循环；要刷 C 轮需完成第8、16、24等区域",
+      "Khora 部件来自普通圣殿突袭 A、B、C轮",
+      "布莱顿·破坏者和拉托·破坏者的总图与部件来自精英圣殿突袭 A、B、C轮",
+      "生长怪奇位于精英圣殿突袭 B轮，花开怪奇位于精英圣殿突袭 C轮",
+      "每个区域持续2分30秒，进入下一数据导管前需保持效率"
     ],
-    "content": "精英圣殿突袭每完成两个区域发放一次 AABC 奖励；生长怪奇刷 B 轮次，花开怪奇刷 C 轮次。",
+    "content": "普通与精英圣殿突袭均每完成两个区域发放一次 AABC 奖励；Khora 刷普通圣殿，布莱顿·破坏者与拉托·破坏者刷精英圣殿。",
     "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Sanctuary_Onslaught",
+        "label": "Warframe Wiki - Sanctuary Onslaught"
+      },
       {
         "url": "https://wiki.warframe.com/w/Elite_Sanctuary_Onslaught",
         "label": "Warframe Wiki - Elite Sanctuary Onslaught"
       },
       {
-        "url": "https://wiki.warframe.com/w/Peculiar_Bloom",
-        "label": "Warframe Wiki - Peculiar Bloom"
+        "url": "https://wiki.warframe.com/w/Braton_Vandal",
+        "label": "Warframe Wiki - Braton Vandal"
       },
       {
-        "url": "https://wiki.warframe.com/w/Peculiar_Growth",
-        "label": "Warframe Wiki - Peculiar Growth"
+        "url": "https://wiki.warframe.com/w/Lato_Vandal",
+        "label": "Warframe Wiki - Lato Vandal"
       }
     ],
     "gameVersion": "current",
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-19",
     "reviewStatus": "approved",
     "reviewedBy": ["sharrkkunjang-baka"],
-    "tags": ["gameplay", "elite-sanctuary-onslaught", "peculiar-mod"]
+    "tags": ["gameplay", "sanctuary-onslaught", "elite-sanctuary-onslaught", "khora", "vandal-weapon", "peculiar-mod"]
   }
 ]

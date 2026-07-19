@@ -30,7 +30,17 @@
         "variant": "standard"
       },
       "wiki": {
-        "status": "complete",
+        "wiki": {
+          "pageTitle": "Tharros Lethality",
+          "pageId": 1600661,
+          "revisionId": 2773981,
+          "pageTimestamp": "2026-05-03T04:34:52Z",
+          "compiledAt": "2026-07-19T06:22:36.034Z",
+          "sourceDatabase": {
+            "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+            "size": 2322874368
+          }
+        },
         "methods": [
           {
             "type": "syndicate-exchange",
@@ -57,22 +67,117 @@
               "rank": 5
             },
             "reviewStatus": "approved"
+          },
+          {
+            "type": "syndicate-exchange-group",
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.new-loka"
+            ],
+            "standing": 25000,
+            "rankRequirement": "max",
+            "chance": null,
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Tharros Lethality",
+              "pageId": 1600661,
+              "revisionId": 2773981,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Flawless under New Loka , or the rank of Maxim under Arbiters of Hexis , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
         "evidence": [
           {
             "type": "acquisition-prose",
-            "reviewStatus": "approved",
+            "reviewStatus": "draft",
             "provenance": {
-              "source": "current-wiki-sqlite",
+              "source": "local-wiki-sqlite",
               "pageTitle": "Tharros Lethality",
-              "revisionId": 2773981
-            },
-            "excerpt": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Flawless under New Loka , or the rank of Maxim under Arbiters of Hexis , and spending 25,000 Standing 25,000 to purchase."
+              "pageId": 1600661,
+              "revisionId": 2773981,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Flawless under New Loka , or the rank of Maxim under Arbiters of Hexis , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
-        "mechanicsEvidence": {},
-        "unresolvedEntities": []
+        "mechanicsEvidence": {
+          "status": "draft",
+          "notes": [
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tharros Lethality",
+                "pageId": 1600661,
+                "revisionId": 2773981,
+                "section": "Notes",
+                "excerpt": "Debuff lasts for 10 seconds."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tharros Lethality",
+                "pageId": 1600661,
+                "revisionId": 2773981,
+                "section": "Notes",
+                "excerpt": "Affected enemies have a gust of energy surrounding them."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tharros Lethality",
+                "pageId": 1600661,
+                "revisionId": 2773981,
+                "section": "Notes",
+                "excerpt": "Critical Damage bonus is additive with Vital Sense , Target Cracker , Organ Shatter , and similar buffs."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tharros Lethality",
+                "pageId": 1600661,
+                "revisionId": 2773981,
+                "section": "Notes",
+                "excerpt": "Scales with Ability Strength ."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tharros Lethality",
+                "pageId": 1600661,
+                "revisionId": 2773981,
+                "section": "Notes",
+                "excerpt": "The Critical Damage buff also applies to Amp Critical Damage"
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tharros Lethality",
+                "pageId": 1600661,
+                "revisionId": 2773981,
+                "section": "Notes",
+                "excerpt": "This Critical Damage buff to Amps does increase Amp Critical Damage against the specter forms of Thrax Centurion and Thrax Legatus , including their Lua versions. Tharros Strike must be used on their non-spectral forms for the Critical Damage buff to apply."
+              }
+            }
+          ],
+          "usage": []
+        },
+        "unresolvedEntities": [],
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -92,7 +197,7 @@
     }
   ],
   "gameVersion": "Update 40.0",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement"

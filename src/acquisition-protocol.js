@@ -248,6 +248,51 @@ function applyDisplaySummaries(methods) {
   return output
 }
 
+const ACQUISITION_CARD_GROUPS = Object.freeze({
+  exchange: new Set(['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange', 'syndicate-exchange-group', 'market-purchase', 'nightwave-offering', 'dojo-research']),
+  enemy: new Set(['enemy-drop', 'adversary-drop'])
+})
+
+function acquisitionCardGroup(method) {
+  if (ACQUISITION_CARD_GROUPS.exchange.has(method?.type) || method?.category === 'market') return 'exchange'
+  if (ACQUISITION_CARD_GROUPS.enemy.has(method?.type) || (method?.type === 'reward-or-drop' && method?.sourceKind === 'enemy-drop')) return 'enemy'
+  return 'other'
+}
+
+function acquisitionCardSections(methods, options = {}) {
+  const sections = { exchange: [], enemy: [], other: [] }
+  const seen = new Set()
+  const sourceMethods = methods || []
+  // 图片卡片的敌人栏是一敌人一行；禁止套用文字协议的“替代来源合并”，
+  // 否则几十个敌人会重新拼成一个难以阅读的长句。
+  for (const method of sourceMethods.filter(method => acquisitionCardGroup(method) === 'enemy')) {
+    const name = method.sourceDisplayName || method.variables?.sourceName || method.sourceCanonical
+    if (!name) continue
+    const context = method.locationDisplayName || method.variables?.locationName || ''
+    const text = `- ${name}${context && context !== name ? `（${context}）` : ''}`
+    const identity = method.sourceEntityId || method.sourceCanonical || name
+    if (seen.has(`enemy:${identity}`)) continue
+    seen.add(`enemy:${identity}`)
+    sections.enemy.push({ text, method })
+  }
+  const nonEnemy = sourceMethods.filter(method => acquisitionCardGroup(method) !== 'enemy')
+  for (const method of mergeAlternativeSources(applyDisplaySummaries(nonEnemy), { ...options, showProbabilities: false })) {
+    const headline = renderStructuredMethod(method, { ...options, showProbabilities: false })
+    if (!headline) continue
+    const lines = [headline, ...(method.requirementLines || [])]
+    if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
+    const text = [...new Set(lines.filter(Boolean))].join('\n')
+    const group = acquisitionCardGroup(method)
+    // 卡片隐藏概率后，相同的人类可见来源只保留一行。赏金的“阶段 2/3”和
+    // “最终阶段”等上游 sourceCanonical 不应让同一句“从希图斯赏金奖励中获得”重复。
+    const identity = JSON.stringify([group, text])
+    if (seen.has(identity)) continue
+    seen.add(identity)
+    sections[group].push({ text, method })
+  }
+  return sections
+}
+
 function renderAcquisition(methods, options = {}) {
   const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods), options)
   const sourceGroups = new Map()
@@ -294,4 +339,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, renderAcquisition }
+module.exports = { TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

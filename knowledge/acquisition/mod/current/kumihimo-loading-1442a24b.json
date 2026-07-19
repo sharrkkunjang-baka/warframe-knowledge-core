@@ -30,7 +30,17 @@
         "variant": "standard"
       },
       "wiki": {
-        "status": "complete",
+        "wiki": {
+          "pageTitle": "Kumihimo Loading",
+          "pageId": 1640612,
+          "revisionId": 2792165,
+          "pageTimestamp": "2026-07-09T09:35:28Z",
+          "compiledAt": "2026-07-19T06:22:35.893Z",
+          "sourceDatabase": {
+            "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+            "size": 2322874368
+          }
+        },
         "methods": [
           {
             "type": "syndicate-exchange",
@@ -57,22 +67,73 @@
               "rank": 5
             },
             "reviewStatus": "approved"
+          },
+          {
+            "type": "syndicate-exchange-group",
+            "factionIds": [
+              "faction.arbiters-of-hexis",
+              "faction.new-loka"
+            ],
+            "standing": 25000,
+            "rankRequirement": "max",
+            "chance": null,
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "reviewStatus": "draft",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "pageTitle": "Kumihimo Loading",
+              "pageId": 1640612,
+              "revisionId": 2792165,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Maxim under Arbiters of Hexis , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
         "evidence": [
           {
             "type": "acquisition-prose",
-            "reviewStatus": "approved",
+            "reviewStatus": "draft",
             "provenance": {
-              "source": "current-wiki-sqlite",
+              "source": "local-wiki-sqlite",
               "pageTitle": "Kumihimo Loading",
-              "revisionId": 2792165
-            },
-            "excerpt": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Maxim under Arbiters of Hexis , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+              "pageId": 1640612,
+              "revisionId": 2792165,
+              "section": "Acquisition",
+              "excerpt": "This mod can be acquired by attaining the rank of Maxim under Arbiters of Hexis , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+            }
           }
         ],
-        "mechanicsEvidence": {},
-        "unresolvedEntities": []
+        "mechanicsEvidence": {
+          "status": "draft",
+          "notes": [
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Kumihimo Loading",
+                "pageId": 1640612,
+                "revisionId": 2792165,
+                "section": "Notes",
+                "excerpt": "The number of kills required is affected by Ability Efficiency , reaching a floor of 2 kills per loaded die at maximum Efficiency."
+              }
+            },
+            {
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Kumihimo Loading",
+                "pageId": 1640612,
+                "revisionId": 2792165,
+                "section": "Notes",
+                "excerpt": "The mod's benefit caps at 5 dice, matching Koumei's full diceroll and can be attained without much effort."
+              }
+            }
+          ],
+          "usage": []
+        },
+        "unresolvedEntities": [],
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -92,7 +153,7 @@
     }
   ],
   "gameVersion": "Update 43.0",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement"
