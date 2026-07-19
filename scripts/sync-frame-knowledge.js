@@ -10,6 +10,18 @@ const KNOWLEDGE_DIR = path.join(KNOWLEDGE_ROOT, 'acquisition', 'warframe');
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
 const EXCLUDED = Object.freeze({});
+const CURRENT_FRAME_ACQUISITION_OVERRIDES = Object.freeze({
+  Khora: {
+    routing: {
+      componentCategory: 'frame-specific-mission', blueprintCategory: 'market', blueprintVariables: {}, blueprintSource: 'official-wiki-current', requirements: { type: 'none' },
+      componentVariables: { missionDisplayName: '普通圣殿突袭', unifiedRotations: [{ rotation: 'A', chancePercent: 7.14 }, { rotation: 'B', chancePercent: 7.14 }, { rotation: 'C', chancePercent: 9.09 }] },
+      methods: [
+        { type: 'market-purchase', scope: 'blueprint', sourceEntityId: 'interface.market', requirements: { type: 'none' }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current-drop-tables', pageTitle: 'Khora', revisionId: 2794363 } },
+        ...['Neuroptics', 'Chassis', 'Systems'].flatMap(part => [['A', 0.0714], ['B', 0.0714], ['C', 0.0909]].map(([rotation, probability]) => ({ type: 'mission-reward', scope: 'component', variables: { part }, sourceCanonical: `Normal Sanctuary Onslaught, Rotation ${rotation}`, sourceDisplayName: '普通圣殿突袭', missionTypeDisplayName: '圣殿突袭', rotation, probability, chancePercent: Number((probability * 100).toFixed(2)), reviewStatus: 'approved', provenance: { source: 'official-wiki-current-drop-tables', pageTitle: 'Khora', revisionId: 2794363 } })))
+      ]
+    }
+  }
+});
 const CANONICAL_OVERRIDES = Object.freeze({
   '/Lotus/Powersuits/SiriusOrion/SiriusSuit': 'Sirius & Orion',
   '/Lotus/Powersuits/Inkblot/Inkblot': 'Follie',
@@ -57,6 +69,7 @@ function buildEntry(frame, existing) {
   const canonical = CANONICAL_OVERRIDES[frame.uniqueName] || frame.name;
   const generated = { ...(existing?.frameAcquisition?.generated || {}), ...generatedData(frame) };
   if (canonical === 'Sirius & Orion' && generated.routing?.requirements?.type === 'currency') generated.routing = { ...generated.routing, requirements: { ...generated.routing.requirements, currency: (generated.routing.requirements.currency || []).map(item => item.currencyId === 'currency.jade-talent' ? { ...item, currencyId: 'currency.emerald-talent' } : item) } };
+  if (CURRENT_FRAME_ACQUISITION_OVERRIDES[canonical]?.routing) generated.routing = CURRENT_FRAME_ACQUISITION_OVERRIDES[canonical].routing;
   if (canonical === 'Uriel') generated.routing = {
     componentCategory: 'frame-specific-mission', blueprintCategory: 'quest',
     blueprintVariables: { questName: '旧日和平' }, blueprintSource: 'official-wiki-acquisition',
@@ -162,4 +175,4 @@ function run(argv = process.argv.slice(2)) {
 if (require.main === module) {
   try { run(); } catch (error) { console.error(error.stack || error); process.exit(1); }
 }
-module.exports = { EXCLUDED, CANONICAL_OVERRIDES, slugify, migrateManual, generatedData, buildEntry, buildPlan, run };
+module.exports = { EXCLUDED, CURRENT_FRAME_ACQUISITION_OVERRIDES, CANONICAL_OVERRIDES, slugify, migrateManual, generatedData, buildEntry, buildPlan, run };

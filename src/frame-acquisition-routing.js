@@ -62,6 +62,7 @@ const ASSASSINATION_FRAME_OVERRIDES = Object.freeze({
 
 const BLUEPRINT_OVERRIDES = Object.freeze({
   'Excalibur Umbra': { category: null },
+  Khora: { category: 'market', variables: {} },
   Mesa: { category: 'market', variables: {} },
   Nokko: { category: null },
   Jade: { category: 'quest', variables: { questName: '翠玉之影' } },

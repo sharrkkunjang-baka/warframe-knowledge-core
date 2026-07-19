@@ -703,11 +703,17 @@ function renderRoutedAcquisition(frameOrName) {
   if (!routing) return null;
   if (route.componentCategory === 'frame-specific-mission') {
     const variables = routing.componentVariables || {};
+    const unifiedRotationText = Array.isArray(variables.unifiedRotations) && variables.unifiedRotations.length
+      ? `${variables.missionDisplayName} ${variables.unifiedRotations.map(item => item.rotation).join('、')}轮（${variables.unifiedRotations.map(item => `${item.rotation}轮 ${item.chancePercent}%`).join('，')}）`
+      : null;
     const structured = variables.exchange || variables.dropChance
       ? renderSpecificMissionRoute(variables)
-      : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
+      : unifiedRotationText ? [unifiedRotationText] : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
     if (structured?.length) {
-      const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
+      const blueprintCategory = routing.blueprintCategory ?? route.blueprintCategory;
+      const blueprint = blueprintCategory === 'market'
+        ? '总图：商城购买'
+        : blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[blueprintCategory], routing.blueprintVariables || {}) : null;
       return { route, lines: [blueprint, ...structured, ...requirementLines(routing, { includeExchange: !variables.exchange })].filter(Boolean), source: 'category-method' };
     }
     const text = knowledge.frameAcquisition?.manual?.acquisitionText;
