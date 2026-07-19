@@ -51,7 +51,16 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const officialPath = path.join(categoriesDirectory, 'official.json');
   const officialCatalog = fs.existsSync(officialPath) ? deepFreeze(readJson(officialPath)) : null;
   const officialItemsPath = path.join(knowledgeDirectory, 'generated', 'official-items.json');
-  const officialItems = fs.existsSync(officialItemsPath) ? deepFreeze(readJson(officialItemsPath)) : null;
+  const officialItemsSupplementPath = path.join(knowledgeDirectory, 'supplemental', 'official-items.json');
+  const officialItemsBase = fs.existsSync(officialItemsPath) ? readJson(officialItemsPath) : null;
+  const officialItemsSupplement = fs.existsSync(officialItemsSupplementPath) ? readJson(officialItemsSupplementPath) : [];
+  const fishSupplementPath = path.join(knowledgeDirectory, 'supplemental', 'fish-items.json');
+  const fishSupplement = fs.existsSync(fishSupplementPath) ? readJson(fishSupplementPath) : [];
+  const officialItems = officialItemsBase ? deepFreeze({
+    ...officialItemsBase,
+    items: [...(officialItemsBase.items || []), ...officialItemsSupplement, ...fishSupplement],
+    counts: { ...(officialItemsBase.counts || {}), supplemental: officialItemsSupplement.length, fishSupplemental: fishSupplement.length }
+  }) : null;
   const officialWeaponsPath = path.join(knowledgeDirectory, 'generated', 'official-weapons.json');
   const officialWeapons = fs.existsSync(officialWeaponsPath) ? deepFreeze(readJson(officialWeaponsPath)) : null;
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');

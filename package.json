@@ -23,6 +23,8 @@
     "sync:official": "node scripts/sync-official-mods.js",
     "check:official": "node scripts/sync-official-mods.js --check",
     "sync:items": "node scripts/sync-official-items.js",
+    "sync:fish": "node scripts/sync-fish-knowledge.js",
+    "check:fish": "node scripts/sync-fish-knowledge.js --check",
     "check:items": "node scripts/sync-official-items.js --check",
     "sync:weapons": "node scripts/compile-official-drop-tables.js && node scripts/compile-official-quest-rewards.js && node scripts/compile-official-vendor-offers.js && node scripts/compile-simaris-weapon-sources.js && node scripts/sync-official-weapons.js && node scripts/compile-official-support-quest-weapons.js && node scripts/compile-weapon-wiki-acquisition.js --db .cache/warframe-wiki.sqlite && node scripts/compile-package-weapon-acquisition.js && node scripts/sync-weapon-knowledge.js && node scripts/audit-weapon-coverage.js",
     "check:weapons": "node scripts/compile-official-drop-tables.js --check && node scripts/compile-official-quest-rewards.js --check && node scripts/compile-official-vendor-offers.js --check && node scripts/compile-simaris-weapon-sources.js --check && node scripts/sync-official-weapons.js --check && node scripts/compile-official-support-quest-weapons.js --check && node scripts/compile-weapon-wiki-acquisition.js --db .cache/warframe-wiki.sqlite --check && node scripts/compile-package-weapon-acquisition.js --check && node scripts/sync-weapon-knowledge.js --check && node scripts/audit-weapon-coverage.js --check",

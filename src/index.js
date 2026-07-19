@@ -49,7 +49,9 @@ function createKnowledgeCore(options = {}) {
     .filter(Boolean).map(alias => ({ alias, canonical: item.subject.canonical, category: 'consumable', priority: 32 })));
   const arcaneNameCandidates = (data.arcanes || []).flatMap(arcane => [arcane.subject?.canonical, arcane.subject?.displayName, ...(arcane.arcaneAcquisition?.manual?.aliases || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: arcane.subject.canonical, category: 'arcane', priority: 30 })));
+  const fishNameCandidates = officialItems.filter(item => item.semanticKinds?.includes('fish')).flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean).map(alias => ({ alias, canonical: item.canonical, category: 'fish', priority: 40 })));
   const officialNameCandidates = [
+    ...fishNameCandidates,
     ...officialMods.flatMap(mod => [mod.canonical, mod.displayName].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'official' }))),
     ...arcaneNameCandidates,
     ...weaponNameCandidates,
@@ -138,7 +140,7 @@ function createKnowledgeCore(options = {}) {
     if (!q) return [];
     return data.categories.filter(category => [category.id, category.canonical, category.displayName, ...(category.aliases || [])].some(name => normalize(name) === q));
   };
-  const itemAliases = item => [item.uniqueName, item.canonical, item.displayName, ...(item.recipeVariants || []).flatMap(variant => variant.aliases || [])];
+  const itemAliases = item => [item.uniqueName, item.canonical, item.displayName, ...(item.aliases || []), ...(item.recipeVariants || []).flatMap(variant => variant.aliases || [])];
   const getOfficialItem = query => {
     const q = normalize(query);
     if (!q) return null;
@@ -214,6 +216,8 @@ function createKnowledgeCore(options = {}) {
     if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
     const arcane = getArcane(query);
     if (arcane) return { kind: 'arcane', item: arcane, recipeVariant: null };
+    const fish = getOfficialItem(query);
+    if (fish?.semanticKinds?.includes('fish')) return { kind: 'official-item', item: fish, recipeVariant: null };
     const officialItem = getOfficialItem(query);
     if (officialItem) {
       const q = normalize(query);

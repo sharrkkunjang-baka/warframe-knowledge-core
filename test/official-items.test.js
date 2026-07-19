@@ -52,7 +52,7 @@ test('统一目录严格排除非道具、内部镜像和占位对象', () => {
   for (const [label, predicate] of forbidden) assert.deepEqual(items.filter(predicate).map(item => item.uniqueName), [], label);
   assert.deepEqual(items.filter(item => item.localizationStatus === 'fallback-en').map(item => item.canonical).sort(), ['Echoes Of Umbra', 'Forma', 'Umbra Forma']);
   assert.equal(core.officialItems.counts.input, 1519);
-  assert.equal(core.officialItems.counts.excluded, core.officialItems.counts.input - items.length);
+  assert.equal(core.officialItems.counts.excluded, core.officialItems.counts.input - (items.length - core.officialItems.counts.supplemental - core.officialItems.counts.fishSupplemental));
   assert.ok(core.officialItemSources.counts.excludedByReason['captura-scene'] >= 156);
   assert.ok(core.officialItemSources.policy.semanticKindAllowlist.Resources.includes('Resource'));
 });
@@ -67,6 +67,20 @@ test('地点、商人和货币注册表准确区分开放世界与城镇', () =>
   assert.ok(core.getNpc('孔祝').roles.includes('bounty-provider'));
   assert.equal(core.getCurrency('星币').id, 'currency.credits');
   assert.equal(core.frameAcquisition.translateLocation('Earth/Cetus and Venus/Orb Vallis'), '地球/希图斯 and 金星/奥布山谷');
+});
+
+test('登陆艇补充条目支持星察、M船和X船黑话及分层来源', () => {
+  for (const [query, canonical] of [['星察', 'Parallax'], ['M船', 'Mantis'], ['x船', 'Xiphos']]) {
+    const resolved = core.resolveItem(query);
+    assert.equal(resolved.kind, 'official-item', query);
+    assert.equal(resolved.item.canonical, canonical, query);
+    assert.equal(resolved.item.displayName, canonical, query);
+    const acquisition = core.getItemAcquisition(query);
+    assert.equal(acquisition.evidence[0].type, 'drop', query);
+    assert.match(acquisition.evidence[0].source, /商店/, query);
+    assert.equal(acquisition.evidence.slice(1).length, 3, query);
+    assert.ok(acquisition.evidence.slice(1).every(item => /储物箱|储存箱/.test(item.source)), query);
+  }
 });
 
 test('统一解析与获取 DTO 对已有 Mod 和战甲保持共享兼容', () => {
