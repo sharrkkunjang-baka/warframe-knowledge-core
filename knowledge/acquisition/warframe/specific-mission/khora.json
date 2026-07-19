@@ -59,31 +59,27 @@
         "routing": {
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "market",
-          "componentVariables": {
-            "sources": [
-              {
-                "type": "acquisition-source",
-                "sourceId": "source.sanctuary-onslaught-rotation-b"
-              },
-              {
-                "type": "acquisition-source",
-                "sourceId": "source.sanctuary-onslaught-rotation-a"
-              },
-              {
-                "type": "acquisition-source",
-                "sourceId": "source.sanctuary-onslaught-rotation-c"
-              }
-            ],
-            "sourceCanonical": [
-              "Sanctuary Onslaught, Rotation B",
-              "Sanctuary Onslaught, Rotation A",
-              "Sanctuary Onslaught, Rotation C"
-            ]
-          },
           "blueprintVariables": {},
-          "blueprintSource": "manual-override",
+          "blueprintSource": "official-wiki-current",
           "requirements": {
             "type": "none"
+          },
+          "componentVariables": {
+            "missionDisplayName": "普通圣殿突袭",
+            "unifiedRotations": [
+              {
+                "rotation": "A",
+                "chancePercent": 7.14
+              },
+              {
+                "rotation": "B",
+                "chancePercent": 7.14
+              },
+              {
+                "rotation": "C",
+                "chancePercent": 9.09
+              }
+            ]
           },
           "methods": [
             {
@@ -95,9 +91,180 @@
               },
               "reviewStatus": "approved",
               "provenance": {
-                "source": "local-wiki-sqlite",
+                "source": "official-wiki-current-drop-tables",
                 "pageTitle": "Khora",
-                "section": "Acquisition"
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Neuroptics"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation A",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "A",
+              "probability": 0.0714,
+              "chancePercent": 7.14,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Neuroptics"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation B",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "B",
+              "probability": 0.0714,
+              "chancePercent": 7.14,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Neuroptics"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation C",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "C",
+              "probability": 0.0909,
+              "chancePercent": 9.09,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Chassis"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation A",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "A",
+              "probability": 0.0714,
+              "chancePercent": 7.14,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Chassis"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation B",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "B",
+              "probability": 0.0714,
+              "chancePercent": 7.14,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Chassis"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation C",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "C",
+              "probability": 0.0909,
+              "chancePercent": 9.09,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Systems"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation A",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "A",
+              "probability": 0.0714,
+              "chancePercent": 7.14,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Systems"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation B",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "B",
+              "probability": 0.0714,
+              "chancePercent": 7.14,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
+              }
+            },
+            {
+              "type": "mission-reward",
+              "scope": "component",
+              "variables": {
+                "part": "Systems"
+              },
+              "sourceCanonical": "Normal Sanctuary Onslaught, Rotation C",
+              "sourceDisplayName": "普通圣殿突袭",
+              "missionTypeDisplayName": "圣殿突袭",
+              "rotation": "C",
+              "probability": 0.0909,
+              "chancePercent": 9.09,
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "official-wiki-current-drop-tables",
+                "pageTitle": "Khora",
+                "revisionId": 2794363
               }
             }
           ]
