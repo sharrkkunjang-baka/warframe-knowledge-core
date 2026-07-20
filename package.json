@@ -38,6 +38,8 @@
     "check:arcane-supplements": "node scripts/sync-arcane-supplements.js --db .cache/warframe-wiki.sqlite --check",
     "sync:current-supplements": "node scripts/sync-current-wiki-supplements.js --db .cache/warframe-wiki.sqlite",
     "check:current-supplements": "node scripts/sync-current-wiki-supplements.js --db .cache/warframe-wiki.sqlite --check",
+    "review:recent-mods": "node scripts/review-recent-mods.js",
+    "check:recent-mods": "node scripts/review-recent-mods.js --check",
     "audit:current-version": "node scripts/audit-current-version-coverage.js --db .cache/warframe-wiki.sqlite --strict",
     "check:current-version": "node scripts/audit-current-version-coverage.js --db .cache/warframe-wiki.sqlite --check --strict",
     "sync:arcanes": "node scripts/sync-arcanes.js",
