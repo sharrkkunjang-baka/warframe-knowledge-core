@@ -57,6 +57,19 @@ test('统一解析器支持类别过滤与共享黑话', () => {
   assert.equal(core.resolveName('玻棍', { categories: ['term'] }).canonical, 'Bo Prime Set');
 });
 
+test('战甲官方实体完整名区分本体与 Prime', () => {
+  for (const query of ['Nidus', 'nidus', 'NIDUS']) {
+    const result = reviewCore.resolveName(query, { categories: ['frame'] });
+    assert.equal(result.canonical, 'Nidus', query);
+    assert.equal(result.category, 'frame', query);
+    assert.equal(result.match, 'exact', query);
+  }
+  const prime = reviewCore.resolveName('Nidus Prime', { categories: ['frame'] });
+  assert.equal(prime.canonical, 'Nidus Prime');
+  assert.equal(prime.category, 'frame');
+  assert.equal(prime.match, 'exact');
+});
+
 test('近分候选返回统一歧义结构', () => {
   const candidates = [
     { alias: '成长之力', canonical: 'Growing Power', category: 'official' },

@@ -56,6 +56,9 @@ function createKnowledgeCore(options = {}) {
   }
   const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName, ...(data.aliases?.weapons?.[weapon.subject?.canonical] || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
+  const frameNameCandidates = allKnowledge.filter(entry => entry.subject?.category === 'frame')
+    .flatMap(frame => [frame.subject?.canonical, frame.subject?.displayName, ...(data.aliases?.frames?.[frame.subject?.canonical] || [])]
+      .filter(Boolean).map(alias => ({ alias, canonical: frame.subject.canonical, category: 'frame', priority: 35 })));
   const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
   const weaponComponents = new Map();
   for (const weapon of data.weapons || []) {
@@ -98,6 +101,7 @@ function createKnowledgeCore(options = {}) {
     ...fishNameCandidates,
     ...officialMods.flatMap(mod => [mod.canonical, mod.displayName].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'official' }))),
     ...arcaneNameCandidates,
+    ...frameNameCandidates,
     ...weaponNameCandidates,
     ...consumableNameCandidates
   ];
