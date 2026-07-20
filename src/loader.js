@@ -40,34 +40,6 @@ function readCategoryDirectory(dir) {
   return readObjectDirectory(dir).filter(entry => typeof entry.id === 'string');
 }
 
-function knowledgeScore(entry) {
-  const methods = [
-    ...(entry.modAcquisition?.generated?.wiki?.methods || []),
-    ...(entry.modAcquisition?.generated?.officialDrops || []),
-    ...(entry.modAcquisition?.manual?.methods || [])
-  ];
-  return Number(entry.reviewStatus === 'approved') * 100
-    + Number(Boolean(entry.effects?.length || entry.effectDetails?.length)) * 10
-    + Number(methods.length > 0);
-}
-
-function dedupeKnowledgeEntries(entries) {
-  const byIdentity = new Map();
-  for (const entry of entries) {
-    const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
-    const key = uniqueName && !/^(?:wiki-current|language):/i.test(uniqueName)
-      ? `${entry.subject?.category || ''}\0${uniqueName}`
-      : null;
-    if (!key) {
-      byIdentity.set(`id\0${entry.id}`, entry);
-      continue;
-    }
-    const existing = byIdentity.get(key);
-    if (!existing || knowledgeScore(entry) > knowledgeScore(existing)) byIdentity.set(key, entry);
-  }
-  return [...byIdentity.values()];
-}
-
 function loadData(root = path.join(__dirname, '..'), options = {}) {
   const approvedOnly = options.approvedOnly !== false;
   const keep = entry => !approvedOnly || entry.reviewStatus === 'approved';
@@ -75,7 +47,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   // 知识目录同时包含历史数组文件和 supplemental 单对象文件。运行时必须接受
   // 两种格式；否则目录审计能看到单对象，真实查询却会静默漏载。
   const facts = readObjectDirectory(path.join(knowledgeDirectory, 'facts')).filter(entry => entry.kind === 'fact').filter(keep);
-  const knowledge = dedupeKnowledgeEntries(readObjectDirectory(knowledgeDirectory).filter(entry => entry.kind === 'knowledge').filter(keep));
+  const knowledge = readObjectDirectory(knowledgeDirectory).filter(entry => entry.kind === 'knowledge').filter(keep);
   const categoriesDirectory = path.join(knowledgeDirectory, 'categories');
   const categories = readCategoryDirectory(categoriesDirectory);
   const officialPath = path.join(categoriesDirectory, 'official.json');
@@ -124,4 +96,4 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialAbilities, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
 }
 
-module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory, knowledgeScore, dedupeKnowledgeEntries };
+module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };
