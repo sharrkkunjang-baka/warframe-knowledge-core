@@ -35,6 +35,55 @@ function searchEntries(query, entries, options = {}) {
     .map(({ _score, ...entry }) => entry);
 }
 
+const MOD_FUSION_RARITY = Object.freeze({
+  common: { multiplier: 1, creditBase: 483 },
+  uncommon: { multiplier: 2, creditBase: 966 },
+  peculiar: { multiplier: 2, creditBase: 966 },
+  rare: { multiplier: 3, creditBase: 1449 },
+  amalgam: { multiplier: 3, creditBase: 1449 },
+  riven: { multiplier: 3, creditBase: 1449 },
+  requiem: { multiplier: 3, creditBase: 1449 },
+  legendary: { multiplier: 4, creditBase: 1932 }
+});
+
+function modFusionCost(maxRank, rarity) {
+  const rank = Number(maxRank);
+  const normalizedRarity = String(rarity || '').trim().toLowerCase();
+  const rule = MOD_FUSION_RARITY[normalizedRarity];
+  if (!Number.isInteger(rank) || rank < 0 || !rule) {
+    return { maxRank: Number.isInteger(rank) ? rank : null, rarity: rarity || null, endo: null, credits: null, status: 'missing-evidence' };
+  }
+  const rankFactor = (2 ** rank) - 1;
+  return {
+    maxRank: rank,
+    rarity,
+    endo: 10 * rule.multiplier * rankFactor,
+    credits: rule.creditBase * rankFactor,
+    status: 'calculated',
+    formula: {
+      endo: '10 × rarityMultiplier × (2^maxRank - 1)',
+      credits: 'creditBase × (2^maxRank - 1)',
+      rarityMultiplier: rule.multiplier,
+      creditBase: rule.creditBase
+    },
+    evidence: ['Warframe Wiki: Endo', 'Warframe Wiki: Fusion']
+  };
+}
+
+function modDescriptionLines(entry, officialMod) {
+  const direct = (entry.effectDetails || []).map(renderGameText).filter(Boolean);
+  const official = (officialMod?.maxRankEffectsZh || []).map(renderGameText).filter(Boolean);
+  const structured = (entry.effects || []).map(effect => {
+    if (effect?.displayName && /[+\-\d%]/.test(effect.displayName)) return renderGameText(effect.displayName);
+    if (!effect?.displayName) return '';
+    const value = effect.value == null ? '' : `：${effect.value}${effect.unit || ''}`;
+    return `${effect.displayName}${value}`;
+  }).filter(Boolean);
+  const effects = direct.length ? direct : official.length ? official : structured;
+  const setBonus = (entry.setBonusDetails || []).map(renderGameText).filter(Boolean).map(text => `套装效果：${text}`);
+  return [...effects, ...setBonus];
+}
+
 function createKnowledgeCore(options = {}) {
   const root = options.root || path.join(__dirname, '..');
   const data = loadData(root, { approvedOnly: options.approvedOnly !== false });
@@ -892,6 +941,24 @@ function createKnowledgeCore(options = {}) {
     }));
     const sections = acquisitionCardSections(result.structuredMethods || [], { registries: data });
     const recipe = kind === 'weapon' ? (result.recipes || entry.recipes || [])[0] : null;
+    const sectionItems = Object.fromEntries(Object.entries(sections).map(([group, items]) => [group, items.map(item => ({
+      text: item.text,
+      methodType: item.method?.type || null,
+      currencies: [...(item.method?.currency || []), ...(item.method?.requirements?.currency || [])]
+        .filter((currency, index, list) => list.findIndex(candidate => candidate.currencyId === currency.currencyId && candidate.amount === currency.amount) === index)
+        .map(currency => {
+          const entity = currency.currencyId ? data.currencies.get(currency.currencyId) : null;
+          return {
+            id: currency.currencyId || null,
+            canonical: entity?.canonical || currency.currencyCanonical || null,
+            displayName: displayEntityName(entity) || currency.currencyCanonical || currency.currencyId || '未知货币',
+            officialUniqueName: entity?.officialUniqueName || null,
+            amount: Number.isFinite(Number(currency.amount)) ? Number(currency.amount) : null
+          };
+        })
+    }))]));
+    const rarity = entry.rarity || result.officialMod?.rarity || null;
+    const maxRank = Number.isInteger(entry.maxRank) ? entry.maxRank : result.officialMod?.maxRank;
     return {
       query: String(query), kind,
       identity: { canonical: entry.subject?.canonical, displayName: entry.subject?.displayName || entry.title, uniqueName },
@@ -901,6 +968,14 @@ function createKnowledgeCore(options = {}) {
         enemy: sections.enemy.map(item => item.text),
         other: sections.other.map(item => item.text)
       },
+      sectionItems,
+      modInfo: kind === 'mod' ? {
+        maxRank: Number.isInteger(maxRank) ? maxRank : null,
+        rarity,
+        polarity: entry.polarity || result.officialMod?.polarity || null,
+        descriptionLines: modDescriptionLines(entry, result.officialMod),
+        fusionCost: modFusionCost(maxRank, rarity)
+      } : null,
       materials: (recipe?.ingredients || []).map(item => ({ uniqueName: item.uniqueName, canonical: item.canonical, displayName: item.displayName || item.canonical, count: item.quantity })),
       detailOptions: (result.sourceOptions || []).map(source => ({ id: source.id, title: source.title, query: source.query })).filter(source => source.query),
       credits: recipe?.credits || null,
