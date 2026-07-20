@@ -20,6 +20,10 @@ test('Mod 获取卡提供描述、极性和有证据的满级消耗', () => {
     '+50% 重击效率',
     '近战击杀时： +20 初始连击，持续 20 秒。最多叠加到 4 层。'
   ]);
+
+  const growing = core.getAcquisitionCard('成长之力');
+  assert.ok(growing.relatedItems.some(item => item.status === 'expanded' && /落银树庭圣所/.test(item.text)));
+  assert.ok(growing.relatedItems.every(item => !/^刷\s/.test(item.text)));
 });
 
 test('Mod 获取卡保留套装效果并按来源语义分类', () => {

@@ -12,6 +12,7 @@ const { normalizeRequirements, renderRequirements, renderAcquisition, acquisitio
 const { structuredMethods: compileStructuredMethods, routesToMethods } = require('./acquisition-core');
 const { createCraftingGraph, renderCraftingUses, renderCrafting } = require('./weapon-crafting');
 const { parseWeaponCraftingCommand } = require('./weapon-command');
+const { expandKnowledgeReferences } = require('./knowledge-reference-expander');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -959,6 +960,11 @@ function createKnowledgeCore(options = {}) {
     }))]));
     const rarity = entry.rarity || result.officialMod?.rarity || null;
     const maxRank = Number.isInteger(entry.maxRank) ? entry.maxRank : result.officialMod?.maxRank;
+    const detailOptions = (result.sourceOptions || []).map(source => ({ id: source.id, title: source.title, query: source.query })).filter(source => source.query);
+    const relatedItems = expandKnowledgeReferences(detailOptions, {
+      resolve: reference => getGameplay(reference),
+      maxDepth: 4
+    });
     return {
       query: String(query), kind,
       identity: { canonical: entry.subject?.canonical, displayName: entry.subject?.displayName || entry.title, uniqueName },
@@ -977,7 +983,8 @@ function createKnowledgeCore(options = {}) {
         fusionCost: modFusionCost(maxRank, rarity)
       } : null,
       materials: (recipe?.ingredients || []).map(item => ({ uniqueName: item.uniqueName, canonical: item.canonical, displayName: item.displayName || item.canonical, count: item.quantity })),
-      detailOptions: (result.sourceOptions || []).map(source => ({ id: source.id, title: source.title, query: source.query })).filter(source => source.query),
+      detailOptions,
+      relatedItems,
       credits: recipe?.credits || null,
       wikiUrl: entry.sources?.find(source => /wiki\.warframe\.com\/w\//i.test(source.url || ''))?.url || result.officialMod?.wiki?.url || null
     };
