@@ -144,7 +144,7 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
       }
     : { status: 'complete', methods: approvedMethods, evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] };
   return [{
-    id: identity.id,
+    id: previous?.id || identity.id,
     kind: 'knowledge',
     module: 'acquisition',
     title: mod.displayName,
@@ -335,7 +335,8 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         evidenceStatus: hasCompleteEntry ? 'approved-acquisition' : localEntryIds.length ? 'identity-present-acquisition-unapproved' : 'identity-missing'
       };
     });
-  const supplementalMods = compileSupplementalMods(rawItems).map(mod => {
+  const packageUniqueNames = new Set(packageMods.map(mod => mod.uniqueName));
+  const supplementalMods = compileSupplementalMods(rawItems).filter(mod => !packageUniqueNames.has(mod.uniqueName)).map(mod => {
     const localEntryIds = [...new Set([...(acquisitionsByUniqueName.get(mod.uniqueName) || []), ...(acquisitionsByCanonical.get(normalize(mod.canonical)) || [])])].sort();
     const hasCompleteEntry = localEntryIds.some(id => hasApprovedAcquisition(acquisitionById.get(id)));
     return {
