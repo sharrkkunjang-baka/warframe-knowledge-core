@@ -293,7 +293,12 @@ function renderStructuredMethod(method, options = {}) {
       const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (locationName || missionTypeName)
       return `${prefix}从${bountyName}奖励中获得`
     }
-    if (!locationName && missionTypeName) { const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : '\uff08\u6982\u7387' + Number((method.chance * 100).toFixed(4)) + '%\uff09'; return prefix + missionTypeName + (method.rotation ? ' ' + method.rotation + '\u8f6e' : '') + probability }
+    if (!locationName && missionTypeName) {
+      const probability = options.showProbabilities === false || !Number.isFinite(method.chance)
+        ? ''
+        : `\uff0c${Number((method.chance * 100).toFixed(4))}%`
+      return `${prefix}${missionTypeName}${method.rotation ? ` ${method.rotation}\u8f6e` : ''}\uff08\u6982\u7387\u83b7\u5f97${probability}\uff09`
+    }
     const missionTypeSuffix = missionTypeName && !String(locationName).includes(missionTypeName) ? `（${missionTypeName}）` : ''
     const mission = [locationName, missionTypeSuffix].join('')
     const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
@@ -377,9 +382,22 @@ function acquisitionCardSections(methods, options = {}) {
   // 图片卡片的敌人栏是一敌人一行；禁止套用文字协议的“替代来源合并”，
   // 否则几十个敌人会重新拼成一个难以阅读的长句。
   for (const method of sourceMethods.filter(method => acquisitionCardGroup(method) === 'enemy')) {
-    const name = method.sourceDisplayName || method.variables?.sourceName || method.sourceCanonical
-    if (!name) continue
-    const context = method.locationDisplayName || method.variables?.locationName || ''
+    const sourceName = method.sourceDisplayName || method.variables?.sourceName || method.sourceCanonical
+    if (!sourceName) continue
+    const bossLocation = method.bossLocation || null
+    const bossContext = bossLocation
+      ? [...new Set([
+          bossLocation.planetDisplayName,
+          bossLocation.nodeDisplayName,
+          '\u523a\u6740'
+        ].filter(Boolean))].join(' ')
+      : ''
+    const context = ''
+    const chance = Number.isFinite(Number(method.chance))
+      ? `\uff0c${Number((Number(method.chance) * 100).toFixed(4))}%`
+      : ''
+    const location = bossContext || method.locationDisplayName || method.variables?.locationName || ''
+    const name = `${location && location !== sourceName ? `${location} \u00b7 ` : ''}${sourceName}\uff08\u6982\u7387\u83b7\u5f97${chance}\uff09`
     const text = `- ${name}${context && context !== name ? `（${context}）` : ''}`
     const identity = method.sourceEntityId || method.sourceCanonical || name
     if (seen.has(`enemy:${identity}`)) continue

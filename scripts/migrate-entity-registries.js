@@ -12,6 +12,7 @@ const LOCALIZATION_SNAPSHOT = path.join(ROOT, 'generated', 'official-localizatio
 const REGIONS = path.join(ROOT, 'cache', 'warframe-export-regions.json')
 const LANG_ZH = path.join(ROOT, '.cache', 'official-localization', 'languages.zh.json')
 const LANG_EN = path.join(ROOT, '.cache', 'official-localization', 'languages.en.json')
+const EXPORT_ENEMIES = path.join(ROOT, '.cache', 'official-localization', 'ExportEnemies.json')
 const AUDITED_ENEMY_OVERRIDES = Object.freeze({
   'Juno Sapper MOA': { locationId: 'mission-node.brutus', missionTypeId: 'mission-type.ascension' }
 })
@@ -19,6 +20,7 @@ function officialBossLocationIndex() {
   const regions = JSON.parse(fs.readFileSync(REGIONS, 'utf8'))
   const zh = JSON.parse(fs.readFileSync(LANG_ZH, 'utf8'))
   const en = JSON.parse(fs.readFileSync(LANG_EN, 'utf8'))
+  const exported = JSON.parse(fs.readFileSync(EXPORT_ENEMIES, 'utf8'))
   const output = new Map()
   for (const [nodeId, node] of Object.entries(regions)) {
     if (node.missionType !== 'MT_ASSASSINATION' || !node.vipAgent) continue
@@ -28,7 +30,9 @@ function officialBossLocationIndex() {
     const nodeDisplayName = zh[node.name] || nodeCanonical
     const record = { nodeId, planetCanonical, planetDisplayName, nodeCanonical, nodeDisplayName, missionTypeId: 'mission-type.assassination' }
     output.set(String(node.vipAgent), record)
-    output.set(String(node.vipAgent).replace(/Agent$/i, 'Avatar'), record)
+    for (const avatarPath of Object.values(exported.agents?.[node.vipAgent]?.avatarTypes || {})) {
+      if (avatarPath) output.set(String(avatarPath), record)
+    }
   }
   return output
 }
@@ -79,4 +83,4 @@ function run(argv = process.argv.slice(2)) {
   console.log(check ? '基础实体变量目录无漂移' : `已同步 ${Object.keys(DEFINITIONS).length} 类基础实体变量；写入 ${changes} 项`)
 }
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
-module.exports = { LOCALIZATION_SNAPSHOT, REGIONS, LANG_ZH, LANG_EN, AUDITED_ENEMY_OVERRIDES, officialBossLocationIndex, ACQUISITION_ENEMIES, officialEnemyEntries, DEFINITIONS, buildPlans, run }
+module.exports = { LOCALIZATION_SNAPSHOT, REGIONS, LANG_ZH, LANG_EN, EXPORT_ENEMIES, AUDITED_ENEMY_OVERRIDES, officialBossLocationIndex, ACQUISITION_ENEMIES, officialEnemyEntries, DEFINITIONS, buildPlans, run }

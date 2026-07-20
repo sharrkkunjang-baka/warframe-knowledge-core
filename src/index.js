@@ -505,7 +505,13 @@ function createKnowledgeCore(options = {}) {
   const enrichModMethod = method => {
     if (method.type === 'mission-reward' && method.missionTypeCanonical) {
       const missionType = data.missionTypes.get(method.missionTypeCanonical);
-      return { ...method, missionTypeId: missionType?.id || null, missionTypeDisplayName: missionType ? displayEntityName(missionType) : method.missionTypeCanonical };
+      return {
+        ...method,
+        missionTypeId: missionType?.id || method.missionTypeEntityId || null,
+        missionTypeDisplayName: missionType
+          ? displayEntityName(missionType)
+          : method.missionTypeDisplayName || method.missionTypeCanonical
+      };
     }
     if (method.type === 'official-drop') return enrichOfficialDrop(method);
     if (method.type === 'syndicate-exchange') {
