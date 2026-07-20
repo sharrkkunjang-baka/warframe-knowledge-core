@@ -99,4 +99,11 @@ test('近期 Mod 审核只由统一证据资格决定', () => {
   delete withoutOfficialIdentity.subject.officialUniqueName
   withoutOfficialIdentity.modAcquisition.generated.identity.officialUniqueName = 'wiki-current:mod:Primary Acuity'
   assert.equal(review.isReviewEligible(withoutOfficialIdentity, expectedByCanonical.get('Primary Acuity')), false)
+
+  for (const file of jsonFiles(path.join(MOD_ROOT, 'standardmod'))) {
+    for (const entry of entriesIn(file)) {
+      if (!expectedByCanonical.has(entry.subject?.canonical)) continue
+      assert.equal(entry.id, review.knowledgeIdForFile(file), entry.subject.canonical)
+    }
+  }
 })

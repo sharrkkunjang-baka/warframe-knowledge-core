@@ -34,6 +34,14 @@ function officialUniqueNameOf(entry) {
     || null
 }
 
+function knowledgeIdForFile(file) {
+  return `knowledge.acquisition.mod.${path.basename(file, '.json')}`
+}
+
+function isStandardModFile(file) {
+  return path.normalize(file).split(path.sep).includes('standardmod')
+}
+
 function hasOfficialEvidence(entry) {
   const wiki = entry.modAcquisition?.generated?.wiki
   const officialDrops = entry.modAcquisition?.generated?.officialDrops || []
@@ -100,9 +108,11 @@ function buildChanges(options = {}) {
       const expected = expectedByCanonical.get(canonical)
       if (!isReviewEligible(entry, expected)) continue
       eligible.add(canonical)
-      if (entry.reviewStatus === 'approved' && entry.modAcquisition?.manual?.reviewStatus === 'approved') continue
       const before = serialize(entry)
-      approve(entry, expected)
+      if (isStandardModFile(file)) entry.id = knowledgeIdForFile(file)
+      if (entry.reviewStatus !== 'approved' || entry.modAcquisition?.manual?.reviewStatus !== 'approved') {
+        approve(entry, expected)
+      }
       touched ||= before !== serialize(entry)
     }
     if (touched) changes.push({ file, value: Array.isArray(value) ? entries : entries[0] })
@@ -132,6 +142,8 @@ module.exports = {
   jsonFiles,
   methodsOf,
   officialUniqueNameOf,
+  knowledgeIdForFile,
+  isStandardModFile,
   hasOfficialEvidence,
   isReviewEligible,
   approve,
