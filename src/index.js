@@ -13,6 +13,7 @@ const { structuredMethods: compileStructuredMethods, routesToMethods } = require
 const { createCraftingGraph, renderCraftingUses, renderCrafting } = require('./weapon-crafting');
 const { parseWeaponCraftingCommand } = require('./weapon-command');
 const { expandKnowledgeReferences } = require('./knowledge-reference-expander');
+const { createRivenWeaponResolver } = require('./riven-weapon-resolver');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -106,6 +107,7 @@ function createKnowledgeCore(options = {}) {
   }
   const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName, ...(data.aliases?.weapons?.[weapon.subject?.canonical] || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
+  const rivenWeaponResolver = createRivenWeaponResolver(data.officialWeapons, data.aliases?.weapons);
   const frameNameCandidates = allKnowledge.filter(entry => entry.subject?.category === 'frame')
     .flatMap(frame => [frame.subject?.canonical, frame.subject?.displayName, ...(data.aliases?.frames?.[frame.subject?.canonical] || [])]
       .filter(Boolean).map(alias => ({ alias, canonical: frame.subject.canonical, category: 'frame', priority: 35 })));
@@ -1071,6 +1073,9 @@ function createKnowledgeCore(options = {}) {
     getWeapon,
     getWeaponGap,
     resolveWeapon,
+    getRivenWeapon: rivenWeaponResolver.get,
+    resolveRivenWeapon: rivenWeaponResolver.resolve,
+    rivenWeapons: rivenWeaponResolver.identities,
     getConsumable,
     resolveConsumable,
     consumables: data.consumables || [],

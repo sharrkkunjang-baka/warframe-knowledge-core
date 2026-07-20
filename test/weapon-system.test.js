@@ -12,6 +12,34 @@ test('官方武器名称清除分类标记且配方耗时不泄漏原始秒数',
 test('正向配方唯一生成 byResult 和 byIngredient',()=>{const graph=core.weaponCraftingGraph,pride=core.getWeapon('骄傲');assert.equal(graph.recipesFor(pride.subject.officialUniqueName).length,1);for(const ingredient of pride.recipes[0].ingredients)assert.ok(graph.craftTo(ingredient.uniqueName).some(x=>x.resultUniqueName===pride.subject.officialUniqueName))})
 test('截图与文字合成只输出武器参与的简洁句式',()=>{const uses=core.renderWeaponCraftingUses(['破碎的战争之剑','破碎的战争之剑']),command=core.renderWeaponCraftingCommand('合成 破碎的战争之剑');assert.equal(uses,'1把破碎的战争之剑可合成为 战争之剑');assert.equal(command,uses);assert.doesNotMatch(command,/可以用于合成什么|如何合成|制造费用|耗时|→|【/)})
 test('审核武器黑话优先于弱拼音近似匹配',()=>{for(const alias of ['波棍','玻棍'])assert.equal(core.resolveWeapon(alias).canonical,'Bo Prime');assert.equal(core.resolveWeapon('伯斯顿').canonical,'Burston');assert.equal(core.resolveWeapon('bosidun').canonical,'Burston')})
+test('紫卡武器解析按官方中文、审核别名、英文与拼音分层并锁定精确短名',()=>{
+  const tomb=core.resolveRivenWeapon('墓指');
+  assert.equal(tomb.canonical,'Tombfinger');
+  assert.equal(tomb.displayName,'墓指');
+  assert.equal(tomb.officialUniqueName,'/Lotus/Weapons/SolarisUnited/Secondary/SUModularSecondarySet1/Barrel/SUModularSecondaryBarrelBPart');
+  assert.equal(tomb.match,'exact');
+  assert.equal(core.resolveRivenWeapon('Tombfinger').canonical,'Tombfinger');
+  assert.equal(core.resolveRivenWeapon('tOmBfInGeR').canonical,'Tombfinger');
+  for(const query of ['diyinbaonang','di yin bao nang','di-yin-bao-nang']){
+    const bassocyst=core.resolveRivenWeapon(query);
+    assert.equal(bassocyst.canonical,'Coda Bassocyst');
+    assert.equal(bassocyst.displayName,'终幕·低音爆囊');
+    assert.equal(bassocyst.match,'pinyin-exact');
+  }
+})
+test('紫卡武器中文和拼音模糊匹配执行置信度与领先差门槛',()=>{
+  assert.equal(core.resolveRivenWeapon('终幕低音爆袋').canonical,'Coda Bassocyst');
+  assert.equal(core.resolveRivenWeapon('diyinbaonag').canonical,'Coda Bassocyst');
+  const low=core.resolveRivenWeapon('diyin');
+  assert.ok(Array.isArray(low.ambiguous));
+  assert.equal(low.reason,'low-confidence');
+  assert.ok(low.ambiguous.length>=1);
+  assert.equal(low.ambiguous[0].displayName,'终幕·低音爆囊');
+  const multi=core.resolveRivenWeapon('wenyikelipasi');
+  assert.ok(Array.isArray(multi.ambiguous));
+  assert.equal(multi.reason,'pinyin-collision');
+  assert.ok(multi.ambiguous.length>=2);
+})
 test('武器解析使用共享评分器，合成支持多个输入和名称标点',()=>{assert.equal(core.resolveWeapon('骄傲').canonical,'Pride');const parsed=core.parseWeaponCraftingCommand('合成 骄傲、Cernos');assert.equal(parsed.items.length,2);assert.doesNotMatch(core.renderWeaponCraftingCommand('合成 骄傲'),/如何合成|制造费用|耗时|【/);assert.equal(core.parseWeaponCraftingCommand('今天合成点什么'),null)})
 test('官方任务表按每个任务标题切换，不把骄傲错误继承到水星',()=>{const pride=core.getWeapon('骄傲'),blueprint=pride.acquisition.routes.find(x=>x.scope==='blueprint');assert.ok(blueprint.methods.some(x=>x.sourceCanonical==='Uranus/The Kuva Wytch (Skirmish)'&&x.locationId==='mission.the-kuva-wytch'&&x.missionTypeId==='mission-type.skirmish'&&x.chance===0.1429));assert.ok(blueprint.methods.every(x=>x.sourceCanonical!=='Mercury/Apollodorus (Survival)'))})
 test('骄傲由舰船任务和 Hunhow 官方报价完整闭环',()=>{const pride=core.getWeapon('骄傲'),result=core.getAcquisition('骄傲');assert.equal(pride.status,'complete');const blueprint=pride.acquisition.routes.find(x=>x.scope==='blueprint'),exchange=blueprint.methods.find(x=>x.type==='vendor-exchange');assert.equal(exchange.npcId,'npc.hunhow');assert.equal(exchange.locationId,'hub.pontis-tower');assert.equal(exchange.requirements.currency[0].currencyId,'currency.emerald-talent');assert.equal(exchange.requirements.currency[0].amount,90);assert.match(result.description,/总图：完成赤毒女巫号（前哨战）概率获得/);assert.match(result.description,/在渡界之塔找Hunhow兑换，需要90个翠绿天赋/);assert.match(result.description,/愤怒 刀刃：完成火山石天使号（前哨战）、赤毒女巫号（前哨战）概率获得/);assert.doesNotMatch(result.description,/水星|边界之塔/)})
