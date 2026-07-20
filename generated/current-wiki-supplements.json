@@ -1,18 +1,110 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-07-20T04:41:38.188Z",
-  "startUpdate": 40,
+  "startUpdate": 38.5,
   "sourceDatabase": {
     "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
     "size": 2322874368
   },
   "counts": {
-    "entries": 65,
-    "mods": 30,
-    "resources": 35,
-    "exclusions": 1
+    "entries": 81,
+    "mods": 41,
+    "resources": 40,
+    "exclusions": 4
   },
   "entries": [
+    {
+      "domain": "mods",
+      "canonical": "Cataclysmic Gate",
+      "displayName": "灾变之门",
+      "languageKey": "/Lotus/Language/Suits/WispSunAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/Wisp/WispSunAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "太阳之门强化：Wisp 召唤 2 个幻影施放一次太阳之门爆炸，引爆后留下持续 2 秒的区域，每秒造成 500火焰伤害且必定触发火焰和辐射异常状态。"
+      ],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1595876,
+        "revisionId": 2775524,
+        "timestamp": "2026-05-08T06:00:21Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.cephalon-suda",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.cephalon-suda",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.new-loka",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.new-loka",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Conductive Sphere",
+      "displayName": "导电球",
+      "languageKey": "/Lotus/Language/Suits/GyrePulseAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/Gyre/GyrePulseAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "电弧球强化：穿过电弧球的投射物必定造成 电击异常状态和增加 75% 电击伤害。"
+      ],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1595877,
+        "revisionId": 2768438,
+        "timestamp": "2026-04-19T19:10:41Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.arbiters-of-hexis",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.arbiters-of-hexis",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.the-perrin-sequence",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.the-perrin-sequence",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Maxim under Arbiters of Hexis , or the rank of Partner under The Perrin Sequence , and spending 25,000 Standing 25,000 to purchase."
+    },
     {
       "domain": "mods",
       "canonical": "Da-Ren",
@@ -22,7 +114,9 @@
       "maxRank": 5,
       "effectDetails": [
         "300 指挥官护盾",
-        "每个 Unairu 学派 Mod 可获得 +30 加成"
+        "每个 Unairu 学派 Mod 可获得 +30 加成",
+        "|val| 指挥官护盾",
+        "每个 Unairu 学派 Mod 可获得 +|val| 加成"
       ],
       "introduced": "41.0",
       "page": {
@@ -32,6 +126,53 @@
       },
       "methods": [
         {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  500,
+                  700
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  200,
+                  280
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  80,
+                  120
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Da-Ren | 2x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
           "sourceDisplayName": "深溯池，火卫二/回忆：英魂统使",
@@ -108,7 +249,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -118,7 +259,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/UltimateInitialChargeSchools",
       "maxRank": 5,
       "effectDetails": [
-        "每种独特学派的 Mod 可获得 +12% 的加成"
+        "每种独特学派的 Mod 可获得 +12% 的加成",
+        "每种独特学派的 Mod 可获得 +2% 的加成"
       ],
       "introduced": "41.0",
       "page": {
@@ -128,6 +270,53 @@
       },
       "methods": [
         {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  750,
+                  1050
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  300,
+                  420
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  120,
+                  180
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Empazu-Shol | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
           "sourceDisplayName": "深溯池，火卫二/回忆：英魂统使",
@@ -204,7 +393,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -214,7 +403,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/DashDistanceSchools",
       "maxRank": 5,
       "effectDetails": [
-        "每种独特学派的 Mod 增加 30% 虚空弹射范围"
+        "每种独特学派的 Mod 增加 30% 虚空弹射范围",
+        "每种独特学派的 Mod 增加 10% 虚空弹射范围"
       ],
       "introduced": "41.0",
       "page": {
@@ -223,6 +413,53 @@
         "timestamp": "2026-06-12T05:52:26Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  750,
+                  1050
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  300,
+                  420
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  120,
+                  180
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Esti Vel-Ikha | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -300,7 +537,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -310,7 +547,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/JumpHeight",
       "maxRank": 3,
       "effectDetails": [
-        "60% 指挥官跳跃高度"
+        "60% 指挥官跳跃高度",
+        "|val|% 指挥官跳跃高度"
       ],
       "introduced": "41.0",
       "page": {
@@ -318,17 +556,185 @@
         "revisionId": 2784360,
         "timestamp": "2026-06-12T05:51:49Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Evir-Ti | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Capsarii",
+          "sourceEntityId": "enemy.anarch-capsarii",
+          "sourceDisplayName": "自由派医疗兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Evir-Ti",
+            "pageId": 1605363,
+            "revisionId": 2784360,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Capsarii | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Grineer Trapper",
+          "sourceEntityId": "enemy.anarch-grineer-trapper",
+          "sourceDisplayName": "自由派 Grineer 捕猎者",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Evir-Ti",
+            "pageId": 1605363,
+            "revisionId": 2784360,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Grineer Trapper | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Tenebra",
+          "sourceEntityId": "enemy.anarch-tenebra",
+          "sourceDisplayName": "自由派暗杀兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Evir-Ti",
+            "pageId": 1605363,
+            "revisionId": 2784360,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Tenebra | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Capsarii |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Grineer Trapper |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Tenebra |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Fused Crucible",
+      "displayName": "熔融堆芯",
+      "languageKey": "/Lotus/Language/Suits/ConcreteLaserAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/ConcreteFrame/ConcreteLaserAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "堆芯迸发强化：成为一种导引技能，每秒消耗 20能量，并逐渐增强。激活的辐射柱体会触发连锁反应，并且其持续时间会冻结。同时大幅降低移动速度。"
+      ],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1595878,
+        "revisionId": 2723951,
+        "timestamp": "2026-01-17T06:51:09Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.cephalon-suda",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.cephalon-suda",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.steel-meridian",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.steel-meridian",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of General under Steel Meridian , and spending 25,000 Standing 25,000 to purchase."
     },
     {
       "domain": "mods",
       "canonical": "Harrowing Spire",
       "displayName": "胆寒尖刺",
       "languageKey": "/Lotus/Language/Mods/BayonetCmbOneMeleeTreeName",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/BayonetCmbOneMeleeTree",
+      "maxRank": 3,
+      "effectDetails": [
+        "持续不断的戳刺和强劲有力的横扫式冲刺。"
+      ],
       "introduced": "41.0",
       "page": {
         "pageId": 1605466,
@@ -358,7 +764,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/Multishot",
       "maxRank": 5,
       "effectDetails": [
-        "60% 增幅器多重射击"
+        "60% 增幅器多重射击",
+        "|val|% 增幅器多重射击"
       ],
       "introduced": "41.0",
       "page": {
@@ -366,8 +773,152 @@
         "revisionId": 2784352,
         "timestamp": "2026-06-12T05:50:02Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Hayan-Dabor | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Arcus",
+          "sourceEntityId": "enemy.anarch-arcus",
+          "sourceDisplayName": "自由派弓箭士",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hayan-Dabor",
+            "pageId": 1605364,
+            "revisionId": 2784352,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Arcus | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Arcus Lustratus",
+          "sourceEntityId": "enemy.anarch-arcus-lustratus",
+          "sourceDisplayName": "自由派弓箭光肃官",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hayan-Dabor",
+            "pageId": 1605364,
+            "revisionId": 2784352,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Arcus Lustratus | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Gladius",
+          "sourceEntityId": "enemy.anarch-gladius",
+          "sourceDisplayName": "自由派剑士",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hayan-Dabor",
+            "pageId": 1605364,
+            "revisionId": 2784352,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Gladius | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Grineer Lancer",
+          "sourceEntityId": "enemy.anarch-grineer-lancer",
+          "sourceDisplayName": "自由派 Grineer 枪兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hayan-Dabor",
+            "pageId": 1605364,
+            "revisionId": 2784352,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Grineer Lancer | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Arcus |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Arcus Lustratus |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Gladius |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Grineer Lancer |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -377,7 +928,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/DamageWhileInvisible",
       "maxRank": 5,
       "effectDetails": [
-        "使用虚空模式后，下一次增幅器攻击会造成 x3.0 额外伤害（冷却时间 5 秒）"
+        "使用虚空模式后，下一次增幅器攻击会造成 x3.0 额外伤害（冷却时间 5 秒）",
+        "使用虚空模式后，下一次增幅器攻击会造成 x|BONUS| 额外伤害（冷却时间 |COOLDOWN| 秒）"
       ],
       "introduced": "41.0",
       "page": {
@@ -385,8 +937,174 @@
         "revisionId": 2784361,
         "timestamp": "2026-06-12T05:51:57Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Hok-Kaal | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Capsarii",
+          "sourceEntityId": "enemy.anarch-capsarii",
+          "sourceDisplayName": "自由派医疗兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hok-Kaal",
+            "pageId": 1605365,
+            "revisionId": 2784361,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Capsarii | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Grineer Trapper",
+          "sourceEntityId": "enemy.anarch-grineer-trapper",
+          "sourceDisplayName": "自由派 Grineer 捕猎者",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hok-Kaal",
+            "pageId": 1605365,
+            "revisionId": 2784361,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Grineer Trapper | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Tenebra",
+          "sourceEntityId": "enemy.anarch-tenebra",
+          "sourceDisplayName": "自由派暗杀兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Hok-Kaal",
+            "pageId": 1605365,
+            "revisionId": 2784361,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Tenebra | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Capsarii |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Grineer Trapper |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Tenebra |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Jade's Judgment",
+      "displayName": "翠玉审判",
+      "languageKey": "/Lotus/Language/Suits/ChoirPoolAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/Choir/ChoirPoolAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "圣光审判强化：受到圣光之井伤害的敌人，每次被击中时有 5% 的几率在其上方生成翠玉之光，并对其造成伤害，持续 3 秒。"
+      ],
+      "introduced": "39.0",
+      "page": {
+        "pageId": 1598992,
+        "revisionId": 2790315,
+        "timestamp": "2026-07-01T23:06:13Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.arbiters-of-hexis",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.arbiters-of-hexis",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.red-veil",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.red-veil",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Maxim under Arbiters of Hexis , or the rank of Exalted under Red Veil , and spending 25,000 Standing 25,000 to purchase."
     },
     {
       "domain": "mods",
@@ -397,7 +1115,9 @@
       "maxRank": 5,
       "effectDetails": [
         "30% 虚空模式效率",
-        "每个 Naramon 学派 Mod 增加 5% 移动速度"
+        "每个 Naramon 学派 Mod 增加 5% 移动速度",
+        "|val|% 虚空模式效率",
+        "每个 Naramon 学派 Mod 增加 |val|% 移动速度"
       ],
       "introduced": "41.0",
       "page": {
@@ -405,17 +1125,85 @@
         "revisionId": 2784367,
         "timestamp": "2026-06-12T05:52:54Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  500,
+                  700
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  200,
+                  280
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  80,
+                  120
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Kaal-zidi | 2x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "event-mission-reward",
+          "sourceCanonical": "The Perita Rebellion",
+          "sourceDisplayName": "佩里塔叛乱",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Kaal-zidi",
+            "pageId": 1605374,
+            "revisionId": 2784367,
+            "section": "Acquisition",
+            "excerpt": "Awarded from The Perita Rebellion missions."
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
       "canonical": "Kumihimo Loading",
       "displayName": "天命降临",
       "languageKey": "/Lotus/Language/Suits/KoumeiStringsAbilityAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Powersuits/Koumei/KoumeiStringsAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "命运编织强化：使用受 Koumei 被动效果强化的武器造成 6 次击杀，将获得一个必定掷出 6 的骰子。按住施放强化的命运编织会消耗全部骰子。"
+      ],
       "introduced": "43.0",
       "page": {
         "pageId": 1640612,
@@ -460,7 +1248,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/VoidSlingCrateBreaker",
       "maxRank": 5,
       "effectDetails": [
-        "虚空弹射可发射一股脉冲，摧毁 12 米范围内的容器"
+        "虚空弹射可发射一股脉冲，摧毁 12 米范围内的容器",
+        "虚空弹射可发射一股脉冲，摧毁 2 米范围内的容器"
       ],
       "introduced": "41.0",
       "page": {
@@ -469,6 +1258,53 @@
         "timestamp": "2026-06-12T05:52:46Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  750,
+                  1050
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  300,
+                  420
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  120,
+                  180
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Lashta-Vak | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -546,16 +1382,18 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
       "canonical": "Lingering Transmutation",
       "displayName": "流连忘返",
       "languageKey": "/Lotus/Language/Suits/AlchemistTransmute_AbilityAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Powersuits/Alchemist/AlchemistTransmuteAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "炼制探头强化：探头在达到最大范围后会返回施放位置，并在附近停留 15 秒。重新施放即可召回探头。再次施放即可结束技能。"
+      ],
       "introduced": "40.0",
       "page": {
         "pageId": 1600660,
@@ -597,10 +1435,11 @@
       "canonical": "Lorun-Tash",
       "displayName": "洛塔",
       "languageKey": "/Lotus/Language/Upgrades/AntiqueArmour",
-      "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/Armour",
+      "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/AntiqueArmour",
       "maxRank": 3,
       "effectDetails": [
-        "400 指挥官护甲"
+        "400 指挥官护甲",
+        "|val| 指挥官护甲"
       ],
       "introduced": "41.0",
       "page": {
@@ -608,8 +1447,80 @@
         "revisionId": 2784356,
         "timestamp": "2026-06-12T05:51:14Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Lorun-Tash | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Libritor",
+          "sourceEntityId": "enemy.anarch-libritor",
+          "sourceDisplayName": "自由派解放者",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Lorun-Tash",
+            "pageId": 1605366,
+            "revisionId": 2784356,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Libritor | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Libritor |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -620,7 +1531,9 @@
       "maxRank": 5,
       "effectDetails": [
         "增加指挥官冲刺速度 30%",
-        "每种独特学派的 Mod 可获得 +5% 的加成"
+        "每种独特学派的 Mod 可获得 +5% 的加成",
+        "增加指挥官冲刺速度 |val|%",
+        "每种独特学派的 Mod 可获得 +|val|% 的加成"
       ],
       "introduced": "41.0",
       "page": {
@@ -629,6 +1542,53 @@
         "timestamp": "2026-06-12T05:51:31Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  750,
+                  1050
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  300,
+                  420
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  120,
+                  180
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Metem-Erun | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -706,7 +1666,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -717,7 +1677,9 @@
       "maxRank": 5,
       "effectDetails": [
         "30% 指挥官生命值和护盾",
-        "每种独特学派的 Mod 可获得 +15% 的加成"
+        "每种独特学派的 Mod 可获得 +15% 的加成",
+        "|val|% 指挥官生命值和护盾",
+        "每种独特学派的 Mod 可获得 +|val|% 的加成"
       ],
       "introduced": "41.0",
       "page": {
@@ -726,6 +1688,53 @@
         "timestamp": "2026-06-12T05:50:27Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  750,
+                  1050
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  300,
+                  420
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  120,
+                  180
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Metem-Hakh | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -803,15 +1812,15 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
       "canonical": "Noctua Swarm",
       "displayName": "夜枭群袭",
       "languageKey": "/Lotus/Language/Suits/PagemasterBookAbilityAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
+      "officialUniqueName": "/Lotus/Powersuits/Pagemaster/PagemasterBookAugment1Card",
+      "maxRank": 3,
       "effectDetails": [],
       "introduced": "43.0",
       "page": {
@@ -851,6 +1860,52 @@
     },
     {
       "domain": "mods",
+      "canonical": "Omikuji's Fortune",
+      "displayName": "御神签运势",
+      "languageKey": "/Lotus/Language/Suits/KoumeiFortuneAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/Koumei/KoumeiFortuneAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "御神签强化：当你使用受 Koumei 被动效果强化的武器击杀敌人时，御神签的冷却时间减少 4 秒。"
+      ],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1595879,
+        "revisionId": 2673300,
+        "timestamp": "2025-03-23T02:41:01Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.arbiters-of-hexis",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.arbiters-of-hexis",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.new-loka",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.new-loka",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Maxim under Arbiters of Hexis , or the rank of Flawless under New Loka , and spending 25,000 Standing 25,000 to purchase."
+    },
+    {
+      "domain": "mods",
       "canonical": "Omn-Evi",
       "displayName": "奥维",
       "languageKey": "/Lotus/Language/Upgrades/AntiqueCritChanceSchool",
@@ -858,7 +1913,9 @@
       "maxRank": 5,
       "effectDetails": [
         "60% 增幅器暴击几率",
-        "每个 Zenurik 学派 Mod 增加 10% 增幅器暴击伤害"
+        "每个 Zenurik 学派 Mod 增加 10% 增幅器暴击伤害",
+        "|val|% 增幅器暴击几率",
+        "每个 Zenurik 学派 Mod 增加 |val|% 增幅器暴击伤害"
       ],
       "introduced": "41.0",
       "page": {
@@ -867,6 +1924,53 @@
         "timestamp": "2026-06-12T05:51:41Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  500,
+                  700
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  200,
+                  280
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  80,
+                  120
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Omn-Evi | 2x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -944,15 +2048,143 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Pain Points",
+      "displayName": "痛点",
+      "languageKey": "/Lotus/Language/Mods/NightwaveTnJetTurbinePistolAugmentModName",
+      "officialUniqueName": "/Lotus/Upgrades/Mods/Nightwave/NightwaveTnJetTurbinePistolAugmentMod",
+      "maxRank": 5,
+      "effectDetails": [
+        "主要射击命中弱点时：弱点伤害 +60%，持续 5 秒，最多叠加 10 次。"
+      ],
+      "introduced": "38.6",
+      "page": {
+        "pageId": 1597902,
+        "revisionId": 2793142,
+        "timestamp": "2026-07-12T21:33:31Z"
+      },
+      "methods": [
+        {
+          "type": "legacy-nightwave-reward",
+          "locationId": "interface.nightwave",
+          "rank": 13,
+          "availability": "legacy-or-future-rotation",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Pain Points",
+            "section": "Acquisition",
+            "excerpt": "reaching Rank 13 with Nightwave"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Pain Points can be obtained by reaching Rank 13 with Nightwave during Nora's Mix Volume 9 ."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Prismatic Companion",
+      "displayName": "棱彩同伴",
+      "languageKey": "/Lotus/Language/Suits/GeodeCrystalAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/Geode/GeodeCrystalAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "棱彩宝石强化：宝石现在会附着于你自由移动的同伴身上。\r\n被动：增加 50% 棱彩宝石持续时间"
+      ],
+      "introduced": "39.0",
+      "page": {
+        "pageId": 1598991,
+        "revisionId": 2737985,
+        "timestamp": "2026-03-03T23:51:21Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.steel-meridian",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.steel-meridian",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.red-veil",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.red-veil",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of General under Steel Meridian , or the rank of Exalted under the Red Veil , and spending 25,000 Standing 25,000 to purchase."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Razor Mortar",
+      "displayName": "刀锋迫击",
+      "languageKey": "/Lotus/Language/Suits/SentientWhirlwindAugmentName",
+      "officialUniqueName": "/Lotus/Powersuits/Sentient/SentientWhirlwindAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "刀锋环流强化：将敌人聚集在一起，而致命后裔的直垂使对这些敌人集中火力，造成 70% 的 电击伤害和射速加成，持续 6 秒。"
+      ],
+      "introduced": "39.0",
+      "page": {
+        "pageId": 1599018,
+        "revisionId": 2775474,
+        "timestamp": "2026-05-07T17:50:32Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.cephalon-suda",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.cephalon-suda",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.the-perrin-sequence",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.the-perrin-sequence",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of Partner under the The Perrin Sequence , and spending 25,000 Standing 25,000 to purchase."
     },
     {
       "domain": "mods",
       "canonical": "Reroot Rampage",
       "displayName": "菌丝暴动",
       "languageKey": "/Lotus/Language/Suits/NokkoNetworkAbilityAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
+      "officialUniqueName": "/Lotus/Powersuits/Nokko/NokkoRerootAugmentCard",
+      "maxRank": 3,
       "effectDetails": [],
       "introduced": "43.0",
       "page": {
@@ -995,8 +2227,8 @@
       "canonical": "Reverse Rotorswell",
       "displayName": "反弹链波",
       "languageKey": "/Lotus/Language/Suits/GyreOverchargedAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
+      "officialUniqueName": "/Lotus/Powersuits/Gyre/GyreOverchargedAugmentCard",
+      "maxRank": 3,
       "effectDetails": [],
       "introduced": "40.0",
       "page": {
@@ -1039,9 +2271,11 @@
       "canonical": "Rhythm Guard",
       "displayName": "律动护卫",
       "languageKey": "/Lotus/Language/Suits/TemplePassiveAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Powersuits/Temple/TemplePassiveAugment1Card",
+      "maxRank": 3,
+      "effectDetails": [
+        "被动强化：在反拍上施放技能时获得 100 超宏防护。每次踩中节拍时获得翻倍，最多提升至每拍 1600，但错过节拍后会重置。"
+      ],
       "introduced": "43.0",
       "page": {
         "pageId": 1640589,
@@ -1086,7 +2320,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/VoidSlingEfficiency",
       "maxRank": 5,
       "effectDetails": [
-        "30% 虚空弹射效率"
+        "30% 虚空弹射效率",
+        "|val|% 虚空弹射效率"
       ],
       "introduced": "41.0",
       "page": {
@@ -1094,8 +2329,128 @@
         "revisionId": 2784365,
         "timestamp": "2026-06-12T05:52:38Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Sey-Taph | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Capsarii",
+          "sourceEntityId": "enemy.anarch-capsarii",
+          "sourceDisplayName": "自由派医疗兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Sey-Taph",
+            "pageId": 1605368,
+            "revisionId": 2784365,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Capsarii | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Grineer Trapper",
+          "sourceEntityId": "enemy.anarch-grineer-trapper",
+          "sourceDisplayName": "自由派 Grineer 捕猎者",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Sey-Taph",
+            "pageId": 1605368,
+            "revisionId": 2784365,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Grineer Trapper | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Tenebra",
+          "sourceEntityId": "enemy.anarch-tenebra",
+          "sourceDisplayName": "自由派暗杀兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Sey-Taph",
+            "pageId": 1605368,
+            "revisionId": 2784365,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Tenebra | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Capsarii |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Grineer Trapper |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Tenebra |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -1105,7 +2460,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/ProcChanceSchool",
       "maxRank": 5,
       "effectDetails": [
-        "60% 增幅器触发几率"
+        "60% 增幅器触发几率",
+        "15% 增幅器触发几率"
       ],
       "introduced": "41.0",
       "page": {
@@ -1114,6 +2470,53 @@
         "timestamp": "2026-06-12T05:49:51Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  500,
+                  700
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  200,
+                  280
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  80,
+                  120
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Sil-Tabol | 2x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -1191,7 +2594,43 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Spontaneous Singularity",
+      "displayName": "自激奇点",
+      "languageKey": "/Lotus/Language/Mods/NightwaveCephPrimaryAugmentModName",
+      "officialUniqueName": "/Lotus/Upgrades/Mods/Nightwave/NightwaveCephPrimaryAugmentMod",
+      "maxRank": 5,
+      "effectDetails": [
+        "命中目标的球体会立即爆炸，造成 90% 额外伤害，并有 18% 概率产生奇点，将更多目标吸入。球体不再弹跳或融合。"
+      ],
+      "introduced": "38.6",
+      "page": {
+        "pageId": 1597822,
+        "revisionId": 2729669,
+        "timestamp": "2026-02-12T14:20:34Z"
+      },
+      "methods": [
+        {
+          "type": "legacy-nightwave-reward",
+          "locationId": "interface.nightwave",
+          "rank": 25,
+          "availability": "legacy-or-future-rotation",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Spontaneous Singularity",
+            "section": "Acquisition",
+            "excerpt": "reaching Rank 25 with Nightwave"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n Spontaneous Singularity can be obtained by reaching Rank 25 with Nightwave during Nora's Mix Volume 9 ."
     },
     {
       "domain": "mods",
@@ -1201,7 +2640,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/EnterVoidModeOnKnockdown",
       "maxRank": 5,
       "effectDetails": [
-        "获得击倒免疫。当击倒被格挡时，进入虚空模式，持续 3 秒（冷却时间为 7.5 秒）"
+        "获得击倒免疫。当击倒被格挡时，进入虚空模式，持续 3 秒（冷却时间为 7.5 秒）",
+        "获得击倒免疫。当击倒被格挡时，进入虚空模式，持续 |DURATION| 秒（冷却时间为 |COOLDOWN| 秒）"
       ],
       "introduced": "41.0",
       "page": {
@@ -1209,17 +2649,137 @@
         "revisionId": 2784370,
         "timestamp": "2026-06-12T05:54:54Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Talsek-An | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Libritor",
+          "sourceEntityId": "enemy.anarch-libritor",
+          "sourceDisplayName": "自由派解放者",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Talsek-An",
+            "pageId": 1605369,
+            "revisionId": 2784370,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Libritor | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Libritor |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Teleport Rush",
+      "displayName": "闪现急袭",
+      "languageKey": "/Lotus/Language/Suits/TeleportToAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/Ninja/TeleportToAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "瞬移强化：使用瞬移可将跑酷速度提高 30%，持续时间 12 秒。使用瞬移处决目标可将烟幕持续时间延长 5 秒。瞬移的怜悯之击可完全恢复持续时间。"
+      ],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1594701,
+        "revisionId": 2695617,
+        "timestamp": "2025-08-28T12:58:42Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.arbiters-of-hexis",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.arbiters-of-hexis",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.red-veil",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.red-veil",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of Maxim under the Arbiters of Hexis , or the rank of Exalted under the Red Veil , and spending 25,000 Standing 25,000 to purchase."
     },
     {
       "domain": "mods",
       "canonical": "Tharros Lethality",
       "displayName": "致命豪勇",
       "languageKey": "/Lotus/Language/Suits/HopliteBash_AbilityAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Powersuits/Hoplite/HopliteBashAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "豪勇之击强化：命中敌人时，暴击伤害增加 100%。使用标枪时，暴击伤害加成翻倍。"
+      ],
       "introduced": "40.0",
       "page": {
         "pageId": 1600661,
@@ -1261,9 +2821,11 @@
       "canonical": "Truth's Flame",
       "displayName": "真相之焰",
       "languageKey": "/Lotus/Language/Shadowgrapher/CursedTennokaiModName",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/CursedSyndicateEmpoweredHeavyMeleeMod",
+      "maxRank": 3,
+      "effectDetails": [
+        "启用 Tenno 气解。\r\n使用 Tenno 气解进行击杀可获得额外 4 秒 Tenno 气解机遇窗口，并使 Tenno 气解伤害提高 4%。\r\n\r\n诅咒：每秒承受 120 火焰伤害，持续 6 秒。"
+      ],
       "introduced": "42.0",
       "page": {
         "pageId": 1619406,
@@ -1301,7 +2863,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/WeaponDamageSchools",
       "maxRank": 5,
       "effectDetails": [
-        "每种独特学派的 Mod 可获得 +60% 的加成"
+        "每种独特学派的 Mod 可获得 +60% 的加成",
+        "每种独特学派的 Mod 可获得 +10% 的加成"
       ],
       "introduced": "41.0",
       "page": {
@@ -1310,6 +2873,53 @@
         "timestamp": "2026-06-12T05:49:23Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  750,
+                  1050
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  300,
+                  420
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  120,
+                  180
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Ubri-Kaneph | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -1387,7 +2997,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -1397,7 +3007,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/ReduceDeathEffect",
       "maxRank": 3,
       "effectDetails": [
-        "-60% 传识干扰持续时间"
+        "-60% 传识干扰持续时间",
+        "|val|% 传识干扰持续时间"
       ],
       "introduced": "41.0",
       "page": {
@@ -1405,17 +3016,163 @@
         "revisionId": 2784369,
         "timestamp": "2026-06-12T05:53:15Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Ulashta-Shol | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Arcus",
+          "sourceEntityId": "enemy.anarch-arcus",
+          "sourceDisplayName": "自由派弓箭士",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Ulashta-Shol",
+            "pageId": 1605370,
+            "revisionId": 2784369,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Arcus | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Arcus Lustratus",
+          "sourceEntityId": "enemy.anarch-arcus-lustratus",
+          "sourceDisplayName": "自由派弓箭光肃官",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Ulashta-Shol",
+            "pageId": 1605370,
+            "revisionId": 2784369,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Arcus Lustratus | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Gladius",
+          "sourceEntityId": "enemy.anarch-gladius",
+          "sourceDisplayName": "自由派剑士",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Ulashta-Shol",
+            "pageId": 1605370,
+            "revisionId": 2784369,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Gladius | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Grineer Lancer",
+          "sourceEntityId": "enemy.anarch-grineer-lancer",
+          "sourceDisplayName": "自由派 Grineer 枪兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Ulashta-Shol",
+            "pageId": 1605370,
+            "revisionId": 2784369,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Grineer Lancer | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Arcus |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Arcus Lustratus |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Gladius |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Grineer Lancer |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
       "canonical": "Untime Rift",
       "displayName": "炼狱裂隙",
       "languageKey": "/Lotus/Language/Suits/BrokenDestructAbilityAugment1Name",
-      "officialUniqueName": null,
-      "maxRank": null,
-      "effectDetails": [],
+      "officialUniqueName": "/Lotus/Powersuits/BrokenFrame/BrokenDestructAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "超维炼狱强化：创造一道裂隙，连接 15 米范围内带有 虚空异常状态的敌人，使超维炼狱的易伤效果翻倍并维持 虚空异常状态。"
+      ],
       "introduced": "40.0",
       "page": {
         "pageId": 1600602,
@@ -1461,7 +3218,9 @@
       "maxRank": 5,
       "effectDetails": [
         "30% 最大增幅器能量",
-        "每个 Madurai 学派 Mod 增加 5% 增幅器能量恢复速率"
+        "每个 Madurai 学派 Mod 增加 5% 增幅器能量恢复速率",
+        "|val|% 最大增幅器能量",
+        "每个 Madurai 学派 Mod 增加 |val|% 增幅器能量恢复速率"
       ],
       "introduced": "41.0",
       "page": {
@@ -1470,6 +3229,53 @@
         "timestamp": "2026-06-12T05:52:14Z"
       },
       "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  500,
+                  700
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  200,
+                  280
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  80,
+                  120
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Vik-Anam | 2x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
         {
           "type": "mission-reward",
           "sourceCanonical": "Dark Refractory, Deimos/Recall: Hunhullus (The Perita Rebellion)",
@@ -1547,7 +3353,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop."
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "mods",
@@ -1558,7 +3364,9 @@
       "maxRank": 5,
       "effectDetails": [
         "30% 增幅器射速",
-        "30% 增幅器弹药效率"
+        "30% 增幅器弹药效率",
+        "|val|% 增幅器射速",
+        "|val|% 增幅器弹药效率"
       ],
       "introduced": "41.0",
       "page": {
@@ -1566,8 +3374,198 @@
         "revisionId": 2784678,
         "timestamp": "2026-06-13T20:34:58Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Vikla-Safor | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Arcus",
+          "sourceEntityId": "enemy.anarch-arcus",
+          "sourceDisplayName": "自由派弓箭士",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Vikla-Safor",
+            "pageId": 1605371,
+            "revisionId": 2784678,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Arcus | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Arcus Lustratus",
+          "sourceEntityId": "enemy.anarch-arcus-lustratus",
+          "sourceDisplayName": "自由派弓箭光肃官",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Vikla-Safor",
+            "pageId": 1605371,
+            "revisionId": 2784678,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Arcus Lustratus | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Gladius",
+          "sourceEntityId": "enemy.anarch-gladius",
+          "sourceDisplayName": "自由派剑士",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Vikla-Safor",
+            "pageId": 1605371,
+            "revisionId": 2784678,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Gladius | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Grineer Lancer",
+          "sourceEntityId": "enemy.anarch-grineer-lancer",
+          "sourceDisplayName": "自由派 Grineer 枪兵",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.001,
+          "itemChance": 0.3333,
+          "chance": 0.0003333,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Vikla-Safor",
+            "pageId": 1605371,
+            "revisionId": 2784678,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Grineer Lancer | 0.1% | 33.33% | 0.03333% | 3000 | 1 | 0.0003333"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Arcus |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Arcus Lustratus |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Gladius |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n | Anarch Grineer Lancer |\n | 0.1% |\n | 33.33% |\n | 0.03333% |\n | 3000 |\n | 1 |\n | 0.0003333\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "mods",
+      "canonical": "Volatile Recompense",
+      "displayName": "暴力复仇",
+      "languageKey": "/Lotus/Language/Suits/PaxBladesAbilityAugment1Name",
+      "officialUniqueName": "/Lotus/Powersuits/PaxDuviricus/PaxBladesAugmentCard",
+      "maxRank": 3,
+      "effectDetails": [
+        "血债血偿强化：匕首以环形围绕在 Kullervo 旋转，持续 25 秒，切割附近的敌人并造成 爆炸爆炸伤害和异常状态，随后返回匕首环。"
+      ],
+      "introduced": "39.0",
+      "page": {
+        "pageId": 1599008,
+        "revisionId": 2719619,
+        "timestamp": "2026-01-01T06:17:51Z"
+      },
+      "methods": [
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.steel-meridian",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.steel-meridian",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        },
+        {
+          "type": "syndicate-exchange",
+          "factionId": "faction.new-loka",
+          "standing": 25000,
+          "requiredLevel": 5,
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.new-loka",
+            "amount": 25000,
+            "rank": 5
+          },
+          "reviewStatus": "approved"
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • This mod can be acquired by attaining the rank of General under Steel Meridian , or the rank of Flawless under the New Loka , and spending 25,000 Standing 25,000 to purchase."
     },
     {
       "domain": "mods",
@@ -1577,7 +3575,8 @@
       "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/HealthMax",
       "maxRank": 5,
       "effectDetails": [
-        "300 指挥官生命值"
+        "300 指挥官生命值",
+        "|val| 指挥官生命值"
       ],
       "introduced": "41.0",
       "page": {
@@ -1585,8 +3584,80 @@
         "revisionId": 2784357,
         "timestamp": "2026-06-12T05:51:23Z"
       },
-      "methods": [],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+      "methods": [
+        {
+          "type": "vendor-exchange",
+          "npcId": "npc.marie",
+          "locationId": "hub.sanctum-anatomica",
+          "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+          "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+          "availability": "rotating",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.marie",
+            "locationId": "hub.sanctum-anatomica",
+            "chooseCount": 2,
+            "currency": [
+              {
+                "currencyId": "currency.agnovidisc",
+                "amountRange": [
+                  250,
+                  350
+                ]
+              },
+              {
+                "currencyId": "currency.laudavi",
+                "amountRange": [
+                  100,
+                  140
+                ]
+              },
+              {
+                "currencyId": "currency.servoris",
+                "amountRange": [
+                  40,
+                  60
+                ]
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "pageTitle": "Marie",
+            "pageId": 1599544,
+            "revisionId": 2794179,
+            "section": "Browse Items",
+            "excerpt": "Yar Dal | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+          }
+        },
+        {
+          "type": "enemy-drop",
+          "sourceCanonical": "Anarch Libritor",
+          "sourceEntityId": "enemy.anarch-libritor",
+          "sourceDisplayName": "自由派解放者",
+          "missionTypeId": "mission-type.the-perita-rebellion",
+          "dropTableChance": 0.005,
+          "itemChance": 0.3333,
+          "chance": 0.0016665,
+          "quantity": 1,
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "DE Official Drop Tables",
+            "retrievedVia": "Official Warframe Wiki local snapshot",
+            "pageTitle": "Yar Dal",
+            "pageId": 1605372,
+            "revisionId": 2784357,
+            "section": "Enemy Drop Tables",
+            "excerpt": "Anarch Libritor | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+          }
+        }
+      ],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Libritor |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "resources",
@@ -1634,7 +3705,7 @@
           "reviewStatus": "approved"
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from Deepmines Bounties .\n\n• Purchased from Nightcap for 80 Fergolyte , requiring Rank 3 - Seeker with him to purchase.\n\n• Purchased from the Market for 20 Platinum 20 .\n[ edit | edit source ]"
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from Deepmines Bounties .\n\n• Purchased from Nightcap for 80 Fergolyte , requiring Rank 3 - Seeker with him to purchase.\n\n• Purchased from the Market for 20 Platinum 20 .\n[ edit | edit source ]\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "resources",
@@ -1753,6 +3824,23 @@
         }
       ],
       "acquisitionEvidence": "[ edit | edit source ]\n • Upon completion of The Duviri Paradox and Angels of the Zariman , and unlocking The Steel Path , players can earn Ballistica Incarnon Genesis from The Circuit 's Steel Path to place on their Ballistica with the help of Cavalero in the Chrysalith . This Incarnon Genesis form grants it evolutions to a transformation and newfound strength.\n\n• Purchased from Cavalero for 120 Platinum 120 , complete with the resources used in its installation. This purchase can only be made once ."
+    },
+    {
+      "domain": "resources",
+      "canonical": "Beating Heartstrings",
+      "displayName": "律动心弦",
+      "languageKey": "/Lotus/Language/1999/1999ResourceDefenseName",
+      "officialUniqueName": null,
+      "maxRank": null,
+      "effectDetails": [],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1595157,
+        "revisionId": 2788297,
+        "timestamp": "2026-06-24T01:27:16Z"
+      },
+      "methods": [],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Completing a rotation of Stage Defense missions (3 waves) in Solstice Square , Höllvania , awarded in quantities of 4 - 9 ( 7 - 12 in The Steel Path ).\n • Not awarded by Stage Defense stages of Temporal Archimedea ."
     },
     {
       "domain": "resources",
@@ -2065,6 +4153,23 @@
     },
     {
       "domain": "resources",
+      "canonical": "Elemental Vice",
+      "displayName": "元素恶癖",
+      "languageKey": "/Lotus/Language/Kingpins/ValenceAdapterName",
+      "officialUniqueName": null,
+      "maxRank": null,
+      "effectDetails": [],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1594656,
+        "revisionId": 2788466,
+        "timestamp": "2026-06-25T11:06:02Z"
+      },
+      "methods": [],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Purchased from Eleanor of The Hex for 50,000 Standing 50,000 at Rank 5 - Pizza Party .\n\n• Occasionally awarded from Temporal Archimedea .\n\n• Purchased from the Market for 20 Platinum 20 after completion of The Hex (Quest) .\n\n• Awarded at certain ranks from Nightwave :\n • Rank 8 from Nora's Mix: Time Tempests"
+    },
+    {
+      "domain": "resources",
       "canonical": "Emerald Talent",
       "displayName": "翠绿天赋",
       "languageKey": "/Lotus/Language/JadeShadowsPart2Mission/JS2MAshFavorName",
@@ -2318,7 +4423,24 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]"
+      "acquisitionEvidence": "[ edit | edit source ]\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+    },
+    {
+      "domain": "resources",
+      "canonical": "Live Heartcell",
+      "displayName": "活体心肌细胞",
+      "languageKey": "/Lotus/Language/1999Coda/CodaWeaponBucksName",
+      "officialUniqueName": null,
+      "maxRank": null,
+      "effectDetails": [],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1595156,
+        "revisionId": 2788703,
+        "timestamp": "2026-06-25T17:23:15Z"
+      },
+      "methods": [],
+      "acquisitionEvidence": "[ edit | edit source ]\n • 10-15 are earned from vanquishing a Technocyte Coda .\n\n• 1 per Technocyte Coda defeated past the first in the Technocyte Coda Concert, regardless of vanquish or convert, up to 3 in a full squad.\n\n• 10% chance from a Parazon Mercy on a Technocyte Coda Duet with Quick Correct mod equipped."
     },
     {
       "domain": "resources",
@@ -2559,6 +4681,40 @@
     },
     {
       "domain": "resources",
+      "canonical": "Omni Forma",
+      "displayName": "全能 Forma",
+      "languageKey": "/Lotus/Language/Items/FormaOmniName",
+      "officialUniqueName": null,
+      "maxRank": null,
+      "effectDetails": [],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1593885,
+        "revisionId": 2719301,
+        "timestamp": "2025-12-29T22:46:52Z"
+      },
+      "methods": [],
+      "acquisitionEvidence": "[ edit | edit source ]"
+    },
+    {
+      "domain": "resources",
+      "canonical": "Pix Chip",
+      "displayName": "贴纸芯片",
+      "languageKey": "/Lotus/Language/1999Echoes/1999ConquestBucksName",
+      "officialUniqueName": null,
+      "maxRank": null,
+      "effectDetails": [],
+      "introduced": "38.5",
+      "page": {
+        "pageId": 1596653,
+        "revisionId": 2757834,
+        "timestamp": "2026-04-03T15:59:30Z"
+      },
+      "methods": [],
+      "acquisitionEvidence": "[ edit | edit source ]\n • Awarded from Temporal Archimedea with certain research points.\n • 28 Points (Elite): Pix Chip x 6\n\n• 37 Points (Elite): Pix Chip x 9\n\n• Certain Peely Pix will reward an additional Pix Chip for completing a stage with the Pix equipped in exchange for an additional debuff, up to 3 extra Pix Chip s. Only 1 additional Pix Chip will be rewarded per stage; repeating a stage using a different Peely Pix will not give another Pix Chip.\n • It Sees You periodically spawns a hostile Antimatter Drop that will chase you throughout the selected mission.\n\n• Old Pizza gives any damage received during the selected mission a chance to inflict a Toxin proc.\n\n• Optimism gradually builds up Cold procs every few seconds, freezing the player solid for 3 seconds if 10 procs are allowed to accumulate. Rolling or Void Slinging will remove 3 stacks.\n\n• Once ten duplicates of a given Peely Pix have been obtained, enough to upgrade it to Chromatic, any excess copies obtained via Peely Paks are automatically converted to 1 Pix Chip each."
+    },
+    {
+      "domain": "resources",
       "canonical": "Reeking Puffball",
       "displayName": "臭屎菇",
       "languageKey": "/Lotus/Language/NokkoColony/GasMushroomName",
@@ -2657,7 +4813,7 @@
           }
         }
       ],
-      "acquisitionEvidence": "[ edit | edit source ]"
+      "acquisitionEvidence": "[ edit | edit source ]\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
     },
     {
       "domain": "resources",
@@ -3053,6 +5209,21 @@
       "domain": "mods",
       "canonical": "Atragraph Mods",
       "reason": "category-overview"
+    },
+    {
+      "domain": "resources",
+      "canonical": "Dominus Aureus",
+      "reason": "official-localization-unresolved"
+    },
+    {
+      "domain": "resources",
+      "canonical": "Scuttler Husk",
+      "reason": "official-localization-unresolved"
+    },
+    {
+      "domain": "resources",
+      "canonical": "Temporal Dust",
+      "reason": "official-localization-unresolved"
     }
   ]
 }

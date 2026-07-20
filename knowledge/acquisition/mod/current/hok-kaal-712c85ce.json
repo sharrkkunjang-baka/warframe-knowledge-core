@@ -13,9 +13,11 @@
         "standardmod"
       ]
     },
+    "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/DamageWhileInvisible",
     "maxRank": 5,
     "effectDetails": [
-      "使用虚空模式后，下一次增幅器攻击会造成 x3.0 额外伤害（冷却时间 5 秒）"
+      "使用虚空模式后，下一次增幅器攻击会造成 x3.0 额外伤害（冷却时间 5 秒）",
+      "使用虚空模式后，下一次增幅器攻击会造成 x|BONUS| 额外伤害（冷却时间 |COOLDOWN| 秒）"
     ],
     "rarity": null,
     "polarity": null,
@@ -33,8 +35,56 @@
           "variant": "standard"
         },
         "wiki": {
-          "status": "unresolved",
-          "methods": [],
+          "status": "complete",
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+              "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+              "availability": "rotating",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.marie",
+                "locationId": "hub.sanctum-anatomica",
+                "chooseCount": 2,
+                "currency": [
+                  {
+                    "currencyId": "currency.agnovidisc",
+                    "amountRange": [
+                      250,
+                      350
+                    ]
+                  },
+                  {
+                    "currencyId": "currency.laudavi",
+                    "amountRange": [
+                      100,
+                      140
+                    ]
+                  },
+                  {
+                    "currencyId": "currency.servoris",
+                    "amountRange": [
+                      40,
+                      60
+                    ]
+                  }
+                ]
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Marie",
+                "pageId": 1599544,
+                "revisionId": 2794179,
+                "section": "Browse Items",
+                "excerpt": "Hok-Kaal | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -44,23 +94,99 @@
                 "pageTitle": "Hok-Kaal",
                 "revisionId": 2784361
               },
-              "excerpt": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop."
+              "excerpt": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Capsarii |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Grineer Trapper |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n | Anarch Tenebra |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
             }
           ],
           "mechanicsEvidence": {},
           "unresolvedEntities": []
         },
-        "officialDrops": []
+        "officialDrops": [
+          {
+            "type": "enemy-drop",
+            "sourceCanonical": "Anarch Capsarii",
+            "sourceEntityId": "enemy.anarch-capsarii",
+            "sourceDisplayName": "自由派医疗兵",
+            "missionTypeId": "mission-type.the-perita-rebellion",
+            "dropTableChance": 0.005,
+            "itemChance": 0.3333,
+            "chance": 0.0016665,
+            "quantity": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "retrievedVia": "Official Warframe Wiki local snapshot",
+              "pageTitle": "Hok-Kaal",
+              "pageId": 1605365,
+              "revisionId": 2784361,
+              "section": "Enemy Drop Tables",
+              "excerpt": "Anarch Capsarii | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "sourceCanonical": "Anarch Grineer Trapper",
+            "sourceEntityId": "enemy.anarch-grineer-trapper",
+            "sourceDisplayName": "自由派 Grineer 捕猎者",
+            "missionTypeId": "mission-type.the-perita-rebellion",
+            "dropTableChance": 0.005,
+            "itemChance": 0.3333,
+            "chance": 0.0016665,
+            "quantity": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "retrievedVia": "Official Warframe Wiki local snapshot",
+              "pageTitle": "Hok-Kaal",
+              "pageId": 1605365,
+              "revisionId": 2784361,
+              "section": "Enemy Drop Tables",
+              "excerpt": "Anarch Grineer Trapper | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "sourceCanonical": "Anarch Tenebra",
+            "sourceEntityId": "enemy.anarch-tenebra",
+            "sourceDisplayName": "自由派暗杀兵",
+            "missionTypeId": "mission-type.the-perita-rebellion",
+            "dropTableChance": 0.005,
+            "itemChance": 0.3333,
+            "chance": 0.0016665,
+            "quantity": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "retrievedVia": "Official Warframe Wiki local snapshot",
+              "pageTitle": "Hok-Kaal",
+              "pageId": 1605365,
+              "revisionId": 2784361,
+              "section": "Enemy Drop Tables",
+              "excerpt": "Anarch Tenebra | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "current-wiki-supplement",
+          "recent-mod-evidence-audit"
+        ]
       }
     },
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Hok-Kaal",
@@ -69,8 +195,11 @@
     ],
     "gameVersion": "Update 41.0",
     "updatedAt": "2026-07-20",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "current-wiki-supplement",
+      "recent-mod-evidence-audit"
+    ],
     "tags": [
       "acquisition",
       "mod",

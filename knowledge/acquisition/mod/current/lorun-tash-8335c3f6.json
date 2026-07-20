@@ -1,6 +1,6 @@
 [
   {
-    "id": "knowledge.acquisition.mod.lorun-tash-87414a03",
+    "id": "knowledge.acquisition.mod.lorun-tash-79c7ad02",
     "kind": "knowledge",
     "module": "acquisition",
     "title": "洛塔",
@@ -8,14 +8,16 @@
       "canonical": "Lorun-Tash",
       "displayName": "洛塔",
       "category": "mod",
-      "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/Armour",
+      "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/AntiqueArmour",
       "categoryRefs": [
         "standardmod"
       ]
     },
+    "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/AntiqueArmour",
     "maxRank": 3,
     "effectDetails": [
-      "400 指挥官护甲"
+      "400 指挥官护甲",
+      "|val| 指挥官护甲"
     ],
     "rarity": null,
     "polarity": null,
@@ -27,14 +29,62 @@
     "modAcquisition": {
       "generated": {
         "identity": {
-          "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/Armour",
+          "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/AntiqueArmour",
           "canonical": "Lorun-Tash",
           "displayName": "洛塔",
           "variant": "standard"
         },
         "wiki": {
-          "status": "unresolved",
-          "methods": [],
+          "status": "complete",
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+              "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+              "availability": "rotating",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.marie",
+                "locationId": "hub.sanctum-anatomica",
+                "chooseCount": 2,
+                "currency": [
+                  {
+                    "currencyId": "currency.agnovidisc",
+                    "amountRange": [
+                      250,
+                      350
+                    ]
+                  },
+                  {
+                    "currencyId": "currency.laudavi",
+                    "amountRange": [
+                      100,
+                      140
+                    ]
+                  },
+                  {
+                    "currencyId": "currency.servoris",
+                    "amountRange": [
+                      40,
+                      60
+                    ]
+                  }
+                ]
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Marie",
+                "pageId": 1599544,
+                "revisionId": 2794179,
+                "section": "Browse Items",
+                "excerpt": "Lorun-Tash | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -44,23 +94,51 @@
                 "pageTitle": "Lorun-Tash",
                 "revisionId": 2784356
               },
-              "excerpt": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop."
+              "excerpt": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Libritor |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
             }
           ],
           "mechanicsEvidence": {},
           "unresolvedEntities": []
         },
-        "officialDrops": []
+        "officialDrops": [
+          {
+            "type": "enemy-drop",
+            "sourceCanonical": "Anarch Libritor",
+            "sourceEntityId": "enemy.anarch-libritor",
+            "sourceDisplayName": "自由派解放者",
+            "missionTypeId": "mission-type.the-perita-rebellion",
+            "dropTableChance": 0.005,
+            "itemChance": 0.3333,
+            "chance": 0.0016665,
+            "quantity": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "retrievedVia": "Official Warframe Wiki local snapshot",
+              "pageTitle": "Lorun-Tash",
+              "pageId": 1605366,
+              "revisionId": 2784356,
+              "section": "Enemy Drop Tables",
+              "excerpt": "Anarch Libritor | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+            }
+          }
+        ]
       },
       "manual": {
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "current-wiki-supplement",
+          "recent-mod-evidence-audit"
+        ]
       }
     },
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Lorun-Tash",
@@ -69,8 +147,11 @@
     ],
     "gameVersion": "Update 41.0",
     "updatedAt": "2026-07-20",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "current-wiki-supplement",
+      "recent-mod-evidence-audit"
+    ],
     "tags": [
       "acquisition",
       "mod",

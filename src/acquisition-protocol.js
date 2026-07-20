@@ -10,7 +10,16 @@ function normalizeRequirements(value) {
     usage: source.usage === 'crafting' ? 'crafting' : 'exchange',
     npcId: source.npcId || null,
     locationId: source.locationId || null,
-    currency: (source.currency || []).map(item => ({ currencyId: item.currencyId, amount: Number(item.amount) })).filter(item => item.currencyId && Number.isFinite(item.amount) && item.amount > 0),
+    chooseCount: Number.isInteger(source.chooseCount) && source.chooseCount > 0 ? source.chooseCount : null,
+    currency: (source.currency || []).map(item => {
+      const amount = Number(item.amount)
+      const amountRange = Array.isArray(item.amountRange) && item.amountRange.length === 2
+        ? item.amountRange.map(Number)
+        : null
+      if (item.currencyId && amountRange?.every(value => Number.isFinite(value) && value > 0)) return { currencyId: item.currencyId, amountRange }
+      if (item.currencyId && Number.isFinite(amount) && amount > 0) return { currencyId: item.currencyId, amount }
+      return null
+    }).filter(Boolean),
     boosterPolicy: 'currency-entity-metadata'
   }
   if (type === 'standing') {
@@ -100,14 +109,21 @@ function renderRequirements(value, registries) {
   }
   if (requirement.type !== 'currency') return []
   const currencies = requirement.currency.map(item => ({ ...item, entity: registries.currencies.get(item.currencyId) })).filter(item => item.entity)
-  const currencyText = currencies.map(item => `${item.amount}个${item.entity.displayName || item.entity.canonical}`).join('和')
+  const amountText = item => item.amountRange
+    ? `${item.amountRange[0]}-${item.amountRange[1]}个`
+    : `${item.amount}个`
+  const currencyText = currencies.map(item => `${amountText(item)}${item.entity.displayName || item.entity.canonical}`).join('、')
+  const choiceText = requirement.chooseCount && requirement.chooseCount < currencies.length
+    ? `（随机选择其中${requirement.chooseCount}种）`
+    : ''
   const route = requirement.usage === 'crafting'
     ? `在${locationName}制造需要${currencyText}`
-    : npcName ? `在${locationName}找${npcName}兑换，需要${currencyText}` : `在${locationName}兑换，需要${currencyText}`
-  const combinedDependency = combinedMissionCurrencySummary(currencies, registries)
-  const dependencies = combinedDependency ? [combinedDependency] : currencies.map(({ entity, amount }) => {
+    : npcName ? `在${locationName}找${npcName}兑换，需要${currencyText}${choiceText}` : `在${locationName}兑换，需要${currencyText}${choiceText}`
+  const fixedCurrencies = currencies.filter(item => Number.isFinite(item.amount))
+  const combinedDependency = fixedCurrencies.length === currencies.length ? combinedMissionCurrencySummary(currencies, registries) : null
+  const dependencies = combinedDependency ? [combinedDependency] : currencies.map(({ entity, amount, amountRange }) => {
     const summary = currencyAcquisitionSummary(entity, registries)
-    return summary ? `${entity.displayName || entity.canonical}（需要${amount}个）：${summary}` : null
+    return summary ? `${entity.displayName || entity.canonical}（需要${amountRange ? `${amountRange[0]}-${amountRange[1]}` : amount}个）：${summary}` : null
   }).filter(Boolean)
   const boosterLines = []
   const boosterLabel = {

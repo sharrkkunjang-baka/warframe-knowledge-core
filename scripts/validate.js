@@ -422,9 +422,11 @@ if (!officialCatalog) {
 
   if (officialCatalog.schemaVersion !== 1) errors.push('official.json: schemaVersion 必须为 1');
   const excludedMods = officialCatalog.excludedMods || [];
-  const packageModCount = new (require('warframe-items'))({ category: ['Mods'], i18n: ['zh'] }).length;
-  const supplementalModCount = officialMods.filter(mod => String(mod.uniqueName).startsWith('language:')).length;
-  if (officialMods.length + excludedMods.length !== packageModCount + supplementalModCount) errors.push(`official.json: 应覆盖 ${packageModCount} 条上游记录和 ${supplementalModCount} 条官方语言补充记录，实际 ${officialMods.length + excludedMods.length}`);
+  const packageMods = new (require('warframe-items'))({ category: ['Mods'], i18n: ['zh'] });
+  const packageModCount = packageMods.length;
+  const packageUniqueNames = new Set(packageMods.map(mod => mod.uniqueName));
+  const supplementalModCount = officialMods.filter(mod => !packageUniqueNames.has(mod.uniqueName)).length;
+  if (officialMods.length + excludedMods.length !== packageModCount + supplementalModCount) errors.push(`official.json: 应覆盖 ${packageModCount} 条上游记录和 ${supplementalModCount} 条补充记录，实际 ${officialMods.length + excludedMods.length}`);
   if (officialCatalog.counts?.upstreamRecords !== packageModCount) errors.push('official.json: counts.upstreamRecords 不一致');
   if (officialCatalog.counts?.mods !== officialMods.length) errors.push('official.json: counts.mods 不一致');
   if (officialCatalog.counts?.excludedMods !== excludedMods.length) errors.push('official.json: counts.excludedMods 不一致');
