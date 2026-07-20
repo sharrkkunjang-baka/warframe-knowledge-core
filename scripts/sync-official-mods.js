@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const { renderGameText } = require('../src/game-text');
 const Items = require('warframe-items');
 const { filterPlayableMods, getTypeDisplayName } = require('../src/playable-mod-filter');
-const { readCategoryDirectory, readEntryDirectory } = require('../src/loader');
+const { readCategoryDirectory, readEntryDirectory, readObjectDirectory } = require('../src/loader');
 
 const root = path.join(__dirname, '..');
 const knowledgeRoot = path.join(root, 'knowledge');
@@ -16,6 +16,7 @@ const officialEnglishPath = path.join(root, '.cache', 'official-localization', '
 const officialChinesePath = path.join(root, '.cache', 'official-localization', 'languages.zh.json');
 const officialSyndicatesPath = path.join(root, 'cache', 'warframe-export-syndicates.json');
 const supplementalEntryDirectory = path.join(root, 'knowledge', 'acquisition', 'mod', 'standardmod', 'warframe');
+const currentModIdentitiesPath = path.join(root, 'knowledge', 'supplemental', 'current-mod-identities.json');
 
 const SYNDICATE_FACTION_IDS = Object.freeze({
   ArbitersSyndicate: 'faction.arbiters-of-hexis',
@@ -181,8 +182,17 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
 
 function syncSupplementalEntries(mods, options = {}) {
   const changes = [];
+  const existingByCanonical = new Map();
+  if (fs.existsSync(supplementalEntryDirectory)) {
+    for (const name of fs.readdirSync(supplementalEntryDirectory).filter(name => name.endsWith('.json'))) {
+      const file = path.join(supplementalEntryDirectory, name);
+      const canonical = JSON.parse(fs.readFileSync(file, 'utf8'))?.[0]?.subject?.canonical;
+      if (canonical) existingByCanonical.set(normalize(canonical), file);
+    }
+  }
   for (const mod of mods) {
     const identity = supplementalEntryIdentity(mod);
+    identity.file = existingByCanonical.get(normalize(mod.canonical)) || identity.file;
     const current = fs.existsSync(identity.file) ? fs.readFileSync(identity.file, 'utf8') : null;
     const existing = current ? JSON.parse(current)?.[0] : null;
     const next = `${JSON.stringify(buildSupplementalEntry(mod, existing?.updatedAt || options.updatedAt, existing), null, 2)}\n`;
@@ -202,6 +212,7 @@ function compileSupplementalMods(rawItems) {
   const syndicateOffers = compileOfficialSyndicateOffers();
   const descriptionKeysByStem = new Map(Object.keys(en).filter(key => key.endsWith('Desc')).map(key => [augmentStem(key), key]));
   const knownNames = new Set(rawItems.map(item => normalize(item.name)));
+  const currentIdentities = new Map(JSON.parse(fs.readFileSync(currentModIdentitiesPath, 'utf8')).items.map(item => [normalize(item.canonical), item.uniqueName]));
   const records = [];
   for (const [nameKey, canonical] of Object.entries(en)) {
     if (!nameKey.endsWith('Name') || knownNames.has(normalize(canonical))) continue;
@@ -217,7 +228,7 @@ function compileSupplementalMods(rawItems) {
     const acquisitionMethods = offerMethods;
     const acquisitionComplete = acquisitionMethods.length > 0;
     records.push({
-      uniqueName: `language:${nameKey}`,
+      uniqueName: currentIdentities.get(normalize(canonical)) || `language:${nameKey}`,
       canonical,
       displayName,
       localizationStatus: 'official-zh',
@@ -249,7 +260,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const rawItems = new Items({ category: ['Mods'], i18n: ['zh'] });
   const { playable: items, excluded } = filterPlayableMods(rawItems);
   const localCategories = readCategoryDirectory(path.join(knowledgeRoot, 'categories'));
-  const acquisitionEntries = readEntryDirectory(path.join(root, 'knowledge', 'acquisition'));
+  const acquisitionEntries = readObjectDirectory(path.join(root, 'knowledge', 'acquisition'));
   const acquisitionsByCanonical = new Map();
   const acquisitionsByUniqueName = new Map();
   const acquisitionById = new Map(acquisitionEntries.map(entry => [entry.id, entry]));
