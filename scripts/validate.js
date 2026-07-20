@@ -68,6 +68,20 @@ for (const [name, directory] of Object.entries(entityDirectories)) {
     if (!entry || entry.canonical !== item.canonical || entry.category !== item.category) errors.push(`${item.id}: 实体索引与文件不一致`);
   }
 }
+for (const currency of entities.currencies) {
+  const booster = currency.boosterEffects;
+  const allowed = new Set(['affected', 'unaffected', 'unknown']);
+  if (!booster || !allowed.has(booster.resourceAmount) || !allowed.has(booster.resourceDropChance)) {
+    errors.push(`${currency.id}: 货币必须声明资源数量/掉落几率加成状态，缺证据时使用 unknown`);
+    continue;
+  }
+  if (booster.exchangeCost !== 'unaffected') errors.push(`${currency.id}: 兑换成本不得被资源加成修改`);
+  if (booster.scope !== 'in-mission-pickups-only') errors.push(`${currency.id}: 加成作用域必须明确限定为任务内拾取`);
+  if (!Array.isArray(booster.evidence)) errors.push(`${currency.id}: boosterEffects.evidence 必须为数组`);
+  if ((booster.resourceAmount !== 'unknown' || booster.resourceDropChance !== 'unknown') && !booster.evidence?.length) {
+    errors.push(`${currency.id}: 已判定加成状态必须包含证据`);
+  }
+}
 
 for (const category of categories) {
   if (!/^[a-z0-9][a-z0-9._-]*$/.test(category.id || '')) errors.push(`${category.id || '<unknown category>'}: 分类 id 格式错误`);
@@ -195,7 +209,6 @@ for (const entry of entries) {
       const variables = routing.componentVariables || {};
       const requirement = routing.requirements;
       if (requirement && !['none', 'standing', 'currency', 'quest', 'item'].includes(requirement.type)) errors.push(`${entry.id}: requirements.type is outside shared protocol`);
-      if (requirement?.type === 'currency' && typeof requirement.isBuffUseless !== 'boolean') errors.push(`${entry.id}: currency requirements.isBuffUseless 必须是布尔值`);
       if (requirement?.type === 'currency' && !['exchange', 'crafting'].includes(requirement.usage)) errors.push(`${entry.id}: currency requirements.usage 只能是 exchange 或 crafting`);
       if (requirement?.type === 'currency' && (!requirement.locationId || !entities.locations.some(item => item.id === requirement.locationId))) errors.push(`${entry.id}: currency requirements 必须提供有效 locationId`);
       if (requirement?.type === 'currency' && (!Array.isArray(requirement.currency) || !requirement.currency.length)) errors.push(`${entry.id}: currency requirements 必须提供 currency 子选项`);

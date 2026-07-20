@@ -110,7 +110,7 @@ function compileAcquisitionProseMethod(excerpt, page, section) {
   match = excerpt.match(/(?:obtained|reaching Rank\s+(\d+))[^.]*?Nightwave[^.]*?(?:Rank\s+(\d+))?/i)
   if (match) return { type: 'legacy-nightwave-reward', locationId: 'interface.nightwave', rank: Number(match[1] || match[2] || 0) || null, chance: null, quantity: 1, availability: 'legacy-or-future-rotation', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Arbitrations vendor[^.]*?for\s+(\d+)\s+Vitus Essence/i)
-  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.arbitration-honors', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.vitus-essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Teshin[^.]*?for\s+(\d+)\s+Steel Essence/i)
   if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.teshin', locationId: 'hub.any-relay', currency: [{ currencyCanonical: 'Steel Essence', amount: Number(match[1]) }], chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   const factionIds = { 'Arbiters of Hexis': 'faction.arbiters-of-hexis', 'Cephalon Suda': 'faction.cephalon-suda', 'New Loka': 'faction.new-loka', 'The Perrin Sequence': 'faction.the-perrin-sequence', 'Steel Meridian': 'faction.steel-meridian', 'Red Veil': 'faction.red-veil' }
@@ -158,8 +158,9 @@ function compileAcquisition(page, section, unresolved) {
     }
   }
   const prose = splitEvidenceItems(section.text).filter(item => !/^\|/.test(item) && !/^Drop Locations:?$/i.test(item) && !/^Originally\b/i.test(item))
-  methods.push(...prose.map(excerpt => compileAcquisitionProseMethod(excerpt, page, section)).filter(Boolean))
-  return { methods, evidence: prose.map(excerpt => ({ type: 'acquisition-prose', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) })) }
+  const compiledProse = prose.map(excerpt => ({ excerpt, method: compileAcquisitionProseMethod(excerpt, page, section) }))
+  methods.push(...compiledProse.map(item => item.method).filter(Boolean))
+  return { methods, evidence: compiledProse.map(item => ({ type: 'acquisition-prose', reviewStatus: item.method?.reviewStatus || 'draft', provenance: evidenceProvenance(page, section, item.excerpt) })) }
 }
 
 function uniqueUnresolved(values) {

@@ -124,7 +124,8 @@ test('手枪元素师显示实体化敌人及布鲁图斯扬升来源', () => {
 test('所有获取方法引用的 NPC 实体均已注册且仲裁商店保留官方名称', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
   const preparation = core.getAcquisition('有备而来');
-  assert.match(preparation.description, /仲裁阁下的奖励处兑换[\s\S]*任意中继站兑换，需要30个生息精华/);
+  assert.match(preparation.description, /仲裁阁下的奖励处兑换，需要30个生息精华/);
+  assert.equal((preparation.description.match(/兑换，需要30个生息精华/g) || []).length, 1);
   assert.equal(preparation.structuredMethods[0].sourceDisplayName, '仲裁阁下的奖励');
   assert.equal(preparation.structuredMethods[0].sourceEntityId, 'acquisition-source.arbitration-honors');
   assert.equal(core.getAcquisition('Amanata Pressure').structuredMethods[0].sourceEntityId, 'acquisition-source.koumei-shrine');
@@ -137,12 +138,14 @@ test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
     assert.deepEqual(result.structuredMethods.map(method => ({ type: method.type, sourceEntityId: method.sourceEntityId, sourceDisplayName: method.sourceDisplayName, locationId: method.locationId, locationDisplayName: method.locationDisplayName })), [{
       type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.chipper', sourceDisplayName: '切片哥', locationId: 'hub.drifters-camp', locationDisplayName: '漂泊者营地'
     }]);
-    assert.deepEqual(result.requirements, { type: 'currency', usage: 'exchange', npcId: 'npc.chipper', locationId: 'hub.drifters-camp', currency: [{ currencyId: 'currency.stock', amount: 40 }], isBuffUseless: true });
+    assert.deepEqual(result.requirements, { type: 'currency', usage: 'exchange', npcId: 'npc.chipper', locationId: 'hub.drifters-camp', currency: [{ currencyId: 'currency.stock', amount: 40 }], boosterPolicy: 'currency-entity-metadata' });
     assert.deepEqual(result.requirementLines, [
       '在漂泊者营地找切片哥兑换，需要40个存货储备',
       '所需货币怎么刷：',
       '存货储备（需要40个）：完成卡尔每周的“击溃合一众”任务挑战获得，并同时推进卡尔驻军等级',
-      '资源数量加成无效'
+      '资源数量加成：存货储备不受影响',
+      '资源掉落几率加成：存货储备不受影响',
+      '兑换成本固定为40个存货储备，不会因加成改变'
     ]);
     assert.equal(result.structuredMethods.some(method => method.type === 'enemy-drop'), false);
   }
@@ -294,7 +297,7 @@ test('最后本地边界项有明确的发布或排除结论', () => {
     prerequisite: 'steel-path',
     requirements: {
       type: 'currency', usage: 'exchange', npcId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus',
-      currency: [{ currencyId: 'currency.fate-pearl', amount: 150 }], isBuffUseless: true
+      currency: [{ currencyId: 'currency.fate-pearl', amount: 150 }], boosterPolicy: 'currency-entity-metadata'
     }
   });
   assert.match(amanata.description, /希图斯.*150个命运之珠/);

@@ -11,7 +11,7 @@ function normalizeRequirements(value) {
     npcId: source.npcId || null,
     locationId: source.locationId || null,
     currency: (source.currency || []).map(item => ({ currencyId: item.currencyId, amount: Number(item.amount) })).filter(item => item.currencyId && Number.isFinite(item.amount) && item.amount > 0),
-    isBuffUseless: source.isBuffUseless ?? source.isBuffuseless ?? true
+    boosterPolicy: 'currency-entity-metadata'
   }
   if (type === 'standing') {
     const amount = Number(source.amount ?? source.standing)
@@ -109,7 +109,102 @@ function renderRequirements(value, registries) {
     const summary = currencyAcquisitionSummary(entity, registries)
     return summary ? `${entity.displayName || entity.canonical}（需要${amount}个）：${summary}` : null
   }).filter(Boolean)
-  return [route, ...(dependencies.length ? ['所需货币怎么刷：', ...dependencies] : []), requirement.isBuffUseless ? '资源数量加成无效' : '资源数量加成有效'].filter(Boolean)
+  const boosterLines = []
+  const boosterLabel = {
+    resourceAmount: '资源数量加成',
+    resourceDropChance: '资源掉落几率加成'
+  }
+  const boosterEffect = {
+    resourceAmount: {
+      affected: names => `${names}的任务内拾取数量可翻倍`,
+      unaffected: names => `${names}不受影响`,
+      unknown: names => `${names}缺少明确证据，暂按未知处理`
+    },
+    resourceDropChance: {
+      affected: names => `${names}的任务内掉落几率受影响`,
+      unaffected: names => `${names}不受影响`,
+      unknown: names => `${names}缺少明确证据，暂按未知处理`
+    }
+  }
+  for (const field of Object.keys(boosterLabel)) {
+    const groups = new Map()
+    for (const { entity } of currencies) {
+      const status = ['affected', 'unaffected'].includes(entity.boosterEffects?.[field]) ? entity.boosterEffects[field] : 'unknown'
+      const names = groups.get(status) || []
+      names.push(entity.displayName || entity.canonical)
+      groups.set(status, names)
+    }
+    for (const [status, names] of groups) boosterLines.push(`${boosterLabel[field]}：${boosterEffect[field][status](names.join('、'))}`)
+  }
+  const costKind = requirement.usage === 'crafting' ? '制造' : '兑换'
+  return [
+    route,
+    ...(dependencies.length ? ['所需货币怎么刷：', ...dependencies] : []),
+    ...boosterLines,
+    `${costKind}成本固定为${currencyText}，不会因加成改变`
+  ].filter(Boolean)
+}
+
+function normalizeVisibleLine(value) {
+  return String(value || '')
+    .normalize('NFKC')
+    .replace(/\s+/g, '')
+    .replace(/[，,。；;：:！？!?（）()「」『』【】]/g, '')
+    .replace(/仲裁阁下的奖励处/g, '仲裁荣誉商店')
+    .replace(/找(.+?)兑换/g, '$1处兑换')
+    .trim()
+}
+
+function mergeMethodPresentationLines(method, headline, requirementLines = []) {
+  const output = []
+  const add = line => {
+    if (!line) return
+    const key = normalizeVisibleLine(line)
+    if (!key || output.some(item => normalizeVisibleLine(item) === key)) return
+    output.push(line)
+  }
+  let mergedHeadline = headline
+  for (const line of requirementLines) {
+    if (
+      mergedHeadline &&
+      /兑换/.test(mergedHeadline) &&
+      /兑换/.test(line) &&
+      method?.requirements?.type === 'currency' &&
+      /^在.+兑换，需要/.test(String(line)) &&
+      ['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method?.type)
+    ) {
+      const cost = String(line).match(/(?:，|,)?需要(.+)$/)
+      if (cost && !/需要/.test(mergedHeadline)) mergedHeadline = `${mergedHeadline}，需要${cost[1]}`
+      continue
+    }
+    add(line)
+  }
+  const result = []
+  if (mergedHeadline) result.push(mergedHeadline)
+  for (const line of output) {
+    const key = normalizeVisibleLine(line)
+    if (!result.some(item => normalizeVisibleLine(item) === key)) result.push(line)
+  }
+  return result
+}
+
+function nearDuplicateVisibleLines(lines) {
+  const values = (lines || []).map(line => String(line || '').trim()).filter(Boolean)
+  const failures = []
+  for (let left = 0; left < values.length; left++) {
+    for (let right = left + 1; right < values.length; right++) {
+      const a = normalizeVisibleLine(values[left])
+      const b = normalizeVisibleLine(values[right])
+      if (!a || !b) continue
+      const same = a === b
+      const redundantExchange = !/成本固定/.test(a + b) && /兑换/.test(a) && /兑换/.test(b) && (
+        a.includes(b) || b.includes(a) ||
+        (/需要\d+个/.test(a) !== /需要\d+个/.test(b))
+      )
+      if (same || redundantExchange) failures.push({ left: values[left], right: values[right] })
+    }
+  }
+  return failures
 }
 
 function localizeAcquisitionText(value) {
@@ -279,7 +374,7 @@ function acquisitionCardSections(methods, options = {}) {
   for (const method of mergeAlternativeSources(applyDisplaySummaries(nonEnemy), { ...options, showProbabilities: false })) {
     const headline = renderStructuredMethod(method, { ...options, showProbabilities: false })
     if (!headline) continue
-    const lines = [headline, ...(method.requirementLines || [])]
+    const lines = mergeMethodPresentationLines(method, headline, method.requirementLines || [])
     if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
     const text = [...new Set(lines.filter(Boolean))].join('\n')
     const group = acquisitionCardGroup(method)
@@ -320,9 +415,8 @@ function renderAcquisition(methods, options = {}) {
       continue
     }
     const headline = renderStructuredMethod(method, options)
-    if (headline) lines.push(headline)
     const isVendorExchange = method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange'
-    if (method.type !== 'quest-reward' && !isVendorExchange) lines.push(...(method.requirementLines || []))
+    if (method.type !== 'quest-reward' && !isVendorExchange) lines.push(...mergeMethodPresentationLines(method, headline, method.requirementLines || []))
     if (isVendorExchange) {
       const variables = method.variables || {}
       const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : '该物品'
@@ -330,7 +424,9 @@ function renderAcquisition(methods, options = {}) {
         const quest = options.registries?.quests?.get(method.prerequisiteQuestId)
         lines.push(`${scopeName}兑换前置：完成任务「${quest?.displayName || quest?.canonical || method.prerequisiteQuestId}」`)
       }
-      for (const line of method.requirementLines || []) lines.push(line)
+      lines.push(...mergeMethodPresentationLines(method, headline, method.requirementLines || []))
+    } else if (method.type === 'quest-reward' && headline) {
+      lines.push(headline)
     }
     if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
   }
@@ -339,4 +435,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

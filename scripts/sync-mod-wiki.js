@@ -73,6 +73,15 @@ function compileOfficialTemplateEffect(entry, page) {
 function sameWikiSource(oldWiki, report, page) {
   return oldWiki?.wiki?.revisionId === page.revisionId && oldWiki?.wiki?.sourceDatabase?.sha256 === report.sha256
 }
+function hasFullyApprovedWikiAcquisition(generatedWiki) {
+  const usable = (generatedWiki?.methods || []).filter(method =>
+    method.chance !== null || ['mission-reward', 'companion-included', 'vendor-or-syndicate-exchange', 'syndicate-exchange-group', 'quest-reward'].includes(method.type)
+  )
+  return generatedWiki?.status === 'complete' &&
+    !(generatedWiki.unresolvedEntities || []).length &&
+    usable.length > 0 &&
+    usable.every(method => method.reviewStatus === 'approved')
+}
 function buildPlan(options = {}) {
   const filename = resolveWikiDatabase(options.db)
   const report = inspectWikiDatabase(filename, { skipHash: options.skipHash })
@@ -125,6 +134,12 @@ function buildPlan(options = {}) {
       nextEntry.modAcquisition = {
         generated: { ...(entry.modAcquisition?.generated || {}), wiki: generatedWiki },
         manual: migrateManualModData(entry)
+      }
+      if (hasFullyApprovedWikiAcquisition(generatedWiki)) {
+        nextEntry.reviewStatus = 'approved'
+        nextEntry.reviewedBy = [...new Set([...(entry.reviewedBy || []), 'structured-wiki-acquisition-audit'])]
+        nextEntry.modAcquisition.manual.reviewStatus = 'approved'
+        nextEntry.modAcquisition.manual.reviewedBy = [...new Set([...(nextEntry.modAcquisition.manual.reviewedBy || []), 'structured-wiki-acquisition-audit'])]
       }
       if (nextEntry.reviewStatus !== 'approved') nextEntry.acquisitionStatus = generatedWiki.status === 'unresolved' ? 'stub' : generatedWiki.status
       if (!nextEntry.modAcquisition.generated.identity) {
@@ -205,4 +220,4 @@ function run(argv = process.argv.slice(2)) {
 if (require.main === module) {
   try { run() } catch (error) { console.error(error.stack || error); process.exit(1) }
 }
-module.exports = { REPORT_PATH, buildEntityMigrationPlan, buildPlan, comparable, compileOfficialTemplateEffect, normalizeEntityReferences, run, sameWikiSource }
+module.exports = { REPORT_PATH, buildEntityMigrationPlan, buildPlan, comparable, compileOfficialTemplateEffect, hasFullyApprovedWikiAcquisition, normalizeEntityReferences, run, sameWikiSource }

@@ -1,0 +1,73 @@
+'use strict'
+
+const test = require('node:test')
+const assert = require('node:assert/strict')
+const { createKnowledgeCore } = require('../src')
+const { acquisitionCardSections, nearDuplicateVisibleLines } = require('../src/acquisition-protocol')
+const { buildPlan } = require('../scripts/sync-currency-booster-effects')
+
+const core = createKnowledgeCore({ approvedOnly: false })
+
+test('生息精华按实体证据区分拾取加成、掉率加成与固定兑换成本', () => {
+  const result = core.getAcquisition('镀层增幅线圈')
+  const method = result.structuredMethods[0]
+  assert.deepEqual(method.requirements, {
+    type: 'currency',
+    usage: 'exchange',
+    npcId: 'acquisition-source.arbitration-honors',
+    locationId: 'hub.any-relay',
+    currency: [{ currencyId: 'currency.vitus-essence', amount: 20 }],
+    boosterPolicy: 'currency-entity-metadata'
+  })
+  assert.match(method.requirementLines.join('\n'), /任务内拾取数量可翻倍/)
+  assert.match(method.requirementLines.join('\n'), /任务内掉落几率受影响/)
+  assert.match(method.requirementLines.join('\n'), /兑换成本固定为20个生息精华，不会因加成改变/)
+  const text = core.getAcquisitionCard('Galvanized Reflex').sections.exchange.join('\n')
+  assert.equal((text.match(/仲裁阁下的奖励处兑换/g) || []).length, 1)
+  assert.equal((text.match(/兑换，需要20个生息精华/g) || []).length, 1)
+  assert.deepEqual(nearDuplicateVisibleLines(text.split('\n')), [])
+})
+
+test('真正不受加成的命运之珠不会被默认成未知或有效', () => {
+  const text = core.getAcquisition('Amanata Pressure').structuredMethods[0].requirementLines.join('\n')
+  assert.match(text, /资源数量加成：命运之珠不受影响/)
+  assert.match(text, /资源掉落几率加成：命运之珠不受影响/)
+  assert.doesNotMatch(text, /缺少明确证据|可翻倍/)
+})
+
+test('全量货币加成同步保留 unknown 而不把缺证据武断写成无效', () => {
+  const plan = buildPlan({ db: require('node:path').join(__dirname, '..', '.cache', 'warframe-wiki.sqlite') })
+  assert.equal(plan.counts.currencies, core.currencies.values.length)
+  assert.ok(plan.counts.resourceAmount.unknown > 0)
+  assert.ok(plan.counts.resourceDropChance.unknown > 0)
+  const credits = core.currencies.get('currency.credits')
+  assert.equal(credits.boosterEffects.resourceAmount, 'unknown')
+  assert.equal(credits.boosterEffects.resourceDropChance, 'unknown')
+})
+
+test('共享去重保留地点和费用不同的两个相似兑换 method', () => {
+  const methods = [
+    {
+      type: 'vendor-exchange',
+      sourceEntityId: 'npc.one',
+      locationId: 'hub.one',
+      sourceDisplayName: '甲商人',
+      locationDisplayName: '甲地点',
+      requirements: { type: 'currency' },
+      requirementLines: ['在甲地点找甲商人兑换，需要20个测试货币']
+    },
+    {
+      type: 'vendor-exchange',
+      sourceEntityId: 'npc.two',
+      locationId: 'hub.two',
+      sourceDisplayName: '乙商人',
+      locationDisplayName: '乙地点',
+      requirements: { type: 'currency' },
+      requirementLines: ['在乙地点找乙商人兑换，需要30个测试货币']
+    }
+  ]
+  const sections = acquisitionCardSections(methods)
+  assert.equal(sections.exchange.length, 2)
+  assert.match(sections.exchange[0].text, /甲地点.*20个/)
+  assert.match(sections.exchange[1].text, /乙地点.*30个/)
+})
