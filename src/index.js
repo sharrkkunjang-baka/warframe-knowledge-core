@@ -227,6 +227,11 @@ function createKnowledgeCore(options = {}) {
     if (!q) return null;
     const direct = officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q));
     if (direct) return direct;
+    const reviewedAlias = resolveDomainAlias(data.aliases, 'mods', query);
+    if (reviewedAlias && !reviewedAlias.ambiguous && reviewedAlias.match === 'exact') {
+      const reviewed = officialMods.find(mod => normalize(mod.canonical) === normalize(reviewedAlias.canonical));
+      if (reviewed) return reviewed;
+    }
     const targets = [...(modLookupAliases.get(q) || [])];
     return targets.length === 1 ? officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null : null;
   };
@@ -733,7 +738,8 @@ function createKnowledgeCore(options = {}) {
     if (resourceResult) return {
       query: raw, resolution: { canonical: resourceResult.entry.subject.canonical, exact: true }, entry: resourceResult.entry,
       description: resourceResult.text, resourceRoute: { text: resourceResult.routeText, tips: resourceResult.tips, source: 'resource-method' },
-      categories: [], methods: [], sourceOptions: [], structuredMethods: resourceResult.structuredMethods, alternatives: []
+      categories: [], methods: [], sourceOptions: [], requirements: { type: 'none' }, requirementLines: [],
+      structuredMethods: resourceResult.structuredMethods, alternatives: []
     };
     // 战甲规范名已经由命令层完成解析时必须精确锁定；通用别名解析可能把
     // "Wukong Prime" 之类的名称再次降级为普通 "Wukong"。

@@ -53,3 +53,54 @@ test('资源 method 目录覆盖索引中的全部分类', () => {
   const methods = coreModule.resourceAcquisition.METHODS
   for (const item of index.resources) assert.ok(methods[item.category], item.category)
 })
+
+test('刷 碲使用官方简中获取文案且不会落入希图斯赏金模板', () => {
+  const core = coreModule.createKnowledgeCore({ approvedOnly: false })
+  assert.deepEqual(core.parseAcquisitionCommand('刷 碲'), { intent: 'acquisition', query: '碲' })
+  const candidates = core.searchOfficialItems('碲', { limit: 20 })
+  assert.deepEqual(candidates.map(item => item.canonical), ['Tellurium'])
+  assert.equal(core.resolveItem('碲').item.canonical, 'Tellurium')
+
+  const result = core.getAcquisition('碲')
+  assert.equal(result.entry.id, 'knowledge.acquisition.resource.tellurium')
+  assert.equal(result.entry.resourceAcquisition.generated.routing.category, 'resource-activity')
+  assert.match(result.description, /获取地点：天王星上的曲翼任务/)
+  assert.doesNotMatch(result.description, /希图斯赏金/)
+  assert.deepEqual(result.entry.methodRefs, [])
+  assert.deepEqual(result.requirements, { type: 'none' })
+  assert.deepEqual(result.requirementLines, [])
+  assert.deepEqual(result.structuredMethods.map(method => ({
+    type: method.type,
+    category: method.category,
+    locationId: method.locationId,
+    locationDisplayName: method.locationDisplayName,
+    requirements: method.requirements,
+    requirementLines: method.requirementLines
+  })), [{
+    type: 'route',
+    category: 'resource-activity',
+    locationId: 'planet.uranus',
+    locationDisplayName: '天王星',
+    requirements: { type: 'none' },
+    requirementLines: []
+  }])
+})
+
+test('资源证据区分百分百商店项与真实希图斯赏金', () => {
+  const plan = sync.buildPlan()
+    const approvedManual = plan.entries.filter(entry => entry.resourceAcquisition?.manual?.routingOverride)
+  for (const entry of approvedManual) {
+    assert.deepEqual(entry.resourceAcquisition.generated.routing, entry.resourceAcquisition.manual.routingOverride, entry.subject.canonical)
+  }
+
+  const vendorEvidence = plan.entries.flatMap(entry => entry.resourceAcquisition.generated.evidence)
+    .filter(source => sync.isVendorOffer({ location: source.canonical, chance: source.chance }))
+  assert.ok(vendorEvidence.length > 0)
+  assert.ok(vendorEvidence.every(source => source.type === 'raw-official-vendor-offer'))
+
+  const cetusWisp = plan.entries.find(entry => entry.subject.canonical === 'Cetus Wisp')
+  const bountyEvidence = cetusWisp.resourceAcquisition.generated.evidence
+    .filter(source => /Cetus Bounty/.test(source.canonical))
+  assert.ok(bountyEvidence.length > 0)
+  assert.ok(bountyEvidence.every(source => source.type === 'raw-official-drop' && source.chance < 1))
+})

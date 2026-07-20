@@ -35,7 +35,11 @@ function renderRoute(entry) {
   const method = METHODS[category]
   if (!method) return null
   const resourceName = variables.resourceName || entry.subject.displayName
-  if (category === 'resource-location' || category === 'resource-gathering') {
+  if (category === 'resource-current-wiki') {
+    const methods = structuredMethods(routing.methods || [], ENTITIES)
+    return methods.length ? renderAcquisition(methods, { displayName: entry.subject.displayName }) : null
+  }
+  if (category === 'resource-location' || category === 'resource-gathering' || category === 'resource-activity') {
     const locations = (variables.locationIds || []).map(id => entityName(ENTITIES.locations, id)).filter(Boolean)
     if (!locations.length) return null
     const locationsText = locations.join(method.locationSeparator || methodTemplate(category, 'locationSeparator') || '、')
@@ -78,7 +82,16 @@ function getResourceAcquisition(query) {
   const routeText = renderRoute(entry)
   if (!routeText) throw new Error(`资源 ${entry.subject.canonical} 无法从 method 模板渲染`)
   const routing = entry.resourceAcquisition?.manual?.routingOverride || entry.resourceAcquisition?.generated?.routing
-  const methods = structuredMethods([{ type: 'route', scope: 'item', category: routing.category, variables: { ...(routing.variables || {}), text: routeText }, requirements: routing.requirements || { type: 'none' }, provenance: { source: 'resource-route', entryId: entry.id } }], ENTITIES)
+  const locationIds = routing.variables?.locationIds || []
+  const methods = routing.category === 'resource-current-wiki'
+    ? structuredMethods(routing.methods || [], ENTITIES)
+    : structuredMethods([{
+    type: 'route', scope: 'item', category: routing.category,
+    ...(locationIds.length === 1 ? { locationId: locationIds[0] } : {}),
+    variables: { ...(routing.variables || {}), text: routeText },
+    requirements: routing.requirements || { type: 'none' },
+    provenance: { source: entry.resourceAcquisition?.manual?.routingOverride ? 'manual-reviewed-resource-route' : 'official-localized-resource-route', entryId: entry.id }
+    }], ENTITIES)
   const tips = entry.resourceAcquisition?.manual?.tips || []
   const description = renderAcquisition(methods, { displayName: entry.subject.displayName }) || routeText
   return { entry, routeText, tips, structuredMethods: methods, text: [description, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }

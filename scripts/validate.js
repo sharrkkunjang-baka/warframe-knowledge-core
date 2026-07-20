@@ -283,6 +283,14 @@ for (const entry of entries) {
       const category = manual?.routingOverride?.category || generated?.routing?.category;
       if (category && !resourceMethodKeys.has(category)) errors.push(`${entry.id}: 资源路由缺少 method ${category}`);
       for (const locationId of (manual?.routingOverride?.variables?.locationIds || generated?.routing?.variables?.locationIds || [])) if (!entities.locations.some(item => item.id === locationId)) errors.push(`${entry.id}: 资源路由引用不存在地点 ${locationId}`);
+      const routing = manual?.routingOverride || generated?.routing;
+      if (routing?.category === 'resource-activity' && (!(routing.variables?.locationIds || []).length || !String(routing.variables?.activityName || '').trim())) errors.push(`${entry.id}: 资源活动路由必须实体化地点和活动名`);
+      for (const source of generated?.evidence || []) {
+        const vendorLike = Number(source.chance) === 1
+          && !/(?:\/|Rotation|Bounty)/i.test(String(source.canonical || ''))
+          && (/\([^)]*\)\s*,\s*[^,]+$/.test(String(source.canonical || '')) || /,\s*[A-Za-z][A-Za-z '\-]+$/.test(String(source.canonical || '')));
+        if (vendorLike && source.type === 'raw-official-drop') errors.push(`${entry.id}: chance=1 商店来源不得标为随机掉落 ${source.canonical}`);
+      }
     }
     if (entry.subject?.category === 'mod') {
       const hasStructuredEffects = Array.isArray(entry.effects) && entry.effects.length > 0;

@@ -22,9 +22,14 @@ function readEntries() {
 }
 function generatedSources(item) {
   return (item.drops || []).map(drop => ({
-    type: 'raw-official-drop', canonical: String(drop.location || '').trim(), chance: Number.isFinite(Number(drop.chance)) ? Number(drop.chance) : null,
+    type: isVendorOffer(drop) ? 'raw-official-vendor-offer' : 'raw-official-drop', canonical: String(drop.location || '').trim(), chance: Number.isFinite(Number(drop.chance)) ? Number(drop.chance) : null,
     rarity: drop.rarity || null, reviewStatus: 'pending'
   })).filter(source => source.canonical)
+}
+function isVendorOffer(drop) {
+  const source = String(drop?.location || '').trim()
+  if (Number(drop?.chance) !== 1 || !source || /(?:\/|Rotation|Bounty)/i.test(source)) return false
+  return /\([^)]*\)\s*,\s*[^,]+$/.test(source) || /,\s*[A-Za-z][A-Za-z '\-]+$/.test(source)
 }
 function descriptionLocations(item) {
   const description = String(item.description?.canonical || '')
@@ -32,7 +37,26 @@ function descriptionLocations(item) {
   if (!match) return []
   return match[1].replace(/^Missions? in\s+/i, '').split(/\s*,\s*|\s+and\s+/i).map(name => name.trim().replace(/^the\s+/i, '')).filter(Boolean).map(name => LOCATION_BY_NAME.get(normalizeEntityName(name))).filter(Boolean)
 }
+function descriptionActivityRouting(item) {
+  const canonical = String(item.description?.canonical || '')
+  const display = String(item.description?.display || '')
+  const source = canonical.match(/(?:^|\n)Location:\s*([^\n]+?)\s+Missions?\s+on\s+([^\n]+)\s*$/i)
+  const localized = display.match(/(?:^|\n)获取地点[：:]\s*([^\n]+)\s*$/)
+  if (!source || !localized) return null
+  const location = LOCATION_BY_NAME.get(normalizeEntityName(source[2]))
+  if (!location?.displayName) return null
+  const activityText = localized[1].trim()
+  const prefix = `${location.displayName}上的`
+  if (!activityText.startsWith(prefix) || activityText.length <= prefix.length) return null
+  return {
+    category: 'resource-activity',
+    variables: { resourceName: item.displayName, locationIds: [location.id], activityName: activityText.slice(prefix.length) },
+    status: 'compiled'
+  }
+}
 function automaticRouting(item) {
+  const activity = descriptionActivityRouting(item)
+  if (activity && item.localizationStatus === 'official-zh') return activity
   const locations = [...new Map(descriptionLocations(item).map(entry => [entry.id, entry])).values()]
   if (!locations.length || item.localizationStatus !== 'official-zh') return null
   const semantic = new Set(item.semanticKinds || [])
@@ -77,6 +101,9 @@ function buildEntry(item, old) {
 function buildPlan() {
   const official = JSON.parse(fs.readFileSync(OFFICIAL_PATH, 'utf8'))
   const existing = readEntries()
+  const externallyManaged = existing
+    .map(item => item.value)
+    .filter(entry => entry.generator?.name && entry.generator.name !== 'sync-resource-knowledge')
   const byUnique = new Map(existing.map(item => [item.value.subject?.officialUniqueName, item.value]))
   const byCanonical = new Map(existing.map(item => [item.value.subject?.canonical, item.value]))
   const deduped = new Map()
@@ -86,6 +113,10 @@ function buildPlan() {
     const key = entry.subject.canonical.toLowerCase()
     const current = deduped.get(key)
     if (!current || (entry.resourceAcquisition.generated.localizationStatus === 'official-zh' && current.resourceAcquisition.generated.localizationStatus !== 'official-zh')) deduped.set(key, entry)
+  }
+  for (const entry of externallyManaged) {
+    const key = entry.subject.canonical.toLowerCase()
+    deduped.set(key, entry)
   }
   const entries = [...deduped.values()].sort((a, b) => a.subject.canonical.localeCompare(b.subject.canonical, 'en'))
   const index = { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0, 10), count: entries.length, resources: entries.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, file: `entries/${slug(entry.subject.canonical)}.json`, category: entry.resourceAcquisition.generated.routing.category, reviewStatus: entry.reviewStatus })) }
@@ -103,4 +134,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
-module.exports = { RESOURCE_KINDS, isResource, buildEntry, buildPlan, run }
+module.exports = { RESOURCE_KINDS, isResource, isVendorOffer, descriptionActivityRouting, buildEntry, buildPlan, run }
