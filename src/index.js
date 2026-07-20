@@ -57,6 +57,31 @@ function createKnowledgeCore(options = {}) {
   const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName, ...(data.aliases?.weapons?.[weapon.subject?.canonical] || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
   const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
+  const weaponComponents = new Map();
+  for (const weapon of data.weapons || []) {
+    for (const ingredient of (weapon.recipes || []).flatMap(recipe => recipe.ingredients || [])) {
+      if (!ingredient.uniqueName || !ingredient.canonical || !/\/Types\/Recipes\/Weapons\//.test(ingredient.uniqueName)) continue;
+      for (const alias of [ingredient.canonical, ingredient.displayName].filter(Boolean)) {
+        const key = normalize(alias);
+        if (!weaponComponents.has(key)) weaponComponents.set(key, { weapon, ingredient });
+      }
+    }
+  }
+  const frameComponents = new Map();
+  const framePartDisplay = { Blueprint: '蓝图', Neuroptics: '头部神经光元', Chassis: '机体', Systems: '系统' };
+  for (const frame of allKnowledge.filter(entry => entry.subject?.category === 'frame')) {
+    const bases = [frame.subject.canonical, frame.subject.displayName, ...(data.aliases?.frames?.[frame.subject.canonical] || [])].filter(Boolean);
+    for (const component of frame.frameAcquisition?.generated?.components || []) {
+      const suffixes = [component.part, framePartDisplay[component.part], component.part === 'Neuroptics' ? '头' : null].filter(Boolean);
+      const identity = {
+        frame,
+        component,
+        canonical: `${frame.subject.canonical} ${component.part}`,
+        displayName: `${frame.subject.displayName || frame.subject.canonical} ${framePartDisplay[component.part] || component.part}`
+      };
+      for (const base of bases) for (const suffix of suffixes) frameComponents.set(normalize(`${base}${suffix}`), identity);
+    }
+  }
   const acquisitionIdentityEntries = [
     ...allKnowledge.filter(entry => ['mod', 'arcane', 'weapon'].includes(entry.subject?.category)),
     ...(data.weapons || []), ...(data.arcanes || [])
@@ -791,7 +816,59 @@ function createKnowledgeCore(options = {}) {
     };
   };
   const getAcquisitionCard = query => {
-    const result = getAcquisition(query);
+    const frameComponent = frameComponents.get(normalize(query));
+    let result = frameComponent ? null : getAcquisition(query);
+    if (frameComponent) {
+      result = getAcquisition(frameComponent.frame.subject.canonical);
+      const sections = acquisitionCardSections(result?.structuredMethods || [], { registries: data });
+      return {
+        query: String(query),
+        kind: 'frame-component',
+        identity: {
+          canonical: frameComponent.canonical,
+          displayName: frameComponent.displayName,
+          uniqueName: frameComponent.component.officialUniqueName
+        },
+        variants: [],
+        sections: {
+          exchange: sections.exchange.map(item => item.text),
+          enemy: sections.enemy.map(item => item.text),
+          other: sections.other.map(item => item.text)
+        },
+        materials: [],
+        detailOptions: [],
+        credits: null,
+        wikiUrl: frameComponent.frame.sources?.find(source => /wiki\.warframe\.com\/w\//i.test(source.url || ''))?.url || null
+      };
+    }
+    const component = weaponComponents.get(normalize(query));
+    if (component) {
+      result = getAcquisition(component.weapon.subject.canonical);
+      const methods = (result?.structuredMethods || []).filter(method =>
+        (method.partRefs || []).includes(component.ingredient.uniqueName) ||
+        normalize(method.variables?.partName) === normalize(component.ingredient.displayName)
+      );
+      const sections = acquisitionCardSections(methods, { registries: data });
+      return {
+        query: String(query),
+        kind: 'weapon-component',
+        identity: {
+          canonical: component.ingredient.canonical,
+          displayName: component.ingredient.displayName || component.ingredient.canonical,
+          uniqueName: component.ingredient.uniqueName
+        },
+        variants: [],
+        sections: {
+          exchange: sections.exchange.map(item => item.text),
+          enemy: sections.enemy.map(item => item.text),
+          other: sections.other.map(item => item.text)
+        },
+        materials: [],
+        detailOptions: [],
+        credits: null,
+        wikiUrl: component.weapon.sources?.find(source => /wiki\.warframe\.com\/w\//i.test(source.url || ''))?.url || null
+      };
+    }
     const entry = result?.entry;
     const kind = entry?.subject?.category;
     if (!result || !['mod', 'arcane', 'weapon'].includes(kind)) return null;

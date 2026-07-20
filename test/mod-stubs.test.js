@@ -60,6 +60,20 @@ test('镀层近战主 Mod 不能因 SP 内部路径规则被排除', () => {
   }
 });
 
+test('全部已审核组合 Mod 都有官方证据化组合效果', () => {
+  const acquisitions = readEntryDirectory(path.join(root, 'knowledge', 'acquisition', 'mod'));
+  const setMods = acquisitions.filter(entry => entry.reviewStatus === 'approved' && entry.subject?.categoryRefs?.includes('setmod'));
+  assert.equal(setMods.length, 72);
+  assert.equal(new Set(setMods.map(entry => entry.setFamily)).size, 19);
+  for (const entry of setMods) {
+    assert.ok(entry.setBonusDetails?.length, `${entry.subject.canonical}: 缺组合效果`);
+    assert.equal(entry.setBonusReviewStatus, 'approved', `${entry.subject.canonical}: 组合效果未审核`);
+    assert.equal(entry.setBonusEvidence?.reviewStatus, 'approved', `${entry.subject.canonical}: 组合证据未审核`);
+    assert.match(entry.setBonusEvidence?.languageKey || '', /^\/Lotus\/Language\//, `${entry.subject.canonical}: 缺官方语言键`);
+    assert.match(entry.setBonusEvidence?.source || '', /DE Languages\.bin.*official full English Mod card/, `${entry.subject.canonical}: 缺来源说明`);
+  }
+});
+
 test('全部公开 Mod 类型都有稳定中文展示名且不泄漏英文类型', () => {
   const publicTypes = [...new Set(playable.map(item => item.type).filter(Boolean))];
   for (const type of publicTypes) {
