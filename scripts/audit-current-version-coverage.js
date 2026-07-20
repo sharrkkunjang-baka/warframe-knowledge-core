@@ -18,7 +18,7 @@ const CATEGORY_SPECS = Object.freeze({
 })
 const EXPLICIT_EXCLUSIONS = Object.freeze({
   weapons: new Set(['Tektolyst Artifact']),
-  mods: new Set(['Atragraph Mods', 'Da-Ren', 'Empazu-Shol', 'Esti Vel-Ikha', 'Evir-Ti', 'Hayan-Dabor', 'Hok-Kaal', 'Kaal-zidi', 'Lashta-Vak', 'Lorun-Tash', 'Metem-Erun', 'Metem-Hakh', 'Omn-Evi', 'Sey-Taph', 'Sil-Tabol', 'Talsek-An', 'Ubri-Kaneph', 'Ulashta-Shol', 'Vik-Anam', 'Vikla-Safor', 'Yar Dal']),
+  mods: new Set(),
   arcanes: new Set(['Arcane Enhancement', 'Vosfor']),
   resources: new Set(), warframes: new Set(), consumables: new Set()
 })
