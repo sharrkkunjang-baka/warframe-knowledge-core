@@ -39,6 +39,8 @@ function generatedEntries() {
     { id: 'hub.any-relay', canonical: 'Any Relay', displayName: '任意中继站', kind: 'hub', aliases: [], officialSource: 'audited-official-zh' },
     { id: 'region.uranus-proxima', canonical: 'Uranus Proxima', displayName: '天王星比邻星域', kind: 'proxima-region', aliases: [], officialSource: 'DE Languages.bin JS2MAshFavorDesc' },
     { id: 'hub.pontis-tower', canonical: 'Pontis Tower', displayName: '渡界之塔', kind: 'hub', aliases: ['边界之塔'], parentId: 'region.uranus-proxima', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/HunhowHubName' },
+    { id: 'region.dark-refractory', canonical: 'The Dark Refractory', displayName: '深溯池', kind: 'region', aliases: ['深邃池', 'Dark Refractory'], parentId: 'planet.deimos', officialSource: 'DE Languages.bin /Lotus/Language/TauPrequel/TauPrequelFinal/TauMissionSelectAction' },
+    { id: 'activity.the-descendia', canonical: 'The Descendia', displayName: '沉沦之地', kind: 'activity', aliases: ['沉沦之地', '沉沦', '爬塔'], parentId: 'region.dark-refractory', missionTypeId: 'mission-type.the-descendia', officialSource: 'DE Languages.bin /Lotus/Language/Missions/MissionName_Descent' },
     { id: 'mission.the-kuva-wytch', canonical: 'The Kuva Wytch', displayName: '赤毒女巫号', kind: 'railjack-mission', aliases: [], parentId: 'region.uranus-proxima', missionTypeId: 'mission-type.skirmish', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/AshRJMissionName' },
     { id: 'mission.scorias-angel', canonical: "Scoria's Angel", displayName: '火山石天使号', kind: 'railjack-mission', aliases: [], parentId: 'region.uranus-proxima', missionTypeId: 'mission-type.skirmish', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Constellations/GarudaRJMissionName' },
     { id: 'hub.clan-dojo', canonical: 'Clan Dojo', displayName: '氏族道场的 Dagath 空阁', kind: 'hub', aliases: [], officialSource: 'Warframe Wiki - Dagath' },
@@ -63,7 +65,7 @@ function generatedEntries() {
     { id: 'acquisition-source.albrecht-laboratories-endless', canonical: "Albrecht's Laboratories Endless Mission", displayName: '阿尔布雷希特的实验室无尽任务', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
     { id: 'acquisition-source.balor-fomorian-sabotage', canonical: 'Balor Fomorian Sabotage', displayName: '巴罗尔巨人战舰破坏任务', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
     { id: 'acquisition-source.sanctum-anatomica-bounty', canonical: 'Sanctum Anatomica Bounty', displayName: '圣所解剖室赏金', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
-    { id: 'acquisition-source.roathes-oblivion', canonical: "Roathe's Oblivion", displayName: "The Descendia 的 Roathe 遗忘之境", kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.roathes-oblivion', canonical: "Roathe's Oblivion", displayName: '罗瑟的遗忘', kind: 'acquisition-source', aliases: ['罗瑟遗忘之境'], parentId: 'activity.the-descendia', officialSource: 'DE Languages.bin /Lotus/Language/CircleOfHell/CoHProtoframeDevil' },
     { id: 'acquisition-source.earth-proxima-void-storm', canonical: 'Earth Proxima Void Storm', displayName: '地球比邻星虚空风暴', kind: 'acquisition-source', aliases: [], officialSource: 'DE official drop tables' },
     { id: 'acquisition-source.venus-proxima-void-storm', canonical: 'Venus Proxima Void Storm', displayName: '金星比邻星虚空风暴', kind: 'acquisition-source', aliases: [], officialSource: 'DE official drop tables' },
     { id: 'acquisition-source.saturn-proxima-void-storm', canonical: 'Saturn Proxima Void Storm', displayName: '土星比邻星虚空风暴', kind: 'acquisition-source', aliases: [], officialSource: 'DE official drop tables' },
@@ -110,12 +112,12 @@ function build() {
   for (const entry of generatedEntries()) {
     const previous = legacyById.get(entry.id)
     const legacyType = previous?.missionTypeCanonical
-    const officialOverride = ['hub.zariman','hub.pontis-tower','region.uranus-proxima','mission.the-kuva-wytch','mission.scorias-angel'].includes(entry.id)
+    const officialOverride = ['hub.zariman','hub.pontis-tower','region.uranus-proxima','region.dark-refractory','activity.the-descendia','acquisition-source.roathes-oblivion','mission.the-kuva-wytch','mission.scorias-angel'].includes(entry.id)
     byId.set(entry.id, previous ? { ...entry, ...previous, displayName: officialOverride ? entry.displayName : previous.displayName || entry.displayName, aliases: officialOverride ? entry.aliases : previous.aliases || entry.aliases, officialSource: officialOverride ? entry.officialSource : previous.officialSource || entry.officialSource, parentId: entry.parentId || previous.parentId, missionTypeId: entry.missionTypeId || previous.missionTypeId || (legacyType ? `mission-type.${slug(legacyType)}` : null), missionTypeCanonical: undefined, missionTypeDisplayName: undefined } : entry)
   }
   return [...byId.values()]
 }
-function buildPlan() { return buildRegistryPlan({ type: 'locations', root: TARGET, entries: build(), categoryOf: entry => entry.kind, categoryNames: { planet: '星球', hub: '中继聚落', landscape: '开放世界', 'proxima-region': '比邻星域', 'railjack-mission': '航道星舰任务', 'mission-node': '任务节点', 'acquisition-source': '特殊获取来源' }, source: { generatedFrom: 'warframe-items Warframes component drops' } }) }
+function buildPlan() { return buildRegistryPlan({ type: 'locations', root: TARGET, entries: build(), categoryOf: entry => entry.kind, categoryNames: { planet: '星球', hub: '中继聚落', landscape: '开放世界', region: '区域', activity: '玩法', 'proxima-region': '比邻星域', 'railjack-mission': '航道星舰任务', 'mission-node': '任务节点', 'acquisition-source': '特殊获取来源' }, source: { generatedFrom: 'warframe-items Warframes component drops' } }) }
 function run(argv = process.argv.slice(2)) { const check = argv.includes('--check'); const changes = applyRegistryPlan(buildPlan(), { check }); console.log(check ? `战甲来源地点变量无漂移：${build().length} 个` : `已同步 ${build().length} 个战甲来源地点变量；写入 ${changes.length} 项`) }
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
 module.exports = { parseSource, generatedEntries, build, buildPlan, run }

@@ -2,11 +2,13 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
+const crypto = require('node:crypto')
 const { buildRegistryPlan, applyRegistryPlan, walkJson } = require('./entity-registry-io')
 
 const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'knowledge', 'curreicies')
 const OFFICIAL_ITEMS = path.join(ROOT, 'knowledge', 'generated', 'official-items.json')
+const CURRENCY_KINDS = new Set(['currency', 'currency-token', 'currency-token-material'])
 const FRAME_CURRENCIES = Object.freeze([
   { canonical: 'Emerald Talent', displayName: '翠绿天赋', kind: 'exchange-token', officialUniqueName: '/Lotus/Types/JadeShadowsPart2Mission/Gameplay/Resources/AshFavor', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Mission/JS2MAshFavorName', acquisitionDependency: { type: 'mission-completion', locationId: 'mission.the-kuva-wytch', missionTypeId: 'mission-type.skirmish', acquisition: { type: 'mission-completion', locationId: 'mission.the-kuva-wytch', normalAmount: { min: 12, max: 16 }, steelPathAmount: { min: 16, max: 20 }, bonus: '任务中的额外目标可增加结算数量' }, source: 'DE Languages.bin JS2MAshFavorDesc', reviewStatus: 'approved' } },
   { canonical: 'Crimson Talent', displayName: '猩红天赋', kind: 'exchange-token', officialUniqueName: '/Lotus/Types/JadeShadowsPart2Mission/Gameplay/Resources/GarudaFavor', officialSource: 'DE Languages.bin /Lotus/Language/JadeShadowsPart2Mission/JS2MGarudaFavorName', acquisitionDependency: { type: 'mission-completion', locationId: 'mission.scorias-angel', missionTypeId: 'mission-type.skirmish', acquisition: { type: 'mission-completion', locationId: 'mission.scorias-angel', normalAmount: { min: 12, max: 16 }, steelPathAmount: { min: 16, max: 20 }, bonus: '任务中的额外目标可增加结算数量' }, source: 'DE Languages.bin JS2MGarudaFavorDesc', reviewStatus: 'approved' } },
@@ -34,8 +36,47 @@ const FRAME_CURRENCIES = Object.freeze([
 const ID_OVERRIDES = Object.freeze({ "Kullervo's Bane": 'currency.kullervos-bane', 'Emerald Talent': 'currency.emerald-talent', 'Crimson Talent': 'currency.crimson-talent', 'Jade Talent': 'currency.jade-talent' })
 const CATEGORY_NAMES = Object.freeze({ standard: '通用货币', premium: '高级货币', standing: '声望', 'exchange-token': '兑换代币', 'resource-token': '资源代币', 'seasonal-token': '赛季代币' })
 function officialByCanonical() { const data = JSON.parse(fs.readFileSync(OFFICIAL_ITEMS, 'utf8')); return new Map((data.items || []).map(item => [item.canonical, item])) }
+function stableSuffix(uniqueName) { return crypto.createHash('sha256').update(String(uniqueName)).digest('hex').slice(0, 8) }
+function officialCurrencyKind(item) {
+  if (/\/Nora(?:Intermission|Season|Wolf|Infested)/i.test(item.uniqueName || '')) return 'seasonal-token'
+  const kinds = new Set(item.semanticKinds || [])
+  if (kinds.has('currency')) return 'standard'
+  if (kinds.has('currency-token-material')) return 'resource-token'
+  return 'exchange-token'
+}
+function officialCurrencies() {
+  const data = JSON.parse(fs.readFileSync(OFFICIAL_ITEMS, 'utf8'))
+  return (data.items || []).filter(item => (item.semanticKinds || []).some(kind => CURRENCY_KINDS.has(kind)))
+}
 function build() {
   const byId = new Map(walkJson(TARGET).filter(file => path.basename(file) !== 'categories.json').map(file => JSON.parse(fs.readFileSync(file, 'utf8'))).map(entry => [entry.id, entry]))
+  const existingByUniqueName = new Map([...byId.values()].filter(entry => entry.officialUniqueName).map(entry => [entry.officialUniqueName, entry]))
+  const existingByCanonical = new Map([...byId.values()].map(entry => [entry.canonical, entry]))
+  const officialEntries = officialCurrencies()
+  const canonicalCounts = new Map(officialEntries.map(item => [item.canonical, officialEntries.filter(candidate => candidate.canonical === item.canonical).length]))
+  for (const item of officialEntries) {
+    if (!item.uniqueName || !item.displayName) throw new Error(`${item.canonical}: 官方货币身份或显示名不完整`)
+    const previous = existingByUniqueName.get(item.uniqueName)
+      || (canonicalCounts.get(item.canonical) === 1 ? existingByCanonical.get(item.canonical) : null)
+      || {}
+    const baseId = ID_OVERRIDES[item.canonical] || `currency.${item.canonical.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
+    const duplicateCanonical = canonicalCounts.get(item.canonical) > 1
+    const id = previous.id || (duplicateCanonical ? `${baseId}-${stableSuffix(item.uniqueName)}` : baseId)
+    byId.set(id, {
+      ...previous,
+      id,
+      canonical: item.canonical,
+      displayName: item.displayName,
+      kind: previous.kind || officialCurrencyKind(item),
+      aliases: previous.aliases || [],
+      officialUniqueName: item.uniqueName,
+      officialSource: previous.officialSource || 'knowledge/generated/official-items.json (DE Languages.bin / Public Export)',
+      localizationStatus: item.localizationStatus,
+      semanticKinds: item.semanticKinds || [],
+      reviewStatus: previous.reviewStatus || 'draft',
+      ...(duplicateCanonical ? { registryFileName: `${item.canonical.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}-${stableSuffix(item.uniqueName)}` } : {})
+    })
+  }
   const official = officialByCanonical()
   for (const definition of FRAME_CURRENCIES) {
     const item = official.get(definition.canonical)

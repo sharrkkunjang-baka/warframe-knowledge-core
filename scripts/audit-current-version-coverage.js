@@ -71,7 +71,7 @@ function buildImageRequirements(ledger, evidence = new Map()) {
   const count = field => items.filter(item => item[field] === 'approved').length
   return {
     schemaVersion: 1,
-    status: items.every(item => item.production) ? 'complete' : 'pending-stage-2',
+    status: items.every(item => item.productionStatus === 'approved') ? 'complete' : 'pending-stage-2',
     counts: {
       expected: items.length,
       source: count('sourceStatus'),

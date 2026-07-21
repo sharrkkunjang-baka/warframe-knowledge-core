@@ -4,6 +4,7 @@ const path = require('path');
 const { loadData } = require('./loader');
 const { createResolver, resolveDomainAlias, normalize } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
+const frameCard = require('./frame-card');
 const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
@@ -69,6 +70,40 @@ function modFusionCost(maxRank, rarity) {
       creditBase: rule.creditBase
     },
     evidence: ['Warframe Wiki: Endo', 'Warframe Wiki: Fusion']
+  };
+}
+
+function arcaneFusionMetadata(maxRank, rule = {}) {
+  const rank = Number(maxRank);
+  const protocol = String(rule.protocol || 'standard-triangular');
+  const formula = String(rule.formula || '(maxRank + 1) * (maxRank + 2) / 2');
+  if (!Number.isInteger(rank) || rank < 0) {
+    return { protocol, baseRank: 0, maxRank: null, requiredCopies: null, upgradeable: null, status: 'missing-evidence', formula: null };
+  }
+  if (rule.upgradeable === false || protocol === 'not-upgradeable') {
+    const requiredCopies = Number.isInteger(rule.requiredCopies) && rule.requiredCopies > 0 ? rule.requiredCopies : 1;
+    return { protocol: 'not-upgradeable', baseRank: 0, maxRank: rank, requiredCopies, upgradeable: false, status: 'entity-protocol', formula: null };
+  }
+  if (protocol !== 'standard-triangular') {
+    const requiredCopies = Number(rule.requiredCopies);
+    return {
+      protocol,
+      baseRank: 0,
+      maxRank: rank,
+      requiredCopies: Number.isInteger(requiredCopies) && requiredCopies > 0 ? requiredCopies : null,
+      upgradeable: rank > 0,
+      status: Number.isInteger(requiredCopies) && requiredCopies > 0 ? 'entity-protocol' : 'missing-evidence',
+      formula: null
+    };
+  }
+  return {
+    protocol,
+    baseRank: 0,
+    maxRank: rank,
+    requiredCopies: ((rank + 1) * (rank + 2)) / 2,
+    upgradeable: rank > 0,
+    status: 'calculated',
+    formula
   };
 }
 
@@ -210,7 +245,7 @@ function createKnowledgeCore(options = {}) {
   const resolveAcquisitionCommand = text => {
     const parsed = parseAcquisitionCommand(text);
     if (!parsed) return null;
-    const arcaneIntent = /^赋能(?:[\s·・‧•:：_\-/]*)(.*)$/i.exec(parsed.query);
+    const arcaneIntent = /赋能/i.test(parsed.query);
     if (!arcaneIntent) return { ...parsed, domain: null, resolution: null };
     return { ...parsed, domain: 'arcane', resolution: resolveArcane(parsed.query) };
   };
@@ -227,7 +262,7 @@ function createKnowledgeCore(options = {}) {
   const searchAcquisition = (query, searchOptions = {}) => searchEntries(query, data.knowledge.filter(entry => entry.module === 'acquisition'), searchOptions);
   const gameplayEntries = data.knowledge.filter(entry => entry.module === 'gameplay');
   const gameplayResolver = createResolver({ frames: {}, terms: {} });
-  const gameplayCandidates = gameplayEntries.flatMap(entry => [entry.title, entry.acquisitionQuery, ...(entry.aliases || [])].filter(Boolean).map(alias => ({ alias, canonical: entry.id, category: 'gameplay', priority: 20 })));
+  const gameplayCandidates = gameplayEntries.flatMap(entry => [entry.id, entry.title, entry.acquisitionQuery, ...(entry.aliases || [])].filter(Boolean).map(alias => ({ alias, canonical: entry.id, category: 'gameplay', priority: 20 })));
   const searchGameplay = (query, searchOptions = {}) => searchEntries(query, gameplayEntries, searchOptions);
   const resolveGameplayEntry = query => {
     const resolution = gameplayResolver(query, { candidates: gameplayCandidates, categories: ['gameplay'], minScore: 70, minLead: 8 });
@@ -298,18 +333,49 @@ function createKnowledgeCore(options = {}) {
     const matches = (data.arcanes || []).filter(entry => [entry.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName, ...(entry.arcaneAcquisition?.manual?.aliases || [])].some(value => normalizeArcaneName(value) === q));
     return matches.sort((a, b) => Number(Boolean(a.arcaneAcquisition?.generated?.identity?.excludedFromCodex)) - Number(Boolean(b.arcaneAcquisition?.generated?.identity?.excludedFromCodex)) || String(a.officialUniqueName).localeCompare(String(b.officialUniqueName)))[0] || null;
   };
+  const getArcaneMetadata = query => {
+    const entry = getArcane(query);
+    if (!entry) return null;
+    const generated = entry.arcaneAcquisition?.generated || {};
+    const market = data.arcaneMetadata?.get(String(entry.subject?.canonical || '').toLowerCase()) || null;
+    const maxRank = Number(market?.maxRank ?? entry.maxRank ?? generated.stats?.maxRank);
+    const sharedRankRule = (data.arcaneMethods || []).find(method => method.category === 'authoritative')?.rankCopyRule || {};
+    const entityRankRule = entry.arcaneAcquisition?.manual?.rankCopyRule || generated.stats?.rankCopyRule || entry.rankCopyRule || {};
+    const rankFusion = arcaneFusionMetadata(maxRank, { ...sharedRankRule, ...entityRankRule });
+    const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
+    const descriptionLines = [...new Set(topStats.flatMap(stat => renderGameText(stat).split(/\n/)).map(line => line.trim()).filter(Boolean))];
+    return {
+      canonical: entry.subject.canonical,
+      displayName: entry.subject.displayName,
+      officialUniqueName: entry.subject.officialUniqueName,
+      marketSlug: market?.marketSlug || null,
+      marketGameRef: market?.marketGameRef || null,
+      maxRank: Number.isInteger(maxRank) ? maxRank : null,
+      requiredCopies: rankFusion.requiredCopies,
+      rankFusion,
+      rarity: market?.rarity || entry.rarity || generated.stats?.rarity || null,
+      tradingTax: Number.isInteger(market?.tradingTax) ? market.tradingTax : null,
+      tradingTaxStatus: market?.tradingTaxStatus || 'missing',
+      tradable: market ? market.tradable : Boolean(entry.tradable),
+      descriptionLines,
+      descriptionStatus: descriptionLines.length ? generated.stats?.localizationStatus || 'reviewed' : 'missing'
+    };
+  };
   const resolveArcane = (query, resolveOptions = {}) => {
     const raw = String(query || '').trim();
-    const name = raw.replace(/^赋能(?:[\s·・‧•:：_\-/]*)/i, '').trim();
+    const explicitType = /赋能/i.test(raw);
+    const name = raw.replace(/赋能/gi, '').replace(/^[\s·・‧•:：_\-/]+|[\s·・‧•:：_\-/]+$/g, '').trim();
     if (!name) return null;
     const exact = getArcane(raw) || getArcane(name);
     if (exact) return { alias: exact.subject.displayName, canonical: exact.subject.canonical, category: 'arcane', match: 'exact', score: 300 };
+    if (explicitType && name.length > 6) return null;
     return resolveName(name, {
       minScore: 70,
       minLead: 8,
       ...resolveOptions,
       categories: ['arcane'],
-      candidates: arcaneNameCandidates
+      candidates: arcaneNameCandidates,
+      stripTerms: explicitType ? ['赋能', '近战', '主要', '次要', '霰弹枪', '组合枪', '增幅器', '指挥官', '战甲'] : resolveOptions.stripTerms
     });
   };
   const getWeapon = query => {
@@ -415,7 +481,6 @@ function createKnowledgeCore(options = {}) {
   const renderTemplate = (template, values) => String(template || '').replace(/\{([a-zA-Z][a-zA-Z0-9]*)\}/g, (match, key) => values[key] ?? match);
   const modMethodDefinitions = new Map((data.modMethods || []).map(method => [method.category, method]));
   const arcaneMethodDefinition = (data.arcaneMethods || []).find(method => method.category === 'authoritative') || null;
-  const arcaneRequiredCopies = maxRank => ((Number(maxRank) + 1) * (Number(maxRank) + 2)) / 2;
   const arcaneMethodIdentity = method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, probability: method.probability, quantity: method.quantity, outputQuantity: method.outputQuantity });
   const mergeArcaneMethods = entry => {
     const manual = entry?.arcaneAcquisition?.manual?.methods || [];
@@ -445,12 +510,14 @@ function createKnowledgeCore(options = {}) {
     const generated = entry.arcaneAcquisition?.generated || {};
     const category = generated.classification?.category || 'legacy';
     const maxRank = Number(entry.maxRank ?? generated.stats?.maxRank ?? 0);
+    const rankFusion = getArcaneMetadata(entry.subject?.officialUniqueName || entry.subject?.canonical)?.rankFusion
+      || arcaneFusionMetadata(maxRank, arcaneMethodDefinition?.rankCopyRule);
     const label = arcaneMethodDefinition?.categoryLabels?.[category] || category;
     const header = renderTemplate(arcaneMethodDefinition?.headerTemplate || '【{displayName}】\n类型：{categoryLabel}\n最高等级：{maxRank}（满级共需 {requiredCopies} 个）', {
       displayName: entry.subject?.displayName || entry.title,
       categoryLabel: label,
       maxRank,
-      requiredCopies: arcaneRequiredCopies(maxRank)
+      requiredCopies: rankFusion.requiredCopies ?? '数据暂缺'
     });
     const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
     const effectLines = [...new Set(topStats.flatMap(stat => renderGameText(stat).split(/\n/)).map(line => line.trim()).filter(Boolean))];
@@ -721,6 +788,14 @@ function createKnowledgeCore(options = {}) {
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
     if (!raw) return null;
+    const explicitArcaneType = /赋能/i.test(raw);
+    const explicitArcaneResolution = explicitArcaneType ? resolveArcane(raw, searchOptions.resolveOptions || {}) : null;
+    if (explicitArcaneResolution?.ambiguous) {
+      return { query: raw, resolution: explicitArcaneResolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
+    }
+    if (explicitArcaneType && !explicitArcaneResolution) {
+      return { query: raw, resolution: null, entry: null, methods: [], sourceOptions: [], alternatives: [] };
+    }
     const weaponGap = getWeaponGap(raw);
     if (weaponGap) return { query: raw, resolution: { canonical: weaponGap.canonical, exact: true }, entry: null, description: `${weaponGap.displayName}已在 DE 官方简体中文语言数据中出现，但当前 ExportWeapons 尚未提供完整 uniqueName、属性、倾向和来源结构，因此保持待审，禁止猜造获取路径。`, categories: [], methods: [], sourceOptions: [], structuredMethods: [], weaponGap, alternatives: [] };
     const consumableEntry = getConsumable(raw);
@@ -752,11 +827,15 @@ function createKnowledgeCore(options = {}) {
         : [];
       return { query: raw, resolution: { canonical: weaponEntry.subject.canonical, exact: true }, entry: weaponEntry, description, categories: weaponEntry.subject.categoryRefs || [], methods: [], sourceOptions, structuredMethods, recipes: weaponEntry.recipes || [], disposition: weaponEntry.weaponIdentity?.omegaAttenuation ?? null, alternatives: [] };
     }
-    const arcaneEntry = getArcane(raw);
+    const arcaneEntry = explicitArcaneResolution
+      ? (data.arcanes || []).find(entry => normalize(entry.subject?.canonical) === normalize(explicitArcaneResolution.canonical))
+      : getArcane(raw);
     if (arcaneEntry) {
       const generated = arcaneEntry.arcaneAcquisition?.generated || {};
       const category = generated.classification?.category || 'legacy';
       const maxRank = Number(arcaneEntry.maxRank ?? generated.stats?.maxRank ?? 0);
+      const rankFusion = getArcaneMetadata(arcaneEntry.subject?.officialUniqueName || arcaneEntry.subject?.canonical)?.rankFusion
+        || arcaneFusionMetadata(maxRank, arcaneMethodDefinition?.rankCopyRule);
       const structuredMethods = mergeArcaneMethods(arcaneEntry).map(enrichArcaneMethod);
       const methodRequirements = structuredMethods.map(method => normalizeRequirements(method.requirements)).filter(requirement => requirement.type !== 'none');
       // 多来源赋能的条件属于各自 method，不能再提升到结果顶层重复渲染。
@@ -789,7 +868,7 @@ function createKnowledgeCore(options = {}) {
           };
         }),
         wikiEvidence,
-        arcane: { category, maxRank, requiredCopies: arcaneRequiredCopies(maxRank), availability: category === 'legacy' ? 'unavailable-review-required' : 'available' },
+        arcane: { category, maxRank, requiredCopies: rankFusion.requiredCopies, rankFusion, availability: category === 'legacy' ? 'unavailable-review-required' : 'available' },
         alternatives: []
       };
     }
@@ -847,7 +926,7 @@ function createKnowledgeCore(options = {}) {
     for (const gameplay of gameplayEntries) {
       const sourceEntityIds = new Set(gameplay.sourceEntityIds || []);
       const missionTypeIds = new Set(gameplay.missionTypeIds || []);
-      const matches = structuredMethods.some(method => sourceEntityIds.has(method.sourceEntityId) || missionTypeIds.has(method.missionTypeId));
+      const matches = structuredMethods.some(method => sourceEntityIds.has(method.sourceEntityId) || sourceEntityIds.has(method.locationId) || missionTypeIds.has(method.missionTypeId));
       if (matches && !sourceOptions.some(source => source.id === gameplay.id)) {
         sourceOptions.push({ id: gameplay.id, title: gameplay.title, query: gameplay.acquisitionQuery || gameplay.aliases?.[0] || gameplay.title });
       }
@@ -864,13 +943,16 @@ function createKnowledgeCore(options = {}) {
     const hasStructuredExchange = exchangeMethods.length > 0;
     const frameExchangeSupplement = isFrame && hasStructuredExchange && !/兑换/.test(defaultDescription || '')
       ? renderAcquisition(exchangeMethods, { registries: data }) : null;
-    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute || (entry.subject?.category === 'weapon' && Boolean(structuredDescription)) || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription));
+    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute
+      || (isFrame && structuredMethods.some(method => method.type !== 'route') && Boolean(structuredDescription))
+      || (entry.subject?.category === 'weapon' && Boolean(structuredDescription))
+      || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription));
     return {
       query: raw,
       resolution,
       entry,
       officialMod: resolvedOfficialMod,
-      description: frameExchangeSupplement ? [defaultDescription, frameExchangeSupplement].filter(Boolean).join('\n') : preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : defaultDescription,
+      description: preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : frameExchangeSupplement ? [defaultDescription, frameExchangeSupplement].filter(Boolean).join('\n') : defaultDescription,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
@@ -990,6 +1072,7 @@ function createKnowledgeCore(options = {}) {
         descriptionLines: modDescriptionLines(entry, result.officialMod),
         fusionCost: modFusionCost(maxRank, rarity)
       } : null,
+      arcaneInfo: kind === 'arcane' ? getArcaneMetadata(entry.subject?.canonical) : null,
       materials: (recipe?.ingredients || []).map(item => ({ uniqueName: item.uniqueName, canonical: item.canonical, displayName: item.displayName || item.canonical, count: item.quantity })),
       detailOptions,
       relatedItems,
@@ -1090,6 +1173,7 @@ function createKnowledgeCore(options = {}) {
     searchOfficialItems,
     getOfficialItem,
     getArcane,
+    getArcaneMetadata,
     resolveArcane,
     getItemAcquisition,
     getOfficialMod,
@@ -1128,9 +1212,13 @@ function createKnowledgeCore(options = {}) {
     resolveAbility,
     getWarframeKnowledge: frameAcquisition.getWarframeKnowledge,
     getWarframeMaintenanceReport: frameAcquisition.getWarframeMaintenanceReport,
+    getFrameCardMetadata: frameCard.getFrameCardMetadata,
+    buildFrameCardDTO: frameCard.buildFrameCardDTO,
+    auditFrameCardMetadata: frameCard.auditFrameCardMetadata,
     frameAcquisition,
+    frameCard,
     resourceAcquisition
   };
 }
 
-module.exports = { createKnowledgeCore, searchEntries, frameAcquisition, resourceAcquisition };
+module.exports = { createKnowledgeCore, searchEntries, frameAcquisition, frameCard, resourceAcquisition, arcaneFusionMetadata };

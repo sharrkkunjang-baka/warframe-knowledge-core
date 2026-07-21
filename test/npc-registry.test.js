@@ -20,14 +20,22 @@ test('NPC categories 索引覆盖 Wiki Characters 全量角色页', () => {
   assert.ok(index.npcs.some(item => item.canonical === 'Fibonacci' && item.file === 'sanctum-anatomica/fibonacci.json'))
 })
 
-test('未审核 NPC 中文为空，查询上下文保留英文且禁止猜译', () => {
+test('NPC 使用离线官方语言精确匹配，未证实项仍禁止猜译', () => {
   const core = createKnowledgeCore({ root })
-  const npc = core.getNpc('Fibonacci')
-  assert.equal(npc.displayName, '')
-  const context = core.buildWikiContext('Fibonacci')
-  assert.equal(context.entityVariables[0].displayName, 'Fibonacci')
-  assert.equal(context.entityVariables[0].localized, false)
-  assert.match(context.text, /禁止自行翻译、音译或补中文/)
+  const fibonacci = core.getNpc('Fibonacci')
+  assert.equal(fibonacci.displayName, '斐波那契')
+  assert.equal(fibonacci.localization.status, 'official-zh')
+  assert.equal(fibonacci.localization.languageKey, '/Lotus/Language/Entrati/Fibonacci')
+  const localizedContext = core.buildWikiContext('Fibonacci')
+  assert.equal(localizedContext.entityVariables[0].displayName, '斐波那契')
+  assert.equal(localizedContext.entityVariables[0].localized, true)
+
+  const unresolved = core.getNpc('Cressa Tal')
+  assert.equal(unresolved.displayName, '')
+  const unresolvedContext = core.buildWikiContext('Cressa Tal')
+  assert.equal(unresolvedContext.entityVariables[0].displayName, 'Cressa Tal')
+  assert.equal(unresolvedContext.entityVariables[0].localized, false)
+  assert.match(unresolvedContext.text, /禁止自行翻译、音译或补中文/)
 })
 
 test('地点、阵营、任务、货币与敌人均可作为按需实体变量查询', () => {

@@ -12,6 +12,25 @@ const compactPinyin = value => pinyinTokens(value).join('').replace(/[^a-z0-9]/g
 const mixedPinyin = value => String(value || '').normalize('NFKC').toLowerCase().split(/([\u3400-\u9fff]+)/)
   .map(part => /[\u3400-\u9fff]/.test(part) ? compactPinyin(part) : part.replace(/[^a-z0-9]/g, '')).join('');
 
+function stripResolverTerms(value, terms = []) {
+  let output = String(value || '');
+  for (const term of [...terms].filter(Boolean).sort((a, b) => String(b).length - String(a).length)) {
+    output = output.replace(new RegExp(String(term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'giu'), '');
+  }
+  return output.replace(/[\s·・‧•:：_\-/]+/g, '').trim();
+}
+
+function resolverForms(value, terms = []) {
+  const raw = String(value || '').trim();
+  const stripped = stripResolverTerms(raw, terms);
+  return [...new Set([raw, stripped].filter(Boolean).map(text => ({ text, stripped: normalize(text) !== normalize(raw) }))
+    .map(form => `${form.stripped ? '1' : '0'}\0${form.text}`))]
+    .map(key => {
+      const [flag, text] = key.split('\0');
+      return { text, stripped: flag === '1' };
+    });
+}
+
 function textScore(query, candidate) {
   const q = normalize(query), c = normalize(candidate);
   if (!q || !c) return -Infinity;
@@ -93,6 +112,8 @@ function createResolver(aliases) {
   return function resolveName(query, options = {}) {
     const raw = String(query || '').trim();
     if (!raw) return null;
+    const stripTerms = Array.isArray(options.stripTerms) ? options.stripTerms : [];
+    const queryForms = resolverForms(raw, stripTerms);
     const supplied = Array.isArray(options.candidates) ? options.candidates : [];
     const candidates = [...staticCandidates, ...supplied]
       .filter(item => item && item.alias && item.canonical)
@@ -100,10 +121,21 @@ function createResolver(aliases) {
     const direct = candidates.find(item => normalize(item.alias) === normalize(raw));
     if (direct) return { ...direct, match: 'exact', score: 300 };
     const ranked = candidates.map(item => {
-      const literal = textScore(raw, item.alias);
-      const phonetic = phoneticScore(raw, item.alias);
-      const score = Math.max(literal, phonetic) + Number(item.priority || 0);
-      return { ...item, score, match: literal >= phonetic ? 'text-weighted' : 'pinyin-weighted' };
+      const scored = queryForms.flatMap(queryForm => resolverForms(item.alias, stripTerms).map(candidateForm => {
+        const literal = textScore(queryForm.text, candidateForm.text);
+        const phonetic = phoneticScore(queryForm.text, candidateForm.text);
+        const normalizedExact = normalize(queryForm.text) === normalize(candidateForm.text);
+        const baseScore = normalizedExact && (queryForm.stripped || candidateForm.stripped)
+          ? 280
+          : Math.max(literal, phonetic);
+        return {
+          score: baseScore + Number(item.priority || 0),
+          match: normalizedExact && (queryForm.stripped || candidateForm.stripped)
+            ? 'type-stripped-exact'
+            : literal >= phonetic ? 'text-weighted' : 'pinyin-weighted'
+        };
+      })).sort((a, b) => b.score - a.score)[0];
+      return { ...item, score: scored?.score ?? -Infinity, match: scored?.match || 'text-weighted' };
     })
       .filter(item => item.score >= (options.minScore ?? 50))
       .sort((a, b) => b.score - a.score || Number(b.priority || 0) - Number(a.priority || 0) || b.alias.length - a.alias.length);
@@ -121,4 +153,4 @@ function createResolver(aliases) {
   };
 }
 
-module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize };
+module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize, stripResolverTerms };

@@ -64,6 +64,7 @@ test('近期 Mod 图片需求清单可机读且独立严格门默认失败', () 
   }]))
   const complete = audit.buildReport({ db, skipHash: true, imageEvidence: evidence })
   assert.equal(complete.imageChain.counts.production, 41)
+  assert.equal(complete.imageChain.status, 'complete')
   assert.ok(complete.imageChain.ledger.every(item => item.reviewStatus === 'approved' && item.productionStatus === 'approved'))
   assert.equal(audit.strictFailures(complete, { images: true }).images, 0)
 })
@@ -100,6 +101,40 @@ test('当前版本补充对象都有官方简中和结构化获取路线', () =>
   assert.ok(kaal.methods.some(method => method.type === 'event-mission-reward' && method.missionTypeId === 'mission-type.the-perita-rebellion'))
   const adapter = plan.entries.find(entry => entry.canonical === 'Archgun Arcane Adapter')
   assert.ok(adapter.methods.some(method => method.npcId === 'npc.nightcap'))
+  for (const canonical of ['Harrowing Spire', 'Reroot Rampage', "Truth's Flame"]) {
+    const entry = plan.entries.find(item => item.canonical === canonical)
+    assert.ok(entry.effectDetails.length, canonical)
+    assert.ok(entry.effectDetails.every(value => !/\|[^|]+\|/.test(value)), canonical)
+  }
+})
+test('官方效果模板不把未替换占位符带入用户可见文本', () => {
+  const details = supplements.officialModDetails(
+    {
+      officialUniqueName: '/Lotus/Upgrades/Mods/Antiques/Test',
+      languageKey: '/Lotus/Language/Upgrades/AntiqueTestName'
+    },
+    'Max Rank 5 Max Rank Description 300 30 General Information',
+    {
+      '/Lotus/Language/Upgrades/AntiqueTestNameDesc': '|val| 指挥官护盾；每个学派 +|val|',
+      '/Lotus/Language/Upgrades/AntiqueTestDesc': '|val| 指挥官护盾；每个学派 +|val|'
+    }
+  )
+  assert.deepEqual(details.effectDetails, ['300 指挥官护盾；每个学派 +30'])
+  assert.ok(details.effectDetails.every(value => !/\|[^|]+\|/.test(value)))
+  const withLiteralNumbers = supplements.officialModDetails(
+    {
+      officialUniqueName: '/Lotus/Upgrades/Mods/Test',
+      languageKey: '/Lotus/Language/Test/CursedName'
+    },
+    'Max Rank 3 Max Rank Description 4 120 100 6 General Information',
+    {
+      '/Lotus/Language/Test/CursedDesc': '获得额外 4 秒机会，伤害提高 |val1|%；每秒承受 |val2| 伤害，持续 6 秒。'
+    },
+    {
+      '/Lotus/Language/Test/CursedDesc': 'Gain 4s, increase damage by |val1|%; suffer |val2| damage for 6s.'
+    }
+  )
+  assert.deepEqual(withLiteralNumbers.effectDetails, ['获得额外 4 秒机会，伤害提高 120%；每秒承受 100 伤害，持续 6 秒。'])
 })
 test('剩余十项获取协议完整且卡片来源去重', () => {
   const plan = supplements.buildPlan({ db, skipHash: true })

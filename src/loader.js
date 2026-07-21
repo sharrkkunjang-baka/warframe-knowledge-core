@@ -81,6 +81,11 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const arcaneDirectory = path.join(knowledgeDirectory, 'acquisition', 'arcane');
   const arcaneCatalogPath = path.join(arcaneDirectory, 'catalog.json');
   const arcaneCatalog = fs.existsSync(arcaneCatalogPath) ? deepFreeze(readJson(arcaneCatalogPath)) : null;
+  const arcaneMetadataPath = path.join(root, 'generated', 'arcane-market-metadata.json');
+  const arcaneMetadataCatalog = fs.existsSync(arcaneMetadataPath)
+    ? deepFreeze(readJson(arcaneMetadataPath))
+    : { schemaVersion: 1, entries: [] };
+  const arcaneMetadata = new Map((arcaneMetadataCatalog.entries || []).map(entry => [String(entry.canonical || '').toLowerCase(), entry]));
   const arcaneMethods = deepFreeze(readObjectDirectory(path.join(arcaneDirectory, 'method')).filter(item => item.kind === 'arcane-acquisition-method'));
   const arcanes = deepFreeze(readObjectDirectory(arcaneDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'arcane').filter(keep));
   const weaponDirectory = path.join(knowledgeDirectory, 'acquisition', 'weapons');
@@ -93,7 +98,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const consumables = deepFreeze(readObjectDirectory(consumableDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'consumable'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialAbilities, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialAbilities, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMetadataCatalog, arcaneMetadata, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

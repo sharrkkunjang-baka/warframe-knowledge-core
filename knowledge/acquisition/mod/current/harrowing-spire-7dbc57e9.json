@@ -7,13 +7,15 @@
     "canonical": "Harrowing Spire",
     "displayName": "胆寒尖刺",
     "category": "mod",
-    "officialUniqueName": "wiki-current:mod:Harrowing Spire",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/BayonetCmbOneMeleeTree",
     "categoryRefs": [
       "standardmod"
     ]
   },
-  "maxRank": null,
-  "effectDetails": [],
+  "maxRank": 3,
+  "effectDetails": [
+    "持续不断的戳刺和强劲有力的横扫式冲刺。"
+  ],
   "rarity": null,
   "polarity": null,
   "tradable": true,
@@ -24,7 +26,7 @@
   "modAcquisition": {
     "generated": {
       "identity": {
-        "officialUniqueName": "wiki-current:mod:Harrowing Spire",
+        "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/BayonetCmbOneMeleeTree",
         "canonical": "Harrowing Spire",
         "displayName": "胆寒尖刺",
         "variant": "standard"
@@ -41,7 +43,20 @@
             "size": 2322874368
           }
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "container-drop",
+            "locationId": "acquisition-source.roathes-oblivion",
+            "sourceCanonical": "The Descendia Storage Containers",
+            "sourceDisplayName": "沉沦之地储存容器",
+            "probability": 0.01,
+            "chancePercent": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          }
+        ],
         "evidence": [
           {
             "type": "acquisition-prose",
@@ -107,7 +122,7 @@
           "usage": []
         },
         "unresolvedEntities": [],
-        "status": "unresolved"
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -115,8 +130,10 @@
       "methods": [],
       "methodRefs": [],
       "overrides": {},
-      "reviewStatus": "draft",
-      "reviewedBy": []
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "recent-mod-evidence-audit"
+      ]
     }
   },
   "acquisitionStatus": "complete",
@@ -130,7 +147,8 @@
   "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
-    "current-wiki-supplement"
+    "current-wiki-supplement",
+    "recent-mod-evidence-audit"
   ],
   "tags": [
     "acquisition",
@@ -140,5 +158,6 @@
   "generator": {
     "name": "sync-current-wiki-supplements",
     "version": 1
-  }
+  },
+  "officialUniqueName": "/Lotus/Weapons/Tenno/Melee/MeleeTrees/BayonetCmbOneMeleeTree"
 }

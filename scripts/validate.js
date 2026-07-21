@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { readEntryDirectory, readCategoryDirectory } = require('../src/loader');
+const { readEntryDirectory, readObjectDirectory, readCategoryDirectory } = require('../src/loader');
 const { buildOfficialCatalog, serialize } = require('./sync-official-mods');
 
 const root = path.join(__dirname, '..');
@@ -418,7 +418,11 @@ if (!officialCatalog) {
   const officialCategories = officialCatalog.officialCategories || [];
   const officialModKeys = new Set();
   const officialCategoryKeys = new Set();
-  const acquisitionIds = new Set(entries.filter(entry => entry.module === 'acquisition').map(entry => entry.id));
+  // supplemental/current 采用单对象 JSON，运行时 loader 会载入；引用门也必须看见，
+  // 但不把所有自动生成单对象纳入历史条目的整套人工字段校验。
+  const acquisitionIds = new Set(readObjectDirectory(acquisitionRoot)
+    .filter(entry => entry.module === 'acquisition')
+    .map(entry => entry.id));
 
   if (officialCatalog.schemaVersion !== 1) errors.push('official.json: schemaVersion 必须为 1');
   const excludedMods = officialCatalog.excludedMods || [];

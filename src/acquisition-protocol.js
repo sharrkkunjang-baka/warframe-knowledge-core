@@ -294,10 +294,17 @@ function renderStructuredMethod(method, options = {}) {
       return `${prefix}从${bountyName}奖励中获得`
     }
     if (!locationName && missionTypeName) {
+      const rotation = method.rotation ? ` ${method.rotation}轮` : ''
+      if (method.missionTypeCanonical === 'Weekly Conclave Challenge Reward') {
+        const probability = options.showProbabilities === false || !Number.isFinite(method.chance)
+          ? ''
+          : `，${Number((method.chance * 100).toFixed(4))}%`
+        return `${prefix}${missionTypeName}${rotation}（概率获得${probability}）`
+      }
       const probability = options.showProbabilities === false || !Number.isFinite(method.chance)
         ? ''
-        : `\uff0c${Number((method.chance * 100).toFixed(4))}%`
-      return `${prefix}${missionTypeName}${method.rotation ? ` ${method.rotation}\u8f6e` : ''}\uff08\u6982\u7387\u83b7\u5f97${probability}\uff09`
+        : `（概率${Number((method.chance * 100).toFixed(4))}%）`
+      return `${prefix}${missionTypeName}${rotation}${probability}`
     }
     const missionTypeSuffix = missionTypeName && !String(locationName).includes(missionTypeName) ? `（${missionTypeName}）` : ''
     const mission = [locationName, missionTypeSuffix].join('')
@@ -382,23 +389,22 @@ function acquisitionCardSections(methods, options = {}) {
   // 图片卡片的敌人栏是一敌人一行；禁止套用文字协议的“替代来源合并”，
   // 否则几十个敌人会重新拼成一个难以阅读的长句。
   for (const method of sourceMethods.filter(method => acquisitionCardGroup(method) === 'enemy')) {
-    const sourceName = method.sourceDisplayName || method.variables?.sourceName || method.sourceCanonical
-    if (!sourceName) continue
+    const name = method.sourceDisplayName || method.variables?.sourceName || method.sourceCanonical
+    if (!name) continue
     const bossLocation = method.bossLocation || null
     const bossContext = bossLocation
       ? [...new Set([
           bossLocation.planetDisplayName,
           bossLocation.nodeDisplayName,
-          '\u523a\u6740'
+          '刺杀'
         ].filter(Boolean))].join(' ')
       : ''
-    const context = ''
+    const context = bossContext || method.locationDisplayName || method.variables?.locationName || ''
     const chance = Number.isFinite(Number(method.chance))
-      ? `\uff0c${Number((Number(method.chance) * 100).toFixed(4))}%`
+      ? `，${Number((Number(method.chance) * 100).toFixed(4))}%`
       : ''
-    const location = bossContext || method.locationDisplayName || method.variables?.locationName || ''
-    const name = `${location && location !== sourceName ? `${location} \u00b7 ` : ''}${sourceName}\uff08\u6982\u7387\u83b7\u5f97${chance}\uff09`
-    const text = `- ${name}${context && context !== name ? `（${context}）` : ''}`
+    const sourceText = context && context !== name ? `${context} · ${name}` : name
+    const text = `- ${sourceText}（概率获得${chance}）`
     const identity = method.sourceEntityId || method.sourceCanonical || name
     if (seen.has(`enemy:${identity}`)) continue
     seen.add(`enemy:${identity}`)
@@ -406,7 +412,10 @@ function acquisitionCardSections(methods, options = {}) {
   }
   const nonEnemy = sourceMethods.filter(method => acquisitionCardGroup(method) !== 'enemy')
   for (const method of mergeAlternativeSources(applyDisplaySummaries(nonEnemy), { ...options, showProbabilities: false })) {
-    const headline = renderStructuredMethod(method, { ...options, showProbabilities: false })
+    const showProbabilities = method.missionTypeCanonical === 'Weekly Conclave Challenge Reward'
+      ? options.showProbabilities !== false
+      : false
+    const headline = renderStructuredMethod(method, { ...options, showProbabilities })
     if (!headline) continue
     const lines = mergeMethodPresentationLines(method, headline, method.requirementLines || [])
     if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')

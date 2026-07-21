@@ -80,6 +80,34 @@ test('近分候选返回统一歧义结构', () => {
   assert.deepEqual(result.ambiguous.map(item => item.canonical), ['Growing Power', 'Growth Badge']);
 });
 
+test('赋能类型词通过共享评分器限定类别并支持前缀词序变体', () => {
+  for (const query of ['赋能侵染', '赋能近战侵染', '近战赋能侵染', '赋能 近战·侵染']) {
+    const result = reviewCore.resolveArcane(query);
+    assert.equal(result.canonical, 'Melee Influence', query);
+    assert.equal(result.category, 'arcane', query);
+  }
+  const acquisition = reviewCore.getAcquisition('近战赋能侵染');
+  assert.equal(acquisition.entry.subject.canonical, 'Melee Influence');
+  assert.equal(acquisition.entry.subject.category, 'arcane');
+  assert.equal(reviewCore.resolveAcquisitionCommand('刷 近战赋能侵染').domain, 'arcane');
+});
+
+test('赋能二字后缀共享时返回歧义且不跨类别乱选', () => {
+  const ambiguous = reviewCore.resolveArcane('赋能死首');
+  assert.ok(ambiguous.ambiguous);
+  assert.deepEqual(
+    new Set(ambiguous.ambiguous.map(item => item.canonical)),
+    new Set(['Primary Deadhead', 'Secondary Deadhead'])
+  );
+  assert.equal(ambiguous.ambiguous.every(item => item.category === 'arcane'), true);
+  const acquisition = reviewCore.getAcquisition('赋能死首');
+  assert.equal(acquisition.entry, null);
+  assert.ok(acquisition.resolution.ambiguous);
+  const crossCategory = reviewCore.getAcquisition('赋能成长之力');
+  assert.equal(crossCategory.entry, null);
+  assert.equal(crossCategory.resolution, null);
+});
+
 test('精确 Prime 战甲获取不会降级为普通战甲', () => {
   for (const query of ['Wukong Prime', 'wukong prime']) {
     const result = reviewCore.getAcquisition(query);

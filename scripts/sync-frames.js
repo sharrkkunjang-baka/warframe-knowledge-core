@@ -19,7 +19,17 @@ const sources = {
   quests: 'https://browse.wf/warframe-public-export-plus/ExportKeys.json',
   dropTables: 'https://www.warframe.com/droptables'
 };
-const overrides = { '/Lotus/Powersuits/Sentient/CalibanPrime': 'Caliban Prime' };
+const overrides = {
+  '/Lotus/Powersuits/Sentient/CalibanPrime': 'Caliban Prime',
+  '/Lotus/Powersuits/DemonFrame/DemonFrame': 'Uriel'
+};
+const URIEL_IDENTITIES = Object.freeze({
+  frame: '/Lotus/Powersuits/DemonFrame/DemonFrame',
+  Blueprint: '/Lotus/Types/Recipes/WarframeRecipes/UrielBlueprint',
+  Neuroptics: '/Lotus/Types/Recipes/WarframeRecipes/UrielHelmetComponent',
+  Chassis: '/Lotus/Types/Recipes/WarframeRecipes/UrielChassisComponent',
+  Systems: '/Lotus/Types/Recipes/WarframeRecipes/UrielSystemsComponent'
+});
 function inferName(uniqueName) {
   const leaf = uniqueName.split('/').pop().replace(/Prime$/, ' Prime');
   return leaf.replace(/([a-z])([A-Z])/g, '$1 $2');
@@ -33,6 +43,31 @@ async function fetchText(url) {
   const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
   return response.text();
+}
+function frameComponents(frameUniqueName, frameName, recipes) {
+  const compact = frameName.replace(/\s+/g, '');
+  const candidates = Object.entries(recipes)
+    .filter(([blueprint, recipe]) => /\/WarframeRecipes\//i.test(blueprint)
+      && recipe && typeof recipe === 'object')
+    .map(([blueprint, recipe]) => ({ blueprint, resultType: recipe.resultType || '' }));
+  const partPatterns = {
+    Blueprint: candidate => candidate.resultType === frameUniqueName,
+    Neuroptics: candidate => new RegExp(`/${compact}(?:Helmet|Neuroptics)Component$`, 'i').test(candidate.resultType),
+    Chassis: candidate => new RegExp(`/${compact}ChassisComponent$`, 'i').test(candidate.resultType),
+    Systems: candidate => new RegExp(`/${compact}SystemsComponent$`, 'i').test(candidate.resultType)
+  };
+  return Object.entries(partPatterns).map(([part, predicate]) => {
+    const exact = candidates.find(predicate);
+    if (frameUniqueName === URIEL_IDENTITIES.frame) {
+      const identity = part === 'Blueprint' ? exact?.blueprint : exact?.resultType;
+      if (identity !== URIEL_IDENTITIES[part]) {
+        throw new Error(`Uriel ${part} Public Export 身份不匹配：${identity || 'missing'}`);
+      }
+      return { part, uniqueName: identity };
+    }
+    const guessed = `/Lotus/Types/Recipes/WarframeRecipes/${compact}${part === 'Blueprint' ? 'Blueprint' : part === 'Neuroptics' ? 'HelmetComponent' : `${part}Component`}`;
+    return { part, uniqueName: (part === 'Blueprint' ? exact?.blueprint : exact?.resultType) || guessed };
+  });
 }
 (async () => {
   const [warframes, recipes, rewards, relics, officialQuests, dropTablesText] = await Promise.all([
@@ -51,10 +86,8 @@ async function fetchText(url) {
       isPrime: packageByUniqueName.get(uniqueName)?.isPrime === true || frame.variantType === 'VT_PRIME' || / Prime$/i.test(packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName)),
       productCategory: frame.productCategory,
       introducedAt: frame.introducedAt || null,
-      components: ['Blueprint', 'Neuroptics', 'Chassis', 'Systems'].map(part => ({
-        part,
-        uniqueName: `/Lotus/Types/Recipes/WarframeRecipes/${(packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName)).replace(/\s+/g, '')}${part === 'Blueprint' ? '' : part === 'Neuroptics' ? 'Helmet' : part}${part === 'Blueprint' ? 'Blueprint' : 'Component'}`
-      }))
+      iconExportPath: frame.icon || null,
+      components: frameComponents(uniqueName, packageByUniqueName.get(uniqueName)?.name || overrides[uniqueName] || inferName(uniqueName), recipes)
     }))
     .sort((a, b) => a.name.localeCompare(b.name, 'en'));
   const questCatalog = QUESTS.map(quest => ({

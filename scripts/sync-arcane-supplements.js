@@ -11,9 +11,9 @@ const EXCLUSIONS = Object.freeze({ Vosfor: 'resource-not-arcane', 'Arcane Enhanc
 const CATEGORY_MAP = Object.freeze({ Warframe: 'warframe', Primary: 'primary', Secondary: 'secondary', Melee: 'melee', 'Tektolyst Artifacts': 'tektolyst' })
 const PATCH_URLS = Object.freeze({ '43.0': 'https://www.warframe.com/zh-hans/patch-notes/psn/43-0-0', '41.0': 'https://www.warframe.com/zh-hans/patch-notes/pc/41-0-0' })
 const PATCH_41_ARCANES = Object.freeze({
-  'Arcane Concentration': { displayName: '赋能·专注', description: 'On Ability Cast: +60% Duration for 3s', languageKey: '/Lotus/Language/Arcanes/AbilityDurationOnCastName' },
-  'Arcane Circumvent': { displayName: '赋能·规避', description: 'Roll through enemies to steal 50% of their defenses for yourself. Stolen Armor lasts 15s.', languageKey: '/Lotus/Language/Arcanes/StealDefensiveStatsOnRollName' },
-  'Arcane Expertise': { displayName: '赋能·精湛', description: '100% of Ability Strength modifiers are also applied to Max Shields.', languageKey: '/Lotus/Language/Arcanes/ShieldMaxForAbilityStrengthName' }
+  'Arcane Concentration': { uniqueName: '/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityDurationOnCast', displayName: '赋能·专注', description: 'On Ability Cast: +60% Duration for 3s', languageKey: '/Lotus/Language/Arcanes/AbilityDurationOnCastName' },
+  'Arcane Circumvent': { uniqueName: '/Lotus/Upgrades/CosmeticEnhancers/Defensive/StealDefensiveStatsOnRoll', displayName: '赋能·规避', description: 'Roll through enemies to steal 50% of their defenses for yourself. Stolen Armor lasts 15s.', languageKey: '/Lotus/Language/Arcanes/StealDefensiveStatsOnRollName' },
+  'Arcane Expertise': { uniqueName: '/Lotus/Upgrades/CosmeticEnhancers/Defensive/ShieldMaxForAbilityStrength', displayName: '赋能·精湛', description: '100% of Ability Strength modifiers are also applied to Max Shields.', languageKey: '/Lotus/Language/Arcanes/ShieldMaxForAbilityStrengthName' }
 })
 const LANGUAGE_CACHE = path.join(ROOT, '.cache', 'official-localization')
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
@@ -51,7 +51,7 @@ function patch41Entries(languages) {
     const displayName = String(languages.zh[definition.languageKey] || definition.displayName).trim()
     if (displayName !== definition.displayName) throw new Error(`${canonical}: 官方简中与 41.0 补充定义不一致`)
     return {
-      officialUniqueName: `patch-arcane:${canonical}`, canonical, displayName, localizationStatus: 'official-zh', languageKey: definition.languageKey,
+      officialUniqueName: definition.uniqueName, canonical, displayName, localizationStatus: 'official-zh', languageKey: definition.languageKey,
       category: 'warframe', arcaneType: 'Warframe Arcane', equipmentClass: 'Warframe', rarity: 'Rare', maxRank: 5,
       maxRankEffectCanonical: definition.description,
       methods: [

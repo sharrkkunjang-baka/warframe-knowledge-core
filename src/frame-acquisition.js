@@ -33,7 +33,13 @@ const REWARDS_URL = 'https://browse.wf/warframe-public-export-plus/ExportRewards
 const DEFAULT_CACHE = path.join(process.env.WF_EXPORT_CACHE_DIR || path.join(CORE_ROOT, 'cache'), 'warframe-export-recipes.json');
 const DEFAULT_REWARDS_CACHE = path.join(process.env.WF_EXPORT_CACHE_DIR || path.join(CORE_ROOT, 'cache'), 'warframe-export-rewards.json');
 const PARTS = ['Blueprint', 'Neuroptics', 'Chassis', 'Systems'];
-const PART_ZH = { Blueprint: '总图', Neuroptics: '头', Chassis: '机体', Systems: '系统' };
+const PART_ZH = { Blueprint: '总图', Neuroptics: '头部神经光元', Chassis: '机体', Systems: '系统' };
+const OFFICIAL_ITEM_ZH = Object.freeze({
+  '/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceCommonItem': '名盘',
+  '/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceUncommonItem': '荣誉勋章',
+  '/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceRareItem': '军功勋章',
+  '/Lotus/Types/Items/MiscItems/OrokinCell': '奥罗金电池'
+});
 const RAILJACK_NODE_ZH = Object.fromEntries(OFFICIAL_RAILJACK_NODES.nodes.flatMap(node => [[node.canonical, node.displayName], [node.regionCanonical, node.regionDisplayName]]));
 const STABLE_LOCATION_ZH = {
   Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一',
@@ -82,7 +88,7 @@ function normalize(value) {
 }
 function zhName(uniqueName, fallback) {
   if (/^(credits?|\/lotus\/types\/items\/credits)$/i.test(String(fallback)) || /credits?$/i.test(String(uniqueName))) return '现金';
-  return I18N[uniqueName]?.zh?.name || fallback || String(uniqueName).split('/').pop();
+  return OFFICIAL_ITEM_ZH[uniqueName] || I18N[uniqueName]?.zh?.name || fallback || String(uniqueName).split('/').pop();
 }
 const COMPONENT_ZH = new Map();
 for (const frame of WARFRAMES) {
@@ -90,6 +96,12 @@ for (const frame of WARFRAMES) {
   for (const component of frame.components || []) {
     const part = component.name === 'Neuroptics' ? '头' : component.name === 'Chassis' ? '机体' : component.name === 'Systems' ? '系统' : null;
     if (part && component.uniqueName) COMPONENT_ZH.set(component.uniqueName, `${frameName}${part}`);
+  }
+}
+for (const frame of OFFICIAL_FRAMES.frames || []) {
+  const frameName = FRAME_KNOWLEDGE.find(entry => entry.subject?.officialUniqueName === frame.uniqueName)?.subject?.displayName || frame.name;
+  for (const component of frame.components || []) if (component.part !== 'Blueprint' && component.uniqueName) {
+    COMPONENT_ZH.set(component.uniqueName, `${frameName} ${PART_ZH[component.part] || component.part}`);
   }
 }
 
@@ -257,10 +269,32 @@ function indexRecipes(recipes) {
 function isManufacturedWarframePart(itemType) {
   return /\/WarframeRecipes\/.*(?:Helmet|Chassis|Systems)Component$/i.test(itemType);
 }
+function auditedFrameRecipes(frame) {
+  return FRAME_KNOWLEDGE_INDEX.get(frame?.name)?.recipes || [];
+}
+function recipeProtocolAsExport(recipes) {
+  return Object.fromEntries((recipes || []).map(recipe => [recipe.blueprintUniqueName, {
+    resultType: recipe.resultUniqueName,
+    buildPrice: Number(recipe.credits || 0),
+    buildTime: Number(recipe.buildTimeSeconds || 0),
+    skipBuildTimePrice: Number(recipe.rushPlatinum || 0),
+    num: Number(recipe.outputQuantity || 1),
+    ingredients: (recipe.ingredients || []).map(ingredient => ({
+      ItemType: ingredient.uniqueName,
+      ItemCount: Number(ingredient.quantity || 0),
+      displayName: ingredient.displayName
+    }))
+  }]));
+}
+function recipesWithAuditedFrameProtocol(frame, recipes) {
+  const audited = auditedFrameRecipes(frame);
+  return audited.length ? { ...(recipes || {}), ...recipeProtocolAsExport(audited) } : recipes;
+}
 function aggregateMaterials(frameOrName, recipes) {
   const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
   if (!frame) return null;
   if (frame.override || frame.materials?.available) return frame.materials;
+  recipes = recipesWithAuditedFrameProtocol(frame, recipes);
   if (!recipes || typeof recipes !== 'object') return { available: false, reason: '配方数据暂时不可用' };
   const { byBlueprint, byResult } = indexRecipes(recipes);
   const drops = getComponentDrops(frame);
@@ -276,7 +310,7 @@ function aggregateMaterials(frameOrName, recipes) {
     const nested = /\/Types\/Recipes\//i.test(itemType) ? (byBlueprint.get(itemType) || byResult.get(itemType)) : null;
     if (!nested || stack.has(nested.blueprint)) { add(resources, itemType, count); return; }
     const next = new Set(stack).add(nested.blueprint);
-    credits += Number(nested.creditsCost ?? nested.buildPrice ?? 0) * count;
+    credits += Number(nested.buildPrice ?? nested.creditsCost ?? 0) * count;
     for (const ingredient of nested.ingredients || []) expand(ingredient.ItemType, Number(ingredient.ItemCount || 0) * count, next);
   }
   const recipesToBuild = [];
@@ -289,12 +323,40 @@ function aggregateMaterials(frameOrName, recipes) {
   const frameRecipe = byResult.get(frame.uniqueName) || (totalBlueprint && byBlueprint.get(totalBlueprint));
   if (frameRecipe) recipesToBuild.push(frameRecipe); else missingRecipes.push('Assembly');
   for (const recipe of recipesToBuild) {
-    credits += Number(recipe.creditsCost ?? recipe.buildPrice ?? 0);
+    credits += Number(recipe.buildPrice ?? recipe.creditsCost ?? 0);
     for (const ingredient of recipe.ingredients || []) expand(ingredient.ItemType, Number(ingredient.ItemCount || 0), new Set([recipe.blueprint]));
   }
   const renderItems = map => [...map].map(([uniqueName, count]) => ({ uniqueName, name: COMPONENT_ZH.get(uniqueName) || zhName(uniqueName), count }))
     .sort((a, b) => a.name.localeCompare(b.name, 'zh-Hans-CN') || a.uniqueName.localeCompare(b.uniqueName));
   return { available: missingRecipes.length === 0, resources: renderItems(resources), manufacturedParts: renderItems(manufacturedParts), credits: { name: '现金', count: credits }, missingRecipes };
+}
+function getCraftingRecipes(frameOrName, recipes) {
+  const frame = typeof frameOrName === 'string' ? resolveWarframe(frameOrName) : frameOrName;
+  if (!frame) return [];
+  recipes = recipesWithAuditedFrameProtocol(frame, recipes);
+  if (!recipes || typeof recipes !== 'object') return [];
+  const { byBlueprint, byResult } = indexRecipes(recipes);
+  const frameName = frame.zhName || frame.name;
+  return getComponentDrops(frame).map(component => {
+    const recipe = component.part === 'Blueprint'
+      ? byResult.get(frame.uniqueName) || byBlueprint.get(component.uniqueName)
+      : byResult.get(component.uniqueName) || byBlueprint.get(component.uniqueName);
+    if (!recipe) return null;
+    return {
+      part: component.part,
+      displayName: `${frameName} ${PART_ZH[component.part] || component.part}`,
+      blueprintUniqueName: recipe.blueprint,
+      resultUniqueName: recipe.resultType || component.uniqueName,
+      credits: Number(recipe.buildPrice ?? recipe.creditsCost ?? 0),
+      buildSeconds: Number(recipe.buildTime || 0),
+      rushPlatinum: Number(recipe.skipBuildTimePrice || 0),
+      ingredients: (recipe.ingredients || []).map(ingredient => ({
+        uniqueName: ingredient.ItemType,
+        displayName: ingredient.displayName || COMPONENT_ZH.get(ingredient.ItemType) || zhName(ingredient.ItemType),
+        count: Number(ingredient.ItemCount || 0)
+      }))
+    };
+  }).filter(Boolean);
 }
 
 function relicBaseName(name) { return String(name || '').replace(/\s+Relic$/i, '').replace(/\s+(Intact|Exceptional|Flawless|Radiant)$/i, '').trim(); }
@@ -670,7 +732,12 @@ function renderSpecificMissionRoute(variables) {
   if (!location || !node) return null;
   const missionType = node.missionTypeId ? entityName(MISSION_TYPE_REGISTRY, node.missionTypeId) : '';
   const missionTypeText = missionType ? `（${missionType}）` : '';
-  const dropChanceText = Number.isFinite(Number(variables.dropChance)) ? `，部件蓝图掉率 ${Number(variables.dropChance)}%` : '';
+  const chance = Number(variables.dropChance);
+  const dropChanceText = Number.isFinite(chance)
+    ? variables.randomComponentDrop
+      ? `，随机掉落部件蓝图；头部神经光元、机体、系统各 ${chance}%`
+      : `，部件蓝图掉率 ${chance}%`
+    : '';
   const primary = applyTemplate(methodTemplate('components', 'frame-specific-mission'), {
     locationName: location, missionNodeName: entityName(LOCATION_REGISTRY, variables.missionNodeId), missionTypeText, dropChanceText
   });
@@ -682,7 +749,13 @@ function renderSpecificMissionRoute(variables) {
     const exchangeLine = applyTemplate(methodTemplate('components', 'frame-specific-mission', 'exchangeTemplate'), {
       npcName: npc, currencyName: currency, componentCost: exchange.componentCost, blueprintCost: exchange.blueprintCost
     });
-    if (exchangeLine) lines.push(exchangeLine);
+    if (exchangeLine) {
+      const totals = [
+        Number.isFinite(Number(exchange.componentSetCost)) ? `三张部件蓝图共 ${Number(exchange.componentSetCost)}` : '',
+        Number.isFinite(Number(exchange.fullSetCost)) ? `完整四张蓝图共 ${Number(exchange.fullSetCost)}` : ''
+      ].filter(Boolean);
+      lines.push([exchangeLine, totals.join('，')].filter(Boolean).join('；'));
+    }
   }
   return lines;
 }
@@ -819,7 +892,7 @@ function renderAcquisition(data) {
 
 module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, AUDITED_ABILITY_MECHANICS, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery, resolveWarframeAbilityQueries,
-  getComponentDrops, indexRecipes, aggregateMaterials, normalizeChance, formatChance,
+  getComponentDrops, indexRecipes, auditedFrameRecipes, recipeProtocolAsExport, aggregateMaterials, getCraftingRecipes, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
   listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
 };

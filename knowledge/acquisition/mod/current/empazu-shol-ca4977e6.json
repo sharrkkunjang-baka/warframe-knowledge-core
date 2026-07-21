@@ -13,6 +13,7 @@
         "standardmod"
       ]
     },
+    "officialUniqueName": "/Lotus/Upgrades/Mods/Antiques/UltimateInitialChargeSchools",
     "maxRank": 5,
     "effectDetails": [
       "每种独特学派的 Mod 可获得 +12% 的加成"
@@ -33,8 +34,56 @@
           "variant": "standard"
         },
         "wiki": {
-          "status": "unresolved",
-          "methods": [],
+          "status": "complete",
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "npcId": "npc.marie",
+              "locationId": "hub.sanctum-anatomica",
+              "sourceCanonical": "Marie at La Cathédrale, Sanctum Anatomica",
+              "sourceDisplayName": "始源星系解剖圣所拉卡瑟德拉勒的玛丽轮换商店",
+              "availability": "rotating",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.marie",
+                "locationId": "hub.sanctum-anatomica",
+                "chooseCount": 2,
+                "currency": [
+                  {
+                    "currencyId": "currency.agnovidisc",
+                    "amountRange": [
+                      750,
+                      1050
+                    ]
+                  },
+                  {
+                    "currencyId": "currency.laudavi",
+                    "amountRange": [
+                      300,
+                      420
+                    ]
+                  },
+                  {
+                    "currencyId": "currency.servoris",
+                    "amountRange": [
+                      120,
+                      180
+                    ]
+                  }
+                ]
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Marie",
+                "pageId": 1599544,
+                "revisionId": 2794179,
+                "section": "Browse Items",
+                "excerpt": "Empazu-Shol | 3x rotating Antique Mod cost; each item randomly costs 2 listed resources"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -44,7 +93,7 @@
                 "pageTitle": "Empazu-Shol",
                 "revisionId": 2784362
               },
-              "excerpt": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop."
+              "excerpt": "[ edit | edit source ]\n • Dropped by Commandeered Prime Warframes in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Commandeered Ash Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Caliban Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Ember Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Mesa Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Protea Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n | Commandeered Volt Prime |\n | 15% |\n | 16.67% |\n | 2.5005% |\n | 40 |\n | 1 |\n | 0.025005\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
             }
           ],
           "mechanicsEvidence": {},
@@ -135,7 +184,8 @@
         "overrides": {},
         "reviewStatus": "approved",
         "reviewedBy": [
-          "current-wiki-supplement"
+          "current-wiki-supplement",
+          "recent-mod-evidence-audit"
         ]
       }
     },
@@ -150,7 +200,8 @@
     "updatedAt": "2026-07-20",
     "reviewStatus": "approved",
     "reviewedBy": [
-      "current-wiki-supplement"
+      "current-wiki-supplement",
+      "recent-mod-evidence-audit"
     ],
     "tags": [
       "acquisition",

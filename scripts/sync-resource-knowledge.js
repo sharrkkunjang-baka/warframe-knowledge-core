@@ -2,18 +2,24 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
+const crypto = require('node:crypto')
 
 const ROOT = path.resolve(__dirname, '..')
 const RESOURCE_ROOT = path.join(ROOT, 'knowledge', 'acquisition', 'resource')
 const ENTRY_ROOT = path.join(RESOURCE_ROOT, 'entries')
 const INDEX_PATH = path.join(RESOURCE_ROOT, 'categories.json')
 const OFFICIAL_PATH = path.join(ROOT, 'knowledge', 'generated', 'official-items.json')
-const RESOURCE_KINDS = new Set(['resource', 'material', 'material-or-usable', 'mineral', 'plant', 'fish-part', 'currency-token-material'])
+const RESOURCE_CATALOG_PATH = path.join(ROOT, 'generated', 'resource-asset-catalog.json')
+const RESOURCE_KINDS = new Set([
+  'resource', 'material', 'material-or-usable', 'mineral', 'plant', 'fish', 'fish-part',
+  'fish-bait', 'conservation-tag', 'upgrade-item', 'key'
+])
 const { readIndexedEntries, normalizeEntityName } = require('../src/entities')
 const LOCATIONS = readIndexedEntries(ROOT, 'locations')
 const LOCATION_BY_NAME = new Map(LOCATIONS.flatMap(entry => [entry.id, entry.canonical, entry.displayName, ...(entry.aliases || [])].filter(Boolean).map(name => [normalizeEntityName(name), entry])))
 
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') }
+function stableSuffix(value) { return crypto.createHash('sha256').update(String(value)).digest('hex').slice(0, 8) }
 function serialize(value) { return JSON.stringify(value, null, 2) + '\n' }
 function isResource(item) { return (item.semanticKinds || []).some(kind => RESOURCE_KINDS.has(kind)) }
 function readEntries() {
@@ -107,25 +113,60 @@ function buildPlan() {
   const byUnique = new Map(existing.map(item => [item.value.subject?.officialUniqueName, item.value]))
   const byCanonical = new Map(existing.map(item => [item.value.subject?.canonical, item.value]))
   const deduped = new Map()
-  for (const item of official.items.filter(isResource)) {
+  const officialResources = official.items.filter(isResource)
+  const canonicalCounts = new Map(officialResources.map(item => [
+    item.canonical,
+    officialResources.filter(candidate => candidate.canonical === item.canonical).length
+  ]))
+  for (const item of officialResources) {
     const old = byUnique.get(item.uniqueName) || byCanonical.get(item.canonical)
     const entry = buildEntry(item, old)
-    const key = entry.subject.canonical.toLowerCase()
-    const current = deduped.get(key)
-    if (!current || (entry.resourceAcquisition.generated.localizationStatus === 'official-zh' && current.resourceAcquisition.generated.localizationStatus !== 'official-zh')) deduped.set(key, entry)
+    if (canonicalCounts.get(item.canonical) > 1) entry.id = `knowledge.acquisition.resource.${slug(item.canonical)}.${stableSuffix(item.uniqueName)}`
+    deduped.set(entry.subject.officialUniqueName, entry)
+  }
+  const resourceCatalog = fs.existsSync(RESOURCE_CATALOG_PATH)
+    ? JSON.parse(fs.readFileSync(RESOURCE_CATALOG_PATH, 'utf8'))
+    : { entries: [] }
+  for (const catalogEntry of resourceCatalog.entries || []) {
+    if (catalogEntry.category === 'token-or-currency') continue
+    const identity = catalogEntry.stableIdentity || {}
+    if (!identity.uniqueName || deduped.has(identity.uniqueName)) continue
+    const item = {
+      uniqueName: identity.uniqueName,
+      canonical: identity.canonical,
+      displayName: identity.displayName,
+      localizationStatus: catalogEntry.localizationStatus,
+      semanticKinds: catalogEntry.semanticKinds || [],
+      description: {},
+      drops: []
+    }
+    const old = byUnique.get(item.uniqueName) || byCanonical.get(item.canonical)
+    const entry = buildEntry(item, old)
+    entry.resourceAcquisition.generated.evidence = [{
+      type: 'current-wiki-directory',
+      pageId: catalogEntry.evidence?.wikiDirectory?.pageId || null,
+      revisionId: catalogEntry.evidence?.wikiDirectory?.revisionId || null,
+      reviewStatus: 'approved'
+    }]
+    deduped.set(entry.subject.officialUniqueName, entry)
   }
   for (const entry of externallyManaged) {
-    const key = entry.subject.canonical.toLowerCase()
+    const key = entry.subject.officialUniqueName || entry.id
     deduped.set(key, entry)
   }
   const entries = [...deduped.values()].sort((a, b) => a.subject.canonical.localeCompare(b.subject.canonical, 'en'))
-  const index = { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0, 10), count: entries.length, resources: entries.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, file: `entries/${slug(entry.subject.canonical)}.json`, category: entry.resourceAcquisition.generated.routing.category, reviewStatus: entry.reviewStatus })) }
-  return { entries, index }
+  const entryCanonicalCounts = new Map(entries.map(entry => [
+    entry.subject.canonical,
+    entries.filter(candidate => candidate.subject.canonical === entry.subject.canonical).length
+  ]))
+  const filename = entry => `${slug(entry.subject.canonical)}${entryCanonicalCounts.get(entry.subject.canonical) > 1 ? `-${stableSuffix(entry.subject.officialUniqueName || entry.id)}` : ''}.json`
+  const index = { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0, 10), count: entries.length, resources: entries.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, file: `entries/${filename(entry)}`, category: entry.resourceAcquisition.generated.routing.category, reviewStatus: entry.reviewStatus })) }
+  return { entries, index, filename }
 }
 function run(argv = process.argv.slice(2)) {
   const check = argv.includes('--check'), plan = buildPlan(), changes = [], expected = new Set()
   function compare(target, value) { const next = serialize(value), current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null; if (current !== next) changes.push({ target, next }) }
-  for (const entry of plan.entries) { const target = path.join(ENTRY_ROOT, `${slug(entry.subject.canonical)}.json`); expected.add(path.resolve(target).toLowerCase()); compare(target, entry) }
+  for (const entry of plan.entries) { const target = path.join(ENTRY_ROOT, plan.filename(entry)); expected.add(path.resolve(target).toLowerCase()); compare(target, entry) }
   compare(INDEX_PATH, plan.index)
   for (const item of readEntries()) { const target = path.join(ENTRY_ROOT, item.file); if (!expected.has(path.resolve(target).toLowerCase())) changes.push({ target, remove: true }) }
   if (check) { if (changes.length) throw new Error(`资源知识已漂移（${changes.length} 项）`); console.log(`资源知识无漂移：${plan.entries.length} 个资源`); return plan }

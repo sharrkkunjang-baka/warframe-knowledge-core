@@ -45,17 +45,46 @@ function jsonFiles(directory) {
 }
 function indexExistingMods() {
   const result = new Map()
-  for (const file of jsonFiles(path.join(ROOT, 'knowledge', 'acquisition', 'mod'))) {
+  const modRoot = path.join(ROOT, 'knowledge', 'acquisition', 'mod')
+  for (const file of jsonFiles(modRoot)) {
     const value = JSON.parse(fs.readFileSync(file, 'utf8'))
     for (const entry of Array.isArray(value) ? value : [value]) {
       const canonical = entry?.subject?.canonical
       if (!canonical) continue
-      const candidate = { file, entry, value, authoritative: Boolean(entry.modAcquisition?.generated?.wiki?.wiki) }
-      const previous = result.get(normalize(canonical))
-      if (!previous || candidate.authoritative && !previous.authoritative) result.set(normalize(canonical), candidate)
+      const relative = path.relative(modRoot, file)
+      const candidate = {
+        file,
+        entry,
+        value,
+        authoritative: Boolean(entry.modAcquisition?.generated?.wiki?.wiki),
+        standard: relative.split(path.sep)[0] === 'standardmod'
+      }
+      const key = normalize(canonical)
+      const previous = result.get(key)
+      // 正式 Mod 目录是已发布身份的唯一落点。current 仅用于官方目录尚未收录的
+      // 补充项；即使两份记录都有 Wiki 证据，也不能依赖字典序随机抢占运行时。
+      const score = Number(candidate.standard) * 2 + Number(candidate.authoritative)
+      const previousScore = previous ? Number(previous.standard) * 2 + Number(previous.authoritative) : -1
+      if (!previous || score > previousScore) result.set(key, candidate)
     }
   }
   return result
+}
+function staleCurrentModFiles(existingMods) {
+  const currentRoot = path.join(ROOT, 'knowledge', 'acquisition', 'mod', 'current')
+  const stale = []
+  for (const file of jsonFiles(currentRoot)) {
+    const value = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const entries = Array.isArray(value) ? value : [value]
+    if (!entries.length || !entries.every(entry => entry?.generator?.name === 'sync-current-wiki-supplements')) continue
+    if (entries.every(entry => {
+      const selected = existingMods.get(normalize(entry.subject?.canonical))
+      return selected && selected.file !== file && selected.standard
+        && (selected.entry.officialUniqueName || selected.entry.subject?.officialUniqueName)
+          === (entry.officialUniqueName || entry.subject?.officialUniqueName)
+    })) stale.push(file)
+  }
+  return stale
 }
 function introduced(text) { return String(text || '').match(/Introduced(?:\s+Update)?\s+(\d+(?:\.\d+)?)/i)?.[1] || null }
 function officialLocalization(canonical, en, zh) {
@@ -74,11 +103,11 @@ function officialLocalization(canonical, en, zh) {
     officialUniqueName: antiqueLeaf ? `/Lotus/Upgrades/Mods/Antiques/${antiqueLeaf}` : null
   }
 }
-function officialModDetails(localized, pageText, zh) {
+function officialModDetails(localized, pageText, zh, en = {}) {
   if (!localized?.officialUniqueName) return { maxRank: null, effectDetails: [] }
   const maxRank = Number(pageText.match(/Max Rank\s+(\d+)/i)?.[1])
   const description = pageText.match(/Max Rank Description\s+([\s\S]+?)\s+General Information/i)?.[1] || ''
-  const values = [...description.matchAll(/[+-]?\d+(?:\.\d+)?%?/g)].map(match => match[0].replace(/^[+]/, '').replace(/%$/, ''))
+  let values = [...description.matchAll(/[+-]?\d+(?:\.\d+)?%?/g)].map(match => match[0].replace(/^[+]/, '').replace(/%$/, ''))
   if (/NightwaveTnJetTurbinePistolAugmentModName$/.test(localized.languageKey) && values.length >= 3) {
     return {
       maxRank: Number.isInteger(maxRank) ? maxRank : null,
@@ -87,11 +116,30 @@ function officialModDetails(localized, pageText, zh) {
   }
   let cursor = 0
   const baseKey = localized.languageKey.replace(/Name$/, '')
-  const templates = [`${localized.languageKey}Desc`, `${localized.languageKey}SubDesc`, `${baseKey}Desc`, `${baseKey}SubDesc`].map(key => zh[key]).filter(Boolean)
+  const uniqueLeaf = localized.officialUniqueName.split('/').at(-1).replace(/(?:Card|Mod)$/, '')
+  const leafKeys = Object.keys(zh).filter(key =>
+    new RegExp(`/${uniqueLeaf.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?:Sub)?Desc$`, 'i').test(key)
+  )
+  const templateKeys = [...new Set([
+    `${localized.languageKey}Desc`,
+    `${localized.languageKey}SubDesc`,
+    `${baseKey}Desc`,
+    `${baseKey}SubDesc`,
+    ...leafKeys
+  ])]
+  const literalValues = templateKeys.flatMap(key =>
+    [...String(en[key] || '').replace(/\|[^|]+\|/g, '').matchAll(/[+-]?\d+(?:\.\d+)?%?/g)]
+      .map(match => match[0].replace(/^[+]/, '').replace(/%$/, ''))
+  )
+  for (const literal of literalValues) {
+    const index = values.indexOf(literal)
+    if (index >= 0) values.splice(index, 1)
+  }
+  const templates = templateKeys.map(key => zh[key]).filter(Boolean)
   const effectDetails = templates.map(template => renderGameText(String(template).replace(/\|[^|]+\|/g, token => {
     const value = values[cursor++] || token
     return token.startsWith('|') && String(template).includes(`+${token}`) ? value.replace(/^\+/, '') : value
-  })).trim()).filter(Boolean)
+  })).trim()).filter(value => value && !/\|[^|]+\|/.test(value))
   return { maxRank: Number.isInteger(maxRank) ? maxRank : null, effectDetails }
 }
 function section(db, pageId, names) { return db.prepare(`SELECT title,text FROM sections WHERE page_id=? AND lower(title) IN (${names.map(() => '?').join(',')}) ORDER BY ordinal`).all(pageId, ...names.map(value => value.toLowerCase())).map(item => item.text).join('\n') }
@@ -239,7 +287,7 @@ function buildPlan(options = {}) {
         if (domain === 'mods') localized.officialUniqueName = currentIdentities.get(normalize(page.title)) || localized.officialUniqueName
         const acquisitionText = section(db, page.pageId, ['Acquisition', 'Drop Locations'])
         const enemyDropText = section(db, page.pageId, ['Enemy Drop Tables'])
-        const details = officialModDetails(localized, page.text, zh)
+        const details = officialModDetails(localized, page.text, zh, en)
         const pageEvidence = { pageId: page.pageId, revisionId: page.revisionId, timestamp: page.timestamp }
         entries.push({ domain, canonical: page.title, displayName: localized.displayName, languageKey: localized.languageKey, officialUniqueName: localized.officialUniqueName, ...details, introduced: update, page: pageEvidence, methods: parseMethods(page.title, acquisitionText, localized.officialUniqueName ? (officialDrops[page.title] || []) : [], { page: pageEvidence, mariePage, enemyDropText }), acquisitionEvidence: [acquisitionText, enemyDropText].filter(Boolean).join('\n') })
       }
@@ -265,11 +313,11 @@ function run(argv = process.argv.slice(2)) {
   const index = argv.indexOf('--db'), db = index >= 0 ? argv[index + 1] : process.env.WF_WIKI_DB, check = argv.includes('--check')
   const plan = buildPlan({ db }), changes = [], existingMods = indexExistingMods()
   const compare = (target, value) => { const next = serialize(value), current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null; if (next !== current) changes.push({ target, next }) }
+  for (const target of staleCurrentModFiles(existingMods)) changes.push({ target, remove: true })
   for (const item of plan.entries) {
     const dir = item.domain === 'mods' ? path.join(ROOT, 'knowledge', 'acquisition', 'mod', 'current') : path.join(ROOT, 'knowledge', 'acquisition', 'resource', 'entries')
     const uniqueName = item.domain === 'mods' ? item.officialUniqueName : `wiki-current:resource:${item.canonical}`
     const existingMod = item.domain === 'mods' ? existingMods.get(normalize(item.canonical)) : null
-    if (existingMod?.authoritative) continue
     const target = item.domain === 'mods'
       ? (existingMod?.file || path.join(dir, `${slug(item.canonical)}-${hash(uniqueName)}.json`))
       : path.join(dir, `${slug(item.canonical)}.json`)
@@ -277,15 +325,27 @@ function run(argv = process.argv.slice(2)) {
     const old = Array.isArray(oldValue) ? oldValue[0] : oldValue
     // sync-mod-wiki 已为部分当前 Mod 生成更完整的页面/机制证据；补充层只填空缺，
     // 不能用简化的 Acquisition 摘要覆盖那些高质量条目。
-    if (item.domain === 'mods' && old?.modAcquisition?.generated?.wiki?.wiki) continue
+    if (item.domain === 'mods' && old?.modAcquisition?.generated?.wiki?.wiki) {
+      if (!(old.effectDetails || []).length && item.effectDetails.length) {
+        const mergedValue = structuredClone(oldValue)
+        const merged = Array.isArray(mergedValue) ? mergedValue[0] : mergedValue
+        merged.effectDetails = item.effectDetails
+        if (merged.maxRank == null && item.maxRank != null) merged.maxRank = item.maxRank
+        compare(target, mergedValue)
+      }
+      continue
+    }
     compare(target, item.domain === 'mods' ? [modEntry(item, old)] : resourceEntry(item, old))
   }
   const oldPlan = fs.existsSync(TARGET) ? JSON.parse(fs.readFileSync(TARGET, 'utf8')) : null
   compare(TARGET, { ...plan, generatedAt: oldPlan?.generatedAt || plan.generatedAt })
   if (check) { if (changes.length) throw new Error(`当前 Wiki 补充层已漂移（${changes.length} 项）`); console.log(`当前 Wiki 补充层无漂移：${plan.counts.entries} 项`); return plan }
-  for (const change of changes) { fs.mkdirSync(path.dirname(change.target), { recursive: true }); fs.writeFileSync(change.target, change.next) }
-  console.log(`已同步当前 Wiki 补充层 ${plan.counts.entries} 项；写入 ${changes.length} 项`)
+  for (const change of changes) {
+    if (change.remove) fs.rmSync(change.target)
+    else { fs.mkdirSync(path.dirname(change.target), { recursive: true }); fs.writeFileSync(change.target, change.next) }
+  }
+  console.log(`已同步当前 Wiki 补充层 ${plan.counts.entries} 项；变更 ${changes.length} 项`)
   return plan
 }
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
-module.exports = { START_UPDATE, DOMAINS, MOD_PAGE_EXCLUSIONS, MARIE_COST_MULTIPLIERS, ANARCH_ENEMIES, normalize, jsonFiles, indexExistingMods, officialLocalization, parseEnemyDrops, marieRequirements, parseMethods, buildPlan, modEntry, resourceEntry, run }
+module.exports = { START_UPDATE, DOMAINS, MOD_PAGE_EXCLUSIONS, MARIE_COST_MULTIPLIERS, ANARCH_ENEMIES, normalize, jsonFiles, indexExistingMods, staleCurrentModFiles, officialLocalization, officialModDetails, parseEnemyDrops, marieRequirements, parseMethods, buildPlan, modEntry, resourceEntry, run }

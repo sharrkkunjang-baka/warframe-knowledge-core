@@ -7,13 +7,15 @@
     "canonical": "Truth's Flame",
     "displayName": "真相之焰",
     "category": "mod",
-    "officialUniqueName": "wiki-current:mod:Truth's Flame",
+    "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/CursedSyndicateEmpoweredHeavyMeleeMod",
     "categoryRefs": [
       "standardmod"
     ]
   },
-  "maxRank": null,
-  "effectDetails": [],
+  "maxRank": 3,
+  "effectDetails": [
+    "启用 Tenno 气解。\r\n使用 Tenno 气解进行击杀可获得额外 4 秒 Tenno 气解机遇窗口，并使 Tenno 气解伤害提高 120%。\r\n\r\n诅咒：每秒承受 100 火焰伤害，持续 6 秒。"
+  ],
   "rarity": null,
   "polarity": null,
   "tradable": true,
@@ -24,7 +26,7 @@
   "modAcquisition": {
     "generated": {
       "identity": {
-        "officialUniqueName": "wiki-current:mod:Truth's Flame",
+        "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/CursedSyndicateEmpoweredHeavyMeleeMod",
         "canonical": "Truth's Flame",
         "displayName": "真相之焰",
         "variant": "standard"
@@ -41,7 +43,28 @@
             "size": 2322874368
           }
         },
-        "methods": [],
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "npcId": "npc.aspirant-zorba",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Aspirant Zorba at any relay",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.aspirant-zorba",
+              "locationId": "hub.any-relay",
+              "currency": [
+                {
+                  "currencyId": "currency.atramentum",
+                  "amount": 360
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved"
+          }
+        ],
         "evidence": [
           {
             "type": "acquisition-prose",
@@ -294,7 +317,7 @@
           "usage": []
         },
         "unresolvedEntities": [],
-        "status": "unresolved"
+        "status": "complete"
       },
       "officialDrops": []
     },
@@ -302,8 +325,10 @@
       "methods": [],
       "methodRefs": [],
       "overrides": {},
-      "reviewStatus": "draft",
-      "reviewedBy": []
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "recent-mod-evidence-audit"
+      ]
     }
   },
   "acquisitionStatus": "complete",
@@ -317,7 +342,8 @@
   "updatedAt": "2026-07-19",
   "reviewStatus": "approved",
   "reviewedBy": [
-    "current-wiki-supplement"
+    "current-wiki-supplement",
+    "recent-mod-evidence-audit"
   ],
   "tags": [
     "acquisition",
@@ -327,5 +353,6 @@
   "generator": {
     "name": "sync-current-wiki-supplements",
     "version": 1
-  }
+  },
+  "officialUniqueName": "/Lotus/Upgrades/EmpoweredHeavyMelee/CursedSyndicateEmpoweredHeavyMeleeMod"
 }

@@ -11,7 +11,10 @@ function walkJson(dir) {
 }
 function buildRegistryPlan({ type, root, entries, categoryOf, categoryNames = {}, source }) {
   const normalized = entries.map(entry => ({ ...entry, category: categoryOf(entry) || 'unclassified' })).sort((a, b) => a.id.localeCompare(b.id, 'en'))
-  const files = normalized.map(entry => ({ entry, relative: `${entry.category}/${slug(entry.canonical || entry.id)}.json` }))
+  const files = normalized.map(entry => ({
+    entry,
+    relative: `${entry.category}/${entry.registryFileName || slug(entry.canonical || entry.id)}.json`
+  }))
   const categoryIds = [...new Set(normalized.map(entry => entry.category))].sort()
   const categories = categoryIds.map(id => ({ id, displayName: categoryNames[id] || id, count: normalized.filter(entry => entry.category === id).length }))
   return {

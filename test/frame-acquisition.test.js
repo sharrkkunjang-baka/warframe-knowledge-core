@@ -199,6 +199,33 @@ test('Caliban official recipes produce complete material totals', async () => {
   assert.equal(materials.credits.count, 155000);
 });
 
+test('Uriel audited acquisition and four recipes preserve current exchange totals', () => {
+  const routed = acquisition.renderRoutedAcquisition('Uriel');
+  assert.match(routed.lines.join('\n'), /随机掉落部件蓝图/);
+  assert.match(routed.lines.join('\n'), /头部神经光元、机体、系统各 12\.5%/);
+  assert.match(routed.lines.join('\n'), /部件蓝图每张 25，总图 75/);
+  assert.match(routed.lines.join('\n'), /三张部件蓝图共 75，完整四张蓝图共 150/);
+
+  const recipes = acquisition.getCraftingRecipes('Uriel', null);
+  assert.equal(recipes.length, 4);
+  assert.deepEqual(recipes.map(recipe => [recipe.part, recipe.credits, recipe.buildSeconds]), [
+    ['Blueprint', 25000, 259200],
+    ['Neuroptics', 15000, 43200],
+    ['Chassis', 15000, 43200],
+    ['Systems', 15000, 43200]
+  ]);
+  assert.deepEqual(Object.fromEntries(recipes.map(recipe => [recipe.part, Object.fromEntries(recipe.ingredients.map(item => [item.displayName, item.count]))])), {
+    Blueprint: { 'Uriel 头部神经光元': 1, 'Uriel 机体': 1, 'Uriel 系统': 1, '奥罗金电池': 1 },
+    Neuroptics: { '名盘': 625, '荣誉勋章': 340, '军功勋章': 135 },
+    Chassis: { '名盘': 925, '荣誉勋章': 130, '军功勋章': 145 },
+    Systems: { '名盘': 425, '荣誉勋章': 410, '军功勋章': 70 }
+  });
+  const materials = acquisition.aggregateMaterials('Uriel', null);
+  assert.equal(materials.available, true);
+  assert.equal(materials.credits.count, 70000);
+  assert.deepEqual(materials.missingRecipes, []);
+});
+
 test('Sirius & Orion override is auditable and uses Chinese missing-data text', () => {
   const frame = acquisition.resolveWarframe('双子');
   assert.equal(frame.name, 'Sirius & Orion');

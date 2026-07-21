@@ -70,6 +70,27 @@ test('loader 递归发现所有 supplemental 单对象知识文件', () => {
   }
 })
 
+test('近期 Mod 的正式目录唯一发布且 current 不残留重复身份', () => {
+  const supplements = require('../scripts/sync-current-wiki-supplements')
+  const indexed = supplements.indexExistingMods()
+  const published = jsonFiles(MOD_ROOT).flatMap(entriesIn)
+  const identities = published.map(review.officialUniqueNameOf).filter(Boolean)
+  assert.equal(new Set(identities).size, identities.length)
+  assert.deepEqual(supplements.staleCurrentModFiles(indexed), [])
+  for (const canonical of [
+    'Kumihimo Loading',
+    'Lingering Transmutation',
+    'Noctua Swarm',
+    'Reverse Rotorswell',
+    'Rhythm Guard',
+    'Tharros Lethality',
+    'Untime Rift'
+  ]) {
+    const selected = indexed.get(String(canonical).toLowerCase().replace(/[^a-z0-9]+/g, ''))
+    assert.match(path.relative(MOD_ROOT, selected.file), /^standardmod[\\/]/)
+  }
+})
+
 test('近期 Mod 审核只由统一证据资格决定', () => {
   const expectedByCanonical = new Map(REVIEW_CANDIDATES.map(item => [item.canonical, item]))
   const byCanonical = new Map(

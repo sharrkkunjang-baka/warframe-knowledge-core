@@ -1,0 +1,183 @@
+[
+  {
+    "id": "gameplay.the-descendia",
+    "kind": "knowledge",
+    "module": "gameplay",
+    "title": "沉沦之地",
+    "aliases": [
+      "沉沦之地",
+      "沉沦",
+      "爬塔",
+      "The Descendia"
+    ],
+    "acquisitionQuery": "沉沦之地",
+    "summary": "沉沦之地是深溯池中的周常爬塔玩法：前 20 层为每周随机挑战，第 21 层固定挑战罗瑟。",
+    "content": "从深溯池进入沉沦之地，完成 20 层每周随机挑战，并在第 21 层的罗瑟的遗忘击败罗瑟。",
+    "steps": [
+      "完成《旧日和平》或启用任务预览后，从导航控制台的深溯池进入沉沦之地",
+      "依次完成前 20 个每周随机挑战；挑战、惩罚、祝福、进度与一次性层级奖励每周一 00:00 UTC 重置",
+      "第 7、14、21 层为存档点；抵达后可保留奖励离开，并可从已解锁存档点继续",
+      "第 7 层玛丽圣所和第 14 层里昂圣所各提供二选一祝福；选择后本周不可更换",
+      "第 21 层进入罗瑟的遗忘并击败罗瑟"
+    ],
+    "notes": [
+      "自救被禁用；完全倒地的玩家要等小队进入下一层才能恢复",
+      "第 21 层罗瑟可在解锁后重复挑战，不受每周层级奖励次数限制",
+      "普通与钢铁之路的祝福彼此独立",
+      "击败罗瑟必定获得 8 项之一：Uriel 头部神经光元、机体或系统蓝图，或制胜者总图、刀刃、枪管、枪机或枪托蓝图；每个具体结果均为 12.5%",
+      "Uriel 总图在完成《旧日和平》后由收件箱发放，也可在解剖圣所的大教堂向罗瑟用 75 怒火核兑换",
+      "钢铁之路不会给沉沦之地全局附加限伤；通用头目伤害衰减包含按玩家独立计算、随最大生命值缩放的单次伤害上限（MDPI）和每秒伤害软上限（MDPS），但现有官方说明与罗瑟 Boss Wiki 未明确确认罗瑟是否采用该机制或其具体数值"
+    ],
+    "activity": {
+      "activityId": "activity.the-descendia",
+      "parentLocationId": "region.dark-refractory",
+      "missionTypeId": "mission-type.the-descendia",
+      "weeklyReset": "Monday 00:00 UTC",
+      "totalInfernums": 21,
+      "randomChallengeInfernums": 20,
+      "checkpointInfernums": [
+        7,
+        14,
+        21
+      ],
+      "blessings": [
+        {
+          "infernum": 7,
+          "provider": "玛丽",
+          "choiceCount": 2,
+          "persistentUntilWeeklyReset": true
+        },
+        {
+          "infernum": 14,
+          "provider": "里昂",
+          "choiceCount": 2,
+          "persistentUntilWeeklyReset": true,
+          "includesTradeoff": true
+        }
+      ],
+      "boss": {
+        "infernum": 21,
+        "canonical": "Roathe",
+        "displayName": "罗瑟",
+        "encounter": "罗瑟的遗忘",
+        "repeatableAfterCheckpoint": true
+      },
+      "repeatableRewards": [
+        {
+          "canonical": "Uriel component blueprint",
+          "displayName": "Uriel 随机部件蓝图",
+          "chancePercentEach": 12.5
+        },
+        {
+          "canonical": "Vinquibus blueprint or component",
+          "displayName": "制胜者总图或随机组件蓝图",
+          "chancePercentEach": 12.5,
+          "outcomeCount": 5
+        }
+      ],
+      "roatheRewardTable": [
+        {
+          "canonical": "Uriel Neuroptics Blueprint",
+          "displayName": "Uriel 头部神经光元蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Uriel Chassis Blueprint",
+          "displayName": "Uriel 机体蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Uriel Systems Blueprint",
+          "displayName": "Uriel 系统蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Vinquibus Blueprint",
+          "displayName": "制胜者蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Vinquibus Blade Blueprint",
+          "displayName": "制胜者刀刃蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Vinquibus Barrel Blueprint",
+          "displayName": "制胜者枪管蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Vinquibus Receiver Blueprint",
+          "displayName": "制胜者枪机蓝图",
+          "chancePercent": 12.5
+        },
+        {
+          "canonical": "Vinquibus Stock Blueprint",
+          "displayName": "制胜者枪托蓝图",
+          "chancePercent": 12.5
+        }
+      ],
+      "urielMainBlueprint": {
+        "questReward": "旧日和平",
+        "exchange": {
+          "npcId": "npc.roathe",
+          "locationId": "hub.sanctum-anatomica",
+          "currencyId": "currency.maphica",
+          "currencyDisplayName": "怒火核",
+          "amount": 75
+        }
+      },
+      "steelPath": {
+        "separateBlessings": true,
+        "activityWideDamageAttenuation": false,
+        "standardBossDamageAttenuation": {
+          "maximumDamagePerInstance": true,
+          "maximumDamagePerSecondSoftCap": true,
+          "perPlayer": true,
+          "scalesWithMaximumHealth": true
+        },
+        "roatheDamageAttenuation": {
+          "applies": null,
+          "exactValuesPublished": false,
+          "reviewStatus": "review-required"
+        }
+      }
+    },
+    "sourceEntityIds": [
+      "activity.the-descendia",
+      "acquisition-source.roathes-oblivion"
+    ],
+    "missionTypeIds": [
+      "mission-type.the-descendia"
+    ],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/The_Descendia",
+        "label": "Warframe Wiki - The Descendia（机制、存档、祝福与奖励）"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Uriel",
+        "label": "Warframe Wiki - Uriel（部件掉落与兑换）"
+      },
+      {
+        "url": "https://www.warframe.com/droptables",
+        "label": "DE 官方掉落表"
+      }
+    ],
+    "gameVersion": "Update 41.0",
+    "updatedAt": "2026-07-20",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "official-wiki-current",
+      "de-official-localization",
+      "de-official-drop-tables"
+    ],
+    "tags": [
+      "gameplay",
+      "weekly",
+      "the-descendia",
+      "dark-refractory",
+      "uriel"
+    ]
+  }
+]

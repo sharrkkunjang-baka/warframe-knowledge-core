@@ -70,16 +70,59 @@ function buildEntry(frame, existing) {
   const generated = { ...(existing?.frameAcquisition?.generated || {}), ...generatedData(frame) };
   if (canonical === 'Sirius & Orion' && generated.routing?.requirements?.type === 'currency') generated.routing = { ...generated.routing, requirements: { ...generated.routing.requirements, currency: (generated.routing.requirements.currency || []).map(item => item.currencyId === 'currency.jade-talent' ? { ...item, currencyId: 'currency.emerald-talent' } : item) } };
   if (CURRENT_FRAME_ACQUISITION_OVERRIDES[canonical]?.routing) generated.routing = CURRENT_FRAME_ACQUISITION_OVERRIDES[canonical].routing;
-  if (canonical === 'Uriel') generated.routing = {
-    componentCategory: 'frame-specific-mission', blueprintCategory: 'quest',
-    blueprintVariables: { questName: '旧日和平' }, blueprintSource: 'official-wiki-acquisition',
-    componentVariables: { sourceCanonical: ['The Descendia Infernum 21 Roathe'], unresolvedSources: [] },
-    methods: [
-      { type: 'quest-reward', scope: 'blueprint', questCanonical: 'The Old Peace', questDisplayName: '旧日和平', requirements: { type: 'quest', questName: '旧日和平' }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2794079 } },
-      { type: 'mission-reward', scope: 'components', locationId: 'acquisition-source.roathes-oblivion', sourceCanonical: 'Roathe (Descendia, Infernum 21)', sourceDisplayName: '沉沦之地第 21 层的罗瑟遗忘之境', probability: 0.125, chancePercent: 12.5, reviewStatus: 'approved', provenance: { source: 'official-drop-tables-via-current-wiki', pageTitle: 'Uriel', revisionId: 2794079 } },
-      { type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.maphica', amount: 150 }], isBuffUseless: true }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2794079 } }
-    ]
-  };
+  if (canonical === 'Uriel') {
+    const identity = {
+      frame: '/Lotus/Powersuits/DemonFrame/DemonFrame',
+      blueprint: '/Lotus/Types/Recipes/WarframeRecipes/UrielBlueprint',
+      neuroptics: {
+        blueprint: '/Lotus/Types/Recipes/WarframeRecipes/UrielHelmetBlueprint',
+        component: '/Lotus/Types/Recipes/WarframeRecipes/UrielHelmetComponent'
+      },
+      chassis: {
+        blueprint: '/Lotus/Types/Recipes/WarframeRecipes/UrielChassisBlueprint',
+        component: '/Lotus/Types/Recipes/WarframeRecipes/UrielChassisComponent'
+      },
+      systems: {
+        blueprint: '/Lotus/Types/Recipes/WarframeRecipes/UrielSystemsBlueprint',
+        component: '/Lotus/Types/Recipes/WarframeRecipes/UrielSystemsComponent'
+      }
+    };
+    const componentMethods = [
+      ['Neuroptics', 'Uriel 头部神经光元蓝图', identity.neuroptics.blueprint],
+      ['Chassis', 'Uriel 机体蓝图', identity.chassis.blueprint],
+      ['Systems', 'Uriel 系统蓝图', identity.systems.blueprint]
+    ];
+    generated.identities = identity;
+    generated.routing = {
+      componentCategory: 'frame-specific-mission', blueprintCategory: 'quest',
+      blueprintVariables: { questName: '旧日和平' }, blueprintSource: 'official-wiki-acquisition',
+      componentVariables: {
+        locationId: 'activity.the-descendia',
+        missionNodeId: 'acquisition-source.roathes-oblivion',
+        dropChance: 12.5,
+        exchange: {
+          npcId: 'npc.roathe',
+          currencyId: 'currency.maphica',
+          componentCost: 25,
+          blueprintCost: 75,
+          componentSetCost: 75,
+          fullSetCost: 150
+        }
+      },
+      methods: [
+        { type: 'quest-reward', scope: 'blueprint', blueprintUniqueName: identity.blueprint, questCanonical: 'The Old Peace', questDisplayName: '旧日和平', requirements: { type: 'quest', questName: '旧日和平' }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2782460 } },
+        ...componentMethods.map(([part, partName, blueprintUniqueName]) => ({ type: 'mission-reward', scope: 'component', blueprintUniqueName, variables: { part, partName }, locationId: 'acquisition-source.roathes-oblivion', sourceCanonical: 'Roathe (Descendia, Infernum 21)', sourceDisplayName: '沉沦之地第 21 层的罗瑟的遗忘', chance: 0.125, probability: 0.125, chancePercent: 12.5, reviewStatus: 'approved', provenance: { source: 'de-official-drop-tables', updatedAt: '2026-06-25' } })),
+        { type: 'vendor-exchange', scope: 'blueprint', blueprintUniqueName: identity.blueprint, npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.maphica', amount: 75 }] }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2782460 } },
+        ...componentMethods.map(([part, partName, blueprintUniqueName]) => ({ type: 'vendor-exchange', scope: 'component', blueprintUniqueName, variables: { part, partName }, npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.roathe', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.maphica', amount: 25 }] }, reviewStatus: 'approved', provenance: { source: 'official-wiki-current', pageTitle: 'Uriel', revisionId: 2782460 } }))
+      ],
+      exchangeTotals: {
+        mainBlueprint: 75,
+        threeComponentBlueprints: 75,
+        allFourBlueprints: 150,
+        explanation: '150 是总图 75 加三张部件蓝图各 25 的完整四图总价，不是总图单价。'
+      }
+    };
+  }
   const manual = migrateManual(existing);
   if (canonical === 'Sirius & Orion') {
     if (manual.specialFrame?.acquisition?.vendorExchange?.currencyIds) manual.specialFrame.acquisition.vendorExchange.currencyIds = manual.specialFrame.acquisition.vendorExchange.currencyIds.map(id => id === 'currency.jade-talent' ? 'currency.emerald-talent' : id);
