@@ -621,7 +621,8 @@ function renderAcquisitionDependencies(frame) {
     seen.add(key);
     const amount = dependency.amount == null ? '' : `（需要 ${dependency.amount}）`;
     const review = dependency.reviewStatus === 'pending' ? '【待人工审核】' : '';
-    let summary = dependency.acquisitionSummary || (entity?.acquisitionDependency?.type === 'mission-completion-or-container' ? currencyAcquisitionSummary(entity, ENTITY_REGISTRIES) : null);
+    const structuredDependencyTypes = new Set(['mission-completion-or-container', 'boss-and-spiral-completion']);
+    let summary = dependency.acquisitionSummary || (structuredDependencyTypes.has(entity?.acquisitionDependency?.type) ? currencyAcquisitionSummary(entity, ENTITY_REGISTRIES) : null);
     const ruleKey = acquisitionRuleKey(dependency.acquisition);
     if (!summary && dependency.acquisition?.type === 'mission-completion') {
       const mission = entityName(LOCATION_REGISTRY, dependency.acquisition.locationId);
@@ -777,6 +778,12 @@ function renderRoutedAcquisition(frameOrName) {
   if (!route || !knowledge) return null;
   const routing = knowledge.frameAcquisition?.manual?.routingOverride || knowledge.frameAcquisition?.generated?.routing;
   if (!routing) return null;
+  if (routing.methods?.some(method => method.scope === 'component-access')) {
+    const { structuredMethods } = require('./acquisition-core');
+    const { renderAcquisition } = require('./acquisition-protocol');
+    const lines = String(renderAcquisition(structuredMethods(routing.methods, ENTITY_REGISTRIES), { registries: ENTITY_REGISTRIES, showProbabilities: false }) || '').split('\n').filter(Boolean);
+    return lines.length ? { route, lines, blueprintLine: lines.find(line => /^总图：/.test(line)) || null, componentLine: null, source: 'category-method' } : null;
+  }
   if (route.componentCategory === 'frame-specific-mission') {
     const variables = routing.componentVariables || {};
     const unifiedRotationText = Array.isArray(variables.unifiedRotations) && variables.unifiedRotations.length

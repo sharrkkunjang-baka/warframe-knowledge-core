@@ -126,6 +126,7 @@ function createKnowledgeCore(options = {}) {
   const data = loadData(root, { approvedOnly: options.approvedOnly !== false });
   const allKnowledge = options.approvedOnly === false ? data.knowledge : loadData(root, { approvedOnly: false }).knowledge;
   const officialMods = data.officialCatalog?.mods || [];
+  const excludedOfficialMods = data.officialCatalog?.excludedMods || [];
   const officialItems = data.officialItems?.items || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
   const localModEntries = allKnowledge.filter(entry => entry.module === 'acquisition' && entry.subject?.category === 'mod');
@@ -325,6 +326,23 @@ function createKnowledgeCore(options = {}) {
     }
     const targets = [...(modLookupAliases.get(q) || [])];
     return targets.length === 1 ? officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null : null;
+  };
+  const getExcludedOfficialMod = query => {
+    const q = normalize(query);
+    if (!q) return null;
+    return excludedOfficialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q)) || null;
+  };
+  const getOfficialModAvailability = query => {
+    const available = getOfficialMod(query);
+    if (available) return { status: 'available', item: available, message: '' };
+    const excluded = getExcludedOfficialMod(query);
+    if (!excluded) return null;
+    return {
+      status: 'unavailable',
+      item: excluded,
+      reason: excluded.exclusionReason,
+      message: `${excluded.displayName || excluded.canonical} 尚未发布或不可用，不能生成或显示 Mod 卡片。`
+    };
   };
   const normalizeArcaneName = value => normalize(value).replace(/^霰弹枪(?=仇杀)/, '霰弹');
   const getArcane = query => {
@@ -913,7 +931,7 @@ function createKnowledgeCore(options = {}) {
     if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
       throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
     }
-    const frameRouting = entry.frameAcquisition?.generated?.routing || {};
+    const frameRouting = entry.frameAcquisition?.manual?.routingOverride || entry.frameAcquisition?.generated?.routing || {};
     const frameRouteMethods = isFrame && frameRoute ? (() => {
       const variables = frameRouting.componentVariables || {};
       const methods = [...(frameRouting.methods || [])];
@@ -1198,6 +1216,8 @@ function createKnowledgeCore(options = {}) {
     resolveArcane,
     getItemAcquisition,
     getOfficialMod,
+    getExcludedOfficialMod,
+    getOfficialModAvailability,
     getModTips,
     getModTipKeywords,
     searchOfficialMods,

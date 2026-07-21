@@ -9,11 +9,21 @@
   "officialUniqueName": "/Lotus/Types/Gameplay/Duviri/Resource/DuviriKullervoDropItem",
   "officialSource": "knowledge/generated/official-items.json",
   "acquisitionDependency": {
-    "canonical": "Kullervo's Bane",
-    "displayName": "Kullervo 的灾刃",
-    "acquisitionSummary": "在恐惧、愤怒或悲伤心情阶段的双衍王境中前往库尔沃之灾，击败 Kullervo，并在同一轮任务中击败奥金魇龙后结算获得",
+    "type": "boss-and-spiral-completion",
+    "gameModeId": "mission-node.the-duviri-experience-solnode236",
+    "locationId": "acquisition-source.kullervos-hold",
+    "moodSpirals": [
+      "恐惧",
+      "愤怒",
+      "悲伤"
+    ],
+    "bossName": "Kullervo",
+    "finalBossName": "奥金魇龙",
+    "note": "刷取时请选择双衍历程；孤独纪事只有该战斗被选为复眠螺旋事件时才会出现，不能稳定前往挑战",
     "sourceRefs": [
-      "https://wiki.warframe.com/w/Kullervo%27s_Bane"
+      "local-current-wiki-db: Kullervo#Acquisition",
+      "DE Languages.bin /Lotus/Language/Duviri/MapLabelKullervosHold",
+      "DE ExportRegions SolNode236"
     ],
     "reviewStatus": "approved"
   },

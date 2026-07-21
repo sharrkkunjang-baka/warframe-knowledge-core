@@ -26,6 +26,7 @@ function normalizeRequirements(value) {
     const amount = Number(source.amount ?? source.standing)
     return { type, npcId: source.npcId || null, locationId: source.locationId || null, rank: source.rank ?? null, rankName: source.rankName || null, blueprintRank: source.blueprintRank ?? null, blueprintRankName: source.blueprintRankName || null, ...(source.factionId ? { factionId: source.factionId } : {}), ...(Number.isFinite(amount) && amount > 0 ? { amount } : {}) }
   }
+  if (type === 'item') return { ...source, type, items: (source.items || []).map(item => ({ ...item, amount: Number(item.amount || 1) })), taskRules: (source.taskRules || []).map(String).filter(Boolean) }
   return { ...source, type }
 }
 
@@ -101,7 +102,7 @@ function renderRequirements(value, registries) {
   if (requirement.type === 'item') {
     if (requirement.recipeId) return []
     const items = (requirement.items || []).map(item => `${Number(item.amount || 1)}个${item.displayName || item.canonical || item.itemId}`).filter(Boolean)
-    return items.length ? [`需要${items.join('和')}`] : []
+    return [...(items.length ? [`任务入口：使用${items.join('和')}开启对应特殊任务`] : []), ...(requirement.taskRules?.length ? ['特殊任务规则：', ...requirement.taskRules] : [])]
   }
   const entityName = (registry, id) => { const item = id ? registry.get(id) : null; return item ? (item.displayName || item.canonical) : '' }
   const npc = requirement.npcId ? registries.npcs.get(requirement.npcId) : null
@@ -240,7 +241,7 @@ function renderStructuredMethod(method, options = {}) {
   const npc = localizeAcquisitionText(method.npcDisplayName || (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange' ? method.sourceDisplayName : '') || variables.npcName || '')
   const source = localizeAcquisitionText(method.sourceDisplayName || location || variables.sourceName || '')
   const exchangeSource = npc ? `${location ? `${location}的` : ''}${npc}` : source
-  const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'item' ? '成品' : ''
+  const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'component-access' ? (variables.grantsItemDisplayName || '任务定位装置') : method.scope === 'item' ? '成品' : ''
   const prefix = scopeName ? `${scopeName}：` : ''
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
   if (method.type === 'recipe' || method.category === 'crafting') return null
@@ -318,10 +319,11 @@ function renderStructuredMethod(method, options = {}) {
     }
     const missionTypeSuffix = missionTypeName && !String(locationName).includes(missionTypeName) ? `（${missionTypeName}）` : ''
     const mission = [locationName, missionTypeSuffix].join('')
-    const chance = options.showProbabilities !== false && Number.isFinite(method.chance) ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
+    const chance = options.showProbabilities !== false && Number.isFinite(method.chance) && Number(method.chance) < 1 ? `（概率${Number((method.chance * 100).toFixed(4))}%）` : ''
     const guaranteed = Number(method.chance) >= 1
     const verb = guaranteed ? '获得' : chance ? '获得' : '概率获得'
-    return `${prefix}${mission ? `完成${mission}${method.rotation && !/赏金/.test(mission) ? ` ${method.rotation}轮` : ''}${verb}` : `获取任务名称待审核，暂不发布空泛任务描述`}${chance}`
+    const objective = variables.objective ? `，${variables.objective}` : ''
+    return `${prefix}${mission ? `完成${mission}${objective}${method.rotation && !/赏金/.test(mission) ? ` ${method.rotation}轮` : ''}${verb}` : `获取任务名称待审核，暂不发布空泛任务描述`}${chance}`
   }
   if (method.type === 'route') return variables.text || source || null
   return source ? `来源：${source}` : null
@@ -484,6 +486,7 @@ function renderAcquisition(methods, options = {}) {
     } else if (method.type === 'quest-reward' && headline) {
       lines.push(headline)
     }
+    if (method.prerequisiteText) lines.push(`前置：${method.prerequisiteText}`)
     if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
   }
   const unique = [...new Set(lines.filter(Boolean))]

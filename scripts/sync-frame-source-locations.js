@@ -52,7 +52,10 @@ function generatedEntries() {
     { id: 'acquisition-source.clem-weekly-mission', canonical: 'Help Clem Retrieve The Relic', displayName: '每周帮助 Clem 取回遗物任务', kind: 'acquisition-source', aliases: [], officialSource: 'warframe-items drop evidence' },
     { id: 'interface.market', canonical: 'Market', displayName: '商店', kind: 'acquisition-source', aliases: [], officialSource: 'DE ExportWeapons/ExportRecipes creditsCost' },
     { id: 'interface.nightwave-offerings', canonical: 'Nightwave Offerings', displayName: '午夜电波商店', kind: 'acquisition-source', aliases: [], officialSource: 'Warframe Wiki acquisition evidence' },
-    { id: 'acquisition-source.arbitration-honors', canonical: 'Arbitration Honors', displayName: '仲裁阁下的奖励', kind: 'acquisition-source', aliases: [], parentId: 'hub.any-relay', officialSource: 'Warframe Wiki acquisition evidence' },
+    { id: 'acquisition-source.arbitration-honors', canonical: 'Arbitration Honors', displayName: '仲裁阁下', kind: 'acquisition-source', aliases: ['仲裁阁下的奖励'], parentId: 'hub.any-relay', officialSource: 'DE Languages.bin /Lotus/Language/Syndicates/Syndicates_ArbitersEliteAlertVendor' },
+    { id: 'mission.grendel-archaeo-freighter', canonical: 'Archaeo-Freighter', displayName: '上古货船', kind: 'special-mission', aliases: [], parentId: 'planet.europa', missionTypeId: 'mission-type.survival', officialSource: 'DE Languages.bin /Lotus/Language/Locations/GrendelKeyBMissionName' },
+    { id: 'mission.grendel-icefields-of-riddah', canonical: 'Icefields of Riddah', displayName: 'Riddah 冰原', kind: 'special-mission', aliases: [], parentId: 'planet.europa', missionTypeId: 'mission-type.defense', officialSource: 'DE Languages.bin /Lotus/Language/Locations/GrendelKeyAMissionName' },
+    { id: 'mission.grendel-mines-of-karishh', canonical: 'Mines of Karishh', displayName: '卡瑞什之矿', kind: 'special-mission', aliases: [], parentId: 'planet.europa', missionTypeId: 'mission-type.excavation', officialSource: 'DE Languages.bin /Lotus/Language/Locations/GrendelKeyCMissionName' },
     { id: 'acquisition-source.koumei-shrine', canonical: "Koumei's Shrine", displayName: 'Koumei 的神龛', kind: 'acquisition-source', aliases: [], parentId: 'hub.cetus', officialSource: 'Warframe Wiki acquisition evidence' },
     { id: 'acquisition-source.archimedean-yonta', canonical: 'Archimedean Yonta', displayName: '执刑官 Yonta', kind: 'acquisition-source', aliases: ['Yonta'], parentId: 'hub.zariman', officialSource: 'Warframe Wiki acquisition evidence' },
     { id: 'acquisition-source.operational-supply', canonical: 'Operational Supply', displayName: '行动补给', kind: 'acquisition-source', aliases: [], officialSource: 'warframe-items acquisition evidence' },
@@ -83,6 +86,8 @@ function generatedEntries() {
     { id: 'dojo.orokin-lab', canonical: 'Orokin Lab', displayName: '奥罗金实验室', kind: 'acquisition-source', aliases: [], parentId: 'hub.clan-dojo', officialSource: 'Warframe Wiki acquisition evidence' },
     { id: 'region.veil-proxima', canonical: 'Veil Proxima', displayName: '面纱比邻星域', kind: 'proxima-region', aliases: [], officialSource: 'DE official zh-hans terminology' },
     { id: 'landscape.duviri', canonical: 'Duviri', displayName: '双衍王境', kind: 'landscape', aliases: [], officialSource: 'Warframe Update 39 official zh-hans patch notes' },
+    { id: 'mission-node.the-duviri-experience-solnode236', canonical: 'The Duviri Experience', displayName: '双衍历程', kind: 'mission-node', aliases: [], officialCode: 'SolNode236', identityAliases: ['SolNode236'], parentId: 'landscape.duviri', missionTypeId: 'mission-type.free-roam', localizationStatus: 'official-zh', officialSource: 'DE ExportRegions + Languages.bin snapshots' },
+    { id: 'mission-node.the-lone-story-solnode237', canonical: 'The Lone Story', displayName: '孤独纪事', kind: 'mission-node', aliases: [], officialCode: 'SolNode237', identityAliases: ['SolNode237'], parentId: 'landscape.duviri', missionTypeId: 'mission-type.free-roam', localizationStatus: 'official-zh', officialSource: 'DE ExportRegions + Languages.bin snapshots' },
     { id: 'mission-node.isleweaver', canonical: 'Isleweaver', displayName: '织屿人', kind: 'mission-node', aliases: [], parentId: 'landscape.duviri', officialSource: 'Warframe Update 39 official zh-hans patch notes' }
   )
   if (fs.existsSync(OFFICIAL_DROPS)) {
@@ -113,12 +118,12 @@ function build() {
   for (const entry of generatedEntries()) {
     const previous = legacyById.get(entry.id)
     const legacyType = previous?.missionTypeCanonical
-    const officialOverride = ['hub.zariman','hub.pontis-tower','region.uranus-proxima','region.dark-refractory','activity.the-descendia','acquisition-source.roathes-oblivion','mission.the-kuva-wytch','mission.scorias-angel'].includes(entry.id)
+    const officialOverride = ['hub.zariman','hub.pontis-tower','region.uranus-proxima','region.dark-refractory','activity.the-descendia','acquisition-source.roathes-oblivion','mission.the-kuva-wytch','mission.scorias-angel','acquisition-source.arbitration-honors','mission.grendel-archaeo-freighter','mission.grendel-icefields-of-riddah','mission.grendel-mines-of-karishh'].includes(entry.id)
     byId.set(entry.id, previous ? { ...entry, ...previous, displayName: officialOverride ? entry.displayName : previous.displayName || entry.displayName, aliases: officialOverride ? entry.aliases : previous.aliases || entry.aliases, officialSource: officialOverride ? entry.officialSource : previous.officialSource || entry.officialSource, parentId: entry.parentId || previous.parentId, missionTypeId: entry.missionTypeId || previous.missionTypeId || (legacyType ? `mission-type.${slug(legacyType)}` : null), missionTypeCanonical: undefined, missionTypeDisplayName: undefined } : entry)
   }
   return [...byId.values()]
 }
-function buildPlan() { return buildRegistryPlan({ type: 'locations', root: TARGET, entries: build(), categoryOf: entry => entry.kind, categoryNames: { planet: '星球', hub: '中继聚落', landscape: '开放世界', region: '区域', activity: '玩法', 'proxima-region': '比邻星域', 'railjack-mission': '航道星舰任务', 'mission-node': '任务节点', 'acquisition-source': '特殊获取来源' }, source: { generatedFrom: 'warframe-items Warframes component drops' } }) }
+function buildPlan() { return buildRegistryPlan({ type: 'locations', root: TARGET, entries: build(), categoryOf: entry => entry.kind, categoryNames: { planet: '星球', hub: '中继聚落', landscape: '开放世界', region: '区域', activity: '玩法', 'proxima-region': '比邻星域', 'railjack-mission': '航道星舰任务', 'mission-node': '任务节点', 'special-mission': '特殊任务', 'acquisition-source': '特殊获取来源' }, source: { generatedFrom: 'warframe-items Warframes component drops' } }) }
 function run(argv = process.argv.slice(2)) { const check = argv.includes('--check'); const changes = applyRegistryPlan(buildPlan(), { check }); console.log(check ? `战甲来源地点变量无漂移：${build().length} 个` : `已同步 ${build().length} 个战甲来源地点变量；写入 ${changes.length} 项`) }
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
 module.exports = { parseSource, generatedEntries, build, buildPlan, run }

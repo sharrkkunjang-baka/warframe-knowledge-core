@@ -133,7 +133,7 @@ test('fixed-system frames never render empty drop placeholders', () => {
   const vauban = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Vauban'), materials: { available: false } });
   assert.match(vauban, /商店购买（35000 现金）/);
   assert.match(vauban, /午夜电波贡品兑换（25 午夜电波货币）/);
-  const grendel = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Grendel'), materials: { available: false } });
+  const grendel = acquisition.renderRoutedAcquisition('Grendel').lines.join('\n');
   assert.match(grendel, /仲裁阁下/);
   const kullervo = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Kullervo'), materials: { available: false } });
   assert.match(kullervo, /言录使/);
@@ -267,8 +267,9 @@ test('manual overrides and recursive exchange dependencies render before generic
   const dagath = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Dagath'), materials: { available: false } });
   assert.match(dagath, /全部蓝图：[^\n]+\n兑换道具怎么刷：\n浮华荆棘（需要 102）：使用深渊信标进入谷神星深渊区歼灭任务/);
   const kullervo = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Kullervo'), materials: { available: false } });
-  assert.match(kullervo, /恐惧、愤怒或悲伤心情阶段/);
+  assert.match(kullervo, /在双衍历程中，于恐惧、愤怒、悲伤复眠螺旋前往Kullervo 的牢房/);
   assert.match(kullervo, /击败 Kullervo.*击败奥金魇龙后结算获得/);
+  assert.match(kullervo, /刷取时请选择双衍历程；孤独纪事只有该战斗被选为复眠螺旋事件时才会出现/);
   const sirius = acquisition.renderAcquisition(acquisition.resolveWarframe('红绿'));
   assert.match(sirius, /总图：首次完成《Jade 之影：众星》获得；或刷天王星比邻星域的赤毒女巫号（前哨战）或火山石天使号（前哨战）/);
   assert.match(sirius, /部件蓝图：天王星比邻星域的赤毒女巫号（前哨战）或火山石天使号（前哨战）/);

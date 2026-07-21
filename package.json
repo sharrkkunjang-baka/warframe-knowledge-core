@@ -20,6 +20,8 @@
     "test:mcp": "node --test test/combat-mod-effects.test.js test/mcp-server.test.js",
     "sync:pvp": "node scripts/sync-pvp-mods.js",
     "normalize:text": "node scripts/normalize-user-facing-text.js",
+    "sync:current-wiki-mod-directory": "node scripts/sync-current-wiki-mod-directory.js",
+    "check:current-wiki-mod-directory": "node scripts/sync-current-wiki-mod-directory.js --check",
     "sync:official": "node scripts/sync-official-mods.js",
     "check:official": "node scripts/sync-official-mods.js --check",
     "sync:items": "node scripts/sync-official-items.js",

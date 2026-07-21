@@ -323,8 +323,8 @@ for (const entry of entries) {
           if (!officialSyndicate && !packageSyndicate) errors.push(`${entry.id}: 集团 method 缺少官方 provenance`);
           continue;
         }
-        if (method.provenance?.source === 'local-wiki-sqlite') {
-          if (!method.type || !method.provenance.pageTitle || !method.provenance.section || !method.provenance.excerpt) errors.push(`${entry.id}: 本地 Wiki method 缺少类型或 provenance`);
+        if (['local-wiki-sqlite', 'current-wiki-online'].includes(method.provenance?.source)) {
+          if (!method.type || !method.provenance.pageTitle || !method.provenance.section || !method.provenance.excerpt) errors.push(`${entry.id}: Wiki method 缺少类型或 provenance`);
           const crossPage = String(method.provenance.pageTitle).normalize('NFKC').toLowerCase() !== String(entry.subject?.canonical || '').normalize('NFKC').toLowerCase();
           if (crossPage && method.reviewStatus !== 'approved') errors.push(`${entry.id}: 本地跨页 method 必须显式审核通过`);
           if (!crossPage && !['draft', 'approved'].includes(method.reviewStatus)) errors.push(`${entry.id}: 本页 Wiki method 审核状态无效`);

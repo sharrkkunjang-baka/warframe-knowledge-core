@@ -88,10 +88,23 @@
       },
       "manual": {
         "sources": {
-          "Blueprint": "商店购买（35000 现金）",
-          "Neuroptics": "在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Archaeo-freighter 生存任务后获得",
-          "Chassis": "在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Icefields of Riddah 防御任务后获得",
-          "Systems": "在任意中继站的仲裁阁下处用 25 生息精华购买对应定位器，完成欧罗巴 Mines of Karishh 挖掘任务后获得"
+          "Blueprint": "商店购买（35000 现金）"
+        },
+        "routingOverride": {
+          "componentCategory": "frame-mixed-missions",
+          "blueprintCategory": "market",
+          "componentVariables": {},
+          "blueprintVariables": {},
+          "requirements": { "type": "none" },
+          "methods": [
+            { "type": "market-purchase", "scope": "blueprint", "sourceEntityId": "interface.market", "requirements": { "type": "none" }, "reviewStatus": "approved" },
+            { "type": "vendor-exchange", "scope": "component-access", "sourceEntityId": "acquisition-source.arbitration-honors", "locationId": "hub.any-relay", "variables": { "grantsItemId": "/Lotus/Types/Keys/GrendelKeyB", "grantsItemDisplayName": "Grendel 头部神经光元定位装置" }, "prerequisiteText": "完成冥王星至阋神星接合点要求，解锁仲裁", "requirements": { "type": "currency", "usage": "exchange", "locationId": "hub.any-relay", "currency": [{ "currencyId": "currency.vitus-essence", "amount": 25 }] }, "reviewStatus": "approved" },
+            { "type": "vendor-exchange", "scope": "component-access", "sourceEntityId": "acquisition-source.arbitration-honors", "locationId": "hub.any-relay", "variables": { "grantsItemId": "/Lotus/Types/Keys/GrendelKeyA", "grantsItemDisplayName": "Grendel 机体定位装置" }, "prerequisiteText": "完成冥王星至阋神星接合点要求，解锁仲裁", "requirements": { "type": "currency", "usage": "exchange", "locationId": "hub.any-relay", "currency": [{ "currencyId": "currency.vitus-essence", "amount": 25 }] }, "reviewStatus": "approved" },
+            { "type": "vendor-exchange", "scope": "component-access", "sourceEntityId": "acquisition-source.arbitration-honors", "locationId": "hub.any-relay", "variables": { "grantsItemId": "/Lotus/Types/Keys/GrendelKeyC", "grantsItemDisplayName": "Grendel 系统定位装置" }, "prerequisiteText": "完成冥王星至阋神星接合点要求，解锁仲裁", "requirements": { "type": "currency", "usage": "exchange", "locationId": "hub.any-relay", "currency": [{ "currencyId": "currency.vitus-essence", "amount": 25 }] }, "reviewStatus": "approved" },
+            { "type": "mission-reward", "scope": "component", "locationId": "mission.grendel-archaeo-freighter", "missionTypeId": "mission-type.survival", "chance": 1, "variables": { "partName": "头部神经光元", "objective": "生存 20 分钟" }, "requirements": { "type": "item", "items": [{ "itemId": "/Lotus/Types/Keys/GrendelKeyB", "displayName": "Grendel 头部神经光元定位装置", "amount": 1 }], "taskRules": ["Mod 和赋能均被禁用；技能强化 Mod（Augment Mods，包括战甲技能强化 Mod）仍然生效"] }, "reviewStatus": "approved" },
+            { "type": "mission-reward", "scope": "component", "locationId": "mission.grendel-icefields-of-riddah", "missionTypeId": "mission-type.defense", "chance": 1, "variables": { "partName": "机体", "objective": "完成 6 波防御" }, "requirements": { "type": "item", "items": [{ "itemId": "/Lotus/Types/Keys/GrendelKeyA", "displayName": "Grendel 机体定位装置", "amount": 1 }], "taskRules": ["Mod 和赋能均被禁用；技能强化 Mod（Augment Mods，包括战甲技能强化 Mod）仍然生效"] }, "reviewStatus": "approved" },
+            { "type": "mission-reward", "scope": "component", "locationId": "mission.grendel-mines-of-karishh", "missionTypeId": "mission-type.excavation", "chance": 1, "variables": { "partName": "系统", "objective": "挖掘 800 永冻晶矿" }, "requirements": { "type": "item", "items": [{ "itemId": "/Lotus/Types/Keys/GrendelKeyC", "displayName": "Grendel 系统定位装置", "amount": 1 }], "taskRules": ["Mod 和赋能均被禁用；技能强化 Mod（Augment Mods，包括战甲技能强化 Mod）仍然生效"] }, "reviewStatus": "approved" }
+          ]
         }
       }
     },

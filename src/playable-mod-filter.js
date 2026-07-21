@@ -1,5 +1,8 @@
 'use strict'
 
+const path = require('node:path')
+const CURRENT_WIKI_PUBLISHED_OVERRIDES = new Set(require(path.join(__dirname, '..', 'knowledge', 'supplemental', 'current-wiki-published-mods.json')).items.map(item => item.uniqueName))
+
 const TYPE_FOLDERS = Object.freeze({
   'Warframe Mod': 'warframe',
   'Primary Mod': 'primary',
@@ -56,6 +59,10 @@ function normalizeCanonical(value) {
 
 function hasWikiIdentity(item) {
   return Boolean(item?.wikiaUrl && item.wikiAvailable !== false)
+}
+
+function isCurrentWikiPublishedOverride(item) {
+  return CURRENT_WIKI_PUBLISHED_OVERRIDES.has(item?.uniqueName || '')
 }
 
 function isBeginner(item) {
@@ -122,7 +129,7 @@ function getExclusionReason(item, recordsByCanonical) {
   if (uniqueName === '/Lotus/Upgrades/Mods/Hoverboard/HBFireWorksMod') return 'codex-hidden-no-acquisition-evidence'
   if (uniqueName === '/Lotus/Upgrades/Mods/Necromech/NecromechSprintEfficiencyMod') return 'codex-hidden-no-acquisition-evidence'
   if (isBeginner(item) && !isFlawedMod(item)) return 'non-flawed-beginner'
-  if (isExpert(item) && !hasWikiIdentity(item)) return 'unreleased-expert'
+  if (isExpert(item) && !hasWikiIdentity(item) && !isCurrentWikiPublishedOverride(item)) return 'unreleased-expert'
 
   const siblings = recordsByCanonical.get(normalizeCanonical(item?.name)) || []
   if (isExpert(item) && siblings.some(other =>
@@ -162,6 +169,7 @@ function filterPlayableMods(items) {
 module.exports = {
   TYPE_FOLDERS,
   TYPE_DISPLAY_NAMES,
+  CURRENT_WIKI_PUBLISHED_OVERRIDES,
   filterPlayableMods,
   getCanonical,
   getDisplayName,
@@ -171,6 +179,7 @@ module.exports = {
   getTypeFolder,
   getTypeDisplayName,
   hasWikiIdentity,
+  isCurrentWikiPublishedOverride,
   isFlawedMod,
   isRequiemMod,
   normalizeCanonical

@@ -31,7 +31,7 @@ const FRAME_CURRENCIES = Object.freeze([
   { canonical: 'Mother Token', kind: 'exchange-token' },
   { canonical: 'Orokin Ducats', kind: 'standard' },
   { canonical: "Nora's Mix Vol. 8 Cred", kind: 'seasonal-token', acquisitionDependency: { acquisitionSummary: '完成午夜电波行动并提升午夜电波等级，从等级奖励中获得', sourceRefs: ['https://www.warframe.com/news/nightwave-guide'], reviewStatus: 'approved' } },
-  { canonical: "Kullervo's Bane", kind: 'exchange-token', aliases: ['灾刃'], acquisitionDependency: { canonical: "Kullervo's Bane", displayName: 'Kullervo 的灾刃', acquisitionSummary: '在恐惧、愤怒或悲伤心情阶段的双衍王境中前往库尔沃之灾，击败 Kullervo，并在同一轮任务中击败奥金魇龙后结算获得', sourceRefs: ['https://wiki.warframe.com/w/Kullervo%27s_Bane'], reviewStatus: 'approved' } }
+  { canonical: "Kullervo's Bane", kind: 'exchange-token', aliases: ['灾刃'], acquisitionDependency: { type: 'boss-and-spiral-completion', gameModeId: 'mission-node.the-duviri-experience-solnode236', locationId: 'acquisition-source.kullervos-hold', moodSpirals: ['恐惧', '愤怒', '悲伤'], bossName: 'Kullervo', finalBossName: '奥金魇龙', note: '刷取时请选择双衍历程；孤独纪事只有该战斗被选为复眠螺旋事件时才会出现，不能稳定前往挑战', sourceRefs: ['local-current-wiki-db: Kullervo#Acquisition', 'DE Languages.bin /Lotus/Language/Duviri/MapLabelKullervosHold', 'DE ExportRegions SolNode236'], reviewStatus: 'approved' } }
 ])
 const ID_OVERRIDES = Object.freeze({ "Kullervo's Bane": 'currency.kullervos-bane', 'Emerald Talent': 'currency.emerald-talent', 'Crimson Talent': 'currency.crimson-talent', 'Jade Talent': 'currency.jade-talent' })
 const CATEGORY_NAMES = Object.freeze({ standard: '通用货币', premium: '高级货币', standing: '声望', 'exchange-token': '兑换代币', 'resource-token': '资源代币', 'seasonal-token': '赛季代币' })

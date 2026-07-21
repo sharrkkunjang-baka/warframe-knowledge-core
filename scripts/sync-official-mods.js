@@ -388,13 +388,19 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
 
   const completeMods = mods.filter(mod => mod.status === 'complete').length;
   const reviewRequiredMods = mods.filter(mod => mod.status === 'review-required').length;
-  const excludedMods = excluded.map(({ item, reason }) => ({
-    uniqueName: item.uniqueName,
-    canonical: item.name,
-    type: item.type || null,
-    status: 'excluded-policy',
-    exclusionReason: reason
-  })).sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
+  const excludedMods = excluded.map(({ item, reason }) => {
+    const localized = rawItems.i18n[item.uniqueName]?.zh || {};
+    const hasChineseName = Boolean(localized.name && localized.name !== item.name);
+    return {
+      uniqueName: item.uniqueName,
+      canonical: item.name,
+      displayName: hasChineseName ? localized.name : item.name,
+      localizationStatus: hasChineseName ? 'official-zh' : 'missing-zh',
+      type: item.type || null,
+      status: 'excluded-policy',
+      exclusionReason: reason
+    };
+  }).sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
   const coveredCategories = officialCategories.filter(category => category.status === 'covered').length;
   const missingChineseNames = mods.filter(mod => mod.localizationStatus === 'missing-zh').length;
 
