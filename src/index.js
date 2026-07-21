@@ -913,11 +913,32 @@ function createKnowledgeCore(options = {}) {
     if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
       throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
     }
-    const frameStructuredMethods = isFrame && frameRoute ? compileStructuredMethods([
-      { type: 'route', scope: 'components', category: entry.frameAcquisition?.generated?.routing?.componentCategory || entry.subject?.categoryRefs?.[0], variables: { text: frameRoute.componentLine || frameRoute.lines?.[0] || '' }, requirements: entry.frameAcquisition?.generated?.routing?.requirements || { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } },
-      ...(frameRoute.blueprintLine ? [{ type: 'route', scope: 'blueprint', category: entry.frameAcquisition?.generated?.routing?.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } }] : []),
-      ...(entry.frameAcquisition?.generated?.routing?.methods || [])
-    ], data) : [];
+    const frameRouting = entry.frameAcquisition?.generated?.routing || {};
+    const frameRouteMethods = isFrame && frameRoute ? (() => {
+      const variables = frameRouting.componentVariables || {};
+      const methods = [...(frameRouting.methods || [])];
+      if (frameRouting.componentCategory === 'frame-assassination' && variables.enemyId) {
+        methods.push({
+          type: 'enemy-drop',
+          scope: 'component',
+          category: 'frame-assassination',
+          sourceEntityId: variables.enemyId,
+          locationId: variables.locationId || variables.acquisitionSourceId,
+          missionTypeId: variables.missionTypeId || 'mission-type.assassination',
+          variables: { partName: '头部神经光元、机体、系统', appearanceCondition: variables.appearanceCondition || null },
+          requirements: frameRouting.requirements || { type: 'none' },
+          hideProbability: true,
+          reviewStatus: 'approved',
+          provenance: { source: 'frame-route', entryId: entry.id, sourceCanonical: variables.sourceCanonical }
+        });
+      } else if (frameRoute.componentLine) {
+        methods.push({ type: 'route', scope: 'components', category: frameRouting.componentCategory || entry.subject?.categoryRefs?.[0], variables: { text: frameRoute.componentLine }, requirements: frameRouting.requirements || { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } });
+      }
+      if (frameRoute.blueprintLine && !methods.some(method => method.scope === 'blueprint')) methods.push({ type: 'route', scope: 'blueprint', category: frameRouting.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } });
+      methods.sort((left, right) => (left.scope === 'blueprint' ? -1 : 0) - (right.scope === 'blueprint' ? -1 : 0));
+      return methods;
+    })() : [];
+    const frameStructuredMethods = compileStructuredMethods(frameRouteMethods, data);
     const structuredMethods = compileStructuredMethods([
       ...rawStructuredMethods.map(enrichModMethod).map(method => Number.isFinite(method.chance) && method.chance > 1 ? { ...method, chance: method.chance / 100 } : method).filter(method => method.type !== 'unresolved-source'),
       ...structuredGameplayMethods(entry),

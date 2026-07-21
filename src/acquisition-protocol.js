@@ -71,6 +71,14 @@ function currencyAcquisitionSummary(entity, registries) {
     if (!node) return null
     return `在${name(registries.locations, node.parentId)}的${name(registries.locations, node.id)}（${name(registries.missionTypes, dependency.missionTypeId)}）击败爆破使获得，普通每只 ${dependency.normalAmount.min}-${dependency.normalAmount.max}，钢铁之路每只 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max}`
   }
+  if (dependency.type === 'boss-and-spiral-completion') {
+    const gameMode = name(registries.locations, dependency.gameModeId)
+    const location = name(registries.locations, dependency.locationId)
+    if (!gameMode || !location || !dependency.bossName || !dependency.finalBossName) return null
+    const moods = (dependency.moodSpirals || []).join('、')
+    const route = `在${gameMode}中，于${moods}复眠螺旋前往${location}，击败 ${dependency.bossName}，并在同一轮任务中击败${dependency.finalBossName}后结算获得`
+    return dependency.note ? `${route}；${dependency.note}` : route
+  }
   if (dependency.type === 'bounty-completion-or-compost') return `完成${dependency.bountyName}获得：普通难度 ${dependency.normalAmount.min}-${dependency.normalAmount.max} 个，钢铁之路 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max} 个；多余蘑菇样本每个可堆肥获得 ${dependency.compostAmount} 个`
   if (dependency.type === 'mission-completion-or-container') return `完成${name(registries.locations, dependency.locationId)}获得：普通难度 ${dependency.normalAmount} 个，钢铁之路 ${dependency.steelPathAmount} 个；破坏${dependency.containerName}可额外获得，普通每个 ${dependency.normalContainerAmount.min}-${dependency.normalContainerAmount.max} 个，钢铁之路每个 ${dependency.steelPathContainerAmount.min}-${dependency.steelPathContainerAmount.max} 个`
   if (dependency.type === 'mission-reward-or-container') return `在${name(registries.locations, dependency.locationId)}通过层级结算或储存容器获得：普通结算 ${dependency.normalAmount} 个，钢铁之路结算 ${dependency.steelPathAmount} 个`
@@ -267,8 +275,10 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}\u51fb\u8d25${adversary || '\u5bf9\u624b'}\u6982\u7387\u83b7\u5f97`
   }
   if (method.type === 'enemy-drop') {
+    const appearanceCondition = localizeAcquisitionText(variables.appearanceCondition || '')
+    if (appearanceCondition) return `${prefix}在${appearanceCondition}中击败 ${source || '指定头目'} 获得`
     const bossPlanet = localizeAcquisitionText(method.bossLocation?.planetDisplayName || '')
-    if (bossPlanet) return `${prefix}${source ? `击败${source}` : '击败指定头目'}（${bossPlanet}刺杀）概率获得`
+    if (bossPlanet) return `${prefix}${source ? `击败${source}` : '击败指定头目'}（${bossPlanet}刺杀）${method.hideProbability ? '获得' : '概率获得'}`
     const missionType = localizeAcquisitionText(method.missionTypeDisplayName || '')
     const node = localizeAcquisitionText(method.locationDisplayName || '')
     const planet = localizeAcquisitionText(method.planetDisplayName || '')
@@ -433,6 +443,9 @@ function acquisitionCardSections(methods, options = {}) {
 
 function renderAcquisition(methods, options = {}) {
   const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods), options)
+    .map((method, index) => ({ method, index }))
+    .sort((left, right) => (left.method.scope === 'blueprint' ? -1 : 0) - (right.method.scope === 'blueprint' ? -1 : 0) || left.index - right.index)
+    .map(item => item.method)
   const sourceGroups = new Map()
   for (const method of renderMethods) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type) || method.scope !== 'component') continue

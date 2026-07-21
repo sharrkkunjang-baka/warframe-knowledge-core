@@ -56,7 +56,7 @@ const ASSASSINATION_FRAME_OVERRIDES = Object.freeze({
   Hydroid: { locationId: 'planet.earth', enemyId: 'enemy.councilor-vay-hek', sourceCanonical: 'Earth/Oro (Assassination)' },
   Mesa: { locationId: 'planet.eris', enemyId: 'enemy.mutalist-alad-v', sourceCanonical: 'Mutalist Alad V Assassinate, Rotation C' },
   Nova: { locationId: 'planet.europa', enemyId: 'enemy.raptor', sourceCanonical: 'Europa/Naamah (Assassination)' },
-  Nyx: { acquisitionSourceId: 'source.phorid-assassination', enemyId: 'enemy.phorid', sourceCanonical: 'Phorid Assassination' },
+  Nyx: { acquisitionSourceId: 'source.phorid-assassination', enemyId: 'enemy.phorid', missionTypeId: 'mission-type.assassination', appearanceCondition: '入侵中出现的 Phorid 刺杀节点', sourceCanonical: 'Phorid Assassination' },
   Valkyr: { locationId: 'planet.jupiter', enemyId: 'enemy.alad-v', sourceCanonical: 'Jupiter/Themisto (Assassination)' }
 })
 

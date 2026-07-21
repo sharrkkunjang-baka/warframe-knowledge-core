@@ -55,6 +55,9 @@ const STABLE_LOCATION_ZH = {
 const FRAME_KNOWLEDGE_DIR = path.join(CORE_ROOT, 'knowledge', 'acquisition', 'warframe');
 const FRAME_ROUTING_PATH = path.join(FRAME_KNOWLEDGE_DIR, 'categories.json');
 const FRAME_ROUTING = fs.existsSync(FRAME_ROUTING_PATH) ? require(FRAME_ROUTING_PATH) : { frames: [] };
+const NORMAL_CIRCUIT_FACT = require(path.join(KNOWLEDGE_ROOT, 'facts', 'normal-circuit-warframes.json'));
+const NORMAL_CIRCUIT_ROTATION = Object.freeze(NORMAL_CIRCUIT_FACT.rotation.map(week => Object.freeze([...week])));
+const NORMAL_CIRCUIT_FRAME_NAMES = new Set(NORMAL_CIRCUIT_ROTATION.flat());
 const { METHOD_TEMPLATES, methodTemplate, applyTemplate } = require('./frame-acquisition-routing');
 function readFrameKnowledge(dir = FRAME_KNOWLEDGE_DIR) {
   if (!fs.existsSync(dir)) return [];
@@ -828,9 +831,32 @@ function renderRoutedAcquisition(frameOrName) {
     lines.push(...fallback);
   }
   lines.push(...requirementLines(routing, { includeExchange: !routing.componentVariables?.exchange }));
-  return lines.length ? { route, lines, source: 'category-method' } : null;
+  return lines.length ? {
+    route,
+    lines,
+    blueprintLine: route.blueprintCategory ? lines[0] || null : null,
+    componentLine: componentLine || null,
+    source: 'category-method'
+  } : null;
 }
 
+function getNormalCircuitWarframe(query) {
+  const frame = typeof query === 'string' ? resolveWarframe(query) : query;
+  if (!frame || frame.isPrime || !NORMAL_CIRCUIT_FRAME_NAMES.has(frame.name)) return null;
+  const weekIndex = NORMAL_CIRCUIT_ROTATION.findIndex(week => week.includes(frame.name));
+  return {
+    canonical: frame.name,
+    displayName: frame.zhName || frame.name,
+    week: weekIndex + 1,
+    difficulty: NORMAL_CIRCUIT_FACT.difficulty,
+    fullSet: true,
+    rewardTiers: { ...NORMAL_CIRCUIT_FACT.rewardTiers },
+    sourceFactId: NORMAL_CIRCUIT_FACT.id
+  };
+}
+function listNormalCircuitWarframes() {
+  return NORMAL_CIRCUIT_ROTATION.flatMap((week, weekIndex) => week.map(canonical => ({ ...getNormalCircuitWarframe(canonical), week: weekIndex + 1 })));
+}
 function getWarframeMaintenanceReport() {
   const official = OFFICIAL_FRAMES.frames || [];
   const covered = new Set(FRAME_KNOWLEDGE.map(entry => entry.subject.officialUniqueName));
@@ -894,5 +920,5 @@ module.exports = {
   RECIPES_URL, REWARDS_URL, PARTS, FRAME_SOURCE_OVERRIDES, FRAME_ACQUISITION_NOTES, QUEST_SOURCE_ZH, CALIBAN_PRIME, SIRIUS_ORION, AUDITED_ABILITY_MECHANICS, resolveWarframe, resolveWarframeMention, getFrameAbilities, resolveWarframeAbilityQuery, resolveWarframeAbilityQueries,
   getComponentDrops, indexRecipes, auditedFrameRecipes, recipeProtocolAsExport, aggregateMaterials, getCraftingRecipes, normalizeChance, formatChance,
   normalizeRelicPath, normalizeVarziaManifest, activeRelicPaths, getPrimeRelics, loadRecipes, loadMissionRewards, renderAcquisition, renderAcquisitionDependencies, acquisitionRuleKey, renderAdditionalAcquisitionMethods, groupedPartSourceLines, componentSourceText, renderSeriesPartSource, translateLocation, localizeQuestName, formatDropSource, formatDropSources, localizeRelicName, relicRewardTier,
-  listWarframes, getWarframeKnowledge, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
+  listWarframes, getWarframeKnowledge, NORMAL_CIRCUIT_ROTATION, getNormalCircuitWarframe, listNormalCircuitWarframes, renderAssassinationRoute, renderQuestRoute, renderBountyRoute, renderMissionSource, renderMissionNodeRoute, renderSpecificMissionRoute, renderRoutedAcquisition, getWarframeMaintenanceReport
 };
