@@ -302,7 +302,9 @@ function modEntry(item, old) {
   const wikiMethods = item.methods.filter(method => method.provenance?.source !== 'DE Official Drop Tables')
   const oldManual = old?.modAcquisition?.manual || {}
   const manual = { methods: oldManual.methods || [], methodRefs: oldManual.methodRefs || [], overrides: oldManual.overrides || {}, reviewStatus: item.methods.length ? 'approved' : (oldManual.reviewStatus || 'draft'), reviewedBy: item.methods.length ? [...new Set([...(oldManual.reviewedBy || []), 'current-wiki-supplement'])] : (oldManual.reviewedBy || []) }
-  return { id: `knowledge.acquisition.mod.${slug(item.canonical)}-${hash(uniqueName)}`, kind: 'knowledge', module: 'acquisition', title: item.displayName, subject: { canonical: item.canonical, displayName: item.displayName, category: 'mod', officialUniqueName: uniqueName, categoryRefs: ['standardmod'] }, officialUniqueName: uniqueName, maxRank: item.maxRank, effectDetails: item.effectDetails, rarity: null, polarity: null, tradable: true, prerequisites: [], tips: old?.tips || [], tipKeywords: old?.tipKeywords || [], methodRefs: [], modAcquisition: { generated: { identity: { officialUniqueName: uniqueName, canonical: item.canonical, displayName: item.displayName, variant: 'standard' }, wiki: { status: wikiMethods.length ? 'complete' : 'unresolved', methods: wikiMethods, evidence: [{ type: 'acquisition-prose', reviewStatus: 'approved', provenance: { source: 'current-wiki-sqlite', pageTitle: item.canonical, revisionId: item.page.revisionId }, excerpt: item.acquisitionEvidence }], mechanicsEvidence: {}, unresolvedEntities: [] }, officialDrops }, manual }, acquisitionStatus: item.methods.length ? 'complete' : 'partial', sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g, '_')}`, label: 'Official Warframe Wiki' }], gameVersion: `Update ${item.introduced}`, updatedAt: old?.updatedAt || new Date().toISOString().slice(0, 10), reviewStatus: item.methods.length ? 'approved' : 'draft', reviewedBy: item.methods.length ? [...new Set([...(old?.reviewedBy || []), 'current-wiki-supplement'])] : (old?.reviewedBy || []), tags: ['acquisition', 'mod', 'current-version-supplement'], generator: { name: 'sync-current-wiki-supplements', version: 1 } }
+  const hasSyndicateExchange = item.methods.some(method => method.type === 'syndicate-exchange')
+  const categoryRefs = hasSyndicateExchange ? ['syndicatemod', 'warframemod', 'standardmod'] : ['standardmod']
+  return { id: `knowledge.acquisition.mod.${slug(item.canonical)}-${hash(uniqueName)}`, kind: 'knowledge', module: 'acquisition', title: item.displayName, subject: { canonical: item.canonical, displayName: item.displayName, category: 'mod', officialUniqueName: uniqueName, categoryRefs }, officialUniqueName: uniqueName, maxRank: item.maxRank, effectDetails: item.effectDetails, rarity: null, polarity: null, tradable: true, prerequisites: [], tips: old?.tips || [], tipKeywords: old?.tipKeywords || [], methodRefs: [], modAcquisition: { generated: { identity: { officialUniqueName: uniqueName, canonical: item.canonical, displayName: item.displayName, variant: 'standard' }, wiki: { status: wikiMethods.length ? 'complete' : 'unresolved', methods: wikiMethods, evidence: [{ type: 'acquisition-prose', reviewStatus: 'approved', provenance: { source: 'current-wiki-sqlite', pageTitle: item.canonical, revisionId: item.page.revisionId }, excerpt: item.acquisitionEvidence }], mechanicsEvidence: {}, unresolvedEntities: [] }, officialDrops }, manual }, acquisitionStatus: item.methods.length ? 'complete' : 'partial', sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g, '_')}`, label: 'Official Warframe Wiki' }], gameVersion: `Update ${item.introduced}`, updatedAt: old?.updatedAt || new Date().toISOString().slice(0, 10), reviewStatus: item.methods.length ? 'approved' : 'draft', reviewedBy: item.methods.length ? [...new Set([...(old?.reviewedBy || []), 'current-wiki-supplement'])] : (old?.reviewedBy || []), tags: ['acquisition', 'mod', 'current-version-supplement'], generator: { name: 'sync-current-wiki-supplements', version: 1 } }
 }
 function resourceEntry(item, old) {
   const uniqueName = `wiki-current:resource:${item.canonical}`
@@ -326,13 +328,23 @@ function run(argv = process.argv.slice(2)) {
     // sync-mod-wiki 已为部分当前 Mod 生成更完整的页面/机制证据；补充层只填空缺，
     // 不能用简化的 Acquisition 摘要覆盖那些高质量条目。
     if (item.domain === 'mods' && old?.modAcquisition?.generated?.wiki?.wiki) {
-      if (!(old.effectDetails || []).length && item.effectDetails.length) {
-        const mergedValue = structuredClone(oldValue)
-        const merged = Array.isArray(mergedValue) ? mergedValue[0] : mergedValue
+      const mergedValue = structuredClone(oldValue)
+      const merged = Array.isArray(mergedValue) ? mergedValue[0] : mergedValue
+      let changed = false
+      if (!(merged.effectDetails || []).length && item.effectDetails.length) {
         merged.effectDetails = item.effectDetails
         if (merged.maxRank == null && item.maxRank != null) merged.maxRank = item.maxRank
-        compare(target, mergedValue)
+        changed = true
       }
+      if (item.methods.some(method => method.type === 'syndicate-exchange')) {
+        const requiredRefs = ['syndicatemod', 'warframemod', 'standardmod']
+        const currentRefs = merged.subject?.categoryRefs || []
+        if (requiredRefs.some(ref => !currentRefs.includes(ref))) {
+          merged.subject.categoryRefs = [...new Set([...requiredRefs, ...currentRefs])]
+          changed = true
+        }
+      }
+      if (changed) compare(target, mergedValue)
       continue
     }
     compare(target, item.domain === 'mods' ? [modEntry(item, old)] : resourceEntry(item, old))
