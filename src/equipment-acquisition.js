@@ -4,7 +4,7 @@ const { normalizeRequirements } = require('./acquisition-protocol');
 const CATALOG = Object.freeze([
   { id:'equipment.voidrig', canonical:'Voidrig', displayName:'虚空锐将', kind:'vehicle', aliases:['机甲'], imageQuery:'Voidrig', methods:[
     { type:'quest-unlock', scope:'item', questId:'quest.heart-of-deimos', requirements:{type:'quest',questId:'quest.heart-of-deimos'}, variables:{text:'完成任务「惊惧之心」后，在殁世幽都通过殁世械灵体系取得虚空锐将总图与部件蓝图。'} },
-    { type:'vendor-exchange', scope:'blueprint-and-components', npcId:'npc.loid', locationId:'hub.necralisk', requirements:{type:'standing',factionId:'faction.necraloid'}, variables:{text:'提升殁世械灵声望后向洛德兑换总图和部件蓝图；损坏部件来自隔离库中的敌方殁世机甲。'} }
+    { type:'vendor-exchange', scope:'blueprint-and-components', locationId:'hub.necralisk', requirements:{type:'none'}, variables:{text:'任务完成时会取得虚空锐将总图与部件蓝图；损坏部件可在魔胎之境隔离库中击败敌方殁世机甲获得，或在殁世幽都向父亲用英择谛声望购买。'} }
   ]},
   { id:'equipment.k-drive', canonical:'K-Drive', displayName:'K式悬浮板', kind:'modular-equipment', aliases:['滑板','K式滑板'], imageQuery:'K-Drive', overview:'K式悬浮板是模块化载具，由板身、反应堆、鼻锥和喷射器组装；在福尔图娜找通风小子取得和组装部件。', methods:[{type:'vendor-exchange',scope:'components',npcId:'npc.roky',locationId:'hub.fortuna',requirements:{type:'standing',factionId:'faction.ventkids'},variables:{text:'在福尔图娜找通风小子，用通风小子声望兑换板身、反应堆、鼻锥和喷射器后组装。'}}]},
   { id:'equipment.k-drive-launcher', canonical:'K-Drive Launcher', displayName:'K式发射器', kind:'gear', aliases:['K式发射器'], imageQuery:'K-Drive Launcher', methods:[{type:'quest-reward',scope:'item',questId:'quest.vox-solaris',requirements:{type:'quest',questId:'quest.vox-solaris'},variables:{text:'完成任务「索拉里斯之声」后获得 K式发射器，并在军械库装备到物品栏用于召唤 K式悬浮板。'}}]},
