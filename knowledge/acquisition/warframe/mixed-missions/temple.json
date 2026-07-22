@@ -60,31 +60,113 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": null,
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.ho-llvania",
-                "missionNodeId": "mission-node.solstice-square",
-                "rotation": "A"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "A",
+                    "chance": 0.0097
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "B",
+                    "chance": 0.0198
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "C",
+                    "chance": 0.0458
+                  }
+                ],
+                "sourceCanonical": [
+                  "Höllvania/Solstice Square (Defense), Rotation A",
+                  "Höllvania/Solstice Square (Defense), Rotation B",
+                  "Höllvania/Solstice Square (Defense), Rotation C"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.ho-llvania",
-                "missionNodeId": "mission-node.solstice-square",
-                "rotation": "B"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "A",
+                    "chance": 0.0097
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "B",
+                    "chance": 0.0198
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "C",
+                    "chance": 0.0458
+                  }
+                ],
+                "sourceCanonical": [
+                  "Höllvania/Solstice Square (Defense), Rotation A",
+                  "Höllvania/Solstice Square (Defense), Rotation B",
+                  "Höllvania/Solstice Square (Defense), Rotation C"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.ho-llvania",
-                "missionNodeId": "mission-node.solstice-square",
-                "rotation": "C"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "A",
+                    "chance": 0.0097
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "B",
+                    "chance": 0.0198
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.ho-llvania",
+                    "missionNodeId": "mission-node.solstice-square",
+                    "rotation": "C",
+                    "chance": 0.0458
+                  }
+                ],
+                "sourceCanonical": [
+                  "Höllvania/Solstice Square (Defense), Rotation A",
+                  "Höllvania/Solstice Square (Defense), Rotation B",
+                  "Höllvania/Solstice Square (Defense), Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Höllvania/Solstice Square (Defense), Rotation A",
               "Höllvania/Solstice Square (Defense), Rotation B",
               "Höllvania/Solstice Square (Defense), Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "mission-node",
@@ -94,7 +176,17 @@
           },
           "blueprintSource": "official-component-drop",
           "requirements": {
-            "type": "none"
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.flare",
+            "locationId": "acquisition-source.hollvania-missions",
+            "currency": [
+              {
+                "currencyId": "currency.beating-heartstrings",
+                "amount": 390
+              }
+            ],
+            "boosterPolicy": "currency-entity-metadata"
           },
           "methods": [
             {
@@ -103,9 +195,16 @@
               "npcId": "npc.flare",
               "locationId": "acquisition-source.hollvania-missions",
               "requirements": {
-                "type": "standing",
+                "type": "currency",
+                "usage": "exchange",
                 "npcId": "npc.flare",
-                "locationId": "acquisition-source.hollvania-missions"
+                "locationId": "acquisition-source.hollvania-missions",
+                "currency": [
+                  {
+                    "currencyId": "currency.beating-heartstrings",
+                    "amount": 390
+                  }
+                ]
               },
               "reviewStatus": "approved",
               "provenance": {

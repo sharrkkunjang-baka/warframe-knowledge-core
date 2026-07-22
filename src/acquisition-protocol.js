@@ -72,6 +72,15 @@ function currencyAcquisitionSummary(entity, registries) {
     if (!node) return null
     return `在${name(registries.locations, node.parentId)}的${name(registries.locations, node.id)}（${name(registries.missionTypes, dependency.missionTypeId)}）击败爆破使获得，普通每只 ${dependency.normalAmount.min}-${dependency.normalAmount.max}，钢铁之路每只 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max}`
   }
+  if (dependency.type === 'mission-rotation-reward') {
+    const node = registries.locations.get(dependency.missionNodeId)
+    if (!node) return null
+    const location = name(registries.locations, node.parentId || dependency.locationId)
+    const mission = name(registries.locations, dependency.missionNodeId)
+    const missionType = name(registries.missionTypes, dependency.missionTypeId)
+    const exclusion = dependency.excludedActivity ? `；${dependency.excludedActivity}中的该任务不奖励` : ''
+    return `完成${location}${mission}的${missionType}任务，每 ${dependency.wavesPerRotation} 波结算：普通 ${dependency.normalAmount.min}-${dependency.normalAmount.max} 个，钢铁之路 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max} 个${exclusion}`
+  }
   if (dependency.type === 'boss-and-spiral-completion') {
     const gameMode = name(registries.locations, dependency.gameModeId)
     const location = name(registries.locations, dependency.locationId)
@@ -346,6 +355,10 @@ function renderStructuredMethod(method, options = {}) {
     const verb = guaranteed ? '获得' : chance ? '获得' : '概率获得'
     const objective = variables.objective ? `，${variables.objective}` : ''
     return `${prefix}${rewardKind}${mission ? `完成${mission}${objective}${method.rotation && !/赏金/.test(mission) ? ` ${method.rotation}轮` : ''}${verb}` : `获取任务名称待审核，暂不发布空泛任务描述`}${rewardSuffix}${chance}`
+  }
+  if (method.type === 'currency-acquisition') {
+    const currency = options.registries?.currencies?.get(variables.currencyId || method.sourceEntityId)
+    return currency ? currencyAcquisitionSummary(currency, options.registries) : null
   }
   if (method.type === 'route') {
     const text = variables.text || source || null

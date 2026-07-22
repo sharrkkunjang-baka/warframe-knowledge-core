@@ -31,9 +31,20 @@ function entity(registries, kind, id) {
 }
 
 function enrichMethod(method, registries) {
-  const source = method.sourceEntityId && (
-    entity(registries, 'arcaneSources', method.sourceEntityId) || entity(registries, 'enemies', method.sourceEntityId) ||
-    entity(registries, 'npcs', method.sourceEntityId) || entity(registries, 'locations', method.sourceEntityId)
+  let rawRequirements = method.requirements || { type: 'none' };
+  if (rawRequirements.type === 'currency' && Array.isArray(rawRequirements.currency)) {
+    const currencyRegistry = registries?.currencies;
+    method = { ...method, requirements: { ...rawRequirements, currency: rawRequirements.currency.map(item => {
+      if (item.currencyId || !currencyRegistry?.get) return item;
+      const entity = currencyRegistry.get(item.currencyCanonical) || (item.currencyCanonical === 'Nightwave Cred' ? [...currencyRegistry.values].reverse().find(value => /^Nora's Mix Vol\. \d+ Cred$/i.test(value.canonical)) : null);
+      return entity ? { ...item, currencyId: entity.id } : item;
+    }) } };
+  }
+  if (rawRequirements.type === 'standing') { rawRequirements = { ...rawRequirements, ...(method.factionId ? { factionId: rawRequirements.factionId || method.factionId } : {}), rank: rawRequirements.rank ?? method.requiredLevel ?? null, rankName: rawRequirements.rankName || method.requiredRankName || null, amount: rawRequirements.amount ?? method.standing ?? null } }
+  const sourceId = method.sourceEntityId || method.npcId || method.requirements?.npcId
+  const source = sourceId && (
+    entity(registries, 'arcaneSources', sourceId) || entity(registries, 'enemies', sourceId) ||
+    entity(registries, 'npcs', sourceId) || entity(registries, 'locations', sourceId)
   )
   const npc = entity(registries, 'npcs', method.npcId || method.requirements?.npcId)
   const location = entity(registries, 'locations', method.locationId || method.requirements?.locationId || npc?.locationId)
@@ -41,7 +52,7 @@ function enrichMethod(method, registries) {
   const faction = entity(registries, 'factions', method.factionId || method.requirements?.factionId)
   const inferredMissionTypeId = /^Narmer\b/i.test(String(method.sourceCanonical || '')) ? 'mission-type.narmer-bounty' : null
   const missionType = entity(registries, 'missionTypes', inferredMissionTypeId || method.missionTypeId || method.missionTypeEntityId)
-  const requirements = normalizeRequirements(method.requirements)
+  const requirements = normalizeRequirements(rawRequirements)
   return {
     ...method,
     requirements,

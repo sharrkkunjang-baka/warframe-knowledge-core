@@ -13,6 +13,12 @@ function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')) }
 const INDEX = fs.existsSync(INDEX_PATH) ? readJson(INDEX_PATH) : { resources: [] }
 const ENTRIES = INDEX.resources.map(item => readJson(path.join(RESOURCE_ROOT, ...item.file.split('/'))))
 const REGISTRY = createRegistry(ENTRIES.map(entry => ({ id: entry.id, canonical: entry.subject.canonical, displayName: entry.subject.displayName, aliases: entry.aliases || [], entry })))
+const COLLECTIONS = Object.freeze({
+  '环形装置': entry => / Toroid$/i.test(entry.subject.canonical),
+  '环型装置': entry => / Toroid$/i.test(entry.subject.canonical),
+  'toroid': entry => / Toroid$/i.test(entry.subject.canonical),
+  'toroids': entry => / Toroid$/i.test(entry.subject.canonical)
+})
 const METHODS = Object.fromEntries(fs.readdirSync(path.join(RESOURCE_ROOT, 'method')).filter(file => file.endsWith('.json')).map(file => { const value = readJson(path.join(RESOURCE_ROOT, 'method', file)); return [value.category, value] }))
 const ENTITIES = loadEntityRegistries(ROOT)
 
@@ -37,10 +43,10 @@ function renderRoute(entry) {
   const resourceName = variables.resourceName || entry.subject.displayName
   if (category === 'resource-current-wiki') {
     const methods = structuredMethods(routing.methods || [], ENTITIES)
-    return methods.length ? renderAcquisition(methods, { displayName: entry.subject.displayName }) : null
+    return methods.length ? renderAcquisition(methods, { displayName: entry.subject.displayName, registries: ENTITIES }) : null
   }
   if (category === 'resource-location' || category === 'resource-gathering' || category === 'resource-activity') {
-    const locations = (variables.locationIds || []).map(id => entityName(ENTITIES.locations, id)).filter(Boolean)
+    const locations = (variables.locationIds || []).map(id => entityName(ENTITIES.locations, id) || entityName(ENTITIES.locations, id.replace(/^mission-node\./, 'mission.'))).filter(Boolean)
     if (!locations.length) return null
     const locationsText = locations.join(method.locationSeparator || methodTemplate(category, 'locationSeparator') || '、')
     return applyTemplate(method.template, { ...variables, resourceName, locationsText })
@@ -75,7 +81,24 @@ function renderRoute(entry) {
   }
   return applyTemplate(method.template, { ...variables, resourceName })
 }
-function resolveResource(query) { return REGISTRY.get(query)?.entry || null }
+function resolveResource(query) {
+  const direct = REGISTRY.get(query)?.entry || null
+  if (direct?.reviewStatus === 'approved') return direct
+  const normalized = String(query || '').normalize('NFKC').trim().toLowerCase()
+  return ENTRIES.find(entry => entry.reviewStatus === 'approved' && [entry.id, entry.subject.officialUniqueName, entry.subject.canonical, entry.subject.displayName, ...(entry.aliases || [])].some(value => String(value || '').normalize('NFKC').trim().toLowerCase() === normalized)) || direct
+}
+function getResourceCollection(query) {
+  const predicate = COLLECTIONS[String(query || '').normalize('NFKC').trim().toLowerCase()]
+  if (!predicate) return null
+  const entries = ENTRIES.filter(predicate).sort((a, b) => a.subject.displayName.localeCompare(b.subject.displayName, 'zh-CN'))
+  return entries.length ? {
+    id: 'resource-collection.toroids',
+    query: String(query || '').trim(),
+    title: '环型装置',
+    entries,
+    candidates: entries.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName }))
+  } : null
+}
 function getResourceAcquisition(query) {
   const entry = resolveResource(query)
   if (!entry || entry.reviewStatus !== 'approved') return null
@@ -92,10 +115,13 @@ function getResourceAcquisition(query) {
     requirements: routing.requirements || { type: 'none' },
     provenance: { source: entry.resourceAcquisition?.manual?.routingOverride ? 'manual-reviewed-resource-route' : 'official-localized-resource-route', entryId: entry.id }
     }], ENTITIES)
-  const tips = entry.resourceAcquisition?.manual?.tips || []
-  const description = renderAcquisition(methods, { displayName: entry.subject.displayName }) || routeText
-  return { entry, routeText, tips, structuredMethods: methods, text: [description, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }
+  const manual = entry.resourceAcquisition?.manual || {}
+  const tips = manual.tips || []
+  const acquisitionText = renderAcquisition(methods, { displayName: entry.subject.displayName, registries: ENTITIES }) || routeText
+  const usageText = String(manual.description || '').trim()
+  const presentationText = String(manual.presentationText || '').trim()
+  return { entry, routeText, tips, structuredMethods: methods, text: presentationText || [usageText ? `说明：${usageText}` : '', acquisitionText, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }
 }
-function listResources() { return ENTRIES.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, reviewStatus: entry.reviewStatus, category: entry.subject.categoryRefs[0] })) }
+function listResources() { return ENTRIES.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, reviewStatus: entry.reviewStatus, category: entry.subject.categoryRefs[0], roleTags: entry.subject.roleTags || ['resource'] })) }
 
-module.exports = { INDEX, ENTRIES, METHODS, applyTemplate, methodTemplate, resolveResource, renderRoute, getResourceAcquisition, listResources }
+module.exports = { INDEX, ENTRIES, METHODS, COLLECTIONS, applyTemplate, methodTemplate, resolveResource, getResourceCollection, renderRoute, getResourceAcquisition, listResources }

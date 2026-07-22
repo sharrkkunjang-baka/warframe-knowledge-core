@@ -201,6 +201,7 @@ function getComponentDrops(frameOrName) {
   return PARTS.map(part => ({ part, uniqueName: found.get(part)?.uniqueName || null, drops: (found.get(part)?.drops || []).map(drop => ({ ...drop })) }));
 }
 function normalizeChance(chance) {
+  if (chance == null || chance === '') return null;
   const number = Number(chance);
   if (!Number.isFinite(number)) return null;
   return number > 0 && number <= 1 ? number * 100 : number;
@@ -252,8 +253,10 @@ function formatDropSources(drops) {
   for (const drop of drops || []) {
     const source = dropSourceLabel(drop);
     if (!grouped.has(source)) grouped.set(source, []);
-    const chance = bountySourceLabel(drop?.location) ? null : normalizeChance(drop?.chance);
-    if (chance != null && chance < 100 && !grouped.get(source).includes(chance)) grouped.get(source).push(chance);
+    const chanceValue = drop?.chance;
+    const rawChance = bountySourceLabel(drop?.location) || chanceValue == null || chanceValue === '' ? null : Number(chanceValue);
+    const percent = normalizeChance(rawChance);
+    if (percent != null && percent < 100 && !grouped.get(source).some(chance => normalizeChance(chance) === percent)) grouped.get(source).push(rawChance);
   }
   return [...grouped].map(([source, chances]) => chances.length ? `${source} ${chances.map(formatChance).join('/')}` : source).join('；');
 }
@@ -708,7 +711,51 @@ function renderMissionSource(source) {
     rotationText
   });
 }
+function compactMissionSourceGroup(group) {
+  if (group?.summary) return `${group.partName || PART_ZH[group.part] || '部件'}：${group.summary}`;
+  const sources = group?.sources || [];
+  const missionNodes = sources.filter(source => source.type === 'mission-node');
+  if (missionNodes.length !== sources.length || !missionNodes.length) return null;
+  const missionTypes = [...new Set(missionNodes.map(source => LOCATION_REGISTRY.get(source.missionNodeId)?.missionTypeId).filter(Boolean))];
+  const rotations = [...new Set(missionNodes.map(source => source.rotation).filter(Boolean))];
+  if (missionTypes.length !== 1) return null;
+  const missionType = entityName(MISSION_TYPE_REGISTRY, missionTypes[0]);
+  if (missionNodes.every(source => Number.isFinite(source.chance))) {
+    return `${group.partName || PART_ZH[group.part] || '部件'}：${missionType} ${rotations.map(rotation => {
+      const chance = missionNodes.filter(source => source.rotation === rotation).reduce((sum, source) => sum + normalizeChance(source.chance), 0);
+      if (!(chance >= 0 && chance <= 100)) throw new RangeError(`${group.part || 'component'} ${rotation}轮聚合概率越界：${chance}`);
+      return `${rotation}轮 ${Number(chance.toFixed(4))}%`;
+    }).join('、')}`;
+  }
+  if (rotations.length !== 1) return null;
+  return `${group.partName || PART_ZH[group.part] || '部件'}：${missionType}${rotations[0]}轮（按星图任务等级对应奖励池）`;
+}
 function renderMissionNodeRoute(variables) {
+  if (variables?.sourceGroups?.length) {
+    const groups = variables.sourceGroups;
+    const pooledParts = ['Neuroptics', 'Chassis', 'Systems'];
+    const pooled = pooledParts.every(part => groups.some(group => group.part === part))
+      && groups.every(group => group.sources?.length && group.sources.every(source => source.type === 'mission-node' && Number.isFinite(source.chance)))
+      && new Set(groups.map(group => JSON.stringify(group.sources.map(({ chance, ...source }) => source)))).size === 1;
+    if (pooled) {
+      const sources = groups[0].sources;
+      const first = sources[0];
+      const node = entityName(LOCATION_REGISTRY, first.missionNodeId);
+      const missionType = entityName(MISSION_TYPE_REGISTRY, LOCATION_REGISTRY.get(first.missionNodeId)?.missionTypeId);
+      const rotations = [...new Set(sources.map(source => source.rotation))];
+      const probabilities = rotations.map(rotation => {
+        const chance = groups.flatMap(group => group.sources).filter(source => source.rotation === rotation).reduce((sum, source) => sum + normalizeChance(source.chance), 0);
+        if (!(chance >= 0 && chance <= 100)) throw new RangeError(`部件奖池 ${rotation}轮聚合概率越界：${chance}`);
+        return `${Number(chance.toFixed(4))}%`;
+      });
+      return `部件蓝图：${node}${missionType}${rotations.join('/')}轮分别有 ${probabilities.join(' / ')} 概率获得`;
+    }
+    const lines = groups.map(group => compactMissionSourceGroup(group));
+    if (lines.every(Boolean)) {
+      if (variables.objective) lines.push(`间谍 C 轮要求：${variables.objective}`);
+      return lines.join('\n');
+    }
+  }
   const sources = variables?.sources || (variables?.missionNodeId ? [{ type: 'mission-node', locationId: variables.locationId, missionNodeId: variables.missionNodeId, rotation: variables.rotations?.join('/') || null }] : []);
   const rendered = sources.map(renderMissionSource);
   if (!rendered.length || rendered.some(value => !value)) return null;
@@ -797,7 +844,14 @@ function renderRoutedAcquisition(frameOrName) {
       const blueprint = blueprintCategory === 'market'
         ? '总图：商城购买'
         : blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[blueprintCategory], routing.blueprintVariables || {}) : null;
-      return { route, lines: [blueprint, ...structured, ...requirementLines(routing, { includeExchange: !variables.exchange })].filter(Boolean), source: 'category-method' };
+      const lines = [blueprint, ...structured, ...requirementLines(routing, { includeExchange: !variables.exchange })].filter(Boolean);
+      return {
+        route,
+        lines,
+        blueprintLine: blueprint || null,
+        componentLine: structured[0] || null,
+        source: 'category-method'
+      };
     }
     const text = knowledge.frameAcquisition?.manual?.acquisitionText;
     const blueprint = route.blueprintCategory ? applyTemplate(METHOD_TEMPLATES.blueprints[route.blueprintCategory], routing.blueprintVariables || {}) : null;
@@ -829,7 +883,7 @@ function renderRoutedAcquisition(frameOrName) {
         ? renderQuestRoute(routing.componentVariables || {})
         : route.componentCategory === 'frame-assassination'
           ? renderAssassinationRoute(routing.componentVariables || {}, { includesBlueprint: !route.blueprintCategory && routing.blueprintSource === 'official-component-drop' })
-          : route.componentCategory === 'frame-mixed-missions' && (routing.componentVariables?.sources || routing.componentVariables?.missionNodeId)
+          : route.componentCategory === 'frame-mixed-missions' && (routing.componentVariables?.sourceGroups || routing.componentVariables?.sources || routing.componentVariables?.missionNodeId)
             ? renderMissionNodeRoute(routing.componentVariables || {})
             : applyTemplate(METHOD_TEMPLATES.components[route.componentCategory], routing.componentVariables || {});
   if (componentLine) lines.push(componentLine);

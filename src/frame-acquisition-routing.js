@@ -72,6 +72,15 @@ const BLUEPRINT_OVERRIDES = Object.freeze({
 })
 const COMPONENT_OVERRIDES = Object.freeze({
   Baruuk: {},
+  Ivara: {
+    sourceGroups: [
+      { part: 'Systems', partName: '系统', summary: '1-15 级间谍任务 C 轮；或金星比邻星域间谍 C 轮', sourceCanonical: ['Tier 1 Spy / C', 'Venus Proxima Spy / C'] },
+      { part: 'Chassis', partName: '机体', summary: '16-25 级间谍任务 C 轮；或海王星比邻星域间谍 C 轮', sourceCanonical: ['Tier 2 Spy / C', 'Neptune Proxima Spy / C'] },
+      { part: 'Neuroptics', partName: '头部神经光元', summary: '26 级以上间谍任务 C 轮；或冥王星比邻星域间谍 C 轮', sourceCanonical: ['Tier 3 Spy / C', 'Pluto Proxima Spy / C'] }
+    ],
+    objective: '成功破解全部 3 个数据库',
+    sourceCanonical: ['Tier 1 Spy / C', 'Tier 2 Spy / C', 'Tier 3 Spy / C', 'Venus Proxima Spy / C', 'Neptune Proxima Spy / C', 'Pluto Proxima Spy / C']
+  },
   'Cyte-09': { hubs: [{ locationId: 'acquisition-source.hollvania-missions', npcId: 'npc.arthur' }], sourceCanonical: ['Höllvania (Level  65 - 70 WF1999 Bounty), Rotation C','Höllvania (Level  55 - 60 WF1999 Bounty), Rotation C','Höllvania (Level  75 - 80 WF1999 Bounty), Rotation C'] },
   'Excalibur Umbra': { npcId: 'npc.cephalon-simaris', questId: 'quest.the-sacrifice', sourceCanonical: ['The Sacrifice'] },
   Qorvex: { hubs: [{ locationId: 'acquisition-source.sanctum-anatomica-bounty', npcId: 'npc.fibonacci' }], sourceCanonical: ["Deimos/Albrecht's Laboratories (Level  55 - 60 Entrati Lab Bounty), Rotation C","Deimos/Albrecht's Laboratories (Level  65 - 70 Entrati Lab Bounty), Rotation C","Deimos/Albrecht's Laboratories (Level  75 - 80 Entrati Lab Bounty), Rotation C"] },
@@ -97,7 +106,7 @@ const FRAME_EXCHANGE_METHOD_OVERRIDES = Object.freeze({
   Baruuk: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' } }],
   Hildryn: [{ type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 2, rankName: 'Agent', amount: 5000 } }],
   Sevagoth: [{ type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', requirements: { type: 'standing', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', amount: 50000 } }],
-  Temple: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', requirements: { type: 'standing', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions' } }],
+  Temple: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', currency: [{ currencyId: 'currency.beating-heartstrings', amount: 390 }] } }],
   Koumei: [{ type: 'vendor-exchange', scope: 'all-blueprints', sourceEntityId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus', requirements: { type: 'currency', usage: 'exchange', locationId: 'hub.cetus', currency: [{ currencyId: 'currency.fate-pearl', amount: 330 }], isBuffUseless: true } }],
   Voruna: [{ type: 'vendor-exchange', scope: 'all-blueprints', sourceEntityId: 'acquisition-source.archimedean-yonta', locationId: 'hub.zariman', requirements: { type: 'currency', usage: 'exchange', locationId: 'hub.zariman', currency: [{ currencyId: 'currency.lua-thrax-plasm', amount: 350 }], isBuffUseless: true } }]
 })
@@ -113,6 +122,7 @@ const REQUIRE_OVERRIDES = Object.freeze({
   Nokko: { type: 'currency', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currency: [{ currencyId: 'currency.fergolyte', amount: 720 }] },
   Oraxia: { type: 'currency', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currency: [{ currencyId: 'currency.scuttler-husks', amount: 120 }] },
   'Sirius & Orion': { type: 'currency', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currency: [{ currencyId: 'currency.emerald-talent', amount: 545 }, { currencyId: 'currency.crimson-talent', amount: 545 }] },
+  Temple: { type: 'currency', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', currency: [{ currencyId: 'currency.beating-heartstrings', amount: 390 }] },
   Vauban: { type: 'currency', locationId: 'interface.nightwave', currency: [{ currencyId: 'currency.nora-s-mix-vol-8-cred', amount: 75 }] }
 })
 
@@ -225,11 +235,26 @@ function questVariables(frame) {
   return { npcId: 'npc.cephalon-simaris', questId: `quest.${questCanonical.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`, sourceCanonical: [...new Set(sources)] }
 }
 function mixedMissionVariables(frame) {
-  const sources = partDrops(frame, 'Neuroptics').concat(partDrops(frame, 'Chassis'), partDrops(frame, 'Systems')).map(drop => String(drop.location || '')).filter(Boolean)
-  const unique = [...new Set(sources)]
-  const parsed = structuredSources(unique)
-  if (parsed.length === unique.length && parsed.length) return { sources: parsed, sourceCanonical: unique }
-  return { sourceCanonical: unique, unresolvedSources: unique.filter(source => !sourceEntityVariables(source)) }
+  const sourceGroups = ['Neuroptics', 'Chassis', 'Systems'].map(part => {
+    const drops = partDrops(frame, part).filter(drop => drop.location)
+    const sourceCanonical = [...new Set(drops.map(drop => String(drop.location)))]
+    const sources = drops.map(drop => {
+      const source = sourceEntityVariables(drop.location)
+      return source ? { ...source, chance: Number(drop.chance) } : null
+    }).filter(Boolean)
+    return {
+      part,
+      partName: { Neuroptics: '头部神经光元', Chassis: '机体', Systems: '系统' }[part],
+      sources,
+      sourceCanonical,
+      unresolvedSources: sourceCanonical.filter(source => !sourceEntityVariables(source))
+    }
+  }).filter(group => group.sourceCanonical.length)
+  return {
+    sourceGroups,
+    sourceCanonical: [...new Set(sourceGroups.flatMap(group => group.sourceCanonical))],
+    unresolvedSources: [...new Set(sourceGroups.flatMap(group => group.unresolvedSources))]
+  }
 }
 function componentVariables(frame, componentCategory, page) {
   if (COMPONENT_OVERRIDES[frame.name]) return COMPONENT_OVERRIDES[frame.name]

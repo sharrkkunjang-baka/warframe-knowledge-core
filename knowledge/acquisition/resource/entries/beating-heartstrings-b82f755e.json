@@ -25,11 +25,28 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "律动心弦"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "currency-acquisition",
+            "scope": "item",
+            "sourceEntityId": "currency.beating-heartstrings",
+            "variables": {
+              "currencyId": "currency.beating-heartstrings"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "currency-entity-acquisition-reference"
+            }
+          }
+        ],
+        "status": "approved"
       }
     },
     "manual": {
@@ -47,8 +64,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-audit"
+  ],
   "summary": "律动心弦的资源身份与获取证据。",
   "tags": [
     "acquisition",
