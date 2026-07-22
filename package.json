@@ -30,6 +30,8 @@
     "check:items": "node scripts/sync-official-items.js --check",
     "sync:weapons": "node scripts/compile-official-drop-tables.js && node scripts/compile-official-quest-rewards.js && node scripts/compile-official-vendor-offers.js && node scripts/compile-simaris-weapon-sources.js && node scripts/sync-official-weapons.js && node scripts/compile-official-support-quest-weapons.js && node scripts/compile-weapon-wiki-acquisition.js --db .cache/warframe-wiki.sqlite && node scripts/compile-package-weapon-acquisition.js && node scripts/sync-weapon-knowledge.js && node scripts/audit-weapon-coverage.js",
     "check:weapons": "node scripts/compile-official-drop-tables.js --check && node scripts/compile-official-quest-rewards.js --check && node scripts/compile-official-vendor-offers.js --check && node scripts/compile-simaris-weapon-sources.js --check && node scripts/sync-official-weapons.js --check && node scripts/compile-official-support-quest-weapons.js --check && node scripts/compile-weapon-wiki-acquisition.js --db .cache/warframe-wiki.sqlite --check && node scripts/compile-package-weapon-acquisition.js --check && node scripts/sync-weapon-knowledge.js --check && node scripts/audit-weapon-coverage.js --check",
+    "sync:riven-weapons": "node scripts/sync-riven-market-weapons.js",
+    "check:riven-weapons": "node scripts/sync-riven-market-weapons.js --check && node scripts/audit-riven-weapon-coverage.js",
     "audit:semantic": "node scripts/audit-semantic-coverage.js --db .cache/warframe-wiki.sqlite --strict",
     "check:semantic": "node scripts/audit-semantic-coverage.js --db .cache/warframe-wiki.sqlite --check --strict",
     "audit:mod-cards": "node scripts/audit-mod-acquisition-cards.js",
@@ -50,6 +52,8 @@
     "check:mods": "node scripts/sync-mods.js --check",
     "sync:set-mod-bonuses": "node scripts/sync-set-mod-bonuses.js",
     "check:set-mod-bonuses": "node scripts/sync-set-mod-bonuses.js --check",
+    "sync:mod-relations": "node scripts/build-mod-relations.js",
+    "check:mod-relations": "node scripts/build-mod-relations.js --check",
     "sync:mod-wiki": "node scripts/sync-mod-wiki.js --db .cache/warframe-wiki.sqlite",
     "check:mod-wiki": "node scripts/sync-mod-wiki.js --db .cache/warframe-wiki.sqlite --check",
     "sync:arcane-wiki": "node scripts/sync-arcane-wiki.js --db .cache/warframe-wiki.sqlite",
@@ -99,7 +103,9 @@
     "check:coverage": "node scripts/sync-official-coverage.js --check",
     "audit:variables": "node scripts/audit-variable-references.js --strict",
     "check:variables": "node scripts/audit-variable-references.js --check --strict",
-    "audit:variants": "node scripts/audit-acquisition-variant-families.js"
+    "audit:variants": "node scripts/audit-acquisition-variant-families.js",
+    "audit:acquisition-quality": "node scripts/audit-acquisition-quality.js",
+    "check:acquisition-quality": "node scripts/audit-acquisition-quality.js --check --strict"
   },
   "keywords": [
     "warframe",
