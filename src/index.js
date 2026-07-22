@@ -16,6 +16,7 @@ const { parseWeaponCraftingCommand } = require('./weapon-command');
 const { expandKnowledgeReferences } = require('./knowledge-reference-expander');
 const { createRivenWeaponResolver } = require('./riven-weapon-resolver');
 const { createModRelationQueries } = require('./mod-relation-queries');
+const { createElementModSlangResolver } = require('./element-mod-slang');
 const equipmentAcquisition = require('./equipment-acquisition');
 
 function scoreEntry(query, entry) {
@@ -1392,6 +1393,7 @@ function createKnowledgeCore(options = {}) {
     getWeapon,
     getFrame: frameAcquisition.resolveWarframe
   });
+  const elementModSlangResolver = createElementModSlangResolver(data.elementModSlang);
   const buildWikiContext = query => {
     const resolution = resolveName(query);
     const facts = searchFacts(query);
@@ -1458,6 +1460,9 @@ function createKnowledgeCore(options = {}) {
     parseModRelationCommand: modRelationQueries.parseRelationCommand,
     queryModRelations: modRelationQueries.query,
     modRelations: data.modRelations,
+    elementModSlang: data.elementModSlang,
+    resolveElementModSlang: elementModSlangResolver.resolve,
+    renderElementModSlang: elementModSlangResolver.render,
     getRivenWeapon: rivenWeaponResolver.get,
     resolveRivenWeapon: rivenWeaponResolver.resolve,
     resolveRivenWeaponFamilyIntent,

@@ -1,0 +1,1865 @@
+{
+  "schemaVersion": 1,
+  "catalogCount": 1442,
+  "categories": [
+    {
+      "id": "rifle",
+      "compat": "Rifle",
+      "displayName": "步枪",
+      "aliases": [
+        "主要武器",
+        "步枪",
+        "主手"
+      ],
+      "aliasScopeNote": "仅元素 Mod 意图内按审核默认指向 Rifle；不代表所有主要武器或主手都属于步枪。"
+    },
+    {
+      "id": "shotgun",
+      "compat": "Shotgun",
+      "displayName": "霰弹枪",
+      "aliases": [
+        "霰弹枪",
+        "霰弹",
+        "散弹"
+      ]
+    },
+    {
+      "id": "pistol",
+      "compat": "Pistol",
+      "displayName": "手枪",
+      "aliases": [
+        "次要武器",
+        "手枪",
+        "副手"
+      ]
+    },
+    {
+      "id": "melee",
+      "compat": "Melee",
+      "displayName": "近战",
+      "aliases": [
+        "近战",
+        "刀"
+      ]
+    },
+    {
+      "id": "archgun",
+      "compat": "Archgun",
+      "displayName": "空战枪械",
+      "aliases": [
+        "archwing枪械",
+        "空战枪械",
+        "archwing",
+        "空战"
+      ]
+    },
+    {
+      "id": "archmelee",
+      "compat": "Archmelee",
+      "displayName": "空战近战",
+      "aliases": [
+        "空战近战",
+        "archmelee"
+      ]
+    }
+  ],
+  "elements": {
+    "火": {
+      "id": "heat",
+      "en": "Heat",
+      "zh": "火焰伤害"
+    },
+    "冰": {
+      "id": "cold",
+      "en": "Cold",
+      "zh": "冰冻伤害"
+    },
+    "电": {
+      "id": "electricity",
+      "en": "Electricity",
+      "zh": "电击伤害"
+    },
+    "毒": {
+      "id": "toxin",
+      "en": "Toxin",
+      "zh": "毒素伤害"
+    }
+  },
+  "automatic": [
+    {
+      "alias": "步枪金火",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "dual-element-status",
+      "element": "heat",
+      "displayName": "铝热焊弹",
+      "canonical": "Thermite Rounds",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/FireEventRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+60% Heat"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Thermite_Rounds",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪银火",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "single-element",
+      "element": "heat",
+      "displayName": "地狱火",
+      "canonical": "Hellfire",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+90% Heat"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Hellfire",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪金冰",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "dual-element-status",
+      "element": "cold",
+      "displayName": "白霜弹头",
+      "canonical": "Rime Rounds",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/IceEventRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+60% Cold"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Rime_Rounds",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪银冰",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "single-element",
+      "element": "cold",
+      "displayName": "低温弹头 Prime",
+      "canonical": "Primed Cryo Rounds",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/Expert/WeaponFreezeDamageModExpert",
+      "rarity": "Legendary",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+165% Cold"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Primed_Cryo_Rounds",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪金电",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "dual-element-status",
+      "element": "electricity",
+      "displayName": "高压电流",
+      "canonical": "High Voltage",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/ElectEventRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/High_Voltage",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪银电",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "single-element",
+      "element": "electricity",
+      "displayName": "暴风使者",
+      "canonical": "Stormbringer",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponElectricityDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+90% Electricity"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Stormbringer",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪金毒",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "dual-element-status",
+      "element": "toxin",
+      "displayName": "致命火力",
+      "canonical": "Malignant Force",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/PoisonEventRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+60% Toxin"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Malignant_Force",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "步枪银毒",
+      "categoryId": "rifle",
+      "category": "步枪",
+      "kind": "single-element",
+      "element": "toxin",
+      "displayName": "污染弹匣",
+      "canonical": "Infected Clip",
+      "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponToxinDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+90% Toxin"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Infected_Clip",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪金火",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "dual-element-status",
+      "element": "heat",
+      "displayName": "炼狱轰击",
+      "canonical": "Scattering Inferno",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/FireEventShotgunMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+60% Heat"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Scattering_Inferno",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪银火",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "single-element",
+      "element": "heat",
+      "displayName": "燃烧外壳",
+      "canonical": "Incendiary Coat",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+90% Heat"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Incendiary_Coat",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪金冰",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "dual-element-status",
+      "element": "cold",
+      "displayName": "冰冷疾风",
+      "canonical": "Frigid Blast",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/IceEventShotgunMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+60% Cold"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Frigid_Blast",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪银冰",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "single-element",
+      "element": "cold",
+      "displayName": "急冻控场 Prime",
+      "canonical": "Primed Chilling Grasp",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/Expert/WeaponFreezeDamageModExpert",
+      "rarity": "Legendary",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+165% Cold"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Primed_Chilling_Grasp",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪金电",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "dual-element-status",
+      "element": "electricity",
+      "displayName": "电冲弹药",
+      "canonical": "Shell Shock",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/ElectEventShotgunMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Shell_Shock",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪银电",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "single-element",
+      "element": "electricity",
+      "displayName": "充电弹头 Prime",
+      "canonical": "Primed Charged Shell",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/Expert/WeaponElectricityDamageModExpert",
+      "rarity": "Legendary",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+165% Electricity"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Primed_Charged_Shell",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪金毒",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "dual-element-status",
+      "element": "toxin",
+      "displayName": "毒素弹幕",
+      "canonical": "Toxic Barrage",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/PoisonEventShotgunMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+60% Toxin"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Toxic_Barrage",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "霰弹枪银毒",
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "kind": "single-element",
+      "element": "toxin",
+      "displayName": "传染蔓延",
+      "canonical": "Contagious Spread",
+      "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponToxinDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+90% Toxin"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Contagious_Spread",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪金火",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "dual-element-status",
+      "element": "heat",
+      "displayName": "灼痕焦点",
+      "canonical": "Scorch",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/FireEventPistolMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+60% Heat"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Scorch",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪银火",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "single-element",
+      "element": "heat",
+      "displayName": "火焰装填 Prime",
+      "canonical": "Primed Heated Charge",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Expert/WeaponFireDamageModExpert",
+      "rarity": "Legendary",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+165% Heat"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Primed_Convulsion",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪金冰",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "dual-element-status",
+      "element": "cold",
+      "displayName": "结霜侵蚀",
+      "canonical": "Frostbite",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/IceEventPistolMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+60% Cold"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Frostbite",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪银冰",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "single-element",
+      "element": "cold",
+      "displayName": "深层冷冻",
+      "canonical": "Deep Freeze",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponFreezeDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+90% Cold"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Deep_Freeze",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪金电",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "dual-element-status",
+      "element": "electricity",
+      "displayName": "电流震击",
+      "canonical": "Jolt",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/ElectEventPistolMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Jolt",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪银电",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "single-element",
+      "element": "electricity",
+      "displayName": "痉挛 Prime",
+      "canonical": "Primed Convulsion",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Expert/PrimedWeaponElectricityDamageMod",
+      "rarity": "Legendary",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+165% Electricity"
+        }
+      ],
+      "wikiUrl": null,
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪金毒",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "dual-element-status",
+      "element": "toxin",
+      "displayName": "瘟疫手枪",
+      "canonical": "Pistol Pestilence",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/PoisonEventPistolMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+60% Toxin"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Pistol_Pestilence",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "手枪银毒",
+      "categoryId": "pistol",
+      "category": "手枪",
+      "kind": "single-element",
+      "element": "toxin",
+      "displayName": "病原弹头",
+      "canonical": "Pathogen Rounds",
+      "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponToxinDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+90% Toxin"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Pathogen_Rounds",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战金火",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "dual-element-status",
+      "element": "heat",
+      "displayName": "爆裂刀刃",
+      "canonical": "Volcanic Edge",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/FireEventMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+60% Heat"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Volcanic_Edge",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战银火",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "single-element",
+      "element": "heat",
+      "displayName": "熔岩冲击",
+      "canonical": "Molten Impact",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponFireDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+90% Heat"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Molten_Impact",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战金冰",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "dual-element-status",
+      "element": "cold",
+      "displayName": "蚀骨寒霜",
+      "canonical": "Vicious Frost",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/IceEventMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+60% Cold"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Vicious_Frost",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战银冰",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "single-element",
+      "element": "cold",
+      "displayName": "北风",
+      "canonical": "North Wind",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponFreezeDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+90% Cold"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/North_Wind",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战金电",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "dual-element-status",
+      "element": "electricity",
+      "displayName": "伏打电能",
+      "canonical": "Voltaic Strike",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/ElectEventMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Voltaic_Strike",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战银电",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "single-element",
+      "element": "electricity",
+      "displayName": "电击触点",
+      "canonical": "Shocking Touch",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponElectricityDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+90% Electricity"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Shocking_Touch",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战金毒",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "dual-element-status",
+      "element": "toxin",
+      "displayName": "剧毒灾害",
+      "canonical": "Virulent Scourge",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/PoisonEventMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+60% Toxin"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Virulent_Scourge",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "近战银毒",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "single-element",
+      "element": "toxin",
+      "displayName": "热病打击 Prime",
+      "canonical": "Primed Fever Strike",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponToxinDamageModExpert",
+      "rarity": "Legendary",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+165% Toxin"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Primed_Fever_Strike",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械金火",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "dual-element-status",
+      "element": "heat",
+      "displayName": "熔岩弹膛",
+      "canonical": "Magma Chamber",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventFireStatusRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+60% Heat"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Magma_Chamber",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械银火",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "single-element",
+      "element": "heat",
+      "displayName": "燃烧弹头",
+      "canonical": "Combustion Rounds",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFireDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+120% Heat"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Combustion_Rounds",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械金冰",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "dual-element-status",
+      "element": "cold",
+      "displayName": "低温外壳",
+      "canonical": "Hypothermic Shell",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventColdStatusRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+60% Cold"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Hypothermic_Shell",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械银冰",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "single-element",
+      "element": "cold",
+      "displayName": "极地弹仓",
+      "canonical": "Polar Magazine",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFreezeDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+120% Cold"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Polar_Magazine",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械金电",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "dual-element-status",
+      "element": "electricity",
+      "displayName": "带电子弹",
+      "canonical": "Charged Bullets",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventElectricStatusRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Charged_Bullets",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械银电",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "single-element",
+      "element": "electricity",
+      "displayName": "带电枪管",
+      "canonical": "Electrified Barrel",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponElectricityDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+120% Electricity"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Electrified_Barrel",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械金毒",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "dual-element-status",
+      "element": "toxin",
+      "displayName": "毒染套管",
+      "canonical": "Contamination Casing",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventToxinStatusRifleMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+60% Toxin"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Contamination_Casing",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战枪械银毒",
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "kind": "single-element",
+      "element": "toxin",
+      "displayName": "恶毒弹匣",
+      "canonical": "Venomous Clip",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponToxinDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+120% Toxin"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Venomous_Clip",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战金火",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "dual-element-status",
+      "element": "heat",
+      "displayName": "炽燃钢铁",
+      "canonical": "Searing Steel",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventFireStatusMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+60% Heat"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Searing_Steel",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战银火",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "single-element",
+      "element": "heat",
+      "displayName": "炽烈坚刃",
+      "canonical": "Blazing Steel",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFireDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "heat",
+          "text": "+120% Heat"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Blazing_Steel",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战金冰",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "dual-element-status",
+      "element": "cold",
+      "displayName": "冷冻包覆",
+      "canonical": "Cryo Coating",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventColdStatusMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+60% Cold"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Cryo_Coating",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战银冰",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "single-element",
+      "element": "cold",
+      "displayName": "冰冷刃缘",
+      "canonical": "Glacial Edge",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "cold",
+          "text": "+120% Cold"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Glacial_Edge",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战金电",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "dual-element-status",
+      "element": "electricity",
+      "displayName": "离子注入",
+      "canonical": "Ion Infusion",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventElectricStatusMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Ion_Infusion",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战银电",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "single-element",
+      "element": "electricity",
+      "displayName": "通电刀刃",
+      "canonical": "Conductive Blade",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponElectricityDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "electricity",
+          "text": "+120% Electricity"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Conductive_Blade",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战金毒",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "dual-element-status",
+      "element": "toxin",
+      "displayName": "传染性注射",
+      "canonical": "Infectious Injection",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventToxinStatusMeleeMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+60% Toxin"
+        },
+        {
+          "stat": "status-chance",
+          "text": "+60% Status Chance"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Infectious_Injection",
+      "source": "automatic-official-catalog"
+    },
+    {
+      "alias": "空战近战银毒",
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "kind": "single-element",
+      "element": "toxin",
+      "displayName": "剧毒螫刺",
+      "canonical": "Poisonous Sting",
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponToxinDamageMod",
+      "rarity": "Uncommon",
+      "effects": [
+        {
+          "stat": "toxin",
+          "text": "+120% Toxin"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Poisonous_Sting",
+      "source": "automatic-official-catalog"
+    }
+  ],
+  "manual": [
+    {
+      "alias": "近战",
+      "categoryId": "melee",
+      "category": "近战",
+      "kind": "functional",
+      "element": null,
+      "displayName": "聚焦能量",
+      "canonical": "Focus Energy",
+      "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/FocusEnergyMod",
+      "rarity": "Rare",
+      "effects": [
+        {
+          "stat": "heavy-attack-efficiency",
+          "text": "+40% Heavy Attack Efficiency"
+        },
+        {
+          "stat": "electricity",
+          "text": "+60% Electricity"
+        }
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Focus_Energy",
+      "source": "reviewed-alias",
+      "aliases": [
+        "近战效率电",
+        "效率电近战",
+        "效率电"
+      ],
+      "status": "resolved",
+      "review": {
+        "status": "approved",
+        "evidence": [
+          "DE official Simplified Chinese catalog: 聚焦能量 / Focus Energy",
+          "https://wiki.warframe.com/w/Focus_Energy"
+        ]
+      }
+    }
+  ],
+  "audit": [
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "铝热焊弹",
+          "canonical": "Thermite Rounds",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/FireEventRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "地狱火",
+          "canonical": "Hellfire",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponFireDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "白霜弹头",
+          "canonical": "Rime Rounds",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/IceEventRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "低温弹头 Prime",
+          "canonical": "Primed Cryo Rounds",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/Expert/WeaponFreezeDamageModExpert"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "高压电流",
+          "canonical": "High Voltage",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/ElectEventRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "暴风使者",
+          "canonical": "Stormbringer",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponElectricityDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "致命火力",
+          "canonical": "Malignant Force",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/DualStat/PoisonEventRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "rifle",
+      "category": "步枪",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "污染弹匣",
+          "canonical": "Infected Clip",
+          "uniqueName": "/Lotus/Upgrades/Mods/Rifle/WeaponToxinDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "炼狱轰击",
+          "canonical": "Scattering Inferno",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/FireEventShotgunMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "燃烧外壳",
+          "canonical": "Incendiary Coat",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponFireDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "冰冷疾风",
+          "canonical": "Frigid Blast",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/IceEventShotgunMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "急冻控场 Prime",
+          "canonical": "Primed Chilling Grasp",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/Expert/WeaponFreezeDamageModExpert"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "电冲弹药",
+          "canonical": "Shell Shock",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/ElectEventShotgunMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "充电弹头 Prime",
+          "canonical": "Primed Charged Shell",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/Expert/WeaponElectricityDamageModExpert"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "毒素弹幕",
+          "canonical": "Toxic Barrage",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/DualStat/PoisonEventShotgunMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "shotgun",
+      "category": "霰弹枪",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "传染蔓延",
+          "canonical": "Contagious Spread",
+          "uniqueName": "/Lotus/Upgrades/Mods/Shotgun/WeaponToxinDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "灼痕焦点",
+          "canonical": "Scorch",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/FireEventPistolMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "火焰装填 Prime",
+          "canonical": "Primed Heated Charge",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Expert/WeaponFireDamageModExpert"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "结霜侵蚀",
+          "canonical": "Frostbite",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/IceEventPistolMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "深层冷冻",
+          "canonical": "Deep Freeze",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponFreezeDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "电流震击",
+          "canonical": "Jolt",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/ElectEventPistolMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "痉挛 Prime",
+          "canonical": "Primed Convulsion",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/Expert/PrimedWeaponElectricityDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "瘟疫手枪",
+          "canonical": "Pistol Pestilence",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/DualStat/PoisonEventPistolMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "pistol",
+      "category": "手枪",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "病原弹头",
+          "canonical": "Pathogen Rounds",
+          "uniqueName": "/Lotus/Upgrades/Mods/Pistol/WeaponToxinDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "爆裂刀刃",
+          "canonical": "Volcanic Edge",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/FireEventMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "熔岩冲击",
+          "canonical": "Molten Impact",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponFireDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "蚀骨寒霜",
+          "canonical": "Vicious Frost",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/IceEventMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "北风",
+          "canonical": "North Wind",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponFreezeDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "伏打电能",
+          "canonical": "Voltaic Strike",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/ElectEventMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "电击触点",
+          "canonical": "Shocking Touch",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/WeaponElectricityDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "剧毒灾害",
+          "canonical": "Virulent Scourge",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/DualStat/PoisonEventMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "melee",
+      "category": "近战",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "热病打击 Prime",
+          "canonical": "Primed Fever Strike",
+          "uniqueName": "/Lotus/Upgrades/Mods/Melee/Expert/WeaponToxinDamageModExpert"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "熔岩弹膛",
+          "canonical": "Magma Chamber",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventFireStatusRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "燃烧弹头",
+          "canonical": "Combustion Rounds",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFireDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "低温外壳",
+          "canonical": "Hypothermic Shell",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventColdStatusRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "极地弹仓",
+          "canonical": "Polar Magazine",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFreezeDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "带电子弹",
+          "canonical": "Charged Bullets",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventElectricStatusRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "带电枪管",
+          "canonical": "Electrified Barrel",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponElectricityDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "毒染套管",
+          "canonical": "Contamination Casing",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingEventToxinStatusRifleMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archgun",
+      "category": "空战枪械",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "恶毒弹匣",
+          "canonical": "Venomous Clip",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponToxinDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "炽燃钢铁",
+          "canonical": "Searing Steel",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventFireStatusMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "heat",
+      "elementName": "火",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "炽烈坚刃",
+          "canonical": "Blazing Steel",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFireDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "冷冻包覆",
+          "canonical": "Cryo Coating",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventColdStatusMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "cold",
+      "elementName": "冰",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "冰冷刃缘",
+          "canonical": "Glacial Edge",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponFreezeDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "离子注入",
+          "canonical": "Ion Infusion",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventElectricStatusMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "electricity",
+      "elementName": "电",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "通电刀刃",
+          "canonical": "Conductive Blade",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponElectricityDamageMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "gold",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "传染性注射",
+          "canonical": "Infectious Injection",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingEventToxinStatusMeleeMod"
+        }
+      ]
+    },
+    {
+      "categoryId": "archmelee",
+      "category": "空战近战",
+      "element": "toxin",
+      "elementName": "毒",
+      "kind": "silver",
+      "status": "resolved",
+      "candidates": [
+        {
+          "displayName": "剧毒螫刺",
+          "canonical": "Poisonous Sting",
+          "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Melee/ArchwingWeaponToxinDamageMod"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "automatic": 48,
+    "manualResolved": 1,
+    "resolved": 48,
+    "missing": 0,
+    "ambiguous": 0
+  }
+}
