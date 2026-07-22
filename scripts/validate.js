@@ -40,6 +40,10 @@ const weaponRoot = path.join(knowledgeRoot, 'acquisition', 'weapons');
 const weaponIndexPath = path.join(weaponRoot, 'categories.json');
 const weaponIndex = fs.existsSync(weaponIndexPath) ? JSON.parse(fs.readFileSync(weaponIndexPath, 'utf8')) : null;
 const modMethods = require('../src/loader').readObjectDirectory(path.join(knowledgeRoot, 'acquisition', 'mod', 'method')).filter(item => item.kind === 'mod-acquisition-method');
+const syndicateProcPath = path.join(knowledgeRoot, 'relations', 'syndicate-proc-effects.json');
+const syndicateProcCatalog = fs.existsSync(syndicateProcPath) ? JSON.parse(fs.readFileSync(syndicateProcPath, 'utf8')) : null;
+const modRelationsPath = path.join(root, 'generated', 'mod-relations.json');
+const modRelations = fs.existsSync(modRelationsPath) ? JSON.parse(fs.readFileSync(modRelationsPath, 'utf8')) : null;
 const frameIndexPath = path.join(frameRoot, 'categories.json');
 const frameIndex = fs.existsSync(frameIndexPath) ? JSON.parse(fs.readFileSync(frameIndexPath, 'utf8')) : null;
 const frameMethods = fs.existsSync(path.join(frameRoot, 'method')) ? require('../src/loader').readObjectDirectory(path.join(frameRoot, 'method')).filter(item => item.kind === 'frame-acquisition-method') : [];
@@ -142,6 +146,20 @@ for (const method of modMethods) {
 }
 const modMethodKeys = new Set(modMethods.map(method => method.category));
 const factionIds = new Set(entities.factions.map(faction => faction.id));
+const expectedSyndicateProcs = new Set(['Truth', 'Justice', 'Purity', 'Blight', 'Entropy', 'Sequence']);
+const procEffects = syndicateProcCatalog?.effects || [];
+const procIds = new Set(procEffects.map(effect => effect.id));
+if (!syndicateProcCatalog || syndicateProcCatalog.reviewStatus !== 'approved') errors.push('syndicate-proc-effects.json: 缺少已审核实体目录');
+if (procEffects.length !== expectedSyndicateProcs.size || procEffects.some(effect => !expectedSyndicateProcs.has(effect.canonical))) errors.push('syndicate-proc-effects.json: 必须完整覆盖 Truth/Justice/Purity/Blight/Entropy/Sequence');
+for (const effect of procEffects) {
+  if (!effect.id || !effect.displayName || !effect.factionId || !effect.damageType || !effect.restore || !effect.buff || !effect.statusEffect || !effect.officialLocalizationKey) errors.push(`syndicate-proc-effects.json: ${effect.canonical || '<unknown>'} 字段不完整`);
+  if (!factionIds.has(effect.factionId)) errors.push(`syndicate-proc-effects.json: ${effect.canonical} 集团变量不存在 ${effect.factionId}`);
+}
+if (!syndicateProcCatalog?.sources?.some(source => source.url?.startsWith('https://wiki.warframe.com/'))) errors.push('syndicate-proc-effects.json: 缺少当前 wiki.warframe.com 来源');
+for (const row of modRelations?.syndicateWeaponAugments || []) {
+  const refs = (row.relationRefs || []).filter(ref => ref.type === 'triggers-syndicate-proc');
+  if (refs.length !== 1 || !procIds.has(refs[0]?.targetId)) errors.push(`mod-relations.json: ${row.canonical} 必须唯一关联有效集团触发实体`);
+}
 
 for (const item of resourceIndex?.resources || []) {
   if (!resourceMethodKeys.has(item.category)) errors.push(`${item.canonical}: 缺少资源 method ${item.category}`);

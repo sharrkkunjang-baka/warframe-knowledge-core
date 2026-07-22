@@ -1,0 +1,1926 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22",
+  "sources": [
+    "knowledge/categories/official.json",
+    "knowledge/acquisition/mod/**",
+    "knowledge/relations/mod-program-overrides.json",
+    "knowledge/relations/syndicate-proc-effects.json"
+  ],
+  "counts": {
+    "syndicate": {
+      "mods": 24,
+      "weapons": 24,
+      "procRelations": 24,
+      "procEntities": 6
+    },
+    "nightwave": {
+      "mods": 33,
+      "weapons": 25,
+      "frames": 8
+    }
+  },
+  "syndicateProcEffects": {
+    "schemaVersion": 1,
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "DE-official-zh-localization",
+      "wiki.warframe.com-current-review"
+    ],
+    "sharedMechanics": {
+      "trigger": "武器装备在手中时，武器获得的经验值会填充集团计量条；满级集团武器强化 Mod 在累计 1000 点后触发。收起武器时不会触发。",
+      "radialDamage": 1000,
+      "radiusMeters": 25,
+      "durationSeconds": 30,
+      "cooldownSeconds": 30,
+      "wikiEvidence": {
+        "url": "https://wiki.warframe.com/w/Syndicate_Radial_Effects",
+        "revisionId": 2777323,
+        "retrievedAt": "2026-07-22",
+        "sections": [
+          "Triggering Radial Effects",
+          "Weapon Augment Effects",
+          "Notes"
+        ]
+      }
+    },
+    "effects": [
+      {
+        "id": "syndicate-proc.truth",
+        "canonical": "Truth",
+        "displayName": "真相",
+        "factionId": "faction.arbiters-of-hexis",
+        "damageType": "毒气",
+        "restore": "恢复 25% 生命值",
+        "buff": "跑酷速度 +25%",
+        "statusEffect": "必定触发毒气异常状态",
+        "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_TruthDesc"
+      },
+      {
+        "id": "syndicate-proc.justice",
+        "canonical": "Justice",
+        "displayName": "正义",
+        "factionId": "faction.steel-meridian",
+        "damageType": "爆炸",
+        "restore": "恢复 25% 生命值",
+        "buff": "护甲 +15%",
+        "statusEffect": "不触发爆炸异常状态；改为使附近敌人眩晕，并短暂暴露于反击处决",
+        "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_JusticeDesc"
+      },
+      {
+        "id": "syndicate-proc.purity",
+        "canonical": "Purity",
+        "displayName": "纯净",
+        "factionId": "faction.new-loka",
+        "damageType": "腐蚀",
+        "restore": "恢复 25% 生命值",
+        "buff": "最大生命值 +25%",
+        "statusEffect": "必定触发腐蚀异常状态",
+        "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_PurityDesc"
+      },
+      {
+        "id": "syndicate-proc.blight",
+        "canonical": "Blight",
+        "displayName": "毁坏",
+        "factionId": "faction.red-veil",
+        "damageType": "病毒",
+        "restore": "恢复 25% 能量",
+        "buff": "移动速度 +10%",
+        "statusEffect": "必定触发病毒异常状态",
+        "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_BlightDesc"
+      },
+      {
+        "id": "syndicate-proc.entropy",
+        "canonical": "Entropy",
+        "displayName": "熵数",
+        "factionId": "faction.cephalon-suda",
+        "damageType": "磁力",
+        "restore": "恢复 25% 能量",
+        "buff": "最大能量 +25%",
+        "statusEffect": "必定触发磁力异常状态",
+        "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_EntropyDesc"
+      },
+      {
+        "id": "syndicate-proc.sequence",
+        "canonical": "Sequence",
+        "displayName": "数列",
+        "factionId": "faction.the-perrin-sequence",
+        "damageType": "辐射",
+        "restore": "恢复 25% 护盾",
+        "buff": "最大护盾容量 +50%",
+        "statusEffect": "必定触发辐射异常状态",
+        "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_SequenceDesc"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Syndicate_Radial_Effects",
+        "label": "Warframe Wiki - Syndicate Radial Effects"
+      },
+      {
+        "path": ".cache/official-localization/languages.zh.json",
+        "label": "DE 官方简体中文 Languages.bin 缓存"
+      }
+    ]
+  },
+  "syndicateWeaponAugments": [
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/FurisMod",
+      "canonical": "Winds Of Purity",
+      "displayName": "纯净之风",
+      "target": {
+        "type": "weapon",
+        "canonical": "Furis",
+        "displayName": "盗贼",
+        "stableId": "/Lotus/Weapons/Tenno/Pistol/AutoPistol"
+      },
+      "effects": [
+        "+20% 生命吸取",
+        "+1 '纯净'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Winds_of_Purity",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.new-loka"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.purity"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/MiterMod",
+      "canonical": "Neutralizing Justice",
+      "displayName": "抵消正义",
+      "target": {
+        "type": "weapon",
+        "canonical": "Miter",
+        "displayName": "米特尔",
+        "stableId": "/Lotus/Weapons/Grineer/LongGuns/GrineerSawbladeGun/SawBladeGun"
+      },
+      "effects": [
+        "米特尔每一个锯片都具有 +90% 的几率立刻消除虚能船员的力场。",
+        "+1 '正义'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Neutralizing_Justice",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.steel-meridian"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.justice"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/LankaMod",
+      "canonical": "Voltage Sequence",
+      "displayName": "电压数列",
+      "target": {
+        "type": "weapon",
+        "canonical": "Lanka",
+        "displayName": "兰卡",
+        "stableId": "/Lotus/Weapons/ClanTech/Energy/Railgun"
+      },
+      "effects": [
+        "击杀飞行的敌人时将从他们的残骸中创造一个电击陷阱，持续 8 秒。",
+        "+1 '数列'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Voltage_Sequence",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.the-perrin-sequence"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.sequence"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/AcridMod",
+      "canonical": "Toxic Sequence",
+      "displayName": "毒素数列",
+      "target": {
+        "type": "weapon",
+        "canonical": "Acrid",
+        "displayName": "阿克里德",
+        "stableId": "/Lotus/Weapons/ClanTech/Bio/AcidDartPistol"
+      },
+      "effects": [
+        "+200% 触发时间",
+        "+1 '数列'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Toxic_Sequence",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.the-perrin-sequence"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.sequence"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/BurstonPrimeMod",
+      "canonical": "Gilded Truth",
+      "displayName": "镀金真相",
+      "target": {
+        "type": "weapon",
+        "canonical": "Burston Prime",
+        "displayName": "伯斯顿 Prime",
+        "stableId": "/Lotus/Weapons/Tenno/LongGuns/PrimeBurston/PrimeBurston"
+      },
+      "effects": [
+        "+80% 射速",
+        "+1 '真相'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Gilded_Truth",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.arbiters-of-hexis"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.truth"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/KestrelMod",
+      "canonical": "Entropy Flight",
+      "displayName": "飞逝熵数",
+      "target": {
+        "type": "weapon",
+        "canonical": "Kestrel",
+        "displayName": "红隼",
+        "stableId": "/Lotus/Weapons/Tenno/Melee/Glaives/Boomerang/BoomerangWeapon"
+      },
+      "effects": [
+        "+140% 投射物速度",
+        "+1 '熵数'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Entropy_Flight",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.cephalon-suda"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.entropy"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/SilvaAegisMod",
+      "canonical": "Avenging Truth",
+      "displayName": "复仇真相",
+      "target": {
+        "type": "weapon",
+        "canonical": "Silva & Aegis",
+        "displayName": "席瓦 & 神盾",
+        "stableId": "/Lotus/Weapons/Tenno/Melee/SwordsAndBoards/MeleeContestWinnerOne/TennoSwordShield"
+      },
+      "effects": [
+        "格挡将吸收 50% 所受的伤害，作为下一次蓄力攻击的额外伤害。",
+        "+1 '真相'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Avenging_Truth",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.arbiters-of-hexis"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.truth"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/SkanaMod",
+      "canonical": "Bright Purity",
+      "displayName": "光明纯净",
+      "target": {
+        "type": "weapon",
+        "canonical": "Skana",
+        "displayName": "空刃",
+        "stableId": "/Lotus/Weapons/Tenno/Melee/LongSword/LongSword"
+      },
+      "effects": [
+        "+100% 近战伤害",
+        "+1 '纯净'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Bright_Purity",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.new-loka"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.purity"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/ViperMod",
+      "canonical": "Stinging Truth",
+      "displayName": "过激真相",
+      "target": {
+        "type": "weapon",
+        "canonical": "Viper",
+        "displayName": "蝰蛇",
+        "stableId": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerLightPistol"
+      },
+      "effects": [
+        "+40 弹匣容量",
+        "+1 '真相'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Stinging_Truth",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.arbiters-of-hexis"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.truth"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/MireMod",
+      "canonical": "Toxic Blight",
+      "displayName": "毁坏毒素",
+      "target": {
+        "type": "weapon",
+        "canonical": "Mire",
+        "displayName": "米尔",
+        "stableId": "/Lotus/Weapons/Infested/Melee/Swords/Mire/MireSword"
+      },
+      "effects": [
+        "+100% 毒素伤害",
+        "+1 '毁坏'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Toxic_Blight",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.red-veil"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.blight"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/DarkDaggerMod",
+      "canonical": "Gleaming Blight",
+      "displayName": "毁坏微光",
+      "target": {
+        "type": "weapon",
+        "canonical": "Dark Dagger",
+        "displayName": "暗黑匕首",
+        "stableId": "/Lotus/Weapons/Tenno/Melee/Dagger/DarkDagger"
+      },
+      "effects": [
+        "+100% 触发几率",
+        "+1 '毁坏'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Gleaming_Blight",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.red-veil"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.blight"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/KunaiMod",
+      "canonical": "Stockpiled Blight",
+      "displayName": "积存毁坏",
+      "target": {
+        "type": "weapon",
+        "canonical": "Kunai",
+        "displayName": "苦无",
+        "stableId": "/Lotus/Weapons/Tenno/ThrowingWeapons/Kunai"
+      },
+      "effects": [
+        "+200% 弹匣容量",
+        "+1 '毁坏'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Stockpiled_Blight",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.red-veil"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.blight"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/PantheraMod",
+      "canonical": "Disarming Purity",
+      "displayName": "缴械纯净",
+      "target": {
+        "type": "weapon",
+        "canonical": "Panthera",
+        "displayName": "猎豹",
+        "stableId": "/Lotus/Weapons/Tenno/LongGuns/Miter/TnoMiter"
+      },
+      "effects": [
+        "次要射击模式有 40% 几率使敌人缴械。",
+        "+1 '纯净'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Disarming_Purity",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.new-loka"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.purity"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/SobekMod",
+      "canonical": "Shattering Justice",
+      "displayName": "破碎正义",
+      "target": {
+        "type": "weapon",
+        "canonical": "Sobek",
+        "displayName": "鳄神",
+        "stableId": "/Lotus/Weapons/Tenno/Shotgun/DoubleBarrelShotgun"
+      },
+      "effects": [
+        "+90% 触发几率",
+        "+1 '正义'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Shattering_Justice",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.steel-meridian"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.justice"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/EmbolistMod",
+      "canonical": "Eroding Blight",
+      "displayName": "侵蚀毁坏",
+      "target": {
+        "type": "weapon",
+        "canonical": "Embolist",
+        "displayName": "安柏勒斯",
+        "stableId": "/Lotus/Weapons/Infested/Pistols/InfestedPistol"
+      },
+      "effects": [
+        "+200% 弹匣容量",
+        "+1 '毁坏'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Eroding_Blight",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.red-veil"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.blight"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/HekMod",
+      "canonical": "Scattered Justice",
+      "displayName": "散射正义",
+      "target": {
+        "type": "weapon",
+        "canonical": "Hek",
+        "displayName": "海克",
+        "stableId": "/Lotus/Weapons/Tenno/Shotgun/QuadShotgun"
+      },
+      "effects": [
+        "+200% 多重射击",
+        "+1 '正义'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Scattered_Justice",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.steel-meridian"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.justice"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/SupraMod",
+      "canonical": "Entropy Burst",
+      "displayName": "熵数爆发",
+      "target": {
+        "type": "weapon",
+        "canonical": "Supra",
+        "displayName": "苏普拉",
+        "stableId": "/Lotus/Weapons/ClanTech/Energy/CrpHeavyRifle"
+      },
+      "effects": [
+        "+20 最终触发几率",
+        "+1 '熵数'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Entropy_Burst",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.cephalon-suda"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.entropy"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/BoltoMod",
+      "canonical": "Entropy Spike",
+      "displayName": "熵数尖钉",
+      "target": {
+        "type": "weapon",
+        "canonical": "Bolto",
+        "displayName": "螺钉手枪",
+        "stableId": "/Lotus/Weapons/Tenno/Pistol/CrossBow"
+      },
+      "effects": [
+        "+20% 爆炸率（谨慎使用）",
+        "+1 '熵数'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Entropy_Spike",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.cephalon-suda"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.entropy"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/ObexMod",
+      "canonical": "Entropy Detonation",
+      "displayName": "熵数起爆",
+      "target": {
+        "type": "weapon",
+        "canonical": "Obex",
+        "displayName": "奥比克斯",
+        "stableId": "/Lotus/Weapons/Corpus/Melee/KickAndPunch/KickPunchWeapon"
+      },
+      "effects": [
+        "致死倒地终结攻击将使敌人爆裂，造成 +1,000",
+        "（+20% 敌人最大生命值）的 爆炸爆炸伤害",
+        "半径 +10 米",
+        "+1 '熵数'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Entropy_Detonation",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.cephalon-suda"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.entropy"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/SpectraMod",
+      "canonical": "Sequence Burn",
+      "displayName": "延烧数列",
+      "target": {
+        "type": "weapon",
+        "canonical": "Spectra",
+        "displayName": "光谱切割器",
+        "stableId": "/Lotus/Weapons/ClanTech/Energy/CrpLaserPistol"
+      },
+      "effects": [
+        "+20 米光束长度",
+        "+1 '数列'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Sequence_Burn",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.the-perrin-sequence"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.sequence"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/VulkarMod",
+      "canonical": "Lasting Purity",
+      "displayName": "永恒纯净",
+      "target": {
+        "type": "weapon",
+        "canonical": "Vulkar",
+        "displayName": "金工火神",
+        "stableId": "/Lotus/Weapons/Grineer/LongGuns/GrineerSniperRifle/GrnSniperRifle"
+      },
+      "effects": [
+        "瞄准时 +60% 伤害",
+        "+1 '纯净'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Lasting_Purity",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.new-loka"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.purity"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/JawSwordMod",
+      "canonical": "Blade Of Truth",
+      "displayName": "真相之刃",
+      "target": {
+        "type": "weapon",
+        "canonical": "Jaw Sword",
+        "displayName": "蛇颚刀",
+        "stableId": "/Lotus/Weapons/Tenno/Melee/Swords/JawSword/JawLongSword"
+      },
+      "effects": [
+        "+100% 近战伤害",
+        "+1 '真相'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Blade_of_Truth",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.arbiters-of-hexis"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.truth"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/DualCleaversMod",
+      "canonical": "Justice Blades",
+      "displayName": "正义刀锋",
+      "target": {
+        "type": "weapon",
+        "canonical": "Dual Cleavers",
+        "displayName": "斩肉双刀",
+        "stableId": "/Lotus/Weapons/Grineer/Melee/GrineerMachetteAndCleaver/DualCleaverWeapon"
+      },
+      "effects": [
+        "+100% 近战伤害",
+        "+1 '正义'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Justice_Blades",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.steel-meridian"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.justice"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Syndicate/GrinlokMod",
+      "canonical": "Deadly Sequence",
+      "displayName": "致命数列",
+      "target": {
+        "type": "weapon",
+        "canonical": "Grinlok",
+        "displayName": "葛恩火枪",
+        "stableId": "/Lotus/Weapons/Grineer/LongGuns/GrineerLeverActionRifle/GLARifle"
+      },
+      "effects": [
+        "+200% 暴击几率",
+        "+1 '数列'"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Deadly_Sequence",
+      "distribution": "syndicate",
+      "factions": [
+        "faction.the-perrin-sequence"
+      ],
+      "relationRefs": [
+        {
+          "type": "triggers-syndicate-proc",
+          "targetId": "syndicate-proc.sequence"
+        }
+      ],
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "official-sync:syndicate-exchange",
+        "local-wiki-cross-page-sync"
+      ]
+    }
+  ],
+  "nightwaveTargetMods": [
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Melee/Event/Nightwave/NightwaveStalkerScytheAugmentMod",
+      "canonical": "Burning Hate",
+      "displayName": "炽烈憎恨",
+      "target": {
+        "type": "weapon",
+        "canonical": "Hate",
+        "displayName": "憎恨",
+        "stableId": "/Lotus/Weapons/Tenno/Melee/Scythe/StalkerScytheWeapon"
+      },
+      "effects": [
+        "当憎恨对受到 火焰异常状态影响的敌人造成伤害时，使敌人受到额外 120% 异常状态伤害。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Burning_Hate",
+      "distribution": "nightwave",
+      "specialProgram": "rank-reward",
+      "availability": "legacy-or-future-rotation",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Burning Hate",
+        "pageId": 1587159,
+        "revisionId": 2774281,
+        "excerpts": [
+          "Burning Hate could be obtained by reaching Rank 15 with Nightwave during Nora's Mix Volume 7 .",
+          "Burning Hate could be obtained by reaching Rank 15 with Nightwave during Nora's Mix Volume 7 ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Volt/ShieldPvPAugmentCard",
+      "canonical": "Recharge Barrier",
+      "displayName": "充能电幕",
+      "target": {
+        "type": "frame",
+        "canonical": "Volt",
+        "displayName": "Volt",
+        "stableId": "/Lotus/Powersuits/Volt/Volt"
+      },
+      "effects": [
+        "电力屏障强化：当友军穿过电力屏障时可恢复 35% 的护盾值。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Recharge_Barrier",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Recharge Barrier",
+        "pageId": 694469,
+        "revisionId": 2729824,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Nightwave/SobekNightwaveMod",
+      "canonical": "Clip Delegation",
+      "displayName": "弹能过继",
+      "target": {
+        "type": "weapon",
+        "canonical": "Sobek",
+        "displayName": "鳄神",
+        "stableId": "/Lotus/Weapons/Tenno/Shotgun/DoubleBarrelShotgun"
+      },
+      "effects": [
+        "装弹时：当前弹匣每次射击命中都会增加下一个弹匣的 15% 触发几率和多重射击。最多叠加 15 次。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Clip_Delegation",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Clip Delegation",
+        "pageId": 1585141,
+        "revisionId": 2784116,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Clip Delegation was originally acquired by reaching Rank 15 in Nightwave during Nora's Mix Volume 6 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Clip Delegation was originally acquired by reaching Rank 15 in Nightwave during Nora's Mix Volume 6 .",
+          "Beginning with Nightwave Nora’s Mix: Dreams of the Dead , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Rifle/SupraHigherAccuracyAiming",
+      "canonical": "Directed Convergence",
+      "displayName": "定向汇聚",
+      "target": {
+        "type": "weapon",
+        "canonical": "Supra",
+        "displayName": "苏普拉",
+        "stableId": "/Lotus/Weapons/ClanTech/Energy/CrpHeavyRifle"
+      },
+      "effects": [
+        "+100% 瞄准时的精准度"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Directed_Convergence",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Directed Convergence",
+        "pageId": 847568,
+        "revisionId": 2673618,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Nightwave/NightwaveLasSilencedPistolAugmentMod",
+      "canonical": "Leaded Gas",
+      "displayName": "毒气铅弹",
+      "target": {
+        "type": "weapon",
+        "canonical": "Vesper 77",
+        "displayName": "夜语者 77",
+        "stableId": "/Lotus/Weapons/Lasria/LasSilencedPistol/LasSilencedPistolWeapon"
+      },
+      "effects": [
+        "命中弱点时：\n+300% 毒气毒气伤害\n+300% 毒气毒气触发几率\n，持续 6 秒"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Leaded_Gas",
+      "distribution": "nightwave",
+      "specialProgram": "rank-reward",
+      "availability": "legacy-or-future-rotation",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Leaded Gas",
+        "pageId": 1593736,
+        "revisionId": 2790170,
+        "excerpts": [
+          "Leaded Gas can be obtained by reaching Rank 13 with Nightwave during Nora's Mix Volume 8 .",
+          "Leaded Gas can be obtained by reaching Rank 13 with Nightwave during Nora's Mix Volume 8 ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Pistol/Event/Nightwave/NightwaveCatabolystAugmentMod",
+      "canonical": "Critical Mutation",
+      "displayName": "关键突变",
+      "target": {
+        "type": "weapon",
+        "canonical": "Catabolyst",
+        "displayName": "异化者",
+        "stableId": "/Lotus/Weapons/Infested/Pistols/InfBeamPistol/InfBeamPistol"
+      },
+      "effects": [
+        "每击杀一个敌人，暴击几率和暴击伤害都增加 30%，最高可达 300%。当手雷爆炸击中的敌人少于 3 个时，减少 30%。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Critical_Mutation",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Critical Mutation",
+        "pageId": 1581784,
+        "revisionId": 2729944,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Critical Mutation was originally acquired by reaching Rank 13 in Nightwave during Nora's Mix Volume 5 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Critical Mutation was originally acquired by reaching Rank 13 in Nightwave during Nora's Mix Volume 5 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 9 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Nightwave/GlaxionNightwaveMod",
+      "canonical": "Photon Overcharge",
+      "displayName": "光子过载",
+      "target": {
+        "type": "weapon",
+        "canonical": "Glaxion",
+        "displayName": "冷冻光束步枪",
+        "stableId": "/Lotus/Weapons/Corpus/LongGuns/CrpFreezeRay/CrpFreezeRayRifle"
+      },
+      "effects": [
+        "+90% 暴击伤害",
+        "击杀或助攻时：敌人被击杀时身上的每层 冰冻异常状态会使其有 2% 几率掉落能量球。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Photon_Overcharge",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Photon Overcharge",
+        "pageId": 1585140,
+        "revisionId": 2768636,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Photon Overcharge was originally acquired by reaching Rank 25 in Nightwave during Nora's Mix Volume 6 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Photon Overcharge was originally acquired by reaching Rank 25 in Nightwave during Nora's Mix Volume 6 .",
+          "Beginning with Nightwave Nora's Mix: Dreams of the Dead , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Brawler/BrawlerSummonPvPAugmentCard",
+      "canonical": "Rumbled",
+      "displayName": "轰隆石者",
+      "target": {
+        "type": "frame",
+        "canonical": "Atlas",
+        "displayName": "Atlas",
+        "stableId": "/Lotus/Powersuits/Brawler/Brawler"
+      },
+      "effects": [
+        "漫步石者强化：Atlas 化身为一名身覆岩石铠甲的漫步石者，获得超宏防护并且可以吸收相当于最大生命值 300% 的伤害。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Rumbled",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Rumbled",
+        "pageId": 945758,
+        "revisionId": 2772299,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Rifle/DaikyuMoreDamageOverDistanceMod",
+      "canonical": "Spring-Loaded Broadhead",
+      "displayName": "簧压猎箭",
+      "target": {
+        "type": "weapon",
+        "canonical": "Daikyu",
+        "displayName": "大久和弓",
+        "stableId": "/Lotus/Weapons/Tenno/Bows/AsymetricalBow/AsymetricalBow"
+      },
+      "effects": [
+        "增加 +40% 伤害",
+        "若目标距离 15 米以上。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Spring-Loaded_Broadhead",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Spring-Loaded Broadhead",
+        "pageId": 784673,
+        "revisionId": 2682022,
+        "excerpts": [
+          "This augment was purchasable in Series 3 , as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Ember/FireBlastPvPAugmentCard",
+      "canonical": "Purifying Flames",
+      "displayName": "净化烈焰",
+      "target": {
+        "type": "frame",
+        "canonical": "Ember",
+        "displayName": "Ember",
+        "stableId": "/Lotus/Powersuits/Ember/Ember"
+      },
+      "effects": [
+        "火焰冲击强化：受到火焰之环影响的友军会清除所有异常状态并获得 4 秒异常状态免疫。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Purifying_Flames",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Purifying Flames",
+        "pageId": 723817,
+        "revisionId": 2720501,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Excalibur/SlashDashPvPAugmentCard",
+      "canonical": "Purging Slash",
+      "displayName": "净化斩",
+      "target": {
+        "type": "frame",
+        "canonical": "Excalibur",
+        "displayName": "Excalibur",
+        "stableId": "/Lotus/Powersuits/Excalibur/Excalibur"
+      },
+      "effects": [
+        "突斩强化：解除位于突斩路径上友军的 4 个负面状态并恢复 70% 的护盾值。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Purging_Slash",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Purging Slash",
+        "pageId": 694468,
+        "revisionId": 2720505,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Rifle/TetraFasterProjAiming",
+      "canonical": "Focused Acceleration",
+      "displayName": "聚焦加速",
+      "target": {
+        "type": "weapon",
+        "canonical": "Tetra",
+        "displayName": "特拉",
+        "stableId": "/Lotus/Weapons/Corpus/LongGuns/CorpusUMP/CorpusUMP"
+      },
+      "effects": [
+        "+80% 投射物速度"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Focused_Acceleration",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Focused Acceleration",
+        "pageId": 849063,
+        "revisionId": 2673620,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Harlequin/PrismPvPAugmentCard",
+      "canonical": "Prism Guard",
+      "displayName": "棱镜护卫",
+      "target": {
+        "type": "frame",
+        "canonical": "Mirage",
+        "displayName": "Mirage",
+        "stableId": "/Lotus/Powersuits/Harlequin/Harlequin"
+      },
+      "effects": [
+        "棱镜强化：棱镜将会在 Mirage 上方跟随，持续时间变为 4 秒。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Prism_Guard",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Prism Guard",
+        "pageId": 945957,
+        "revisionId": 2729768,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred .",
+          "During Nora's Vol Mix 5 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Pistol/MarelokMultishot",
+      "canonical": "Shrapnel Rounds",
+      "displayName": "破片弹头",
+      "target": {
+        "type": "weapon",
+        "canonical": "Marelok",
+        "displayName": "玛瑞火枪",
+        "stableId": "/Lotus/Weapons/Grineer/Pistols/GrineerLeverActionPistol/GLAPistol"
+      },
+      "effects": [
+        "+200% 多重射击",
+        "-66% 伤害"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Shrapnel_Rounds",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Shrapnel Rounds",
+        "pageId": 946929,
+        "revisionId": 2673622,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Jade/SelfBulletAttractorPvPAugmentCard",
+      "canonical": "Singularity",
+      "displayName": "奇异点",
+      "target": {
+        "type": "frame",
+        "canonical": "Nyx",
+        "displayName": "Nyx",
+        "stableId": "/Lotus/Powersuits/Jade/Jade"
+      },
+      "effects": [
+        "聚合吸收强化：制造一个每 3 秒会将敌方以每秒 15 米的速度吸入的圆环。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Singularity",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Singularity",
+        "pageId": 717289,
+        "revisionId": 2651829,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Bows/Event/Nightwave/NightwaveStalkerBowAugmentMod",
+      "canonical": "Unseen Dread",
+      "displayName": "潜隐恐惧",
+      "target": {
+        "type": "weapon",
+        "canonical": "Dread",
+        "displayName": "恐惧",
+        "stableId": "/Lotus/Weapons/Tenno/Bows/StalkerBow"
+      },
+      "effects": [
+        "用单个投射物命中 3 名或更多敌人时，隐身 5 秒。隐身时恐惧对敌人造成额外 175% 暴击伤害。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Unseen_Dread",
+      "distribution": "nightwave",
+      "specialProgram": "rank-reward",
+      "availability": "legacy-or-future-rotation",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Unseen Dread",
+        "pageId": 1587160,
+        "revisionId": 2775663,
+        "excerpts": [
+          "Unseen Dread could be obtained by reaching Rank 25 with Nightwave during Nora's Mix Volume 7 .",
+          "Unseen Dread could be obtained by reaching Rank 25 with Nightwave during Nora's Mix Volume 7 ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Ranger/RangerQuiverPvPAugmentCard",
+      "canonical": "Power Of Three",
+      "displayName": "三幂之力",
+      "target": {
+        "type": "frame",
+        "canonical": "Ivara",
+        "displayName": "Ivara",
+        "stableId": "/Lotus/Powersuits/Ranger/Ranger"
+      },
+      "effects": [
+        "战术箭袋强化：战术箭袋将射出三支箭矢并消耗 20 额外能量。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Power_of_Three",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Power of Three",
+        "pageId": 945990,
+        "revisionId": 2610091,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Nightwave/NightwaveTC2024AK47AugmentMod",
+      "canonical": "Biotic Rounds",
+      "displayName": "生化弹药",
+      "target": {
+        "type": "weapon",
+        "canonical": "AX-52",
+        "displayName": "AX-52",
+        "stableId": "/Lotus/Weapons/Lasria/AK47/TC2024AK47Weapon"
+      },
+      "effects": [
+        "弱点击杀时：\n+150% 病毒病毒伤害\n+150% 磁力磁力伤害\n+150% 病毒病毒触发几率\n+150% 磁力磁力触发几率\n，持续 15 秒"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Biotic_Rounds",
+      "distribution": "nightwave",
+      "specialProgram": "rank-reward",
+      "availability": "legacy-or-future-rotation",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Biotic Rounds",
+        "pageId": 1593737,
+        "revisionId": 2723603,
+        "excerpts": [
+          "Biotic Rounds could be obtained by reaching Rank 25 with Nightwave during Nora's Mix Volume 8 .",
+          "Biotic Rounds could be obtained by reaching Rank 25 with Nightwave during Nora's Mix Volume 8 ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Rifle/MoreDamageonTripleTapRifleMod",
+      "canonical": "Double Tap",
+      "displayName": "双重连击",
+      "target": {
+        "type": "weapon",
+        "canonical": "Latron",
+        "displayName": "拉特昂",
+        "stableId": "/Lotus/Weapons/Tenno/Rifle/SemiAutoRifle"
+      },
+      "effects": [
+        "命中时：\n下次射击获得 20% 额外伤害，持续 2 秒。\n在武形秘仪外最多叠加 20 层。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Double_Tap",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Double Tap",
+        "pageId": 841266,
+        "revisionId": 2673619,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Pistol/ViperUnlimitedAmmo",
+      "canonical": "Skull Shots",
+      "displayName": "头颅射击",
+      "target": {
+        "type": "weapon",
+        "canonical": "Viper",
+        "displayName": "蝰蛇",
+        "stableId": "/Lotus/Weapons/Grineer/GrineerPistol/GrineerLightPistol"
+      },
+      "effects": [
+        "造成爆头后：\n+100% 弹药效率，持续 2 秒"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Skull_Shots",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Skull Shots",
+        "pageId": 946924,
+        "revisionId": 2673623,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/PvPMods/Rifle/GrakataUnlimitedAmmo",
+      "canonical": "Brain Storm",
+      "displayName": "头脑风暴",
+      "target": {
+        "type": "weapon",
+        "canonical": "Grakata",
+        "displayName": "葛拉卡达",
+        "stableId": "/Lotus/Weapons/Grineer/LongGuns/GrineerAssaultRifle/GrnAssaultRifle"
+      },
+      "effects": [
+        "造成爆头后：\n+100% 弹药效率，持续 0.5 秒"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Brain_Storm",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Brain Storm",
+        "pageId": 946936,
+        "revisionId": 2673617,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveEmbolistAugmentMod",
+      "canonical": "Vile Discharge",
+      "displayName": "邪恶释放",
+      "target": {
+        "type": "weapon",
+        "canonical": "Embolist",
+        "displayName": "安柏勒斯",
+        "stableId": "/Lotus/Weapons/Infested/Pistols/InfestedPistol"
+      },
+      "effects": [
+        "伤害能累积到至多 30,000。使用次要射击会发射一个爆炸性的邪恶包囊，造成累积的伤害并重置该伤害数值。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Vile_Discharge",
+      "distribution": "nightwave",
+      "specialProgram": "rank-reward",
+      "availability": "legacy-or-future-rotation",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Vile Discharge",
+        "pageId": 1568467,
+        "revisionId": 2776370,
+        "excerpts": [
+          "Vile Discharge could be obtained by reaching Rank 23 with Nightwave during Nora's Mix Volume 2.",
+          "Vile Discharge could be obtained by reaching Rank 23 with Nightwave during Nora's Mix Volume 2."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Powersuits/Loki/DecoyPvPAugmentCard",
+      "canonical": "Deceptive Bond",
+      "displayName": "虚伪连结",
+      "target": {
+        "type": "frame",
+        "canonical": "Loki",
+        "displayName": "Loki",
+        "stableId": "/Lotus/Powersuits/Loki/Loki"
+      },
+      "effects": [
+        "诱饵强化：50% 本体受到的伤害会转移给诱饵，反之亦然。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Deceptive_Bond",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Deceptive Bond",
+        "pageId": 945953,
+        "revisionId": 2769827,
+        "excerpts": [
+          "Beginning in Series 3 , this augment can be purchased as a Nightwave Cred Offering for 20 x Cred ."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveGorgonAugmentMod",
+      "canonical": "Metamorphic Magazine",
+      "displayName": "异变弹匣",
+      "target": {
+        "type": "weapon",
+        "canonical": "Gorgon",
+        "displayName": "蛇发女妖",
+        "stableId": "/Lotus/Weapons/Tenno/Rifle/HeavyRifle"
+      },
+      "effects": [
+        "+90% 弹匣容量",
+        "+90% 弹药最大值",
+        "对敌人造成累积 20 次攻击会使他们石化 5 秒。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Metamorphic_Magazine",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Metamorphic Magazine",
+        "pageId": 1573255,
+        "revisionId": 2729945,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Metamorphic Magazine was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 3 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Metamorphic Magazine was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 3 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 8 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveSporothrixAugmentMod",
+      "canonical": "Volatile Variant",
+      "displayName": "易爆变体",
+      "target": {
+        "type": "weapon",
+        "canonical": "Sporothrix",
+        "displayName": "孢丝感染枪",
+        "stableId": "/Lotus/Weapons/Infested/LongGuns/InfSniperRifle/InfSniperRifle"
+      },
+      "effects": [
+        "射击具有 +3 穿透，且倒钩立即爆炸。直接命中敌人的倒钩有 +4 米的范围，并 +50% 触发几率。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Volatile_Variant",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Volatile Variant",
+        "pageId": 1581785,
+        "revisionId": 2729943,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Volatile Variant was originally acquired by reaching Rank 25 in Nightwave during Nora's Mix Volume 5 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Volatile Variant was originally acquired by reaching Rank 25 in Nightwave during Nora's Mix Volume 5 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 9 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveAkjagaraAugmentMod",
+      "canonical": "Range Advantage",
+      "displayName": "优势距离",
+      "target": {
+        "type": "weapon",
+        "canonical": "Akjagara",
+        "displayName": "觉醒双枪",
+        "stableId": "/Lotus/Weapons/Tenno/Pistols/TigrisRedeemerSetPistol/TnoBladedPistols"
+      },
+      "effects": [
+        "如果附近 10 米内没有敌人则 +300% 伤害。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Range_Advantage",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Range Advantage",
+        "pageId": 1557660,
+        "revisionId": 2729951,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Range Advantage was originally acquired by reaching Rank 20 in Nightwave during Nora's Mix Volume 1 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Range Advantage was originally acquired by reaching Rank 20 in Nightwave during Nora's Mix Volume 1 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 7 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Nightwave/BroncoNightwaveMod",
+      "canonical": "Dizzying Rounds",
+      "displayName": "晕眩弹药",
+      "target": {
+        "type": "weapon",
+        "canonical": "Bronco",
+        "displayName": "野马",
+        "stableId": "/Lotus/Weapons/Tenno/Pistol/HandShotGun"
+      },
+      "effects": [
+        "8 米内的射击可以震晕敌人，并使他们可以被处决。\n+200% 触发几率"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Dizzying_Rounds",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Dizzying Rounds",
+        "pageId": 1497897,
+        "revisionId": 2729954,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Dizzying Rounds was originally acquired by reaching Rank 20 in Nightwave during Series 3 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Dizzying Rounds was originally acquired by reaching Rank 20 in Nightwave during Series 3 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 6 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveTigrisAugmentMod",
+      "canonical": "Combat Reload",
+      "displayName": "战斗装填",
+      "target": {
+        "type": "weapon",
+        "canonical": "Tigris",
+        "displayName": "猛虎",
+        "stableId": "/Lotus/Weapons/Tenno/LongGuns/DoubleBarrelShotgun/TennoDoubleBarrelShotgun"
+      },
+      "effects": [
+        "如果 5 发弹片造成爆头，会提高 +120% 的装填速度，持续 3 秒。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Combat_Reload",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Combat Reload",
+        "pageId": 1557655,
+        "revisionId": 2729950,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Combat Reload was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 1 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Combat Reload was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 1 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 7 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Nightwave/MagnusNightwaveMod",
+      "canonical": "Deadly Maneuvers",
+      "displayName": "致命机动",
+      "target": {
+        "type": "weapon",
+        "canonical": "Magnus",
+        "displayName": "麦格努斯",
+        "stableId": "/Lotus/Weapons/Tenno/Pistols/Magnum/Magnum"
+      },
+      "effects": [
+        "进行闪避动作时，你接下来的 2 次射击在爆头时有 400% 的暴击几率。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Deadly_Maneuvers",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Deadly Maneuvers",
+        "pageId": 1497898,
+        "revisionId": 2781437,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Deadly Maneuvers was originally acquired by reaching Rank 7 in Nightwave during Series 3 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Deadly Maneuvers was originally acquired by reaching Rank 7 in Nightwave during Series 3 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 6 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveTiberonAugmentMod",
+      "canonical": "Critical Precision",
+      "displayName": "致命精准",
+      "target": {
+        "type": "weapon",
+        "canonical": "Tiberon",
+        "displayName": "狂鲨",
+        "stableId": "/Lotus/Weapons/Tenno/LongGuns/DrakeRifle/DrakeRifle"
+      },
+      "effects": [
+        "仅限多发点射模式：爆头可增加 10% 暴击几率，最高至 500%。单次多发点射中所有射击均未命中会移除最多 100% 额外的暴击几率。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Critical_Precision",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Critical Precision",
+        "pageId": 1568466,
+        "revisionId": 2754204,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Critical Precision was originally acquired by reaching Rank 13 in Nightwave during Nora's Mix Volume 2 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Critical Precision was originally acquired by reaching Rank 13 in Nightwave during Nora's Mix Volume 2 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 7 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveZylokAugmentMod",
+      "canonical": "Eximus Advantage",
+      "displayName": "卓越者优势",
+      "target": {
+        "type": "weapon",
+        "canonical": "Zylok",
+        "displayName": "席尔火枪",
+        "stableId": "/Lotus/Weapons/Tenno/Pistols/ConclaveLeverPistol/ConclaveLeverPistol"
+      },
+      "effects": [
+        "对卓越者敌人造成爆头会使次要武器伤害提升 +600%，持续 10 秒。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Eximus_Advantage",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Eximus Advantage",
+        "pageId": 1573254,
+        "revisionId": 2729940,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Eximus Advantage was originally acquired by reaching Rank 13 in Nightwave during Nora's Mix Volume 3 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Eximus Advantage was originally acquired by reaching Rank 13 in Nightwave during Nora's Mix Volume 3 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 8 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Rifle/Event/Nightwave/NightwaveBattacorAugmentMod",
+      "canonical": "Sentient Barrage",
+      "displayName": "Sentient 猛攻",
+      "target": {
+        "type": "weapon",
+        "canonical": "Battacor",
+        "displayName": "武使之力",
+        "stableId": "/Lotus/Weapons/Corpus/LongGuns/CrpSentExperimentRifle/CrpSentExperimentRifle"
+      },
+      "effects": [
+        "次要射击开火现在具有无限穿透效果，但不再会接触敌人后爆炸。每击中一个敌人将完成一次充能，完全充能后将为下一次次要射击开火增加 300% 的暴击几率和暴击伤害。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Sentient_Barrage",
+      "distribution": "nightwave",
+      "specialProgram": "cred-offerings",
+      "availability": "rotating-or-returning",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Sentient Barrage",
+        "pageId": 1577838,
+        "revisionId": 2729947,
+        "excerpts": [
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Sentient Barrage was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 4 .",
+          "Available for 20 x Cred from the Nightwave Cred Offerings store on a rotational basis.",
+          "Sentient Barrage was originally acquired by reaching Rank 23 in Nightwave during Nora's Mix Volume 4 .",
+          "Beginning with Nightwave Nora’s Mix: Vol. 8 , it was added to the Nightwave Cred Offerings."
+        ]
+      }
+    },
+    {
+      "stableId": "/Lotus/Upgrades/Mods/Pistol/Event/Nightwave/NightwaveOcucorAugmentMod",
+      "canonical": "Sentient Surge",
+      "displayName": "Sentient 涌现",
+      "target": {
+        "type": "weapon",
+        "canonical": "Ocucor",
+        "displayName": "视使之触",
+        "stableId": "/Lotus/Weapons/Corpus/Pistols/CrpSentExperimentPistol/CrpSentExperimentPistol"
+      },
+      "effects": [
+        "每个被消灭的目标都会补充 20% 的视使之触弹匣。对于每一个激活状态的卷须，触发几率和暴击几率提高 60%。"
+      ],
+      "wikiUrl": "https://wiki.warframe.com/w/Sentient_Surge",
+      "distribution": "nightwave",
+      "specialProgram": "rank-reward",
+      "availability": "legacy-or-future-rotation",
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "sharrkkunjang-baka"
+      ],
+      "sourceEvidence": {
+        "pageTitle": "Sentient Surge",
+        "pageId": 1577837,
+        "revisionId": 2719655,
+        "excerpts": [
+          "Sentient Surge can be obtained by reaching Rank 9 with Nightwave during Nora's Mix Volume 4.",
+          "Sentient Surge can be obtained by reaching Rank 9 with Nightwave during Nora's Mix Volume 4."
+        ]
+      }
+    }
+  ]
+}

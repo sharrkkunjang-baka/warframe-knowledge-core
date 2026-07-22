@@ -65,8 +65,12 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   }) : null;
   const officialWeaponsPath = path.join(knowledgeDirectory, 'generated', 'official-weapons.json');
   const officialWeapons = fs.existsSync(officialWeaponsPath) ? deepFreeze(readJson(officialWeaponsPath)) : null;
+  const rivenMarketWeaponsPath = path.join(knowledgeDirectory, 'supplemental', 'riven-market-weapons.json');
+  const rivenMarketWeapons = fs.existsSync(rivenMarketWeaponsPath) ? deepFreeze(readJson(rivenMarketWeaponsPath)) : { schemaVersion: 1, entries: [] };
   const officialAbilitiesPath = path.join(knowledgeDirectory, 'generated', 'official-abilities.json');
   const officialAbilities = fs.existsSync(officialAbilitiesPath) ? deepFreeze(readJson(officialAbilitiesPath)) : { schemaVersion: 1, abilities: [] };
+  const modRelationsPath = path.join(root, 'generated', 'mod-relations.json');
+  const modRelations = fs.existsSync(modRelationsPath) ? deepFreeze(readJson(modRelationsPath)) : { schemaVersion: 1, syndicateWeaponAugments: [], nightwaveTargetMods: [] };
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
   const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
   const aliasesPath = path.join(knowledgeDirectory, 'facts', 'aliases.json');
@@ -98,7 +102,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const consumables = deepFreeze(readObjectDirectory(consumableDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'consumable'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, officialAbilities, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMetadataCatalog, arcaneMetadata, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, rivenMarketWeapons, officialAbilities, modRelations, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMetadataCatalog, arcaneMetadata, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

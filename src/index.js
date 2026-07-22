@@ -1353,6 +1353,24 @@ function createKnowledgeCore(options = {}) {
       factionId: entry.factionId || null
     }))).filter(variable => !seen.has(variable.id) && seen.add(variable.id));
   };
+  const syndicateProcCatalog = data.modRelations?.syndicateProcEffects || { sharedMechanics: null, effects: [] };
+  const syndicateProcById = new Map((syndicateProcCatalog.effects || []).map(effect => [effect.id, effect]));
+  const syndicateModByCanonical = new Map((data.modRelations?.syndicateWeaponAugments || []).map(mod => [normalize(mod.canonical), mod]));
+  const syndicateProcForEntry = entry => {
+    if (entry.subject?.category !== 'mod') return null;
+    const relation = syndicateModByCanonical.get(normalize(entry.subject?.canonical))?.relationRefs?.find(ref => ref.type === 'triggers-syndicate-proc');
+    return relation ? syndicateProcById.get(relation.targetId) || null : null;
+  };
+  const renderSyndicateProcEvidence = effect => {
+    if (!effect) return null;
+    const shared = syndicateProcCatalog.sharedMechanics || {};
+    return [
+      `关联机制实体：${effect.id}（${effect.displayName} / ${effect.canonical}）`,
+      `触发：${shared.trigger}`,
+      `触发效果：造成 ${shared.radialDamage} 点${effect.damageType}伤害（${shared.radiusMeters} 米范围）；${effect.statusEffect}；${effect.restore}；${effect.buff}，持续 ${shared.durationSeconds} 秒；冷却 ${shared.cooldownSeconds} 秒。`,
+      `证据：DE 官方简体中文 ${effect.officialLocalizationKey}；Warframe Wiki Syndicate Radial Effects（revision ${shared.wikiEvidence?.revisionId}，${shared.wikiEvidence?.url}）`
+    ].join('\n');
+  };
   const wikiKnowledgeBody = entry => {
     const direct = [entry.content, entry.summary].find(value => typeof value === 'string' && value.trim());
     if (direct) return direct.trim();
@@ -1361,6 +1379,7 @@ function createKnowledgeCore(options = {}) {
     const acquisition = getAcquisition(entry.subject?.canonical || entry.title);
     const parts = [
       effectLines.length ? `效果：${effectLines.join('；')}` : null,
+      renderSyndicateProcEvidence(syndicateProcForEntry(entry)),
       acquisition?.description ? `获取方式：${acquisition.description}` : null,
       ...(entry.tips || []).filter(value => typeof value === 'string' && value.trim())
     ].filter(Boolean);

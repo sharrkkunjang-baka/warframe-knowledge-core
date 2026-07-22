@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "reviewStatus": "approved",
+  "reviewedBy": ["DE-official-zh-localization", "wiki.warframe.com-current-review"],
+  "sharedMechanics": {
+    "trigger": "武器装备在手中时，武器获得的经验值会填充集团计量条；满级集团武器强化 Mod 在累计 1000 点后触发。收起武器时不会触发。",
+    "radialDamage": 1000,
+    "radiusMeters": 25,
+    "durationSeconds": 30,
+    "cooldownSeconds": 30,
+    "wikiEvidence": {
+      "url": "https://wiki.warframe.com/w/Syndicate_Radial_Effects",
+      "revisionId": 2777323,
+      "retrievedAt": "2026-07-22",
+      "sections": ["Triggering Radial Effects", "Weapon Augment Effects", "Notes"]
+    }
+  },
+  "effects": [
+    {
+      "id": "syndicate-proc.truth",
+      "canonical": "Truth",
+      "displayName": "真相",
+      "factionId": "faction.arbiters-of-hexis",
+      "damageType": "毒气",
+      "restore": "恢复 25% 生命值",
+      "buff": "跑酷速度 +25%",
+      "statusEffect": "必定触发毒气异常状态",
+      "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_TruthDesc"
+    },
+    {
+      "id": "syndicate-proc.justice",
+      "canonical": "Justice",
+      "displayName": "正义",
+      "factionId": "faction.steel-meridian",
+      "damageType": "爆炸",
+      "restore": "恢复 25% 生命值",
+      "buff": "护甲 +15%",
+      "statusEffect": "不触发爆炸异常状态；改为使附近敌人眩晕，并短暂暴露于反击处决",
+      "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_JusticeDesc"
+    },
+    {
+      "id": "syndicate-proc.purity",
+      "canonical": "Purity",
+      "displayName": "纯净",
+      "factionId": "faction.new-loka",
+      "damageType": "腐蚀",
+      "restore": "恢复 25% 生命值",
+      "buff": "最大生命值 +25%",
+      "statusEffect": "必定触发腐蚀异常状态",
+      "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_PurityDesc"
+    },
+    {
+      "id": "syndicate-proc.blight",
+      "canonical": "Blight",
+      "displayName": "毁坏",
+      "factionId": "faction.red-veil",
+      "damageType": "病毒",
+      "restore": "恢复 25% 能量",
+      "buff": "移动速度 +10%",
+      "statusEffect": "必定触发病毒异常状态",
+      "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_BlightDesc"
+    },
+    {
+      "id": "syndicate-proc.entropy",
+      "canonical": "Entropy",
+      "displayName": "熵数",
+      "factionId": "faction.cephalon-suda",
+      "damageType": "磁力",
+      "restore": "恢复 25% 能量",
+      "buff": "最大能量 +25%",
+      "statusEffect": "必定触发磁力异常状态",
+      "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_EntropyDesc"
+    },
+    {
+      "id": "syndicate-proc.sequence",
+      "canonical": "Sequence",
+      "displayName": "数列",
+      "factionId": "faction.the-perrin-sequence",
+      "damageType": "辐射",
+      "restore": "恢复 25% 护盾",
+      "buff": "最大护盾容量 +50%",
+      "statusEffect": "必定触发辐射异常状态",
+      "officialLocalizationKey": "/Lotus/Language/Loadout/WeaponPassive_SequenceDesc"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Syndicate_Radial_Effects",
+      "label": "Warframe Wiki - Syndicate Radial Effects"
+    },
+    {
+      "path": ".cache/official-localization/languages.zh.json",
+      "label": "DE 官方简体中文 Languages.bin 缓存"
+    }
+  ]
+}
