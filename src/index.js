@@ -9,12 +9,14 @@ const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
 const { renderGameText } = require('./game-text');
-const { normalizeRequirements, renderRequirements, renderAcquisition, acquisitionCardSections } = require('./acquisition-protocol');
+const { normalizeRequirements, renderRequirements, renderAcquisition, acquisitionCardSections, normalizeVisibleLine } = require('./acquisition-protocol');
 const { structuredMethods: compileStructuredMethods, routesToMethods } = require('./acquisition-core');
 const { createCraftingGraph, renderCraftingUses, renderCrafting } = require('./weapon-crafting');
 const { parseWeaponCraftingCommand } = require('./weapon-command');
 const { expandKnowledgeReferences } = require('./knowledge-reference-expander');
 const { createRivenWeaponResolver } = require('./riven-weapon-resolver');
+const { createModRelationQueries } = require('./mod-relation-queries');
+const equipmentAcquisition = require('./equipment-acquisition');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -128,6 +130,7 @@ function createKnowledgeCore(options = {}) {
   const officialMods = data.officialCatalog?.mods || [];
   const excludedOfficialMods = data.officialCatalog?.excludedMods || [];
   const officialItems = data.officialItems?.items || [];
+  const officialWeapons = data.officialWeapons?.weapons || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
   const localModEntries = allKnowledge.filter(entry => entry.module === 'acquisition' && entry.subject?.category === 'mod');
   const modLookupAliases = new Map();
@@ -141,9 +144,48 @@ function createKnowledgeCore(options = {}) {
       modLookupAliases.set(key, targets);
     }
   }
-  const weaponNameCandidates = (data.weapons || []).flatMap(weapon => [weapon.subject?.canonical, weapon.subject?.displayName, ...(data.aliases?.weapons?.[weapon.subject?.canonical] || [])]
-    .filter(Boolean).map(alias => ({ alias, canonical: weapon.subject.canonical, category: 'weapon', priority: 35 })));
-  const rivenWeaponResolver = createRivenWeaponResolver(data.officialWeapons, data.aliases?.weapons);
+  const weaponNameCandidates = officialWeapons.flatMap(weapon => [weapon.canonical, weapon.displayName, ...(data.aliases?.weapons?.[weapon.canonical] || [])]
+    .filter(Boolean).map(alias => ({ alias, canonical: weapon.canonical, category: 'weapon', priority: 35 })));
+  const weaponVariantPrefixes = /^(?:(?:MK1)[- ]|Prisma\s+|Kuva\s+|Tenet\s+|Coda\s+|Dual\s+Coda\s+|Dex\s+|Mara\s+|Sancti\s+|Secura\s+|Synoid\s+|Telos\s+|Vaykor\s+|Rakta\s+|Carmine\s+)/i;
+  const weaponVariantSuffixes = /\s+(?:Prime|Vandal|Wraith|Prisma|Dex|Mara|MK1)$/i;
+  const weaponVariantKind = canonical => {
+    const name = String(canonical || '');
+    if (/\sPrime$/i.test(name)) return 'prime';
+    if (/^Sancti\s/i.test(name)) return 'sancti';
+    if (/^Vaykor\s/i.test(name)) return 'vaykor';
+    if (/^Rakta\s/i.test(name)) return 'rakta';
+    if (/^Secura\s/i.test(name)) return 'secura';
+    if (/^Synoid\s/i.test(name)) return 'synoid';
+    if (/^Telos\s/i.test(name)) return 'telos';
+    if (/Wraith$/i.test(name)) return 'wraith';
+    if (/Vandal$/i.test(name)) return 'vandal';
+    if (/Prisma/i.test(name)) return 'prisma';
+    if (/^Kuva\s/i.test(name)) return 'kuva';
+    if (/^Tenet\s/i.test(name)) return 'tenet';
+    if (/^(?:Dual\s+)?Coda\s/i.test(name)) return 'coda';
+    return 'base';
+  };
+  const weaponFamilyKey = canonical => {
+    let value = String(canonical || '').trim(), previous = '';
+    while (value && value !== previous) {
+      previous = value;
+      value = value.replace(weaponVariantPrefixes, '').replace(weaponVariantSuffixes, '').trim();
+    }
+    // DE 少数变体把基础名称由单数改成复数（Dual Decurion → Prisma Dual Decurions）。
+    // 家族键只处理末尾英语复数，不改正式 identity。
+    value = value.replace(/ions$/i, 'ion').replace(/([^s])s$/i, '$1');
+    return value.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  };
+  const officialWeaponByCanonical = new Map(officialWeapons.map(weapon => [normalize(weapon.canonical), weapon]));
+  const officialWeaponFamilies = new Map();
+  for (const weapon of officialWeapons) {
+    const key = weaponFamilyKey(weapon.canonical);
+    if (!key) continue;
+    const family = officialWeaponFamilies.get(key) || [];
+    family.push({ ...weapon, variantKind: weaponVariantKind(weapon.canonical) });
+    officialWeaponFamilies.set(key, family);
+  }
+  const rivenWeaponResolver = createRivenWeaponResolver(data.officialWeapons, data.aliases?.weapons, data.rivenMarketWeapons);
   const frameNameCandidates = allKnowledge.filter(entry => entry.subject?.category === 'frame')
     .flatMap(frame => [frame.subject?.canonical, frame.subject?.displayName, ...(data.aliases?.frames?.[frame.subject?.canonical] || [])]
       .filter(Boolean).map(alias => ({ alias, canonical: frame.subject.canonical, category: 'frame', priority: 35 })));
@@ -401,6 +443,61 @@ function createKnowledgeCore(options = {}) {
     if (!q) return null;
     return (data.weapons || []).find(entry => [entry.subject?.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName].some(value => normalize(value) === q)) || null;
   };
+  const resolveOfficialWeaponIdentity = query => {
+    const q = normalize(query);
+    if (!q) return null;
+    const exact = officialWeapons.find(weapon => [weapon.uniqueName, weapon.canonical, weapon.displayName, ...(data.aliases?.weapons?.[weapon.canonical] || [])].some(value => normalize(value) === q));
+    if (exact) return exact;
+    const resolution = resolveName(query, { minScore: 70, minLead: 8, categories: ['weapon'], candidates: weaponNameCandidates });
+    return resolution && !resolution.ambiguous ? officialWeaponByCanonical.get(normalize(resolution.canonical)) || null : null;
+  };
+  const getWeaponVariantFamily = query => {
+    const identity = resolveOfficialWeaponIdentity(query);
+    if (!identity) return null;
+    const members = officialWeaponFamilies.get(weaponFamilyKey(identity.canonical)) || [identity];
+    return {
+      identity: { uniqueName: identity.uniqueName, canonical: identity.canonical, displayName: identity.displayName, variantKind: weaponVariantKind(identity.canonical) },
+      members: members.map(member => ({ uniqueName: member.uniqueName, canonical: member.canonical, displayName: member.displayName, variantKind: member.variantKind }))
+    };
+  };
+  const resolvePrimeVariantIntent = query => {
+    const family = getWeaponVariantFamily(query);
+    if (!family) return null;
+    const prime = family.members.find(member => member.variantKind === 'prime') || null;
+    return { ...family, prime, alternatives: family.members.filter(member => member.uniqueName !== family.identity.uniqueName && member.variantKind !== 'prime') };
+  };
+  const weaponVariantIntentAliases = Object.freeze({
+    prime: ['prime', 'p'], vandal: ['破坏者', 'vandal', '莲花'], wraith: ['亡魂', 'wraith'],
+    prisma: ['棱晶', 'prisma', '奸商'], kuva: ['赤毒', 'kuva'], tenet: ['信条', 'tenet'], coda: ['终幕', 'coda'],
+    sancti: ['圣洁', 'sancti', '集团'], vaykor: ['保障', 'vaykor', '集团'], rakta: ['绯红', 'rakta', '集团'],
+    secura: ['保障', 'secura', '集团'], synoid: ['枢议', 'synoid', '集团'], telos: ['苦痛', 'telos', '集团']
+  });
+  const compactWeaponIntent = value => normalize(value).replace(/[^a-z0-9\u3400-\u9fff]+/gi, '');
+  const resolveWeaponVariantIntent = query => {
+    const raw = String(query || '').trim();
+    if (!raw) return null;
+    const compact = compactWeaponIntent(raw);
+    const constraints = [];
+    const stripped = new Set([compact]);
+    for (const [kind, aliases] of Object.entries(weaponVariantIntentAliases)) for (const alias of aliases) {
+      const token = compactWeaponIntent(alias);
+      if (!token || !compact.includes(token)) continue;
+      constraints.push(kind);
+      stripped.add(compact.replace(token, ''));
+    }
+    const exactWeaponIdentity = value => {
+      const key = compactWeaponIntent(value);
+      return officialWeapons.find(weapon => [weapon.uniqueName, weapon.canonical, weapon.displayName, ...(data.aliases?.weapons?.[weapon.canonical] || [])].some(alias => compactWeaponIntent(alias) === key)) || null;
+    };
+    const identities = [...stripped].filter(Boolean).map(exactWeaponIdentity).filter(Boolean);
+    const identity = identities[0] || (!constraints.length ? resolveOfficialWeaponIdentity(raw) : null);
+    if (!identity) return null;
+    const family = getWeaponVariantFamily(identity.uniqueName);
+    if (!family) return null;
+    const uniqueConstraints = [...new Set(constraints)];
+    const matches = uniqueConstraints.length ? family.members.filter(member => uniqueConstraints.includes(member.variantKind)) : [family.identity];
+    return { query: raw, family, constraints: uniqueConstraints, matches, ambiguous: matches.length !== 1, identity: matches.length === 1 ? matches[0] : null };
+  };
   const getConsumable = query => {
     const q = normalize(query);
     if (!q) return null;
@@ -420,23 +517,35 @@ function createKnowledgeCore(options = {}) {
     if (exact) return { alias: exact.subject.displayName, canonical: exact.subject.canonical, category: 'weapon', match: 'exact', score: 300 };
     return resolveName(query, { minScore: 50, minLead: 5, ...resolveOptions, categories: ['weapon'], candidates: weaponNameCandidates });
   };
+  const resolveRivenWeaponFamilyIntent = query => {
+    const variant = resolveWeaponVariantIntent(query);
+    if (!variant?.family) return rivenWeaponResolver.resolve(query);
+    const candidates = variant.family.members.map(member => rivenWeaponResolver.resolve(member.canonical)).filter(item => item && !item.ambiguous);
+    const unique = [...new Map(candidates.map(item => [item.marketSlug, item])).values()];
+    if (unique.length === 1) return { ...unique[0], familyInput: variant.identity, familyNormalized: true };
+    if (unique.length > 1) return { ambiguous: unique, reason: 'riven-family-collision' };
+    return null;
+  };
   const resolveItem = query => {
     const weapon = getWeapon(query);
     if (weapon) return { kind: 'weapon', item: weapon, recipeVariant: null };
-    const consumable = getConsumable(query);
-    if (consumable) return { kind: 'consumable', item: consumable, recipeVariant: null };
-    const weaponGap = getWeaponGap(query);
-    if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
     const arcane = getArcane(query);
     if (arcane) return { kind: 'arcane', item: arcane, recipeVariant: null };
-    const fish = getOfficialItem(query);
-    if (fish?.semanticKinds?.includes('fish')) return { kind: 'official-item', item: fish, recipeVariant: null };
     const officialItem = getOfficialItem(query);
     if (officialItem) {
       const q = normalize(query);
       const recipeVariant = officialItem.recipeVariants?.find(variant => (variant.aliases || []).some(alias => normalize(alias) === q)) || null;
       return { kind: 'official-item', item: officialItem, recipeVariant };
     }
+    const weaponResolution = resolveWeapon(query);
+    if (weaponResolution && !weaponResolution.ambiguous) {
+      const resolvedWeapon = getWeapon(weaponResolution.canonical);
+      if (resolvedWeapon) return { kind: 'weapon', item: resolvedWeapon, recipeVariant: null };
+    }
+    const consumable = getConsumable(query);
+    if (consumable) return { kind: 'consumable', item: consumable, recipeVariant: null };
+    const weaponGap = getWeaponGap(query);
+    if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
     const mod = getOfficialMod(query);
     if (mod) return { kind: 'mod', item: mod, recipeVariant: null };
     const frame = frameAcquisition.resolveWarframe(query);
@@ -474,6 +583,36 @@ function createKnowledgeCore(options = {}) {
       .sort((a, b) => b.score - a.score || a.mod.canonical.localeCompare(b.mod.canonical))
       .slice(0, searchOptions.limit || 20)
       .map(result => result.mod);
+  };
+  const searchOfficialModNameFragments = (query, searchOptions = {}) => {
+    const raw = String(query || '').normalize('NFKC').trim();
+    const q = raw.toLowerCase();
+    if (!q) return [];
+    const latin = /[a-z]/i.test(raw);
+    const scoreName = name => {
+      const value = String(name || '').normalize('NFKC').toLowerCase();
+      if (!value) return 0;
+      if (value === q) return 400;
+      const tokens = value.split(latin ? /[^a-z0-9]+/ : /[\s·・‧•_\-]+/u).filter(Boolean);
+      if (tokens.includes(q)) return 320;
+      if (tokens.some(token => token.startsWith(q))) return 260;
+      if (tokens.some(token => token.endsWith(q))) return 240;
+      // 纯拉丁查询不把另一个完整 token 的内部片段当作名称词片；例如 rime 不能命中 primed。
+      if (latin && /^[a-z0-9]+$/.test(q)) return 0;
+      if (value.includes(q)) return 180;
+      return 0;
+    };
+    const dedup = new Map();
+    for (const mod of officialMods) {
+      const score = Math.max(scoreName(latin ? mod.canonical : mod.displayName), scoreName(latin ? '' : mod.canonical));
+      if (!score) continue;
+      const key = mod.uniqueName || normalize(mod.canonical);
+      const current = dedup.get(key);
+      if (!current || score > current.score) dedup.set(key, { ...mod, score });
+    }
+    return [...dedup.values()]
+      .sort((a, b) => b.score - a.score || a.canonical.localeCompare(b.canonical))
+      .slice(0, searchOptions.limit || 12);
   };
   const listOfficialCategories = (filter = {}) => officialCategories.filter(category =>
     (!filter.dimension || category.dimension === filter.dimension)
@@ -519,7 +658,9 @@ function createKnowledgeCore(options = {}) {
     if (method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange') {
       const npc = method.sourceEntityId ? data.npcs.get(method.sourceEntityId) : null;
       const location = data.locations.get(method.locationId || npc?.locationId);
-      const requirements = normalizeRequirements(method.requirements);
+      let requirements = normalizeRequirements(method.requirements);
+      if (requirements.type === 'item' && requirements.itemGroupId === 'resource-group.perita') requirements = { ...requirements, itemGroupLabel: '\u968f\u673a\u4f69\u91cc\u5854\u8d44\u6e90' };
+      if (requirements.type === 'currency' && Array.isArray(requirements.currency)) requirements = { ...requirements, currency: requirements.currency.map(item => item.currencyId ? item : ({ ...item, currencyId: (data.currencies.get(item.currencyCanonical) || (item.currencyCanonical === 'Nightwave Cred' ? [...data.currencies.values].reverse().find(value => /^Nora's Mix Vol\. \d+ Cred$/i.test(value.canonical)) : null))?.id || item.currencyId })) };
       return { ...method, requirements, requirementLines: renderRequirements(requirements, data), ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
     }
     return method;
@@ -619,7 +760,11 @@ function createKnowledgeCore(options = {}) {
       const inferredStanding = standingMatch ? Number(standingMatch[1].replace(/,/g, '')) : null;
       const inferredRank = rankMatch ? Number(rankMatch[1]) : null;
       const inferredRankCanonical = rankMatch ? rankMatch[2].trim() : null;
-      const requirements = normalizeRequirements(method.requirements?.type && method.requirements.type !== 'none' ? { ...method.requirements, rank: method.requirements.rank ?? inferredRank, rankName: method.requirements.rankName || officialRankNames[inferredRankCanonical] || null, amount: method.requirements.amount ?? method.standing ?? inferredStanding } : method.currency?.length ? { type: 'currency', usage: 'exchange', npcId: method.sourceEntityId, locationId: method.locationId || npc?.locationId, currency: method.currency } : method.standing || method.rank != null || inferredStanding || inferredRank != null ? { type: 'standing', npcId: method.sourceEntityId, locationId: method.locationId || npc?.locationId, rank: method.rank ?? inferredRank, rankName: method.rankName || officialRankNames[inferredRankCanonical] || null, amount: method.standing ?? inferredStanding } : null);
+      const rawRequirements = method.requirements?.type && method.requirements.type !== 'none' ? { ...method.requirements, rank: method.requirements.rank ?? inferredRank, rankName: method.requirements.rankName || officialRankNames[inferredRankCanonical] || null, amount: method.requirements.amount ?? method.standing ?? inferredStanding } : method.currency?.length ? { type: 'currency', usage: 'exchange', npcId: method.sourceEntityId, locationId: method.locationId || npc?.locationId, currency: method.currency } : method.standing || method.rank != null || inferredStanding || inferredRank != null ? { type: 'standing', npcId: method.sourceEntityId, locationId: method.locationId || npc?.locationId, rank: method.rank ?? inferredRank, rankName: method.rankName || officialRankNames[inferredRankCanonical] || null, amount: method.standing ?? inferredStanding } : null;
+      if (rawRequirements?.type === 'currency') rawRequirements.currency = rawRequirements.currency.map(item => { const entity = data.currencies.get(item.currencyId || item.currencyCanonical) || (item.currencyCanonical === 'Nightwave Cred' ? [...data.currencies.values].reverse().find(value => /^Nora's Mix Vol\. \d+ Cred$/i.test(value.canonical)) : null); return entity ? { ...item, currencyId: entity.id } : item; });
+      if (method.type === 'syndicate-exchange' && rawRequirements?.type === 'standing') rawRequirements.factionId = rawRequirements.factionId || method.factionId || null;
+      if (method.type === 'syndicate-exchange' && rawRequirements?.type === 'standing') { rawRequirements.rank = rawRequirements.rank ?? method.requiredLevel ?? null; rawRequirements.rankName = rawRequirements.rankName || method.requiredRankName || null; rawRequirements.amount = rawRequirements.amount ?? method.standing ?? null; }
+      const requirements = normalizeRequirements(rawRequirements);
       return { ...method, requirements, ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
     }
     if (method.type !== 'enemy-drop' || !method.sourceEntityId) return method;
@@ -765,12 +910,17 @@ function createKnowledgeCore(options = {}) {
     if (!resolved) return createAcquisitionResult({ query, status: 'not-found' });
     if (resolved.kind === 'ambiguous') return createAcquisitionResult({ query, status: 'ambiguous', notes: resolved.candidates.map(item => item.displayName) });
     if (resolved.kind === 'official-item') {
+      const resourceEntry = allKnowledge.find(entry => entry.module === 'acquisition' && entry.subject?.category === 'resource' && normalize(entry.subject?.canonical) === normalize(resolved.item.canonical));
+      const publishRawDrops = !resourceEntry || resourceEntry.reviewStatus === 'approved';
       const evidence = [
-        ...(resolved.item.drops || []).map(drop => createAcquisitionEvidence({ type: 'drop', source: drop.location || 'Warframe Public Export', chance: drop.chance ?? null })),
+        ...(publishRawDrops ? (resolved.item.drops || []).map(drop => createAcquisitionEvidence({ type: 'drop', source: drop.location || 'Warframe Public Export', chance: drop.chance ?? null })) : []),
         ...(!resolved.recipeVariant?.pendingWikiEvidence ? (resolved.item.recipes || []).map(recipe => createAcquisitionEvidence({ type: 'recipe', source: resolved.item.sourceFile || recipe.provenance?.source || 'Warframe Public Export', sourceId: recipe.id, quantity: recipe.outputQuantity })) : [])
       ];
-      const notes = resolved.recipeVariant?.pendingWikiEvidence ? [resolved.recipeVariant.note] : [];
-      return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: resolved.recipeVariant ? [resolved.recipeVariant] : resolved.item.recipeVariants, notes });
+      const notes = [
+        ...(resolved.recipeVariant?.pendingWikiEvidence ? [resolved.recipeVariant.note] : []),
+        ...(!publishRawDrops ? ['资源掉落来源尚未完成实体化审核，Public Export 原始掉落字段已从发布证据隔离。'] : [])
+      ];
+      return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: resolved.recipeVariant ? [resolved.recipeVariant] : resolved.item.recipeVariants, status: publishRawDrops ? 'resolved' : 'review-required', notes });
     }
     if (resolved.kind === 'weapon' || resolved.kind === 'consumable') {
       const local = getAcquisition(query, acquisitionOptions);
@@ -814,12 +964,14 @@ function createKnowledgeCore(options = {}) {
     if (explicitArcaneType && !explicitArcaneResolution) {
       return { query: raw, resolution: null, entry: null, methods: [], sourceOptions: [], alternatives: [] };
     }
+    const equipmentResult = equipmentAcquisition.getEquipmentAcquisition(raw);
+    if (equipmentResult) return equipmentResult;
     const weaponGap = getWeaponGap(raw);
     if (weaponGap) return { query: raw, resolution: { canonical: weaponGap.canonical, exact: true }, entry: null, description: `${weaponGap.displayName}已在 DE 官方简体中文语言数据中出现，但当前 ExportWeapons 尚未提供完整 uniqueName、属性、倾向和来源结构，因此保持待审，禁止猜造获取路径。`, categories: [], methods: [], sourceOptions: [], structuredMethods: [], weaponGap, alternatives: [] };
     const consumableEntry = getConsumable(raw);
     if (consumableEntry) {
       const structuredMethods = routesToMethods(consumableEntry.consumableAcquisition?.generated?.routes || [], data)
-        .filter(method => method.reviewStatus === 'approved' && method.type !== 'recipe');
+        .filter(method => method.reviewStatus === 'approved' && method.type !== 'recipe' && method.category !== 'unresolved');
       const acquisitionText = renderAcquisition(structuredMethods, { displayName: consumableEntry.subject.displayName, registries: data, showProbabilities: false });
       const officialDescription = consumableEntry.description?.display || '';
       const tips = consumableEntry.consumableAcquisition?.manual?.tips || [];
@@ -893,6 +1045,18 @@ function createKnowledgeCore(options = {}) {
     const officialMod = getOfficialMod(raw);
     const collection = getAcquisitionCollection(raw);
     if (collection) return collection;
+    const resourceCollection = resourceAcquisition.getResourceCollection(raw);
+    if (resourceCollection) return {
+      query: raw,
+      resolution: { ambiguous: resourceCollection.candidates.map(candidate => ({ alias: candidate.displayName, canonical: candidate.canonical, category: 'resource' })) },
+      entry: null,
+      collection: { id: resourceCollection.id, title: resourceCollection.title, description: '该泛称对应多个官方资源实体，请选择具体名称。' },
+      entries: resourceCollection.entries,
+      methods: [],
+      sourceOptions: [],
+      structuredMethods: [],
+      alternatives: []
+    };
     const resourceResult = resourceAcquisition.getResourceAcquisition(raw);
     if (resourceResult) return {
       query: raw, resolution: { canonical: resourceResult.entry.subject.canonical, exact: true }, entry: resourceResult.entry,
@@ -950,12 +1114,38 @@ function createKnowledgeCore(options = {}) {
           provenance: { source: 'frame-route', entryId: entry.id, sourceCanonical: variables.sourceCanonical }
         });
       } else if (frameRoute.componentLine) {
-        methods.push({ type: 'route', scope: 'components', category: frameRouting.componentCategory || entry.subject?.categoryRefs?.[0], variables: { text: frameRoute.componentLine }, requirements: frameRouting.requirements || { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } });
+        const questComponent = frameRouting.componentCategory === 'frame-quest' && variables.questId
+        methods.push({
+          type: questComponent ? 'quest-reward' : 'route',
+          scope: questComponent ? 'component' : 'components',
+          category: frameRouting.componentCategory || entry.subject?.categoryRefs?.[0],
+          ...(questComponent ? { questId: variables.questId } : {}),
+          variables: {
+            ...(questComponent ? { partName: '部件蓝图', firstCompletion: true } : { text: frameRoute.componentLine }),
+            ...(variables.sourceGroups ? { sourceGroups: variables.sourceGroups } : {}),
+            ...(variables.objective ? { objective: variables.objective } : {})
+          },
+          requirements: frameRouting.requirements || { type: 'none' },
+          provenance: { source: 'frame-route', entryId: entry.id }
+        });
       }
       if (frameRoute.blueprintLine && !methods.some(method => method.scope === 'blueprint')) methods.push({ type: 'route', scope: 'blueprint', category: frameRouting.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } });
       methods.sort((left, right) => (left.scope === 'blueprint' ? -1 : 0) - (right.scope === 'blueprint' ? -1 : 0));
       return methods;
     })() : [];
+    if (isFrame && entry.frameAcquisition?.generated?.isPrime && frameRouting.componentVariables?.sourceText) {
+      frameRouteMethods.push({ type: 'route', scope: 'components', category: 'frame-prime-relic', variables: { text: frameRouting.componentVariables.sourceText }, requirements: { type: 'none' }, reviewStatus: 'approved', provenance: { source: 'official-prime-relic-evidence', entryId: entry.id } });
+    }
+    const circuit = isFrame ? frameAcquisition.getNormalCircuitWarframe(canonical) : null;
+    if (circuit) frameRouteMethods.push({
+      type: 'circuit-reward',
+      scope: 'all-blueprints',
+      sourceEntityId: 'activity.the-circuit',
+      variables: { week: circuit.week, fullSet: true, rewardTiers: circuit.rewardTiers },
+      requirements: { type: 'none' },
+      reviewStatus: 'approved',
+      provenance: { source: 'normal-circuit-warframes', factId: circuit.sourceFactId }
+    });
     const frameStructuredMethods = compileStructuredMethods(frameRouteMethods, data);
     const structuredMethods = compileStructuredMethods([
       ...rawStructuredMethods.map(enrichModMethod).map(method => Number.isFinite(method.chance) && method.chance > 1 ? { ...method, chance: method.chance / 100 } : method).filter(method => method.type !== 'unresolved-source'),
@@ -980,18 +1170,42 @@ function createKnowledgeCore(options = {}) {
     const syndicateHeader = hasSyndicateMethods && syndicateDescription ? syndicateDescription.split(/\n\n获取来源：/)[0] : null;
     const exchangeMethods = structuredMethods.filter(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
     const hasStructuredExchange = exchangeMethods.length > 0;
-    const frameExchangeSupplement = isFrame && hasStructuredExchange && !/兑换/.test(defaultDescription || '')
+    const useStructuredFrameDescription = frameRouting.componentCategory === 'frame-assassination'
+      || (isFrame && hasStructuredExchange && frameRouting.componentCategory === 'frame-quest');
+    const framePrimaryDescription = useStructuredFrameDescription && structuredDescription
+      ? structuredDescription
+      : isFrame && hasStructuredExchange
+        ? defaultDescription?.split('\n').filter(line => !/^也可.+兑换：/.test(line)).join('\n')
+        : defaultDescription;
+    const frameMarketSupplement = isFrame && !/总图/.test(framePrimaryDescription || '')
+      ? renderAcquisition(structuredMethods.filter(method => method.type === 'market-purchase' && method.scope === 'blueprint'), { registries: data }) : null;
+    const hasVisibleExchangeEntry = /(?:找|向|在).{0,40}兑换|兑换：部件蓝图|整套蓝图：.+兑换/m.test(framePrimaryDescription || '');
+    const frameExchangeSupplement = isFrame && hasStructuredExchange && !hasVisibleExchangeEntry
       ? renderAcquisition(exchangeMethods, { registries: data }) : null;
-    const preferStructuredDescription = !defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute
-      || (isFrame && structuredMethods.some(method => method.type !== 'route') && Boolean(structuredDescription))
+    const frameCircuitSupplement = isFrame && circuit && !/普通无尽回廊/.test(framePrimaryDescription || '')
+      ? renderAcquisition(structuredMethods.filter(method => method.type === 'circuit-reward'), { registries: data }) : null;
+    const frameDescription = isFrame
+      ? (() => {
+          const lines = [frameMarketSupplement, framePrimaryDescription, frameExchangeSupplement, frameCircuitSupplement]
+            .filter(Boolean).flatMap(value => String(value).split('\n'));
+          const seen = new Set();
+          return lines.filter(line => {
+            const key = normalizeVisibleLine(line);
+            if (!key || seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          }).join('\n');
+        })()
+      : null;
+    const preferStructuredDescription = !isFrame && (!defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute
       || (entry.subject?.category === 'weapon' && Boolean(structuredDescription))
-      || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription));
+      || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription)));
     return {
       query: raw,
       resolution,
       entry,
       officialMod: resolvedOfficialMod,
-      description: preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : frameExchangeSupplement ? [defaultDescription, frameExchangeSupplement].filter(Boolean).join('\n') : defaultDescription,
+      description: frameDescription || (preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : defaultDescription),
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
@@ -1144,6 +1358,13 @@ function createKnowledgeCore(options = {}) {
     ].filter(Boolean);
     return parts.length ? parts.join('\n') : null;
   };
+  const modRelationQueries = createModRelationQueries({
+    root,
+    resolveWeapon,
+    resolveName,
+    getWeapon,
+    getFrame: frameAcquisition.resolveWarframe
+  });
   const buildWikiContext = query => {
     const resolution = resolveName(query);
     const facts = searchFacts(query);
@@ -1196,13 +1417,24 @@ function createKnowledgeCore(options = {}) {
     getAcquisitionCard,
     getAcquisitionCollection,
     getResourceAcquisition: resourceAcquisition.getResourceAcquisition,
+    getResourceCollection: resourceAcquisition.getResourceCollection,
     listResources: resourceAcquisition.listResources,
     resolveItem,
     getWeapon,
     getWeaponGap,
     resolveWeapon,
+    resolveOfficialWeaponIdentity,
+    getWeaponVariantFamily,
+    resolvePrimeVariantIntent,
+    resolveWeaponVariantIntent,
+    weaponVariantIntentAliases,
+    parseModRelationCommand: modRelationQueries.parseRelationCommand,
+    queryModRelations: modRelationQueries.query,
+    modRelations: data.modRelations,
     getRivenWeapon: rivenWeaponResolver.get,
     resolveRivenWeapon: rivenWeaponResolver.resolve,
+    resolveRivenWeaponFamilyIntent,
+    resolveRivenWeaponPrefix: rivenWeaponResolver.resolvePrefix,
     rivenWeapons: rivenWeaponResolver.identities,
     getConsumable,
     resolveConsumable,
@@ -1221,6 +1453,7 @@ function createKnowledgeCore(options = {}) {
     getModTips,
     getModTipKeywords,
     searchOfficialMods,
+    searchOfficialModNameFragments,
     listOfficialCategories,
     listReviewRequiredOfficialMods,
     listMissingOfficialMods,
@@ -1258,7 +1491,11 @@ function createKnowledgeCore(options = {}) {
     auditFrameCardMetadata: frameCard.auditFrameCardMetadata,
     frameAcquisition,
     frameCard,
-    resourceAcquisition
+    resourceAcquisition,
+    equipmentAcquisition,
+    getEquipmentAcquisition: equipmentAcquisition.getEquipmentAcquisition,
+    resolveEquipment: equipmentAcquisition.resolveEquipment,
+    auditEquipmentAcquisition: equipmentAcquisition.auditEquipmentAcquisition
   };
 }
 

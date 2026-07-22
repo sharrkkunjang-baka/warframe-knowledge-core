@@ -9,8 +9,18 @@ function normalizeName(value) {
   return String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[\s·・‧•_'’`´-]+/g, '');
 }
 
+function pinyinTokens(value) {
+  return pinyin(String(value || ''), { toneType: 'none', type: 'array' })
+    .map(token => String(token || '').toLowerCase().replace(/[^a-z0-9]/g, ''))
+    .filter(Boolean);
+}
+
 function compactPinyin(value) {
-  return pinyin(String(value || ''), { toneType: 'none', type: 'array' }).join('').toLowerCase().replace(/[^a-z0-9]/g, '');
+  return pinyinTokens(value).join('');
+}
+
+function compactPinyinInitials(value) {
+  return pinyinTokens(value).map(token => token[0]).join('');
 }
 
 function levenshtein(left, right) {
@@ -42,24 +52,56 @@ function fuzzySimilarity(query, candidate) {
   return Math.min(score, 1);
 }
 
-function rivenWeaponIdentities(officialWeapons) {
-  const catalog = [
-    ...(officialWeapons?.weapons || []),
-    ...(officialWeapons?.excludedWeapons || []).filter(item => item.exclusionReason === 'non-functional-placeholder')
-  ];
-  return [...new Map(catalog.filter(item => item?.uniqueName && item?.canonical && item?.displayName)
-    .map(item => [item.uniqueName, {
-      canonical: item.canonical,
-      displayName: item.displayName,
-      officialUniqueName: item.uniqueName,
-      localizationStatus: item.localizationStatus,
-      equipmentType: item.equipmentType || null,
-      omegaAttenuation: Number.isFinite(Number(item.omegaAttenuation)) ? Number(item.omegaAttenuation) : null
-    }])).values()];
+function modularMetadata(marketEntry) {
+  if (marketEntry.group === 'zaw') return { modularFamily: 'zaw', componentRole: 'strike' };
+  if (marketEntry.group === 'kitgun') return { modularFamily: 'kitgun', componentRole: 'chamber' };
+  return { modularFamily: null, componentRole: null };
 }
 
-function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
-  const identities = rivenWeaponIdentities(officialWeapons);
+function rivenFamilyName(value) {
+  let name = String(value || '').trim();
+  name = name
+    .replace(/^(?:kuva|tenet|coda|dual coda|prisma|dex|mara|sancti|vaykor|rakta|secura|synoid|telos)\s+/i, '')
+    .replace(/\s+(?:prime|vandal|wraith|kuva|tenet|coda|prisma|dex|mara|sancti|vaykor|rakta|secura|synoid|telos)$/i, '');
+  return name.toLowerCase();
+}
+
+function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
+  const included = officialWeapons?.weapons || [];
+  const officialCatalog = [...included, ...(officialWeapons?.excludedWeapons || [])];
+  const officialByRef = new Map(officialCatalog.filter(item => item?.uniqueName).map(item => [item.uniqueName, item]));
+  const marketEntries = rivenMarketWeapons?.entries || [];
+  const marketByRef = new Map(marketEntries.map(item => [item.gameRef, item]));
+  const marketByFamily = new Map(marketEntries.map(item => [rivenFamilyName(item.canonical), item]));
+  const pairs = [];
+  for (const marketEntry of marketEntries) {
+    const item = officialByRef.get(marketEntry.gameRef);
+    if (item) pairs.push({ item, marketEntry, canonical: marketEntry.canonical });
+  }
+  for (const item of included) {
+    if (!item?.uniqueName || marketByRef.has(item.uniqueName) || !Number.isFinite(Number(item.omegaAttenuation))) continue;
+    const marketEntry = marketByFamily.get(rivenFamilyName(item.canonical));
+    if (marketEntry) {
+      const familyItem = officialByRef.get(marketEntry.gameRef) || item;
+      pairs.push({ item: familyItem, marketEntry, canonical: marketEntry.canonical });
+    }
+  }
+  return [...new Map(pairs.filter(({ item }) => item?.canonical && item?.displayName).map(({ item, marketEntry, canonical }) => [item.uniqueName, {
+    canonical,
+    displayName: item.displayName,
+    officialUniqueName: item.uniqueName,
+    localizationStatus: item.localizationStatus,
+    equipmentType: item.equipmentType || null,
+    omegaAttenuation: Number.isFinite(Number(item.omegaAttenuation)) ? Number(item.omegaAttenuation) : Number(marketEntry.disposition),
+    marketSlug: marketEntry.slug,
+    marketGroup: marketEntry.group,
+    rivenType: marketEntry.rivenType,
+    ...modularMetadata(marketEntry)
+  }])).values()];
+}
+
+function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}, rivenMarketWeapons = { entries: [] }) {
+  const identities = rivenWeaponIdentities(officialWeapons, rivenMarketWeapons);
   const entries = [];
   const add = (identity, alias, source, exactScore) => {
     const normalized = normalizeName(alias);
@@ -70,7 +112,8 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
       source,
       exactScore,
       normalized,
-      phonetic: HAN_RE.test(alias) ? compactPinyin(alias) : ''
+      phonetic: HAN_RE.test(alias) ? compactPinyin(alias) : '',
+      phoneticInitials: HAN_RE.test(alias) ? compactPinyinInitials(alias) : ''
     });
   };
   for (const identity of identities) {
@@ -84,6 +127,7 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
   const byUniqueName = new Map(identities.map(identity => [identity.officialUniqueName, identity]));
   const exactGroups = new Map();
   const pinyinGroups = new Map();
+  const pinyinInitialGroups = new Map();
   for (const entry of entries) {
     const exactKey = `${entry.source}:${entry.normalized}`;
     if (!exactGroups.has(exactKey)) exactGroups.set(exactKey, []);
@@ -92,6 +136,10 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
       if (!pinyinGroups.has(entry.phonetic)) pinyinGroups.set(entry.phonetic, []);
       pinyinGroups.get(entry.phonetic).push(entry);
     }
+    if (entry.phoneticInitials) {
+      if (!pinyinInitialGroups.has(entry.phoneticInitials)) pinyinInitialGroups.set(entry.phoneticInitials, []);
+      pinyinInitialGroups.get(entry.phoneticInitials).push(entry);
+    }
   }
 
   const result = (entry, match, score) => ({
@@ -99,6 +147,11 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
     canonical: entry.identity.canonical,
     displayName: entry.identity.displayName,
     officialUniqueName: entry.identity.officialUniqueName,
+    marketSlug: entry.identity.marketSlug,
+    marketGroup: entry.identity.marketGroup,
+    rivenType: entry.identity.rivenType,
+    modularFamily: entry.identity.modularFamily,
+    componentRole: entry.identity.componentRole,
     category: 'riven-weapon',
     match,
     score,
@@ -126,10 +179,16 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
     }
 
     const phoneticQuery = normalized.replace(/[^a-z0-9]/g, '');
-    if (phoneticQuery) {
+    const mixedHanLatin = HAN_RE.test(raw) && /[a-z]/i.test(raw);
+    if (phoneticQuery && !mixedHanLatin) {
       const matches = [...new Map((pinyinGroups.get(phoneticQuery) || []).map(entry => [entry.identity.officialUniqueName, entry])).values()];
       if (matches.length === 1) return result(matches[0], 'pinyin-exact', 850);
       if (matches.length > 1) return ambiguity(matches.map(entry => ({ entry, match: 'pinyin-exact', score: 850 })), 'pinyin-collision', 850);
+      const initialMatches = phoneticQuery.length >= 2
+        ? [...new Map((pinyinInitialGroups.get(phoneticQuery) || []).map(entry => [entry.identity.officialUniqueName, entry])).values()]
+        : [];
+      if (initialMatches.length === 1) return result(initialMatches[0], 'pinyin-initials-exact', 825);
+      if (initialMatches.length > 1) return ambiguity(initialMatches.map(entry => ({ entry, match: 'pinyin-initials-exact', score: 825 })), 'pinyin-initials-collision', 825);
     }
 
     const queryIsChinese = HAN_RE.test(raw);
@@ -161,6 +220,27 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
     return result(ranked[0].entry, ranked[0].match, ranked[0].score);
   }
 
+  function resolvePrefix(input) {
+    const raw = String(input || '').normalize('NFKC').trim();
+    if (!raw) return null;
+    for (let end = raw.length; end > 0; end -= 1) {
+      const weaponQuery = raw.slice(0, end).trimEnd();
+      if (!weaponQuery) continue;
+      const remainder = raw.slice(end).trimStart();
+      const resolution = resolve(weaponQuery);
+      if (!resolution || resolution.ambiguous || !['exact', 'exact-id', 'pinyin-exact', 'pinyin-initials-exact'].includes(resolution.match)) continue;
+      if (/^pinyin/.test(resolution.match) && normalizeName(weaponQuery).length < 2) continue;
+      if (resolution.match === 'pinyin-initials-exact' && /^[a-z0-9]/i.test(remainder)) continue;
+      return {
+        weaponQuery,
+        remainder,
+        consumedLength: end,
+        resolution
+      };
+    }
+    return null;
+  }
+
   function get(query) {
     const raw = String(query || '').trim();
     const byId = byUniqueName.get(raw);
@@ -170,13 +250,26 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}) {
     return byUniqueName.get(resolved.officialUniqueName) || null;
   }
 
-  return { resolve, get, identities };
+  const dictionary = entries.map(entry => ({
+    alias: entry.alias,
+    source: entry.source,
+    normalized: entry.normalized,
+    phonetic: entry.phonetic,
+    phoneticInitials: entry.phoneticInitials,
+    officialUniqueName: entry.identity.officialUniqueName,
+    canonical: entry.identity.canonical,
+    displayName: entry.identity.displayName
+  }));
+  return { resolve, resolvePrefix, get, identities, dictionary };
 }
 
 module.exports = {
   createRivenWeaponResolver,
   rivenWeaponIdentities,
+  modularMetadata,
   normalizeName,
+  pinyinTokens,
   compactPinyin,
+  compactPinyinInitials,
   similarity
 };
