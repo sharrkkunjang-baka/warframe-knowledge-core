@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Fish/Solaris/SolarisCoolUncommonFishAItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -32,11 +32,28 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "续播机"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "open-world-gathering",
+            "locationId": "landscape.orb-vallis",
+            "sourceDisplayName": "奥布山谷水域",
+            "variables": {
+              "activityName": "捕鱼"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export fish identity"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -54,8 +71,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-20",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "续播机的资源身份与获取证据。",
   "tags": [
     "acquisition",

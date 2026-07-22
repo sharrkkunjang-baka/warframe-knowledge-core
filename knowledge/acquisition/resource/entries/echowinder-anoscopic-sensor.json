@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishAnoscopicSensorItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -25,11 +25,32 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "回声环绕者微孔视觉感应器"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "resource-processing",
+            "npcId": "npc.the-business",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "拆解Echowinder",
+            "variables": {
+              "sourceFishCanonicals": [
+                "Echowinder"
+              ],
+              "allServofish": false
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official fish-part description"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -47,8 +68,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "回声环绕者微孔视觉感应器的资源身份与获取证据。",
   "tags": [
     "acquisition",

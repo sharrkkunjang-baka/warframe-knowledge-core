@@ -37,23 +37,47 @@ function enemyLine(query, enemyName) {
   return card.sections.enemy.find(line => line.includes(enemyName))
 }
 
-test('云暴山碎保留官方身份、全部敌人来源和武形秘仪中文协议', () => {
+test('云暴山碎保留官方锤架式身份、单一规范敌人和武形秘仪中文协议', () => {
   const card = core.getAcquisitionCard('云暴山碎')
   assert.deepEqual(card.identity, {
     canonical: 'Shattering Storm',
     displayName: '云暴山碎',
     uniqueName: '/Lotus/Weapons/Tenno/Melee/MeleeTrees/HammerCmbOneMeleeTree'
   })
-  assert.match(enemyLine('云暴山碎', 'Sargas Ruk 将军'), /土星 Tethys 刺杀 · Sargas Ruk 将军（概率获得，11\.06%）/)
-  assert.match(enemyLine('云暴山碎', '指挥官'), /指挥官（概率获得，11\.06%）/)
+  assert.deepEqual({ type: card.modInfo.type, compatName: card.modInfo.compatName }, { type: 'Stance Mod', compatName: 'Hammers' })
+  assert.deepEqual(card.sections.enemy, ['- 土星 Tethys 刺杀 · Sargas Ruk 将军（概率获得，11.06%）'])
   assert.ok(card.sections.other.some(line => /武形秘仪每周挑战奖励 A轮（概率获得，2\.27%）/.test(line)))
-  assert.doesNotMatch(JSON.stringify(card.sections), /Weekly Conclave Challenge Reward/)
+  assert.doesNotMatch(JSON.stringify(card.sections), /Weekly Conclave Challenge Reward|指挥官/)
 })
 
 test('刺杀 Boss 掉落协议跨至少三个其他 Mod 保留星球、节点、Boss 和概率语义', () => {
   assert.match(enemyLine('Vulcan Blitz', 'Kela De Thaym'), /赛德娜 Merrow 刺杀 · Kela De Thaym（概率获得，11\.11%）/)
   assert.match(enemyLine('Intensify', 'Alad V'), /木星 Themisto 刺杀 · Alad V（概率获得，2\.01%）/)
   assert.match(enemyLine('Pressure Point', 'Ambulas'), /冥王星 Hades 刺杀 · Ambulas（概率获得，60\.704%）/)
+})
+
+test('全部 Mod 敌人掉落都引用注册实体，且复合头衔实体不会拆分', () => {
+  let checked = 0
+  for (const entry of acquisitionEntries()) {
+    const result = core.getAcquisition(entry.subject.canonical)
+    for (const method of result?.structuredMethods || []) {
+      if (method.type !== 'enemy-drop') continue
+      assert.ok(method.sourceEntityId, `${entry.subject.canonical}: enemy-drop 缺少 stable identity`)
+      const enemy = core.resolveEntityVariables(method.sourceEntityId)
+      assert.ok(enemy.some(candidate => candidate.type === 'enemy' && candidate.id === method.sourceEntityId), `${entry.subject.canonical}: ${method.sourceEntityId} 未解析到敌人实体`)
+      checked += 1
+    }
+  }
+  assert.ok(checked > 100, `应全量审计大量 Mod 敌人来源，实际 ${checked}`)
+  for (const [canonical, expectedId] of [
+    ['General Sargas Ruk', 'enemy.general-sargas-ruk'],
+    ['Captain Vor', 'enemy.captain-vor'],
+    ['Narmer Commander', 'enemy.narmer-commander'],
+    ['Blite Captain', 'enemy.blite-captain']
+  ]) {
+    const resolved = core.resolveEntityVariables(canonical)
+    assert.ok(resolved.some(candidate => candidate.id === expectedId), `${canonical} 必须保持完整 stable identity`)
+  }
 })
 
 test('全部已录入刺杀 Boss Mod 掉落都保留完整上下文并按敌人去重', () => {

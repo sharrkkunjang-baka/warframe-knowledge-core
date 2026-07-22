@@ -35,7 +35,17 @@
           "variant": "standard"
         },
         "wiki": {
-          "status": "complete",
+          "wiki": {
+            "pageTitle": "Kaal-zidi",
+            "pageId": 1605374,
+            "revisionId": 2784367,
+            "pageTimestamp": "2026-06-12T05:52:54Z",
+            "compiledAt": "2026-07-22T15:42:03.024Z",
+            "sourceDatabase": {
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+              "size": 2322874368
+            }
+          },
           "methods": [
             {
               "type": "vendor-exchange",
@@ -106,17 +116,36 @@
           "evidence": [
             {
               "type": "acquisition-prose",
-              "reviewStatus": "approved",
+              "reviewStatus": "draft",
               "provenance": {
-                "source": "current-wiki-sqlite",
+                "source": "local-wiki-sqlite",
                 "pageTitle": "Kaal-zidi",
-                "revisionId": 2784367
-              },
-              "excerpt": "[ edit | edit source ]\n • Awarded from The Perita Rebellion missions.\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | No enemy drop tables with this item\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+                "pageId": 1605374,
+                "revisionId": 2784367,
+                "section": "Acquisition",
+                "excerpt": "Awarded from The Perita Rebellion missions."
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Kaal-zidi",
+                "pageId": 1605374,
+                "revisionId": 2784367,
+                "section": "Acquisition",
+                "excerpt": "Sold by Marie as part of her rotating shop."
+              }
             }
           ],
-          "mechanicsEvidence": {},
-          "unresolvedEntities": []
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "complete"
         },
         "officialDrops": []
       },
@@ -127,7 +156,8 @@
         "reviewStatus": "approved",
         "reviewedBy": [
           "current-wiki-supplement",
-          "recent-mod-evidence-audit"
+          "recent-mod-evidence-audit",
+          "structured-wiki-acquisition-audit"
         ]
       }
     },
@@ -139,11 +169,12 @@
       }
     ],
     "gameVersion": "Update 41.0",
-    "updatedAt": "2026-07-20",
+    "updatedAt": "2026-07-22",
     "reviewStatus": "approved",
     "reviewedBy": [
       "current-wiki-supplement",
-      "recent-mod-evidence-audit"
+      "recent-mod-evidence-audit",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",

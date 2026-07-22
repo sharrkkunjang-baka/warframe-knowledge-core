@@ -57,6 +57,30 @@ test('统一解析器支持类别过滤与共享黑话', () => {
   assert.equal(core.resolveName('玻棍', { categories: ['term'] }).canonical, 'Bo Prime Set');
 });
 
+test('翻译入口对已发布跨类别实体执行大小写无关、去空格与最长完整匹配', () => {
+  const input = 'you got primeflow, growing power, arcane energize?';
+  assert.deepEqual(reviewCore.findOfficialTermsInText(input).map(item => [item.matchedText, item.canonical, item.displayName, item.category]), [
+    ['primeflow', 'Primed Flow', '川流不息 Prime', 'mod'],
+    ['growing power', 'Growing Power', '成长之力', 'mod'],
+    ['arcane energize', 'Arcane Energize', '赋能·充沛', 'arcane']
+  ]);
+  assert.deepEqual(reviewCore.findOfficialTermsInText('PRIME FLOW, Growing Power; ARCANE ENERGIZE!').map(item => item.canonical), [
+    'Primed Flow', 'Growing Power', 'Arcane Energize'
+  ]);
+  assert.equal(reviewCore.findOfficialTermsInText('plants grow with power and batteries energize arcane devices').length, 0);
+  const longest = reviewCore.findOfficialTermsInText('arcane energize and arcane eruption');
+  assert.deepEqual(longest.map(item => item.canonical), ['Arcane Energize', 'Arcane Eruption']);
+  assert.equal(longest.some(item => item.canonical === 'Arcane'), false);
+});
+
+test('审核英文别名仍通过统一解析器精确落到官方实体', () => {
+  for (const query of ['Prime Flow', 'primeflow', 'PRIMEFLOW']) {
+    const result = reviewCore.resolveName(query, { categories: ['official'] });
+    assert.equal(result.canonical, 'Primed Flow', query);
+    assert.equal(result.match, 'exact', query);
+  }
+});
+
 test('战甲官方实体完整名区分本体与 Prime', () => {
   for (const query of ['Nidus', 'nidus', 'NIDUS']) {
     const result = reviewCore.resolveName(query, { categories: ['frame'] });
@@ -78,6 +102,47 @@ test('近分候选返回统一歧义结构', () => {
   const result = core.resolveName('成长', { candidates, minLead: 5 });
   assert.ok(result.ambiguous);
   assert.deepEqual(result.ambiguous.map(item => item.canonical), ['Growing Power', 'Growth Badge']);
+});
+
+test('共享类型词强约束类别并保留命令前缀与歧义', () => {
+  const expectedAugur = new Set(['Augur Pact', 'Augur Seeker', 'Augur Accord', 'Augur Message', 'Augur Reach', 'Augur Secrets', 'Necramech Augur']);
+  for (const query of ['wf: 预言mod', 'wf：预言 Mod', 'wf 预言MOD', 'wk:预言模组', '查 预言mod', '刷 预言MOD']) {
+    const trace = [];
+    const result = reviewCore.resolveName(query, { onTrace: event => trace.push(event) });
+    assert.ok(result.ambiguous, query);
+    assert.equal(result.ambiguous.every(item => item.category === 'mod'), true, query);
+    assert.deepEqual(new Set(result.ambiguous.map(item => item.canonical)), expectedAugur, query);
+    assert.deepEqual(trace[0].intent.categories, ['mod'], query);
+    assert.equal(trace[0].intent.query, '预言', query);
+    assert.equal(trace[0].ranked.some(item => item.canonical === 'Seer'), false, query);
+    const acquisition = reviewCore.getAcquisition(query);
+    assert.equal(acquisition.entry, null, query);
+    assert.ok(acquisition.resolution.ambiguous, query);
+  }
+
+  const weapon = reviewCore.resolveName('预言武器');
+  assert.equal(weapon.canonical, 'Seer');
+  assert.equal(weapon.category, 'weapon');
+  const untyped = reviewCore.resolveName('预言');
+  assert.ok(untyped.ambiguous);
+  assert.equal(untyped.ambiguous.some(item => item.canonical === 'Seer' && item.category === 'weapon'), true);
+  assert.equal(untyped.ambiguous.some(item => item.category === 'mod'), true);
+
+  for (const [query, canonical, category] of [
+    ['猛毒附加mod', 'Venom Dose', 'mod'],
+    ['近战赋能侵染', 'Melee Influence', 'arcane'],
+    ['电妹战甲', 'Gyre', 'frame'],
+    ['玻棍武器', 'Bo Prime', 'weapon'],
+    ['氩结晶资源', 'Argon Crystal', 'resource'],
+    ['破解器道具', 'Cipher', 'official-item'],
+    ['Forma物品', 'Forma', 'official-item']
+  ]) {
+    const result = reviewCore.resolveName(query);
+    assert.equal(result.canonical, canonical, query);
+    assert.equal(result.category, category, query);
+  }
+  assert.equal(reviewCore.resolveName('Khra').canonical, 'Khra');
+  assert.equal(reviewCore.resolveName('Xata').canonical, 'Xata');
 });
 
 test('赋能类型词通过共享评分器限定类别并支持前缀词序变体', () => {
@@ -117,10 +182,26 @@ test('精确 Prime 战甲获取不会降级为普通战甲', () => {
   }
 });
 
+test('杀毒别名稳定解析为蠕虫驱逐而不混入赏金槽', () => {
+  for (const query of ['杀毒', '杀毒 Mod', '杀毒模组']) {
+    const mod = reviewCore.getOfficialMod(query);
+    const card = reviewCore.getAcquisitionCard(query);
+    assert.equal(mod?.uniqueName, '/Lotus/Upgrades/Mods/Immortal/AntivirusTwoMod', query);
+    assert.deepEqual(card?.identity, {
+      canonical: 'Worm Away',
+      displayName: '蠕虫驱逐',
+      uniqueName: '/Lotus/Upgrades/Mods/Immortal/AntivirusTwoMod'
+    }, query);
+  }
+});
+
 test('刷取模块只响应明确命令句式', () => {
   assert.deepEqual(reviewCore.parseAcquisitionCommand('/刷'), { intent: 'acquisition', query: '' });
   assert.deepEqual(reviewCore.parseAcquisitionCommand('/刷 电妹'), { intent: 'acquisition', query: '电妹' });
   assert.deepEqual(reviewCore.parseAcquisitionCommand('刷 氩结晶'), { intent: 'acquisition', query: '氩结晶' });
+  assert.deepEqual(reviewCore.parseAcquisitionCommand('查 成长之力'), { intent: 'acquisition', query: '成长之力' });
+  assert.deepEqual(reviewCore.parseAcquisitionCommand('wk 成长之力'), { intent: 'acquisition', query: '成长之力' });
+  assert.deepEqual(reviewCore.parseAcquisitionCommand('WK 成长之力'), { intent: 'acquisition', query: '成长之力' });
   assert.deepEqual(reviewCore.parseAcquisitionCommand('怎么刷心智狭'), { intent: 'acquisition', query: '心智狭' });
   assert.deepEqual(reviewCore.parseAcquisitionCommand('怎么刷 电妹'), { intent: 'acquisition', query: '电妹' });
   assert.equal(reviewCore.parseAcquisitionCommand('我想刷电妹'), null);
@@ -191,7 +272,8 @@ test('统一获取卡片按来源分区并使用审核变种家族', () => {
   assert.equal(new Set(trueSteel.sections.enemy).size, trueSteel.sections.enemy.length);
   const pressure = core.getAcquisitionCard('压迫点 Prime');
   assert.deepEqual(pressure.variants.map(item => item.displayName), ['压迫点', '残缺 压迫点', '压迫点 Prime']);
-  assert.match(pressure.sections.exchange.join('\n'), /虚空商人|Baro/);
+  assert.match(core.getAcquisition('压迫点 Prime').description, /虚空商人|Baro/);
+  assert.deepEqual(pressure.sections.exchange, []);
   const energize = core.getAcquisitionCard('赋能·充沛');
   assert.equal(energize.kind, 'arcane');
   assert.deepEqual(energize.variants, []);
@@ -203,7 +285,7 @@ test('统一获取卡片按来源分区并使用审核变种家族', () => {
   const magnumForce = core.getAcquisitionCard('重装火力');
   assert.deepEqual(magnumForce.detailOptions, [{ id: 'gameplay.deimos-orokin-vault', title: '火卫二奥罗金宝库', query: '4k' }]);
   const augurAccord = core.getAcquisitionCard('预言 协约');
-  assert.deepEqual(augurAccord.sections.other, ['从夜灵平野赏金奖励中获得']);
+  assert.deepEqual(augurAccord.sections.other, ['从夜灵平野赏金奖励中获得 1个']);
   assert.deepEqual(augurAccord.detailOptions, [{ id: 'gameplay.cetus-bounty-set-mods', title: '希图斯赏金', query: '希图斯赏金' }]);
   const pistolPestilence = core.getAcquisitionCard('瘟疫手枪');
   assert.deepEqual(pistolPestilence.detailOptions, [{ id: 'gameplay.corrupted-vor', title: '堕落的沃尔', query: '堕落的沃尔' }]);

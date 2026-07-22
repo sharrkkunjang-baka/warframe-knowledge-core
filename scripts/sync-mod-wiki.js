@@ -118,9 +118,9 @@ function buildPlan(options = {}) {
         counts.compiled += 1
       }
       generatedWiki.methods = (generatedWiki.methods || []).map(normalizeEntityReferences)
-      const officialSyndicateKeys = new Set(generatedWiki.methods.filter(method => method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates').map(method => method.factionId))
+      const officialSyndicateKeys = new Set((entry.modAcquisition?.generated?.wiki?.methods || []).filter(method => method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates').map(method => method.factionId))
       generatedWiki.methods = generatedWiki.methods.filter(method => !(method.provenance?.source === 'local-wiki-sqlite' && ['syndicate-exchange','syndicate-exchange-group'].includes(method.type) && (method.factionIds || [method.factionId]).filter(Boolean).every(id => officialSyndicateKeys.has(id))))
-      const maintainedMethods = (entry.modAcquisition?.generated?.wiki?.methods || []).filter(method => method.type === 'syndicate-exchange' || (method.provenance?.source === 'local-wiki-sqlite' && method.reviewStatus === 'approved')).map(normalizeEntityReferences)
+      const maintainedMethods = (entry.modAcquisition?.generated?.wiki?.methods || []).filter(method => method.reviewStatus === 'approved' || (method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates')).map(normalizeEntityReferences)
       if (maintainedMethods.length) {
         const maintainedKeys = new Set(maintainedMethods.map(methodKey))
         generatedWiki.methods = [...maintainedMethods, ...(generatedWiki.methods || []).filter(method => !maintainedKeys.has(methodKey(method)))]

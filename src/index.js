@@ -2,7 +2,7 @@
 
 const path = require('path');
 const { loadData } = require('./loader');
-const { createResolver, resolveDomainAlias, normalize } = require('./resolver');
+const { createResolver, resolveDomainAlias, normalize, parseResolverIntent } = require('./resolver');
 const frameAcquisition = require('./frame-acquisition');
 const frameCard = require('./frame-card');
 const resourceAcquisition = require('./resource-acquisition');
@@ -18,6 +18,7 @@ const { createRivenWeaponResolver } = require('./riven-weapon-resolver');
 const { createModRelationQueries } = require('./mod-relation-queries');
 const { createElementModSlangResolver } = require('./element-mod-slang');
 const equipmentAcquisition = require('./equipment-acquisition');
+const { buildOfficialTermIndex, findOfficialTermsInText } = require('./official-term-matcher');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -228,17 +229,59 @@ function createKnowledgeCore(options = {}) {
   const arcaneNameCandidates = (data.arcanes || []).flatMap(arcane => [arcane.subject?.canonical, arcane.subject?.displayName, ...(arcane.arcaneAcquisition?.manual?.aliases || [])]
     .filter(Boolean).map(alias => ({ alias, canonical: arcane.subject.canonical, category: 'arcane', priority: 30 })));
   const fishNameCandidates = officialItems.filter(item => item.semanticKinds?.includes('fish')).flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean).map(alias => ({ alias, canonical: item.canonical, category: 'fish', priority: 40 })));
+  const knowledgeItemCandidates = allKnowledge.filter(entry => ['resource', 'item'].includes(entry.subject?.category))
+    .flatMap(entry => [entry.subject?.canonical, entry.subject?.displayName, ...(entry.aliases || [])].filter(Boolean)
+      .map(alias => ({ alias, canonical: entry.subject.canonical, category: entry.subject.category === 'resource' ? 'resource' : 'official-item', priority: 32 })));
+  const officialItemNameCandidates = officialItems.filter(item => !item.semanticKinds?.includes('arcane'))
+    .flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean)
+      .map(alias => ({ alias, canonical: item.canonical, category: 'official-item', priority: 30 })));
   const officialNameCandidates = [
     ...fishNameCandidates,
-    ...officialMods.flatMap(mod => [mod.canonical, mod.displayName].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'official' }))),
+    ...officialMods.flatMap(mod => [mod.canonical, mod.displayName, ...(data.aliases?.mods?.[mod.canonical] || [])].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'mod' }))),
     ...arcaneNameCandidates,
     ...frameNameCandidates,
     ...weaponNameCandidates,
     ...consumableNameCandidates
   ];
+  const officialTermIndex = buildOfficialTermIndex([
+    ...officialMods.map(mod => ({
+      canonical: mod.canonical,
+      displayName: mod.displayName,
+      aliases: data.aliases?.mods?.[mod.canonical] || [],
+      category: 'mod',
+      officialUniqueName: mod.uniqueName
+    })),
+    ...officialItems.map(item => ({
+      canonical: item.canonical,
+      displayName: item.displayName,
+      aliases: item.aliases || [],
+      category: item.semanticKinds?.includes('arcane') ? 'arcane' : 'official-item',
+      officialUniqueName: item.uniqueName
+    })),
+    ...officialWeapons.map(weapon => ({
+      canonical: weapon.canonical,
+      displayName: weapon.displayName,
+      aliases: data.aliases?.weapons?.[weapon.canonical] || [],
+      category: 'weapon',
+      officialUniqueName: weapon.uniqueName
+    })),
+    ...allKnowledge.filter(entry => entry.subject?.category === 'frame').map(frame => ({
+      canonical: frame.subject.canonical,
+      displayName: frame.subject.displayName,
+      aliases: data.aliases?.frames?.[frame.subject.canonical] || [],
+      category: 'frame',
+      officialUniqueName: frame.subject.officialUniqueName
+    })),
+    ...consumableNameCandidates.map(candidate => ({ ...candidate, displayName: (data.consumables || []).find(item => item.subject?.canonical === candidate.canonical)?.subject?.displayName }))
+  ]);
   const baseResolveName = createResolver(data.aliases);
   const resolveName = (query, resolveOptions = {}) => {
-    const suppliedCandidates = resolveOptions.candidates || [];
+    const intent = parseResolverIntent(query);
+    const suppliedCandidates = [
+      ...(resolveOptions.candidates || []),
+      ...(intent.categories.includes('resource') ? knowledgeItemCandidates.filter(candidate => candidate.category === 'resource') : []),
+      ...(intent.categories.includes('official-item') ? [...knowledgeItemCandidates.filter(candidate => candidate.category === 'official-item'), ...officialItemNameCandidates] : [])
+    ];
     const suppliedAliases = new Set(suppliedCandidates.map(candidate => normalize(candidate.alias)));
     return baseResolveName(query, {
       ...resolveOptions,
@@ -280,9 +323,9 @@ function createKnowledgeCore(options = {}) {
   const searchKnowledge = (query, searchOptions) => searchEntries(query, data.knowledge, searchOptions);
   const parseAcquisitionCommand = text => {
     const raw = String(text || '').trim();
-    let match = raw.match(/^\/刷(?:\s+(.+))?$/i);
+    let match = raw.match(/^\/?(?:刷|查|wk)(?:\s+(.+))?$/i);
     if (match) return { intent: 'acquisition', query: String(match[1] || '').trim() };
-    match = raw.match(/^刷\s+(.+)$/i) || raw.match(/^怎么刷\s*(.+)$/i);
+    match = raw.match(/^怎么刷\s*(.+)$/i);
     if (!match) return null;
     return { intent: 'acquisition', query: match[1].trim() };
   };
@@ -536,7 +579,21 @@ function createKnowledgeCore(options = {}) {
     return null;
   };
   const resolveItem = query => {
-    const weapon = getWeapon(query);
+    const intent = parseResolverIntent(query);
+    const effectiveQuery = intent.query || intent.commandStripped;
+    if (intent.categories.length) {
+      const resolution = resolveName(query, { minScore: 50, minLead: 5 });
+      if (resolution?.ambiguous) return { kind: 'ambiguous', item: null, recipeVariant: null, candidates: resolution.ambiguous };
+      if (!resolution) return null;
+      if (resolution.category === 'mod') return { kind: 'mod', item: getOfficialMod(resolution.canonical), recipeVariant: null };
+      if (resolution.category === 'weapon') return { kind: 'weapon', item: getWeapon(resolution.canonical), recipeVariant: null };
+      if (resolution.category === 'arcane') return { kind: 'arcane', item: getArcane(resolution.canonical), recipeVariant: null };
+      if (resolution.category === 'frame') return { kind: 'warframe', item: frameAcquisition.resolveWarframe(resolution.canonical), recipeVariant: null };
+      const knowledgeItem = allKnowledge.find(entry => entry.module === 'acquisition' && normalize(entry.subject?.canonical) === normalize(resolution.canonical));
+      if (knowledgeItem) return { kind: resolution.category, item: knowledgeItem, recipeVariant: null };
+      return null;
+    }
+    const weapon = getWeapon(effectiveQuery);
     if (weapon) return { kind: 'weapon', item: weapon, recipeVariant: null };
     const arcane = getArcane(query);
     if (arcane) return { kind: 'arcane', item: arcane, recipeVariant: null };
@@ -703,10 +760,17 @@ function createKnowledgeCore(options = {}) {
     const hasSyndicateRoute = wikiMethods.some(method => method.type === 'syndicate-exchange' || method.type === 'syndicate-exchange-group');
     const sourceKey = value => normalize(value).replace(/archwing/g, '').replace(/[^a-z0-9\u3400-\u9fff]/g, '');
     const wikiSourceKeys = new Set(wikiMethods.filter(method => method.sourceCanonical).map(method => `${method.type}:${sourceKey(method.sourceCanonical)}`));
+    const authoritativeEnemySources = new Set(wikiMethods
+      .filter(method => method.type === 'enemy-drop' && method.sourceEntityId)
+      .map(method => method.sourceEntityId));
     const officialDrops = rawOfficialDrops.filter(method => {
       if (hasSyndicateRoute && /^(?:Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence),/i.test(method.sourceCanonical || '')) return false;
       const source = sourceKey(method.sourceCanonical);
       if (!source) return true;
+      if (authoritativeEnemySources.size) {
+        const enemy = data.enemies.get(String(method.sourceCanonical || '').replace(/\s*\(Level\s*\d+\s*-\s*\d+\)\s*$/i, ''));
+        if (enemy && !authoritativeEnemySources.has(enemy.id)) return false;
+      }
       return !wikiSourceKeys.has(`${method.type}:${source}`) && !wikiSourceKeys.has(`official-drop:${source}`) && !wikiSourceKeys.has(`enemy-drop:${source}`);
     });
     return [...wikiMethods, ...officialDrops];
@@ -726,8 +790,6 @@ function createKnowledgeCore(options = {}) {
     const raw = String(method.sourceCanonical || '');
     const requiemRelic = raw.match(/^Requiem\s+([IVX]+)\s+Relic(?:\s+\([^)]+\))?$/i);
     if (requiemRelic) return { ...method, type: 'reward-or-drop', sourceDisplayName: `安魂遗物 ${requiemRelic[1].toUpperCase()}`, sourceKind: 'relic-reward' };
-    const source = data.arcaneSources.get(raw);
-    if (source && source.localization?.status !== 'canonical-fallback') return { ...method, type: source.kind === 'enemy-drop' ? 'enemy-drop' : 'reward-or-drop', sourceEntityId: source.id, sourceDisplayName: displayEntityName(source), sourceKind: source.kind };
     const mission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i);
     if (mission) {
       const location = data.locations.get(mission[1]);
@@ -735,7 +797,10 @@ function createKnowledgeCore(options = {}) {
       return { ...method, type: missionType ? 'mission-reward' : 'reward-or-drop', locationId: location?.id || null, locationDisplayName: location ? displayEntityName(location) : null, nodeCanonical: mission[2], missionTypeId: missionType?.id || null, missionTypeDisplayName: missionType ? displayEntityName(missionType) : null, rotation: mission[4] || method.rotation || null };
     }
     const enemy = data.enemies.get(raw.replace(/\s*\(Level\s*\d+\s*-\s*\d+\)\s*$/i, ''));
-    return enemy ? enrichModMethod({ ...method, type: 'enemy-drop', sourceEntityId: enemy.id }) : { ...method, type: 'unresolved-source', sourceDisplayName: null };
+    if (enemy) return enrichModMethod({ ...method, type: 'enemy-drop', sourceEntityId: enemy.id });
+    const source = data.arcaneSources.get(raw);
+    if (source && source.localization?.status !== 'canonical-fallback' && source.kind !== 'enemy-drop') return { ...method, type: 'reward-or-drop', sourceEntityId: source.id, sourceDisplayName: displayEntityName(source), sourceKind: source.kind };
+    return { ...method, type: 'unresolved-source', sourceDisplayName: null };
   };
   const enrichModMethod = method => {
     if (method.type === 'mission-reward' && method.missionTypeCanonical) {
@@ -776,14 +841,17 @@ function createKnowledgeCore(options = {}) {
       const requirements = normalizeRequirements(rawRequirements);
       return { ...method, requirements, ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
     }
-    if (method.type !== 'enemy-drop' || !method.sourceEntityId) return method;
-    const enemy = data.enemies.get(method.sourceEntityId);
-    const location = enemy?.locationId ? data.locations.get(enemy.locationId) : null;
+    if (method.type !== 'enemy-drop') return method;
+    const enemy = data.enemies.get(method.sourceEntityId || method.sourceCanonical);
+    if (!enemy) return { ...method, type: 'unresolved-source', sourceDisplayName: null };
+    const location = enemy.locationId ? data.locations.get(enemy.locationId) : null;
     const parent = location?.parentId ? data.locations.get(location.parentId) : null;
     const missionType = enemy?.missionTypeId ? data.missionTypes.get(enemy.missionTypeId) : null;
     return {
       ...method,
-      ...(enemy ? { sourceDisplayName: (() => { const name = displayEntityName(enemy); const faction = enemy.factionId ? data.factions.get(enemy.factionId) : null; return faction ? name.replace(new RegExp(`^${faction.canonical}\\s*`, 'i'), displayEntityName(faction)) : name; })(), ...(enemy.bossLocation ? { bossLocation: enemy.bossLocation } : {}) } : {}),
+      sourceEntityId: enemy.id,
+      sourceDisplayName: (() => { const name = displayEntityName(enemy); const faction = enemy.factionId ? data.factions.get(enemy.factionId) : null; return faction ? name.replace(new RegExp(`^${faction.canonical}\\s*`, 'i'), displayEntityName(faction)) : name; })(),
+      ...(enemy.bossLocation ? { bossLocation: enemy.bossLocation } : {}),
       ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
       ...(parent ? { planetId: parent.id, planetDisplayName: displayEntityName(parent) } : {}),
       ...(missionType ? { missionTypeId: missionType.id, missionTypeDisplayName: displayEntityName(missionType) } : {})
@@ -920,16 +988,23 @@ function createKnowledgeCore(options = {}) {
     if (resolved.kind === 'ambiguous') return createAcquisitionResult({ query, status: 'ambiguous', notes: resolved.candidates.map(item => item.displayName) });
     if (resolved.kind === 'official-item') {
       const resourceEntry = allKnowledge.find(entry => entry.module === 'acquisition' && entry.subject?.category === 'resource' && normalize(entry.subject?.canonical) === normalize(resolved.item.canonical));
-      const publishRawDrops = !resourceEntry || resourceEntry.reviewStatus === 'approved';
-      const evidence = [
-        ...(publishRawDrops ? (resolved.item.drops || []).map(drop => createAcquisitionEvidence({ type: 'drop', source: drop.location || 'Warframe Public Export', chance: drop.chance ?? null })) : []),
-        ...(!resolved.recipeVariant?.pendingWikiEvidence ? (resolved.item.recipes || []).map(recipe => createAcquisitionEvidence({ type: 'recipe', source: resolved.item.sourceFile || recipe.provenance?.source || 'Warframe Public Export', sourceId: recipe.id, quantity: recipe.outputQuantity })) : [])
-      ];
+      const resourceResult = resourceEntry?.reviewStatus === 'approved' ? resourceAcquisition.getResourceAcquisition(resolved.item.canonical) : null;
+      const evidence = resourceEntry
+        ? (resourceResult?.structuredMethods || []).map(method => createAcquisitionEvidence({
+            type: method.type,
+            source: method.sourceDisplayName || method.locationDisplayName || method.missionTypeDisplayName || '审核获取方法',
+            sourceId: method.sourceEntityId || null,
+            locationId: method.locationId || null,
+            chance: method.chance ?? null,
+            quantity: method.quantity ?? null
+          }))
+        : (resolved.item.drops || []).map(drop => createAcquisitionEvidence({ type: 'drop', source: drop.location || 'Warframe Public Export', chance: drop.chance ?? null }));
+      if (!resolved.recipeVariant?.pendingWikiEvidence) evidence.push(...(resolved.item.recipes || []).map(recipe => createAcquisitionEvidence({ type: 'recipe', source: resourceEntry ? '审核制造配方' : (resolved.item.sourceFile || recipe.provenance?.source || 'Warframe Public Export'), sourceId: recipe.id, quantity: recipe.outputQuantity })));
       const notes = [
         ...(resolved.recipeVariant?.pendingWikiEvidence ? [resolved.recipeVariant.note] : []),
-        ...(!publishRawDrops ? ['资源掉落来源尚未完成实体化审核，Public Export 原始掉落字段已从发布证据隔离。'] : [])
+        ...(resourceEntry && !resourceResult ? ['资源获取来源尚未完成实体化审核，原始上游字段已从发布证据隔离。'] : [])
       ];
-      return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: resolved.recipeVariant ? [resolved.recipeVariant] : resolved.item.recipeVariants, status: publishRawDrops ? 'resolved' : 'review-required', notes });
+      return createAcquisitionResult({ query, item: resolved.item, evidence, recipeVariants: resolved.recipeVariant ? [resolved.recipeVariant] : resolved.item.recipeVariants, status: !resourceEntry || resourceResult ? 'resolved' : 'review-required', notes });
     }
     if (resolved.kind === 'weapon' || resolved.kind === 'consumable') {
       const local = getAcquisition(query, acquisitionOptions);
@@ -965,6 +1040,14 @@ function createKnowledgeCore(options = {}) {
   const getAcquisition = (query, searchOptions = {}) => {
     const raw = String(query || '').trim();
     if (!raw) return null;
+    const resolverIntent = parseResolverIntent(raw);
+    if (resolverIntent.categories.length && !resolverIntent.categories.includes('arcane') && !getOfficialMod(raw)) {
+      const typedCollection = getAcquisitionCollection(raw);
+      if (typedCollection) return typedCollection;
+      const typedResolution = resolveName(raw, searchOptions.resolveOptions || {});
+      if (!typedResolution || typedResolution.ambiguous) return { query: raw, resolution: typedResolution, entry: null, methods: [], sourceOptions: [], alternatives: [] };
+      return getAcquisition(typedResolution.canonical, searchOptions);
+    }
     const explicitArcaneType = /赋能/i.test(raw);
     const explicitArcaneResolution = explicitArcaneType ? resolveArcane(raw, searchOptions.resolveOptions || {}) : null;
     if (explicitArcaneResolution?.ambiguous) {
@@ -1015,7 +1098,8 @@ function createKnowledgeCore(options = {}) {
       const maxRank = Number(arcaneEntry.maxRank ?? generated.stats?.maxRank ?? 0);
       const rankFusion = getArcaneMetadata(arcaneEntry.subject?.officialUniqueName || arcaneEntry.subject?.canonical)?.rankFusion
         || arcaneFusionMetadata(maxRank, arcaneMethodDefinition?.rankCopyRule);
-      const structuredMethods = mergeArcaneMethods(arcaneEntry).map(enrichArcaneMethod);
+      const structuredMethods = routesToMethods([{ scope: 'item', category: 'arcane', requirements: { type: 'none' }, methods: mergeArcaneMethods(arcaneEntry), status: arcaneEntry.acquisitionStatus || 'review-required' }], data);
+      const publishedMethods = structuredMethods.filter(method => method.reviewStatus !== 'review-required');
       const methodRequirements = structuredMethods.map(method => normalizeRequirements(method.requirements)).filter(requirement => requirement.type !== 'none');
       // 多来源赋能的条件属于各自 method，不能再提升到结果顶层重复渲染。
       const requirements = { type: 'none' };
@@ -1025,27 +1109,13 @@ function createKnowledgeCore(options = {}) {
         query: raw,
         resolution: { canonical: arcaneEntry.subject.canonical, exact: true },
         entry: arcaneEntry,
-        description: [renderArcaneAcquisition(arcaneEntry), renderAcquisition(structuredMethods, { displayName: arcaneEntry.subject?.displayName || arcaneEntry.title, registries: data, showProbabilities: false })].filter(Boolean).join('\n\n'),
+        description: [renderArcaneAcquisition(arcaneEntry), renderAcquisition(publishedMethods, { displayName: arcaneEntry.subject?.displayName || arcaneEntry.title, registries: data, showProbabilities: false })].filter(Boolean).join('\n\n'),
         categories: [{ id: category, displayName: arcaneMethodDefinition?.categoryLabels?.[category] || category }],
         methods: [],
         sourceOptions: [],
         requirements,
         requirementLines,
-        structuredMethods: structuredMethods.map(method => {
-          const entity = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;
-          const location = method.locationId ? data.locations.get(method.locationId) : null;
-          const missionType = method.missionTypeId ? data.missionTypes.get(method.missionTypeId) : null;
-          const methodRequirements = normalizeRequirements(method.requirements);
-          return {
-            ...method,
-            requirements: methodRequirements,
-            requirementLines: renderRequirements(methodRequirements, data),
-            ...(entity ? { sourceDisplayName: displayEntityName(entity), sourceKind: entity.kind } : {}),
-            ...(method.sourceEntityId && data.npcs.get(method.sourceEntityId) ? { sourceDisplayName: displayEntityName(data.npcs.get(method.sourceEntityId)) } : {}),
-            ...(location ? { locationDisplayName: displayEntityName(location) } : {}),
-            ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
-          };
-        }),
+        structuredMethods,
         wikiEvidence,
         arcane: { category, maxRank, requiredCopies: rankFusion.requiredCopies, rankFusion, availability: category === 'legacy' ? 'unavailable-review-required' : 'available' },
         alternatives: []
@@ -1101,11 +1171,13 @@ function createKnowledgeCore(options = {}) {
     const requirementLines = renderRequirements(requirements, data);
     const isFrame = entry.subject?.category === 'frame';
     const frameRoute = isFrame ? frameAcquisition.renderRoutedAcquisition(canonical) : null;
-    if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute) {
+    const hasReviewRequiredExchange = rawStructuredMethods.some(method => ['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method.type) && method.reviewStatus === 'review-required')
+      || (entry.frameAcquisition?.generated?.routing?.methods || []).some(method => ['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method.type) && method.requirements?.type === 'standing' && !(Number(method.requirements.amount) > 0));
+    if (isFrame && !entry.frameAcquisition?.generated?.isPrime && !frameRoute && !hasReviewRequiredExchange) {
       throw new Error(`战甲 ${canonical} 的分类路由未能从 method 或人工条目渲染，禁止回退到旧硬编码文案`);
     }
     const frameRouting = entry.frameAcquisition?.manual?.routingOverride || entry.frameAcquisition?.generated?.routing || {};
-    const frameRouteMethods = isFrame && frameRoute ? (() => {
+    const frameRouteMethods = isFrame && (frameRoute || hasReviewRequiredExchange) ? (() => {
       const variables = frameRouting.componentVariables || {};
       const methods = [...(frameRouting.methods || [])];
       if (frameRouting.componentCategory === 'frame-assassination' && variables.enemyId) {
@@ -1122,7 +1194,7 @@ function createKnowledgeCore(options = {}) {
           reviewStatus: 'approved',
           provenance: { source: 'frame-route', entryId: entry.id, sourceCanonical: variables.sourceCanonical }
         });
-      } else if (frameRoute.componentLine) {
+      } else if (frameRoute?.componentLine) {
         const questComponent = frameRouting.componentCategory === 'frame-quest' && variables.questId
         methods.push({
           type: questComponent ? 'quest-reward' : 'route',
@@ -1138,7 +1210,7 @@ function createKnowledgeCore(options = {}) {
           provenance: { source: 'frame-route', entryId: entry.id }
         });
       }
-      if (frameRoute.blueprintLine && !methods.some(method => method.scope === 'blueprint')) methods.push({ type: 'route', scope: 'blueprint', category: frameRouting.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } });
+      if (frameRoute?.blueprintLine && !methods.some(method => method.scope === 'blueprint')) methods.push({ type: 'route', scope: 'blueprint', category: frameRouting.blueprintCategory || 'blueprint', variables: { text: frameRoute.blueprintLine }, requirements: { type: 'none' }, provenance: { source: 'frame-route', entryId: entry.id } });
       methods.sort((left, right) => (left.scope === 'blueprint' ? -1 : 0) - (right.scope === 'blueprint' ? -1 : 0));
       return methods;
     })() : [];
@@ -1177,7 +1249,7 @@ function createKnowledgeCore(options = {}) {
     const structuredDescription = renderAcquisition(structuredMethods, { displayName: entry.subject?.displayName || entry.title, registries: data });
     const hasApprovedDailyTribute = structuredMethods.some(method => method.type === 'daily-tribute' && method.reviewStatus === 'approved');
     const syndicateHeader = hasSyndicateMethods && syndicateDescription ? syndicateDescription.split(/\n\n获取来源：/)[0] : null;
-    const exchangeMethods = structuredMethods.filter(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange');
+    const exchangeMethods = structuredMethods.filter(method => method.reviewStatus !== 'review-required' && (method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange'));
     const hasStructuredExchange = exchangeMethods.length > 0;
     const useStructuredFrameDescription = frameRouting.componentCategory === 'frame-assassination'
       || (isFrame && hasStructuredExchange && frameRouting.componentCategory === 'frame-quest');
@@ -1208,7 +1280,7 @@ function createKnowledgeCore(options = {}) {
       : null;
     const preferStructuredDescription = !isFrame && (!defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute
       || (entry.subject?.category === 'weapon' && Boolean(structuredDescription))
-      || (entry.subject?.category === 'mod' && structuredMethods.some(method => ['mission-reward', 'circuit-reward', 'enemy-drop'].includes(method.type)) && Boolean(structuredDescription)));
+      || (entry.subject?.category === 'mod' && structuredMethods.some(method => method.reviewStatus !== 'review-required' && ['mission-reward', 'circuit-reward', 'enemy-drop', 'vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method.type)) && Boolean(structuredDescription)));
     return {
       query: raw,
       resolution,
@@ -1247,6 +1319,7 @@ function createKnowledgeCore(options = {}) {
           enemy: sections.enemy.map(item => item.text),
           other: sections.other.map(item => item.text)
         },
+        sectionNotes: sections.notes,
         materials: [],
         detailOptions: [],
         credits: null,
@@ -1275,6 +1348,7 @@ function createKnowledgeCore(options = {}) {
           enemy: sections.enemy.map(item => item.text),
           other: sections.other.map(item => item.text)
         },
+        sectionNotes: sections.notes,
         materials: [],
         detailOptions: [],
         credits: null,
@@ -1283,7 +1357,7 @@ function createKnowledgeCore(options = {}) {
     }
     const entry = result?.entry;
     const kind = entry?.subject?.category;
-    if (!result || !['mod', 'arcane', 'weapon'].includes(kind)) return null;
+    if (!result || !['mod', 'arcane', 'weapon', 'resource', 'material', 'currency', 'item'].includes(kind)) return null;
     const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
     const family = acquisitionVariantFamilyByMember.get(uniqueName);
     const variants = (family?.members || []).map(member => acquisitionIdentityByUniqueName.get(member)).filter(Boolean).map(variant => ({
@@ -1294,7 +1368,7 @@ function createKnowledgeCore(options = {}) {
     }));
     const sections = acquisitionCardSections(result.structuredMethods || [], { registries: data });
     const recipe = kind === 'weapon' ? (result.recipes || entry.recipes || [])[0] : null;
-    const sectionItems = Object.fromEntries(Object.entries(sections).map(([group, items]) => [group, items.map(item => ({
+    const sectionItems = Object.fromEntries(Object.entries(sections).filter(([, items]) => Array.isArray(items)).map(([group, items]) => [group, items.map(item => ({
       text: item.text,
       methodType: item.method?.type || null,
       currencies: [...(item.method?.currency || []), ...(item.method?.requirements?.currency || [])]
@@ -1326,11 +1400,15 @@ function createKnowledgeCore(options = {}) {
         enemy: sections.enemy.map(item => item.text),
         other: sections.other.map(item => item.text)
       },
+      sectionNotes: sections.notes,
       sectionItems,
       modInfo: kind === 'mod' ? {
         maxRank: Number.isInteger(maxRank) ? maxRank : null,
         rarity,
         polarity: entry.polarity || result.officialMod?.polarity || null,
+        type: result.officialMod?.type || null,
+        typeDisplayName: result.officialMod?.typeDisplayName || null,
+        compatName: result.officialMod?.compatName || null,
         descriptionLines: modDescriptionLines(entry, result.officialMod),
         fusionCost: modFusionCost(maxRank, rarity)
       } : null,
@@ -1410,6 +1488,7 @@ function createKnowledgeCore(options = {}) {
   return {
     ...data,
     resolveName,
+    findOfficialTermsInText: text => findOfficialTermsInText(text, officialTermIndex),
     normalizeTerms,
     parseAcquisitionCommand,
     resolveAcquisitionCommand,

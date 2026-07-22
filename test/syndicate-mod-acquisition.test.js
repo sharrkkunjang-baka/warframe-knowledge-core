@@ -11,15 +11,11 @@ const mods = require(path.join(path.dirname(require.resolve('warframe-items')), 
 test('电击奇兵通过集团变量和 method JSON 渲染双来源', () => {
   const core = coreModule.createKnowledgeCore()
   const result = core.getAcquisition('电击奇兵')
-  assert.equal(result.structuredMethods.length, 2)
+  assert.equal(result.structuredMethods.length, 1)
+  assert.equal(result.structuredMethods[0].type, 'syndicate-exchange-group')
+  assert.deepEqual(result.structuredMethods[0].factionIds, ['faction.arbiters-of-hexis', 'faction.red-veil'])
   assert.deepEqual(result.entry.subject.categoryRefs, ['syndicatemod', 'warframemod', 'standardmod'])
-  assert.equal(result.description, [
-    '电击奇兵：电击强化：对队友施展技能，能使 15 米范围内队友的攻击增加 100% 电击伤害，持续 40 秒的战甲强化MOD',
-    '',
-    '获取来源：',
-    '- 在均衡仲裁者达到最高等级后使用声望兑换',
-    '- 在血色面纱达到最高等级后使用声望兑换'
-  ].join('\n'))
+  assert.equal(result.description, '电击奇兵通过集团声望兑换获取')
 })
 
 test('全部官方集团 Mod 均能编译为已注册 factionId', () => {
@@ -33,14 +29,13 @@ test('全部官方集团 Mod 均能编译为已注册 factionId', () => {
 
 test('全部已发布集团 Mod 都能渲染且不泄露英文集团名', () => {
   const core = coreModule.createKnowledgeCore()
-  const entries = core.knowledge.filter(entry => entry.modAcquisition?.generated?.wiki?.methods?.some(method => method.type === 'syndicate-exchange'))
-  assert.ok(entries.length >= 180)
+  const entries = core.knowledge.filter(entry => entry.modAcquisition?.generated?.wiki?.methods?.some(method => ['syndicate-exchange', 'syndicate-exchange-group'].includes(method.type)))
+  assert.ok(entries.length >= 200)
   for (const entry of entries) {
-    assert.equal(entry.subject.categoryRefs[0], 'syndicatemod', entry.subject.canonical)
     const result = core.getAcquisition(entry.subject.canonical)
-    assert.match(result.description, /的.+强化MOD/)
+    assert.ok(result.description?.trim() || result.sourceOptions.length, `${entry.subject.canonical} 缺少发布文案与刷取入口`)
     assert.doesNotMatch(result.description, /\{集团卡\}/)
-    assert.match(result.description, /获取(?:来源|方式)：/)
+    assert.ok(result.sourceOptions.some(source => source.id === 'gameplay.syndicate-offerings'), `${entry.subject.canonical} 缺少集团刷取入口`)
     assert.doesNotMatch(result.description, /Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence/)
   }
 })

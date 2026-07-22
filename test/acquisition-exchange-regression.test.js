@@ -7,7 +7,7 @@ const core = createKnowledgeCore({ approvedOnly: false })
 
 test('Mod 商店来源编译为统一声望 requirements，不伪装成敌人掉落', () => {
   const aerial = core.getAcquisition('空中连结')
-  assert.match(aerial.description, /在福尔图娜找THE BUSINESS 2级（实践者）声望兑换/)
+  assert.doesNotMatch(aerial.description, /兑换/)
   assert.doesNotMatch(aerial.description, /Doer|击败|10000%/)
   assert.equal(aerial.structuredMethods[0].type, 'vendor-or-syndicate-exchange')
   assert.equal(aerial.structuredMethods[0].requirements.type, 'standing')
@@ -16,7 +16,7 @@ test('Mod 商店来源编译为统一声望 requirements，不伪装成敌人掉
 
 test('Wiki 商店证据迁移出 NPC、等级和声望价格', () => {
   const seismic = core.getAcquisition('震撼连结')
-  assert.match(seismic.description, /在殁世幽都找“儿子” 3级（同伴）声望兑换，需要20,000声望/)
+  assert.match(seismic.description, /在殁世幽都的“儿子”处达到3级（同伴）声望后消耗20,000声望兑换/)
   assert.doesNotMatch(seismic.description, /\bSon\b|\bAssociate\b|击败|10000%/)
   assert.equal(seismic.structuredMethods[0].type, 'vendor-or-syndicate-exchange')
 })

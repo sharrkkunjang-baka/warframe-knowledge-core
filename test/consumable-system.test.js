@@ -21,7 +21,7 @@ test('关键消耗品使用统一获取协议并保留配方属性',()=>{
     assert.doesNotMatch(result.description,/official-zh-unavailable|review-required|\/Lotus\//)
   }
   const specter=core.getAcquisition('幻雾魅影')
-  assert.match(specter.description,/总图：完成救援任务，根据救援等级获得/)
+  assert.match(specter.description,/总图：在福尔图娜的夜帽处消耗50个铁离石兑换；完成救援任务，根据救援等级获得/)
   assert.equal(specter.recipes[0].outputQuantity,10)
   assert.equal(specter.recipes[0].consumeOnBuild,true)
   const infested=core.getAcquisition('Infested 催化剂')

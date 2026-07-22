@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/OrokinFishSaganModuleItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -34,11 +34,32 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "重筑虾萨根模块"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "resource-processing",
+            "npcId": "npc.the-business",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "拆解Charamote",
+            "variables": {
+              "sourceFishCanonicals": [
+                "Charamote"
+              ],
+              "allServofish": false
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official fish-part description"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -56,8 +77,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "重筑虾萨根模块的资源身份与获取证据。",
   "tags": [
     "acquisition",

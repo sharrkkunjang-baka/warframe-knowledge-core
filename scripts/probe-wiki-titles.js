@@ -1,0 +1,1 @@
+const B=require('better-sqlite3'),d=new B('.cache/warframe-wiki.sqlite',{readonly:true});for(const n of ['Arcane Aegis','Ammo Drum','Antitoxin (Gear)','Eternal Eradicate']){console.log('\n'+n);console.log(d.prepare('select title from pages where title like ? limit 20').all('%'+n.replace(/ /g,'%')+'%'))}

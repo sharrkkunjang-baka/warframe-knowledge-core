@@ -60,17 +60,63 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.mars",
-                "missionNodeId": "mission-node.tyana-pass",
-                "rotation": "C"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.mars",
+                    "missionNodeId": "mission-node.tyana-pass",
+                    "rotation": "C",
+                    "chance": 0.061
+                  }
+                ],
+                "sourceCanonical": [
+                  "Mars/Tyana Pass (Defense), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.mars",
+                    "missionNodeId": "mission-node.tyana-pass",
+                    "rotation": "C",
+                    "chance": 0.061
+                  }
+                ],
+                "sourceCanonical": [
+                  "Mars/Tyana Pass (Defense), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.mars",
+                    "missionNodeId": "mission-node.tyana-pass",
+                    "rotation": "C",
+                    "chance": 0.061
+                  }
+                ],
+                "sourceCanonical": [
+                  "Mars/Tyana Pass (Defense), Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Mars/Tyana Pass (Defense), Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "mission-node",
@@ -94,7 +140,7 @@
                 "amount": 1550
               }
             ],
-            "isBuffUseless": true
+            "boosterPolicy": "currency-entity-metadata"
           },
           "methods": [
             {

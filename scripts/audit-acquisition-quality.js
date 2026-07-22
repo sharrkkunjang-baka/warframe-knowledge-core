@@ -8,9 +8,11 @@ const { loadData } = require('../src/loader')
 const ROOT = path.resolve(__dirname, '..')
 const OUTPUT = path.join(ROOT, 'generated', 'acquisition-quality-audit.json')
 const BARE_NUMERIC = /^(?:[-•]\s*)?(?:\d+(?:\.\d+)?|\d+(?:\.\d+)?%\s*[（(]\d+(?:\.\d+)?%[）)])$/
-const RAW_LABEL = /\((?:Bounty|Mission|Rotation)\)|\b(?:sourceCanonical|chance|quantity|rarity|reviewStatus|DT_[A-Z_]+)\b/i
+const RAW_LABEL = /\((?:Bounty|Mission|Rotation)\)|\b(?:sourceCanonical|chance|quantity|rarity|reviewStatus|rawRows?|rawTable|dropTable|chart|probabilityArray|DTO|formatter|DT_[A-Z_]+)\b/i
+const RAW_TABLE_LINE = /^(?:[-•]\s*)?(?:\|.*\||(?:[^|]+\|){2,}[^|]+|\[\s*\{?|\{\s*"(?:chance|location|rarity|sourceCanonical)"|(?:Common|Uncommon|Rare)\s+\d+(?:\.\d+)?%)$/i
+const INTERNAL_FIELD = /\b(?:sourceCanonical|sourceEntityId|locationId|missionTypeId|reviewStatus|provenance|rawRows?|rawTable|dropTable|probabilityArray|DTO|formatter)\b/i
 
-function inspectMethod(method) {
+function inspectMethod(method, registries = null) {
   const issues = []
   if (!method || typeof method !== 'object' || !method.type) issues.push('invalid-method')
   if (!method?.requirements || !Array.isArray(method?.requirementLines)) issues.push('invalid-requirement-protocol')
@@ -25,6 +27,11 @@ function inspectMethod(method) {
   if (BARE_NUMERIC.test(source)) issues.push('bare-numeric-source')
   if (RAW_LABEL.test(source)) issues.push('raw-upstream-label')
   if (method?.reviewStatus === 'review-required' || method?.category === 'unresolved') issues.push('unresolved-method')
+  if (method?.type === 'enemy-drop') {
+    const sourceIds = [...new Set([method.sourceEntityId, ...(method.variables?.sourceEntityIds || [])].filter(Boolean))]
+    if (sourceIds.length && registries?.enemies && sourceIds.some(id => !registries.enemies.get(id))) issues.push('enemy-source-not-in-registry')
+    if (!sourceIds.length && /^(?:(?:fragment|placeholder|objective)(?:\s|[-_]|\d|$)|(?:碎片|占位|任务对象))/i.test(source)) issues.push('suspicious-enemy-source')
+  }
   return issues
 }
 
@@ -41,10 +48,12 @@ function audit() {
     if (!canonical) continue
     const result = core.getAcquisition(canonical)
     const methods = result?.structuredMethods || []
-    const issues = methods.flatMap(inspectMethod)
+    const issues = methods.flatMap(method => inspectMethod(method, data))
     const visible = String(result?.description || '')
-    if (visible.split(/\r?\n/).some(line => BARE_NUMERIC.test(line.trim()))) issues.push('bare-numeric-line')
-    if (RAW_LABEL.test(visible)) issues.push('raw-upstream-label')
+    const visibleLines = visible.split(/\r?\n/).map(line => line.trim())
+    if (visibleLines.some(line => BARE_NUMERIC.test(line))) issues.push('bare-numeric-line')
+    if (visibleLines.some(line => RAW_TABLE_LINE.test(line))) issues.push('raw-table-line')
+    if (RAW_LABEL.test(visible) || INTERNAL_FIELD.test(visible)) issues.push('raw-upstream-label')
     const vaultedPrime = entry.subject?.category === 'weapon' && entry.acquisition?.prime?.kind === 'prime-relic' && entry.acquisition?.prime?.status === '???';
     const primeEvidenceOnly = entry.subject?.category === 'weapon' && entry.acquisition?.prime?.kind === 'prime-relic' && entry.acquisition?.prime?.status !== '???' && (entry.acquisition?.routes || []).some(route => route.methods?.length);
     const publishedMethodlessAllowed = vaultedPrime || primeEvidenceOnly;
@@ -79,4 +88,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run() } catch (error) { console.error(error.stack || error); process.exit(1) } }
-module.exports = { BARE_NUMERIC, RAW_LABEL, inspectMethod, audit, run }
+module.exports = { BARE_NUMERIC, RAW_LABEL, RAW_TABLE_LINE, INTERNAL_FIELD, inspectMethod, audit, run }

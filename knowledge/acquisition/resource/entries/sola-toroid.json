@@ -9,9 +9,17 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Venus/Resources/ArachnoidWraithItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
+    ],
+    "roleTags": [
+      "resource",
+      "exchange-token",
+      "standing-turn-in"
     ]
   },
+  "aliases": [
+    "索拉环形装置"
+  ],
   "prerequisites": [],
   "methodRefs": [],
   "resourceAcquisition": {
@@ -48,18 +56,68 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "索拉环型装置"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.kyta-raknoid",
+            "locationId": "landscape.orb-vallis",
+            "chance": 0.2,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          },
+          {
+            "type": "open-world-gathering",
+            "locationId": "landscape.orb-vallis",
+            "sourceDisplayName": "奥布山谷润盈殿及洞穴",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
       "tips": [],
       "tipKeywords": [],
-      "routingOverride": null,
-      "reviewedBy": []
+      "routingOverride": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "索拉环型装置"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.kyta-raknoid",
+            "locationId": "landscape.orb-vallis",
+            "chance": 0.2,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          },
+          {
+            "type": "open-world-gathering",
+            "locationId": "landscape.orb-vallis",
+            "sourceDisplayName": "奥布山谷润盈殿及洞穴",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      },
+      "reviewedBy": [
+        "de-public-export-and-current-wiki-audit"
+      ]
     }
   },
   "sources": [
@@ -70,8 +128,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "de-public-export-and-current-wiki-audit"
+  ],
   "summary": "索拉环型装置的资源身份与获取证据。",
   "tags": [
     "acquisition",

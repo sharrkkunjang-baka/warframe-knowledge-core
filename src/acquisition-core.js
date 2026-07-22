@@ -1,6 +1,6 @@
 'use strict'
 
-const { normalizeRequirements, renderRequirements } = require('./acquisition-protocol')
+const { normalizeRequirements, renderRequirements, exchangeRequirementIssues } = require('./acquisition-protocol')
 const { displayEntityName } = require('./entities')
 
 function methodIdentity(method) {
@@ -40,13 +40,14 @@ function enrichMethod(method, registries) {
       return entity ? { ...item, currencyId: entity.id } : item;
     }) } };
   }
-  if (rawRequirements.type === 'standing') { rawRequirements = { ...rawRequirements, ...(method.factionId ? { factionId: rawRequirements.factionId || method.factionId } : {}), rank: rawRequirements.rank ?? method.requiredLevel ?? null, rankName: rawRequirements.rankName || method.requiredRankName || null, amount: rawRequirements.amount ?? method.standing ?? null } }
-  const sourceId = method.sourceEntityId || method.npcId || method.requirements?.npcId
+  if (rawRequirements.type === 'standing') { rawRequirements = { ...rawRequirements, npcId: rawRequirements.npcId || method.npcId || null, locationId: rawRequirements.locationId || method.locationId || null, ...(method.factionId ? { factionId: rawRequirements.factionId || method.factionId } : {}), rank: rawRequirements.rank ?? method.requiredLevel ?? null, rankName: rawRequirements.rankName || method.requiredRankName || null, amount: rawRequirements.amount ?? method.standing ?? null } }
+  if (rawRequirements.type === 'currency') { rawRequirements = { ...rawRequirements, npcId: rawRequirements.npcId || method.npcId || method.sourceEntityId || null, locationId: rawRequirements.locationId || method.locationId || null } }
+  const sourceId = method.sourceEntityId || method.npcId || rawRequirements.npcId
   const source = sourceId && (
     entity(registries, 'arcaneSources', sourceId) || entity(registries, 'enemies', sourceId) ||
     entity(registries, 'npcs', sourceId) || entity(registries, 'locations', sourceId)
   )
-  const npc = entity(registries, 'npcs', method.npcId || method.requirements?.npcId)
+  const npc = entity(registries, 'npcs', method.npcId || rawRequirements.npcId)
   const location = entity(registries, 'locations', method.locationId || method.requirements?.locationId || npc?.locationId)
   const quest = entity(registries, 'quests', method.questId || method.requirements?.questId)
   const faction = entity(registries, 'factions', method.factionId || method.requirements?.factionId)
@@ -67,7 +68,10 @@ function enrichMethod(method, registries) {
 }
 
 function structuredMethods(methods, registries) {
-  const enriched = mergeMethods(methods).map(method => enrichMethod(method, registries))
+  const enriched = mergeMethods(methods).map(method => enrichMethod(method, registries)).map(method => {
+    const issues = exchangeRequirementIssues(method, registries)
+    return issues.length ? { ...method, reviewStatus: 'review-required', reviewIssues: issues, requirementLines: [] } : method
+  })
   const output = [], byPublicIdentity = new Map()
   for (const method of enriched) {
     // 上游表格可能把同一奖励池拆成多条内部来源（例如 Nightmare Mode

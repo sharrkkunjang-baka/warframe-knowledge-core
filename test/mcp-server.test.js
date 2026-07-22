@@ -25,8 +25,8 @@ test('MCP 按需发布 NPC、地点与阵营变量并禁止猜译', async () => 
   const result = await client.callTool({ name: 'resolve_entity_variables', arguments: { query: 'Fibonacci' } });
   const value = JSON.parse(result.content[0].text);
   assert.equal(value.variables[0].id, 'npc.fibonacci');
-  assert.equal(value.variables[0].localized, false);
-  assert.equal(value.variables[0].displayName, 'Fibonacci');
+  assert.equal(value.variables[0].localized, true);
+  assert.equal(value.variables[0].displayName, '斐波那契');
   assert.match(value.usageRule, /禁止猜译/);
 }));
 

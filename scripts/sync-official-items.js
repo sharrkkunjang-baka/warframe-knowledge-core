@@ -9,6 +9,7 @@ const itemsRoot = path.dirname(require.resolve('warframe-items'));
 const dataRoot = path.join(itemsRoot, 'data', 'json');
 const outputPath = path.join(root, 'knowledge', 'generated', 'official-items.json');
 const sourcesPath = path.join(root, 'generated', 'official-item-sources.json');
+const supplementsPath = path.join(root, 'knowledge', 'reviewed', 'current-item-supplements.json');
 const packageInfo = require(path.join(itemsRoot, 'package.json'));
 const i18n = require(path.join(dataRoot, 'i18n.json'));
 const INPUTS = ['Resources', 'Gear', 'Misc', 'Arcanes'];
@@ -61,6 +62,7 @@ function allowedSemanticKind(item, sourceCategory) {
   if (!ALLOWED_TYPES[sourceCategory]?.has(type)) {
     if (sourceCategory === 'Misc' && type === 'Misc') {
       const text = `${item.name || ''} ${item.uniqueName || ''}`;
+      if (['/Lotus/Types/Items/MiscItems/WaterFightBucks', '/Lotus/Types/Items/MiscItems/1999ConquestBucks', '/Lotus/Types/Items/MiscItems/MechSurvivalEventCreds'].includes(item.uniqueName)) return 'currency-token';
       if (/ArchonCrystal|Archon Shard/i.test(text)) return 'archon-shard';
       if (/(?:Adapter|Reactor|Catalyst|Forma|Lens|Booster)/i.test(text)) return 'upgrade-item';
       if (item.components?.length || item.drops?.length) return 'material-or-usable';
@@ -112,6 +114,10 @@ function recipeFrom(item) {
 
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n`; }
 function increment(map, key) { map[key] = (map[key] || 0) + 1; }
+function countSummary(counts) {
+  const reasons = Object.entries(counts.excludedByReason || {}).sort((a, b) => b[1] - a[1]).map(([reason, count]) => `${reason}=${count}`).join('，');
+  return `${counts.items} 个目录内物品；从 ${counts.input} 个候选中排除 ${counts.excluded} 个目录边界外/内部/重复对象（${reasons}）`;
+}
 
 function buildOfficialItems(generatedAt = new Date().toISOString()) {
   const byUniqueName = new Map();
@@ -162,12 +168,18 @@ function buildOfficialItems(generatedAt = new Date().toISOString()) {
       });
     }
   }
+  const supplements = fs.existsSync(supplementsPath) ? JSON.parse(fs.readFileSync(supplementsPath, 'utf8')).items || [] : [];
+  for (const item of supplements) {
+    if (byUniqueName.has(item.uniqueName)) continue;
+    byUniqueName.set(item.uniqueName, item);
+  }
   const items = [...byUniqueName.values()].sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
-  const inputCount = Object.values(sourceFiles).reduce((sum, source) => sum + source.inputCount, 0);
+  const upstreamInputCount = Object.values(sourceFiles).reduce((sum, source) => sum + source.inputCount, 0);
+  const inputCount = upstreamInputCount + supplements.length;
   return {
     catalog: {
       schemaVersion: 1, generatedAt,
-      source: { package: packageInfo.name, version: packageInfo.version, repository: 'https://github.com/WFCD/warframe-items', inputs: INPUTS.map(name => `${name}.json`), localization: 'i18n.json' },
+      source: { package: packageInfo.name, version: packageInfo.version, repository: 'https://github.com/WFCD/warframe-items', inputs: [...INPUTS.map(name => `${name}.json`), 'knowledge/reviewed/current-item-supplements.json'], localization: 'i18n.json + DE Languages.bin reviewed supplements' },
       counts: { input: inputCount, items: items.length, excluded: inputCount - items.length, byKind: Object.fromEntries(INPUTS.map(name => [name.toLowerCase(), items.filter(item => item.kind === name.toLowerCase()).length])), excludedByReason },
       items
     },
@@ -176,6 +188,7 @@ function buildOfficialItems(generatedAt = new Date().toISOString()) {
       repository: 'https://github.com/WFCD/warframe-items', upstream: 'Warframe Public Export', files: sourceFiles,
       policy: { boundary: 'player-obtainable non-cosmetic items', semanticKindAllowlist: Object.fromEntries(Object.entries(ALLOWED_TYPES).map(([key, values]) => [key, [...values].sort()])), explicitExclusionReasons: EXCLUSIONS.map(([reason]) => reason) },
       counts: { input: inputCount, included: items.length, excluded: inputCount - items.length, excludedByReason },
+      supplements: { file: 'knowledge/reviewed/current-item-supplements.json', count: supplements.length, sourcePolicy: 'DE identity/localization plus current wiki.warframe.com directory evidence' },
       caveats: [{ item: 'Cipher', variant: '100x Cipher', status: 'wiki-required', reason: `warframe-items ${packageInfo.version} does not include the 100x blueprint recipe` }]
     }
   };
@@ -189,13 +202,13 @@ function main() {
   if (check) {
     const currentSources = fs.existsSync(sourcesPath) ? JSON.parse(fs.readFileSync(sourcesPath, 'utf8')) : null;
     if (serialize(current) !== serialize(built.catalog) || serialize(currentSources) !== serialize(built.sources)) { console.error('官方物品目录或来源元数据需要同步'); process.exit(1); }
-    console.log(`官方物品目录已同步：${built.catalog.counts.items} 个物品，排除 ${built.catalog.counts.excluded} 个越界对象`);
+    console.log(`官方物品目录已同步：${countSummary(built.catalog.counts)}`);
     return;
   }
   fs.writeFileSync(outputPath, serialize(built.catalog));
   fs.writeFileSync(sourcesPath, serialize(built.sources));
-  console.log(`已生成官方物品目录：${built.catalog.counts.items} 个物品，排除 ${built.catalog.counts.excluded} 个越界对象`);
+  console.log(`已生成官方物品目录：${countSummary(built.catalog.counts)}`);
 }
 
 if (require.main === module) main();
-module.exports = { ALLOWED_TYPES, EXCLUSIONS, buildOfficialItems, classifyItem, isUserFacing, allowedSemanticKind, semanticKinds, serialize };
+module.exports = { ALLOWED_TYPES, EXCLUSIONS, buildOfficialItems, classifyItem, isUserFacing, allowedSemanticKind, semanticKinds, serialize, countSummary };

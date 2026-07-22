@@ -60,25 +60,59 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "market",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "acquisition-source",
-                "sourceId": "source.granum-void-rotation-c"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.granum-void-rotation-c",
+                    "chance": 0.1111
+                  }
+                ],
+                "sourceCanonical": [
+                  "Granum Void, Rotation C"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.extended-granum-void-rotation-c"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.extended-granum-void-rotation-c",
+                    "chance": 0.1111
+                  }
+                ],
+                "sourceCanonical": [
+                  "Extended Granum Void, Rotation C"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.nightmare-granum-void-rotation-c"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.nightmare-granum-void-rotation-c",
+                    "chance": 0.1111
+                  }
+                ],
+                "sourceCanonical": [
+                  "Nightmare Granum Void, Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Granum Void, Rotation C",
               "Extended Granum Void, Rotation C",
               "Nightmare Granum Void, Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {},
           "blueprintSource": "official-bp-cost",

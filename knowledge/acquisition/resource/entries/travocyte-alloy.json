@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Gems/Solaris/SolarisCommonOreAAlloyItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -26,11 +26,29 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "铁镍合金"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "vendor-processing",
+            "npcId": "npc.smokefinger",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "SMOKEFINGER 的矿物精炼蓝图",
+            "variables": {
+              "activityName": "使用对应原矿制造"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export mineral identity and current Wiki resource directory"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -48,8 +66,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "铁镍合金的资源身份与获取证据。",
   "tags": [
     "acquisition",

@@ -60,17 +60,63 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.eris",
-                "missionNodeId": "mission-node.oestrus",
-                "rotation": "C"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.eris",
+                    "missionNodeId": "mission-node.oestrus",
+                    "rotation": "C",
+                    "chance": 0.1429
+                  }
+                ],
+                "sourceCanonical": [
+                  "Eris/Oestrus (Infested Salvage), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.eris",
+                    "missionNodeId": "mission-node.oestrus",
+                    "rotation": "C",
+                    "chance": 0.1429
+                  }
+                ],
+                "sourceCanonical": [
+                  "Eris/Oestrus (Infested Salvage), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.eris",
+                    "missionNodeId": "mission-node.oestrus",
+                    "rotation": "C",
+                    "chance": 0.1429
+                  }
+                ],
+                "sourceCanonical": [
+                  "Eris/Oestrus (Infested Salvage), Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Eris/Oestrus (Infested Salvage), Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "quest-repurchase",

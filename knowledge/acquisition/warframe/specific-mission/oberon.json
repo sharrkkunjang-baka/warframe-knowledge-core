@@ -60,66 +60,153 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "market",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.earth",
-                "missionNodeId": "mission-node.bendar-cluster",
-                "rotation": null
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.bendar-cluster",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.iota-temple",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.korm-s-belt",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.ogal-cluster",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.sover-strait",
+                    "rotation": null,
+                    "chance": 0.1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Earth/Bendar Cluster (Caches)",
+                  "Earth/Iota Temple (Caches)",
+                  "Earth/Korm's Belt (Caches)",
+                  "Earth/Ogal Cluster (Caches)",
+                  "Earth/Sover Strait (Caches)"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.earth",
-                "missionNodeId": "mission-node.iota-temple",
-                "rotation": null
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.kasio-s-rest",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.lupal-pass",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.mordo-cluster",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.nodo-gap",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.vand-cluster",
+                    "rotation": null,
+                    "chance": 0.1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Saturn/Kasio's Rest (Caches)",
+                  "Saturn/Lupal Pass (Caches)",
+                  "Saturn/Mordo Cluster (Caches)",
+                  "Saturn/Nodo Gap (Caches)",
+                  "Saturn/Vand Cluster (Caches)"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.earth",
-                "missionNodeId": "mission-node.korm-s-belt",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.earth",
-                "missionNodeId": "mission-node.ogal-cluster",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.earth",
-                "missionNodeId": "mission-node.sover-strait",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.kasio-s-rest",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.lupal-pass",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.mordo-cluster",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.nodo-gap",
-                "rotation": null
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.vand-cluster",
-                "rotation": null
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.bendar-cluster",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.iota-temple",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.korm-s-belt",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.ogal-cluster",
+                    "rotation": null,
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.sover-strait",
+                    "rotation": null,
+                    "chance": 0.1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Earth/Bendar Cluster (Caches)",
+                  "Earth/Iota Temple (Caches)",
+                  "Earth/Korm's Belt (Caches)",
+                  "Earth/Ogal Cluster (Caches)",
+                  "Earth/Sover Strait (Caches)"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
@@ -133,7 +220,8 @@
               "Saturn/Mordo Cluster (Caches)",
               "Saturn/Nodo Gap (Caches)",
               "Saturn/Vand Cluster (Caches)"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {},
           "blueprintSource": "official-bp-cost",

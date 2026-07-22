@@ -60,25 +60,110 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "acquisition-source",
-                "sourceId": "source.operation-orphix-venom-rotation-c"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-c",
+                    "chance": 0.0556
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-c",
+                    "chance": 0.0577
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-a",
+                    "chance": 0.1111
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.entrati-father-associate",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Operation: Orphix Venom, Rotation C",
+                  "Operation: Orphix Venom, Rotation A",
+                  "Entrati (Father), Associate"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.operation-orphix-venom-rotation-a"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-c",
+                    "chance": 0.0556
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-c",
+                    "chance": 0.0577
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-a",
+                    "chance": 0.1111
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.entrati-father-associate",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Operation: Orphix Venom, Rotation C",
+                  "Operation: Orphix Venom, Rotation A",
+                  "Entrati (Father), Associate"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.entrati-father-associate"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-c",
+                    "chance": 0.0556
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-c",
+                    "chance": 0.0577
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.operation-orphix-venom-rotation-a",
+                    "chance": 0.1111
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.entrati-father-associate",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Operation: Orphix Venom, Rotation C",
+                  "Operation: Orphix Venom, Rotation A",
+                  "Entrati (Father), Associate"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Operation: Orphix Venom, Rotation C",
               "Operation: Orphix Venom, Rotation A",
               "Entrati (Father), Associate"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "acquisition-source",

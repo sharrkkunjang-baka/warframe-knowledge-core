@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/EntratiLab/Resources/MurmurItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -41,18 +41,99 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "虚空石块"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "阿尔布雷希特的实验室 115-120 级赏金 C轮",
+            "locationDisplayName": "阿尔布雷希特的实验室（火卫二）",
+            "missionTypeDisplayName": "赏金",
+            "rotation": "C",
+            "quantity": 15,
+            "chance": 0.084,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "阿尔布雷希特的实验室 95-100 级赏金 C轮",
+            "locationDisplayName": "阿尔布雷希特的实验室（火卫二）",
+            "missionTypeDisplayName": "赏金",
+            "rotation": "C",
+            "quantity": 15,
+            "chance": 0.0877,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
       "tips": [],
       "tipKeywords": [],
-      "routingOverride": null,
-      "reviewedBy": []
+      "description": "在火卫二阿尔布雷希特的实验室赏金 C轮奖励中获得。",
+      "routingOverride": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "虚空石块"
+        },
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "阿尔布雷希特的实验室 115-120 级赏金 C轮",
+            "locationDisplayName": "阿尔布雷希特的实验室（火卫二）",
+            "missionTypeDisplayName": "赏金",
+            "rotation": "C",
+            "quantity": 15,
+            "chance": 0.084,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "阿尔布雷希特的实验室 95-100 级赏金 C轮",
+            "locationDisplayName": "阿尔布雷希特的实验室（火卫二）",
+            "missionTypeDisplayName": "赏金",
+            "rotation": "C",
+            "quantity": 15,
+            "chance": 0.0877,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          }
+        ],
+        "status": "compiled"
+      },
+      "reviewedBy": [
+        "current-wiki-and-de-drop-table-audit-2026-07-22"
+      ]
     }
   },
   "sources": [
@@ -63,8 +144,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-and-de-drop-table-audit-2026-07-22"
+  ],
   "summary": "虚空石块的资源身份与获取证据。",
   "tags": [
     "acquisition",

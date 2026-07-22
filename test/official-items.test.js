@@ -3,6 +3,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createKnowledgeCore } = require('../src');
+const { buildOfficialItems, countSummary } = require('../scripts/sync-official-items');
 
 const core = createKnowledgeCore();
 
@@ -20,6 +21,21 @@ test('Cipher 及 100x 配方变体共用稳定物品身份', () => {
   assert.equal(hundred.recipeVariant.pendingWikiEvidence, true);
   assert.equal(hundred.recipeVariant.recipeId, null);
   assert.match(core.getItemAcquisition('100x Cipher').notes[0], /未提供 100x Cipher 配方/);
+});
+
+test('事件货币不会被 Misc 类型误排除且目录日志解释候选边界', () => {
+  const built = buildOfficialItems('test');
+  for (const [canonical, displayName] of [['Nakak Pearls', '娜卡珍珠'], ['Pix Chip', '贴纸芯片'], ['Phasic Cells', '相位电池']]) {
+    const item = built.catalog.items.find(candidate => candidate.canonical === canonical);
+    assert.ok(item, canonical);
+    assert.equal(item.displayName, displayName);
+    assert.ok(item.semanticKinds.includes('currency-token'));
+  }
+  assert.equal(built.catalog.counts.input, 1520);
+  assert.equal(built.catalog.counts.items, 918);
+  assert.equal(built.catalog.counts.excluded, 602);
+  assert.match(countSummary(built.catalog.counts), /918 个目录内物品；从 1520 个候选中排除 602 个目录边界外\/内部\/重复对象/);
+  assert.doesNotMatch(countSummary(built.catalog.counts), /越界对象/);
 });
 
 test('代表性官方物品保留语义、掉落、配方和交易事实', () => {
@@ -51,7 +67,7 @@ test('统一目录严格排除非道具、内部镜像和占位对象', () => {
   ];
   for (const [label, predicate] of forbidden) assert.deepEqual(items.filter(predicate).map(item => item.uniqueName), [], label);
   assert.deepEqual(items.filter(item => item.localizationStatus === 'fallback-en').map(item => item.canonical).sort(), ['Echoes Of Umbra', 'Forma', 'Umbra Forma']);
-  assert.equal(core.officialItems.counts.input, 1519);
+  assert.equal(core.officialItems.counts.input, 1520);
   assert.equal(core.officialItems.counts.excluded, core.officialItems.counts.input - (items.length - core.officialItems.counts.supplemental - core.officialItems.counts.fishSupplemental));
   assert.ok(core.officialItemSources.counts.excludedByReason['captura-scene'] >= 156);
   assert.ok(core.officialItemSources.policy.semanticKindAllowlist.Resources.includes('Resource'));

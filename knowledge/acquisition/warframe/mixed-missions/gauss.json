@@ -60,17 +60,63 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "market",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.sedna",
-                "missionNodeId": "mission-node.kappa",
-                "rotation": "C"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.sedna",
+                    "missionNodeId": "mission-node.kappa",
+                    "rotation": "C",
+                    "chance": 0.0784
+                  }
+                ],
+                "sourceCanonical": [
+                  "Sedna/Kappa (Disruption), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.sedna",
+                    "missionNodeId": "mission-node.kappa",
+                    "rotation": "C",
+                    "chance": 0.0784
+                  }
+                ],
+                "sourceCanonical": [
+                  "Sedna/Kappa (Disruption), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.sedna",
+                    "missionNodeId": "mission-node.kappa",
+                    "rotation": "C",
+                    "chance": 0.0784
+                  }
+                ],
+                "sourceCanonical": [
+                  "Sedna/Kappa (Disruption), Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Sedna/Kappa (Disruption), Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {},
           "blueprintSource": "official-bp-cost",

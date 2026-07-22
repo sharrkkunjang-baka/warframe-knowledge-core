@@ -140,7 +140,13 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
   const mergedWiki = previousWiki
     ? {
         ...previousWiki,
-        methods: [...approvedMethods, ...(previousWiki.methods || []).filter(method => !approvedKeys.has(`${method.type}\0${method.factionId || method.sourceEntityId || method.sourceCanonical || ''}`))]
+        methods: [
+          ...approvedMethods,
+          ...(previousWiki.methods || []).filter(method => {
+            if (method.reviewStatus !== 'approved') return true;
+            return !approvedKeys.has(`${method.type}\0${method.factionId || method.sourceEntityId || method.sourceCanonical || ''}`);
+          })
+        ]
       }
     : { status: 'complete', methods: approvedMethods, evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] };
   return [{
@@ -167,14 +173,20 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
         wiki: mergedWiki,
         officialDrops: []
       },
-      manual: { methods: [], methodRefs: [], overrides: {}, reviewStatus: 'approved', reviewedBy: ['official-sync:syndicate-exchange'] }
+      manual: {
+        methods: previous?.modAcquisition?.manual?.methods || [],
+        methodRefs: previous?.modAcquisition?.manual?.methodRefs || [],
+        overrides: previous?.modAcquisition?.manual?.overrides || {},
+        reviewStatus: 'approved',
+        reviewedBy: [...new Set(['official-sync:syndicate-exchange', ...(previous?.modAcquisition?.manual?.reviewedBy || [])])]
+      }
     },
     acquisitionStatus: 'complete',
     sources: [{ url: 'https://www.warframe.com/', label: 'DE Languages.bin + ExportSyndicates' }],
     gameVersion: 'DE Languages.bin + ExportSyndicates',
     updatedAt,
     reviewStatus: 'approved',
-    reviewedBy: ['official-sync:syndicate-exchange'],
+    reviewedBy: [...new Set(['official-sync:syndicate-exchange', ...(previous?.reviewedBy || [])])],
     tags: ['acquisition', 'mod', 'standard-mod', 'warframe-mod'],
     generator: { name: 'sync-official-mods', version: 1 }
   }];

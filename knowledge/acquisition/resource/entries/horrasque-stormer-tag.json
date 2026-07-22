@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Solaris/AnimalTagHorrasqueRare",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -25,11 +25,26 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "暴猛惑瓦斯克标签"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "open-world-conservation",
+            "npcId": "npc.the-business",
+            "locationId": "landscape.orb-vallis",
+            "sourceDisplayName": "奥布山谷保育捕获：暴猛惑瓦斯克",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export conservation-tag identity"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -47,8 +62,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-20",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "暴猛惑瓦斯克标签的资源身份与获取证据。",
   "tags": [
     "acquisition",

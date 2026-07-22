@@ -42,7 +42,17 @@
           "typeFolder": "shotgun"
         },
         "wiki": {
-          "status": "complete",
+          "wiki": {
+            "pageTitle": "Primed Counterbalance",
+            "pageId": 1597542,
+            "revisionId": 2772049,
+            "pageTimestamp": "2026-04-27T00:02:00Z",
+            "compiledAt": "2026-07-22T18:16:52.854Z",
+            "sourceDatabase": {
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+              "size": 2322874368
+            }
+          },
           "methods": [
             {
               "type": "vendor-or-syndicate-exchange",
@@ -70,11 +80,46 @@
                 "section": "Acquisition",
                 "excerpt": "This mod can be purchased unranked from the Void Trader Baro Ki'Teer for 220,000 and 300."
               }
+            },
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Primed Counterbalance",
+                "pageId": 1597542,
+                "revisionId": 2772049,
+                "section": "Acquisition",
+                "excerpt": "This mod can be purchased unranked from the Void Trader Baro Ki'Teer for 220,000 Credits 220,000 and 300 300 . Note however that Baro Ki'Teer's stock changes with each appearance, and may not have this item available at every time."
+              }
             }
           ],
-          "evidence": [],
-          "mechanicsEvidence": {},
-          "unresolvedEntities": []
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Primed Counterbalance",
+                "pageId": 1597542,
+                "revisionId": 2772049,
+                "section": "Acquisition",
+                "excerpt": "This mod can be purchased unranked from the Void Trader Baro Ki'Teer for 220,000 Credits 220,000 and 300 300 . Note however that Baro Ki'Teer's stock changes with each appearance, and may not have this item available at every time."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "complete"
         },
         "officialDrops": []
       },
@@ -85,7 +130,8 @@
         "reviewStatus": "approved",
         "reviewedBy": [
           "category-default:primemod",
-          "official-sync:syndicate-exchange"
+          "official-sync:syndicate-exchange",
+          "local-wiki-cross-page-sync"
         ]
       }
     },
@@ -97,11 +143,12 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-21",
+    "updatedAt": "2026-07-22",
     "reviewStatus": "approved",
     "reviewedBy": [
       "category-default:primemod",
-      "official-sync:syndicate-exchange"
+      "official-sync:syndicate-exchange",
+      "local-wiki-cross-page-sync"
     ],
     "tags": [
       "acquisition",

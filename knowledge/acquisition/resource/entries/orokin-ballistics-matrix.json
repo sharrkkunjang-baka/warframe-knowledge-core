@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Necraloids/NecraloidStandingUncommonItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -279,11 +279,26 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "OROKIN 弹道矩阵装置"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "魔胎之境（火卫二）隔离库赏金奖励",
+            "chance": 0.075,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 36
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -301,8 +316,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "OROKIN 弹道矩阵装置的资源身份与获取证据。",
   "tags": [
     "acquisition",

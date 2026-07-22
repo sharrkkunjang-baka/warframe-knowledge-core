@@ -9,9 +9,12 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/MiscItems/SteelEssence20Pack",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
+  "aliases": [
+    "小小黑精华"
+  ],
   "prerequisites": [],
   "methodRefs": [],
   "resourceAcquisition": {
@@ -97,18 +100,405 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "钢铁精华"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceDisplayName": "追随者（焦虑、怨恨、躁狂、苦难、折磨、暴力）",
+            "quantity": 2,
+            "chance": 1,
+            "variables": {
+              "appearanceCondition": "任意可生成追随者的钢铁之路任务"
+            },
+            "requirements": {
+              "type": "mode",
+              "modeId": "steel-path"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路虚空裂缝",
+            "quantity": 1,
+            "chance": 1,
+            "variables": {
+              "objective": "开启 1 个虚空遗物"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁无尽回廊第 9 阶段",
+            "quantity": 25,
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "每日钢铁之路侵袭",
+            "quantity": 5,
+            "chance": 1,
+            "variables": {
+              "objective": "完成每项侵袭；每日 6 项，共 30 个"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.tusk-thumper",
+            "sourceDisplayName": "巨牙重击者、巨牙重击者公牛、巨牙重击者朵玛",
+            "quantity": 1,
+            "chance": 1,
+            "variables": {
+              "appearanceCondition": "钢铁之路夜灵平野",
+              "sourceEntityIds": [
+                "enemy.tusk-thumper",
+                "enemy.tusk-thumper-bull",
+                "enemy.tusk-thumper-doma"
+              ]
+            },
+            "requirements": {
+              "type": "mode",
+              "modeId": "steel-path"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路星球节点全清",
+            "quantity": 25,
+            "chance": 1,
+            "variables": {
+              "objective": "首次清完一个星球的全部节点"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路双衍王境奥金魇龙宝箱",
+            "quantity": 5,
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路双衍王境体验额外地穴传送门",
+            "quantity": 2,
+            "chance": 1,
+            "variables": {
+              "objective": "每个额外传送门 2 个，每轮最多 6 个"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路深渊区",
+            "quantity": 1,
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.the-fragmented-one",
+            "quantity": 1,
+            "chance": 1,
+            "variables": {
+              "appearanceCondition": "钢铁之路 Effervo（火卫二）"
+            },
+            "requirements": {
+              "type": "mode",
+              "modeId": "steel-path"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路沉沦之地第 18 层",
+            "quantity": 25,
+            "chance": 1,
+            "variables": {
+              "objective": "每周首次达到第 18 层"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
       "tips": [],
       "tipKeywords": [],
-      "routingOverride": null,
-      "reviewedBy": []
+      "description": "钢铁之路专属资源，可在中继站的 Teshin「钢铁之路荣誉」商店消费。",
+      "routingOverride": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "钢铁精华"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceDisplayName": "追随者（焦虑、怨恨、躁狂、苦难、折磨、暴力）",
+            "quantity": 2,
+            "chance": 1,
+            "variables": {
+              "appearanceCondition": "任意可生成追随者的钢铁之路任务"
+            },
+            "requirements": {
+              "type": "mode",
+              "modeId": "steel-path"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路虚空裂缝",
+            "quantity": 1,
+            "chance": 1,
+            "variables": {
+              "objective": "开启 1 个虚空遗物"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁无尽回廊第 9 阶段",
+            "quantity": 25,
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "每日钢铁之路侵袭",
+            "quantity": 5,
+            "chance": 1,
+            "variables": {
+              "objective": "完成每项侵袭；每日 6 项，共 30 个"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.tusk-thumper",
+            "sourceDisplayName": "巨牙重击者、巨牙重击者公牛、巨牙重击者朵玛",
+            "quantity": 1,
+            "chance": 1,
+            "variables": {
+              "appearanceCondition": "钢铁之路夜灵平野",
+              "sourceEntityIds": [
+                "enemy.tusk-thumper",
+                "enemy.tusk-thumper-bull",
+                "enemy.tusk-thumper-doma"
+              ]
+            },
+            "requirements": {
+              "type": "mode",
+              "modeId": "steel-path"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路星球节点全清",
+            "quantity": 25,
+            "chance": 1,
+            "variables": {
+              "objective": "首次清完一个星球的全部节点"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路双衍王境奥金魇龙宝箱",
+            "quantity": 5,
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路双衍王境体验额外地穴传送门",
+            "quantity": 2,
+            "chance": 1,
+            "variables": {
+              "objective": "每个额外传送门 2 个，每轮最多 6 个"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路深渊区",
+            "quantity": 1,
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.the-fragmented-one",
+            "quantity": 1,
+            "chance": 1,
+            "variables": {
+              "appearanceCondition": "钢铁之路 Effervo（火卫二）"
+            },
+            "requirements": {
+              "type": "mode",
+              "modeId": "steel-path"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "钢铁之路沉沦之地第 18 层",
+            "quantity": 25,
+            "chance": 1,
+            "variables": {
+              "objective": "每周首次达到第 18 层"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki Steel Essence oldid 2764337 + DE Official Drop Tables",
+              "fetchedAt": "2026-07-22"
+            }
+          }
+        ],
+        "status": "compiled"
+      },
+      "reviewedBy": [
+        "current-wiki-and-de-drop-table-audit-2026-07-22"
+      ]
     }
   },
   "sources": [
@@ -119,8 +509,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "current-wiki-and-de-drop-table-audit-2026-07-22"
+  ],
   "summary": "钢铁精华的资源身份与获取证据。",
   "tags": [
     "acquisition",

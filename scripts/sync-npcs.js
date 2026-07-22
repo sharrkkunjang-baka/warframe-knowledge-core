@@ -16,7 +16,7 @@ const CATEGORY_PAGES = Object.freeze({
   'kahl-garrison': { displayName: '卡尔驻军', locationId: 'hub.drifters-camp', names: ['Chipper'] }
 })
 const ROOT_NPCS = Object.freeze(['Lotus','Ordis','Acrithis','Amir'])
-const LOCATION_OVERRIDES = Object.freeze({ Acrithis: 'hub.dormizone', Amir: 'acquisition-source.hollvania-missions', 'Aspirant Zorba': 'hub.any-relay', Hunhow: 'hub.pontis-tower', Ordis: 'hub.drifters-camp' })
+const LOCATION_OVERRIDES = Object.freeze({ Acrithis: 'hub.dormizone', Amir: 'acquisition-source.hollvania-missions', Flare: 'acquisition-source.hollvania-missions', 'Aspirant Zorba': 'hub.any-relay', Hunhow: 'hub.pontis-tower', Ordis: 'hub.drifters-camp' })
 // 无稳定语言键的已审核官方简中；其余 NPC 必须优先从本地 Languages.bin 快照读取。
 const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', Acrithis: '言录使', Amir: '阿米尔', Arthur: '亚瑟', 'Bird 3': '鸟三', 'Cephalon Simaris': '中枢 Simaris', Nightcap: '夜帽', Chipper: '切片哥' })
 const OFFICIAL_LANGUAGE_KEYS = Object.freeze({

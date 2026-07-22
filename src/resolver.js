@@ -12,10 +12,42 @@ const compactPinyin = value => pinyinTokens(value).join('').replace(/[^a-z0-9]/g
 const mixedPinyin = value => String(value || '').normalize('NFKC').toLowerCase().split(/([\u3400-\u9fff]+)/)
   .map(part => /[\u3400-\u9fff]/.test(part) ? compactPinyin(part) : part.replace(/[^a-z0-9]/g, '')).join('');
 
+const RESOLVER_TYPE_TERMS = [
+  { category: 'mod', terms: ['mod', '模组'] },
+  { category: 'arcane', terms: ['赋能'] },
+  { category: 'frame', terms: ['战甲'] },
+  { category: 'weapon', terms: ['武器'] },
+  { category: 'resource', terms: ['资源'] },
+  { category: 'official-item', terms: ['道具', '物品'] }
+];
+const RESOLVER_COMMAND_PREFIX = /^\s*\/?(?:wf|wk|wfwk|warframe|查|刷)\s*(?:[:：]\s*)?/iu;
+const escapeRegExp = value => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const resolverTermRegExp = (term, flags = 'iu') => /^[a-z]+$/i.test(term)
+  ? new RegExp(`(^|[^a-z])${escapeRegExp(term)}(?=$|[^a-z])`, flags)
+  : new RegExp(escapeRegExp(term), flags);
+
+function parseResolverIntent(value) {
+  const raw = String(value || '').trim();
+  const commandStripped = raw.replace(RESOLVER_COMMAND_PREFIX, '').trim();
+  const detected = RESOLVER_TYPE_TERMS.filter(definition => definition.terms.some(term => resolverTermRegExp(term).test(commandStripped)));
+  // “战甲 Mod”“武器 Mod”描述的是 Mod；更具体的 Mod 类型覆盖装备适用类别词。
+  const constrained = detected.some(definition => definition.category === 'mod')
+    ? ['mod']
+    : [...new Set(detected.map(definition => definition.category))];
+  const terms = detected.flatMap(definition => definition.terms);
+  return {
+    raw,
+    commandStripped,
+    query: stripResolverTerms(commandStripped, terms),
+    categories: constrained,
+    typeTerms: detected.flatMap(definition => definition.terms.filter(term => resolverTermRegExp(term).test(commandStripped)))
+  };
+}
+
 function stripResolverTerms(value, terms = []) {
   let output = String(value || '');
   for (const term of [...terms].filter(Boolean).sort((a, b) => String(b).length - String(a).length)) {
-    output = output.replace(new RegExp(String(term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'giu'), '');
+    output = output.replace(resolverTermRegExp(term, 'giu'), /^[a-z]+$/i.test(term) ? '$1' : '');
   }
   return output.replace(/[\s·・‧•:：_\-/]+/g, '').trim();
 }
@@ -110,16 +142,25 @@ function resolveDomainAlias(aliases, domain, query) {
 function createResolver(aliases) {
   const staticCandidates = buildCandidates(aliases);
   return function resolveName(query, options = {}) {
-    const raw = String(query || '').trim();
+    const intent = parseResolverIntent(query);
+    const raw = intent.commandStripped;
     if (!raw) return null;
-    const stripTerms = Array.isArray(options.stripTerms) ? options.stripTerms : [];
+    const stripTerms = [...new Set([...(Array.isArray(options.stripTerms) ? options.stripTerms : []), ...intent.typeTerms])];
     const queryForms = resolverForms(raw, stripTerms);
     const supplied = Array.isArray(options.candidates) ? options.candidates : [];
+    const requestedCategories = intent.categories.length ? intent.categories : options.categories;
+    const categoryMatches = category => !requestedCategories || requestedCategories.includes(category)
+      || (requestedCategories.includes('official') && ['mod', 'official-item'].includes(category));
     const candidates = [...staticCandidates, ...supplied]
       .filter(item => item && item.alias && item.canonical)
-      .filter(item => !options.categories || options.categories.includes(item.category));
+      .filter(item => categoryMatches(item.category));
+    const trace = payload => { if (typeof options.onTrace === 'function') options.onTrace(payload); };
     const direct = candidates.find(item => normalize(item.alias) === normalize(raw));
-    if (direct) return { ...direct, match: 'exact', score: 300 };
+    if (direct) {
+      const result = { ...direct, match: 'exact', score: 300 };
+      trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: [result], result });
+      return result;
+    }
     const ranked = candidates.map(item => {
       const scored = queryForms.flatMap(queryForm => resolverForms(item.alias, stripTerms).map(candidateForm => {
         const literal = textScore(queryForm.text, candidateForm.text);
@@ -139,18 +180,33 @@ function createResolver(aliases) {
     })
       .filter(item => item.score >= (options.minScore ?? 50))
       .sort((a, b) => b.score - a.score || Number(b.priority || 0) - Number(a.priority || 0) || b.alias.length - a.alias.length);
-    if (!ranked.length) return null;
+    if (!ranked.length) {
+      trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: [], result: null });
+      return null;
+    }
     const best = ranked[0];
     const second = ranked.find(item => item.canonical !== best.canonical);
     const minLead = options.minLead ?? 5;
-    if (second && best.score - second.score < minLead) {
-      return {
+    const strippedQuery = normalize(intent.query);
+    const typedFragments = intent.categories.includes('mod') && strippedQuery
+      ? [...new Map(ranked.filter(item => normalize(item.alias).includes(strippedQuery)).map(item => [item.canonical, item])).values()]
+      : [];
+    const untypedFragments = !intent.categories.length && normalize(raw).length >= 2
+      ? [...new Map(ranked.filter(item => normalize(item.alias).startsWith(normalize(raw))).map(item => [item.canonical, item])).values()]
+      : [];
+    const crossCategoryFragments = new Set(untypedFragments.map(item => item.category)).size > 1 ? untypedFragments : [];
+    let result = best;
+    if (typedFragments.length > 1 || crossCategoryFragments.length > 1) {
+      result = { ambiguous: (typedFragments.length ? typedFragments : crossCategoryFragments).slice(0, options.limit || 8), score: best.score };
+    } else if (second && best.score - second.score < minLead) {
+      result = {
         ambiguous: [...new Map(ranked.filter(item => best.score - item.score < minLead).map(item => [item.canonical, item])).values()].slice(0, options.limit || 8),
         score: best.score
       };
     }
-    return best;
+    trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: ranked.slice(0, options.traceLimit || 20), result });
+    return result;
   };
 }
 
-module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize, stripResolverTerms };
+module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize, stripResolverTerms, parseResolverIntent, RESOLVER_TYPE_TERMS };

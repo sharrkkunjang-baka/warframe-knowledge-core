@@ -46,23 +46,25 @@
         "methods": [
           {
             "type": "vendor-or-syndicate-exchange",
-            "npcId": "npc.aspirant-zorba",
+            "sourceEntityId": "npc.aspirant-zorba",
             "locationId": "hub.any-relay",
-            "sourceCanonical": "Aspirant Zorba at any relay",
-            "requirements": {
-              "type": "currency",
-              "usage": "exchange",
-              "npcId": "npc.aspirant-zorba",
-              "locationId": "hub.any-relay",
-              "currency": [
-                {
-                  "currencyId": "currency.atramentum",
-                  "amount": 360
-                }
-              ],
-              "isBuffUseless": true
-            },
-            "reviewStatus": "approved"
+            "quantity": 1,
+            "reviewStatus": "approved",
+            "currency": [
+              {
+                "currencyId": "currency.atramentum",
+                "amount": 360
+              }
+            ],
+            "provenance": {
+              "source": "current-wiki-online",
+              "pageTitle": "Truth's Flame",
+              "pageUrl": "https://wiki.warframe.com/w/Truth%27s_Flame",
+              "pageId": 1619406,
+              "revisionId": 2790156,
+              "section": "Acquisition",
+              "excerpt": "Purchased from Aspirant Zorba at any relay for 360 Atramentum."
+            }
           }
         ],
         "evidence": [
@@ -327,7 +329,9 @@
       "overrides": {},
       "reviewStatus": "approved",
       "reviewedBy": [
-        "recent-mod-evidence-audit"
+        "recent-mod-evidence-audit",
+        "current-wiki-online-acquisition-audit",
+        "structured-wiki-acquisition-audit"
       ]
     }
   },
@@ -339,11 +343,13 @@
     }
   ],
   "gameVersion": "Update 42.0",
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-07-22",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement",
-    "recent-mod-evidence-audit"
+    "recent-mod-evidence-audit",
+    "current-wiki-online-acquisition-audit",
+    "structured-wiki-acquisition-audit"
   ],
   "tags": [
     "acquisition",

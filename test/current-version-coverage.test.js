@@ -149,7 +149,7 @@ test('剩余十项获取协议完整且卡片来源去重', () => {
       && method.locationId === 'hub.sanctum-anatomica'
     ), `${entry.canonical}: Marie`)
     const sections = acquisitionCardSections(entry.methods)
-    for (const items of Object.values(sections)) {
+    for (const items of Object.values(sections).filter(Array.isArray)) {
       const texts = items.map(item => item.text)
       assert.equal(new Set(texts).size, texts.length, `${entry.canonical}: duplicate card line`)
     }

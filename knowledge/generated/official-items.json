@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-18T08:34:21.083Z",
+  "generatedAt": "2026-07-22T14:21:52.108Z",
   "source": {
     "package": "warframe-items",
     "version": "1.1269.87",
@@ -9,18 +9,19 @@
       "Resources.json",
       "Gear.json",
       "Misc.json",
-      "Arcanes.json"
+      "Arcanes.json",
+      "knowledge/reviewed/current-item-supplements.json"
     ],
-    "localization": "i18n.json"
+    "localization": "i18n.json + DE Languages.bin reviewed supplements"
   },
   "counts": {
-    "input": 1519,
-    "items": 914,
-    "excluded": 605,
+    "input": 1520,
+    "items": 918,
+    "excluded": 602,
     "byKind": {
       "resources": 206,
       "gear": 183,
-      "misc": 369,
+      "misc": 373,
       "arcanes": 156
     },
     "excludedByReason": {
@@ -32,7 +33,7 @@
       "store-item-mirror": 13,
       "captura-scene": 156,
       "fusion-or-reward-bundle": 55,
-      "semantic-kind-not-allowed": 18,
+      "semantic-kind-not-allowed": 15,
       "weapon-amp-kitgun-component": 81,
       "exalted-weapon": 36
     }
@@ -10661,6 +10662,38 @@
       "sourceFile": "Misc.json"
     },
     {
+      "uniqueName": "/Lotus/Types/Items/FusionTreasures/OroFusexI",
+      "canonical": "Ayatan Chattraka Sculpture",
+      "displayName": "阿耶檀识 Chattraka 塑像",
+      "aliases": [
+        "阿耶檀识 Chattraka 雕像",
+        "chattraka"
+      ],
+      "localizationStatus": "official-zh",
+      "kind": "misc",
+      "semanticKinds": [
+        "ayatan"
+      ],
+      "description": {
+        "canonical": "",
+        "display": ""
+      },
+      "tradable": true,
+      "drops": [],
+      "recipes": [],
+      "recipeVariants": [],
+      "buildQuantity": 1,
+      "sourceCategory": "current-supplement",
+      "sourceFile": "knowledge/reviewed/current-item-supplements.json",
+      "provenance": {
+        "officialUniqueName": "generated/official-vendor-offer-index.json",
+        "canonicalLocalizationKey": "/Lotus/Language/ShipDecorations/FusionTreasureIName",
+        "officialZh": ".cache/official-localization/languages.zh.json",
+        "currentWikiPage": "https://wiki.warframe.com/w/Ayatan_Treasures",
+        "reviewedAt": "2026-07-22T13:48:06.683Z"
+      }
+    },
+    {
       "uniqueName": "/Lotus/Types/Items/FusionTreasures/OroFusexJ",
       "canonical": "Ayatan Hemakara Sculpture",
       "displayName": "阿耶檀识 Hemakara 塑像",
@@ -13279,6 +13312,27 @@
       "buildQuantity": 1,
       "sourceCategory": "Resources",
       "sourceFile": "Resources.json"
+    },
+    {
+      "uniqueName": "/Lotus/Types/Items/MiscItems/1999ConquestBucks",
+      "canonical": "Pix Chip",
+      "displayName": "贴纸芯片",
+      "localizationStatus": "official-zh",
+      "kind": "misc",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "description": {
+        "canonical": "Kaya Velasco in the Höllvania Mall accepts these Pix Chips in exchange for Peely Paks.\n\nLocation: Elite Temporal Archimedea (Höllvania) and duplicate Peely Pix.",
+        "display": "霍瓦尼亚中央商场的卡娅·维拉斯科收取这些贴纸芯片，提供易撕贴纸包。\n\n获取地点：精英时光科研（霍瓦尼亚）和重复的易撕贴纸。"
+      },
+      "tradable": false,
+      "drops": [],
+      "recipes": [],
+      "recipeVariants": [],
+      "buildQuantity": 1,
+      "sourceCategory": "Misc",
+      "sourceFile": "Misc.json"
     },
     {
       "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
@@ -36236,6 +36290,27 @@
       "sourceFile": "Misc.json"
     },
     {
+      "uniqueName": "/Lotus/Types/Items/MiscItems/MechSurvivalEventCreds",
+      "canonical": "Phasic Cells",
+      "displayName": "相位电池",
+      "localizationStatus": "official-zh",
+      "kind": "misc",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "description": {
+        "canonical": "Harvested from the debris left by fallen Orphix Sentients, Phasic Cells seem to be key to pulse function. These components can be traded with Father in the Necralisk.",
+        "display": "从战败的 Sentient 奥影母艇残骸中收集而来，相位电池似乎是脉冲功能的关键。在殁世幽都中，可以与“父亲”交易这些组件。"
+      },
+      "tradable": false,
+      "drops": [],
+      "recipes": [],
+      "recipeVariants": [],
+      "buildQuantity": 1,
+      "sourceCategory": "Misc",
+      "sourceFile": "Misc.json"
+    },
+    {
       "uniqueName": "/Lotus/Types/Items/MiscItems/MemoryCryptoFragment",
       "canonical": "Somatic Fibers",
       "displayName": "活体纤维",
@@ -41889,6 +41964,27 @@
           "type": "15X Void Traces"
         }
       ],
+      "recipes": [],
+      "recipeVariants": [],
+      "buildQuantity": 1,
+      "sourceCategory": "Misc",
+      "sourceFile": "Misc.json"
+    },
+    {
+      "uniqueName": "/Lotus/Types/Items/MiscItems/WaterFightBucks",
+      "canonical": "Nakak Pearls",
+      "displayName": "娜卡珍珠",
+      "localizationStatus": "official-zh",
+      "kind": "misc",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "description": {
+        "canonical": "Nakak in Cetus would probably like these. Maybe she'll trade something special for them.",
+        "display": "希图斯的娜卡可能会喜欢这个。她可能会拿些特别的东西来和你交易。"
+      },
+      "tradable": false,
+      "drops": [],
       "recipes": [],
       "recipeVariants": [],
       "buildQuantity": 1,

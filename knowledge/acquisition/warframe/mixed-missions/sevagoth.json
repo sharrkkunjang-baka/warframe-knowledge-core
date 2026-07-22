@@ -60,25 +60,95 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "acquisition-source",
-                "sourceId": "source.void-storm-neptune"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-neptune",
+                    "chance": 0.0952
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-pluto",
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-veil-proxima",
+                    "chance": 0.1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Void Storm (Neptune)",
+                  "Void Storm (Pluto)",
+                  "Void Storm (Veil Proxima)"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.void-storm-pluto"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-neptune",
+                    "chance": 0.0952
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-pluto",
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-veil-proxima",
+                    "chance": 0.1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Void Storm (Neptune)",
+                  "Void Storm (Pluto)",
+                  "Void Storm (Veil Proxima)"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.void-storm-veil-proxima"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-neptune",
+                    "chance": 0.0952
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-pluto",
+                    "chance": 0.1
+                  },
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-storm-veil-proxima",
+                    "chance": 0.1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Void Storm (Neptune)",
+                  "Void Storm (Pluto)",
+                  "Void Storm (Veil Proxima)"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Void Storm (Neptune)",
               "Void Storm (Pluto)",
               "Void Storm (Veil Proxima)"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "quest-repurchase",

@@ -60,24 +60,88 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.lua",
-                "missionNodeId": "mission-node.yuvarium",
-                "rotation": "C"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.yuvarium",
+                    "rotation": "C",
+                    "chance": 0.0455
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.circulus",
+                    "rotation": "C",
+                    "chance": 0.0816
+                  }
+                ],
+                "sourceCanonical": [
+                  "Lua/Yuvarium (Survival), Rotation C",
+                  "Lua/Circulus (Survival), Rotation C"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.lua",
-                "missionNodeId": "mission-node.circulus",
-                "rotation": "C"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.yuvarium",
+                    "rotation": "C",
+                    "chance": 0.0455
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.circulus",
+                    "rotation": "C",
+                    "chance": 0.0816
+                  }
+                ],
+                "sourceCanonical": [
+                  "Lua/Yuvarium (Survival), Rotation C",
+                  "Lua/Circulus (Survival), Rotation C"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.yuvarium",
+                    "rotation": "C",
+                    "chance": 0.0455
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.circulus",
+                    "rotation": "C",
+                    "chance": 0.0816
+                  }
+                ],
+                "sourceCanonical": [
+                  "Lua/Yuvarium (Survival), Rotation C",
+                  "Lua/Circulus (Survival), Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Lua/Yuvarium (Survival), Rotation C",
               "Lua/Circulus (Survival), Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "mission-node",

@@ -34,7 +34,17 @@
           "variant": "standard"
         },
         "wiki": {
-          "status": "complete",
+          "wiki": {
+            "pageTitle": "Yar Dal",
+            "pageId": 1605372,
+            "revisionId": 2784357,
+            "pageTimestamp": "2026-06-12T05:51:23Z",
+            "compiledAt": "2026-07-22T15:42:03.479Z",
+            "sourceDatabase": {
+              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
+              "size": 2322874368
+            }
+          },
           "methods": [
             {
               "type": "vendor-exchange",
@@ -82,22 +92,61 @@
                 "section": "Browse Items",
                 "excerpt": "Yar Dal | 1x rotating Antique Mod cost; each item randomly costs 2 listed resources"
               }
+            },
+            {
+              "type": "enemy-drop",
+              "dropTableChance": 0.005,
+              "itemChance": 0.3333,
+              "chance": 0.0016665,
+              "quantity": 1,
+              "availability": "unknown",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Yar Dal",
+                "pageId": 1605372,
+                "revisionId": 2784357,
+                "section": "Enemy Drop Tables",
+                "excerpt": "Anarch Libritor | 0.5% | 33.33% | 0.16665% | 600 | 1 | 0.0016665"
+              },
+              "sourceCanonical": "Anarch Libritor",
+              "sourceEntityId": "enemy.anarch-libritor",
+              "sourceDisplayName": "自由派解放者"
             }
           ],
           "evidence": [
             {
               "type": "acquisition-prose",
-              "reviewStatus": "approved",
+              "reviewStatus": "draft",
               "provenance": {
-                "source": "current-wiki-sqlite",
+                "source": "local-wiki-sqlite",
                 "pageTitle": "Yar Dal",
-                "revisionId": 2784357
-              },
-              "excerpt": "[ edit | edit source ]\n • Dropped by certain enemies in The Perita Rebellion .\n\n• Sold by Marie as part of her rotating shop.\n| Enemy\n |\n | Drop Table Chance\n |\n | Item Chance\n |\n | Chance\n |\n | Expected Kills\n |\n | Quantity\n |\n | Avg. per roll attempt\n |\n\n | Anarch Libritor |\n | 0.5% |\n | 33.33% |\n | 0.16665% |\n | 600 |\n | 1 |\n | 0.0016665\n |\n\n Sourced from the official drop table repository . See Module:DropTables/data to edit on the wiki."
+                "pageId": 1605372,
+                "revisionId": 2784357,
+                "section": "Acquisition",
+                "excerpt": "Dropped by certain enemies in The Perita Rebellion ."
+              }
+            },
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "draft",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Yar Dal",
+                "pageId": 1605372,
+                "revisionId": 2784357,
+                "section": "Acquisition",
+                "excerpt": "Sold by Marie as part of her rotating shop."
+              }
             }
           ],
-          "mechanicsEvidence": {},
-          "unresolvedEntities": []
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "complete"
         },
         "officialDrops": [
           {
@@ -145,7 +194,7 @@
       }
     ],
     "gameVersion": "Update 41.0",
-    "updatedAt": "2026-07-20",
+    "updatedAt": "2026-07-22",
     "reviewStatus": "approved",
     "reviewedBy": [
       "current-wiki-supplement",

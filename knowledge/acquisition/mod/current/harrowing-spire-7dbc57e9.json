@@ -46,15 +46,20 @@
         "methods": [
           {
             "type": "container-drop",
-            "locationId": "acquisition-source.roathes-oblivion",
-            "sourceCanonical": "The Descendia Storage Containers",
-            "sourceDisplayName": "沉沦之地储存容器",
-            "probability": 0.01,
-            "chancePercent": 1,
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved"
+            "locationId": "location.the-descendia",
+            "sourceCanonical": "Storage Containers",
+            "chance": 0.01,
+            "quantity": 1,
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current-wiki-online",
+              "pageTitle": "Harrowing Spire",
+              "pageUrl": "https://wiki.warframe.com/w/Harrowing_Spire",
+              "pageId": 1605466,
+              "revisionId": 2774304,
+              "section": "Drop Locations",
+              "excerpt": "The Descendia - 1% chance from Storage Containers."
+            }
           }
         ],
         "evidence": [
@@ -132,7 +137,9 @@
       "overrides": {},
       "reviewStatus": "approved",
       "reviewedBy": [
-        "recent-mod-evidence-audit"
+        "recent-mod-evidence-audit",
+        "current-wiki-online-acquisition-audit",
+        "structured-wiki-acquisition-audit"
       ]
     }
   },
@@ -144,11 +151,13 @@
     }
   ],
   "gameVersion": "Update 41.0",
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-07-22",
   "reviewStatus": "approved",
   "reviewedBy": [
     "current-wiki-supplement",
-    "recent-mod-evidence-audit"
+    "recent-mod-evidence-audit",
+    "current-wiki-online-acquisition-audit",
+    "structured-wiki-acquisition-audit"
   ],
   "tags": [
     "acquisition",

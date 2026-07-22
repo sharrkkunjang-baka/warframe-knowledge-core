@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/MiscItems/Eidolonium",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -209,11 +209,26 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "夜灵之息"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "夜灵平野赏金任务（地球）",
+            "chance": 0.5,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 26
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -231,8 +246,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "夜灵之息的资源身份与获取证据。",
   "tags": [
     "acquisition",

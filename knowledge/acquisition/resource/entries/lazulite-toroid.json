@@ -9,9 +9,17 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Venus/Resources/ArachnoidCamperTerraItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
+    ],
+    "roleTags": [
+      "resource",
+      "exchange-token",
+      "standing-turn-in"
     ]
   },
+  "aliases": [
+    "天蓝环形装置"
+  ],
   "prerequisites": [],
   "methodRefs": [],
   "resourceAcquisition": {
@@ -25,18 +33,50 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "天蓝环型装置"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.exploiter-orb",
+            "locationId": "landscape.orb-vallis",
+            "hideProbability": true,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
       "tips": [],
       "tipKeywords": [],
-      "routingOverride": null,
-      "reviewedBy": []
+      "routingOverride": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "天蓝环型装置"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceEntityId": "enemy.exploiter-orb",
+            "locationId": "landscape.orb-vallis",
+            "hideProbability": true,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved"
+          }
+        ],
+        "status": "compiled"
+      },
+      "reviewedBy": [
+        "de-public-export-and-current-wiki-audit"
+      ]
     }
   },
   "sources": [
@@ -47,8 +87,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "de-public-export-and-current-wiki-audit"
+  ],
   "summary": "天蓝环型装置的资源身份与获取证据。",
   "tags": [
     "acquisition",

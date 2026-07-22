@@ -60,17 +60,63 @@
           "componentCategory": "frame-specific-mission",
           "blueprintCategory": "mixed-missions",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.earth",
-                "missionNodeId": "mission-node.saya-s-visions",
-                "rotation": null
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.saya-s-visions",
+                    "rotation": null,
+                    "chance": 0.0409
+                  }
+                ],
+                "sourceCanonical": [
+                  "Earth/Saya's Visions (Shrine Defense)"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.saya-s-visions",
+                    "rotation": null,
+                    "chance": 0.0409
+                  }
+                ],
+                "sourceCanonical": [
+                  "Earth/Saya's Visions (Shrine Defense)"
+                ],
+                "unresolvedSources": []
+              },
+              {
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.earth",
+                    "missionNodeId": "mission-node.saya-s-visions",
+                    "rotation": null,
+                    "chance": 0.0409
+                  }
+                ],
+                "sourceCanonical": [
+                  "Earth/Saya's Visions (Shrine Defense)"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Earth/Saya's Visions (Shrine Defense)"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "mission-node",

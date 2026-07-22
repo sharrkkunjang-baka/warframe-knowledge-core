@@ -60,58 +60,111 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.kuva-fortress",
-                "missionNodeId": "mission-node.taveuni",
-                "rotation": "C"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.kuva-fortress",
+                    "missionNodeId": "mission-node.taveuni",
+                    "rotation": "C",
+                    "chance": 0.12
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.kuva-fortress",
+                    "missionNodeId": "mission-node.pago",
+                    "rotation": "A",
+                    "chance": 0.1667
+                  }
+                ],
+                "sourceCanonical": [
+                  "Kuva Fortress/Taveuni (Survival), Rotation C",
+                  "Kuva Fortress/Pago (Spy), Rotation A"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.kuva-fortress",
-                "missionNodeId": "mission-node.pago",
-                "rotation": "A"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.void-fissure-corrupted-enemy",
+                    "chance": 0.03
+                  }
+                ],
+                "sourceCanonical": [
+                  "Void Fissure Corrupted Enemy"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.void-fissure-corrupted-enemy"
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.caracol",
-                "rotation": "B"
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.neptune",
-                "missionNodeId": "mission-node.yursa",
-                "rotation": "B"
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.phobos",
-                "missionNodeId": "mission-node.memphis",
-                "rotation": "B"
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.neptune",
-                "missionNodeId": "mission-node.yursa",
-                "rotation": "C"
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.phobos",
-                "missionNodeId": "mission-node.memphis",
-                "rotation": "C"
-              },
-              {
-                "type": "mission-node",
-                "locationId": "planet.saturn",
-                "missionNodeId": "mission-node.caracol",
-                "rotation": "C"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.caracol",
+                    "rotation": "B",
+                    "chance": 0.0545
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.neptune",
+                    "missionNodeId": "mission-node.yursa",
+                    "rotation": "B",
+                    "chance": 0.06
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.phobos",
+                    "missionNodeId": "mission-node.memphis",
+                    "rotation": "B",
+                    "chance": 0.06
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.kuva-fortress",
+                    "missionNodeId": "mission-node.taveuni",
+                    "rotation": "C",
+                    "chance": 0.12
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.neptune",
+                    "missionNodeId": "mission-node.yursa",
+                    "rotation": "C",
+                    "chance": 0.15
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.phobos",
+                    "missionNodeId": "mission-node.memphis",
+                    "rotation": "C",
+                    "chance": 0.15
+                  },
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.saturn",
+                    "missionNodeId": "mission-node.caracol",
+                    "rotation": "C",
+                    "chance": 0.15
+                  }
+                ],
+                "sourceCanonical": [
+                  "Saturn/Caracol (Defection), Rotation B",
+                  "Neptune/Yursa (Defection), Rotation B",
+                  "Phobos/Memphis (Defection), Rotation B",
+                  "Kuva Fortress/Taveuni (Survival), Rotation C",
+                  "Neptune/Yursa (Defection), Rotation C",
+                  "Phobos/Memphis (Defection), Rotation C",
+                  "Saturn/Caracol (Defection), Rotation C"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
@@ -124,7 +177,8 @@
               "Neptune/Yursa (Defection), Rotation C",
               "Phobos/Memphis (Defection), Rotation C",
               "Saturn/Caracol (Defection), Rotation C"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "quest-repurchase",

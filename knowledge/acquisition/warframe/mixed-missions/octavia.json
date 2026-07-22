@@ -60,29 +60,63 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "mission-node",
-                "locationId": "planet.deimos",
-                "missionNodeId": "mission-node.terrorem",
-                "rotation": "C"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.deimos",
+                    "missionNodeId": "mission-node.terrorem",
+                    "rotation": "C",
+                    "chance": 0.2256
+                  }
+                ],
+                "sourceCanonical": [
+                  "Deimos/Terrorem (Survival), Rotation C"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.orokin-storage-container"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.orokin-storage-container",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Orokin Storage Container"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "mission-node",
-                "locationId": "planet.lua",
-                "missionNodeId": "mission-node.plato",
-                "rotation": "A"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "planet.lua",
+                    "missionNodeId": "mission-node.plato",
+                    "rotation": "A",
+                    "chance": 0.2256
+                  }
+                ],
+                "sourceCanonical": [
+                  "Lua/Plato (Caches), Rotation A"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Deimos/Terrorem (Survival), Rotation C",
               "Orokin Storage Container",
               "Lua/Plato (Caches), Rotation A"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "quest-repurchase",

@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/SolarisFishNeuralRelayItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -25,11 +25,32 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "续播机神经中继器"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "resource-processing",
+            "npcId": "npc.the-business",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "拆解Recaster",
+            "variables": {
+              "sourceFishCanonicals": [
+                "Recaster"
+              ],
+              "allServofish": false
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official fish-part description"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -47,8 +68,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "续播机神经中继器的资源身份与获取证据。",
   "tags": [
     "acquisition",

@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishMuonBatteryItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -25,11 +25,32 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "砖瓦匠缈子电池"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "resource-processing",
+            "npcId": "npc.the-business",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "拆解Brickie",
+            "variables": {
+              "sourceFishCanonicals": [
+                "Brickie"
+              ],
+              "allServofish": false
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official fish-part description"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -47,8 +68,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "砖瓦匠缈子电池的资源身份与获取证据。",
   "tags": [
     "acquisition",

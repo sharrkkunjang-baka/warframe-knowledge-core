@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Solaris/DebtTokenE",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -153,11 +153,122 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "家族债务债券"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 100-100 级赏金 A轮",
+            "rotation": "A",
+            "chance": 0.3333,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 100 - 100 Orb Vallis Bounty), Rotation A"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 100-100 级赏金 B轮",
+            "rotation": "B",
+            "chance": 0.3333,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 100 - 100 Orb Vallis Bounty), Rotation B"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 100-100 级赏金 C轮",
+            "rotation": "C",
+            "chance": 0.3333,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 100 - 100 Orb Vallis Bounty), Rotation C"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 40-60 级赏金 A轮",
+            "rotation": "A",
+            "chance": 0.3333,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 Orb Vallis Bounty), Rotation A"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 40-60 级赏金 B轮",
+            "rotation": "B",
+            "chance": 0.3333,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 Orb Vallis Bounty), Rotation B"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 40-60 级赏金 C轮",
+            "rotation": "C",
+            "chance": 0.3333,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 Orb Vallis Bounty), Rotation C"
+            }
+          },
+          {
+            "type": "vendor-purchase",
+            "npcId": "npc.ticker",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "Ticker 债务债券轮换库存",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official localized description"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -175,8 +286,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "家族债务债券的资源身份与获取证据。",
   "tags": [
     "acquisition",

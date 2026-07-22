@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/DamagedMechPartEngineItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -34,11 +34,26 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "损坏的殁世机甲 引擎"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceDisplayName": "魔胎之境（火卫二）隔离库赏金中的殁世机甲敌人",
+            "chance": 1,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 1
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -56,8 +71,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "损坏的殁世机甲 引擎的资源身份与获取证据。",
   "tags": [
     "acquisition",

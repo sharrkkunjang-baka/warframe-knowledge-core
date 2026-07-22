@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/Fish/Solaris/FishParts/CorpusFishRotobladeItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -25,11 +25,32 @@
       ],
       "evidence": [],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "目－目旋翼叶片"
         },
-        "status": "unresolved"
+        "methods": [
+          {
+            "type": "resource-processing",
+            "npcId": "npc.the-business",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "拆解Eye-Eye",
+            "variables": {
+              "sourceFishCanonicals": [
+                "Eye-Eye"
+              ],
+              "allServofish": false
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official fish-part description"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -47,8 +68,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "目－目旋翼叶片的资源身份与获取证据。",
   "tags": [
     "acquisition",

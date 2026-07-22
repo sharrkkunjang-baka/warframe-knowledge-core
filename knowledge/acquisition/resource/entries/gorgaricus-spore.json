@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Venus/Resources/VenusCoconutItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -69,11 +69,57 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "葛嘉里菌孢子"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "open-world-gathering",
+            "locationId": "landscape.orb-vallis",
+            "sourceDisplayName": "奥布山谷野外资源容器或植物",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Public Export official localized description"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 10-30 级赏金 C轮",
+            "rotation": "C",
+            "chance": 0.25,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 10 - 30 Orb Vallis Bounty), Rotation C"
+            }
+          },
+          {
+            "type": "bounty-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.eudico",
+            "sourceDisplayName": "奥布山谷 5-15 级赏金 C轮",
+            "rotation": "C",
+            "chance": 0.25,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 5 - 15 Orb Vallis Bounty), Rotation C"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -91,8 +137,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "葛嘉里菌孢子的资源身份与获取证据。",
   "tags": [
     "acquisition",

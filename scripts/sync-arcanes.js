@@ -144,7 +144,21 @@ function supplementRequirements(sourceCanonical) {
   return { type: 'none' };
 }
 
-function structuredAcquisition(item, languages = loadLanguages()) {
+function standingAmountFromWiki(method, previous) {
+  if (method?.requirements?.type !== 'standing') return null
+  const syndicate = String(method.sourceCanonical || '').split(',')[0].replace(/\s*\([^)]+\)\s*$/, '').trim()
+  const rankCanonical = String(method.sourceCanonical || '').split(',')[1]?.trim()
+  for (const evidence of previous?.arcaneAcquisition?.generated?.wiki?.evidence || []) {
+    const excerpt = String(evidence.provenance?.excerpt || '')
+    const amount = excerpt.match(/for\s+([\d,]+)\s+Standing/i)
+    if (!amount || !new RegExp(`\\b${syndicate.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(excerpt)) continue
+    if (rankCanonical && !new RegExp(`\\b${rankCanonical.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(excerpt)) continue
+    return Number(amount[1].replace(/,/g, ''))
+  }
+  return null
+}
+
+function structuredAcquisition(item, languages = loadLanguages(), previous = null) {
   if (ARCANE_SOURCE_OVERRIDES[item.uniqueName]) return ARCANE_SOURCE_OVERRIDES[item.uniqueName].map(method => ({ ...method, provenance: { source: 'de-official-drop-tables', officialUniqueName: item.uniqueName, note: '官方掉落表与任务类型结构覆盖上游第三方 location 字符串。' } }));
   const methods = [];
   for (const drop of item.drops || []) {
@@ -172,7 +186,12 @@ function structuredAcquisition(item, languages = loadLanguages()) {
       officialUniqueName: component.uniqueName || null, canonical: component.name || null, quantity: Number(component.itemCount || 0)
     })), provenance: { source: 'warframe-items', input: 'Arcanes.json', officialUniqueName: item.uniqueName }
   });
-  return methods;
+  return methods.map(method => {
+    const amount = standingAmountFromWiki(method, previous)
+    if (amount) return { ...method, requirements: { ...method.requirements, amount }, reviewStatus: 'approved', provenance: { ...method.provenance, standingAmountEvidence: 'current-wiki-acquisition-prose' } }
+    if (method.type === 'vendor-or-syndicate-exchange' && method.requirements?.type === 'standing') return { ...method, reviewStatus: 'review-required' }
+    return method
+  });
 }
 
 function existingEntries() {
@@ -206,7 +225,7 @@ function buildSupplementEntry(item, previous, languages = loadLanguages()) {
 function buildEntry(item, previous, languages = loadLanguages()) {
   const localized = I18N[item.uniqueName]?.zh || {};
   const category = categoryFor(item);
-  const methods = structuredAcquisition(item, languages);
+  const methods = structuredAcquisition(item, languages, previous);
   const status = category === 'legacy' ? 'review-required' : methods.length ? 'structured' : 'review-required';
   const manualPrevious = previous?.arcaneAcquisition?.manual || {};
   const manual = {

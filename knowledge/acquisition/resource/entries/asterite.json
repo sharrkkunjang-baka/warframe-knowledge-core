@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/RailjackMiscItems/AsteriteRailjackItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -391,11 +391,26 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "晶状彗星碎片"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "航道星舰任务",
+            "chance": 0.1429,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 38
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -413,8 +428,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "晶状彗星碎片的资源身份与获取证据。",
   "tags": [
     "acquisition",

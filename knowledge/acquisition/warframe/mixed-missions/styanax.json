@@ -60,25 +60,59 @@
           "componentCategory": "frame-mixed-missions",
           "blueprintCategory": null,
           "componentVariables": {
-            "sources": [
+            "sourceGroups": [
               {
-                "type": "acquisition-source",
-                "sourceId": "source.kahl-s-garrison-chipper-fort"
+                "part": "Neuroptics",
+                "partName": "头部神经光元",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.kahl-s-garrison-chipper-fort",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Kahl's Garrison (Chipper), Fort"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.kahl-s-garrison-chipper-settlement"
+                "part": "Chassis",
+                "partName": "机体",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.kahl-s-garrison-chipper-settlement",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Kahl's Garrison (Chipper), Settlement"
+                ],
+                "unresolvedSources": []
               },
               {
-                "type": "acquisition-source",
-                "sourceId": "source.kahl-s-garrison-chipper-encampment"
+                "part": "Systems",
+                "partName": "系统",
+                "sources": [
+                  {
+                    "type": "acquisition-source",
+                    "sourceId": "source.kahl-s-garrison-chipper-encampment",
+                    "chance": 1
+                  }
+                ],
+                "sourceCanonical": [
+                  "Kahl's Garrison (Chipper), Encampment"
+                ],
+                "unresolvedSources": []
               }
             ],
             "sourceCanonical": [
               "Kahl's Garrison (Chipper), Fort",
               "Kahl's Garrison (Chipper), Settlement",
               "Kahl's Garrison (Chipper), Encampment"
-            ]
+            ],
+            "unresolvedSources": []
           },
           "blueprintVariables": {
             "type": "acquisition-source",

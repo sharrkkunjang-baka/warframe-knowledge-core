@@ -24,7 +24,7 @@ const STANDING_EXCHANGE_SOURCES = Object.freeze({
 })
 const OFFICIAL_ZH = require(path.join(__dirname, '..', '.cache', 'official-localization', 'languages.zh.json'))
 const LOCAL_CROSS_PAGE_METHODS = Object.freeze({
-  'Primed Counterbalance': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.baro-ki-teer', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.credits', amount: 220000 }, { currencyId: 'currency.orokin-ducats', amount: 300 }], chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'draft', provenance: { source: 'current-wiki-online', pageTitle: 'Primed Counterbalance', pageId: 1597542, revisionId: 2772049, section: 'Acquisition', excerpt: "This mod can be purchased unranked from the Void Trader Baro Ki'Teer for 220,000 and 300." } }],
+  'Primed Counterbalance': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.baro-ki-teer', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.credits', amount: 220000 }, { currencyId: 'currency.orokin-ducats', amount: 300 }], chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'approved', provenance: { source: 'current-wiki-online', pageTitle: 'Primed Counterbalance', pageId: 1597542, revisionId: 2772049, section: 'Acquisition', excerpt: "This mod can be purchased unranked from the Void Trader Baro Ki'Teer for 220,000 and 300." } }],
   'Primed Vigor': [{ type: 'daily-tribute', sourceEntityId: 'acquisition-source.daily-tribute', chance: null, quantity: 1, availability: 'milestone-choice', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Primed Vigor', section: 'Acquisition', excerpt: 'This mod is exclusive to the Daily Tribute system. It will become available at day 200, 400, 600 and 900, until chosen as the Milestone reward.' } }],
   'Primed Shred': [{ type: 'daily-tribute', sourceEntityId: 'acquisition-source.daily-tribute', chance: null, quantity: 1, availability: 'milestone-choice', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Primed Shred', section: 'Acquisition', excerpt: 'This mod is exclusive to the Daily Tribute system. It will become available at day 200, 400, 600 and 900, until chosen as the Milestone reward.' } }],
   'Primed Fury': [{ type: 'daily-tribute', sourceEntityId: 'acquisition-source.daily-tribute', chance: null, quantity: 1, availability: 'milestone-choice', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Primed Fury', section: 'Acquisition', excerpt: 'This mod is exclusive to the Daily Tribute system. It will become available at day 200, 400, 600 and 900, until chosen as the Milestone reward.' } }],
@@ -273,7 +273,9 @@ function methodKey(method) {
 function mergeGeneratedWiki(generatedWiki, oldWiki) {
   if (!generatedWiki) return oldWiki || null
   if (!oldWiki) return generatedWiki
-  const maintainedMethods = (generatedWiki.methods || []).filter(method => method.type === 'syndicate-exchange' || method.provenance?.source === 'local-wiki-sqlite')
+  const maintainedMethods = (generatedWiki.methods || []).filter(method =>
+    method.reviewStatus === 'approved'
+    || (method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates'))
   if (!maintainedMethods.length) return oldWiki
   const maintainedKeys = new Set(maintainedMethods.map(methodKey))
   return {
@@ -283,6 +285,18 @@ function mergeGeneratedWiki(generatedWiki, oldWiki) {
   }
 }
 
+function reconcileOfficialDropsWithWiki(officialDrops, wiki) {
+  const authoritativeEnemySources = new Set((wiki?.methods || [])
+    .filter(method => method.type === 'enemy-drop' && method.sourceEntityId && method.sourceCanonical)
+    .map(method => String(method.sourceCanonical).trim().toLowerCase()))
+  if (!authoritativeEnemySources.size) return officialDrops || []
+  return (officialDrops || []).filter(method => {
+    if (method.type !== 'official-drop') return true
+    const source = String(method.sourceCanonical || '').replace(/\s*\(Level\s*\d+\s*-\s*\d+\)\s*$/i, '').trim().toLowerCase()
+    return !source || authoritativeEnemySources.has(source)
+  })
+}
+
 function mergeModEntry(generatedEntry, oldEntry) {
   if (!oldEntry) return generatedEntry
   const next = { ...oldEntry, ...generatedEntry }
@@ -290,11 +304,18 @@ function mergeModEntry(generatedEntry, oldEntry) {
     if (oldEntry[key] !== undefined) next[key] = oldEntry[key]
   }
   next.subject = { ...(oldEntry.subject || {}), ...generatedEntry.subject }
+  if ((oldEntry.subject?.categoryRefs || []).includes('syndicatemod')) {
+    next.subject.categoryRefs = [...new Set(['syndicatemod', ...(next.subject.categoryRefs || [])])]
+  }
+  const generatedWiki = generatedEntry.modAcquisition.generated.wiki
+  const oldWiki = oldEntry.modAcquisition?.generated?.wiki
+  const generatedHasMethods = (generatedWiki?.methods || []).length > 0
+  const mergedWiki = generatedHasMethods ? mergeGeneratedWiki(generatedWiki, oldWiki) : (oldWiki || generatedWiki)
   next.modAcquisition = {
     generated: {
       ...generatedEntry.modAcquisition.generated,
-      wiki: mergeGeneratedWiki(generatedEntry.modAcquisition.generated.wiki, oldEntry.modAcquisition?.generated?.wiki),
-      officialDrops: generatedEntry.modAcquisition.generated.officialDrops
+      wiki: mergedWiki,
+      officialDrops: reconcileOfficialDropsWithWiki(generatedEntry.modAcquisition.generated.officialDrops, mergedWiki)
     },
     manual: migrateManualModData(oldEntry)
   }
@@ -328,6 +349,7 @@ module.exports = {
   isGeneratedModEntry,
   mergeGeneratedWiki,
   mergeModEntry,
+  reconcileOfficialDropsWithWiki,
   migrateManualModData,
   slugify
 }

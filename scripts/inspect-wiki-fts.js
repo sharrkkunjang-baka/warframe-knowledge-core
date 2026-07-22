@@ -1,0 +1,1 @@
+const B=require('better-sqlite3'),d=new B('.cache/warframe-wiki.sqlite',{readonly:true});for(const t of ['pages_fts','sections_fts'])console.log(t,d.prepare(`pragma table_info(${t})`).all());d.close()

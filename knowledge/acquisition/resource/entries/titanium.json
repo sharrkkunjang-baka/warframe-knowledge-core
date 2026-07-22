@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/RailjackMiscItems/TitaniumRailjackItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -482,11 +482,26 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "钛"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "航道星舰任务",
+            "chance": 0.2857,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 38
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -504,8 +519,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "钛的资源身份与获取证据。",
   "tags": [
     "acquisition",

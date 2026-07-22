@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Gameplay/Venus/Resources/CorpusWidgetCItem",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -62,11 +62,100 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "斥极系统"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "heist-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.little-duck",
+            "sourceDisplayName": "利润收割者抢劫第 1 阶段 C轮",
+            "rotation": "C",
+            "chance": 0.075,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 PROFIT-TAKER - PHASE 1), Rotation C"
+            }
+          },
+          {
+            "type": "heist-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.little-duck",
+            "sourceDisplayName": "利润收割者抢劫第 2 阶段 C轮",
+            "rotation": "C",
+            "chance": 0.075,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 PROFIT-TAKER - PHASE 2), Rotation C"
+            }
+          },
+          {
+            "type": "heist-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.little-duck",
+            "sourceDisplayName": "利润收割者抢劫第 3 阶段 C轮",
+            "rotation": "C",
+            "chance": 0.075,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 40 - 60 PROFIT-TAKER - PHASE 3), Rotation C"
+            }
+          },
+          {
+            "type": "heist-reward",
+            "locationId": "landscape.orb-vallis",
+            "npcId": "npc.little-duck",
+            "sourceDisplayName": "利润收割者抢劫第 4 阶段 C轮",
+            "rotation": "C",
+            "chance": 0.0857,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE Official Drop Tables",
+              "sourceCanonical": "Venus/Orb Vallis (Level 50 - 60 PROFIT-TAKER - PHASE 4), Rotation C"
+            }
+          },
+          {
+            "type": "syndicate-exchange",
+            "npcId": "npc.little-duck",
+            "locationId": "hub.fortuna",
+            "sourceDisplayName": "索拉里斯之声",
+            "requiredLevel": 3,
+            "standing": 5000,
+            "variables": {
+              "rankName": "Hand"
+            },
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.little-duck",
+              "locationId": "hub.fortuna",
+              "rank": 3,
+              "rankName": "Hand",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current wiki cache Acquisition section"
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
@@ -84,8 +173,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "斥极系统的资源身份与获取证据。",
   "tags": [
     "acquisition",

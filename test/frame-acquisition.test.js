@@ -6,6 +6,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const acquisition = require('../src/frame-acquisition');
+const { createKnowledgeCore } = require('../src');
 
 const recipe = (resultType, ingredients, creditsCost = 0) => ({ resultType, ingredients: ingredients.map(([ItemType, ItemCount]) => ({ ItemType, ItemCount })), creditsCost });
 const chroma = acquisition.resolveWarframe('Chroma');
@@ -59,9 +60,33 @@ test('Wisp exposes four blueprint drops and decimal probabilities', () => {
   assert.equal(acquisition.formatChance(22.56), '22.56%');
 });
 
+test('Ivara screenshot regression keeps component tiers structured and excludes reward-pool noise', () => {
+  const core = require('../src').createKnowledgeCore({ approvedOnly: false });
+  const result = core.getAcquisition('Ivara');
+  assert.deepEqual(result.entry.methodRefs, []);
+  assert.deepEqual(result.requirements, { type: 'none' });
+  assert.deepEqual(result.requirementLines, []);
+  assert.match(result.description, /总图：在商店购买/);
+  assert.match(result.description, /系统：1-15 级间谍任务 C 轮/);
+  assert.match(result.description, /机体：16-25 级间谍任务 C 轮/);
+  assert.match(result.description, /头部神经光元：26 级以上间谍任务 C 轮/);
+  assert.match(result.description, /间谍 C 轮要求：成功破解全部 3 个数据库/);
+  assert.match(result.description, /整套蓝图：普通无尽回廊第 8 周轮换可获取/);
+  assert.doesNotMatch(result.description, /Cyath|Gnathos|Nereid|Oceanum|Pavlov|Brom Cluster|Cambria|Orvin-Haarc|未评|Lith|Meso|Neo|Axi/);
+  assert.ok(result.structuredMethods.some(method => method.type === 'circuit-reward' && method.scope === 'all-blueprints'));
+  assert.ok(result.structuredMethods.every(method => method.requirements && Array.isArray(method.requirementLines)));
+  const prime = core.getAcquisition('Ivara Prime');
+  assert.notEqual(prime.entry.subject.officialUniqueName, result.entry.subject.officialUniqueName);
+  assert.equal(result.structuredMethods.some(method => method.type === 'relic-reward'), false);
+});
+
+test('all published frames pass acquisition contamination audit', () => {
+  assert.deepEqual(require('../scripts/audit-warframe-acquisition').audit().issues, []);
+});
+
 test('Oberon summarizes audited Proxima outpost rewards without node or cache mistranslation', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Oberon'), materials: { available: false } });
-  assert.match(rendered, /头：完成地球比邻星域任务中的前哨站额外目标：10%/);
+  assert.match(rendered, /头部神经光元：完成地球比邻星域任务中的前哨站额外目标：10%/);
   assert.match(rendered, /机体：完成土星比邻星域任务中的前哨站额外目标：10%/);
   assert.match(rendered, /系统：完成地球比邻星域任务中的前哨站额外目标：10%/);
   assert.doesNotMatch(rendered, /Bendar|Kasio|Iota Temple|Caches|白色储藏箱|虚空风暴/);
@@ -93,10 +118,23 @@ test('bounty frames show vendor and tier without stage probabilities or backend 
 test('Chroma sources split Simaris purchase from one-time quest rewards', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Chroma'), materials: { available: false } });
   assert.match(rendered, /总图：首次完成《新疑谜团》获得该蓝图；之后可在中枢 Simaris 处回购/);
-  assert.match(rendered, /头：首次完成《天王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
+  assert.match(rendered, /头部神经光元：首次完成《天王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
   assert.match(rendered, /机体：首次完成《海王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
   assert.match(rendered, /系统：首次完成《冥王星接合点》获得该蓝图；之后可在中枢 Simaris 处回购/);
   assert.doesNotMatch(rendered, /100%|Complete|Junction/);
+});
+
+test('Titania merges first quest rewards, distinct Simaris prices, and Circuit set by blueprint role', () => {
+  const result = createKnowledgeCore().getAcquisition('Titania');
+  const rendered = result.description;
+  assert.match(rendered, /部件蓝图：首次完成《落银树庭》获得；之后可在任意中继站的中枢 Simaris处消耗25,000声望兑换/);
+  assert.match(rendered, /总图：在任意中继站的中枢 Simaris处消耗50,000声望兑换/);
+  assert.match(rendered, /整套蓝图：普通无尽回廊第 8 周轮换可获取/);
+  assert.equal((rendered.match(/部件蓝图：/g) || []).length, 1);
+  assert.equal((rendered.match(/总图：/g) || []).length, 1);
+  const exchange = result.structuredMethods.filter(method => method.type === 'vendor-exchange');
+  assert.deepEqual(exchange.map(method => [method.scope, method.requirements.amount]).sort(), [['blueprint', 50000], ['component', 25000]]);
+  assert.equal(exchange.every(method => method.npcId === 'npc.cephalon-simaris' && method.locationId === 'hub.any-relay'), true);
 });
 
 test('quest acquisition uses official Chinese names', () => {
@@ -149,7 +187,7 @@ test('Caliban Prime uses audited current relics when npm data lags', () => {
   assert.equal(prime.status, '当前出库');
   assert.match(acquisition.renderAcquisition({ frame, prime, materials: frame.materials }), /总图：古纪 V11（银）；前纪 V13（银）；前纪 V15（银）/);
   const rendered = acquisition.renderAcquisition({ frame, prime, materials: frame.materials });
-  assert.match(rendered, /头：中纪 C7（金）/);
+  assert.match(rendered, /头部神经光元：中纪 C7（金）/);
   assert.doesNotMatch(rendered, /2%|11%|25\.33%/);
 });
 
@@ -194,15 +232,15 @@ test('Caliban official recipes produce complete material totals', async () => {
   assert.equal(materials.available, true);
   assert.deepEqual(Object.fromEntries(materials.resources.map(item => [item.name, item.count])), {
     '合一众塑讯块': 40, '六醇燃剂': 30, '摩图斯角': 20, '神经传感器': 10, '塔洛鱼眼': 20,
-    '夜灵之息': 30, '异常碎片': 9, '长庚合金': 100, 'Orokin 电池': 12
+    '夜灵之息': 30, '异常碎片': 9, '长庚合金': 100, '奥罗金电池': 12
   });
-  assert.equal(materials.credits.count, 155000);
+  assert.equal(materials.credits.count, 70000);
 });
 
 test('Uriel audited acquisition and four recipes preserve current exchange totals', () => {
   const routed = acquisition.renderRoutedAcquisition('Uriel');
-  assert.match(routed.lines.join('\n'), /随机掉落部件蓝图/);
-  assert.match(routed.lines.join('\n'), /头部神经光元、机体、系统各 12\.5%/);
+  assert.match(routed.componentLine, /部件蓝图掉率 12\.5%/);
+  assert.equal(routed.lines.filter(line => /部件蓝图掉率 12\.5%/.test(line)).length, 1);
   assert.match(routed.lines.join('\n'), /部件蓝图每张 25，总图 75/);
   assert.match(routed.lines.join('\n'), /三张部件蓝图共 75，完整四张蓝图共 150/);
 

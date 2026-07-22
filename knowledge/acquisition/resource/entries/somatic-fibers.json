@@ -9,7 +9,7 @@
     "category": "resource",
     "officialUniqueName": "/Lotus/Types/Items/MiscItems/MemoryCryptoFragment",
     "categoryRefs": [
-      "resource-unresolved"
+      "resource-current-wiki"
     ]
   },
   "prerequisites": [],
@@ -69,18 +69,48 @@
         }
       ],
       "routing": {
-        "category": "resource-unresolved",
+        "category": "resource-current-wiki",
         "variables": {
           "resourceName": "活体纤维"
         },
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceDisplayName": "月球上的爆破型敌人",
+            "chance": 0.15,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 4
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "联结生存任务（月球）",
+            "chance": 0.3872,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "official-localized-description-and-drop-table",
+              "sourceCount": 2
+            }
+          }
+        ],
+        "status": "compiled"
       }
     },
     "manual": {
       "tips": [],
       "tipKeywords": [],
       "routingOverride": null,
-      "reviewedBy": []
+      "reviewedBy": [
+        "current-wiki-and-de-drop-table-audit-2026-07-22"
+      ]
     }
   },
   "sources": [
@@ -91,8 +121,10 @@
   ],
   "gameVersion": "current",
   "updatedAt": "2026-07-14",
-  "reviewStatus": "draft",
-  "reviewedBy": [],
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "official-resource-sync"
+  ],
   "summary": "活体纤维的资源身份与获取证据。",
   "tags": [
     "acquisition",

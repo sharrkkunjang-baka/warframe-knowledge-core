@@ -1,6 +1,7 @@
 'use strict'
 
-const TYPES = Object.freeze(['none', 'currency', 'standing', 'quest', 'item'])
+const TYPES = Object.freeze(['none', 'currency', 'standing', 'quest', 'item', 'mode'])
+const EXCHANGE_METHOD_TYPES = Object.freeze(['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'])
 
 function normalizeRequirements(value) {
   const source = value && typeof value === 'object' ? value : { type: 'none' }
@@ -10,6 +11,8 @@ function normalizeRequirements(value) {
     usage: source.usage === 'crafting' ? 'crafting' : 'exchange',
     npcId: source.npcId || null,
     locationId: source.locationId || null,
+    ...(source.rank != null ? { rank: source.rank } : {}),
+    ...(source.rankName ? { rankName: source.rankName } : {}),
     ...(Number.isInteger(source.chooseCount) && source.chooseCount > 0 ? { chooseCount: source.chooseCount } : {}),
     currency: (source.currency || []).map(item => {
       const amount = Number(item.amount)
@@ -27,6 +30,7 @@ function normalizeRequirements(value) {
     return { type, npcId: source.npcId || null, locationId: source.locationId || null, rank: source.rank ?? null, rankName: source.rankName || null, blueprintRank: source.blueprintRank ?? null, blueprintRankName: source.blueprintRankName || null, ...(source.factionId ? { factionId: source.factionId } : {}), ...(Number.isFinite(amount) && amount > 0 ? { amount } : {}) }
   }
   if (type === 'item') return { ...source, type, items: (source.items || []).map(item => ({ ...item, amount: Number(item.amount || 1) })), taskRules: (source.taskRules || []).map(String).filter(Boolean) }
+  if (type === 'mode') return { type, modeId: source.modeId || null }
   return { ...source, type }
 }
 
@@ -101,18 +105,43 @@ function currencyAcquisitionSummary(entity, registries) {
   return null
 }
 
+function exchangeRequirementIssues(method, registries) {
+  if (!EXCHANGE_METHOD_TYPES.includes(method?.type)) return []
+  const requirement = normalizeRequirements(method.requirements)
+  const npcId = requirement.npcId || method.npcId || null
+  const npc = npcId ? (registries?.npcs?.get(npcId) || registries?.arcaneSources?.get(npcId) || registries?.locations?.get(npcId)) : null
+  const locationId = requirement.locationId || method.locationId || npc?.locationId || npc?.parentId || null
+  const issues = []
+  if (!npcId || !npc) issues.push('npc')
+  if (!locationId || !registries?.locations?.get(locationId)) issues.push('location')
+  if (!['standing', 'currency'].includes(requirement.type)) issues.push('requirements')
+  if (requirement.type === 'standing') {
+    if (!(Number(requirement.amount) > 0)) issues.push('amount')
+    if ((requirement.rankName || method.requiredRankName || Number.isInteger(method.requiredLevel)) && !Number.isInteger(requirement.rank)) issues.push('rank')
+  }
+  if (requirement.type === 'currency') {
+    if (!(requirement.currency || []).length || requirement.currency.some(item => !item.currencyId || !(Number(item.amount) > 0 || Array.isArray(item.amountRange)))) issues.push('currency-amount')
+    if ((requirement.rankName || method.requiredRankName || Number.isInteger(method.requiredLevel)) && !Number.isInteger(requirement.rank)) issues.push('rank')
+  }
+  return [...new Set(issues)]
+}
+
 function renderRequirements(value, registries) {
   const requirement = normalizeRequirements(value)
   if (requirement.type === 'none') return []
+  if (requirement.type === 'mode') {
+    if (requirement.modeId === 'steel-path') return ['仅钢铁之路模式掉落']
+    return []
+  }
   if (requirement.type === 'quest') {
     const quest = requirement.questId ? registries.quests.get(requirement.questId) : null
     return [quest ? `完成任务「${quest.displayName || quest.canonical}」` : requirement.questName ? `完成任务「${requirement.questName}」` : '完成指定任务']
   }
   const entityName = (registry, id) => { const item = id ? registry.get(id) : null; return item ? (item.displayName || item.canonical) : '' }
-  const npc = requirement.npcId ? registries.npcs.get(requirement.npcId) : null
-  const locationId = requirement.locationId || npc?.locationId
+  const npc = requirement.npcId ? (registries.npcs.get(requirement.npcId) || registries.arcaneSources?.get(requirement.npcId) || registries.locations?.get(requirement.npcId)) : null
+  const locationId = requirement.locationId || npc?.locationId || npc?.parentId
   const locationName = entityName(registries.locations, locationId)
-  const npcName = entityName(registries.npcs, requirement.npcId)
+  const npcName = entityName(registries.npcs, requirement.npcId) || entityName(registries.arcaneSources, requirement.npcId) || entityName(registries.locations, requirement.npcId)
   if (requirement.type === 'item') {
     if (requirement.recipeId) return []
     if (requirement.itemGroupId) return [`\u5728${locationName || '\u5bf9\u5e94\u5546\u5e97'}\u5151\u6362\uff0c\u6240\u9700\u8d44\u6e90\u6570\u91cf\u7531\u5546\u5e97\u8f6e\u6362\u51b3\u5b9a`]
@@ -120,12 +149,10 @@ function renderRequirements(value, registries) {
     return [...(items.length ? [`任务入口：使用${items.join('和')}开启对应特殊任务`] : []), ...(requirement.taskRules?.length ? ['特殊任务规则：', ...requirement.taskRules] : [])]
   }
   if (requirement.type === 'standing') {
-    if (!npcName && requirement.factionId) { const faction = registries.factions.get(requirement.factionId); return faction ? [`\u5728${faction.displayName || faction.canonical}${requirement.rank != null ? `\u8fbe\u5230${requirement.rank}\u7ea7` : requirement.rankName ? `\u8fbe\u5230${requirement.rankName}` : ''}${Number(requirement.amount) > 0 ? `\u5e76\u82b1\u8d39${Number(requirement.amount).toLocaleString('zh-CN')}\u58f0\u671b` : ''}\u5151\u6362`] : [] }
-    if (!locationName || !npcName) return []
+    if (!locationName || !npcName || !(Number(requirement.amount) > 0)) return []
     if (requirement.blueprintRank != null && requirement.blueprintRank !== requirement.rank) return [`${locationName}的${npcName}：总图需要 ${requirement.blueprintRank}级声望，部件蓝图需要 ${requirement.rank}级声望兑换`]
-    const rank = requirement.rank == null ? '' : ` ${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}`
-    const amount = requirement.amount ? `，需要${requirement.amount.toLocaleString('zh-CN')}声望` : ''
-    return [`在${locationName}找${npcName}${rank}声望兑换${amount}`]
+    const rank = requirement.rank == null ? '' : `达到${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}声望后`
+    return [`在${locationName}的${npcName}处${rank}消耗${requirement.amount.toLocaleString('zh-CN')}声望兑换`]
   }
   if (requirement.type !== 'currency') return []
   const currencies = requirement.currency.map(item => ({ ...item, entity: registries.currencies.get(item.currencyId || item.currencyCanonical) })).filter(item => item.entity)
@@ -136,9 +163,10 @@ function renderRequirements(value, registries) {
   const choiceText = requirement.chooseCount && requirement.chooseCount < currencies.length
     ? `（随机选择其中${requirement.chooseCount}种）`
     : ''
+  const rank = requirement.rank == null ? '' : `达到${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}声望后`
   const route = requirement.usage === 'crafting'
     ? `在${locationName}制造需要${currencyText}`
-    : npcName ? `在${locationName}找${npcName}兑换，需要${currencyText}${choiceText}` : `在${locationName}兑换，需要${currencyText}${choiceText}`
+    : npcName && locationName ? `在${locationName}的${npcName}处${rank}消耗${currencyText}${choiceText}兑换` : ''
   const fixedCurrencies = currencies.filter(item => Number.isFinite(item.amount))
   const combinedDependency = fixedCurrencies.length === currencies.length ? combinedMissionCurrencySummary(currencies, registries) : null
   const dependencies = combinedDependency ? [combinedDependency] : currencies.map(({ entity, amount, amountRange }) => {
@@ -206,13 +234,11 @@ function mergeMethodPresentationLines(method, headline, requirementLines = []) {
       /兑换/.test(mergedHeadline) &&
       /兑换/.test(line) &&
       ['currency', 'standing'].includes(method?.requirements?.type) &&
-      /^在.+兑换(?:，需要|$)/.test(String(line)) &&
-      ['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method?.type)
+      /^在.+(?:消耗|兑换)/.test(String(line)) &&
+      EXCHANGE_METHOD_TYPES.includes(method?.type)
     ) {
-      const cost = String(line).match(/(?:，|,)?需要(.+)$/)
-      if (cost && !/需要/.test(mergedHeadline)) mergedHeadline = method?.requirements?.type === 'standing'
-        ? `${mergedHeadline}（${cost[1]}）`
-        : `${mergedHeadline}，需要${cost[1]}`
+      const scopePrefix = String(mergedHeadline).match(/^([^：]+：)/)?.[1] || ''
+      mergedHeadline = `${scopePrefix}${line}`
       continue
     }
     add(line)
@@ -438,8 +464,10 @@ function acquisitionCardGroup(method) {
 
 function acquisitionCardSections(methods, options = {}) {
   const sections = { exchange: [], enemy: [], other: [] }
+  const sectionNotes = { exchange: [], enemy: [], other: [] }
   const seen = new Set()
-  const sourceMethods = methods || []
+  const noteSeen = new Set()
+  const sourceMethods = (methods || []).filter(method => method.reviewStatus !== 'review-required')
   // 图片卡片的敌人栏是一敌人一行；禁止套用文字协议的“替代来源合并”，
   // 否则几十个敌人会重新拼成一个难以阅读的长句。
   for (const method of sourceMethods.filter(method => acquisitionCardGroup(method) === 'enemy')) {
@@ -455,13 +483,19 @@ function acquisitionCardSections(methods, options = {}) {
       : ''
     const context = bossContext || method.locationDisplayName || method.variables?.locationName || ''
     const chance = Number.isFinite(Number(method.chance))
-      ? `，${Number((Number(method.chance) * 100).toFixed(4))}%`
+      ? `${Number((Number(method.chance) * 100).toFixed(4))}%`
       : ''
     const sourceText = context && context !== name ? `${context} · ${name}` : name
-    const text = `- ${sourceText}（概率获得${chance}）`
+    const text = `- ${sourceText}（${Number(method.chance) >= 1 ? '必定获得' : '概率获得'}${chance ? `，${chance}` : ''}）`
     const identity = method.sourceEntityId || method.sourceCanonical || name
     if (seen.has(`enemy:${identity}`)) continue
     seen.add(`enemy:${identity}`)
+    for (const line of method.requirementLines || []) {
+      const noteKey = `enemy:${line}`
+      if (!line || noteSeen.has(noteKey)) continue
+      noteSeen.add(noteKey)
+      sectionNotes.enemy.push(line)
+    }
     sections.enemy.push({ text, method })
   }
   const nonEnemy = sourceMethods.filter(method => acquisitionCardGroup(method) !== 'enemy')
@@ -482,7 +516,7 @@ function acquisitionCardSections(methods, options = {}) {
     seen.add(identity)
     sections[group].push({ text, method })
   }
-  return sections
+  return Object.assign(sections, { notes: sectionNotes })
 }
 
 function mergeRolePresentationLines(lines) {
@@ -511,7 +545,7 @@ function mergeRolePresentationLines(lines) {
 }
 
 function renderAcquisition(methods, options = {}) {
-  const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods), options)
+  const renderMethods = mergeAlternativeSources(applyDisplaySummaries((methods || []).filter(method => method.reviewStatus !== 'review-required')), options)
     .map((method, index) => ({ method, index }))
     .sort((left, right) => (left.method.scope === 'blueprint' ? -1 : 0) - (right.method.scope === 'blueprint' ? -1 : 0)
       || (left.method.type === 'quest-reward' ? -1 : 0) - (right.method.type === 'quest-reward' ? -1 : 0)
@@ -563,4 +597,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

@@ -92,7 +92,10 @@ function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
     officialUniqueName: item.uniqueName,
     localizationStatus: item.localizationStatus,
     equipmentType: item.equipmentType || null,
-    omegaAttenuation: Number.isFinite(Number(item.omegaAttenuation)) ? Number(item.omegaAttenuation) : Number(marketEntry.disposition),
+    omegaAttenuation: marketEntry.group === 'kitgun'
+      ? null
+      : Number.isFinite(Number(item.omegaAttenuation)) ? Number(item.omegaAttenuation) : Number(marketEntry.disposition),
+    dispositions: marketEntry.dispositions || null,
     marketSlug: marketEntry.slug,
     marketGroup: marketEntry.group,
     rivenType: marketEntry.rivenType,
@@ -152,6 +155,7 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}, rivenM
     rivenType: entry.identity.rivenType,
     modularFamily: entry.identity.modularFamily,
     componentRole: entry.identity.componentRole,
+    dispositions: entry.identity.dispositions,
     category: 'riven-weapon',
     match,
     score,

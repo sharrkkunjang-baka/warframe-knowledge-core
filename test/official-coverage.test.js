@@ -28,9 +28,9 @@ test('manifest covers required domains and records policy states', () => {
   assert.ok(manifest.domains.warframe.entries.some(entry => entry.disposition === 'excluded-policy'));
   assert.ok(manifest.domains.mod.entries.some(entry => entry.disposition === 'review-required'));
   assert.ok(manifest.domains.mod.entries.some(entry => entry.disposition === 'excluded-policy'));
-  const upstreamRecords = new (require('warframe-items'))({ category: ['Mods'], i18n: ['zh'] }).length;
-  const supplementalRecords = require('../knowledge/categories/official.json').mods.filter(mod => String(mod.uniqueName).startsWith('language:')).length;
-  assert.equal(manifest.domains.mod.entries.length, upstreamRecords + supplementalRecords);
+  const catalog = require('../knowledge/categories/official.json');
+  assert.equal(manifest.domains.mod.entries.length, catalog.mods.length + catalog.excludedMods.length);
+  assert.equal(new Set(manifest.domains.mod.entries.map(entry => entry.identity)).size, manifest.domains.mod.entries.length);
 });
 
 test('source differences are derived from identities rather than fixed totals', () => {

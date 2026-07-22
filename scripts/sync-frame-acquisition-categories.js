@@ -36,6 +36,8 @@ function buildPlan(dbPath) {
     for (const item of framePlan.included) {
       const old = item.entry; const runtimeFrame = require('../src/frame-acquisition').resolveWarframe(old.subject.canonical) || item.frame; const page = item.frame.isPrime ? null : wiki.getPage(old.subject.canonical); const refs = classifyFrameAcquisition(runtimeFrame, page); const componentCategory = refs[0] || null
       let routing = componentCategory ? buildRouting(runtimeFrame, componentCategory, page) : { componentCategory: null, blueprintCategory: 'unresolved', componentVariables: {}, blueprintVariables: {}, blueprintSource: 'unresolved' }
+      const currentOverride = syncFrames.CURRENT_FRAME_ACQUISITION_OVERRIDES[old.subject.canonical]?.routing
+      if (currentOverride) routing = currentOverride
       if (old.subject.canonical === 'Uriel' && old.frameAcquisition.generated?.routing) routing = old.frameAcquisition.generated.routing
       const effectiveCategory = routing.componentCategory || componentCategory
       const directory = categoryDirectory(effectiveCategory); const relativePath = directory ? `${directory}/${syncFrames.slugify(old.subject.canonical)}.json` : null

@@ -56,3 +56,12 @@ test('跨源目录完整枚举三系鱼类、鱼部件与矿物稳定身份', ()
   }
   assert.equal(path.extname(catalog.entries.find(entry => entry.stableIdentity.canonical === 'Norg').expectedMediaFilename), '.png')
 })
+
+test('Toroid 图片目录覆盖全部五个稳定身份', () => {
+  const catalog = buildCatalog({ generatedAt: 'test' })
+  const toroids = catalog.entries.filter(entry => / Toroid$/.test(entry.stableIdentity.canonical))
+  assert.equal(toroids.length, 5)
+  assert.ok(toroids.every(entry => entry.category === 'resource'))
+  assert.ok(toroids.every(entry => entry.catalogStatus === 'ready'))
+  assert.ok(toroids.every(entry => path.extname(entry.expectedMediaFilename) === '.png'))
+})
