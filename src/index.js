@@ -490,7 +490,9 @@ function createKnowledgeCore(options = {}) {
       return officialWeapons.find(weapon => [weapon.uniqueName, weapon.canonical, weapon.displayName, ...(data.aliases?.weapons?.[weapon.canonical] || [])].some(alias => compactWeaponIntent(alias) === key)) || null;
     };
     const identities = [...stripped].filter(Boolean).map(exactWeaponIdentity).filter(Boolean);
-    const identity = identities[0] || (!constraints.length ? resolveOfficialWeaponIdentity(raw) : null);
+    const strippedInputs = [...stripped].filter(value => value && value !== compact);
+    const resolvedStripped = strippedInputs.map(value => resolveOfficialWeaponIdentity(value)).find(Boolean);
+    const identity = identities[0] || resolvedStripped || (!constraints.length ? resolveOfficialWeaponIdentity(raw) : null);
     if (!identity) return null;
     const family = getWeaponVariantFamily(identity.uniqueName);
     if (!family) return null;
