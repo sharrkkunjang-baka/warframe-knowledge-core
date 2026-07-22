@@ -10,7 +10,7 @@ function normalizeRequirements(value) {
     usage: source.usage === 'crafting' ? 'crafting' : 'exchange',
     npcId: source.npcId || null,
     locationId: source.locationId || null,
-    chooseCount: Number.isInteger(source.chooseCount) && source.chooseCount > 0 ? source.chooseCount : null,
+    ...(Number.isInteger(source.chooseCount) && source.chooseCount > 0 ? { chooseCount: source.chooseCount } : {}),
     currency: (source.currency || []).map(item => {
       const amount = Number(item.amount)
       const amountRange = Array.isArray(item.amountRange) && item.amountRange.length === 2
@@ -99,17 +99,19 @@ function renderRequirements(value, registries) {
     const quest = requirement.questId ? registries.quests.get(requirement.questId) : null
     return [quest ? `完成任务「${quest.displayName || quest.canonical}」` : requirement.questName ? `完成任务「${requirement.questName}」` : '完成指定任务']
   }
-  if (requirement.type === 'item') {
-    if (requirement.recipeId) return []
-    const items = (requirement.items || []).map(item => `${Number(item.amount || 1)}个${item.displayName || item.canonical || item.itemId}`).filter(Boolean)
-    return [...(items.length ? [`任务入口：使用${items.join('和')}开启对应特殊任务`] : []), ...(requirement.taskRules?.length ? ['特殊任务规则：', ...requirement.taskRules] : [])]
-  }
   const entityName = (registry, id) => { const item = id ? registry.get(id) : null; return item ? (item.displayName || item.canonical) : '' }
   const npc = requirement.npcId ? registries.npcs.get(requirement.npcId) : null
   const locationId = requirement.locationId || npc?.locationId
   const locationName = entityName(registries.locations, locationId)
   const npcName = entityName(registries.npcs, requirement.npcId)
+  if (requirement.type === 'item') {
+    if (requirement.recipeId) return []
+    if (requirement.itemGroupId) return [`\u5728${locationName || '\u5bf9\u5e94\u5546\u5e97'}\u5151\u6362\uff0c\u6240\u9700\u8d44\u6e90\u6570\u91cf\u7531\u5546\u5e97\u8f6e\u6362\u51b3\u5b9a`]
+    const items = (requirement.items || []).map(item => `${Number(item.amount || 1)}个${item.displayName || item.canonical || item.itemId}`).filter(Boolean)
+    return [...(items.length ? [`任务入口：使用${items.join('和')}开启对应特殊任务`] : []), ...(requirement.taskRules?.length ? ['特殊任务规则：', ...requirement.taskRules] : [])]
+  }
   if (requirement.type === 'standing') {
+    if (!npcName && requirement.factionId) { const faction = registries.factions.get(requirement.factionId); return faction ? [`\u5728${faction.displayName || faction.canonical}${requirement.rank != null ? `\u8fbe\u5230${requirement.rank}\u7ea7` : requirement.rankName ? `\u8fbe\u5230${requirement.rankName}` : ''}${Number(requirement.amount) > 0 ? `\u5e76\u82b1\u8d39${Number(requirement.amount).toLocaleString('zh-CN')}\u58f0\u671b` : ''}\u5151\u6362`] : [] }
     if (!locationName || !npcName) return []
     if (requirement.blueprintRank != null && requirement.blueprintRank !== requirement.rank) return [`${locationName}的${npcName}：总图需要 ${requirement.blueprintRank}级声望，部件蓝图需要 ${requirement.rank}级声望兑换`]
     const rank = requirement.rank == null ? '' : ` ${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}`
@@ -117,7 +119,7 @@ function renderRequirements(value, registries) {
     return [`在${locationName}找${npcName}${rank}声望兑换${amount}`]
   }
   if (requirement.type !== 'currency') return []
-  const currencies = requirement.currency.map(item => ({ ...item, entity: registries.currencies.get(item.currencyId) })).filter(item => item.entity)
+  const currencies = requirement.currency.map(item => ({ ...item, entity: registries.currencies.get(item.currencyId || item.currencyCanonical) })).filter(item => item.entity)
   const amountText = item => item.amountRange
     ? `${item.amountRange[0]}-${item.amountRange[1]}个`
     : `${item.amount}个`
@@ -194,12 +196,14 @@ function mergeMethodPresentationLines(method, headline, requirementLines = []) {
       mergedHeadline &&
       /兑换/.test(mergedHeadline) &&
       /兑换/.test(line) &&
-      method?.requirements?.type === 'currency' &&
-      /^在.+兑换，需要/.test(String(line)) &&
+      ['currency', 'standing'].includes(method?.requirements?.type) &&
+      /^在.+兑换(?:，需要|$)/.test(String(line)) &&
       ['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method?.type)
     ) {
       const cost = String(line).match(/(?:，|,)?需要(.+)$/)
-      if (cost && !/需要/.test(mergedHeadline)) mergedHeadline = `${mergedHeadline}，需要${cost[1]}`
+      if (cost && !/需要/.test(mergedHeadline)) mergedHeadline = method?.requirements?.type === 'standing'
+        ? `${mergedHeadline}（${cost[1]}）`
+        : `${mergedHeadline}，需要${cost[1]}`
       continue
     }
     add(line)
@@ -237,18 +241,35 @@ function localizeAcquisitionText(value) {
 }
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
+  const rewardQuantity = Array.isArray(method.quantityRange) && method.quantityRange.length === 2
+    ? `${method.quantityRange[0]}-${method.quantityRange[1]}个`
+    : Number.isFinite(Number(method.quantity)) && Number(method.quantity) > 0 ? `${Number(method.quantity)}个` : ''
+  const rewardSuffix = rewardQuantity ? ` ${rewardQuantity}` : ''
+  const rewardKind = variables.rewardKind ? `${variables.rewardKind}：` : ''
   const location = localizeAcquisitionText(method.locationDisplayName || variables.locationName || '')
   const npc = localizeAcquisitionText(method.npcDisplayName || (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange' ? method.sourceDisplayName : '') || variables.npcName || '')
   const source = localizeAcquisitionText(method.sourceDisplayName || location || variables.sourceName || '')
   const exchangeSource = npc ? `${location ? `${location}的` : ''}${npc}` : source
-  const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? (variables.partName || '部件') : method.scope === 'component-access' ? (variables.grantsItemDisplayName || '任务定位装置') : method.scope === 'item' ? '成品' : ''
+  const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' || method.scope === 'components' ? (variables.partName || '部件蓝图') : method.scope === 'component-access' ? (variables.grantsItemDisplayName || '任务定位装置') : method.scope === 'all-blueprints' ? '整套蓝图' : method.scope === 'item' ? '成品' : ''
   const prefix = scopeName ? `${scopeName}：` : ''
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
   if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
+  if (method.type === 'circuit-reward') return `${prefix}普通无尽回廊第 ${variables.week} 周轮换可获取`
   if (method.type === 'dojo-research') return `${prefix}${source ? `在氏族道场「${source}」复制蓝图` : '在氏族道场研究并复制蓝图'}`
-  if (method.type === 'included-with-equipment') return `${prefix}${source ? `达到${source}时获得` : '随对应装备一并取得'}`
+  if (method.type === 'included-with-equipment') {
+    const equipmentOptions = (variables.equipmentOptions || []).filter(Boolean)
+    const upgrades = (variables.includedUpgrades || []).filter(Boolean)
+    const equipment = equipmentOptions.length ? `${equipmentOptions.join('或')}殁世机甲` : source
+    const action = variables.acquisitionAction === 'claim-from-foundry' ? `从铸造厂领取已建成的${equipment || '对应装备'}时自动获得` : equipment ? `获得${equipment}时一并取得` : '随对应装备一并取得'
+    return `${prefix}${action}${upgrades.length ? `（${upgrades.join('、')}）` : ''}`
+  }
   if (method.type === 'open-world-gathering') return `${prefix}${source ? `在${source}采集获得` : '在开放世界采集获得'}`
+  if (method.type === 'open-world-conservation') return `${prefix}${source ? `通过${source}获得` : '通过开放世界保育捕获获得'}`
+  if (method.type === 'resource-processing') return `${prefix}${source ? `在${location || '对应城镇'}找${npc || '对应 NPC'}${source}` : '通过资源加工获得'}`
+  if (method.type === 'vendor-processing') return `${prefix}${source ? `在${source}制造获得` : '购买精炼蓝图后制造获得'}`
+  if (method.type === 'vendor-purchase') return `${prefix}${exchangeSource ? `从${exchangeSource}购买` : '从指定 NPC 购买'}`
+  if (method.type === 'bounty-reward' || method.type === 'heist-reward') return `${prefix}${source ? `完成${source}获得` : method.type === 'heist-reward' ? '完成利润收割者抢劫获得' : '完成奥布山谷赏金获得'}`
   if (method.type === 'nightwave-offering') return `${prefix}在午夜电波商店轮换购买`
   if (method.type === 'invasion-reward') return `${prefix}完成入侵任务概率获得`
   if (method.type === 'daily-tribute') return `${prefix}从每日献礼里程碑奖励中选择获得`
@@ -261,7 +282,7 @@ function renderStructuredMethod(method, options = {}) {
     const standing = Number.isFinite(method.standing) ? `花费${Number(method.standing).toLocaleString('zh-CN')}声望` : '使用声望'
     return `${prefix}在${faction}${rank}${standing}兑换`
   }
-  if (method.type === 'quest-reward' || method.category === 'quest') return `${prefix}${method.questDisplayName ? `完成任务「${method.questDisplayName}」获得` : '完成指定任务获得'}`
+  if (method.type === 'quest-reward' || method.category === 'quest') return `${prefix}${method.questDisplayName ? `${variables.firstCompletion ? `首次完成《${method.questDisplayName}》` : `完成任务「${method.questDisplayName}」`}获得` : '完成指定任务获得'}`
   if (method.type === 'relic-reward') {
     const { localizeRelicName, relicRewardTier } = require('./prime-acquisition')
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
@@ -277,7 +298,7 @@ function renderStructuredMethod(method, options = {}) {
   }
   if (method.type === 'enemy-drop') {
     const appearanceCondition = localizeAcquisitionText(variables.appearanceCondition || '')
-    if (appearanceCondition) return `${prefix}在${appearanceCondition}中击败 ${source || '指定头目'} 获得`
+    if (appearanceCondition) return `${prefix}${rewardKind}在${appearanceCondition}中击败 ${source || '指定头目'} 获得${rewardSuffix}`
     const bossPlanet = localizeAcquisitionText(method.bossLocation?.planetDisplayName || '')
     if (bossPlanet) return `${prefix}${source ? `击败${source}` : '击败指定头目'}（${bossPlanet}刺杀）${method.hideProbability ? '获得' : '概率获得'}`
     const missionType = localizeAcquisitionText(method.missionTypeDisplayName || '')
@@ -287,7 +308,7 @@ function renderStructuredMethod(method, options = {}) {
     const missionContext = locationText || missionType
       ? `（仅在${locationText ? `${locationText}${missionType ? `的${missionType}任务` : ''}` : missionType}中出现）`
       : ''
-    return `${prefix}${source ? `击败${source}` : '击败指定敌人'}${missionContext}概率获得`
+    return `${prefix}${rewardKind}${source ? `击败${source}` : '击败指定敌人'}${missionContext}${method.hideProbability ? '获得' : Number(method.chance) >= 1 ? '必定获得' : '概率获得'}${rewardSuffix}`
   }
   if (method.type === 'mission-reward') {
     const rawSource = String(method.sourceCanonical || '')
@@ -301,8 +322,9 @@ function renderStructuredMethod(method, options = {}) {
     const isOrokinVault = method.missionTypeId === 'mission-type.orokin-vault' || /^(?:Orokin Vault|奥罗金宝库)$/i.test(missionTypeName)
     if (isOrokinVault) return `${prefix}奥罗金宝库概率获得`
     if (/赏金/.test(missionTypeName)) {
-      const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (locationName || missionTypeName)
-      return `${prefix}从${bountyName}奖励中获得`
+      const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (source || locationName || missionTypeName)
+      const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : `，概率${Number((method.chance * 100).toFixed(4))}%`
+      return `${prefix}从${bountyName}奖励中获得${rewardSuffix}${probability}`
     }
     if (!locationName && missionTypeName) {
       const rotation = method.rotation ? ` ${method.rotation}轮` : ''
@@ -323,9 +345,13 @@ function renderStructuredMethod(method, options = {}) {
     const guaranteed = Number(method.chance) >= 1
     const verb = guaranteed ? '获得' : chance ? '获得' : '概率获得'
     const objective = variables.objective ? `，${variables.objective}` : ''
-    return `${prefix}${mission ? `完成${mission}${objective}${method.rotation && !/赏金/.test(mission) ? ` ${method.rotation}轮` : ''}${verb}` : `获取任务名称待审核，暂不发布空泛任务描述`}${chance}`
+    return `${prefix}${rewardKind}${mission ? `完成${mission}${objective}${method.rotation && !/赏金/.test(mission) ? ` ${method.rotation}轮` : ''}${verb}` : `获取任务名称待审核，暂不发布空泛任务描述`}${rewardSuffix}${chance}`
   }
-  if (method.type === 'route') return variables.text || source || null
+  if (method.type === 'route') {
+    const text = variables.text || source || null
+    if (!text || !prefix || /^[^：]{1,24}：/.test(text)) return text
+    return `${prefix}${String(text).replace(/^首次完成(.+?)获得部件蓝图/, '首次完成$1获得')}`
+  }
   return source ? `来源：${source}` : null
 }
 
@@ -355,7 +381,10 @@ function mergeAlternativeSources(methods, options = {}) {
     if (!['enemy-drop', 'mission-reward'].includes(method.type)) { passthrough.push(method); continue }
     const variables = method.variables || {}
     const probabilityKey = options.showProbabilities === false ? [] : [method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null]
-    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', method.missionTypeDisplayName || '', method.rotation || '', ...probabilityKey])
+    // 只有来源不同、奖励语义完全相同的方法才能合并。数量、保底/额外、目标条件
+    // 任一不同都必须保留为独立方法，避免把表格列和奖励阶数错位拼接。
+    const rewardKey = [method.quantity ?? null, method.quantityRange || null, variables.rewardKind || '', variables.objective || '', variables.appearanceCondition || '']
+    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', method.missionTypeDisplayName || '', method.rotation || '', ...rewardKey, ...probabilityKey])
     const group = groups.get(key) || []
     group.push(method); groups.set(key, group)
   }
@@ -443,10 +472,37 @@ function acquisitionCardSections(methods, options = {}) {
   return sections
 }
 
+function mergeRolePresentationLines(lines) {
+  const output = []
+  const roleIndexes = new Map()
+  for (const rawLine of lines || []) {
+    const line = String(rawLine || '').trim()
+    const match = /^(总图|部件蓝图|整套蓝图|头部神经光元|机体|系统)：(.+)$/.exec(line)
+    if (!match) { output.push(line); continue }
+    const [, role, clause] = match
+    const existingIndex = roleIndexes.get(role)
+    if (existingIndex == null) {
+      roleIndexes.set(role, output.length)
+      output.push(line)
+      continue
+    }
+    const existing = output[existingIndex]
+    const existingClause = existing.slice(role.length + 1)
+    if (normalizeVisibleLine(existingClause) === normalizeVisibleLine(clause)) continue
+    const continuation = /^(?:在|向).+(?:兑换|购买)/.test(clause) && /(?:首次|完成|获得)/.test(existingClause)
+      ? `之后可${clause}`
+      : clause
+    output[existingIndex] = `${existing}；${continuation}`
+  }
+  return output.filter(Boolean)
+}
+
 function renderAcquisition(methods, options = {}) {
   const renderMethods = mergeAlternativeSources(applyDisplaySummaries(methods), options)
     .map((method, index) => ({ method, index }))
-    .sort((left, right) => (left.method.scope === 'blueprint' ? -1 : 0) - (right.method.scope === 'blueprint' ? -1 : 0) || left.index - right.index)
+    .sort((left, right) => (left.method.scope === 'blueprint' ? -1 : 0) - (right.method.scope === 'blueprint' ? -1 : 0)
+      || (left.method.type === 'quest-reward' ? -1 : 0) - (right.method.type === 'quest-reward' ? -1 : 0)
+      || left.index - right.index)
     .map(item => item.method)
   const sourceGroups = new Map()
   for (const method of renderMethods) {
@@ -489,9 +545,9 @@ function renderAcquisition(methods, options = {}) {
     if (method.prerequisiteText) lines.push(`前置：${method.prerequisiteText}`)
     if (method.prerequisite === 'steel-path') lines.push('需要已解锁钢铁之路')
   }
-  const unique = [...new Set(lines.filter(Boolean))]
+  const unique = mergeRolePresentationLines([...new Set(lines.filter(Boolean))])
   const name = options.displayName || ''
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
