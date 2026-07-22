@@ -491,7 +491,13 @@ function createKnowledgeCore(options = {}) {
     };
     const identities = [...stripped].filter(Boolean).map(exactWeaponIdentity).filter(Boolean);
     const strippedInputs = [...stripped].filter(value => value && value !== compact);
-    const resolvedStripped = strippedInputs.map(value => resolveOfficialWeaponIdentity(value)).find(Boolean);
+    const resolvedStripped = strippedInputs.map(value => {
+      const candidate = resolveOfficialWeaponIdentity(value);
+      if (!candidate) return null;
+      const inputLength = compactWeaponIntent(value).length;
+      const candidateLength = Math.max(compactWeaponIntent(candidate.displayName).length, compactWeaponIntent(candidate.canonical).length);
+      return inputLength <= candidateLength ? candidate : null;
+    }).find(Boolean);
     const identity = identities[0] || resolvedStripped || (!constraints.length ? resolveOfficialWeaponIdentity(raw) : null);
     if (!identity) return null;
     const family = getWeaponVariantFamily(identity.uniqueName);
