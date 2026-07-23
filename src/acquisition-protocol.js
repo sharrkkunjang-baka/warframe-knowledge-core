@@ -243,6 +243,7 @@ function mergeMethodPresentationLines(method, headline, requirementLines = []) {
     }
     add(line)
   }
+  if (method?.variables?.steelPathNote) add(method.variables.steelPathNote)
   const result = []
   if (mergedHeadline) result.push(mergedHeadline)
   for (const line of output) {
@@ -354,6 +355,14 @@ function renderStructuredMethod(method, options = {}) {
     const adversary = localizeAcquisitionText(method.sourceDisplayName || method.sourceCanonical || '')
       .replace(/Kuva Lich/gi, '\u8d64\u6bd2\u7384\u9ab8')
       .replace(/Sister of Parvos/gi, '\u5e15\u5c14\u6c83\u65af\u7684\u59d0\u59b9')
+    if (variables.adversaryAction === 'final-confrontation') {
+      const rawChance = Number(method.chance)
+      const percent = Number.isFinite(rawChance) ? (rawChance <= 1 ? rawChance * 100 : rawChance) : null
+      const chanceText = Number.isFinite(percent)
+        ? `\u6709${Number.isInteger(percent) ? percent : Number(percent.toFixed(2))}%\u6982\u7387`
+        : '\u6982\u7387'
+      return `${prefix}\u6210\u529f\u5c06${adversary || '\u5bf9\u624b'}\u8d76\u53bb\u51b3\u6218${chanceText}\u6389\u843d`
+    }
     return `${prefix}\u51fb\u8d25${adversary || '\u5bf9\u624b'}\u6982\u7387\u83b7\u5f97`
   }
   if (method.type === 'enemy-drop') {
@@ -502,7 +511,10 @@ function collapseSharedPartAcquisitionMethods(methods, options = {}) {
   return output
 }
 
+const { collapseAscensionSisterDropVariants } = require('./ascension-arcane-acquisition')
+
 function mergeAlternativeSources(methods, options = {}) {
+  methods = collapseAscensionSisterDropVariants(methods)
   const groups = new Map(), passthrough = []
   const canonicalEnemy = name => localizeAcquisitionText(name).replace(/\s*\([^)]*\)\s*$/g, '').trim()
   const canonicalMethods = []
@@ -565,10 +577,21 @@ function acquisitionCardSections(methods, options = {}) {
   const sectionNotes = { exchange: [], enemy: [], other: [] }
   const seen = new Set()
   const noteSeen = new Set()
-  const sourceMethods = (methods || []).filter(method => method.reviewStatus !== 'review-required')
+  const sourceMethods = collapseAscensionSisterDropVariants((methods || []).filter(method => method.reviewStatus !== 'review-required'))
   // 图片卡片的敌人栏是一敌人一行；禁止套用文字协议的“替代来源合并”，
   // 否则几十个敌人会重新拼成一个难以阅读的长句。
   for (const method of sourceMethods.filter(method => acquisitionCardGroup(method) === 'enemy')) {
+    if (method.type === 'adversary-drop' && method.variables?.adversaryAction === 'final-confrontation') {
+      const headline = renderStructuredMethod(method, { ...options, showProbabilities: false })
+      if (headline) {
+        const identity = `adversary:${headline}`
+        if (!seen.has(identity)) {
+          seen.add(identity)
+          sections.enemy.push({ text: `- ${headline}`, method })
+        }
+      }
+      continue
+    }
     const name = method.sourceDisplayName || method.variables?.sourceName || method.sourceCanonical
     if (!name) continue
     const bossLocation = method.bossLocation || null
@@ -596,6 +619,13 @@ function acquisitionCardSections(methods, options = {}) {
       if (!line || noteSeen.has(noteKey)) continue
       noteSeen.add(noteKey)
       sectionNotes.enemy.push(line)
+    }
+    if (method.variables?.steelPathNote) {
+      const noteKey = `enemy:${method.variables.steelPathNote}`
+      if (!noteSeen.has(noteKey)) {
+        noteSeen.add(noteKey)
+        sectionNotes.enemy.push(method.variables.steelPathNote)
+      }
     }
     sections.enemy.push({ text, method })
   }

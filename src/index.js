@@ -10,6 +10,8 @@ const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult }
 const { displayEntityName } = require('./entities');
 const { renderGameText } = require('./game-text');
 const { normalizeRequirements, renderRequirements, renderAcquisition, acquisitionCardSections, normalizeVisibleLine } = require('./acquisition-protocol');
+const { appendAscensionArcaneVestigialExchange } = require('./ascension-arcane-acquisition');
+const { appendSteelPathVorArcaneDrop } = require('./steel-path-vor-arcane-acquisition');
 const { structuredMethods: compileStructuredMethods, routesToMethods } = require('./acquisition-core');
 const { createCraftingGraph, renderCraftingUses, renderCrafting } = require('./weapon-crafting');
 const { parseWeaponCraftingCommand } = require('./weapon-command');
@@ -727,7 +729,7 @@ function createKnowledgeCore(options = {}) {
       const key = arcaneMethodIdentity(method);
       if (!seen.has(key)) { seen.add(key); methods.push(method); }
     }
-    return methods;
+    return appendSteelPathVorArcaneDrop(appendAscensionArcaneVestigialExchange(methods), entry);
   };
   const enrichArcaneMethod = method => {
     const arcaneSource = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;

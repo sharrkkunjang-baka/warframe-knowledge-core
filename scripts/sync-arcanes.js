@@ -14,6 +14,7 @@ const PACKAGE = require(path.join(ITEMS_ROOT, 'package.json'));
 const SUPPLEMENTS_PATH = path.join(ROOT, 'generated', 'official-arcane-supplements.json');
 const LANGUAGE_CACHE = path.join(ROOT, '.cache', 'official-localization');
 const { sourceId, displaySource } = require('../src/arcane-source');
+const { appendAscensionArcaneVestigialExchange, collapseAscensionSisterDropVariants } = require('../src/ascension-arcane-acquisition');
 const { renderGameText } = require('../src/game-text');
 const ARCANE_SOURCE_OVERRIDES = Object.freeze({
   '/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast': [
@@ -186,12 +187,13 @@ function structuredAcquisition(item, languages = loadLanguages(), previous = nul
       officialUniqueName: component.uniqueName || null, canonical: component.name || null, quantity: Number(component.itemCount || 0)
     })), provenance: { source: 'warframe-items', input: 'Arcanes.json', officialUniqueName: item.uniqueName }
   });
-  return methods.map(method => {
+  const enriched = methods.map(method => {
     const amount = standingAmountFromWiki(method, previous)
     if (amount) return { ...method, requirements: { ...method.requirements, amount }, reviewStatus: 'approved', provenance: { ...method.provenance, standingAmountEvidence: 'current-wiki-acquisition-prose' } }
     if (method.type === 'vendor-or-syndicate-exchange' && method.requirements?.type === 'standing') return { ...method, reviewStatus: 'review-required' }
     return method
   });
+  return collapseAscensionSisterDropVariants(appendAscensionArcaneVestigialExchange(enriched));
 }
 
 function existingEntries() {

@@ -104,30 +104,52 @@
         "methods": [
           {
             "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.fe7f574dc430",
-            "sourceCanonical": "Sister Of Parvos (Ascension Mode)",
+            "sourceEntityId": "arcane-source.5e13063804bb",
+            "sourceCanonical": "Sister Of Parvos (Ascension)",
             "probability": 0.066,
             "chancePercent": 6.6000000000000005,
             "quantity": 1,
             "rarity": "Uncommon",
             "provenance": {
-              "source": "warframe-items",
+              "source": "collapsed-ascension-sister-drop",
               "input": "Arcanes.json",
-              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/BonusDamageNextShotForCurEnergy"
-            }
+              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/BonusDamageNextShotForCurEnergy",
+              "mergedFrom": [
+                "Sister Of Parvos (Ascension Mode)",
+                "Sister Of Parvos (Ascension Hard Mode)"
+              ]
+            },
+            "sourceDisplayName": "帕尔沃斯的姐妹（扬升）",
+            "sourceKind": "enemy-drop",
+            "chance": 0.066,
+            "variables": {
+              "steelPathNote": "钢铁之路掉落率 20%，普通模式 6.6%"
+            },
+            "requirementLines": []
           },
           {
-            "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.d66d6bfaec4c",
-            "sourceCanonical": "Sister Of Parvos (Ascension Hard Mode)",
-            "probability": 0.2,
-            "chancePercent": 20,
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.ordis",
+            "sourceCanonical": "Ordis at Drifter's Camp",
             "quantity": 1,
-            "rarity": "Uncommon",
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.ordis",
+              "locationId": "hub.drifters-camp",
+              "currency": [
+                {
+                  "currencyId": "currency.vestigial-motes",
+                  "amount": 10
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
             "provenance": {
-              "source": "warframe-items",
-              "input": "Arcanes.json",
-              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/BonusDamageNextShotForCurEnergy"
+              "source": "ascension-arcane-enrichment",
+              "note": "可在漂泊者营地的 Ordis 处消耗 10 个残存微粒兑换；满级 5 共需 210 个。"
             }
           }
         ],

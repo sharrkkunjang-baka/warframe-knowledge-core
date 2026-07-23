@@ -388,7 +388,9 @@ test('\u5b89\u9b42 Mod \u7531\u5185\u90e8\u8eab\u4efd\u7edf\u4e00\u5f52\u7c7b\u5
   }
   const oull = core.getAcquisition('Oull');
   assert.deepEqual(oull.entry.effectDetails, []);
-  assert.equal(core.renderStructuredMethod(oull.structuredMethods[0]), '\u51fb\u8d25\u8d64\u6bd2\u7384\u9ab8\u6982\u7387\u83b7\u5f97');
+  assert.equal(core.renderStructuredMethod(oull.structuredMethods[0]), '\u6210\u529f\u5c06\u8d64\u6bd2\u7384\u9ab8\u6216\u59d0\u59b9\u8d76\u53bb\u51b3\u6218\u670925%\u6982\u7387\u6389\u843d');
+  const oullCard = core.getAcquisitionCard('Oull');
+  assert.ok(oullCard.sections.enemy.some(line => /\u8d64\u6bd2\u7384\u9ab8\u6216\u59d0\u59b9.*\u51b3\u6218.*25%/.test(line)));
 });
 
 test('\u5df2\u53d1\u5e03 Mod \u4efb\u52a1\u6765\u6e90\u4e0d\u6cc4\u6f0f\u53ef\u672c\u5730\u5316\u82f1\u6587', () => {

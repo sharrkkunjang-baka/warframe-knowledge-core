@@ -260,9 +260,36 @@ test('游戏格式标记通过统一文本层渲染，不泄漏 DT 原文本', (
   assert.doesNotMatch(result.description, /DT_[A-Z_]+/);
 });
 
+test('赋能电池合并扬升姐妹掉落并显示残存微粒兑换', () => {
+  const result = core.getAcquisition('Arcane Battery');
+  const exchange = result.structuredMethods.find(method => method.type === 'vendor-or-syndicate-exchange'
+    && (method.requirements?.currency || []).some(item => item.currencyId === 'currency.vestigial-motes'));
+  assert.ok(exchange, 'missing vestigial motes exchange');
+  assert.match(exchange.requirementLines.join('\n'), /残存微粒/);
+  assert.match(exchange.requirementLines.join('\n'), /10个/);
+  assert.match(result.description, /帕尔沃斯的姐妹（扬升）/);
+  assert.doesNotMatch(result.description, /Hard Mode|扬升 Mode/);
+  assert.match(result.description, /残存微粒/);
+  const card = core.getAcquisitionCard('赋能·电池');
+  assert.equal(card.sections.enemy.filter(line => /帕尔沃斯.*姐妹.*扬升/.test(line)).length, 1);
+  assert.doesNotMatch(card.sections.enemy.join('\n'), /Hard Mode|扬升 Mode/);
+  assert.ok(card.sections.exchange.some(line => /残存微粒/.test(line)));
+  assert.ok((card.sectionNotes?.enemy || []).some(note => /钢铁之路掉落率 20%/.test(note)));
+});
+
 test('双衍王境和夜灵来源使用注册变量显示', () => {
   const result = core.getAcquisition('赋能·狂怒');
   assert.ok(result.structuredMethods.some(method => /普通无尽回廊第 1 阶段奖励/.test(method.sourceDisplayName)));
   assert.ok(result.structuredMethods.some(method => /夜灵水力使/.test(method.sourceDisplayName)));
   assert.doesNotMatch(result.structuredMethods.map(method => method.sourceDisplayName).join('\n'), /Duviri|Eidolon Hydrolyst/);
+});
+
+test('Wiki 记载的钢铁之路沃尔掉落由共享 enrichment 实体化', () => {
+  for (const query of ['Cascadia Flare', 'Melee Vortex', 'Primary Obstruct']) {
+    const result = core.getAcquisition(query);
+    const vor = result.structuredMethods.find(method => method.sourceEntityId === 'enemy.captain-vor');
+    assert.ok(vor, `${query} 缺少钢铁之路沃尔掉落`);
+    assert.equal(vor.requirements?.modeId, 'steel-path');
+    assert.match(result.description, /沃尔上尉.*水星.*刺杀/);
+  }
 });
