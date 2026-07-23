@@ -103,6 +103,29 @@
         "status": "structured",
         "methods": [
           {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.eleanor",
+            "sourceCanonical": "Eleanor of The Hex, Pizza Party",
+            "availability": "guaranteed-when-requirements-met",
+            "quantity": 1,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.eleanor",
+              "locationId": "planet.ho-llvania",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 7500
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current-wiki-acquisition-prose",
+              "section": "Acquisition",
+              "excerpt": "Can be bought from Eleanor of The Hex for 7,500 Standing 7,500 at Rank 5 - Pizza Party .",
+              "standingAmountEvidence": "current-wiki-acquisition-prose",
+              "note": "上游 warframe-items 缺失 drops 时，由 Wiki Acquisition 段落补全声望兑换路径。"
+            }
+          },
+          {
             "type": "reward-or-drop",
             "sourceEntityId": "arcane-source.e6bc3bfb407a",
             "sourceCanonical": "H-09 Apex",

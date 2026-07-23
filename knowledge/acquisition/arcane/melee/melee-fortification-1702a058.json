@@ -103,6 +103,29 @@
         "status": "structured",
         "methods": [
           {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.bird-3",
+            "sourceCanonical": "Bird 3, Colleague",
+            "availability": "guaranteed-when-requirements-met",
+            "quantity": 1,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.bird-3",
+              "locationId": "hub.sanctum-anatomica",
+              "rank": 3,
+              "rankName": "同事",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current-wiki-acquisition-prose",
+              "section": "Acquisition",
+              "excerpt": "Can be bought from Bird 3 of Cavia for 5,000 Standing 5,000 , requiring Rank 3 - Colleague .",
+              "standingAmountEvidence": "current-wiki-acquisition-prose",
+              "note": "上游 warframe-items 缺失 drops 时，由 Wiki Acquisition 段落补全声望兑换路径。"
+            }
+          },
+          {
             "type": "reward-or-drop",
             "sourceEntityId": "arcane-source.603a324b4b62",
             "sourceCanonical": "Mocking Whisper",

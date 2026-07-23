@@ -145,6 +145,157 @@ function supplementRequirements(sourceCanonical) {
   return { type: 'none' };
 }
 
+const WIKI_NPC_STANDING_LOCATION = Object.freeze({
+  'Rude Zuud': 'Solaris United (Rude Zuud), Old Mate',
+  Hok: 'Ostron, Kin',
+  Onkko: 'The Quills, Architect',
+  Nakak: 'Operational Supply, Defender'
+});
+const WIKI_HEX_RANKS = Object.freeze({
+  Leftovers: { rank: 0, languageKey: '/Lotus/Language/1999/HexSyndTitle1' },
+  'Fresh Slice': { rank: 2, languageKey: '/Lotus/Language/1999/HexSyndTitle2' },
+  '2-for-1': { rank: 3, languageKey: '/Lotus/Language/1999/HexSyndTitle3' },
+  '2-For-1': { rank: 3, languageKey: '/Lotus/Language/1999/HexSyndTitle3' },
+  'Hot & Fresh': { rank: 4, languageKey: '/Lotus/Language/1999/HexSyndTitle4' },
+  'Pizza Party': { rank: 5, languageKey: '/Lotus/Language/1999/HexSyndTitle5' }
+});
+const WIKI_CAVIA_RANKS = Object.freeze({
+  Assistant: { rank: 1, languageKey: '/Lotus/Language/EntratiLab/EntratiGeneral/EntratiLabSyndTitle1' },
+  Researcher: { rank: 2, languageKey: '/Lotus/Language/EntratiLab/EntratiGeneral/EntratiLabSyndTitle2' },
+  Colleague: { rank: 3, languageKey: '/Lotus/Language/EntratiLab/EntratiGeneral/EntratiLabSyndTitle3' },
+  Scholar: { rank: 4, languageKey: '/Lotus/Language/EntratiLab/EntratiGeneral/EntratiLabSyndTitle4' },
+  Illuminate: { rank: 5, languageKey: '/Lotus/Language/EntratiLab/EntratiGeneral/EntratiLabSyndTitle5' }
+});
+
+function wikiLocalizedRankName(languageKey, languages = loadLanguages()) {
+  const displayName = languageKey ? String(languages.zh[languageKey] || '').trim() : '';
+  if (!displayName) throw new Error(`Wiki 声望等级缺少官方简中：${languageKey}`);
+  return displayName;
+}
+
+function wikiStandingVendorMethod({ sourceEntityId, sourceCanonical, requirements, provenanceBase, excerpt }) {
+  return {
+    type: 'vendor-or-syndicate-exchange',
+    sourceEntityId,
+    sourceCanonical,
+    availability: 'guaranteed-when-requirements-met',
+    quantity: 1,
+    requirements,
+    reviewStatus: 'approved',
+    provenance: {
+      source: 'current-wiki-acquisition-prose',
+      section: provenanceBase.section || 'Acquisition',
+      excerpt: excerpt.slice(0, 500),
+      standingAmountEvidence: 'current-wiki-acquisition-prose',
+      note: '上游 warframe-items 缺失 drops 时，由 Wiki Acquisition 段落补全声望兑换路径。'
+    }
+  };
+}
+
+function parseWikiStandingVendorFromExcerpt(excerpt, evidence, languages = loadLanguages()) {
+  const text = String(excerpt || '');
+  const provenanceBase = evidence?.provenance || {};
+  const amountFrom = value => Number(String(value || '').replace(/,/g, ''));
+
+  let match = text.match(/\b(?:can be bought|purchased|purchase(?:d)?)\s+from\s+Eleanor of The Hex\s+for\s+([\d,]+)\s+Standing(?:\s+[\d,]+)?\s+at\s+Rank\s+(\d+)\s*-\s*([A-Za-z0-9 &-]+)/i);
+  if (match) {
+    const amount = amountFrom(match[1]);
+    const rankCanonical = match[3].trim();
+    const hexRank = WIKI_HEX_RANKS[rankCanonical];
+    if (!hexRank || !Number.isFinite(amount)) return null;
+    return wikiStandingVendorMethod({
+      sourceEntityId: 'npc.eleanor',
+      sourceCanonical: `Eleanor of The Hex, ${rankCanonical}`,
+      requirements: {
+        type: 'standing',
+        npcId: 'npc.eleanor',
+        locationId: 'planet.ho-llvania',
+        rank: hexRank.rank,
+        rankName: wikiLocalizedRankName(hexRank.languageKey, languages),
+        amount
+      },
+      provenanceBase,
+      excerpt: text
+    });
+  }
+
+  match = text.match(/\b(?:can be bought|purchased|purchase(?:d)?)\s+from\s+Bird 3(?:\s+of\s+Cavia)?\s+for\s+([\d,]+)\s+Standing(?:\s+[\d,]+)?(?:\s*,?\s*requiring\s+Rank\s+(\d+)\s*-\s*([A-Za-z ]+?))(?:\s*\.|,|$)/i);
+  if (match) {
+    const amount = amountFrom(match[1]);
+    const rankCanonical = match[3].trim();
+    const rankDef = WIKI_CAVIA_RANKS[rankCanonical];
+    if (!rankDef || !Number.isFinite(amount)) return null;
+    return wikiStandingVendorMethod({
+      sourceEntityId: 'npc.bird-3',
+      sourceCanonical: `Bird 3, ${rankCanonical}`,
+      requirements: {
+        type: 'standing',
+        npcId: 'npc.bird-3',
+        locationId: 'hub.sanctum-anatomica',
+        rank: rankDef.rank,
+        rankName: wikiLocalizedRankName(rankDef.languageKey, languages),
+        amount
+      },
+      provenanceBase,
+      excerpt: text
+    });
+  }
+
+  match = text.match(/\b(?:can be bought|purchased|purchase(?:d)?)\s+from\s+(The Quills|Vox Solaris|Solaris United|The Holdfasts|Ostron|Operational Supply)\s+for\s+([\d,]+)\s+Standing(?:\s+[\d,]+|\s+per\s+arcane)?\s+upon reaching the rank of\s+([A-Za-z ]+?)(?:\s+with\s+(Solaris United|The Holdfasts|Ostron|Vox Solaris|The Quills|Operational Supply))?[.\s,]/i);
+  if (match) {
+    const syndicate = match[4] || match[1];
+    const amount = amountFrom(match[2]);
+    const rankCanonical = match[3].trim();
+    const location = `${syndicate}, ${rankCanonical}`;
+    if (!isExchangeLocation(location) || !Number.isFinite(amount)) return null;
+    const requirements = { ...exchangeRequirements(location, languages), amount };
+    if (requirements.type !== 'standing') return null;
+    return wikiStandingVendorMethod({
+      sourceEntityId: sourceId(location),
+      sourceCanonical: location,
+      requirements,
+      provenanceBase,
+      excerpt: text
+    });
+  }
+
+  match = text.match(/\b(?:can be bought|purchased|purchase(?:d)?)\s+from\s+(.+?)\s+for\s+([\d,]+)\s+Standing/i);
+  if (!match) return null;
+  const npcRaw = match[1].trim();
+  const amount = amountFrom(match[2]);
+  if (!Number.isFinite(amount)) return null;
+  let location = WIKI_NPC_STANDING_LOCATION[npcRaw] || null;
+  if (!location) {
+    const withSyndicate = text.match(/\bwith\s+(Solaris United|The Holdfasts|Ostron|Vox Solaris|The Quills|Operational Supply)\b/i);
+    const rankMatch = text.match(/\b(?:rank of|reaching the rank of|upon reaching(?:\s+the rank of)?)\s+([A-Za-z ]+?)(?:\s+with|\s+in|[.,]|$)/i);
+    if (withSyndicate && rankMatch) {
+      const syndicate = withSyndicate[1];
+      const rank = rankMatch[1].trim();
+      location = STANDING_EXCHANGES[syndicate]?.ranks?.[rank]
+        ? `${syndicate} (${npcRaw}), ${rank}`
+        : `${syndicate}, ${rank}`;
+    }
+  }
+  if (!location || !isExchangeLocation(location)) return null;
+  const requirements = { ...exchangeRequirements(location, languages), amount };
+  if (requirements.type !== 'standing') return null;
+  return wikiStandingVendorMethod({
+    sourceEntityId: sourceId(location),
+    sourceCanonical: location,
+    requirements,
+    provenanceBase,
+    excerpt: text
+  });
+}
+
+function parseWikiStandingVendorExchange(previous, languages = loadLanguages()) {
+  for (const evidence of previous?.arcaneAcquisition?.generated?.wiki?.evidence || []) {
+    const method = parseWikiStandingVendorFromExcerpt(evidence.provenance?.excerpt || '', evidence, languages);
+    if (method) return method;
+  }
+  return null;
+}
+
 function standingAmountFromWiki(method, previous) {
   if (method?.requirements?.type !== 'standing') return null
   const syndicate = String(method.sourceCanonical || '').split(',')[0].replace(/\s*\([^)]+\)\s*$/, '').trim()
@@ -187,10 +338,26 @@ function structuredAcquisition(item, languages = loadLanguages(), previous = nul
       officialUniqueName: component.uniqueName || null, canonical: component.name || null, quantity: Number(component.itemCount || 0)
     })), provenance: { source: 'warframe-items', input: 'Arcanes.json', officialUniqueName: item.uniqueName }
   });
+  if (!methods.some(method => method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange')) {
+    const wikiVendor = parseWikiStandingVendorExchange(previous, languages)
+    if (wikiVendor) methods.unshift(wikiVendor)
+  }
   const enriched = methods.map(method => {
-    const amount = standingAmountFromWiki(method, previous)
-    if (amount) return { ...method, requirements: { ...method.requirements, amount }, reviewStatus: 'approved', provenance: { ...method.provenance, standingAmountEvidence: 'current-wiki-acquisition-prose' } }
-    if (method.type === 'vendor-or-syndicate-exchange' && method.requirements?.type === 'standing') return { ...method, reviewStatus: 'review-required' }
+    if (method.type === 'vendor-or-syndicate-exchange' && method.requirements?.type === 'standing') {
+      const amount = standingAmountFromWiki(method, previous) ?? method.requirements.amount
+      if (Number.isFinite(amount)) {
+        return {
+          ...method,
+          requirements: { ...method.requirements, amount },
+          reviewStatus: 'approved',
+          provenance: {
+            ...method.provenance,
+            standingAmountEvidence: method.provenance?.standingAmountEvidence || 'current-wiki-acquisition-prose'
+          }
+        }
+      }
+      return { ...method, reviewStatus: 'review-required' }
+    }
     return method
   });
   return collapseAscensionSisterDropVariants(appendAscensionArcaneVestigialExchange(enriched));
@@ -309,4 +476,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run(); } catch (error) { console.error(error.stack || error); process.exit(1); } }
-module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };
+module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, WIKI_NPC_STANDING_LOCATION, WIKI_HEX_RANKS, WIKI_CAVIA_RANKS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, standingAmountFromWiki, parseWikiStandingVendorFromExcerpt, parseWikiStandingVendorExchange, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };

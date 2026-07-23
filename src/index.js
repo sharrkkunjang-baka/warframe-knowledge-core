@@ -18,10 +18,13 @@ const { parseWeaponCraftingCommand } = require('./weapon-command');
 const { expandKnowledgeReferences } = require('./knowledge-reference-expander');
 const { createRivenWeaponResolver } = require('./riven-weapon-resolver');
 const { createModRelationQueries } = require('./mod-relation-queries');
+const { getLichPasswordModUsageLines } = require('./requiem-mod-usage');
 const { createSyndicateGroupModResolver, isSyndicateGroupModQuery } = require('./syndicate-group-mod-resolver');
 const { createElementModSlangResolver } = require('./element-mod-slang');
 const equipmentAcquisition = require('./equipment-acquisition');
 const { buildOfficialTermIndex, findOfficialTermsInText } = require('./official-term-matcher');
+const { resolveModCardFaceLabel, resolveEffectiveModType } = require('./mod-card-face-label');
+const { getTypeDisplayName } = require('./playable-mod-filter');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -115,6 +118,8 @@ function arcaneFusionMetadata(maxRank, rule = {}) {
 }
 
 function modDescriptionLines(entry, officialMod) {
+  const lichPasswordLines = getLichPasswordModUsageLines(entry);
+  if (lichPasswordLines.length) return lichPasswordLines;
   const direct = (entry.effectDetails || []).map(renderGameText).filter(Boolean);
   const official = (officialMod?.maxRankEffectsZh || []).map(renderGameText).filter(Boolean);
   const structured = (entry.effects || []).map(effect => {
@@ -1176,10 +1181,8 @@ function createKnowledgeCore(options = {}) {
     const { methods, sourceOptions: inheritedSourceOptions } = aggregateAcquisitionMethods([entry]);
     const rawStructuredMethods = mergeStructuredMethods(entry);
     const hasSyndicateMethods = rawStructuredMethods.some(method => ['syndicate-exchange', 'syndicate-exchange-group'].includes(method.type));
-    const hasSpyMethods = rawStructuredMethods.some(method => method.type === 'mission-reward' && /^Spy$/i.test(String(method.missionTypeCanonical || '')));
     const sourceOptions = [...inheritedSourceOptions];
     if (hasSyndicateMethods && !sourceOptions.some(source => source.id === 'gameplay.syndicate-offerings')) sourceOptions.push({ id: 'gameplay.syndicate-offerings', title: '\u96c6\u56e2\u4f9b\u54c1', query: '\u96c6\u56e2' });
-    if (hasSpyMethods && !sourceOptions.some(source => source.id === 'gameplay.spy-missions')) sourceOptions.push({ id: 'gameplay.spy-missions', title: '\u95f4\u8c0d\u4efb\u52a1', query: '\u95f4\u8c0d' });
     const requirements = normalizeRequirements(entry.modAcquisition?.manual?.requirements);
     const requirementLines = renderRequirements(requirements, data);
     const isFrame = entry.subject?.category === 'frame';
@@ -1246,6 +1249,13 @@ function createKnowledgeCore(options = {}) {
       ...structuredGameplayMethods(entry),
       ...frameStructuredMethods
     ], data);
+    const hasSpyMethods = structuredMethods.some(method => method.type === 'mission-reward' && (
+      /^Spy$/i.test(String(method.missionTypeCanonical || ''))
+      || method.missionTypeId === 'mission-type.spy'
+      || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || ''))
+      || /(?:^|\/)Lua(?:\/|\s|$)|\(Spy\)|\sSpy(?:\/|\s|$)/i.test(String(method.sourceCanonical || ''))
+    ));
+    if (hasSpyMethods && !sourceOptions.some(source => source.id === 'gameplay.spy-missions')) sourceOptions.push({ id: 'gameplay.spy-missions', title: '\u95f4\u8c0d\u4efb\u52a1', query: '\u95f4\u8c0d' });
     for (const gameplay of gameplayEntries) {
       const sourceEntityIds = new Set(gameplay.sourceEntityIds || []);
       const missionTypeIds = new Set(gameplay.missionTypeIds || []);
@@ -1294,12 +1304,17 @@ function createKnowledgeCore(options = {}) {
     const preferStructuredDescription = !isFrame && (!defaultDescription || /尚未收录/.test(defaultDescription) || hasApprovedDailyTribute
       || (entry.subject?.category === 'weapon' && Boolean(structuredDescription))
       || (entry.subject?.category === 'mod' && structuredMethods.some(method => method.reviewStatus !== 'review-required' && ['mission-reward', 'circuit-reward', 'enemy-drop', 'vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'].includes(method.type)) && Boolean(structuredDescription)));
+    const lichPasswordUsage = getLichPasswordModUsageLines(entry);
+    const acquisitionDescription = frameDescription || (preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : defaultDescription);
+    const description = lichPasswordUsage.length
+      ? [lichPasswordUsage.join('\n'), structuredDescription || acquisitionDescription].filter(Boolean).join('\n\n')
+      : acquisitionDescription;
     return {
       query: raw,
       resolution,
       entry,
       officialMod: resolvedOfficialMod,
-      description: frameDescription || (preferStructuredDescription && structuredDescription ? [syndicateHeader, structuredDescription].filter(Boolean).join('\n\n') : defaultDescription),
+      description,
       frameRoute,
       categories: (entry.subject.categoryRefs || []).map(getCategory).filter(Boolean),
       methods,
@@ -1330,6 +1345,7 @@ function createKnowledgeCore(options = {}) {
         sections: {
           exchange: sections.exchange.map(item => item.text),
           enemy: sections.enemy.map(item => item.text),
+          acquisition: sections.acquisition.map(item => item.text),
           other: sections.other.map(item => item.text)
         },
         sectionNotes: sections.notes,
@@ -1359,6 +1375,7 @@ function createKnowledgeCore(options = {}) {
         sections: {
           exchange: sections.exchange.map(item => item.text),
           enemy: sections.enemy.map(item => item.text),
+          acquisition: sections.acquisition.map(item => item.text),
           other: sections.other.map(item => item.text)
         },
         sectionNotes: sections.notes,
@@ -1411,6 +1428,7 @@ function createKnowledgeCore(options = {}) {
       sections: {
         exchange: sections.exchange.map(item => item.text),
         enemy: sections.enemy.map(item => item.text),
+        acquisition: sections.acquisition.map(item => item.text),
         other: sections.other.map(item => item.text)
       },
       sectionNotes: sections.notes,
@@ -1419,8 +1437,11 @@ function createKnowledgeCore(options = {}) {
         maxRank: Number.isInteger(maxRank) ? maxRank : null,
         rarity,
         polarity: entry.polarity || result.officialMod?.polarity || null,
-        type: result.officialMod?.type || null,
-        typeDisplayName: result.officialMod?.typeDisplayName || null,
+        type: resolveEffectiveModType(result.officialMod || {}) || result.officialMod?.type || null,
+        typeDisplayName: getTypeDisplayName(resolveEffectiveModType(result.officialMod || {}) || result.officialMod?.type) || result.officialMod?.typeDisplayName || null,
+        faceLabel: resolveModCardFaceLabel(result.officialMod || {}, {
+          frameDisplayName: result.officialMod?.compatName && data.frames?.get?.(result.officialMod.compatName)?.displayName
+        }),
         compatName: result.officialMod?.compatName || null,
         descriptionLines: modDescriptionLines(entry, result.officialMod),
         fusionCost: modFusionCost(maxRank, rarity)

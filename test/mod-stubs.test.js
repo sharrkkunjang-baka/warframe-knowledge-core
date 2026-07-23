@@ -347,13 +347,13 @@ test('\u81f4\u547d\u6d2a\u6d41\u4fdd\u7559\u5669\u68a6\u68af\u7ea7\u4e14\u4e0d\u
   assert.equal(nightmareMethods.length, 1);
   assert.equal(nightmareMethods[0].provenanceAlternatives.length, 2);
   assert.deepEqual(nightmareMethods.map(method => createKnowledgeCore().renderStructuredMethod(method)), ['噩梦模式 C轮（概率15.49%）']);
-  assert.deepEqual(createKnowledgeCore({ approvedOnly: false }).getAcquisitionCard('致命洪流').sections.other, ['噩梦模式 C轮']);
+  assert.deepEqual(createKnowledgeCore({ approvedOnly: false }).getAcquisitionCard('致命洪流').sections.acquisition, ['噩梦模式 C轮']);
 });
 test('\u95f4\u8c0d Mod \u6309\u6389\u843d\u8868 T \u7ea7\u5206\u884c\u5e76\u63d0\u4f9b\u95f4\u8c0d\u73a9\u6cd5', () => {
   const core = createKnowledgeCore({ approvedOnly: false });
   const result = core.getAcquisition('Heavy Impact');
   const spyLines = result.structuredMethods.filter(method => method.type === 'mission-reward' && method.missionTypeCanonical === 'Spy').map(method => core.renderStructuredMethod(method));
-  assert.deepEqual(spyLines, ['T1\u95f4\u8c0d C\u8f6e']);
+  assert.deepEqual(spyLines, ['T1\u95f4\u8c0d C\u8f6e\u6982\u7387\u83b7\u5f97']);
   assert.equal(spyLines.some(line => /Cyath|Gnathos|Cambria/.test(line)), false);
   assert.ok(result.sourceOptions.some(source => source.id === 'gameplay.spy-missions' && source.query === '\u95f4\u8c0d'));
   assert.equal(core.getGameplay('\u95f4\u8c0d').entry.id, 'gameplay.spy-missions');
@@ -385,11 +385,25 @@ test('\u5b89\u9b42 Mod \u7531\u5185\u90e8\u8eab\u4efd\u7edf\u4e00\u5f52\u7c7b\u5
     assert.ok(result.structuredMethods.length >= 4);
     assert.ok(result.structuredMethods.every(method => /Requiem/i.test(method.sourceCanonical || '')));
     assert.doesNotMatch(result.description, /Munio|\u5893\u5792|\u955c\u50cf\u9632\u5fa1|[ABC]\u8f6e/);
+    assert.match(result.description, /\u53ef\u7528\u4e8e\u7384\u9ab8\u89e3\u5bc6\u7684\u5bc6\u7801/);
+    assert.match(result.description, /科腐系玄骸请使用杀毒 Mod（蠕虫驱逐）/);
+    assert.deepEqual(core.getAcquisitionCard(query).modInfo.descriptionLines, [
+      '可用于玄骸解密的密码',
+      '科腐系玄骸请使用杀毒 Mod（蠕虫驱逐）'
+    ]);
   }
   const oull = core.getAcquisition('Oull');
   assert.deepEqual(oull.entry.effectDetails, []);
   assert.equal(core.renderStructuredMethod(oull.structuredMethods[0]), '\u6210\u529f\u5c06\u8d64\u6bd2\u7384\u9ab8\u6216\u59d0\u59b9\u8d76\u53bb\u51b3\u6218\u670925%\u6982\u7387\u6389\u843d');
+  assert.match(oull.description, /\u53ef\u7528\u4e8e\u7384\u9ab8\u89e3\u5bc6\u7684\u5bc6\u7801/);
+  assert.match(oull.description, /\u53ef\u89c6\u4e3a\u4efb\u610f\u5bc6\u7801/);
+  assert.match(oull.description, /\u6210\u529f\u5c06\u8d64\u6bd2\u7384\u9ab8\u6216\u59d0\u59b9\u8d76\u53bb\u51b3\u6218\u670925%\u6982\u7387\u6389\u843d/);
   const oullCard = core.getAcquisitionCard('Oull');
+  assert.deepEqual(oullCard.modInfo.descriptionLines, [
+    '可用于玄骸解密的密码',
+    '可视为任意密码',
+    '科腐系玄骸请使用杀毒 Mod（蠕虫驱逐）'
+  ]);
   assert.ok(oullCard.sections.enemy.some(line => /\u8d64\u6bd2\u7384\u9ab8\u6216\u59d0\u59b9.*\u51b3\u6218.*25%/.test(line)));
 });
 

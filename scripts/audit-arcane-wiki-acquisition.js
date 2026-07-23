@@ -36,6 +36,11 @@ function methodHasVestigialExchange(methods) {
     && (method.requirements?.currency || []).some(item => item.currencyId === 'currency.vestigial-motes' || /vestigial/i.test(String(item.currencyCanonical || ''))))
 }
 
+function methodHasStandingVendorExchange(methods) {
+  return (methods || []).some(method => (method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange')
+    && method.requirements?.type === 'standing')
+}
+
 function methodHasDuplicateAscensionModes(methods) {
   const modes = (methods || []).filter(method => ASCENSION_SISTER_SOURCE.test(String(method.sourceCanonical || method.sourceDisplayName || '')))
   return modes.length >= 2
@@ -49,6 +54,9 @@ function auditArcane(entry, runtime, evidenceIndex, fetchedAt) {
   const issues = []
   const wikiSignals = WIKI_PATTERNS.filter(item => item.pattern.test(excerpt)).map(item => item.id)
 
+  if (wikiSignals.includes('standing-vendor') && !methodHasStandingVendorExchange(methods)) {
+    issues.push({ code: 'missing-standing-vendor-exchange', detail: 'Wiki 记载声望兑换，结构化方法缺失' })
+  }
   if (wikiSignals.includes('vestigial-motes-exchange') && !methodHasVestigialExchange(methods)) {
     issues.push({ code: 'missing-vestigial-exchange', detail: 'Wiki 记载 Ordis 残存微粒兑换，结构化方法缺失' })
   }
@@ -131,4 +139,4 @@ if (require.main === module) {
   try { run() } catch (error) { console.error(error.stack || error); process.exit(1) }
 }
 
-module.exports = { audit, auditArcane, run, WIKI_PATTERNS }
+module.exports = { audit, auditArcane, run, WIKI_PATTERNS, methodHasStandingVendorExchange }

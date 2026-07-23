@@ -126,6 +126,11 @@ function exchangeRequirementIssues(method, registries) {
   return [...new Set(issues)]
 }
 
+function standingRankPrefix(rank, rankName) {
+  if (rank == null || rank === 0) return ''
+  return `达到${rank}级${rankName ? `（${rankName}）` : ''}声望后`
+}
+
 function renderRequirements(value, registries) {
   const requirement = normalizeRequirements(value)
   if (requirement.type === 'none') return []
@@ -151,7 +156,7 @@ function renderRequirements(value, registries) {
   if (requirement.type === 'standing') {
     if (!locationName || !npcName || !(Number(requirement.amount) > 0)) return []
     if (requirement.blueprintRank != null && requirement.blueprintRank !== requirement.rank) return [`${locationName}的${npcName}：总图需要 ${requirement.blueprintRank}级声望，部件蓝图需要 ${requirement.rank}级声望兑换`]
-    const rank = requirement.rank == null ? '' : `达到${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}声望后`
+    const rank = standingRankPrefix(requirement.rank, requirement.rankName)
     return [`在${locationName}的${npcName}处${rank}消耗${requirement.amount.toLocaleString('zh-CN')}声望兑换`]
   }
   if (requirement.type !== 'currency') return []
@@ -163,7 +168,7 @@ function renderRequirements(value, registries) {
   const choiceText = requirement.chooseCount && requirement.chooseCount < currencies.length
     ? `（随机选择其中${requirement.chooseCount}种）`
     : ''
-  const rank = requirement.rank == null ? '' : `达到${requirement.rank}级${requirement.rankName ? `（${requirement.rankName}）` : ''}声望后`
+  const rank = standingRankPrefix(requirement.rank, requirement.rankName)
   const route = requirement.usage === 'crafting'
     ? `在${locationName}制造需要${currencyText}`
     : npcName && locationName ? `在${locationName}的${npcName}处${rank}消耗${currencyText}${choiceText}兑换` : ''
@@ -300,11 +305,26 @@ function resolveMissionLocationName(method, sourceText, options = {}) {
   const locationName = stripEmbeddedEnglishMissionTypeParenthetical(localizeAcquisitionText(rawLocation), missionTypeName)
   return { locationName, missionTypeName }
 }
+
+function shouldOmitSingleQuantitySuffix(method) {
+  if (!Number.isFinite(Number(method?.quantity)) || Number(method.quantity) !== 1) return false
+  if (Array.isArray(method?.quantityRange) && method.quantityRange.length === 2) return false
+  if (method?.type === 'mission-reward') return true
+  const rawSource = String(method.sourceCanonical || '')
+  const isSpyMission = /^Spy$/i.test(String(method.missionTypeCanonical || ''))
+    || method?.missionTypeId === 'mission-type.spy'
+    || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || ''))
+    || /Spy/i.test(rawSource)
+  return isSpyMission
+}
+
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
   const rewardQuantity = Array.isArray(method.quantityRange) && method.quantityRange.length === 2
     ? `${method.quantityRange[0]}-${method.quantityRange[1]}个`
-    : Number.isFinite(Number(method.quantity)) && Number(method.quantity) > 0 ? `${Number(method.quantity)}个` : ''
+    : Number.isFinite(Number(method.quantity)) && Number(method.quantity) > 0 && !shouldOmitSingleQuantitySuffix(method)
+      ? `${Number(method.quantity)}个`
+      : ''
   const rewardSuffix = rewardQuantity ? ` ${rewardQuantity}` : ''
   const rewardKind = variables.rewardKind ? `${variables.rewardKind}：` : ''
   const location = localizeAcquisitionText(method.locationDisplayName || variables.locationName || '')
@@ -339,9 +359,20 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${exchangeSource ? `在${exchangeSource}处兑换` : '向指定 NPC 兑换'}`
   if (method.type === 'syndicate-exchange') {
     const faction = method.factionDisplayName || source || '指定集团'
-    const rank = Number.isInteger(method.requiredLevel) ? `达到 ${method.requiredLevel} 级后` : ''
+    const rank = Number.isInteger(method.requiredLevel) && method.requiredLevel > 0 ? `达到 ${method.requiredLevel} 级后` : ''
     const standing = Number.isFinite(method.standing) ? `花费${Number(method.standing).toLocaleString('zh-CN')}声望` : '使用声望'
     return `${prefix}在${faction}${rank}${standing}兑换`
+  }
+  if (method.type === 'syndicate-exchange-group') {
+    const factions = (method.factionDisplayNames || []).filter(Boolean)
+    const factionText = factions.length >= 2
+      ? `${factions[0]}或${factions[1]}`
+      : (factions[0] || method.factionDisplayName || source || '指定集团')
+    const rank = method.rankRequirement === 'max' || Number.isInteger(method.requiredLevel)
+      ? (Number.isInteger(method.requiredLevel) && method.requiredLevel > 0 ? `达到 ${method.requiredLevel} 级后` : '满级后')
+      : ''
+    const standing = Number.isFinite(method.standing) ? `花费${Number(method.standing).toLocaleString('zh-CN')}声望` : '使用声望'
+    return `${prefix}在${factionText}${rank}${standing}兑换`
   }
   if (method.type === 'quest-reward' || method.category === 'quest') return `${prefix}${method.questDisplayName ? `${variables.firstCompletion ? `首次完成《${method.questDisplayName}》` : `完成任务「${method.questDisplayName}」`}获得` : '完成指定任务获得'}`
   if (method.type === 'relic-reward') {
@@ -381,10 +412,16 @@ function renderStructuredMethod(method, options = {}) {
   }
   if (method.type === 'mission-reward') {
     const rawSource = String(method.sourceCanonical || '')
-    const isSpyMission = /^Spy$/i.test(String(method.missionTypeCanonical || '')) || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || ''))
+    const isSpyMission = /^Spy$/i.test(String(method.missionTypeCanonical || '')) || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || '')) || /Spy/i.test(rawSource)
     const spyTier = /^Tier\s*(\d+)\s*Spy$/i.exec(rawSource)?.[1]
-    if (isSpyMission && spyTier) return `${prefix}T${spyTier}\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
-    if (isSpyMission && /^Lua Spy$/i.test(rawSource)) return `${prefix}\u6708\u7403\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
+    if (isSpyMission && spyTier) {
+      const rotation = method.rotation ? ` ${method.rotation}轮` : ''
+      return `${prefix}T${spyTier}\u95f4\u8c0d${rotation}\u6982\u7387\u83b7\u5f97`
+    }
+    if (isSpyMission && (/^Lua/i.test(rawSource) || /Lua.*Spy/i.test(rawSource))) {
+      const rotation = method.rotation ? ` ${method.rotation}轮` : ''
+      return `${prefix}\u6708\u7403\u95f4\u8c0d${rotation}\u6982\u7387\u83b7\u5f97`
+    }
     const { locationName, missionTypeName } = resolveMissionLocationName(method, source, options)
     const isOrokinVault = method.missionTypeId === 'mission-type.orokin-vault' || /^(?:Orokin Vault|奥罗金宝库)$/i.test(missionTypeName)
     if (isOrokinVault) return `${prefix}奥罗金宝库概率获得`
@@ -394,6 +431,7 @@ function renderStructuredMethod(method, options = {}) {
       return `${prefix}从${bountyName}奖励中获得${rewardSuffix}${probability}`
     }
     if (!locationName && missionTypeName) {
+      if (/^间谍$/.test(missionTypeName) && !source && !method.rotation && !rawSource.trim()) return null
       const rotation = method.rotation ? ` ${method.rotation}轮` : ''
       if (method.missionTypeCanonical === 'Weekly Conclave Challenge Reward') {
         const probability = options.showProbabilities === false || !Number.isFinite(method.chance)
@@ -513,8 +551,46 @@ function collapseSharedPartAcquisitionMethods(methods, options = {}) {
 
 const { collapseAscensionSisterDropVariants } = require('./ascension-arcane-acquisition')
 
+function isSpyMissionMethod(method) {
+  if (method?.type !== 'mission-reward') return false
+  const rawSource = String(method.sourceCanonical || '')
+  return /^Spy$/i.test(String(method.missionTypeCanonical || ''))
+    || method?.missionTypeId === 'mission-type.spy'
+    || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || ''))
+    || /Spy/i.test(rawSource)
+}
+
+function spyMissionPresentationKey(method) {
+  const raw = String(method.sourceCanonical || '').trim()
+  const tier = /^Tier\s*(\d+)\s*Spy$/i.exec(raw)?.[1]
+  if (tier) return `tier:${tier}:${method.rotation || ''}`
+  if (/^Lua Spy$/i.test(raw)) return `lua:${method.rotation || ''}`
+  if (/\bProxima\b/i.test(raw) && /Spy/i.test(raw)) {
+    const proxima = raw.match(/([A-Za-z]+)\s+Proxima\s+Spy/i)?.[1] || 'proxima'
+    return `proxima:${proxima.toLowerCase()}:${method.rotation || ''}`
+  }
+  if (/\(Spy\)/i.test(raw)) return `node:${raw}`
+  if (method.nodeCanonical && method.chance == null && !method.rotation) return `stub:${method.nodeCanonical}`
+  if (!raw && method.chance == null && !method.rotation) return 'stub:generic'
+  return `other:${raw}:${method.rotation || ''}`
+}
+
+function suppressRedundantSpyMissionMethods(methods) {
+  const spyMethods = (methods || []).filter(isSpyMissionMethod)
+  if (!spyMethods.length) return methods
+  const hasTierOrLua = spyMethods.some(method => /^tier:|^lua:|^proxima:/.test(spyMissionPresentationKey(method)))
+  if (!hasTierOrLua) return methods
+  return (methods || []).filter(method => {
+    if (!isSpyMissionMethod(method)) return true
+    const key = spyMissionPresentationKey(method)
+    if (key.startsWith('stub:')) return false
+    if (key.startsWith('node:') && hasTierOrLua) return false
+    return true
+  })
+}
+
 function mergeAlternativeSources(methods, options = {}) {
-  methods = collapseAscensionSisterDropVariants(methods)
+  methods = suppressRedundantSpyMissionMethods(collapseAscensionSisterDropVariants(methods))
   const groups = new Map(), passthrough = []
   const canonicalEnemy = name => localizeAcquisitionText(name).replace(/\s*\([^)]*\)\s*$/g, '').trim()
   const canonicalMethods = []
@@ -533,7 +609,8 @@ function mergeAlternativeSources(methods, options = {}) {
     // 只有来源不同、奖励语义完全相同的方法才能合并。数量、保底/额外、目标条件
     // 任一不同都必须保留为独立方法，避免把表格列和奖励阶数错位拼接。
     const rewardKey = [method.quantity ?? null, method.quantityRange || null, variables.rewardKind || '', variables.objective || '', variables.appearanceCondition || '']
-    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', method.missionTypeDisplayName || '', method.rotation || '', ...rewardKey, ...probabilityKey])
+    const spyKey = isSpyMissionMethod(method) ? spyMissionPresentationKey(method) : ''
+    const key = JSON.stringify([method.type, method.scope || 'item', variables.partName || '', spyKey || method.missionTypeDisplayName || '', ...(spyKey ? [] : [method.rotation || '']), ...rewardKey, ...probabilityKey])
     const group = groups.get(key) || []
     group.push(method); groups.set(key, group)
   }
@@ -563,18 +640,26 @@ function applyDisplaySummaries(methods) {
 
 const ACQUISITION_CARD_GROUPS = Object.freeze({
   exchange: new Set(['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange', 'syndicate-exchange-group', 'market-purchase', 'nightwave-offering', 'dojo-research']),
-  enemy: new Set(['enemy-drop', 'adversary-drop'])
+  enemy: new Set(['enemy-drop', 'adversary-drop']),
+  acquisition: new Set([
+    'mission-reward', 'circuit-reward', 'bounty-reward', 'heist-reward', 'daily-tribute',
+    'anniversary-reward', 'invasion-reward', 'relic-reward', 'quest-reward', 'open-world-gathering',
+    'open-world-conservation', 'vendor-purchase', 'vendor-processing', 'resource-processing', 'route',
+    'reward-or-drop', 'currency-acquisition', 'included-with-equipment', 'object-drop', 'enemy-group-drop',
+    'event-milestone-reward', 'companion-included', 'adversary-reward', 'gameplay-route'
+  ])
 })
 
 function acquisitionCardGroup(method) {
   if (ACQUISITION_CARD_GROUPS.exchange.has(method?.type) || method?.category === 'market') return 'exchange'
   if (ACQUISITION_CARD_GROUPS.enemy.has(method?.type) || (method?.type === 'reward-or-drop' && method?.sourceKind === 'enemy-drop')) return 'enemy'
+  if (ACQUISITION_CARD_GROUPS.acquisition.has(method?.type) || (method?.type === 'reward-or-drop' && method?.sourceKind !== 'enemy-drop')) return 'acquisition'
   return 'other'
 }
 
 function acquisitionCardSections(methods, options = {}) {
-  const sections = { exchange: [], enemy: [], other: [] }
-  const sectionNotes = { exchange: [], enemy: [], other: [] }
+  const sections = { exchange: [], enemy: [], acquisition: [], other: [] }
+  const sectionNotes = { exchange: [], enemy: [], acquisition: [], other: [] }
   const seen = new Set()
   const noteSeen = new Set()
   const sourceMethods = collapseAscensionSisterDropVariants((methods || []).filter(method => method.reviewStatus !== 'review-required'))
@@ -709,4 +794,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

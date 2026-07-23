@@ -83,6 +83,29 @@
         "status": "structured",
         "methods": [
           {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "arcane-source.1a496aecd016",
+            "sourceCanonical": "Solaris United (Rude Zuud), Old Mate",
+            "availability": "guaranteed-when-requirements-met",
+            "quantity": 1,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.rude-zuud",
+              "locationId": "hub.fortuna",
+              "rank": 5,
+              "rankName": "老朋友",
+              "amount": 10000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current-wiki-acquisition-prose",
+              "section": "Acquisition",
+              "excerpt": "Can be bought from Rude Zuud for 10,000 Standing 10,000 per arcane upon reaching the rank of Old Mate .",
+              "standingAmountEvidence": "current-wiki-acquisition-prose",
+              "note": "上游 warframe-items 缺失 drops 时，由 Wiki Acquisition 段落补全声望兑换路径。"
+            }
+          },
+          {
             "type": "crafting",
             "outputQuantity": 1,
             "credits": 7500,
