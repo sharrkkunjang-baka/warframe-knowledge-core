@@ -8,7 +8,9 @@ const { renderStructuredMethod } = require('../src/acquisition-protocol')
 const {
   resolveModCardFaceLabel,
   resolveEffectiveModType,
-  auditModCardFaceLabels
+  auditModCardFaceLabels,
+  WARFRAME_CARD_LABEL,
+  modNeedsTypeSlotLocalization
 } = require('../src/mod-card-face-label')
 
 const official = require('../knowledge/categories/official.json')
@@ -62,4 +64,27 @@ test('曲翼 Mod 卡面类型显示对应曲翼名称', () => {
     assert.equal(mod.type, 'Archwing Mod')
     assert.equal(resolveModCardFaceLabel(mod), expected)
   }
+})
+
+test('WARFRAME 类型槽保留英文 WARFRAME', () => {
+  const mod = official.mods.find(item => item.compatName === 'WARFRAME')
+  assert.ok(mod)
+  assert.equal(resolveModCardFaceLabel(mod), WARFRAME_CARD_LABEL)
+  assert.equal(modNeedsTypeSlotLocalization(mod), false)
+})
+
+test('战甲专属 Mod 类型槽保留英文战甲名 VOLT', () => {
+  const mod = official.mods.find(item => item.canonical === 'Capacitance')
+  assert.ok(mod)
+  assert.equal(mod.compatName, 'Volt')
+  assert.equal(resolveModCardFaceLabel(mod), 'VOLT')
+  assert.equal(modNeedsTypeSlotLocalization(mod), false)
+})
+
+test('武器 Prime 兼容名翻译为 DE 官方简中', () => {
+  const mod = official.mods.find(item => item.canonical === 'Gilded Truth')
+  assert.ok(mod)
+  assert.equal(mod.compatName, 'Burston Prime')
+  assert.equal(resolveModCardFaceLabel(mod), '伯斯顿 Prime')
+  assert.equal(modNeedsTypeSlotLocalization(mod), true)
 })
