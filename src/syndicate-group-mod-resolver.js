@@ -7,7 +7,34 @@ function abilityStem(uniqueName) {
 }
 
 function augmentStem(uniqueName) {
-  return String(uniqueName || '').split('/').pop().replace(/AugmentCard$/i, '');
+  return String(uniqueName || '')
+    .split('/')
+    .pop()
+    .replace(/PvPAugmentCard$/i, '')
+    .replace(/AugmentCard$/i, '');
+}
+
+const SYNDICATE_SLOT_CHARS = '1-4一二三四壹贰叁肆';
+const SYNDICATE_SLOT_PATTERN = `[${SYNDICATE_SLOT_CHARS}]`;
+const CHINESE_SLOT_MAP = Object.freeze({
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  壹: 1,
+  贰: 2,
+  叁: 3,
+  肆: 4
+});
+
+function parseSyndicateSlot(token) {
+  const raw = String(token || '').trim();
+  if (/^[1-4]$/.test(raw)) return Number(raw);
+  return CHINESE_SLOT_MAP[raw] || null;
+}
+
+function compactSyndicateQuery(query) {
+  return String(query || '').normalize('NFKC').replace(/[\s·・‧•_-]+/g, '');
 }
 
 function normalizeStem(stem) {
@@ -16,7 +43,9 @@ function normalizeStem(stem) {
 
 function isPvpAugment(mod) {
   const uniqueName = String(mod?.uniqueName || '');
-  return /PvP/i.test(uniqueName) || /\/PvPMods\//.test(uniqueName);
+  // Frame augment cards live under /Lotus/Powersuits/<Frame>/ even when DE internal names contain "PvP".
+  if (/\/Lotus\/Powersuits\/[^/]+\/[^/]*AugmentCard$/i.test(uniqueName)) return false;
+  return /\/PvPMods\//.test(uniqueName);
 }
 
 function createSyndicateGroupModResolver(options = {}) {
@@ -42,12 +71,12 @@ function createSyndicateGroupModResolver(options = {}) {
   function parse(query) {
     const raw = String(query || '').trim();
     if (!raw) return null;
-    const compact = raw.normalize('NFKC').replace(/[\s·・‧•_-]+/g, '');
+    const compact = compactSyndicateQuery(raw);
     if (/集团卡|集团·强化/i.test(compact)) return null;
-    const match = compact.match(/^(.+?)集团([1-4])$/i);
+    const match = compact.match(new RegExp(`^(.+?)集团(${SYNDICATE_SLOT_PATTERN})$`, 'i'));
     if (!match) return null;
     const prefix = match[1];
-    const slot = Number(match[2]);
+    const slot = parseSyndicateSlot(match[2]);
     if (!prefix || !slot) return null;
     const frame = resolveWarframe?.(prefix) || resolveWarframeMention?.(prefix)?.frame;
     if (!frame) return null;
@@ -75,8 +104,8 @@ function createSyndicateGroupModResolver(options = {}) {
 }
 
 function isSyndicateGroupModQuery(query) {
-  const compact = String(query || '').normalize('NFKC').replace(/[\s·・‧•_-]+/g, '');
-  return !/集团卡|集团·强化/i.test(compact) && /^.+集团[1-4]$/i.test(compact);
+  const compact = compactSyndicateQuery(query);
+  return !/集团卡|集团·强化/i.test(compact) && new RegExp(`^.+集团${SYNDICATE_SLOT_PATTERN}$`, 'i').test(compact);
 }
 
 module.exports = {
@@ -84,5 +113,7 @@ module.exports = {
   abilityStem,
   augmentStem,
   normalizeStem,
+  parseSyndicateSlot,
+  compactSyndicateQuery,
   isSyndicateGroupModQuery
 };
