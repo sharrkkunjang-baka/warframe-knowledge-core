@@ -426,8 +426,13 @@ function renderStructuredMethod(method, options = {}) {
     const isOrokinVault = method.missionTypeId === 'mission-type.orokin-vault' || /^(?:Orokin Vault|奥罗金宝库)$/i.test(missionTypeName)
     if (isOrokinVault) return `${prefix}奥罗金宝库概率获得`
     if (/赏金/.test(missionTypeName)) {
-      const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (source || locationName || missionTypeName)
-      const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : `，概率${Number((method.chance * 100).toFixed(4))}%`
+      if (isOpenWorldBountyRotationMethod(method) || Array.isArray(method.chanceRange)) {
+        const rotationLabel = formatOpenWorldBountyRotationLabel(locationName, missionTypeName)
+        const probability = formatOpenWorldBountyProbability(method, options)
+        return `${prefix}从${rotationLabel}概率获得${rewardSuffix}${probability}`
+      }
+      const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (missionTypeName || locationName)
+      const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : `，概率${formatBountyChancePercent(method.chance)}%`
       return `${prefix}从${bountyName}奖励中获得${rewardSuffix}${probability}`
     }
     if (!locationName && missionTypeName) {
@@ -589,8 +594,100 @@ function suppressRedundantSpyMissionMethods(methods) {
   })
 }
 
+const OPEN_WORLD_BOUNTY_MISSION_TYPE_IDS = new Set([
+  'mission-type.cambion-drift-bounty',
+  'mission-type.cetus-bounty',
+  'mission-type.orb-vallis-bounty',
+  'mission-type.bounty',
+  'mission-type.duviri-bounty'
+])
+
+function isOpenWorldBountyRotationMethod(method) {
+  if (method?.type !== 'mission-reward') return false
+  const missionTypeId = String(method.missionTypeId || method.missionTypeEntityId || '')
+  if (OPEN_WORLD_BOUNTY_MISSION_TYPE_IDS.has(missionTypeId)) return true
+  const missionTypeName = String(method.missionTypeDisplayName || method.missionTypeCanonical || '')
+  if (!/赏金/.test(missionTypeName)) return false
+  const locationId = String(method.locationId || '')
+  return locationId.startsWith('landscape.') || locationId.startsWith('bounty.')
+}
+
+function openWorldBountyStageKey(method) {
+  return JSON.stringify([
+    method.scope || 'item',
+    method.locationId || '',
+    method.missionTypeId || method.missionTypeEntityId || '',
+    method.rotation || '',
+    method.variables?.partName || '',
+    method.variables?.rewardKind || '',
+    method.quantity ?? null,
+    method.quantityRange || null
+  ])
+}
+
+function formatBountyChancePercent(chance) {
+  return Number((Number(chance) * 100).toFixed(4))
+}
+
+function formatOpenWorldBountyProbability(method, options = {}) {
+  if (options.showProbabilities === false) return ''
+  const range = method.chanceRange
+  if (Array.isArray(range) && range.length === 2 && Number.isFinite(range[0]) && Number.isFinite(range[1])) {
+    const min = formatBountyChancePercent(range[0])
+    const max = formatBountyChancePercent(range[1])
+    if (min === max) return `，概率${min}%`
+    return `，不同赏金档位概率${min}%～${max}%`
+  }
+  if (Number.isFinite(method.chance)) return `，概率${formatBountyChancePercent(method.chance)}%`
+  return ''
+}
+
+function formatOpenWorldBountyRotationLabel(locationName, missionTypeName) {
+  if (/合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName)) return '合一众赏金任务轮换'
+  if (locationName && /赏金/.test(missionTypeName)) {
+    const base = String(locationName).replace(/赏金$/, '')
+    if (missionTypeName.startsWith(base)) return `${base}赏金任务轮换`
+    return `${locationName}赏金任务轮换`
+  }
+  if (missionTypeName) return `${missionTypeName}任务轮换`
+  return `${locationName || '赏金'}任务轮换`
+}
+
+function collapseOpenWorldBountyStageMethods(methods) {
+  const groups = new Map()
+  const passthrough = []
+  for (const method of methods || []) {
+    if (!isOpenWorldBountyRotationMethod(method)) {
+      passthrough.push(method)
+      continue
+    }
+    const key = openWorldBountyStageKey(method)
+    const group = groups.get(key) || []
+    group.push(method)
+    groups.set(key, group)
+  }
+  const collapsed = []
+  for (const group of groups.values()) {
+    if (group.length === 1) {
+      collapsed.push(group[0])
+      continue
+    }
+    const chances = group.map(item => item.chance).filter(chance => Number.isFinite(chance)).sort((left, right) => left - right)
+    const minChance = chances[0]
+    const maxChance = chances[chances.length - 1]
+    collapsed.push({
+      ...group[0],
+      chance: chances.length === 1 ? chances[0] : null,
+      chanceRange: chances.length > 1 ? [minChance, maxChance] : null,
+      mergedBountyStageCount: group.length,
+      provenanceAlternatives: group.flatMap(item => item.provenanceAlternatives || [item.provenance].filter(Boolean))
+    })
+  }
+  return [...collapsed, ...passthrough]
+}
+
 function mergeAlternativeSources(methods, options = {}) {
-  methods = suppressRedundantSpyMissionMethods(collapseAscensionSisterDropVariants(methods))
+  methods = collapseOpenWorldBountyStageMethods(suppressRedundantSpyMissionMethods(collapseAscensionSisterDropVariants(methods)))
   const groups = new Map(), passthrough = []
   const canonicalEnemy = name => localizeAcquisitionText(name).replace(/\s*\([^)]*\)\s*$/g, '').trim()
   const canonicalMethods = []
@@ -760,6 +857,18 @@ function mergeRolePresentationLines(lines) {
   return output.filter(Boolean)
 }
 
+function acquisitionRenderPriority(method) {
+  const missionType = String(method?.missionTypeDisplayName || method?.missionTypeId || '')
+  if (method?.type === 'mission-reward' && /赏金/.test(missionType)) return 100
+  if (method?.type === 'mission-reward') return 80
+  if (method?.type === 'enemy-drop') return 70
+  if (method?.type === 'vendor-or-syndicate-exchange' || method?.type === 'vendor-exchange') return 60
+  if (method?.type === 'syndicate-exchange' || method?.type === 'syndicate-exchange-group') return 55
+  if (method?.type === 'circuit-reward') return 20
+  if (method?.type === 'reward-or-drop') return 10
+  return 50
+}
+
 function renderAcquisition(methods, options = {}) {
   const renderMethods = collapseSharedPartAcquisitionMethods(
     mergeAlternativeSources(applyDisplaySummaries((methods || []).filter(method => method.reviewStatus !== 'review-required')), options),
@@ -768,6 +877,7 @@ function renderAcquisition(methods, options = {}) {
     .map((method, index) => ({ method, index }))
     .sort((left, right) => (left.method.scope === 'blueprint' ? -1 : 0) - (right.method.scope === 'blueprint' ? -1 : 0)
       || (left.method.type === 'quest-reward' ? -1 : 0) - (right.method.type === 'quest-reward' ? -1 : 0)
+      || acquisitionRenderPriority(right.method) - acquisitionRenderPriority(left.method)
       || left.index - right.index)
     .map(item => item.method)
   const lines = []
@@ -794,4 +904,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, isOpenWorldBountyRotationMethod, collapseOpenWorldBountyStageMethods, formatOpenWorldBountyRotationLabel, formatOpenWorldBountyProbability, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionRenderPriority, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

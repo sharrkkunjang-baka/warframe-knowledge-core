@@ -803,21 +803,50 @@ function createKnowledgeCore(options = {}) {
     }
     return methods;
   };
+  const resolveOfficialDropMissionType = label => {
+    const text = String(label || '').trim();
+    if (!text) return null;
+    const bounty = text.match(/(?:Level\s*\d+\s*-\s*\d+\s+)?(.+?\s*Bounty)$/i);
+    const canonical = bounty ? bounty[1].trim() : text;
+    return data.missionTypes.get(canonical) || data.missionTypes.get(text) || null;
+  };
   const enrichOfficialDrop = method => {
     if (method.type !== 'official-drop') return method;
     const raw = String(method.sourceCanonical || '');
     const requiemRelic = raw.match(/^Requiem\s+([IVX]+)\s+Relic(?:\s+\([^)]+\))?$/i);
     if (requiemRelic) return { ...method, type: 'reward-or-drop', sourceDisplayName: `安魂遗物 ${requiemRelic[1].toUpperCase()}`, sourceKind: 'relic-reward' };
+    const registered = data.arcaneSources.get(raw);
+    if (registered && registered.localization?.status !== 'canonical-fallback' && registered.kind !== 'enemy-drop') {
+      const relation = registered.relation || {};
+      const missionMeta = registered.mission || {};
+      const isCircuit = relation.missionTypeId === 'mission-type.the-circuit' || /^Duviri\/Endless:/i.test(raw);
+      const isBounty = /Bounty/i.test(raw) || String(relation.missionTypeId || '').includes('bounty');
+      return {
+        ...method,
+        type: isCircuit ? 'circuit-reward' : (registered.kind === 'mission-reward' || isBounty ? 'mission-reward' : 'reward-or-drop'),
+        ...(isBounty ? {} : { sourceEntityId: registered.id, sourceKind: registered.kind }),
+        locationId: relation.locationId || null,
+        missionTypeId: relation.missionTypeId || null,
+        rotation: missionMeta.rotation || method.rotation || null,
+        nodeCanonical: missionMeta.nodeCanonical || null
+      };
+    }
     const mission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i);
-    if (mission) {
-      const location = data.locations.get(mission[1]);
-      const missionType = data.missionTypes.get(mission[3]);
-      return { ...method, type: missionType ? 'mission-reward' : 'reward-or-drop', locationId: location?.id || null, locationDisplayName: location ? displayEntityName(location) : null, nodeCanonical: mission[2], missionTypeId: missionType?.id || null, missionTypeDisplayName: missionType ? displayEntityName(missionType) : null, rotation: mission[4] || method.rotation || null };
+    if (mission && !/:/.test(mission[2])) {
+      const nodeCanonical = mission[2].trim();
+      const location = data.locations.get(nodeCanonical) || data.locations.get(mission[1]);
+      const missionType = resolveOfficialDropMissionType(mission[3]);
+      return {
+        ...method,
+        type: missionType ? 'mission-reward' : 'reward-or-drop',
+        locationId: location?.id || null,
+        nodeCanonical,
+        missionTypeId: missionType?.id || null,
+        rotation: mission[4] || method.rotation || null
+      };
     }
     const enemy = data.enemies.get(raw.replace(/\s*\(Level\s*\d+\s*-\s*\d+\)\s*$/i, ''));
     if (enemy) return enrichModMethod({ ...method, type: 'enemy-drop', sourceEntityId: enemy.id });
-    const source = data.arcaneSources.get(raw);
-    if (source && source.localization?.status !== 'canonical-fallback' && source.kind !== 'enemy-drop') return { ...method, type: 'reward-or-drop', sourceEntityId: source.id, sourceDisplayName: displayEntityName(source), sourceKind: source.kind };
     return { ...method, type: 'unresolved-source', sourceDisplayName: null };
   };
   const enrichModMethod = method => {
