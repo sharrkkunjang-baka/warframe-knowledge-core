@@ -274,6 +274,31 @@ function nearDuplicateVisibleLines(lines) {
 function localizeAcquisitionText(value) {
   return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/Nightmare Mode/g, '\u5669\u68a6\u6a21\u5f0f').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望').replace(/\s*[（(](?:Void Armageddon|Void Cascade)[）)]/gi, '')
 }
+
+function stripEmbeddedEnglishMissionTypeParenthetical(text, localizedMissionType = '') {
+  let value = String(text || '').trim()
+  if (!value) return value
+  const localized = String(localizedMissionType || '').trim()
+  value = value.replace(/\s*[（(]([^）)]*)[）)]/g, (match, inner) => {
+    const label = String(inner).trim()
+    if (!label) return match
+    if (localized && label === localized) return match
+    if (/[\u4e00-\u9fff]/.test(label)) return match
+    if (/^[\x00-\x7F\s:+-]+$/.test(label)) return ''
+    return match
+  })
+  return value.replace(/\s{2,}/g, ' ').trim()
+}
+
+function resolveMissionLocationName(method, sourceText, options = {}) {
+  const missionTypeName = localizeAcquisitionText(method.missionTypeDisplayName || method.missionTypeCanonical || '')
+  const rawSource = String(method.sourceCanonical || '')
+  const isGenericNightmareSource = /^Nightmare Mode(?: Missions| Rescue)?$/i.test(rawSource)
+  if (isGenericNightmareSource) return { locationName: '', missionTypeName }
+  const rawLocation = method.locationDisplayName || method.sourceDisplayName || sourceText || ''
+  const locationName = stripEmbeddedEnglishMissionTypeParenthetical(localizeAcquisitionText(rawLocation), missionTypeName)
+  return { locationName, missionTypeName }
+}
 function renderStructuredMethod(method, options = {}) {
   const variables = method.variables || {}
   const rewardQuantity = Array.isArray(method.quantityRange) && method.quantityRange.length === 2
@@ -347,13 +372,11 @@ function renderStructuredMethod(method, options = {}) {
   }
   if (method.type === 'mission-reward') {
     const rawSource = String(method.sourceCanonical || '')
-    const isGenericNightmareSource = /^Nightmare Mode(?: Missions| Rescue)?$/i.test(rawSource)
     const isSpyMission = /^Spy$/i.test(String(method.missionTypeCanonical || '')) || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || ''))
     const spyTier = /^Tier\s*(\d+)\s*Spy$/i.exec(rawSource)?.[1]
     if (isSpyMission && spyTier) return `${prefix}T${spyTier}\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
     if (isSpyMission && /^Lua Spy$/i.test(rawSource)) return `${prefix}\u6708\u7403\u95f4\u8c0d${method.rotation ? ` ${method.rotation}\u8f6e` : ''}`
-    const locationName = isGenericNightmareSource ? '' : localizeAcquisitionText(method.locationDisplayName || source)
-    const missionTypeName = localizeAcquisitionText(method.missionTypeDisplayName || method.missionTypeCanonical || '')
+    const { locationName, missionTypeName } = resolveMissionLocationName(method, source, options)
     const isOrokinVault = method.missionTypeId === 'mission-type.orokin-vault' || /^(?:Orokin Vault|奥罗金宝库)$/i.test(missionTypeName)
     if (isOrokinVault) return `${prefix}奥罗金宝库概率获得`
     if (/赏金/.test(missionTypeName)) {
@@ -656,4 +679,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

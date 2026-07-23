@@ -10,11 +10,20 @@ const core = createKnowledgeCore({ approvedOnly: false })
 test('米特尔总图与全部部件来源一致时合并为一条', () => {
   const result = core.getAcquisition('Miter')
   const description = result.description || ''
-  assert.match(description, /总图及全部部件：完成谷神星\/Exta（Assassination）（刺杀）概率获得/)
+  assert.match(description, /总图及全部部件：完成谷神星\/Exta（刺杀）概率获得/)
+  assert.doesNotMatch(description, /Assassination/)
   assert.doesNotMatch(description, /米特尔 枪管：/)
   const sections = acquisitionCardSections(result.structuredMethods, { registries: core._data })
   assert.equal(sections.other.length, 1)
-  assert.match(sections.other[0].text, /总图及全部部件：完成谷神星\/Exta（Assassination）（刺杀）概率获得/)
+  assert.match(sections.other[0].text, /总图及全部部件：完成谷神星\/Exta（刺杀）概率获得/)
+  assert.doesNotMatch(sections.other[0].text, /Assassination/)
+})
+
+test('预言者刺杀节点不泄漏英文任务类型括注', () => {
+  const result = core.getAcquisition('Seer')
+  const text = result.description || ''
+  assert.match(text, /水星\/Tolstoj（刺杀）/)
+  assert.doesNotMatch(text, /Assassination/)
 })
 
 test('Grendel 三部件来源不同时不合并', () => {
