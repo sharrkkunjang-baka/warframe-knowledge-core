@@ -285,7 +285,7 @@ function renderStructuredMethod(method, options = {}) {
   const npc = localizeAcquisitionText(method.npcDisplayName || (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange' ? method.sourceDisplayName : '') || variables.npcName || '')
   const source = localizeAcquisitionText(method.sourceDisplayName || location || variables.sourceName || '')
   const exchangeSource = npc ? `${location ? `${location}的` : ''}${npc}` : source
-  const scopeName = method.scope === 'blueprint' ? '总图' : method.scope === 'component' || method.scope === 'components' ? (variables.partName || '部件蓝图') : method.scope === 'component-access' ? (variables.grantsItemDisplayName || '任务定位装置') : method.scope === 'all-blueprints' ? '整套蓝图' : method.scope === 'item' ? '成品' : ''
+  const scopeName = variables.presentationLabel || (method.scope === 'blueprint' ? '总图' : method.scope === 'component' || method.scope === 'components' ? (variables.partName || '部件蓝图') : method.scope === 'component-access' ? (variables.grantsItemDisplayName || '任务定位装置') : method.scope === 'all-blueprints' ? '整套蓝图' : method.scope === 'item' ? '成品' : '')
   const prefix = scopeName ? `${scopeName}：` : ''
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
   if (method.type === 'recipe' || method.category === 'crafting') return null
@@ -404,6 +404,81 @@ function joinPartNames(partNames) {
   return `${names[0]}、${names.slice(1).map(name => name.slice(prefix.length)).join('、')}`
 }
 
+function partAcquisitionSourceKey(method, options = {}) {
+  if (!['enemy-drop', 'mission-reward'].includes(method.type)) return null
+  if (!['blueprint', 'component'].includes(method.scope)) return null
+  const variables = method.variables || {}
+  const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || method.locationId || ''
+  const probabilityKey = options.showProbabilities === false ? [] : [method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null]
+  const rewardKey = [method.quantity ?? null, method.quantityRange || null, variables.rewardKind || '', variables.objective || '', variables.appearanceCondition || '']
+  return JSON.stringify([
+    method.type,
+    source,
+    method.missionTypeDisplayName || '',
+    method.missionTypeCanonical || '',
+    method.rotation || '',
+    method.locationDisplayName || '',
+    ...rewardKey,
+    ...probabilityKey
+  ])
+}
+
+function partNamesWithoutWeaponPrefix(partNames) {
+  const joined = joinPartNames(partNames)
+  const firstSpace = joined.indexOf(' ')
+  if (firstSpace <= 0) return joined
+  const prefix = joined.slice(0, firstSpace + 1)
+  if (partNames.every(name => name.startsWith(prefix) && name.length > prefix.length)) return joined.slice(firstSpace + 1)
+  return joined
+}
+
+function resolveMergedPartLabel(group, totalComponentCount) {
+  const componentCount = group.partNames.length
+  if (group.hasBlueprint && componentCount > 0) {
+    if (totalComponentCount > 0 && componentCount >= totalComponentCount) return '总图及全部部件'
+    if (componentCount === 1) return `总图及${group.partNames[0]}`
+    return `总图及${partNamesWithoutWeaponPrefix(group.partNames)}`
+  }
+  if (group.hasBlueprint) return '总图'
+  return joinPartNames(group.partNames)
+}
+
+function collapseSharedPartAcquisitionMethods(methods, options = {}) {
+  const totalComponents = methods.filter(method => method.scope === 'component' && ['enemy-drop', 'mission-reward'].includes(method.type)).length
+  const groups = new Map()
+  for (const method of methods) {
+    const key = partAcquisitionSourceKey(method, options)
+    if (!key) continue
+    const group = groups.get(key) || { methods: [], partNames: [], hasBlueprint: false }
+    group.methods.push(method)
+    if (method.scope === 'blueprint') group.hasBlueprint = true
+    if (method.variables?.partName) group.partNames.push(method.variables.partName)
+    groups.set(key, group)
+  }
+  const groupedMethods = new Set([...groups.values()].filter(group => group.methods.length > 1).flatMap(group => group.methods))
+  const emittedGroups = new Set()
+  const output = []
+  for (const method of methods) {
+    if (!groupedMethods.has(method)) {
+      output.push(method)
+      continue
+    }
+    const key = partAcquisitionSourceKey(method, options)
+    if (emittedGroups.has(key)) continue
+    emittedGroups.add(key)
+    const group = groups.get(key)
+    output.push({
+      ...group.methods[0],
+      variables: {
+        ...(group.methods[0].variables || {}),
+        partName: undefined,
+        presentationLabel: resolveMergedPartLabel(group, totalComponents)
+      }
+    })
+  }
+  return output
+}
+
 function mergeAlternativeSources(methods, options = {}) {
   const groups = new Map(), passthrough = []
   const canonicalEnemy = name => localizeAcquisitionText(name).replace(/\s*\([^)]*\)\s*$/g, '').trim()
@@ -502,7 +577,7 @@ function acquisitionCardSections(methods, options = {}) {
     sections.enemy.push({ text, method })
   }
   const nonEnemy = sourceMethods.filter(method => acquisitionCardGroup(method) !== 'enemy')
-  for (const method of mergeAlternativeSources(applyDisplaySummaries(nonEnemy), { ...options, showProbabilities: false })) {
+  for (const method of collapseSharedPartAcquisitionMethods(mergeAlternativeSources(applyDisplaySummaries(nonEnemy), { ...options, showProbabilities: false }), { ...options, showProbabilities: false })) {
     const showProbabilities = method.missionTypeCanonical === 'Weekly Conclave Challenge Reward'
       ? options.showProbabilities !== false
       : false
@@ -548,36 +623,17 @@ function mergeRolePresentationLines(lines) {
 }
 
 function renderAcquisition(methods, options = {}) {
-  const renderMethods = mergeAlternativeSources(applyDisplaySummaries((methods || []).filter(method => method.reviewStatus !== 'review-required')), options)
+  const renderMethods = collapseSharedPartAcquisitionMethods(
+    mergeAlternativeSources(applyDisplaySummaries((methods || []).filter(method => method.reviewStatus !== 'review-required')), options),
+    options
+  )
     .map((method, index) => ({ method, index }))
     .sort((left, right) => (left.method.scope === 'blueprint' ? -1 : 0) - (right.method.scope === 'blueprint' ? -1 : 0)
       || (left.method.type === 'quest-reward' ? -1 : 0) - (right.method.type === 'quest-reward' ? -1 : 0)
       || left.index - right.index)
     .map(item => item.method)
-  const sourceGroups = new Map()
-  for (const method of renderMethods) {
-    if (!['enemy-drop', 'mission-reward'].includes(method.type) || method.scope !== 'component') continue
-    const variables = method.variables || {}
-    const source = method.sourceDisplayName || method.locationDisplayName || variables.sourceName || variables.locationName || ''
-    if (!source) continue
-    const probabilityKey = options.showProbabilities === false ? [] : [method.chance ?? null, method.sourceDropChance ?? null, method.conditionalChance ?? null]
-    const key = JSON.stringify([method.type, source, method.missionTypeDisplayName || '', method.rotation || '', ...probabilityKey])
-    const group = sourceGroups.get(key) || { methods: [], partNames: [] }
-    group.methods.push(method)
-    if (variables.partName) group.partNames.push(variables.partName)
-    sourceGroups.set(key, group)
-  }
-  const groupedMethods = new Set([...sourceGroups.values()].filter(group => group.methods.length > 1).flatMap(group => group.methods))
   const lines = []
   for (const method of renderMethods) {
-    if (groupedMethods.has(method)) {
-      const group = [...sourceGroups.values()].find(item => item.methods[0] === method)
-      if (!group) continue
-      const merged = { ...method, variables: { ...(method.variables || {}), partName: joinPartNames(group.partNames) } }
-      const headline = renderStructuredMethod(merged, options)
-      if (headline) lines.push(headline)
-      continue
-    }
     const headline = renderStructuredMethod(method, options)
     const isVendorExchange = method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange'
     if (method.type !== 'quest-reward' && !isVendorExchange) lines.push(...mergeMethodPresentationLines(method, headline, method.requirementLines || []))
@@ -600,4 +656,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

@@ -16,6 +16,7 @@ const { parseWeaponCraftingCommand } = require('./weapon-command');
 const { expandKnowledgeReferences } = require('./knowledge-reference-expander');
 const { createRivenWeaponResolver } = require('./riven-weapon-resolver');
 const { createModRelationQueries } = require('./mod-relation-queries');
+const { createSyndicateGroupModResolver, isSyndicateGroupModQuery } = require('./syndicate-group-mod-resolver');
 const { createElementModSlangResolver } = require('./element-mod-slang');
 const equipmentAcquisition = require('./equipment-acquisition');
 const { buildOfficialTermIndex, findOfficialTermsInText } = require('./official-term-matcher');
@@ -578,6 +579,13 @@ function createKnowledgeCore(options = {}) {
     if (unique.length > 1) return { ambiguous: unique, reason: 'riven-family-collision' };
     return null;
   };
+  const syndicateGroupModResolver = createSyndicateGroupModResolver({
+    resolveWarframe: frameAcquisition.resolveWarframe,
+    resolveWarframeMention: frameAcquisition.resolveWarframeMention,
+    getOfficialMod,
+    officialMods
+  });
+  const resolveSyndicateGroupMod = query => syndicateGroupModResolver.resolve(query);
   const resolveItem = query => {
     const intent = parseResolverIntent(query);
     const effectiveQuery = intent.query || intent.commandStripped;
@@ -593,6 +601,8 @@ function createKnowledgeCore(options = {}) {
       if (knowledgeItem) return { kind: resolution.category, item: knowledgeItem, recipeVariant: null };
       return null;
     }
+    const syndicateGroup = syndicateGroupModResolver.resolve(effectiveQuery);
+    if (syndicateGroup) return { kind: 'mod', item: syndicateGroup.mod, recipeVariant: null, syndicateGroup };
     const weapon = getWeapon(effectiveQuery);
     if (weapon) return { kind: 'weapon', item: weapon, recipeVariant: null };
     const arcane = getArcane(query);
@@ -603,6 +613,9 @@ function createKnowledgeCore(options = {}) {
       const recipeVariant = officialItem.recipeVariants?.find(variant => (variant.aliases || []).some(alias => normalize(alias) === q)) || null;
       return { kind: 'official-item', item: officialItem, recipeVariant };
     }
+    const frameExact = frameAcquisition.resolveWarframe(effectiveQuery)
+      || (!isSyndicateGroupModQuery(effectiveQuery) ? frameAcquisition.resolveWarframeMention(effectiveQuery)?.frame : null);
+    if (frameExact) return { kind: 'warframe', item: frameExact, recipeVariant: null };
     const weaponResolution = resolveWeapon(query);
     if (weaponResolution && !weaponResolution.ambiguous) {
       const resolvedWeapon = getWeapon(weaponResolution.canonical);
@@ -614,8 +627,6 @@ function createKnowledgeCore(options = {}) {
     if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
     const mod = getOfficialMod(query);
     if (mod) return { kind: 'mod', item: mod, recipeVariant: null };
-    const frame = frameAcquisition.resolveWarframe(query);
-    if (frame) return { kind: 'warframe', item: frame, recipeVariant: null };
     const officialMatches = searchOfficialItems(query, { limit: 20 });
     if (officialMatches.length > 1) return { kind: 'ambiguous', item: null, recipeVariant: null, candidates: officialMatches };
     return officialMatches.length === 1 ? { kind: 'official-item', item: officialMatches[0], recipeVariant: null } : null;
@@ -1528,6 +1539,8 @@ function createKnowledgeCore(options = {}) {
     getResourceCollection: resourceAcquisition.getResourceCollection,
     listResources: resourceAcquisition.listResources,
     resolveItem,
+    resolveSyndicateGroupMod,
+    isSyndicateGroupModQuery,
     getWeapon,
     getWeaponGap,
     resolveWeapon,
