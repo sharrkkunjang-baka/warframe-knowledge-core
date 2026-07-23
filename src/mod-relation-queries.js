@@ -3,13 +3,23 @@ const fs = require('fs');
 const path = require('path');
 const normalize = value => String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
 function familyName(canonical) { return normalize(canonical).replace(/^(?:mk1[- ]|prisma |kuva |tenet |coda |dual coda |dex |mara |sancti |secura |synoid |telos |vaykor |rakta |carmine )/i, '').replace(/ (?:prime|vandal|wraith|prisma|dex|mara|mk1)$/i, '').trim(); }
+/**
+ * 解析集团卡/点播卡关系命令。
+ * 关键词（集团卡/集团·强化 Mod/电波卡/点播卡）必须伴随实体查询词或显式“帮助”，
+ * 否则视为普通输入返回 null，交回常规未识别处理，避免裸关键词（如仅“集团卡”）误触发固定用法回复。
+ * @param {string} text 原始消息文本
+ * @returns {{intent: 'syndicate'|'nightwave', query: string, help: boolean}|null}
+ */
 function parseRelationCommand(text) {
   const compact = String(text || '').trim();
   const match = compact.match(/^(.*?)(集团卡|集团·强化\s*Mod|电波卡|点播卡)(.*?)$/i);
   if (!match) return null;
   const intent = /集团/.test(match[2]) ? 'syndicate' : 'nightwave';
   const query = `${match[1]}${match[3]}`.trim();
-  return { intent, query, help: /^(?:帮助|help)$/i.test(query) };
+  const help = /^(?:帮助|help)$/i.test(query);
+  // 裸关键词（无实体查询词且非显式帮助）不构成关系命令，返回 null 让消息走常规未识别/未收录分支。
+  if (!query) return null;
+  return { intent, query, help };
 }
 function createModRelationQueries({ root, resolveWeapon, resolveName, getWeapon, getFrame }) {
   const data = JSON.parse(fs.readFileSync(path.join(root, 'generated', 'mod-relations.json'), 'utf8'));

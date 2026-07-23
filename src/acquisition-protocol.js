@@ -290,7 +290,7 @@ function renderStructuredMethod(method, options = {}) {
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
   if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
-  if (method.type === 'circuit-reward') return `${prefix}普通无尽回廊第 ${variables.week} 周轮换可获取`
+  if (method.type === 'circuit-reward') return `${prefix}普通无尽回廊${variables.week ? `第 ${variables.week} 周` : ''}轮换可获取`
   if (method.type === 'dojo-research') return `${prefix}${source ? `在氏族道场「${source}」复制蓝图` : '在氏族道场研究并复制蓝图'}`
   if (method.type === 'included-with-equipment') {
     const equipmentOptions = (variables.equipmentOptions || []).filter(Boolean)
@@ -486,7 +486,10 @@ function acquisitionCardSections(methods, options = {}) {
       ? `${Number((Number(method.chance) * 100).toFixed(4))}%`
       : ''
     const sourceText = context && context !== name ? `${context} · ${name}` : name
-    const text = `- ${sourceText}（${Number(method.chance) >= 1 ? '必定获得' : '概率获得'}${chance ? `，${chance}` : ''}）`
+    // 概率掉落统一显示为「名称（X%）」；保底/必定获得来源保持原有「必定获得」措辞不变。
+    const text = Number(method.chance) >= 1
+      ? `- ${sourceText}（必定获得${chance ? `，${chance}` : ''}）`
+      : `- ${sourceText}${chance ? `（${chance}）` : '（概率获得）'}`
     const identity = method.sourceEntityId || method.sourceCanonical || name
     if (seen.has(`enemy:${identity}`)) continue
     seen.add(`enemy:${identity}`)

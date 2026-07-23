@@ -57,6 +57,16 @@ const REVIEWED_RESOURCE_ROUTES = Object.freeze({
       { type: 'mission-reward', sourceDisplayName: '海王星比邻星域帕尔沃斯的姐妹最终对决', quantityRange: [1, 4], chance: 1, variables: { objective: '每名被击败或感化的姐妹都会让每位队员获得 1 个；满队最多 4 个' }, requirements: { type: 'none' }, reviewStatus: 'approved' }
     ],
     provenance: { source: 'current wiki Corrupted Holokey oldid 2770468 + DE Official Drop Tables', fetchedAt: '2026-07-22' }
+  },
+  // 单条定向修复：活体纤维的爆破型敌人掉落原被通用生成器折叠成空泛的“月球上的爆破型敌人”，
+  // 这里用权威节点数据（mission.apollo-solnode308：月球/Apollo，任务模式 mission-type.disruption=中断）
+  // 直接产出“月球中断 APOLLO 爆破型敌人”，不改动通用 safeClause，其它资源不受影响。
+  'Somatic Fibers': {
+    methods: [
+      { type: 'enemy-drop', sourceDisplayName: '月球中断 APOLLO 爆破型敌人', chance: 0.15, requirements: { type: 'none' }, reviewStatus: 'approved' },
+      { type: 'mission-reward', sourceDisplayName: '联结生存任务（月球）', chance: 0.3872, requirements: { type: 'none' }, reviewStatus: 'approved' }
+    ],
+    provenance: { source: 'wiki.warframe.com current acquisition + DE Official Drop Tables + node mission.apollo-solnode308', fetchedAt: '2026-07-23' }
   }
 })
 

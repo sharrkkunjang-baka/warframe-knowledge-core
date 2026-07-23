@@ -37,6 +37,16 @@ test('关系命令帮助、错误名称与无结果分类均确定性', () => {
   assert.equal(core.queryModRelations('Wisp电波卡').text, '这个战甲没有点播卡。');
 });
 
+test('裸关键词无实体查询词不构成关系命令，交回常规处理', () => {
+  for (const bare of ['集团卡', '电波卡', '点播卡', '集团·强化 Mod', '集团·强化Mod']) {
+    assert.equal(core.parseModRelationCommand(bare), null, bare);
+    assert.equal(core.queryModRelations(bare), null, bare);
+  }
+  // 显式帮助与真实实体查询不受影响
+  assert.match(core.queryModRelations('集团卡 帮助').text, /武器名集团卡/);
+  assert.equal(core.queryModRelations('伯斯顿集团卡').status, 'ok');
+});
+
 test('生成索引全量质量门', () => {
   const relations = core.modRelations;
   assert.equal(relations.counts.syndicate.mods, relations.syndicateWeaponAugments.length);

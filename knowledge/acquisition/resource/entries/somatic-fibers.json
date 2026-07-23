@@ -76,15 +76,15 @@
         "methods": [
           {
             "type": "enemy-drop",
-            "sourceDisplayName": "月球上的爆破型敌人",
+            "sourceDisplayName": "月球中断 APOLLO 爆破型敌人",
             "chance": 0.15,
             "requirements": {
               "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "official-localized-description-and-drop-table",
-              "sourceCount": 4
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables + node mission.apollo-solnode308",
+              "fetchedAt": "2026-07-23"
             }
           },
           {
@@ -96,8 +96,8 @@
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "official-localized-description-and-drop-table",
-              "sourceCount": 2
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables + node mission.apollo-solnode308",
+              "fetchedAt": "2026-07-23"
             }
           }
         ],
@@ -107,7 +107,41 @@
     "manual": {
       "tips": [],
       "tipKeywords": [],
-      "routingOverride": null,
+      "routingOverride": {
+        "category": "resource-current-wiki",
+        "variables": {
+          "resourceName": "活体纤维"
+        },
+        "methods": [
+          {
+            "type": "enemy-drop",
+            "sourceDisplayName": "月球中断 APOLLO 爆破型敌人",
+            "chance": 0.15,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables + node mission.apollo-solnode308",
+              "fetchedAt": "2026-07-23"
+            }
+          },
+          {
+            "type": "mission-reward",
+            "sourceDisplayName": "联结生存任务（月球）",
+            "chance": 0.3872,
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com current acquisition + DE Official Drop Tables + node mission.apollo-solnode308",
+              "fetchedAt": "2026-07-23"
+            }
+          }
+        ],
+        "status": "compiled"
+      },
       "reviewedBy": [
         "current-wiki-and-de-drop-table-audit-2026-07-22"
       ]
@@ -123,7 +157,7 @@
   "updatedAt": "2026-07-14",
   "reviewStatus": "approved",
   "reviewedBy": [
-    "official-resource-sync"
+    "current-wiki-and-de-drop-table-audit-2026-07-22"
   ],
   "summary": "活体纤维的资源身份与获取证据。",
   "tags": [

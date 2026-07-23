@@ -238,18 +238,20 @@ test('Stela 只发布实体化赏金来源并把数量概率保持在同一行',
   assert.doesNotMatch(result.description, /\(Bounty\)|8\.4% \(8\.4%\)|^15$|^1\.26$|^1\.3155$/m)
 })
 
-test('活体纤维通过共享本地化来源编译且隔离原始图表', () => {
+test('活体纤维用权威节点数据编译具体掉落且隔离原始图表', () => {
   const core = coreModule.createKnowledgeCore({ approvedOnly: false })
   const result = core.getResourceAcquisition('活体纤维')
   const upstream = core.getItemAcquisition('活体纤维')
   const card = core.getAcquisitionCard('活体纤维')
   assert.equal(result.entry.reviewStatus, 'approved')
+  // 单条定向修复：爆破型敌人来源须结构化到具体地点+模式+节点（月球=Lua、中断=Disruption、APOLLO 节点），
+  // 不再输出“月球上的爆破型敌人”这类空泛占位；概率沿用真实掉落数据（Demolisher 15%）。
   assert.deepEqual(result.structuredMethods.map(method => [method.type, method.sourceDisplayName, method.chance]), [
-    ['enemy-drop', '月球上的爆破型敌人', 0.15],
+    ['enemy-drop', '月球中断 APOLLO 爆破型敌人', 0.15],
     ['mission-reward', '联结生存任务（月球）', 0.3872]
   ])
   assert.ok(result.structuredMethods.every(method => method.requirements && Array.isArray(method.requirementLines)))
-  assert.deepEqual(card.sections.enemy, ['- 月球上的爆破型敌人（概率获得，15%）'])
+  assert.deepEqual(card.sections.enemy, ['- 月球中断 APOLLO 爆破型敌人（15%）'])
   assert.deepEqual(card.sections.other, ['完成联结生存任务（月球）概率获得'])
   const visible = JSON.stringify({ text: result.text, sections: card.sections, evidence: upstream.evidence })
   assert.doesNotMatch(visible, /Demolisher|Circulus|Yuvarium|Common|rawRows?|rawTable|dropTable|sourceCanonical|reviewStatus|provenance|DTO|formatter|\|/i)
