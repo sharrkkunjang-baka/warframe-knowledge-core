@@ -25,6 +25,17 @@ test('七艘登陆艇统一进入共享获取卡且各自仅声明对应空中�
   }
 });
 
+test('星查通过共享拼音解析锁定星察且不误配杀星', () => {
+  const resolution = core.resolveName('星查', { minScore: 70, minLead: 8 });
+  assert.equal(resolution?.canonical, 'Parallax');
+  assert.equal(resolution?.category, 'official-item');
+  assert.ok(['pinyin-weighted', 'text-weighted'].includes(resolution?.match));
+  const item = core.resolveItem('星查');
+  assert.equal(item?.kind, 'official-item');
+  assert.equal(item?.item?.canonical, 'Parallax');
+  assert.equal(core.getAcquisitionCard('星查')?.kind, 'landing-craft');
+});
+
 test('星察保留已审核的扎里曼储物箱获取文本', () => {
   const card = core.getAcquisitionCard('星察');
   assert.deepEqual(card.sections.acquisition, [

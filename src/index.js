@@ -244,13 +244,17 @@ function createKnowledgeCore(options = {}) {
   const officialItemNameCandidates = officialItems.filter(item => !item.semanticKinds?.includes('arcane'))
     .flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean)
       .map(alias => ({ alias, canonical: item.canonical, category: 'official-item', priority: 30 })));
+  const equipmentNameCandidates = officialItems.filter(item => item.semanticKinds?.some(kind => ['landing-craft', 'archwing', 'companion', 'sentinel'].includes(kind)))
+    .flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean)
+      .map(alias => ({ alias, canonical: item.canonical, category: 'official-item', priority: 30 })));
   const officialNameCandidates = [
     ...fishNameCandidates,
     ...officialMods.flatMap(mod => [mod.canonical, mod.displayName, ...(data.aliases?.mods?.[mod.canonical] || [])].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'mod' }))),
     ...arcaneNameCandidates,
     ...frameNameCandidates,
     ...weaponNameCandidates,
-    ...consumableNameCandidates
+    ...consumableNameCandidates,
+    ...equipmentNameCandidates
   ];
   const officialTermIndex = buildOfficialTermIndex([
     ...officialMods.map(mod => ({
@@ -626,6 +630,11 @@ function createKnowledgeCore(options = {}) {
     const frameExact = frameAcquisition.resolveWarframe(effectiveQuery)
       || (!isSyndicateGroupModQuery(effectiveQuery) ? frameAcquisition.resolveWarframeMention(effectiveQuery)?.frame : null);
     if (frameExact) return { kind: 'warframe', item: frameExact, recipeVariant: null };
+    const sharedResolution = resolveName(effectiveQuery, { minScore: 70, minLead: 8 });
+    if (sharedResolution && !sharedResolution.ambiguous && sharedResolution.category === 'official-item') {
+      const resolvedOfficialItem = getOfficialItem(sharedResolution.canonical);
+      if (resolvedOfficialItem) return { kind: 'official-item', item: resolvedOfficialItem, recipeVariant: null, resolution: sharedResolution };
+    }
     const weaponResolution = resolveWeapon(query);
     if (weaponResolution && !weaponResolution.ambiguous) {
       const resolvedWeapon = getWeapon(weaponResolution.canonical);
