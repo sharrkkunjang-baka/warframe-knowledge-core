@@ -177,6 +177,11 @@ function resolveWarframeMention(input) {
     }
     const index = raw.toLowerCase().indexOf(text.toLowerCase());
     if (index < 0) continue;
+    // 短中文别名禁止作为更长物品名的子串命中（如 Nova「加速」不能误伤 Mod「卑劣加速」）。
+    if (text.length <= 2) {
+      if (normalize(entityText) !== normalize(text)) continue;
+      return { frame: alias.frame, matched: text, rest: raw.replace(text, ' ').replace(/\s+/g, ' ').trim(), match: 'intent-stripped-exact' };
+    }
     if (text.length === 1) {
       if (!/(?:普通|原版|战甲|怎么刷|如何刷|刷|Prime|P版)/i.test(raw)) continue;
       const stripped = normalize(entityText);

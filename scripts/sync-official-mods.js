@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const { renderGameText } = require('../src/game-text');
 const Items = require('warframe-items');
 const { filterPlayableMods, getTypeDisplayName } = require('../src/playable-mod-filter');
+const { resolveEffectiveModType } = require('../src/mod-card-face-label');
 const { readCategoryDirectory, readEntryDirectory, readObjectDirectory } = require('../src/loader');
 
 const root = path.join(__dirname, '..');
@@ -313,13 +314,14 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         ...(acquisitionsByCanonical.get(normalize(item.name)) || [])
       ])].sort();
       const hasCompleteEntry = localEntryIds.some(id => hasApprovedAcquisition(acquisitionById.get(id)));
+      const effectiveType = resolveEffectiveModType(item);
       return {
         uniqueName: item.uniqueName,
         canonical: item.name,
         displayName: hasChineseName ? localized.name : item.name,
         localizationStatus: hasChineseName ? 'official-zh' : 'missing-zh',
-        type: item.type,
-        typeDisplayName: getTypeDisplayName(item.type),
+        type: effectiveType || item.type,
+        typeDisplayName: getTypeDisplayName(effectiveType || item.type),
         category: item.category || null,
         compatName: item.compatName || null,
         rarity: item.rarity || null,

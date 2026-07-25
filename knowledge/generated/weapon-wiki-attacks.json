@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-24T00:00:00.000Z",
+  "source": "wiki.warframe.com render JSON",
+  "count": 1,
+  "entries": {
+    "/Lotus/Weapons/Corpus/BoardExec/Primary/CrpBEArcaPlasmor/CrpBEArcaPlasmor": {
+      "uniqueName": "/Lotus/Weapons/Corpus/BoardExec/Primary/CrpBEArcaPlasmor/CrpBEArcaPlasmor",
+      "canonical": "Tenet Arca Plasmor",
+      "displayName": "信条·弧电离子枪",
+      "fetchedAt": "2026-07-24T00:00:00.000Z",
+      "sourceUrl": "https://wiki.warframe.com/w/Tenet_Arca_Plasmor?action=render",
+      "payload": {
+        "Trigger": "Semi-Auto",
+        "Mastery": 16,
+        "Disposition": 0.55,
+        "Magazine": 10,
+        "Reload": 3,
+        "AmmoMax": 40,
+        "Accuracy": 9.1,
+        "Attacks": [
+          {
+            "CritChance": 0.22,
+            "Falloff": { "EndRange": 36, "Reduction": 0.5, "StartRange": 18 },
+            "ExtraHeadshotDmg": -2,
+            "FireRate": 1,
+            "Multishot": 1,
+            "AttackIndex": 1,
+            "AttackName": "Normal Attack",
+            "ShotType": "Projectile",
+            "CritMultiplier": 2,
+            "IsSilent": false,
+            "AmmoCost": 1,
+            "ShotSpeed": 120,
+            "Range": 44.4,
+            "MaxSpread": 16,
+            "MinSpread": 6,
+            "PunchThrough": 0,
+            "StatusChance": 0.34,
+            "ForcedProcs": ["Impact"],
+            "Damage": { "Radiation": 760 }
+          }
+        ]
+      },
+      "supplementalAttacks": [
+        {
+          "AttackIndex": "export-impact-1",
+          "AttackName": "Radial Attack",
+          "ShotType": "AoE",
+          "StatusChance": 0.28,
+          "Damage": {
+            "DT_RADIATION": 500,
+            "procChance": 0.28
+          },
+          "source": "DE ExportWeapons"
+        }
+      ]
+    }
+  }
+}

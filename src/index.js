@@ -9,6 +9,7 @@ const resourceAcquisition = require('./resource-acquisition');
 const { createAcquisitionEvidence, createAcquisitionResult, createRenderResult } = require('./acquisition-dto');
 const { displayEntityName } = require('./entities');
 const { renderGameText } = require('./game-text');
+const { normalizeArcaneEffectLines } = require('./arcane-effect-text');
 const { normalizeRequirements, renderRequirements, renderAcquisition, acquisitionCardSections, normalizeVisibleLine } = require('./acquisition-protocol');
 const { appendAscensionArcaneVestigialExchange } = require('./ascension-arcane-acquisition');
 const { appendSteelPathVorArcaneDrop } = require('./steel-path-vor-arcane-acquisition');
@@ -360,7 +361,7 @@ function createKnowledgeCore(options = {}) {
   const gameplayCandidates = gameplayEntries.flatMap(entry => [entry.id, entry.title, entry.acquisitionQuery, ...(entry.aliases || [])].filter(Boolean).map(alias => ({ alias, canonical: entry.id, category: 'gameplay', priority: 20 })));
   const searchGameplay = (query, searchOptions = {}) => searchEntries(query, gameplayEntries, searchOptions);
   const resolveGameplayEntry = query => {
-    const resolution = gameplayResolver(query, { candidates: gameplayCandidates, categories: ['gameplay'], minScore: 70, minLead: 8 });
+    const resolution = gameplayResolver(query, { candidates: gameplayCandidates, categories: ['gameplay'], ignoreIntentCategories: true, minScore: 70, minLead: 8 });
     if (!resolution || resolution.ambiguous) return { resolution, entry: null };
     return { resolution, entry: gameplayEntries.find(item => item.id === resolution.canonical) || null };
   };
@@ -455,7 +456,7 @@ function createKnowledgeCore(options = {}) {
     const entityRankRule = entry.arcaneAcquisition?.manual?.rankCopyRule || generated.stats?.rankCopyRule || entry.rankCopyRule || {};
     const rankFusion = arcaneFusionMetadata(maxRank, { ...sharedRankRule, ...entityRankRule });
     const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
-    const descriptionLines = [...new Set(topStats.flatMap(stat => renderGameText(stat).split(/\n/)).map(line => line.trim()).filter(Boolean))];
+    const descriptionLines = normalizeArcaneEffectLines(topStats);
     return {
       canonical: entry.subject.canonical,
       displayName: entry.subject.displayName,
@@ -620,6 +621,8 @@ function createKnowledgeCore(options = {}) {
       const recipeVariant = officialItem.recipeVariants?.find(variant => (variant.aliases || []).some(alias => normalize(alias) === q)) || null;
       return { kind: 'official-item', item: officialItem, recipeVariant };
     }
+    const mod = getOfficialMod(effectiveQuery);
+    if (mod) return { kind: 'mod', item: mod, recipeVariant: null };
     const frameExact = frameAcquisition.resolveWarframe(effectiveQuery)
       || (!isSyndicateGroupModQuery(effectiveQuery) ? frameAcquisition.resolveWarframeMention(effectiveQuery)?.frame : null);
     if (frameExact) return { kind: 'warframe', item: frameExact, recipeVariant: null };
@@ -632,8 +635,6 @@ function createKnowledgeCore(options = {}) {
     if (consumable) return { kind: 'consumable', item: consumable, recipeVariant: null };
     const weaponGap = getWeaponGap(query);
     if (weaponGap) return { kind: 'weapon-gap', item: weaponGap, recipeVariant: null };
-    const mod = getOfficialMod(query);
-    if (mod) return { kind: 'mod', item: mod, recipeVariant: null };
     const officialMatches = searchOfficialItems(query, { limit: 20 });
     if (officialMatches.length > 1) return { kind: 'ambiguous', item: null, recipeVariant: null, candidates: officialMatches };
     return officialMatches.length === 1 ? { kind: 'official-item', item: officialMatches[0], recipeVariant: null } : null;
@@ -763,7 +764,7 @@ function createKnowledgeCore(options = {}) {
       requiredCopies: rankFusion.requiredCopies ?? '数据暂缺'
     });
     const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
-    const effectLines = [...new Set(topStats.flatMap(stat => renderGameText(stat).split(/\n/)).map(line => line.trim()).filter(Boolean))];
+    const effectLines = normalizeArcaneEffectLines(topStats);
     const statsLocalized = generated.stats?.localizationStatus === 'official-zh';
     const effect = statsLocalized && effectLines.length ? `满级效果：\n${effectLines.map(line => `- ${line}`).join('\n')}` : effectLines.length ? `满级效果：官方简中数据暂缺（英文证据已保存，禁止猜译）` : '满级效果：官方中文数据暂缺，等待审核';
     if (category === 'legacy' || generated.acquisition?.status === 'review-required') return `${header}\n\n${effect}\n\n${arcaneMethodDefinition?.legacyDescription || '当前不可获取，等待人工审核。'}`;
@@ -1358,6 +1359,40 @@ function createKnowledgeCore(options = {}) {
   };
   const getAcquisitionCard = query => {
     const frameComponent = frameComponents.get(normalize(query));
+    const resolvedItem = resolveItem(query);
+    const landingCraft = resolvedItem?.kind === 'official-item' && resolvedItem.item?.semanticKinds?.includes('landing-craft')
+      ? resolvedItem.item
+      : null;
+    if (landingCraft) {
+      return {
+        query: String(query),
+        kind: 'landing-craft',
+        identity: {
+          canonical: landingCraft.canonical,
+          displayName: landingCraft.displayName || landingCraft.canonical,
+          uniqueName: landingCraft.uniqueName
+        },
+        aliases: (landingCraft.aliases || []).filter(alias => normalize(alias) !== normalize(landingCraft.canonical) && normalize(alias) !== normalize(landingCraft.displayName)),
+        abilities: (landingCraft.airSupportAbilities || []).map(ability => ({
+          abilityId: ability.uniqueName,
+          canonical: ability.canonical,
+          displayName: ability.displayName || ability.canonical,
+          description: ability.description || ''
+        })),
+        variants: [],
+        sections: {
+          exchange: [],
+          enemy: [],
+          acquisition: (landingCraft.drops || []).map(drop => drop.location).filter(Boolean),
+          other: []
+        },
+        sectionNotes: {},
+        materials: [],
+        detailOptions: [],
+        credits: null,
+        wikiUrl: null
+      };
+    }
     let result = frameComponent ? null : getAcquisition(query);
     if (frameComponent) {
       result = getAcquisition(frameComponent.frame.subject.canonical);
@@ -1426,6 +1461,11 @@ function createKnowledgeCore(options = {}) {
       current: (variant.officialUniqueName || variant.subject?.officialUniqueName) === uniqueName
     }));
     const sections = acquisitionCardSections(result.structuredMethods || [], { registries: data });
+    if (kind === 'weapon') {
+      const { buildPrimeWeaponCardAcquisitionLines } = require('./prime-acquisition');
+      const primeLines = buildPrimeWeaponCardAcquisitionLines(entry, result.structuredMethods || []);
+      if (primeLines) sections.acquisition = primeLines.map(text => ({ text, method: null }));
+    }
     const recipe = kind === 'weapon' ? (result.recipes || entry.recipes || [])[0] : null;
     const sectionItems = Object.fromEntries(Object.entries(sections).filter(([, items]) => Array.isArray(items)).map(([group, items]) => [group, items.map(item => ({
       text: item.text,
@@ -1476,6 +1516,7 @@ function createKnowledgeCore(options = {}) {
         fusionCost: modFusionCost(maxRank, rarity)
       } : null,
       arcaneInfo: kind === 'arcane' ? getArcaneMetadata(entry.subject?.canonical) : null,
+      weaponInfo: kind === 'weapon' ? require('./weapon-wiki-attacks').buildWeaponInfo(entry) : null,
       materials: (recipe?.ingredients || []).map(item => ({ uniqueName: item.uniqueName, canonical: item.canonical, displayName: item.displayName || item.canonical, count: item.quantity })),
       detailOptions,
       relatedItems,

@@ -31,7 +31,7 @@ test('Mod 获取卡保留套装效果并按来源语义分类', () => {
   const setMod = core.getAcquisitionCard('预言启示');
   assert.ok(setMod.modInfo.descriptionLines.includes('套装效果：40% 用在技能上的能量将转化成护盾。'));
   assert.ok(setMod.sectionItems.enemy.every(item => item.methodType === 'enemy-drop'));
-  assert.ok(setMod.sectionItems.other.every(item => item.methodType === 'mission-reward'));
+  assert.ok(setMod.sectionItems.acquisition.every(item => item.methodType === 'mission-reward'));
   assert.ok(!setMod.sectionItems.enemy.some(item => /赏金|瘟疫之星/.test(item.text)));
 });
 

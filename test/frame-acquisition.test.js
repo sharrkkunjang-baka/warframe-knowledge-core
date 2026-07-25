@@ -37,6 +37,10 @@ test('sentence-level resolver locks the frame before intent and related entries'
     assert.equal(resolved.frame.name, 'Chroma', query);
   }
   assert.equal(acquisition.resolveWarframeMention('幻彩之刃怎么刷'), null);
+  assert.equal(acquisition.resolveWarframeMention('卑劣加速'), null);
+  assert.equal(acquisition.resolveWarframeMention('刷 卑劣加速'), null);
+  const novaAccel = acquisition.resolveWarframeMention('刷加速');
+  assert.equal(novaAccel?.frame?.name, 'Nova');
 });
 
 test('龙和无空格 Chroma 都锁定四技能现金机制', () => {

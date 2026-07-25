@@ -14,9 +14,9 @@ test('米特尔总图与全部部件来源一致时合并为一条', () => {
   assert.doesNotMatch(description, /Assassination/)
   assert.doesNotMatch(description, /米特尔 枪管：/)
   const sections = acquisitionCardSections(result.structuredMethods, { registries: core._data })
-  assert.equal(sections.other.length, 1)
-  assert.match(sections.other[0].text, /总图及全部部件：完成谷神星\/Exta（刺杀）概率获得/)
-  assert.doesNotMatch(sections.other[0].text, /Assassination/)
+  assert.equal(sections.acquisition.length, 1)
+  assert.match(sections.acquisition[0].text, /总图及全部部件：完成谷神星\/Exta（刺杀）概率获得/)
+  assert.doesNotMatch(sections.acquisition[0].text, /Assassination/)
 })
 
 test('预言者刺杀节点不泄漏英文任务类型括注', () => {
@@ -33,8 +33,8 @@ test('Grendel 三部件来源不同时不合并', () => {
   const collapsed = collapseSharedPartAcquisitionMethods(missions)
   assert.equal(collapsed.length, 3)
   const sections = acquisitionCardSections(result.structuredMethods, { registries: core._data })
-  assert.ok(sections.other.length >= 3)
-  const text = sections.other.map(item => item.text).join('\n')
+  assert.ok(sections.acquisition.length >= 3)
+  const text = sections.acquisition.map(item => item.text).join('\n')
   assert.match(text, /头部神经光元/)
   assert.match(text, /机体/)
   assert.match(text, /系统/)

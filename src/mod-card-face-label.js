@@ -99,6 +99,23 @@ function resolveEffectiveModType(mod) {
   return mod?.type || null
 }
 
+function resolveModTypeSlotCategory(mod) {
+  const uniqueName = String(mod?.uniqueName || '')
+  const compat = normalizeCompatKey(mod?.compatName)
+  if (mod?.type === 'Parazon Mod' || compat === 'Parazon') return 'parazon'
+  if (mod?.type === 'Stance Mod') return 'stance'
+  if (mod?.type === 'Archwing Mod') return 'archwing'
+  if (mod?.type === 'Railjack Mod' || /\/Railjack\//i.test(uniqueName)) return 'railjack'
+  return null
+}
+
+function modInTypeSlotCategories(mod, categories) {
+  const category = resolveModTypeSlotCategory(mod)
+  if (!category) return false
+  if (!categories || !categories.length) return true
+  return categories.includes(category)
+}
+
 function resolveModCardFaceLabel(mod, options = {}) {
   const localizeCompat = options.localizeCompat || createCompatLocalizer(options.extraCompat || {})
   const type = resolveEffectiveModType(mod)
@@ -200,6 +217,8 @@ module.exports = {
   WARFRAME_CARD_LABEL,
   createCompatLocalizer,
   resolveEffectiveModType,
+  resolveModTypeSlotCategory,
+  modInTypeSlotCategories,
   resolveModCardFaceLabel,
   modNeedsTypeSlotLocalization,
   labelsEquivalentForTypeSlot,

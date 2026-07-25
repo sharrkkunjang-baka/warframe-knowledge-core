@@ -355,7 +355,14 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'invasion-reward') return `${prefix}完成入侵任务概率获得`
   if (method.type === 'daily-tribute') return `${prefix}从每日献礼里程碑奖励中选择获得`
   if (method.type === 'anniversary-reward') return `${prefix}完成周年庆典警报获得`
-  if (method.type === 'adversary-reward') return `${prefix}击败并处决携带该武器的赤毒玄骸获得`
+  if (method.type === 'adversary-reward') {
+    const adversary = method.sourceEntityId === 'acquisition-source.sister-weapon'
+      ? '帕尔沃斯的姐妹'
+      : method.sourceEntityId === 'acquisition-source.kuva-lich-weapon'
+        ? '赤毒玄骸'
+        : '携带该武器的对手'
+    return `${prefix}击败并处决携带该武器的${adversary}获得`
+  }
   if (method.type === 'vendor-exchange' || method.type === 'vendor-or-syndicate-exchange') return `${prefix}${exchangeSource ? `在${exchangeSource}处兑换` : '向指定 NPC 兑换'}`
   if (method.type === 'syndicate-exchange') {
     const faction = method.factionDisplayName || source || '指定集团'

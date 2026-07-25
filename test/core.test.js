@@ -278,14 +278,14 @@ test('统一获取卡片按来源分区并使用审核变种家族', () => {
   assert.equal(energize.kind, 'arcane');
   assert.deepEqual(energize.variants, []);
   assert.match(energize.sections.enemy.join('\n'), /夜灵水力使/);
-  assert.ok(energize.sections.other.length > 0);
+  assert.ok(energize.sections.acquisition.length > 0);
   const braton = core.getAcquisitionCard('布莱顿·破坏者');
   assert.deepEqual(braton.variants.map(item => item.displayName), ['布莱顿', 'MK1-布莱顿', '布莱顿 Prime', '布莱顿·破坏者']);
   assert.equal(braton.materials.length, 3);
   const magnumForce = core.getAcquisitionCard('重装火力');
   assert.deepEqual(magnumForce.detailOptions, [{ id: 'gameplay.deimos-orokin-vault', title: '火卫二奥罗金宝库', query: '4k' }]);
   const augurAccord = core.getAcquisitionCard('预言 协约');
-  assert.deepEqual(augurAccord.sections.other, ['从夜灵平野赏金奖励中获得 1个']);
+  assert.deepEqual(augurAccord.sections.acquisition, ['从夜灵平野赏金任务轮换概率获得']);
   assert.deepEqual(augurAccord.detailOptions, [{ id: 'gameplay.cetus-bounty-set-mods', title: '希图斯赏金', query: '希图斯赏金' }]);
   const pistolPestilence = core.getAcquisitionCard('瘟疫手枪');
   assert.deepEqual(pistolPestilence.detailOptions, [{ id: 'gameplay.corrupted-vor', title: '堕落的沃尔', query: '堕落的沃尔' }]);

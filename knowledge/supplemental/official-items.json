@@ -1,16 +1,106 @@
 [
   {
+    "uniqueName": "/Lotus/Types/Ships/Liset",
+    "canonical": "Liset",
+    "displayName": "Liset",
+    "aliases": ["Liset", "Liset 登陆艇", "Liset登陆艇"],
+    "description": { "canonical": "Landing Craft", "display": "登陆艇" },
+    "semanticKinds": ["landing-craft", "ship"],
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetAutoHack",
+        "canonical": "Override",
+        "displayName": "覆写",
+        "description": "Ordis 入侵敌方系统，暂时中断敌人的安保系统协议。"
+      }
+    ],
+    "drops": [
+      { "location": "在《觉醒》系列任务中获得", "chance": null, "type": "quest" }
+    ],
+    "recipes": [],
+    "recipeVariants": [],
+    "tradable": false,
+    "buildQuantity": 1,
+    "sourceCategory": "Supplemental",
+    "sourceFile": "knowledge/supplemental/official-items.json",
+    "reviewStatus": "approved",
+    "reviewedBy": "manual-warframe-knowledge"
+  },
+  {
+    "uniqueName": "/Lotus/Types/Ships/GrineerShip",
+    "canonical": "Skaut",
+    "displayName": "伺航",
+    "aliases": ["伺航", "Skaut", "Skaut 登陆艇", "Skaut登陆艇"],
+    "description": { "canonical": "Landing Craft", "display": "登陆艇" },
+    "semanticKinds": ["landing-craft", "ship"],
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetKahl",
+        "canonical": "Kahl Beacon",
+        "displayName": "卡尔信标",
+        "description": "召唤卡尔和他兄弟的随从们在限定的时间内协助你战斗。后续使用可以治疗卡尔的小队并为你增加一个额外的兄弟。"
+      }
+    ],
+    "drops": [
+      { "location": "完成《破障者》后在商店购买", "chance": null, "type": "store" },
+      { "location": "在卡尔驻军达到 5 级后向 Chipper 购买", "chance": null, "type": "vendor" }
+    ],
+    "recipes": [],
+    "recipeVariants": [],
+    "tradable": false,
+    "buildQuantity": 1,
+    "sourceCategory": "Supplemental",
+    "sourceFile": "knowledge/supplemental/official-items.json",
+    "reviewStatus": "approved",
+    "reviewedBy": "manual-warframe-knowledge"
+  },
+  {
+    "uniqueName": "/Lotus/Types/Ships/Nightwave",
+    "canonical": "Nightwave",
+    "displayName": "午夜电波",
+    "aliases": ["午夜电波登陆艇", "午夜电波 登陆艇", "Nightwave Landing Craft", "Nightwave 登陆艇"],
+    "description": { "canonical": "Landing Craft", "display": "登陆艇" },
+    "semanticKinds": ["landing-craft", "ship"],
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetStun",
+        "canonical": "Dreamers",
+        "displayName": "梦回者",
+        "description": "诺拉以平静的曲调将敌人送到梦境。"
+      }
+    ],
+    "drops": [
+      { "location": "限时作为午夜电波等级奖励获得", "chance": null, "type": "nightwave" }
+    ],
+    "recipes": [],
+    "recipeVariants": [],
+    "tradable": false,
+    "buildQuantity": 1,
+    "sourceCategory": "Supplemental",
+    "sourceFile": "knowledge/supplemental/official-items.json",
+    "reviewStatus": "approved",
+    "reviewedBy": "manual-warframe-knowledge"
+  },
+  {
     "uniqueName": "/Lotus/Types/Ships/Parallax",
     "canonical": "Parallax",
-    "displayName": "Parallax",
-    "aliases": ["星察", "Parallax"],
-    "description": { "canonical": "Landing Craft", "display": "Landing Craft" },
+    "displayName": "星察",
+    "aliases": ["星察", "Parallax", "星察登陆艇", "星察 登陆艇"],
+    "description": { "canonical": "Landing Craft", "display": "登陆艇" },
     "semanticKinds": ["landing-craft", "ship"],
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetGoldenInstinct",
+        "canonical": "Orokin Eye",
+        "displayName": "Orokin 之眼",
+        "description": "Ordis 扫描该区域以寻找稀有物品。"
+      }
+    ],
     "drops": [
-      { "location": "商店（Parallax Blueprint）", "chance": null, "type": "store" },
-      { "location": "扎里曼储物箱（Parallax Fuselage Blueprint）", "chance": null, "type": "storage-container" },
-      { "location": "扎里曼储物箱（Parallax Engines Blueprint）", "chance": null, "type": "storage-container" },
-      { "location": "扎里曼储物箱（Parallax Avionics Blueprint）", "chance": null, "type": "storage-container" }
+      { "location": "星察总图：在商店购买", "chance": null, "type": "store" },
+      { "location": "星察机身：从扎里曼储物箱中获得", "chance": null, "type": "storage-container" },
+      { "location": "星察引擎：从扎里曼储物箱中获得", "chance": null, "type": "storage-container" },
+      { "location": "星察系统：从扎里曼储物箱中获得", "chance": null, "type": "storage-container" }
     ],
     "recipes": [],
     "recipeVariants": [],
@@ -25,36 +115,22 @@
     "uniqueName": "/Lotus/Types/Ships/Mantis",
     "canonical": "Mantis",
     "displayName": "Mantis",
-    "aliases": ["M船", "m船", "Mantis"],
+    "aliases": ["M船", "m船", "Mantis", "Mantis 登陆艇", "Mantis登陆艇"],
     "description": { "canonical": "Landing Craft", "display": "登陆艇" },
     "semanticKinds": ["landing-craft", "ship"],
-    "drops": [
-      { "location": "商店（Mantis Blueprint）", "chance": null, "type": "store" },
-      { "location": "稀有奥罗金储物箱（Mantis Avionics Blueprint）", "chance": null, "type": "storage-container" },
-      { "location": "遗忘的克隆尼储物箱（Mantis Engines Blueprint）", "chance": null, "type": "storage-container" },
-      { "location": "稀有科普斯储物箱（Mantis Fuselage Blueprint）", "chance": null, "type": "storage-container" }
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetMedStation",
+        "canonical": "Med-Tower",
+        "displayName": "治愈之塔",
+        "description": "Ordis 配送一座治疗塔，可恢复附近友军的生命值。"
+      }
     ],
-    "recipes": [],
-    "recipeVariants": [],
-    "tradable": false,
-    "buildQuantity": 1,
-    "sourceCategory": "Supplemental",
-    "sourceFile": "knowledge/supplemental/official-items.json",
-    "reviewStatus": "approved",
-    "reviewedBy": "manual-warframe-knowledge"
-  },
-  {
-    "uniqueName": "/Lotus/Types/Ships/Xiphos",
-    "canonical": "Xiphos",
-    "displayName": "Xiphos",
-    "aliases": ["X船", "x船", "Xiphos"],
-    "description": { "canonical": "Landing Craft", "display": "登陆艇" },
-    "semanticKinds": ["landing-craft", "ship"],
     "drops": [
-      { "location": "商店（Xiphos Blueprint）", "chance": null, "type": "store" },
-      { "location": "储存箱（Xiphos Fuselage Blueprint）", "chance": null, "type": "storage-container" },
-      { "location": "储存箱（Xiphos Engines Blueprint）", "chance": null, "type": "storage-container" },
-      { "location": "储存箱（Xiphos Avionics Blueprint）", "chance": null, "type": "storage-container" }
+      { "location": "Mantis 总图：在商店购买", "chance": null, "type": "store" },
+      { "location": "Mantis 飞航系统：从稀有奥罗金储物箱中获得", "chance": null, "type": "storage-container" },
+      { "location": "Mantis 引擎：从稀有克隆尼储物箱中获得", "chance": null, "type": "storage-container" },
+      { "location": "Mantis 机身：从稀有科普斯储物箱中获得", "chance": null, "type": "storage-container" }
     ],
     "recipes": [],
     "recipeVariants": [],
@@ -69,14 +145,50 @@
     "uniqueName": "/Lotus/Types/Ships/Scimitar",
     "canonical": "Scimitar",
     "displayName": "Scimitar",
-    "aliases": ["弯刀船", "Scimitar"],
+    "aliases": ["弯刀船", "Scimitar", "Scimitar 登陆艇", "Scimitar登陆艇"],
     "description": { "canonical": "Landing Craft", "display": "登陆艇" },
     "semanticKinds": ["landing-craft", "ship"],
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetBarrage",
+        "canonical": "Carpet Bomb",
+        "displayName": "地毯式轰炸",
+        "description": "Ordis 会从你的位置直线到信标的距离内投下炸弹。"
+      }
+    ],
     "drops": [
-      { "location": "商店（Scimitar Blueprint）", "chance": null, "type": "store" },
-      { "location": "击败 Vem Tabook 概率获得 Scimitar Fuselage Blueprint", "chance": null, "type": "boss-drop" },
-      { "location": "击败 Hunhow 或 Stalker 概率获得 Scimitar Engines Blueprint", "chance": null, "type": "boss-drop" },
-      { "location": "击败 Zanuka Hunter 概率获得 Scimitar Avionics Blueprint", "chance": null, "type": "boss-drop" }
+      { "location": "Scimitar 总图：在商店购买", "chance": null, "type": "store" },
+      { "location": "Scimitar 机身：从狂躁 Grustrag 三霸成员处获得", "chance": null, "type": "boss-drop" },
+      { "location": "Scimitar 引擎：从 Stalker 或其变体处获得", "chance": null, "type": "boss-drop" },
+      { "location": "Scimitar 飞航系统：从 Zanuka 猎犬处获得", "chance": null, "type": "boss-drop" }
+    ],
+    "recipes": [],
+    "recipeVariants": [],
+    "tradable": false,
+    "buildQuantity": 1,
+    "sourceCategory": "Supplemental",
+    "sourceFile": "knowledge/supplemental/official-items.json",
+    "reviewStatus": "approved",
+    "reviewedBy": "manual-warframe-knowledge"
+  },
+  {
+    "uniqueName": "/Lotus/Types/Ships/Xiphos",
+    "canonical": "Xiphos",
+    "displayName": "Xiphos",
+    "aliases": ["X船", "x船", "Xiphos", "Xiphos 登陆艇", "Xiphos登陆艇"],
+    "description": { "canonical": "Landing Craft", "display": "登陆艇" },
+    "semanticKinds": ["landing-craft", "ship"],
+    "airSupportAbilities": [
+      {
+        "uniqueName": "/Lotus/Types/Restoratives/LisetTurret",
+        "canonical": "Sentry Gun",
+        "displayName": "自动炮台",
+        "description": "Ordis 会投放一门全自动炮台来打击附近视野内的敌人。"
+      }
+    ],
+    "drops": [
+      { "location": "Xiphos 总图：在商店购买", "chance": null, "type": "store" },
+      { "location": "Xiphos 部件：开启部分破坏或歼灭任务的全部 3 个资源储藏箱后概率获得", "chance": null, "type": "storage-container" }
     ],
     "recipes": [],
     "recipeVariants": [],

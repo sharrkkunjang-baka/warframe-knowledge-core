@@ -2,6 +2,7 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const { sourceId, sourceKind, displaySource } = require('../src/arcane-source')
+const { WARFRAME_ITEMS_DROP_LOCATION_FIXES } = require('../scripts/sync-arcanes')
 
 const ROOT = path.resolve(__dirname, '..')
 const TARGET = path.join(ROOT, 'knowledge', 'arcane-sources')
@@ -16,7 +17,8 @@ const GENERIC_SOURCE_RELATIONS = Object.freeze([
   [/^Arbitrations, Rotation [ABC]$/, { sourceEntityId: 'acquisition-source.arbitration-honors', missionTypeId: 'mission-type.arbitration' }],
   [/^(?:Deep|Temporal) Archimedea/, { locationId: 'hub.sanctum-anatomica', missionTypeId: 'mission-type.archimedea' }],
   [/^Duviri\/Endless:/, { locationId: 'landscape.duviri', missionTypeId: 'mission-type.the-circuit' }],
-  [/^Höllvania\/Antivirus Bounty \(Caches\)$/, { sourceEntityId: 'acquisition-source.hollvania-missions', missionTypeId: 'mission-type.wf1999-bounty' }]
+  [/^Höllvania\/Antivirus Bounty \(Caches\)$/, { sourceEntityId: 'acquisition-source.hollvania-missions', missionTypeId: 'mission-type.wf1999-bounty' }],
+  [/^1999 Exterminate Cache$/, { locationId: 'planet.ho-llvania', missionTypeId: 'mission-type.exterminate' }]
 ])
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 100) || 'source' }
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
@@ -48,7 +50,7 @@ function sourceRelation(canonical, mission) {
 function buildPlan() {
   const missionOverrides = createMissionSourceOverrides()
   const supplementMethods = fs.existsSync(SUPPLEMENTS) ? (JSON.parse(fs.readFileSync(SUPPLEMENTS, 'utf8')).entries || []).flatMap(entry => entry.methods || []) : []
-  const canonicals = [...new Set([...ARCANES.filter(item => item.name !== 'Arcane' && !item.excludeFromCodex).flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...MODS.flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...supplementMethods.map(method => method.sourceCanonical).filter(Boolean)])].sort()
+  const canonicals = [...new Set([...ARCANES.filter(item => item.name !== 'Arcane' && !item.excludeFromCodex).flatMap(item => (item.drops || []).map(drop => WARFRAME_ITEMS_DROP_LOCATION_FIXES[String(drop.location || '').trim()] || String(drop.location || '').trim()).filter(Boolean)), ...MODS.flatMap(item => (item.drops || []).map(drop => String(drop.location || '').trim()).filter(Boolean)), ...supplementMethods.map(method => method.sourceCanonical).filter(Boolean)])].sort()
   const entries = canonicals.map(canonical => { const mission = resolveMissionSource(canonical, missionOverrides), displayName = mission?.displayName || displaySource(canonical), kind = mission ? 'mission-reward' : sourceKind(canonical), relation = kind === 'mission-reward' ? sourceRelation(canonical, mission) : null; return { id: sourceId(canonical), canonical, displayName, kind, aliases: [], ...(relation ? { relation } : {}), ...(mission ? { mission: { officialNodeId: mission.officialNodeId, planetCanonical: mission.planetCanonical, nodeCanonical: mission.nodeCanonical, missionTypeCanonical: mission.missionCanonical, missionTypeDisplayName: mission.missionDisplayName, rotation: mission.rotation } } : {}), localization: { status: displayName === canonical ? 'canonical-fallback' : mission ? 'official-zh' : 'official-or-audited', rule: '禁止运行时猜译' }, source: mission ? 'DE ExportRegions + Languages.bin; route from warframe-items' : 'warframe-items Arcanes.json/Mods.json + official i18n/audited mapping' } })
   const categories = [...new Set(entries.map(entry => entry.kind))].sort().map(id => ({ id, count: entries.filter(entry => entry.kind === id).length }))
   return { entries, index: { schemaVersion: 1, generatedAt: new Date().toISOString().slice(0, 10), type: 'arcane-sources', count: entries.length, categories, variables: entries.map(entry => ({ id: entry.id, canonical: entry.canonical, displayName: entry.displayName, kind: entry.kind, category: entry.kind, file: `${entry.kind}/${slug(entry.canonical)}-${entry.id.slice(-8)}.json` })) } }

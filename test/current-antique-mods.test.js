@@ -28,6 +28,6 @@ test('奥维精确解析为 Omn-Evi 并保留官方唯一名与结构化来源',
       displayName: '奥维',
       uniqueName: '/Lotus/Upgrades/Mods/Antiques/CritChanceSchool'
     }, query);
-    assert.ok(card.sections.other.length, query);
+    assert.ok(card.sections.acquisition.length, query);
   }
 });

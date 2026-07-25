@@ -32,20 +32,17 @@
     },
     {
       "stats": [
-        "每拥有 250 最大生命值可获得 4% 技能强度，最高可达 48%。\n赋能复活次数 +1",
-        "赋能复活次数 +1"
+        "每拥有 250 最大生命值可获得 4% 技能强度，最高可达 48%。"
       ]
     },
     {
       "stats": [
-        "每拥有 250 最大生命值可获得 5% 技能强度，最高可达 60%。\n赋能复活次数 +1",
-        "赋能复活次数 +1"
+        "每拥有 250 最大生命值可获得 5% 技能强度，最高可达 60%。"
       ]
     },
     {
       "stats": [
-        "每拥有 250 最大生命值可获得 6% 技能强度，最高可达 72%。\n赋能复活次数 +1",
-        "赋能复活次数 +1"
+        "每拥有 250 最大生命值可获得 6% 技能强度，最高可达 72%。"
       ]
     }
   ],
@@ -86,20 +83,17 @@
           },
           {
             "stats": [
-              "每拥有 250 最大生命值可获得 4% 技能强度，最高可达 48%。\n赋能复活次数 +1",
-              "赋能复活次数 +1"
+              "每拥有 250 最大生命值可获得 4% 技能强度，最高可达 48%。"
             ]
           },
           {
             "stats": [
-              "每拥有 250 最大生命值可获得 5% 技能强度，最高可达 60%。\n赋能复活次数 +1",
-              "赋能复活次数 +1"
+              "每拥有 250 最大生命值可获得 5% 技能强度，最高可达 60%。"
             ]
           },
           {
             "stats": [
-              "每拥有 250 最大生命值可获得 6% 技能强度，最高可达 72%。\n赋能复活次数 +1",
-              "赋能复活次数 +1"
+              "每拥有 250 最大生命值可获得 6% 技能强度，最高可达 72%。"
             ]
           }
         ],
@@ -109,9 +103,32 @@
         "status": "structured",
         "methods": [
           {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.eleanor",
+            "sourceCanonical": "Eleanor of The Hex, Hot & Fresh",
+            "availability": "guaranteed-when-requirements-met",
+            "quantity": 1,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.eleanor",
+              "locationId": "planet.ho-llvania",
+              "rank": 4,
+              "rankName": "新鲜出炉",
+              "amount": 7500
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current-wiki-acquisition-prose",
+              "section": "Acquisition",
+              "excerpt": "Arcane Bellicose is an Arcane Enhancement for Warframes that increases Ability Strength for every 250 maximum Health, up to a cap. Effect Rank Ability Strength Increase Ability Strength Maximum 0 1% 12% 1 2% 24% 2 3% 36% 3 4% 48% 4 5% 60% 5 6% 72% Acquisition Can be bought from Eleanor of The Hex for 7,500 Standing 7,500 at Rank 4 - Hot & Fresh. Rewarded from the 1999 Calendar. Rewarded from Techrot Safes in Höllvania missions. Rewarded from Scaldra Caches in Höllvania Exterminate missions. Drop",
+              "standingAmountEvidence": "current-wiki-acquisition-prose",
+              "note": "上游 warframe-items 缺失 drops 时，由 Wiki Acquisition 段落补全声望兑换路径。"
+            }
+          },
+          {
             "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.e6bc3bfb407a",
-            "sourceCanonical": "H-09 Apex",
+            "sourceEntityId": "arcane-source.001d44a244ca",
+            "sourceCanonical": "1999 Exterminate Cache",
             "probability": 0.125,
             "chancePercent": 12.5,
             "quantity": 1,

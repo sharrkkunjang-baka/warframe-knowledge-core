@@ -148,7 +148,9 @@ function createResolver(aliases) {
     const stripTerms = [...new Set([...(Array.isArray(options.stripTerms) ? options.stripTerms : []), ...intent.typeTerms])];
     const queryForms = resolverForms(raw, stripTerms);
     const supplied = Array.isArray(options.candidates) ? options.candidates : [];
-    const requestedCategories = intent.categories.length ? intent.categories : options.categories;
+    const requestedCategories = options.ignoreIntentCategories
+      ? options.categories
+      : (intent.categories.length ? intent.categories : options.categories);
     const categoryMatches = category => !requestedCategories || requestedCategories.includes(category)
       || (requestedCategories.includes('official') && ['mod', 'official-item'].includes(category));
     const candidates = [...staticCandidates, ...supplied]

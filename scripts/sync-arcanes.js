@@ -12,10 +12,15 @@ const CATALOG_PATH = path.join(ARCANE_ROOT, 'catalog.json');
 const I18N = require(path.join(DATA_ROOT, 'i18n.json'));
 const PACKAGE = require(path.join(ITEMS_ROOT, 'package.json'));
 const SUPPLEMENTS_PATH = path.join(ROOT, 'generated', 'official-arcane-supplements.json');
+const WIKI_EVIDENCE_PATH = path.join(ROOT, 'generated', 'acquisition-wiki-evidence.json');
 const LANGUAGE_CACHE = path.join(ROOT, '.cache', 'official-localization');
 const { sourceId, displaySource } = require('../src/arcane-source');
+const { normalizeArcaneEffectLine, ARCANE_REVIVE_LINE } = require('../src/arcane-effect-text');
 const { appendAscensionArcaneVestigialExchange, collapseAscensionSisterDropVariants } = require('../src/ascension-arcane-acquisition');
 const { renderGameText } = require('../src/game-text');
+const WARFRAME_ITEMS_DROP_LOCATION_FIXES = Object.freeze({
+  'H-09 Apex': '1999 Exterminate Cache'
+});
 const ARCANE_SOURCE_OVERRIDES = Object.freeze({
   '/Lotus/Upgrades/CosmeticEnhancers/Utility/NoCostCastChanceOnCast': [
     { type: 'mission-reward', locationId: 'planet.mars', missionNodeId: 'mission-node.tyana-pass', missionTypeId: 'mission-type.defense', rotation: 'C', probability: 0.057, chancePercent: 5.7, quantity: 1, sourceCanonical: 'Mars/Tyana Pass (Defense), Rotation C' },
@@ -197,7 +202,7 @@ function parseWikiStandingVendorFromExcerpt(excerpt, evidence, languages = loadL
   const provenanceBase = evidence?.provenance || {};
   const amountFrom = value => Number(String(value || '').replace(/,/g, ''));
 
-  let match = text.match(/\b(?:can be bought|purchased|purchase(?:d)?)\s+from\s+Eleanor of The Hex\s+for\s+([\d,]+)\s+Standing(?:\s+[\d,]+)?\s+at\s+Rank\s+(\d+)\s*-\s*([A-Za-z0-9 &-]+)/i);
+  let match = text.match(/\b(?:can be bought|purchased|purchase(?:d)?)\s+from\s+Eleanor of The Hex\s+for\s+([\d,]+)\s+Standing(?:\s+[\d,]+)?\s+at\s+Rank\s+(\d+)\s*[-:]\s*([A-Za-z0-9 &-]+)/i);
   if (match) {
     const amount = amountFrom(match[1]);
     const rankCanonical = match[3].trim();
@@ -288,8 +293,25 @@ function parseWikiStandingVendorFromExcerpt(excerpt, evidence, languages = loadL
   });
 }
 
+let wikiEvidenceReportCache = null;
+function loadWikiEvidenceReport() {
+  if (wikiEvidenceReportCache) return wikiEvidenceReportCache;
+  if (!fs.existsSync(WIKI_EVIDENCE_PATH)) return { entries: [] };
+  wikiEvidenceReportCache = JSON.parse(fs.readFileSync(WIKI_EVIDENCE_PATH, 'utf8'));
+  return wikiEvidenceReportCache;
+}
+function wikiEvidenceForPrevious(previous) {
+  const fromEntry = previous?.arcaneAcquisition?.generated?.wiki?.evidence || [];
+  if (fromEntry.length) return fromEntry;
+  const canonical = previous?.subject?.canonical || previous?.title;
+  if (!canonical) return [];
+  const reportEntry = (loadWikiEvidenceReport().entries || []).find(entry => entry.canonical === canonical);
+  const excerpt = reportEntry?.evidence?.excerpt || reportEntry?.evidence?.sections?.[0]?.text || '';
+  if (!excerpt) return [];
+  return [{ type: 'acquisition-prose', provenance: { section: 'Acquisition', excerpt } }];
+}
 function parseWikiStandingVendorExchange(previous, languages = loadLanguages()) {
-  for (const evidence of previous?.arcaneAcquisition?.generated?.wiki?.evidence || []) {
+  for (const evidence of wikiEvidenceForPrevious(previous)) {
     const method = parseWikiStandingVendorFromExcerpt(evidence.provenance?.excerpt || '', evidence, languages);
     if (method) return method;
   }
@@ -314,7 +336,7 @@ function structuredAcquisition(item, languages = loadLanguages(), previous = nul
   if (ARCANE_SOURCE_OVERRIDES[item.uniqueName]) return ARCANE_SOURCE_OVERRIDES[item.uniqueName].map(method => ({ ...method, provenance: { source: 'de-official-drop-tables', officialUniqueName: item.uniqueName, note: '官方掉落表与任务类型结构覆盖上游第三方 location 字符串。' } }));
   const methods = [];
   for (const drop of item.drops || []) {
-    const location = String(drop.location || '').trim();
+    const location = WARFRAME_ITEMS_DROP_LOCATION_FIXES[String(drop.location || '').trim()] || String(drop.location || '').trim();
     if (!location) continue;
     if (Number(drop.chance) === 1 && isExchangeLocation(location)) {
       methods.push({
@@ -410,7 +432,7 @@ function buildEntry(item, previous, languages = loadLanguages()) {
     identity: { officialUniqueName: item.uniqueName, canonical: item.name, displayName: localized.name || item.name,
       localizationStatus: localized.name && localized.name !== item.name ? 'official-zh' : 'fallback-en' },
     classification: { category, arcaneType: item.type, equipmentClass: CATEGORY_EQUIPMENT[category] },
-    stats: { rarity: item.rarity || null, maxRank: Math.max(0, (item.levelStats?.length || 1) - 1), levelStats: (localized.levelStats || item.levelStats || []).map(level => ({ ...level, stats: (level.stats || []).map(renderGameText) })), localizationStatus: localized.levelStats ? 'official-zh' : 'fallback-en' },
+    stats: { rarity: item.rarity || null, maxRank: Math.max(0, (item.levelStats?.length || 1) - 1), levelStats: (localized.levelStats || item.levelStats || []).map(level => ({ ...level, stats: (level.stats || []).flatMap(stat => { const normalized = normalizeArcaneEffectLine(stat, { languages }); if (normalized) return normalized.split(/\n/).map(part => part.trim()).filter(part => part && !ARCANE_REVIVE_LINE.test(part)); const fallback = renderGameText(stat); return fallback && !ARCANE_REVIVE_LINE.test(fallback) ? [fallback] : [] }) })), localizationStatus: localized.levelStats ? 'official-zh' : 'fallback-en' },
     acquisition: { status, methods, requirements }, tradable: Boolean(item.tradable), sourceFile: 'Arcanes.json',
     ...(previous?.arcaneAcquisition?.generated?.wiki ? { wiki: previous.arcaneAcquisition.generated.wiki } : {})
   };
@@ -476,4 +498,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run(); } catch (error) { console.error(error.stack || error); process.exit(1); } }
-module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, WIKI_NPC_STANDING_LOCATION, WIKI_HEX_RANKS, WIKI_CAVIA_RANKS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, standingAmountFromWiki, parseWikiStandingVendorFromExcerpt, parseWikiStandingVendorExchange, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };
+module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, WARFRAME_ITEMS_DROP_LOCATION_FIXES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, WIKI_NPC_STANDING_LOCATION, WIKI_HEX_RANKS, WIKI_CAVIA_RANKS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, standingAmountFromWiki, parseWikiStandingVendorFromExcerpt, parseWikiStandingVendorExchange, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };

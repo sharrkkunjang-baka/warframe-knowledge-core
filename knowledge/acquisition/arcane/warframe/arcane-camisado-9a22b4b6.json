@@ -32,20 +32,18 @@
     },
     {
       "stats": [
-        "召唤物进行攻击时会使下一次施放的技能强度增加 4%，最高可达 40%。\n赋能复活次数 +1",
-        "赋能复活次数 +1"
+        "召唤物进行攻击时会使下一次施放的技能强度增加 4%，最高可达 40%。"
       ]
     },
     {
       "stats": [
-        "召唤物进行攻击时会使下一次施放的技能强度增加 5%，最高可达 50%。\n赋能复活次数 +1",
-        "赋能复活次数 +1"
+        "召唤物进行攻击时会使下一次施放的技能强度增加 5%，最高可达 50%。"
       ]
     },
     {
       "stats": [
-        "召唤物进行攻击时会使下一次施放的技能强度增加 6%，最高可达 60%。Summons gain 20% Movement Speed.\n赋能复活次数 +1",
-        "赋能复活次数 +1"
+        "召唤物进行攻击时会使下一次施放的技能强度增加 6%，最高可达 60%。",
+        "召唤物获得 20% 移动速度加成。"
       ]
     }
   ],
@@ -86,20 +84,18 @@
           },
           {
             "stats": [
-              "召唤物进行攻击时会使下一次施放的技能强度增加 4%，最高可达 40%。\n赋能复活次数 +1",
-              "赋能复活次数 +1"
+              "召唤物进行攻击时会使下一次施放的技能强度增加 4%，最高可达 40%。"
             ]
           },
           {
             "stats": [
-              "召唤物进行攻击时会使下一次施放的技能强度增加 5%，最高可达 50%。\n赋能复活次数 +1",
-              "赋能复活次数 +1"
+              "召唤物进行攻击时会使下一次施放的技能强度增加 5%，最高可达 50%。"
             ]
           },
           {
             "stats": [
-              "召唤物进行攻击时会使下一次施放的技能强度增加 6%，最高可达 60%。Summons gain 20% Movement Speed.\n赋能复活次数 +1",
-              "赋能复活次数 +1"
+              "召唤物进行攻击时会使下一次施放的技能强度增加 6%，最高可达 60%。",
+              "召唤物获得 20% 移动速度加成。"
             ]
           }
         ],
@@ -109,9 +105,32 @@
         "status": "structured",
         "methods": [
           {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.eleanor",
+            "sourceCanonical": "Eleanor of The Hex, 2-For-1",
+            "availability": "guaranteed-when-requirements-met",
+            "quantity": 1,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.eleanor",
+              "locationId": "planet.ho-llvania",
+              "rank": 3,
+              "rankName": "双份惊喜",
+              "amount": 7500
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "current-wiki-acquisition-prose",
+              "section": "Acquisition",
+              "excerpt": "Arcane Camisado is an Arcane Enhancement for Warframes that increases the Ability Strength of the next ability cast based on attacks from summoned minions. When fully ranked, the Arcane also gives minions 20% more movement speed. Effect Rank Strength Increase Maximum Increase 0 1% 10% 1 2% 20% 2 3% 30% 3 4% 40% 4 5% 50% 5 6% 60% Acquisition Can be bought from Eleanor of The Hex for 7,500 Standing 7,500 at Rank 3: 2-For-1. Rewarded from the 1999 Calendar. Rewarded from Techrot Safes in Höllvania ",
+              "standingAmountEvidence": "current-wiki-acquisition-prose",
+              "note": "上游 warframe-items 缺失 drops 时，由 Wiki Acquisition 段落补全声望兑换路径。"
+            }
+          },
+          {
             "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.e6bc3bfb407a",
-            "sourceCanonical": "H-09 Apex",
+            "sourceEntityId": "arcane-source.001d44a244ca",
+            "sourceCanonical": "1999 Exterminate Cache",
             "probability": 0.125,
             "chancePercent": 12.5,
             "quantity": 1,

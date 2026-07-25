@@ -46,7 +46,7 @@ test('云暴山碎保留官方锤架式身份、单一规范敌人和武形秘�
   })
   assert.deepEqual({ type: card.modInfo.type, compatName: card.modInfo.compatName }, { type: 'Stance Mod', compatName: 'Hammers' })
   assert.deepEqual(card.sections.enemy, ['- 土星 Tethys 刺杀 · Sargas Ruk 将军（11.06%）'])
-  assert.ok(card.sections.other.some(line => /武形秘仪每周挑战奖励 A轮（概率获得，2\.27%）/.test(line)))
+  assert.ok(card.sections.acquisition.some(line => /武形秘仪每周挑战奖励 A轮（概率获得，2\.27%）/.test(line)))
   assert.doesNotMatch(JSON.stringify(card.sections), /Weekly Conclave Challenge Reward|指挥官/)
 })
 
@@ -112,7 +112,7 @@ test('全部武形秘仪每周挑战来源都使用审核中文而非内部 toke
   assert.ok(affected.length > 1, '审计必须覆盖同来源类型而非单个 Mod')
   for (const entry of affected) {
     const card = core.getAcquisitionCard(entry.subject.canonical)
-    assert.ok(card.sections.other.some(line => /武形秘仪每周挑战奖励 [A-Z]轮（概率获得，\d+(?:\.\d+)?%）/.test(line)), entry.subject.canonical)
+    assert.ok(card.sections.acquisition.some(line => /武形秘仪每周挑战奖励 [A-Z]轮（概率获得，\d+(?:\.\d+)?%）/.test(line)), entry.subject.canonical)
     assert.doesNotMatch(JSON.stringify(card.sections), /Weekly Conclave Challenge Reward/, entry.subject.canonical)
   }
 })

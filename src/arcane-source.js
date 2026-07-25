@@ -80,7 +80,8 @@ const EXACT_ZH = Object.freeze({
 const ENEMY_ZH = Object.freeze({
   Angst: '苦闷', Malice: '怨恨', Mania: '躁狂', Misery: '悲痛', Torment: '折磨', Violence: '暴力',
   'Eidolon Teralyst': '夜灵兆力使', 'Eidolon Gantulyst': '夜灵巨力使', 'Eidolon Hydrolyst': '夜灵水力使',
-  'H-09 Apex': 'H-09 顶点', 'H-09 Efervon Tank': 'H-09 埃弗隆坦克', 'Mocking Whisper': '嘲讽低语',
+  '1999 Exterminate Cache': '1999 歼灭补给箱',
+  'H-09 Apex': 'H-09 王者', 'H-09 Efervon Tank': 'H-09 艾弗旺坦克', 'Mocking Whisper': '嘲讽低语',
   'Ravenous Void Angel': '贪婪虚空天使', 'Scaldra Screamer': '炽蛇军尖啸者', 'Scathing Whisper': '严酷低语',
   'The Fragmented Suzerain': '碎裂者·君主', 'Thrax Centurion': '禁卫军百夫长', 'Thrax Legatus': '禁卫军使节', 'Void Angel': '虚空天使'
 })
@@ -94,6 +95,7 @@ function replaceTerms(value) {
   return output
 }
 function sourceKind(canonical) {
+  if (/^1999 Exterminate Cache$/i.test(String(canonical))) return 'mission-reward'
   if (/Ostron|Solaris|Holdfasts|Quills|Vox Solaris|Operational Supply/i.test(canonical)) return 'exchange'
   if (/Bounty|Arbitrations|Archimedea|Rotation|Duviri\/Endless|Caches|Vault|Completion Bonuses|weekly reward/i.test(canonical)) return 'mission-reward'
   return 'enemy-drop'
