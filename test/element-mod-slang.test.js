@@ -20,6 +20,20 @@ test('所有审核类别别称覆盖前后置空格金银活动矩阵', () => {
   }
 });
 
+test('刷 手枪金火复用元素 Mod 黑话并锁定灼痕焦点获取卡', () => {
+  const slang = core.resolveElementModSlang('手枪金火');
+  assert.equal(slang.status, 'resolved');
+  assert.equal(slang.relation.canonical, 'Scorch');
+  assert.equal(slang.relation.displayName, '灼痕焦点');
+  const item = core.resolveItem('手枪金火');
+  assert.equal(item?.kind, 'mod');
+  assert.equal(item?.item?.canonical, 'Scorch');
+  assert.equal(item?.item?.displayName, '灼痕焦点');
+  const card = core.getAcquisitionCard('手枪金火');
+  assert.equal(card?.identity?.canonical, 'Scorch');
+  assert.equal(card?.identity?.displayName, '灼痕焦点');
+});
+
 test('用户金卡、银卡、活动元素与功能型例子绑定稳定身份', () => {
   const cases = {
     手枪金冰: ['/Lotus/Upgrades/Mods/Pistol/DualStat/IceEventPistolMod', '结霜侵蚀'],

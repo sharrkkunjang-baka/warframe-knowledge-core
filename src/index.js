@@ -601,6 +601,11 @@ function createKnowledgeCore(options = {}) {
   const resolveItem = query => {
     const intent = parseResolverIntent(query);
     const effectiveQuery = intent.query || intent.commandStripped;
+    const elementModSlang = elementModSlangResolver.resolve(effectiveQuery);
+    if (elementModSlang.status === 'resolved') {
+      const mod = getOfficialMod(elementModSlang.relation.canonical);
+      if (mod) return { kind: 'mod', item: mod, recipeVariant: null, elementModSlang };
+    }
     if (intent.categories.length) {
       const resolution = resolveName(query, { minScore: 50, minLead: 5 });
       if (resolution?.ambiguous) return { kind: 'ambiguous', item: null, recipeVariant: null, candidates: resolution.ambiguous };
@@ -1098,6 +1103,10 @@ function createKnowledgeCore(options = {}) {
     const raw = String(query || '').trim();
     if (!raw) return null;
     const resolverIntent = parseResolverIntent(raw);
+    const elementModSlang = elementModSlangResolver.resolve(resolverIntent.query || resolverIntent.commandStripped);
+    if (elementModSlang.status === 'resolved' && normalize(elementModSlang.relation.canonical) !== normalize(raw)) {
+      return getAcquisition(elementModSlang.relation.canonical, searchOptions);
+    }
     if (resolverIntent.categories.length && !resolverIntent.categories.includes('arcane') && !getOfficialMod(raw)) {
       const typedCollection = getAcquisitionCollection(raw);
       if (typedCollection) return typedCollection;
