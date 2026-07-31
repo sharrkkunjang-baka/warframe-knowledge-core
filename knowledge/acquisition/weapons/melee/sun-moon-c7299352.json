@@ -46,6 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
+      "official-drop",
       "quest",
       "crafting"
     ],
@@ -53,6 +54,28 @@
       "kind": "standard",
       "status": null,
       "methods": [
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "sourceCanonical": "Cephalon Simaris",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Sun_&_Moon?oldid=2789947",
+            "pageTitle": "Sun & Moon",
+            "revisionId": 2789947
+          },
+          "partRefs": [],
+          "variables": {}
+        },
         {
           "type": "quest-reward",
           "scope": "blueprint",
@@ -65,6 +88,7 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Sun_&_Moon?oldid=2789947",
             "pageTitle": "Sun & Moon",
             "revisionId": 2789947
           },
@@ -77,6 +101,42 @@
       ]
     },
     "routes": [
+      {
+        "scope": "item",
+        "category": "official-drop",
+        "partRefs": [],
+        "variables": {
+          "weaponName": "赤阳 & 幽月"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Cephalon Simaris",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Sun_&_Moon?oldid=2789947",
+              "pageTitle": "Sun & Moon",
+              "revisionId": 2789947
+            },
+            "partRefs": [],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
       {
         "scope": "blueprint",
         "category": "quest",
@@ -103,6 +163,7 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Sun_&_Moon?oldid=2789947",
               "pageTitle": "Sun & Moon",
               "revisionId": 2789947
             },
@@ -221,7 +282,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"
@@ -231,7 +292,7 @@
     "autoComplete": true,
     "auditedComplete": true,
     "description": true,
-    "directItem": false,
+    "directItem": true,
     "blueprint": true,
     "components": [],
     "crafting": true

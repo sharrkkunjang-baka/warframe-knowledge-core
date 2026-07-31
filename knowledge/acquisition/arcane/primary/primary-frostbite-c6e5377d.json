@@ -127,6 +127,80 @@
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryCritDmgAndMultishotOnColdProc"
             }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "acquisition-source.archimedean-yonta",
+            "sourceCanonical": "Archimedean Yonta",
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "locationId": "hub.zariman",
+              "currency": [
+                {
+                  "currencyId": "currency.lua-thrax-plasm",
+                  "amount": 15
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Purchaseable from Archimedean Yonta for 15 Lua Thrax Plasm each, with a total of 315 for max rank."
+            }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.nightcap",
+            "sourceCanonical": "Nightcap in Fortuna",
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nightcap",
+              "locationId": "hub.fortuna",
+              "currency": [
+                {
+                  "currencyId": "currency.fergolyte",
+                  "amount": 10
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Purchaseable from Nightcap in Fortuna for 10 Fergolyte each, with a total of 210 for max rank."
+            }
+          },
+          {
+            "type": "reward-or-drop",
+            "sourceCanonical": "Deepmines Bounties from Nightcap",
+            "sourceDisplayName": "深矿赏金结算奖励",
+            "sourceKind": "mission-reward",
+            "locationId": "hub.fortuna-airlock",
+            "missionTypeId": "mission-type.bounty",
+            "quantity": 1,
+            "probability": null,
+            "availability": "random-reward",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Possible reward from Deepmines Bounties from Nightcap ."
+            }
           }
         ],
         "requirements": {
@@ -653,12 +727,63 @@
     },
     "manual": {
       "aliases": [],
-      "methods": [],
+      "methods": [
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "sourceEntityId": "npc.nightcap",
+          "sourceCanonical": "Nightcap in Fortuna",
+          "quantity": 1,
+          "availability": "guaranteed-when-requirements-met",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.nightcap",
+            "locationId": "hub.fortuna",
+            "currency": [
+              {
+                "currencyId": "currency.fergolyte",
+                "amount": 10
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Primary_Frostbite",
+            "revisionId": 2779486,
+            "excerpt": "Purchaseable from Nightcap in Fortuna for 10 Fergolyte each, with a total of 210 for max rank."
+          }
+        },
+        {
+          "type": "reward-or-drop",
+          "sourceCanonical": "Deepmines Bounties from Nightcap",
+          "sourceDisplayName": "深矿赏金结算奖励",
+          "sourceKind": "mission-reward",
+          "locationId": "hub.fortuna-airlock",
+          "missionTypeId": "mission-type.bounty",
+          "quantity": 1,
+          "probability": null,
+          "availability": "random-reward",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Primary_Frostbite",
+            "revisionId": 2779486,
+            "excerpt": "Possible reward from Deepmines Bounties from Nightcap ."
+          }
+        }
+      ],
       "methodRefs": [],
       "notes": [],
       "overrides": {},
-      "reviewStatus": "draft",
-      "reviewedBy": []
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "wiki.warframe.com-current-acquisition-evidence-2026-07-27"
+      ]
     }
   },
   "acquisitionStatus": "complete",
@@ -670,7 +795,7 @@
     }
   ],
   "gameVersion": "warframe-items@1.1269.87",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-27",
   "reviewStatus": "draft",
   "reviewedBy": [],
   "tags": [

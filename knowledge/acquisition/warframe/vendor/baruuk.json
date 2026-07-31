@@ -52,7 +52,7 @@
             "pageId": 1367278,
             "revisionId": 2649992,
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35"
             }
           }
         },
@@ -66,18 +66,37 @@
           },
           "blueprintSource": "official-component-drop",
           "requirements": {
-            "type": "standing",
-            "npcId": "npc.little-duck",
-            "locationId": null,
-            "rank": 3,
-            "rankName": "Hand",
-            "blueprintRank": 2,
-            "blueprintRankName": "Agent"
+            "type": "none"
           },
           "methods": [
             {
               "type": "vendor-exchange",
-              "scope": "all-blueprints",
+              "scope": "blueprint",
+              "npcId": "npc.little-duck",
+              "locationId": "hub.fortuna",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.little-duck",
+                "locationId": "hub.fortuna",
+                "rank": 2,
+                "rankName": "特工",
+                "amount": 5000
+              },
+              "provenance": {
+                "source": "wiki.warframe.com",
+                "url": "https://wiki.warframe.com/w/Baruuk?oldid=2795748",
+                "pageTitle": "Baruuk",
+                "revisionId": 2795748,
+                "section": "Acquisition"
+              },
+              "reviewStatus": "approved"
+            },
+            {
+              "type": "vendor-exchange",
+              "scope": "component",
+              "variables": {
+                "partName": "部件蓝图"
+              },
               "npcId": "npc.little-duck",
               "locationId": "hub.fortuna",
               "requirements": {
@@ -85,16 +104,17 @@
                 "npcId": "npc.little-duck",
                 "locationId": "hub.fortuna",
                 "rank": 3,
-                "rankName": "Hand",
-                "blueprintRank": 2,
-                "blueprintRankName": "Agent"
+                "rankName": "刽子手",
+                "amount": 5000
               },
-              "reviewStatus": "approved",
               "provenance": {
-                "source": "audited-current-wiki-acquisition",
+                "source": "wiki.warframe.com",
+                "url": "https://wiki.warframe.com/w/Baruuk?oldid=2795748",
                 "pageTitle": "Baruuk",
+                "revisionId": 2795748,
                 "section": "Acquisition"
-              }
+              },
+              "reviewStatus": "approved"
             }
           ]
         }

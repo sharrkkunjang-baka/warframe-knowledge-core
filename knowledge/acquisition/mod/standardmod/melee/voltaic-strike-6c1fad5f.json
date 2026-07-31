@@ -40,9 +40,12 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-17",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-31",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "structured-wiki-acquisition-audit",
+      "local-wiki-cross-page-sync"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -69,10 +72,10 @@
             "pageId": 398927,
             "revisionId": 2641705,
             "pageTimestamp": "2024-10-10T03:14:45Z",
-            "compiledAt": "2026-07-17T01:48:34.658Z",
+            "compiledAt": "2026-07-26T11:07:23.992Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
@@ -80,10 +83,26 @@
               "type": "vendor-or-syndicate-exchange",
               "sourceEntityId": "npc.baro-ki-teer",
               "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.baro-ki-teer",
+                "locationId": "hub.any-relay",
+                "currency": [
+                  {
+                    "currencyId": "currency.credits",
+                    "amount": 150000
+                  },
+                  {
+                    "currencyId": "currency.orokin-ducats",
+                    "amount": 300
+                  }
+                ]
+              },
               "chance": null,
               "quantity": 1,
               "availability": "rotating",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Voltaic Strike",
@@ -97,7 +116,7 @@
           "evidence": [
             {
               "type": "acquisition-prose",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Voltaic Strike",
@@ -156,8 +175,11 @@
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "structured-wiki-acquisition-audit",
+          "local-wiki-cross-page-sync"
+        ]
       }
     }
   }

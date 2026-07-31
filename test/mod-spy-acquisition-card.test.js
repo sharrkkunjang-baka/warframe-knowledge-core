@@ -9,11 +9,18 @@ test('急进猛突间谍掉落进入获取途径并展开间谍 C 轮玩法', ()
   const card = core.getAcquisitionCard('急进猛突');
   const acquisitionText = card.sectionItems.acquisition.map(item => item.text).join('\n');
 
-  assert.ok(card.sectionItems.acquisition.some(item => /月球间谍\s*A轮概率获得/.test(item.text)), acquisitionText);
+  assert.ok(card.sectionItems.acquisition.some(item => item.text === '完成下列间谍任务的 A 轮后概率获得：\n月球/Pavlov'), acquisitionText);
   assert.ok(card.sectionItems.acquisition.every(item => !/一个/.test(item.text)), acquisitionText);
   assert.equal(card.sectionItems.other.length, 0);
   assert.ok(card.detailOptions.some(option => option.id === 'gameplay.spy-missions' && option.query === '间谍'));
   assert.ok(card.relatedItems.some(item => /三个金库|C\s*轮/.test(item.text)), card.relatedItems.map(item => item.text).join('\n'));
+});
+
+test('铝热焊弹区分 T3 C轮与赤毒要塞 B轮来源', () => {
+  const core = createKnowledgeCore({ approvedOnly: false });
+  const card = core.getAcquisitionCard('铝热焊弹');
+  const spyLines = card.sectionItems.acquisition.map(item => item.text);
+  assert.deepEqual(spyLines, ['T3间谍 C轮概率获得', '赤毒要塞间谍 B轮概率获得']);
 });
 
 test('全部间谍轮换 Mod 掉落统一省略单个数量措辞', () => {

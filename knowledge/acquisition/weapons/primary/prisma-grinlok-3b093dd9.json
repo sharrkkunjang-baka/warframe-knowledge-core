@@ -46,35 +46,17 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "vendor"
+      "unresolved"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
-      "methods": [
-        {
-          "type": "vendor-exchange",
-          "scope": "item",
-          "sourceCanonical": "Baro Ki'Teer",
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "local-wiki-sqlite",
-            "pageTitle": "Prisma Grinlok",
-            "revisionId": 2785444
-          },
-          "partRefs": [],
-          "variables": {},
-          "npcId": "npc.baro-ki-teer"
-        }
-      ]
+      "methods": []
     },
     "routes": [
       {
         "scope": "item",
-        "category": "vendor",
+        "category": "unresolved",
         "partRefs": [],
         "variables": {
           "weaponName": "棱晶·葛恩火枪"
@@ -82,26 +64,8 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [
-          {
-            "type": "vendor-exchange",
-            "scope": "item",
-            "sourceCanonical": "Baro Ki'Teer",
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "local-wiki-sqlite",
-              "pageTitle": "Prisma Grinlok",
-              "revisionId": 2785444
-            },
-            "partRefs": [],
-            "variables": {},
-            "npcId": "npc.baro-ki-teer"
-          }
-        ],
-        "status": "complete"
+        "methods": [],
+        "status": "review-required"
       }
     ]
   },
@@ -124,17 +88,15 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
-  "reviewStatus": "approved",
-  "reviewedBy": [
-    "official-evidence-closure"
-  ],
-  "status": "complete",
+  "updatedAt": "2026-07-28",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
   "coverage": {
-    "autoComplete": true,
-    "auditedComplete": true,
+    "autoComplete": false,
+    "auditedComplete": false,
     "description": true,
-    "directItem": true,
+    "directItem": false,
     "blueprint": false,
     "components": [],
     "crafting": false

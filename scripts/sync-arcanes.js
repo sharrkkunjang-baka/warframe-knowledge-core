@@ -156,6 +156,19 @@ const WIKI_NPC_STANDING_LOCATION = Object.freeze({
   Onkko: 'The Quills, Architect',
   Nakak: 'Operational Supply, Defender'
 });
+const WIKI_ACQUISITION_SOURCES = Object.freeze({
+  yonta: Object.freeze({
+    exchangePattern: /Purchaseable from Archimedean Yonta(?: in the Zariman)?\s+for\s+(\d+)\s+Lua Thrax Plasm/i
+  }),
+  nightcap: Object.freeze({
+    exchangePattern: /Purchaseable from Nightcap in Fortuna(?: at Rank 3:[^,]+)?\s*,?\s*for\s+(\d+)\s+Fergolyte/i,
+    bountyPattern: /Possible reward from Deepmines Bounties from Nightcap/i
+  }),
+  acrithis: Object.freeze({
+    exchangePattern: /May be sold by Acrithis for\s+(\d+)\s+Pathos Clamp/i
+  })
+});
+
 const WIKI_HEX_RANKS = Object.freeze({
   Leftovers: { rank: 0, languageKey: '/Lotus/Language/1999/HexSyndTitle1' },
   'Fresh Slice': { rank: 2, languageKey: '/Lotus/Language/1999/HexSyndTitle2' },
@@ -332,6 +345,83 @@ function standingAmountFromWiki(method, previous) {
   return null
 }
 
+function wikiAcquisitionExcerpts(previous) {
+  const output = []
+  const visit = value => {
+    if (!value || typeof value !== 'object') return
+    for (const [key, child] of Object.entries(value)) {
+      if (key === 'excerpt') output.push(String(child))
+      else visit(child)
+    }
+  }
+  visit(previous?.arcaneAcquisition?.generated?.wiki)
+  if (fs.existsSync(WIKI_EVIDENCE_PATH) && previous?.subject?.canonical) {
+    const capturedEntry = loadWikiEvidenceReport().entries?.find(item => item.canonical === previous.subject.canonical)
+    visit(capturedEntry?.wiki)
+    visit(capturedEntry?.evidence)
+  }
+  return [...new Set(output.filter(Boolean))]
+}
+
+function wikiProvenance(previous, excerpt) {
+  const wiki = previous?.arcaneAcquisition?.generated?.wiki || {}
+  return {
+    source: 'wiki.warframe.com',
+    url: wiki.url || null,
+    revisionId: wiki.revisionId || null,
+    excerpt
+  }
+}
+
+function appendCurrentWikiVendorMethods(methods, previous) {
+  const excerpts = wikiAcquisitionExcerpts(previous)
+  const yontaExchange = excerpts.find(text => WIKI_ACQUISITION_SOURCES.yonta.exchangePattern.test(text))
+  const nightcapExchange = excerpts.find(text => WIKI_ACQUISITION_SOURCES.nightcap.exchangePattern.test(text))
+  const deepminesBounty = excerpts.find(text => WIKI_ACQUISITION_SOURCES.nightcap.bountyPattern.test(text))
+  const acrithisExchange = excerpts.find(text => WIKI_ACQUISITION_SOURCES.acrithis.exchangePattern.test(text))
+  const additions = []
+  if (yontaExchange) {
+    const amount = Number(yontaExchange.match(WIKI_ACQUISITION_SOURCES.yonta.exchangePattern)?.[1])
+    if (amount) additions.push({
+      type: 'vendor-or-syndicate-exchange', sourceEntityId: 'acquisition-source.archimedean-yonta', sourceCanonical: 'Archimedean Yonta', quantity: 1,
+      availability: 'guaranteed-when-requirements-met', requirements: { type: 'currency', usage: 'exchange', locationId: 'hub.zariman', currency: [{ currencyId: 'currency.lua-thrax-plasm', amount }], isBuffUseless: true },
+      reviewStatus: 'approved', provenance: wikiProvenance(previous, yontaExchange)
+    })
+  }
+  if (nightcapExchange) {
+    const amount = Number(nightcapExchange.match(WIKI_ACQUISITION_SOURCES.nightcap.exchangePattern)?.[1])
+    if (amount) additions.push({
+      type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.nightcap', sourceCanonical: 'Nightcap in Fortuna', quantity: 1,
+      availability: 'guaranteed-when-requirements-met', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.nightcap', locationId: 'hub.fortuna', currency: [{ currencyId: 'currency.fergolyte', amount }], isBuffUseless: true },
+      reviewStatus: 'approved', provenance: wikiProvenance(previous, nightcapExchange)
+    })
+  }
+  if (deepminesBounty) additions.push({
+    type: 'reward-or-drop', sourceCanonical: 'Deepmines Bounties from Nightcap', sourceDisplayName: '深矿赏金结算奖励', sourceKind: 'mission-reward',
+    locationId: 'hub.fortuna-airlock', missionTypeId: 'mission-type.bounty', quantity: 1, probability: null, availability: 'random-reward', requirements: { type: 'none' },
+    reviewStatus: 'approved', provenance: wikiProvenance(previous, deepminesBounty)
+  })
+  if (acrithisExchange) {
+    const amount = Number(acrithisExchange.match(WIKI_ACQUISITION_SOURCES.acrithis.exchangePattern)?.[1])
+    if (amount) additions.push({
+      type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.acrithis', sourceCanonical: 'Acrithis daily rotation', quantity: 1,
+      availability: 'daily-rotation', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currency: [{ currencyId: 'currency.pathos-clamp', amount }], isBuffUseless: true },
+      reviewStatus: 'approved', provenance: wikiProvenance(previous, acrithisExchange)
+    })
+    additions.push(
+      { type: 'circuit-reward', locationId: 'landscape.duviri', missionTypeId: 'mission-type.the-circuit', sourceCanonical: 'Steel Path Circuit weekly progress rewards', sourceDisplayName: '钢铁之路无尽回廊每周进度奖励', quantity: 1, probability: null, availability: 'weekly-rotation', prerequisite: 'steel-path', requirements: { type: 'none' }, reviewStatus: 'approved', provenance: wikiProvenance(previous, acrithisExchange) },
+      { type: 'reward-or-drop', locationId: 'landscape.duviri', missionTypeId: 'mission-type.free-roam', sourceCanonical: 'Optional Undercroft Portals in Duviri on Steel Path', sourceDisplayName: '钢铁之路双衍王境地下密室传送门奖励', quantity: 1, probability: null, availability: 'random-reward', prerequisite: 'steel-path', requirements: { type: 'none' }, reviewStatus: 'approved', provenance: wikiProvenance(previous, acrithisExchange) }
+    )
+  }
+  const identities = new Set(methods.map(method => JSON.stringify([method.type, method.sourceEntityId || '', method.sourceCanonical || ''])))
+  return [...methods, ...additions.filter(method => {
+    const key = JSON.stringify([method.type, method.sourceEntityId || '', method.sourceCanonical || ''])
+    if (identities.has(key)) return false
+    identities.add(key)
+    return true
+  })]
+}
+
 function structuredAcquisition(item, languages = loadLanguages(), previous = null) {
   if (ARCANE_SOURCE_OVERRIDES[item.uniqueName]) return ARCANE_SOURCE_OVERRIDES[item.uniqueName].map(method => ({ ...method, provenance: { source: 'de-official-drop-tables', officialUniqueName: item.uniqueName, note: '官方掉落表与任务类型结构覆盖上游第三方 location 字符串。' } }));
   const methods = [];
@@ -382,7 +472,7 @@ function structuredAcquisition(item, languages = loadLanguages(), previous = nul
     }
     return method
   });
-  return collapseAscensionSisterDropVariants(appendAscensionArcaneVestigialExchange(enriched));
+  return collapseAscensionSisterDropVariants(appendCurrentWikiVendorMethods(appendAscensionArcaneVestigialExchange(enriched), previous));
 }
 
 function existingEntries() {
@@ -498,4 +588,4 @@ function run(argv = process.argv.slice(2)) {
 }
 
 if (require.main === module) { try { run(); } catch (error) { console.error(error.stack || error); process.exit(1); } }
-module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, WARFRAME_ITEMS_DROP_LOCATION_FIXES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, WIKI_NPC_STANDING_LOCATION, WIKI_HEX_RANKS, WIKI_CAVIA_RANKS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, standingAmountFromWiki, parseWikiStandingVendorFromExcerpt, parseWikiStandingVendorExchange, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };
+module.exports = { CATEGORIES, PROTECTED_DIRECTORIES, TYPE_CATEGORY, ARCANE_SOURCE_OVERRIDES, WARFRAME_ITEMS_DROP_LOCATION_FIXES, STANDING_EXCHANGES, STANDING_RANK_LANGUAGE_KEYS, WIKI_NPC_STANDING_LOCATION, WIKI_ACQUISITION_SOURCES, WIKI_HEX_RANKS, WIKI_CAVIA_RANKS, isBasePlaceholder, categoryFor, officialRankName, exchangeRequirements, supplementRequirements, standingAmountFromWiki, parseWikiStandingVendorFromExcerpt, parseWikiStandingVendorExchange, wikiAcquisitionExcerpts, appendCurrentWikiVendorMethods, structuredAcquisition, loadLanguages, templateValues, substituteOfficialTemplate, officialSupplementStats, buildSupplementEntry, buildEntry, buildPlan, run, hashName, fileName };

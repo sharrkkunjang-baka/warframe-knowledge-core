@@ -46,10 +46,11 @@
       }
     ],
     "gameVersion": "current",
-    "updatedAt": "2026-07-14",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
-      "sharrkkunjang-baka"
+      "sharrkkunjang-baka",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",
@@ -70,21 +71,347 @@
     "modAcquisition": {
       "generated": {
         "wiki": {
-          "wiki": null,
-          "methods": [],
-          "evidence": [],
-          "mechanicsEvidence": {
-            "status": "draft",
-            "notes": [],
-            "usage": []
+          "wiki": {
+            "pageTitle": "Archon Continuity",
+            "pageId": 1570548,
+            "revisionId": 2795114,
+            "pageTimestamp": "2026-07-23T03:21:53Z",
+            "compiledAt": "2026-07-26T11:07:17.744Z",
+            "sourceDatabase": {
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
+            }
           },
-          "unresolvedEntities": [
+          "methods": [
             {
-              "kind": "wiki-page",
-              "canonical": "Archon Continuity"
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.chipper",
+              "locationId": "hub.drifters-camp",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.chipper",
+                "locationId": "hub.drifters-camp",
+                "currency": [
+                  {
+                    "currencyId": "currency.stock",
+                    "amount": 40
+                  }
+                ],
+                "rank": 3,
+                "rankName": "Fort"
+              },
+              "chance": null,
+              "quantity": 1,
+              "availability": "guaranteed-when-requirements-met",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Archon Continuity",
+                "pageId": 1570548,
+                "revisionId": 2795114,
+                "section": "Acquisition",
+                "excerpt": "Archon Continuity is available from Chipper of Kahl's Garrison for 40 Stock , requiring players to be at Rank 3 - Fort to purchase."
+              }
             }
           ],
-          "status": "unresolved"
+          "evidence": [
+            {
+              "type": "acquisition-prose",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Archon Continuity",
+                "pageId": 1570548,
+                "revisionId": 2795114,
+                "section": "Acquisition",
+                "excerpt": "Archon Continuity is available from Chipper of Kahl's Garrison for 40 Stock , requiring players to be at Rank 3 - Fort to purchase."
+              }
+            }
+          ],
+          "mechanicsEvidence": {
+            "status": "draft",
+            "notes": [
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Abilities that proc a Toxin status effect will also proc a Corrosive status proc."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Abilities that inflict multiple Toxin procs at once (such as one of Oraxia 's Widow's Brood 's darts) will only inflict a single Corrosive status proc."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Effect does not scale with mod rank. The mod can optionally be left unranked to save capacity."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Only some Warframes can inflict Toxin procs with abilities."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Chroma 's Spectral Scream , and Elemental Ward which can be transferred via Helminth . Note that if only using Elemental Ward, because it will not reapply its Toxin procs while an enemy is still affected, this mod has little value."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Citrine 's Prismatic Gem ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Dante 's Final Verse 's Wordwarden Noctua copies can proc Toxin status provided that Noctua itself is modded for Toxin ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Grendel 's Feast and Regurgitate"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Inaros 's Sandstorm with Elemental Sandstorm with modded Toxin on a melee weapon."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Koumei 's Kumihimo and Bunraku ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Lavos 's Ophidian Bite can imbue Toxin to all other abilities. Toxin-imbued Ophidian Bite will only proc Corrosive once however, and these Corrosive procs are not influenced by Lavos' trend of tripling non-damage status effects on abilities."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Mirage 's Sleight of Hand with Explosive Legerdemain ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Nidus 's Larva with Larva Burst , which can be transferred via Helminth."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Nokko 's Sporespring ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Oraxia 's Webbed Embrace , Widow's Brood 's darts and Scuttlers, and Silken Stride 's explosion on death."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Silken Stride's Toxin weapon damage bonus does not work."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Trinity 's Link will add a Corrosive proc to any incoming Toxin proc that gets redirected to linked enemies."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Voruna 's Fangs of Raksh ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Wukong 's Celestial Twin when equipped with Primal Fury modded for Toxin ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Zephyr 's Tornado will adopt weapon elements when damaged."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Saryn 's Molt , which can be transferred via Helminth."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Toxic Lash and Contagion Cloud do not work."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "All Exalted Weapons when modded with Toxin , or when triggering a Toxin proc via Arcanes, such as Secondary Encumber ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Compared to Primed Continuity , this mod requires slightly more mod capacity, and its secondary effect cannot be utilized by every Warframe. However, it has the advantage of being readily available from Chipper , as opposed to being a periodic offer from Baro Ki'Teer ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Archon Continuity",
+                  "pageId": 1570548,
+                  "revisionId": 2795114,
+                  "section": "Notes",
+                  "excerpt": "Nekros 's Shadows of the Dead in combination with Theorem Infection and Residual Viremia are granted Toxin Damage but will not proc Corrosive when Toxin does. It is unknown whether this is a bug or not considered part of the ability."
+                }
+              }
+            ],
+            "usage": []
+          },
+          "unresolvedEntities": [],
+          "status": "complete"
         },
         "identity": {
           "officialUniqueName": "/Lotus/Upgrades/Mods/Warframe/Kahl/KahlAvatarAbilityDurationMod",
@@ -122,7 +449,8 @@
         "overrides": {},
         "reviewStatus": "approved",
         "reviewedBy": [
-          "sharrkkunjang-baka"
+          "sharrkkunjang-baka",
+          "structured-wiki-acquisition-audit"
         ]
       }
     }

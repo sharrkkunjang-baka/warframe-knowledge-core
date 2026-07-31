@@ -70,19 +70,35 @@
         {
           "type": "vendor-exchange",
           "scope": "item",
+          "npcId": "npc.baro-ki-teer",
+          "locationId": "hub.any-relay",
           "sourceCanonical": "Baro Ki'Teer",
+          "availability": "rotating",
           "requirements": {
-            "type": "none"
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.baro-ki-teer",
+            "locationId": "hub.any-relay",
+            "currency": [
+              {
+                "currencyId": "currency.credits",
+                "amount": 325000
+              },
+              {
+                "currencyId": "currency.orokin-ducats",
+                "amount": 550
+              }
+            ]
           },
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Vastilok?oldid=2789896",
             "pageTitle": "Vastilok",
             "revisionId": 2789896
           },
           "partRefs": [],
-          "variables": {},
-          "npcId": "npc.baro-ki-teer"
+          "variables": {}
         }
       ]
     },
@@ -116,19 +132,35 @@
           {
             "type": "vendor-exchange",
             "scope": "item",
+            "npcId": "npc.baro-ki-teer",
+            "locationId": "hub.any-relay",
             "sourceCanonical": "Baro Ki'Teer",
+            "availability": "rotating",
             "requirements": {
-              "type": "none"
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "currency": [
+                {
+                  "currencyId": "currency.credits",
+                  "amount": 325000
+                },
+                {
+                  "currencyId": "currency.orokin-ducats",
+                  "amount": 550
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Vastilok?oldid=2789896",
               "pageTitle": "Vastilok",
               "revisionId": 2789896
             },
             "partRefs": [],
-            "variables": {},
-            "npcId": "npc.baro-ki-teer"
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -154,7 +186,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

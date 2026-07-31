@@ -29,6 +29,23 @@ test('Primary Merciless merges official methods before Wiki evidence', () => {
   assert.ok(result.wikiEvidence.length > 0);
 });
 
+test('主要霜冻完整保留兑换与联结生存每20分钟奖励', () => {
+  const result = core.getAcquisition('主要·霜冻');
+  const yonta = result.structuredMethods.find(method => method.sourceEntityId === 'acquisition-source.archimedean-yonta');
+  const nightcap = result.structuredMethods.find(method => method.sourceEntityId === 'npc.nightcap');
+  const conjunction = result.structuredMethods.find(method => method.sourceCanonical === 'Lua/Circulus (Survival), Rotation C');
+  const deepmines = result.structuredMethods.find(method => method.sourceCanonical === 'Deepmines Bounties from Nightcap');
+  assert.deepEqual(yonta.requirements.currency, [{ currencyId: 'currency.lua-thrax-plasm', amount: 15 }]);
+  assert.match(yonta.requirementLines[0], /扎里曼号.*执刑官 Yonta.*15个.*月球凶魂浆质.*兑换/);
+  assert.deepEqual(nightcap.requirements.currency, [{ currencyId: 'currency.fergolyte', amount: 10 }]);
+  assert.equal(conjunction.probability, 0.102);
+  assert.equal(conjunction.sourceDisplayName, '月球/Circulus（联结生存），轮次 C');
+  assert.ok(deepmines);
+  assert.match(result.description, /月球联结生存每20分钟概率获得（10\.2%）/);
+  assert.doesNotMatch(result.description, /Circulus|C轮|轮次 C|（概率10\.2%）|概率获得（概率/);
+  assert.doesNotMatch(result.description, /主要武器赋能槽连接器.*(?:消耗|兑换成本)/);
+});
+
 test('Cavia近战赋能显示低语掉落和鸟三声望兑换', () => {
   for (const name of ['近战·憎恶', '近战·暴露']) {
     const result = core.getAcquisition(name);
@@ -75,6 +92,28 @@ test('刷赋能简称沿用统一字面与拼音加权解析并限定赋能类�
   const exact = core.resolveArcane('赋能·充沛');
   assert.equal(exact.canonical, 'Arcane Energize');
   assert.equal(exact.match, 'exact');
+});
+
+test('名称含赋能的槽连接器仍按资源道具分流而不进入赋能解析器', () => {
+  for (const [displayName, canonical] of [
+    ['增幅器赋能槽连接器', 'Amp Arcane Adapter'],
+    ['主要武器赋能槽连接器', 'Primary Arcane Adapter'],
+    ['次要武器赋能槽连接器', 'Secondary Arcane Adapter'],
+    ['近战武器赋能槽连接器', 'Melee Arcane Adapter'],
+    ['曲翼枪械赋能槽连接器', 'Archgun Arcane Adapter']
+  ]) {
+    const command = core.resolveAcquisitionCommand(`刷 ${displayName}`);
+    assert.equal(command.domain, null, displayName);
+    assert.equal(command.resolution.canonical, canonical, displayName);
+    assert.equal(command.resolution.category, 'resource', displayName);
+    assert.equal(core.getAcquisition(command.resolution.canonical).entry.subject.displayName, displayName);
+  }
+  const actualArcane = core.resolveAcquisitionCommand('刷 赋能迅速');
+  assert.equal(actualArcane.domain, 'arcane');
+  assert.equal(actualArcane.resolution.canonical, 'Arcane Velocity');
+  const unknownArcane = core.resolveAcquisitionCommand('刷 赋能面纱前哨站');
+  assert.equal(unknownArcane.domain, 'arcane');
+  assert.equal(unknownArcane.resolution?.canonical, undefined);
 });
 
 test('旧日和平九种新赋能完整收录且精湛不误匹配精确', () => {
@@ -188,8 +227,8 @@ test('全部发布赋能都有官方中文满级效果和实体化来源', () =>
       assert.ok(result.structuredMethods.every(method => method.type === 'crafting' || (method.sourceEntityId && method.sourceDisplayName) || (method.locationId && method.locationDisplayName && method.missionTypeId && method.missionTypeDisplayName)), entry.subject.canonical);
       assert.ok(result.structuredMethods.every(method => method.requirements && Array.isArray(method.requirementLines)), `${entry.subject.canonical} 缺少方法级统一 requirements`);
       for (const method of result.structuredMethods.filter(item => item.requirements?.npcId)) {
-        const npc = core.npcs.get(method.requirements.npcId);
-        assert.ok(npc?.displayName, `${entry.subject.canonical} 的 ${method.requirements.npcId} 缺少官方中文 NPC 名`);
+        const npc = core.npcs.get(method.requirements.npcId) || core.arcaneSources.get(method.requirements.npcId) || core.locations.get(method.requirements.npcId);
+        assert.ok(npc?.displayName, `${entry.subject.canonical} 的 ${method.requirements.npcId} 缺少官方中文 NPC/来源名`);
         assert.doesNotMatch(method.requirements.rankName || '', /[A-Za-z]/, `${entry.subject.canonical} 声望等级泄漏英文`);
       }
     }
@@ -208,10 +247,22 @@ test('官方包延迟时从 Wiki 官方分类补齐全部赋能且过滤都有�
   assert.doesNotMatch(sculptor.description, /Ability Efficiency/);
 });
 
-test('工匠使文物赋能具有独立类型和结构化来源', () => {
-  const result = core.getAcquisition('Zid-An Asheir');
-  assert.match(result.description, /类型：工匠使文物赋能/);
-  assert.ok(result.structuredMethods.some(method => /玛丽的轮换商店/.test(method.sourceDisplayName)));
+test('五项 Zid-An 使用正式随机 Perita itemGroup 兑换协议', () => {
+  for (const canonical of ['Zid-An Asheir', 'Zid-An Haras', 'Zid-An Osbok', 'Zid-An Sek-Eel', 'Zid-An Uskos']) {
+    const result = core.getAcquisition(canonical);
+    assert.match(result.description, /类型：工匠使文物赋能/);
+    const exchange = result.structuredMethods.find(method => method.type === 'vendor-or-syndicate-exchange');
+    assert.ok(exchange, canonical);
+    assert.equal(exchange.reviewStatus, 'approved', canonical);
+    assert.equal(exchange.requirements.type, 'item', canonical);
+    assert.equal(exchange.requirements.itemGroupId, 'resource-group.perita', canonical);
+    assert.equal(exchange.requirements.amountStatus, 'random', canonical);
+    assert.equal(exchange.requirements.currency, undefined, canonical);
+    assert.deepEqual(exchange.reviewIssues, [], canonical);
+    assert.match(exchange.requirementLines.join('\n'), /解剖圣所的玛丽.*随机佩里塔资源.*种类与数量由商店轮换决定/, canonical);
+    assert.match(result.description, /随机佩里塔资源/, canonical);
+    assert.doesNotMatch(result.description, /成本固定|货币怎么刷/, canonical);
+  }
 });
 
 test('赋能坚定与战甲共用 requirements 协议显示双水晶兑换', () => {

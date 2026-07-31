@@ -99,6 +99,15 @@ test('登陆艇补充条目支持星察、M船和X船黑话及分层来源', () 
   }
 });
 
+test('补充官方物品参与统一名称解析并保留市场身份', () => {
+  for (const query of ['传说核心', 'Legendary Core', 'Legendary Fusion Core']) {
+    const resolved = core.resolveItem(query);
+    assert.equal(resolved.kind, 'official-item', query);
+    assert.equal(resolved.item.displayName, '传说核心', query);
+    assert.equal(resolved.item.marketIdentity.slug, 'legendary_fusion_core', query);
+  }
+});
+
 test('统一解析与获取 DTO 对已有 Mod 和战甲保持共享兼容', () => {
   const mod = core.resolveItem('Narrow Minded');
   assert.equal(mod.kind, 'mod');

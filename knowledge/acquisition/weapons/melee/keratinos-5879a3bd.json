@@ -54,59 +54,47 @@
       "status": null,
       "methods": [
         {
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
-          ],
-          "sourceCanonical": "Entrati (Father), Neutral",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
-          "requirements": {
-            "type": "standing"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
-          },
-          "type": "syndicate-exchange",
-          "requiredRankName": "Neutral",
-          "variables": {},
-          "npcId": "npc.father"
-        },
-        {
           "type": "syndicate-exchange",
           "scope": "blueprint",
           "sourceCanonical": "Father",
           "standing": 1000,
+          "npcId": "npc.father",
+          "locationId": "hub.necralisk",
           "requirements": {
             "type": "standing",
+            "npcId": "npc.father",
+            "locationId": "hub.necralisk",
             "amount": 1000
           },
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Keratinos?oldid=2690304",
             "pageTitle": "Keratinos",
             "revisionId": 2690304
           },
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
           ],
-          "variables": {},
-          "npcId": "npc.father"
+          "variables": {}
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
           "sourceCanonical": "Father",
           "standing": 500,
+          "npcId": "npc.father",
+          "locationId": "hub.necralisk",
           "requirements": {
             "type": "standing",
+            "npcId": "npc.father",
+            "locationId": "hub.necralisk",
             "amount": 500
           },
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Keratinos?oldid=2690304",
             "pageTitle": "Keratinos",
             "revisionId": 2690304
           },
@@ -115,44 +103,25 @@
           ],
           "variables": {
             "partName": "卡提努之爪 刀刃"
-          },
-          "npcId": "npc.father"
-        },
-        {
-          "scope": "component",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove"
-          ],
-          "sourceCanonical": "Entrati (Father), Neutral",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
-          "requirements": {
-            "type": "standing"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
-          },
-          "type": "syndicate-exchange",
-          "requiredRankName": "Neutral",
-          "variables": {
-            "partName": "卡提努之爪 拳套"
-          },
-          "npcId": "npc.father"
+          }
         },
         {
           "type": "syndicate-exchange",
           "scope": "component",
           "sourceCanonical": "Father",
           "standing": 500,
+          "npcId": "npc.father",
+          "locationId": "hub.necralisk",
           "requirements": {
             "type": "standing",
+            "npcId": "npc.father",
+            "locationId": "hub.necralisk",
             "amount": 500
           },
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Keratinos?oldid=2690304",
             "pageTitle": "Keratinos",
             "revisionId": 2690304
           },
@@ -161,8 +130,7 @@
           ],
           "variables": {
             "partName": "卡提努之爪 拳套"
-          },
-          "npcId": "npc.father"
+          }
         }
       ]
     },
@@ -182,46 +150,29 @@
         },
         "methods": [
           {
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
-            ],
-            "sourceCanonical": "Entrati (Father), Neutral",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
-            },
-            "type": "syndicate-exchange",
-            "requiredRankName": "Neutral",
-            "variables": {},
-            "npcId": "npc.father"
-          },
-          {
             "type": "syndicate-exchange",
             "scope": "blueprint",
             "sourceCanonical": "Father",
             "standing": 1000,
+            "npcId": "npc.father",
+            "locationId": "hub.necralisk",
             "requirements": {
               "type": "standing",
+              "npcId": "npc.father",
+              "locationId": "hub.necralisk",
               "amount": 1000
             },
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Keratinos?oldid=2690304",
               "pageTitle": "Keratinos",
               "revisionId": 2690304
             },
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/InfTransformClawsBlueprint"
             ],
-            "variables": {},
-            "npcId": "npc.father"
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -244,13 +195,18 @@
             "scope": "component",
             "sourceCanonical": "Father",
             "standing": 500,
+            "npcId": "npc.father",
+            "locationId": "hub.necralisk",
             "requirements": {
               "type": "standing",
+              "npcId": "npc.father",
+              "locationId": "hub.necralisk",
               "amount": 500
             },
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Keratinos?oldid=2690304",
               "pageTitle": "Keratinos",
               "revisionId": 2690304
             },
@@ -259,8 +215,7 @@
             ],
             "variables": {
               "partName": "卡提努之爪 刀刃"
-            },
-            "npcId": "npc.father"
+            }
           }
         ],
         "status": "complete"
@@ -279,40 +234,22 @@
         },
         "methods": [
           {
-            "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/InfTransformClawsWeaponGlove"
-            ],
-            "sourceCanonical": "Entrati (Father), Neutral",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
-            },
-            "type": "syndicate-exchange",
-            "requiredRankName": "Neutral",
-            "variables": {
-              "partName": "卡提努之爪 拳套"
-            },
-            "npcId": "npc.father"
-          },
-          {
             "type": "syndicate-exchange",
             "scope": "component",
             "sourceCanonical": "Father",
             "standing": 500,
+            "npcId": "npc.father",
+            "locationId": "hub.necralisk",
             "requirements": {
               "type": "standing",
+              "npcId": "npc.father",
+              "locationId": "hub.necralisk",
               "amount": 500
             },
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Keratinos?oldid=2690304",
               "pageTitle": "Keratinos",
               "revisionId": 2690304
             },
@@ -321,8 +258,7 @@
             ],
             "variables": {
               "partName": "卡提努之爪 拳套"
-            },
-            "npcId": "npc.father"
+            }
           }
         ],
         "status": "complete"
@@ -415,7 +351,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

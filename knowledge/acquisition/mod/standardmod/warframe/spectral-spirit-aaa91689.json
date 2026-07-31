@@ -9,6 +9,7 @@
       "displayName": "魅影魂灵",
       "category": "mod",
       "categoryRefs": [
+        "syndicatemod",
         "warframemod",
         "standardmod"
       ]
@@ -39,9 +40,13 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-17",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-31",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "local-wiki-cross-page-sync",
+      "structured-wiki-acquisition-audit",
+      "official-sync:syndicate-exchange"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -68,32 +73,47 @@
             "pageId": 1585300,
             "revisionId": 2790188,
             "pageTimestamp": "2026-07-01T08:36:59Z",
-            "compiledAt": "2026-07-17T01:48:38.865Z",
+            "compiledAt": "2026-07-26T11:07:28.213Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
             {
-              "type": "syndicate-exchange-group",
-              "factionIds": [
-                "faction.the-perrin-sequence",
-                "faction.red-veil"
-              ],
+              "type": "syndicate-exchange",
+              "factionId": "faction.the-perrin-sequence",
               "standing": 25000,
-              "rankRequirement": "max",
-              "chance": null,
-              "quantity": 1,
-              "availability": "guaranteed-when-requirements-met",
-              "reviewStatus": "draft",
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.the-perrin-sequence",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
               "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Spectral Spirit",
-                "pageId": 1585300,
-                "revisionId": 2790188,
-                "section": "Acquisition",
-                "excerpt": "Can be acquired by attaining the rank of Partner under The Perrin Sequence , or the rank of Exalted under the Red Veil , and spending 25,000 Standing 25,000 to purchase."
+                "source": "DE ExportSyndicates",
+                "syndicateId": "PerrinSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Dagath/DagathApparitionAugmentCard"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.red-veil",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.red-veil",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "RedVeilSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Dagath/DagathApparitionAugmentCard"
               }
             }
           ],
@@ -214,8 +234,12 @@
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "local-wiki-cross-page-sync",
+          "structured-wiki-acquisition-audit",
+          "official-sync:syndicate-exchange"
+        ]
       }
     }
   }

@@ -47,6 +47,7 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
+      "unresolved",
       "crafting"
     ],
     "prime": {
@@ -62,6 +63,7 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Dual_Viciss?oldid=2792912",
             "pageTitle": "Dual Viciss",
             "revisionId": 2792912
           },
@@ -69,46 +71,6 @@
             "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
           ],
           "variables": {},
-          "npcId": "npc.minerva"
-        },
-        {
-          "type": "syndicate-exchange",
-          "scope": "component",
-          "requirements": {
-            "type": "standing"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "local-wiki-sqlite",
-            "pageTitle": "Dual Viciss",
-            "revisionId": 2792912
-          },
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
-          ],
-          "variables": {
-            "partName": "双子恶行 刀刃"
-          },
-          "npcId": "npc.minerva"
-        },
-        {
-          "type": "syndicate-exchange",
-          "scope": "component",
-          "requirements": {
-            "type": "standing"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "local-wiki-sqlite",
-            "pageTitle": "Dual Viciss",
-            "revisionId": 2792912
-          },
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
-          ],
-          "variables": {
-            "partName": "双子恶行 握柄"
-          },
           "npcId": "npc.minerva"
         }
       ]
@@ -137,6 +99,7 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Dual_Viciss?oldid=2792912",
               "pageTitle": "Dual Viciss",
               "revisionId": 2792912
             },
@@ -151,7 +114,7 @@
       },
       {
         "scope": "component",
-        "category": "official-drop",
+        "category": "unresolved",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
         ],
@@ -161,33 +124,12 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [
-          {
-            "type": "syndicate-exchange",
-            "scope": "component",
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "local-wiki-sqlite",
-              "pageTitle": "Dual Viciss",
-              "revisionId": 2792912
-            },
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
-            ],
-            "variables": {
-              "partName": "双子恶行 刀刃"
-            },
-            "npcId": "npc.minerva"
-          }
-        ],
-        "status": "complete"
+        "methods": [],
+        "status": "review-required"
       },
       {
         "scope": "component",
-        "category": "official-drop",
+        "category": "unresolved",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
         ],
@@ -197,29 +139,8 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [
-          {
-            "type": "syndicate-exchange",
-            "scope": "component",
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "local-wiki-sqlite",
-              "pageTitle": "Dual Viciss",
-              "revisionId": 2792912
-            },
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
-            ],
-            "variables": {
-              "partName": "双子恶行 握柄"
-            },
-            "npcId": "npc.minerva"
-          }
-        ],
-        "status": "complete"
+        "methods": [],
+        "status": "review-required"
       },
       {
         "scope": "components",
@@ -309,26 +230,24 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
-  "reviewStatus": "approved",
-  "reviewedBy": [
-    "official-evidence-closure"
-  ],
-  "status": "complete",
+  "updatedAt": "2026-07-28",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
   "coverage": {
-    "autoComplete": true,
-    "auditedComplete": true,
+    "autoComplete": false,
+    "auditedComplete": false,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade",
-        "complete": true
+        "complete": false
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt",
-        "complete": true
+        "complete": false
       }
     ],
     "crafting": true

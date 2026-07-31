@@ -1,13 +1,86 @@
 {
-  "generatedAt": "2026-07-22T05:49:49.827Z",
+  "generatedAt": "2026-07-31T06:37:30.901Z",
   "totals": {
-    "acquisitionEntries": 3089,
+    "acquisitionEntries": 3092,
+    "approvedEntries": 1770,
     "resources": 573,
-    "approvedResources": 189,
-    "reviewRequiredResources": 384,
-    "unresolvedOrReviewRequiredEntries": 1339,
+    "approvedResources": 210,
+    "reviewRequiredResources": 363,
+    "unresolvedOrReviewRequiredEntries": 1327,
+    "publishedMethods": 4108,
     "publishedIssueCount": 0,
-    "reviewIssueCount": 0
+    "publishedBadEntries": 0,
+    "publishedBadMethods": 0,
+    "publishedIssueIncidence": 0,
+    "reviewIssueCount": 55
+  },
+  "coverage": {
+    "approvedEntriesByCategory": {
+      "arcane": 18,
+      "consumable": 136,
+      "frame": 117,
+      "mod": 676,
+      "resource": 210,
+      "weapon": 613
+    },
+    "publishedMethodsByCategory": {
+      "arcane": 31,
+      "consumable": 188,
+      "frame": 223,
+      "mod": 1680,
+      "resource": 310,
+      "weapon": 1676
+    },
+    "publishedMethodsByType": {
+      "adversary-drop": 1,
+      "adversary-reward": 34,
+      "anniversary-reward": 4,
+      "bounty-reward": 45,
+      "circuit-reward": 71,
+      "companion-included": 6,
+      "container-drop": 3,
+      "currency-acquisition": 1,
+      "daily-tribute": 7,
+      "dojo-research": 107,
+      "enemy-drop": 677,
+      "enemy-group-drop": 3,
+      "event-milestone-reward": 4,
+      "event-mission-reward": 7,
+      "event-reward": 2,
+      "founder-reward": 2,
+      "gameplay-route": 129,
+      "heist-reward": 12,
+      "included-with-equipment": 23,
+      "invasion-reward": 28,
+      "legacy-nightwave-reward": 2,
+      "market-purchase": 314,
+      "mission-reward": 1013,
+      "nightwave-offering": 9,
+      "object-drop": 1,
+      "open-world-conservation": 21,
+      "open-world-gathering": 33,
+      "quest-reward": 40,
+      "recipe": 367,
+      "relic-reward": 130,
+      "resource-processing": 14,
+      "reward-or-drop": 13,
+      "route": 150,
+      "syndicate-exchange": 495,
+      "syndicate-exchange-group": 4,
+      "vendor-exchange": 176,
+      "vendor-or-syndicate-exchange": 145,
+      "vendor-processing": 10,
+      "vendor-purchase": 5
+    }
+  },
+  "issueAggregates": {
+    "publishedByCategory": {},
+    "publishedByIssue": {},
+    "reviewByIssue": {
+      "empty-source": 8,
+      "enemy-source-not-in-registry": 1,
+      "unresolved-method": 46
+    }
   },
   "publishedIssues": [],
   "reviewRequired": [
@@ -3358,6 +3431,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.guardian-0d2e449c",
+      "canonical": "Guardian",
+      "displayName": "守护者",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "companionmod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.hard-engage-e1667e5b",
       "canonical": "Hard Engage",
       "displayName": "以硬碰硬",
@@ -4590,12 +4675,36 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.avenging-truth-ddfb59a2",
+      "canonical": "Avenging Truth",
+      "displayName": "复仇真相",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.berserker-fury-7a29bd37",
       "canonical": "Berserker Fury",
       "displayName": "嗜血 狂暴",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.blade-of-truth-9b354893",
+      "canonical": "Blade Of Truth",
+      "displayName": "真相之刃",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "meleemod",
         "standardmod"
       ]
@@ -4623,53 +4732,21 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.bright-purity-e4760246",
+      "canonical": "Bright Purity",
+      "displayName": "光明纯净",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.burning-hate-844b4891",
       "canonical": "Burning Hate",
       "displayName": "炽烈憎恨",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "meleemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.buzz-kill-ad46834c",
-      "canonical": "Buzz Kill",
-      "displayName": "败兴虐杀",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "meleemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.collision-force-c30c0c7c",
-      "canonical": "Collision Force",
-      "displayName": "冲击巨力",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "meleemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.combo-fury-3e1bcfc5",
-      "canonical": "Combo Fury",
-      "displayName": "连击狂怒",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "meleemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.combo-killer-db779035",
-      "canonical": "Combo Killer",
-      "displayName": "连击杀手",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -4788,6 +4865,30 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.entropy-detonation-637c0a0b",
+      "canonical": "Entropy Detonation",
+      "displayName": "熵数起爆",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.entropy-flight-5c311319",
+      "canonical": "Entropy Flight",
+      "displayName": "飞逝熵数",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.fever-strike-8e36c744",
       "canonical": "Fever Strike",
       "displayName": "热病打击",
@@ -4838,6 +4939,18 @@
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.gleaming-blight-36c44071",
+      "canonical": "Gleaming Blight",
+      "displayName": "毁坏微光",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "meleemod",
         "standardmod"
       ]
@@ -4898,6 +5011,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.justice-blades-45b8e48f",
+      "canonical": "Justice Blades",
+      "displayName": "正义刀锋",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.killing-blow-8a85ab69",
       "canonical": "Killing Blow",
       "displayName": "一击必杀",
@@ -4934,17 +5059,6 @@
       "id": "knowledge.acquisition.mod.maiming-strike-1d6dd044",
       "canonical": "Maiming Strike",
       "displayName": "致残突击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "meleemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.mark-of-the-beast-2bc08f22",
-      "canonical": "Mark Of The Beast",
-      "displayName": "兽之印记",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -5261,6 +5375,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.toxic-blight-7ea32448",
+      "canonical": "Toxic Blight",
+      "displayName": "毁坏毒素",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "meleemod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.true-punishment-ca39a2e9",
       "canonical": "True Punishment",
       "displayName": "真实惩罚",
@@ -5330,17 +5456,6 @@
       "id": "knowledge.acquisition.mod.volcanic-edge-a9dc0db4",
       "canonical": "Volcanic Edge",
       "displayName": "爆裂刀刃",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "meleemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.voltaic-strike-6c1fad5f",
-      "canonical": "Voltaic Strike",
-      "displayName": "伏打电能",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -6952,17 +7067,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.crash-course-8569dadc",
-      "canonical": "Crash Course",
-      "displayName": "连续冲击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "primarymod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.critical-precision-5c8d583d",
       "canonical": "Critical Precision",
       "displayName": "致命精准",
@@ -6985,12 +7089,48 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.deadly-sequence-afc2955e",
+      "canonical": "Deadly Sequence",
+      "displayName": "致命数列",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.disarming-purity-a81f1a0a",
+      "canonical": "Disarming Purity",
+      "displayName": "缴械纯净",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.eagle-eye-c8f202c7",
       "canonical": "Eagle Eye",
       "displayName": "鹰眼",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.entropy-burst-4a0db43a",
+      "canonical": "Entropy Burst",
+      "displayName": "熵数爆发",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "primarymod",
         "standardmod"
       ]
@@ -7062,6 +7202,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.gilded-truth-0700a352",
+      "canonical": "Gilded Truth",
+      "displayName": "镀金真相",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.guided-ordnance-84373850",
       "canonical": "Guided Ordnance",
       "displayName": "制导弹药",
@@ -7117,17 +7269,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.high-voltage-99895ec9",
-      "canonical": "High Voltage",
-      "displayName": "高压电流",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "primarymod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.hush-b7fbb8eb",
       "canonical": "Hush",
       "displayName": "消音器",
@@ -7167,6 +7308,18 @@
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.lasting-purity-afadeef5",
+      "canonical": "Lasting Purity",
+      "displayName": "永恒纯净",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "primarymod",
         "standardmod"
       ]
@@ -7249,6 +7402,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.neutralizing-justice-bef5bb96",
+      "canonical": "Neutralizing Justice",
+      "displayName": "抵消正义",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.nightwatch-napalm-da36d4b3",
       "canonical": "Nightwatch Napalm",
       "displayName": "夜巡燃烧弹",
@@ -7307,17 +7472,6 @@
       "id": "knowledge.acquisition.mod.precision-strike-ac50bdd3",
       "canonical": "Precision Strike",
       "displayName": "精准打击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "primarymod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.primed-chamber-66b3c7c4",
-      "canonical": "Primed Chamber",
-      "displayName": "膛室 Prime",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -7414,6 +7568,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.scattered-justice-1b9f6a68",
+      "canonical": "Scattered Justice",
+      "displayName": "散射正义",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.semi-rifle-cannonade-957fe266",
       "canonical": "Semi-Rifle Cannonade",
       "displayName": "半自动步枪炮轰",
@@ -7442,6 +7608,18 @@
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.shattering-justice-5b7cb76b",
+      "canonical": "Shattering Justice",
+      "displayName": "破碎正义",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "primarymod",
         "standardmod"
       ]
@@ -7505,17 +7683,6 @@
       "id": "knowledge.acquisition.mod.split-chamber-428d2572",
       "canonical": "Split Chamber",
       "displayName": "分裂膛室",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "primarymod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.split-flights-271b001c",
-      "canonical": "Split Flights",
-      "displayName": "分裂飞行",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -7662,6 +7829,18 @@
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "primarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.voltage-sequence-3d67994d",
+      "canonical": "Voltage Sequence",
+      "displayName": "电压数列",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "primarymod",
         "standardmod"
       ]
@@ -7898,6 +8077,30 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.entropy-spike-7d48ea8f",
+      "canonical": "Entropy Spike",
+      "displayName": "熵数尖钉",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.eroding-blight-17e00d99",
+      "canonical": "Eroding Blight",
+      "displayName": "侵蚀毁坏",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.expel-corpus-9deecac3",
       "canonical": "Expel Corpus",
       "displayName": "驱逐 科普斯",
@@ -8063,17 +8266,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.jolt-3200dfd8",
-      "canonical": "Jolt",
-      "displayName": "电流震击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "secondarymod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.khra-canticle-8dd2a93c",
       "canonical": "Khra Canticle",
       "displayName": "Khra 颂歌",
@@ -8121,17 +8313,6 @@
       "id": "knowledge.acquisition.mod.magnetic-might-cd394d5f",
       "canonical": "Magnetic Might",
       "displayName": "磁吸巨力",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "secondarymod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.maim-d63e119a",
-      "canonical": "Maim",
-      "displayName": "致残枪弹",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -8250,17 +8431,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.pummel-073630a5",
-      "canonical": "Pummel",
-      "displayName": "强力猛击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "secondarymod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.quickdraw-ed20ac31",
       "canonical": "Quickdraw",
       "displayName": "持续火力",
@@ -8349,6 +8519,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.sequence-burn-a21054eb",
+      "canonical": "Sequence Burn",
+      "displayName": "延烧数列",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.sharpened-bullets-f65ffea3",
       "canonical": "Sharpened Bullets",
       "displayName": "尖锐子弹",
@@ -8388,6 +8570,30 @@
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.stinging-truth-ac918596",
+      "canonical": "Stinging Truth",
+      "displayName": "过激真相",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.stockpiled-blight-ef97a7f3",
+      "canonical": "Stockpiled Blight",
+      "displayName": "积存毁坏",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "secondarymod",
         "standardmod"
       ]
@@ -8437,6 +8643,18 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.mod.toxic-sequence-44920654",
+      "canonical": "Toxic Sequence",
+      "displayName": "毒素数列",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.mod.trick-mag-ab2ea231",
       "canonical": "Trick Mag",
       "displayName": "戏法增幅",
@@ -8454,6 +8672,18 @@
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
+        "secondarymod",
+        "standardmod"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.mod.winds-of-purity-e9c6e04f",
+      "canonical": "Winds Of Purity",
+      "displayName": "纯净之风",
+      "category": "mod",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "syndicatemod",
         "secondarymod",
         "standardmod"
       ]
@@ -8693,17 +8923,6 @@
       "id": "knowledge.acquisition.mod.frigid-blast-f255bf5f",
       "canonical": "Frigid Blast",
       "displayName": "冰冷疾风",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "shotgunmod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.full-contact-524626c5",
-      "canonical": "Full Contact",
-      "displayName": "全面接触",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -8965,17 +9184,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.sweeping-serration-96e0683e",
-      "canonical": "Sweeping Serration",
-      "displayName": "扫荡锯齿",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "shotgunmod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.tactical-pump-fd3bdd2a",
       "canonical": "Tactical Pump",
       "displayName": "战术上膛",
@@ -8994,17 +9202,6 @@
       "reviewStatus": "draft",
       "categoryRefs": [
         "shotgunmod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.astral-twilight-fa2a05dc",
-      "canonical": "Astral Twilight",
-      "displayName": "星界微光",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "stancemod",
         "standardmod"
       ]
     },
@@ -9526,17 +9723,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.tempo-royale-c7dda9a7",
-      "canonical": "Tempo Royale",
-      "displayName": "皇家节奏",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "stancemod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.tranquil-cleave-5daa4ce2",
       "canonical": "Tranquil Cleave",
       "displayName": "秋风落叶",
@@ -9562,17 +9748,6 @@
       "id": "knowledge.acquisition.mod.vengeful-revenant-bd18a642",
       "canonical": "Vengeful Revenant",
       "displayName": "复仇亡灵",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "stancemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.vermillion-storm-a7c39533",
-      "canonical": "Vermillion Storm",
-      "displayName": "朱红暴风",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -9647,31 +9822,9 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.coil-recharge-1d48519c",
-      "canonical": "Coil Recharge",
-      "displayName": "旋爆电击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.continuity-09af84f9",
       "canonical": "Continuity",
       "displayName": "持久力",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.dark-propagation-79d1de20",
-      "canonical": "Dark Propagation",
-      "displayName": "幽暗蔓延",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -9768,17 +9921,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.gastro-ca600b3f",
-      "canonical": "Gastro",
-      "displayName": "剧毒饱嗝",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.health-conversion-576a5e30",
       "canonical": "Health Conversion",
       "displayName": "生命转换",
@@ -9859,17 +10001,6 @@
       "id": "knowledge.acquisition.mod.precision-intensify-32398a05",
       "canonical": "Precision Intensify",
       "displayName": "集中 聚精会神",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.prey-of-dynar-e1a5f89f",
-      "canonical": "Prey Of Dynar",
-      "displayName": "戴拿的猎物",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -9966,17 +10097,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.spectral-spirit-aaa91689",
-      "canonical": "Spectral Spirit",
-      "displayName": "魅影魂灵",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.steel-fiber-2822921f",
       "canonical": "Steel Fiber",
       "displayName": "钢铁纤维",
@@ -10021,17 +10141,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.mod.temporal-artillery-c0d048e4",
-      "canonical": "Temporal Artillery",
-      "displayName": "时协炮击",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.mod.undying-will-3ad36be4",
       "canonical": "Undying Will",
       "displayName": "不朽意志",
@@ -10046,17 +10155,6 @@
       "id": "knowledge.acquisition.mod.vitality-837e5436",
       "canonical": "Vitality",
       "displayName": "生命力",
-      "category": "mod",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "warframemod",
-        "standardmod"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.mod.wrecking-wall-18467616",
-      "canonical": "Wrecking Wall",
-      "displayName": "粉碎壁垒",
       "category": "mod",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -10195,36 +10293,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.archon-amar-s-shard",
-      "canonical": "Archon Amar's Shard",
-      "displayName": "执刑官欺谋狼主的源力石",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.archon-boreal-s-shard",
-      "canonical": "Archon Boreal's Shard",
-      "displayName": "执刑官诡文枭主的源力石",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.archon-nira-s-shard",
-      "canonical": "Archon Nira's Shard",
-      "displayName": "执刑官混沌蛇主的源力石",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.argon-burger-meal",
       "canonical": "Argon Burger Meal",
       "displayName": "氩汉堡套餐",
@@ -10255,16 +10323,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.asterite",
-      "canonical": "Asterite",
-      "displayName": "晶状彗星碎片",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.atomos-incarnon-genesis",
       "canonical": "Atomos Incarnon Genesis",
       "displayName": "原子矿融炮灵化之源",
@@ -10288,16 +10346,6 @@
       "id": "knowledge.acquisition.resource.auroxium-alloy",
       "canonical": "Auroxium Alloy",
       "displayName": "金辉合金",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.aya",
-      "canonical": "Aya",
-      "displayName": "阿耶精华",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -10498,16 +10546,6 @@
       "id": "knowledge.acquisition.resource.braton-incarnon-genesis",
       "canonical": "Braton Incarnon Genesis",
       "displayName": "布莱顿灵化之源",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.breath-of-the-eidolon",
-      "canonical": "Breath Of The Eidolon",
-      "displayName": "夜灵之息",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -10935,36 +10973,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.damaged-necramech-casing",
-      "canonical": "Damaged Necramech Casing",
-      "displayName": "损坏的殁世机甲 外壳",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.damaged-necramech-engine",
-      "canonical": "Damaged Necramech Engine",
-      "displayName": "损坏的殁世机甲 引擎",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.damaged-necramech-pod",
-      "canonical": "Damaged Necramech Pod",
-      "displayName": "损坏的殁世机甲 机舱",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.data-parse-widget",
       "canonical": "Data-Parse Widget",
       "displayName": "数据解析改造器",
@@ -11148,6 +11156,16 @@
       "id": "knowledge.acquisition.resource.eidolon-shard",
       "canonical": "Eidolon Shard",
       "displayName": "夜灵碎片",
+      "category": "resource",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "resource-unresolved"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.resource.elemental-vice",
+      "canonical": "Elemental Vice",
+      "displayName": "元素恶癖",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -11895,29 +11913,9 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.kullervo-s-bane",
-      "canonical": "Kullervo's Bane",
-      "displayName": "Kullervo 的灾刃",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.kunai-incarnon-genesis",
       "canonical": "Kunai Incarnon Genesis",
       "displayName": "苦无灵化之源",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.kuva",
-      "canonical": "Kuva",
-      "displayName": "赤毒",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -12365,16 +12363,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.narmer-isoplast",
-      "canonical": "Narmer Isoplast",
-      "displayName": "合一众塑讯块",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.narrow-spectrum-bait",
       "canonical": "Narrow-Spectrum Bait",
       "displayName": "窄谱鱼饵",
@@ -12465,16 +12453,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.nullstones",
-      "canonical": "Nullstones",
-      "displayName": "虚无碎片",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.nyth",
       "canonical": "Nyth",
       "displayName": "灵息石",
@@ -12535,29 +12513,19 @@
       ]
     },
     {
+      "id": "knowledge.acquisition.resource.omni-forma",
+      "canonical": "Omni Forma",
+      "displayName": "全能 Forma",
+      "category": "resource",
+      "reviewStatus": "draft",
+      "categoryRefs": [
+        "resource-unresolved"
+      ]
+    },
+    {
       "id": "knowledge.acquisition.resource.on-lyne-cd",
       "canonical": "On-Lyne Cd",
       "displayName": "线上时代 CD",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.orokin-animus-matrix",
-      "canonical": "Orokin Animus Matrix",
-      "displayName": "OROKIN 战意矩阵装置",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.orokin-ballistics-matrix",
-      "canonical": "Orokin Ballistics Matrix",
-      "displayName": "OROKIN 弹道矩阵装置",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -12578,16 +12546,6 @@
       "id": "knowledge.acquisition.resource.orokin-monitor",
       "canonical": "Orokin Monitor",
       "displayName": "Orokin 监视机",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.orokin-orientation-matrix",
-      "canonical": "Orokin Orientation Matrix",
-      "displayName": "OROKIN 定向矩阵装置",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -12858,16 +12816,6 @@
       "id": "knowledge.acquisition.resource.relay-strut-component",
       "canonical": "Relay Strut Component",
       "displayName": "中继站结构组件",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.riven-sliver",
-      "canonical": "Riven Sliver",
-      "displayName": "裂罅碎块",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -13148,16 +13096,6 @@
       "id": "knowledge.acquisition.resource.soma-incarnon-genesis",
       "canonical": "Soma Incarnon Genesis",
       "displayName": "月神灵化之源",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
-      "id": "knowledge.acquisition.resource.somatic-fibers",
-      "canonical": "Somatic Fibers",
-      "displayName": "活体纤维",
       "category": "resource",
       "reviewStatus": "draft",
       "categoryRefs": [
@@ -13495,16 +13433,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.titanium",
-      "canonical": "Titanium",
-      "displayName": "钛",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.torid-incarnon-genesis",
       "canonical": "Torid Incarnon Genesis",
       "displayName": "托里德灵化之源",
@@ -13735,16 +13663,6 @@
       ]
     },
     {
-      "id": "knowledge.acquisition.resource.void-traces",
-      "canonical": "Void Traces",
-      "displayName": "虚空光体",
-      "category": "resource",
-      "reviewStatus": "draft",
-      "categoryRefs": [
-        "resource-unresolved"
-      ]
-    },
-    {
       "id": "knowledge.acquisition.resource.voidrig-capsule",
       "canonical": "Voidrig Capsule",
       "displayName": "虚空锐将 机舱",
@@ -13903,7 +13821,398 @@
       "categoryRefs": [
         "resource-unresolved"
       ]
+    },
+    {
+      "id": "knowledge.acquisition.weapon.dual-viciss-f3876a25",
+      "canonical": "Dual Viciss",
+      "displayName": "双子恶行",
+      "category": "weapon",
+      "reviewStatus": "review",
+      "categoryRefs": [
+        "weapon.melee"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.weapon.efv-5-jupiter-e9936423",
+      "canonical": "EFV-5 Jupiter",
+      "displayName": "艾弗旺-5 木星",
+      "category": "weapon",
+      "reviewStatus": "review",
+      "categoryRefs": [
+        "weapon.primary"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.weapon.prisma-grinlok-3b093dd9",
+      "canonical": "Prisma Grinlok",
+      "displayName": "棱晶·葛恩火枪",
+      "category": "weapon",
+      "reviewStatus": "review",
+      "categoryRefs": [
+        "weapon.primary"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.weapon.purgator-1-75a267df",
+      "canonical": "Purgator 1",
+      "displayName": "净化者 1",
+      "category": "weapon",
+      "reviewStatus": "review",
+      "categoryRefs": [
+        "weapon.primary"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.weapon.efv-8-mars-bda55bc3",
+      "canonical": "EFV-8 Mars",
+      "displayName": "艾弗旺-8 火星",
+      "category": "weapon",
+      "reviewStatus": "review",
+      "categoryRefs": [
+        "weapon.secondary"
+      ]
+    },
+    {
+      "id": "knowledge.acquisition.weapon.kompressa-c2ab3921",
+      "canonical": "Kompressa",
+      "displayName": "卡帕压力枪",
+      "category": "weapon",
+      "reviewStatus": "review",
+      "categoryRefs": [
+        "weapon.secondary"
+      ]
     }
   ],
-  "reviewIssues": []
+  "reviewIssues": [
+    {
+      "id": "knowledge.acquisition.arcane.7dbb2a1f",
+      "canonical": "Magus Cadence",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.0a955c2b",
+      "canonical": "Arcane Energize",
+      "category": "arcane",
+      "issue": "enemy-source-not-in-registry"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.4b350745",
+      "canonical": "Exodia Brave",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.3bf4dc31",
+      "canonical": "Exodia Force",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.8c870802",
+      "canonical": "Exodia Hunt",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.e41c6c58",
+      "canonical": "Exodia Might",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.7237f742",
+      "canonical": "Exodia Triumph",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.arcane.62d0587f",
+      "canonical": "Exodia Valor",
+      "category": "arcane",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.aerial-bond-2fc96d1d",
+      "canonical": "Aerial Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.bell-ringer-16032471",
+      "canonical": "Bell Ringer",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.bloodthirst-857273bf",
+      "canonical": "Bloodthirst",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.brute-conditioning-4e6391b7",
+      "canonical": "Brute Conditioning",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.burning-claws-a48db390",
+      "canonical": "Burning Claws",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.chilling-claws-5929abe0",
+      "canonical": "Chilling Claws",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.contagious-bond-bed7b516",
+      "canonical": "Contagious Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.covert-bond-c2d206f7",
+      "canonical": "Covert Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.cull-the-weak-6e185fc5",
+      "canonical": "Cull The Weak",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.disabling-conditioning-c8508043",
+      "canonical": "Disabling Conditioning",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.duplex-bond-8feb0c7a",
+      "canonical": "Duplex Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.immunity-resistance-0cafa60a",
+      "canonical": "Immunity Resistance",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.loyal-retriever-f9a3a09d",
+      "canonical": "Loyal Retriever",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.magnetic-strike-f634e5b0",
+      "canonical": "Magnetic Strike",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.momentous-bond-57457a19",
+      "canonical": "Momentous Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.mystic-bond-a43c19b9",
+      "canonical": "Mystic Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.precision-conditioning-63932876",
+      "canonical": "Precision Conditioning",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.prosperous-retriever-8ceca103",
+      "canonical": "Prosperous Retriever",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.reinforced-bond-92cd2e80",
+      "canonical": "Reinforced Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.resourceful-retriever-141c11f8",
+      "canonical": "Resourceful Retriever",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.restorative-bond-ad00b27e",
+      "canonical": "Restorative Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.seismic-bond-2f6bf02e",
+      "canonical": "Seismic Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.sepsis-claws-190343d1",
+      "canonical": "Sepsis Claws",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.shocking-claws-adada7a5",
+      "canonical": "Shocking Claws",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.tenacious-bond-4dc053f7",
+      "canonical": "Tenacious Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.vicious-bond-7f1cdaa1",
+      "canonical": "Vicious Bond",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.anti-v-586deaec",
+      "canonical": "Anti-V",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.byteryte-e21f7552",
+      "canonical": "Byteryte",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.computer-cop-1c1d6e8c",
+      "canonical": "Computer Cop",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.drive-duster-368449f5",
+      "canonical": "Drive-Duster",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.keep-clean-dbff98a9",
+      "canonical": "Keep-Clean",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.soft-safe-8021c040",
+      "canonical": "Soft Safe",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.trojan-tracker-b6030d20",
+      "canonical": "Trojan Tracker",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.worm-away-9d37ab52",
+      "canonical": "Worm Away",
+      "category": "mod",
+      "issue": "empty-source"
+    },
+    {
+      "id": "knowledge.acquisition.mod.assassin-posture-bba39153",
+      "canonical": "Assassin Posture",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.balanced-posture-dafdaf84",
+      "canonical": "Balanced Posture",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.elusive-posture-fc7b8b58",
+      "canonical": "Elusive Posture",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.frenzied-posture-5d2737c2",
+      "canonical": "Frenzied Posture",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.persistent-posture-fde1f975",
+      "canonical": "Persistent Posture",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.protector-posture-644f1391",
+      "canonical": "Protector Posture",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.fanged-fusillade-915f4622",
+      "canonical": "Fanged Fusillade",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.mod.counterbalance-d6f214cc",
+      "canonical": "Counterbalance",
+      "category": "mod",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.weapon.dual-viciss-f3876a25",
+      "canonical": "Dual Viciss",
+      "category": "weapon",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.weapon.efv-5-jupiter-e9936423",
+      "canonical": "EFV-5 Jupiter",
+      "category": "weapon",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.weapon.purgator-1-75a267df",
+      "canonical": "Purgator 1",
+      "category": "weapon",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.weapon.efv-8-mars-bda55bc3",
+      "canonical": "EFV-8 Mars",
+      "category": "weapon",
+      "issue": "unresolved-method"
+    },
+    {
+      "id": "knowledge.acquisition.weapon.kompressa-c2ab3921",
+      "canonical": "Kompressa",
+      "category": "weapon",
+      "issue": "unresolved-method"
+    }
+  ]
 }

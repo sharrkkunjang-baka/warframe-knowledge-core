@@ -23,6 +23,20 @@ const STANDING_EXCHANGE_SOURCES = Object.freeze({
   'Ostron|Master Teasonai': { npcId: 'npc.master-teasonai', locationId: 'hub.cetus', ranks: { Trusted: { rank: 3, languageKey: '/Lotus/Language/Syndicates/CetusTitle3' } } }
 })
 const OFFICIAL_ZH = require(path.join(__dirname, '..', '.cache', 'official-localization', 'languages.zh.json'))
+const OFFICIAL_SYNDICATES = require(path.join(__dirname, '..', 'cache', 'warframe-export-syndicates.json'))
+const OFFICIAL_SYNDICATE_METHODS = (() => {
+  const methods = new Map()
+  for (const [syndicateId, factionId] of Object.entries({ ArbitersSyndicate: 'faction.arbiters-of-hexis', CephalonSudaSyndicate: 'faction.cephalon-suda', NewLokaSyndicate: 'faction.new-loka', PerrinSyndicate: 'faction.the-perrin-sequence', RedVeilSyndicate: 'faction.red-veil', SteelMeridianSyndicate: 'faction.steel-meridian' })) {
+    for (const offer of OFFICIAL_SYNDICATES[syndicateId]?.favours || []) {
+      const uniqueName = String(offer.storeItem || '').replace('/Lotus/StoreItems/', '/Lotus/')
+      if (!/\/Powersuits\/.+(?:Augment|DisablePassive).*(?:Card|Mod)$/i.test(uniqueName)) continue
+      const list = methods.get(uniqueName) || []
+      list.push({ type: 'syndicate-exchange', factionId, standing: Number(offer.standingCost) || null, requiredLevel: Number.isInteger(offer.requiredLevel) ? offer.requiredLevel : null, requirements: { type: 'standing', factionId, amount: Number(offer.standingCost) || null, rank: Number.isInteger(offer.requiredLevel) ? offer.requiredLevel : null }, reviewStatus: 'approved', provenance: { source: 'DE ExportSyndicates', syndicateId, storeItem: offer.storeItem } })
+      methods.set(uniqueName, list)
+    }
+  }
+  return methods
+})()
 const LOCAL_CROSS_PAGE_METHODS = Object.freeze({
   'Primed Counterbalance': [{ type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.baro-ki-teer', locationId: 'hub.any-relay', currency: [{ currencyId: 'currency.credits', amount: 220000 }, { currencyId: 'currency.orokin-ducats', amount: 300 }], chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'approved', provenance: { source: 'current-wiki-online', pageTitle: 'Primed Counterbalance', pageId: 1597542, revisionId: 2772049, section: 'Acquisition', excerpt: "This mod can be purchased unranked from the Void Trader Baro Ki'Teer for 220,000 and 300." } }],
   'Primed Vigor': [{ type: 'daily-tribute', sourceEntityId: 'acquisition-source.daily-tribute', chance: null, quantity: 1, availability: 'milestone-choice', reviewStatus: 'approved', provenance: { source: 'local-wiki-sqlite', pageTitle: 'Primed Vigor', section: 'Acquisition', excerpt: 'This mod is exclusive to the Daily Tribute system. It will become available at day 200, 400, 600 and 900, until chosen as the Milestone reward.' } }],
@@ -147,9 +161,11 @@ function getWikiSource(item) {
 }
 
 function getSyndicateMethods(item) {
+  const official = OFFICIAL_SYNDICATE_METHODS.get(item.uniqueName) || []
+  if (official.length) return official.map(method => JSON.parse(JSON.stringify(method)))
   const drops = RAW_MOD_DROPS_BY_UNIQUE_NAME.get(item.uniqueName) || item.drops || []
   return [...new Set(drops.map(drop => String(drop.location || '').split(',')[0].trim()).filter(name => SYNDICATE_IDS[name]))]
-    .map(name => ({ type: 'syndicate-exchange', factionId: SYNDICATE_IDS[name], rankRequirement: 'max', currencyType: 'standing', provenance: { source: 'warframe-items', canonical: name } }))
+    .map(name => ({ type: 'syndicate-exchange', factionId: SYNDICATE_IDS[name], rankRequirement: 'max', currencyType: 'standing', reviewStatus: 'draft', provenance: { source: 'warframe-items', canonical: name } }))
 }
 function localCrossPageMethods(item) {
   return (LOCAL_CROSS_PAGE_METHODS[getCanonical(item)] || []).map(method => JSON.parse(JSON.stringify(method)))
@@ -191,7 +207,8 @@ function buildModEntry(item, localized = {}, options = {}) {
   const displayName = getDisplayName(item, localized)
   const variant = getModVariant(item)
   const syndicateMethods = getSyndicateMethods(item)
-  const hasDefaultAcquisition = variant === 'prime' || syndicateMethods.length > 0
+  const crossPageMethods = syndicateMethods.length ? [] : localCrossPageMethods(item)
+  const hasDefaultAcquisition = syndicateMethods.some(method => method.reviewStatus === 'approved') || crossPageMethods.some(method => method.reviewStatus === 'approved')
   const identity = getGeneratedIdentity(item)
   const effectDetails = getEffectDetails(item, localized)
   const entry = {
@@ -225,7 +242,7 @@ function buildModEntry(item, localized = {}, options = {}) {
           variant,
           typeFolder: getTypeFolder(item)
         },
-        wiki: (syndicateMethods.length || localCrossPageMethods(item).length) ? { status: 'complete', methods: [...syndicateMethods, ...localCrossPageMethods(item)], evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] } : null,
+        wiki: (syndicateMethods.length || crossPageMethods.length) ? { status: 'complete', methods: [...syndicateMethods, ...crossPageMethods], evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] } : null,
         officialDrops: officialDropMethods(item)
       },
       manual: {
@@ -233,7 +250,7 @@ function buildModEntry(item, localized = {}, options = {}) {
         methodRefs: [],
         overrides: {},
         reviewStatus: hasDefaultAcquisition ? 'approved' : 'draft',
-        reviewedBy: syndicateMethods.length ? ['official-sync:syndicate-exchange'] : hasDefaultAcquisition ? ['category-default:primemod'] : []
+        reviewedBy: hasDefaultAcquisition ? ['official-sync:structured-acquisition'] : []
       }
     },
     acquisitionStatus: hasDefaultAcquisition ? 'complete' : 'stub',
@@ -241,7 +258,7 @@ function buildModEntry(item, localized = {}, options = {}) {
     gameVersion: options.gameVersion || 'warframe-items',
     updatedAt: options.updatedAt || new Date().toISOString().slice(0, 10),
     reviewStatus: hasDefaultAcquisition ? 'approved' : 'draft',
-    reviewedBy: syndicateMethods.length ? ['official-sync:syndicate-exchange'] : hasDefaultAcquisition ? ['category-default:primemod'] : [],
+    reviewedBy: hasDefaultAcquisition ? ['official-sync:structured-acquisition'] : [],
     tags: ['acquisition', 'mod', `${variant}-mod`, `${getTypeFolder(item)}-mod`],
     generator: {
       name: GENERATOR_NAME,
@@ -273,15 +290,31 @@ function methodKey(method) {
 function mergeGeneratedWiki(generatedWiki, oldWiki) {
   if (!generatedWiki) return oldWiki || null
   if (!oldWiki) return generatedWiki
-  const maintainedMethods = (generatedWiki.methods || []).filter(method =>
-    method.reviewStatus === 'approved'
-    || (method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates'))
-  if (!maintainedMethods.length) return oldWiki
-  const maintainedKeys = new Set(maintainedMethods.map(methodKey))
+  const oldMethods = oldWiki.methods || []
+  const hasAuthoritativeWikiMethods = oldMethods.some(method => ['local-wiki-sqlite', 'DE ExportSyndicates'].includes(method.provenance?.source))
+  const authoritativeSyndicateFactions = new Set(oldMethods.flatMap(method => {
+    if (!['syndicate-exchange', 'syndicate-exchange-group'].includes(method.type) || !['local-wiki-sqlite', 'DE ExportSyndicates'].includes(method.provenance?.source)) return []
+    return method.factionIds || [method.factionId].filter(Boolean)
+  }))
+  const generatedMethods = (generatedWiki.methods || []).filter(method => {
+    if (method.type !== 'syndicate-exchange' || method.provenance?.source !== 'warframe-items') return true
+    return !hasAuthoritativeWikiMethods && !authoritativeSyndicateFactions.has(method.factionId)
+  })
+  if (!generatedMethods.length) return oldWiki
+  const generatedKeys = new Set(generatedMethods.map(methodKey))
+  const replacesLegacyNightwave = generatedMethods.some(method => method.type === 'vendor-or-syndicate-exchange' && method.locationId === 'interface.nightwave')
+  const officialSyndicateFactions = new Set(generatedMethods.filter(method => method.type === 'syndicate-exchange' && method.provenance?.source === 'DE ExportSyndicates').map(method => method.factionId))
+  const replacedByGenerated = method => replacesLegacyNightwave && method.type === 'legacy-nightwave-reward'
+    || method.type === 'syndicate-exchange-group' && (method.factionIds || []).length && (method.factionIds || []).every(id => officialSyndicateFactions.has(id))
   return {
     ...oldWiki,
-    methods: [...maintainedMethods, ...(oldWiki.methods || []).filter(method => !maintainedKeys.has(methodKey(method)))],
-    status: oldWiki.status === 'unresolved' ? 'complete' : oldWiki.status
+    ...generatedWiki,
+    methods: [...generatedMethods, ...oldMethods.filter(method => !generatedKeys.has(methodKey(method)) && !replacedByGenerated(method))],
+    evidence: generatedWiki.evidence?.length ? generatedWiki.evidence : (oldWiki.evidence || []),
+    mechanicsEvidence: Object.keys(generatedWiki.mechanicsEvidence || {}).length ? generatedWiki.mechanicsEvidence : (oldWiki.mechanicsEvidence || {}),
+    unresolvedEntities: generatedWiki.unresolvedEntities?.length ? generatedWiki.unresolvedEntities : (oldWiki.unresolvedEntities || []),
+    wiki: generatedWiki.wiki || oldWiki.wiki || null,
+    status: generatedWiki.status === 'unresolved' ? oldWiki.status : generatedWiki.status
   }
 }
 
@@ -300,7 +333,7 @@ function reconcileOfficialDropsWithWiki(officialDrops, wiki) {
 function mergeModEntry(generatedEntry, oldEntry) {
   if (!oldEntry) return generatedEntry
   const next = { ...oldEntry, ...generatedEntry }
-  for (const key of ['effects', 'tips', 'tipKeywords', 'methodRefs', 'prerequisites', 'reviewStatus', 'reviewedBy', 'acquisitionStatus', 'summary', 'content', 'acquisitionQuery']) {
+  for (const key of ['effects', 'effectDetails', 'tips', 'tipKeywords', 'methodRefs', 'prerequisites', 'reviewStatus', 'reviewedBy', 'acquisitionStatus', 'summary', 'content', 'acquisitionQuery']) {
     if (oldEntry[key] !== undefined) next[key] = oldEntry[key]
   }
   next.subject = { ...(oldEntry.subject || {}), ...generatedEntry.subject }
@@ -319,7 +352,7 @@ function mergeModEntry(generatedEntry, oldEntry) {
     },
     manual: migrateManualModData(oldEntry)
   }
-  const hasGeneratedApprovedRoute = next.modAcquisition.generated.wiki?.methods?.some(method => method.type === 'syndicate-exchange' || method.reviewStatus === 'approved')
+  const hasGeneratedApprovedRoute = next.modAcquisition.generated.wiki?.methods?.some(method => method.reviewStatus === 'approved')
   if (hasGeneratedApprovedRoute && next.modAcquisition.manual.reviewStatus !== 'rejected') {
     next.modAcquisition.manual.reviewStatus = 'approved'
     const generatedReviewer = next.modAcquisition.generated.wiki.methods.some(method => method.provenance?.source === 'local-wiki-sqlite') ? 'local-wiki-cross-page-sync' : 'official-sync:syndicate-exchange'
@@ -327,6 +360,15 @@ function mergeModEntry(generatedEntry, oldEntry) {
     next.acquisitionStatus = 'complete'
     next.reviewStatus = 'approved'
     next.reviewedBy = [...new Set([...(next.reviewedBy || []), generatedReviewer])]
+  } else if (!hasGeneratedApprovedRoute && !(next.modAcquisition.manual.methods || []).some(method => method.reviewStatus === 'approved')) {
+    const inheritedDefaultApproval = (next.reviewedBy || []).some(value => /^category-default:|^official-sync:syndicate-exchange$/.test(value))
+    if (inheritedDefaultApproval) {
+      next.modAcquisition.manual.reviewStatus = 'draft'
+      next.modAcquisition.manual.reviewedBy = (next.modAcquisition.manual.reviewedBy || []).filter(value => !/^category-default:|^official-sync:syndicate-exchange$/.test(value))
+      next.acquisitionStatus = 'stub'
+      next.reviewStatus = 'draft'
+      next.reviewedBy = (next.reviewedBy || []).filter(value => !/^category-default:|^official-sync:syndicate-exchange$/.test(value))
+    }
   }
   return next
 }

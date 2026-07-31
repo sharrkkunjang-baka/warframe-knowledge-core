@@ -331,7 +331,9 @@ function run(argv = process.argv.slice(2)) {
       const mergedValue = structuredClone(oldValue)
       const merged = Array.isArray(mergedValue) ? mergedValue[0] : mergedValue
       let changed = false
-      if (!(merged.effectDetails || []).length && item.effectDetails.length) {
+      const currentEffects = merged.effectDetails || []
+      const hasUnresolvedOfficialTemplate = currentEffects.some(detail => String(detail).includes('官方效果模板包含'))
+      if ((!currentEffects.length || hasUnresolvedOfficialTemplate) && item.effectDetails.length) {
         merged.effectDetails = item.effectDetails
         if (merged.maxRank == null && item.maxRank != null) merged.maxRank = item.maxRank
         changed = true

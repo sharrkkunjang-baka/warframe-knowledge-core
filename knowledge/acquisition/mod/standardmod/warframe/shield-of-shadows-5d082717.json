@@ -40,11 +40,12 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
       "official-sync:syndicate-exchange",
-      "local-wiki-cross-page-sync"
+      "local-wiki-cross-page-sync",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",
@@ -72,32 +73,47 @@
             "pageId": 712548,
             "revisionId": 2676657,
             "pageTimestamp": "2025-04-05T14:57:26Z",
-            "compiledAt": "2026-07-22T18:16:58.920Z",
+            "compiledAt": "2026-07-26T11:07:28.193Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
             {
-              "type": "syndicate-exchange-group",
-              "factionIds": [
-                "faction.the-perrin-sequence",
-                "faction.red-veil"
-              ],
+              "type": "syndicate-exchange",
+              "factionId": "faction.the-perrin-sequence",
               "standing": 25000,
-              "rankRequirement": "max",
-              "chance": null,
-              "quantity": 1,
-              "availability": "guaranteed-when-requirements-met",
-              "reviewStatus": "draft",
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.the-perrin-sequence",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
               "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Shield of Shadows",
-                "pageId": 712548,
-                "revisionId": 2676657,
-                "section": "Acquisition",
-                "excerpt": "Can be acquired by attaining the rank of Partner under The Perrin Sequence , or the rank of Exalted under Red Veil , and spending 25,000 Standing 25,000 to purchase."
+                "source": "DE ExportSyndicates",
+                "syndicateId": "PerrinSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Necro/CloneTheDeadAugmentCard"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.red-veil",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.red-veil",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "RedVeilSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Necro/CloneTheDeadAugmentCard"
               }
             }
           ],
@@ -200,7 +216,8 @@
         "reviewStatus": "approved",
         "reviewedBy": [
           "official-sync:syndicate-exchange",
-          "local-wiki-cross-page-sync"
+          "local-wiki-cross-page-sync",
+          "structured-wiki-acquisition-audit"
         ]
       }
     }

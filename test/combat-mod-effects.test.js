@@ -19,6 +19,23 @@ test('自动解析中文 Mod 满级词条', () => {
   const vile = resolver.resolve('卑劣加速');
   assert.deepEqual(vile.effects.map(e => [e.stat, e.value]), [['fire-rate', 90], ['damage', -15]]);
 });
+test('按武器类别解析元素 Mod 黑话且不混淆金银冰', () => {
+  const gold = resolver.resolve('金冰', { categoryId: 'rifle' });
+  assert.equal(gold.status, 'resolved');
+  assert.equal(gold.canonical, 'Rime Rounds');
+  assert.equal(gold.displayName, '白霜弹头');
+  assert.equal(gold.match, 'contextual-slang');
+  assert.equal(gold.uniqueName, '/Lotus/Upgrades/Mods/Rifle/DualStat/IceEventRifleMod');
+  assert.deepEqual(gold.effects.map(effect => [effect.stat, effect.value]), [['cold', 60], ['status-chance', 60]]);
+  const silver = resolver.resolve('银冰', { categoryId: 'rifle' });
+  assert.equal(silver.canonical, 'Primed Cryo Rounds');
+  assert.equal(silver.effects[0].value, 165);
+  assert.equal(resolver.resolve('金冰').status, 'not-found');
+});
+test('Mod 解析使用启动期索引', () => {
+  assert.ok(resolver.indexSize > 1000);
+  assert.equal(resolver.resolve('/Lotus/Upgrades/Mods/Rifle/DualStat/IceEventRifleMod').canonical, 'Rime Rounds');
+});
 test('镀层 Mod 使用审核动态词条', () => {
   const aptitude = resolver.resolve('镀层步枪才能');
   assert.equal(aptitude.effects[1].stat, 'gun-condition-overload');

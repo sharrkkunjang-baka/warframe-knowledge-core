@@ -699,6 +699,9 @@ function renderBountyRoute(variables) {
 function renderMissionSource(source) {
   if (source?.type === 'quest-repurchase') return renderQuestRoute(source);
   if (source?.type === 'acquisition-source') {
+    const { granumVoidDisplayName } = require('./granum-void');
+    const granumVoid = granumVoidDisplayName(source.sourceId);
+    if (granumVoid) return granumVoid;
     const entry = LOCATION_REGISTRY.get(source.sourceId);
     return entry && entry.displayName ? entry.displayName : null;
   }
@@ -719,6 +722,15 @@ function renderMissionSource(source) {
 function compactMissionSourceGroup(group) {
   if (group?.summary) return `${group.partName || PART_ZH[group.part] || '部件'}：${group.summary}`;
   const sources = group?.sources || [];
+  const acquisitionSources = sources.filter(source => source.type === 'acquisition-source');
+  if (acquisitionSources.length === sources.length && acquisitionSources.length) {
+    const rendered = [...new Set(acquisitionSources.map(renderMissionSource).filter(Boolean))];
+    if (rendered.length === 1) {
+      const { GRANUM_VOID_OBJECTIVE, resolveGranumVoidTier } = require('./granum-void');
+      const objective = acquisitionSources.every(source => resolveGranumVoidTier(source.sourceId)) ? `（${GRANUM_VOID_OBJECTIVE}）` : '';
+      return `${group.partName || PART_ZH[group.part] || '部件'}：${rendered[0]}${objective}`;
+    }
+  }
   const missionNodes = sources.filter(source => source.type === 'mission-node');
   if (missionNodes.length !== sources.length || !missionNodes.length) return null;
   const missionTypes = [...new Set(missionNodes.map(source => LOCATION_REGISTRY.get(source.missionNodeId)?.missionTypeId).filter(Boolean))];
@@ -843,7 +855,7 @@ function renderRoutedAcquisition(frameOrName) {
       : null;
     const structured = variables.exchange || variables.dropChance
       ? renderSpecificMissionRoute(variables)
-      : unifiedRotationText ? [unifiedRotationText] : variables.sources ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
+      : unifiedRotationText ? [unifiedRotationText] : (variables.sourceGroups || variables.sources) ? [renderMissionNodeRoute(variables)].filter(Boolean) : null;
     if (structured?.length) {
       const blueprintCategory = routing.blueprintCategory ?? route.blueprintCategory;
       const blueprint = blueprintCategory === 'market'

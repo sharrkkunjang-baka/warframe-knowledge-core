@@ -277,6 +277,13 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
   const acquisitionsByCanonical = new Map();
   const acquisitionsByUniqueName = new Map();
   const acquisitionById = new Map(acquisitionEntries.map(entry => [entry.id, entry]));
+  const reviewedEffectsByUniqueName = new Map();
+
+  for (const entry of acquisitionEntries) {
+    const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
+    const effects = (entry.effectDetails || []).filter(detail => detail && !String(detail).includes('官方效果模板包含'));
+    if (uniqueName && effects.length) reviewedEffectsByUniqueName.set(uniqueName, effects);
+  }
 
   for (const entry of acquisitionEntries) {
     const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
@@ -373,7 +380,14 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
     if (!officialCategoryMap.has(id)) addCategory(officialCategoryMap, id, id.startsWith('type.') ? 'type' : 'trait', id === 'type.warframe-mod' ? 'Warframe Mod' : 'Augment Mods');
     officialCategoryMap.get(id).count += 1;
   }
-  const mods = [...packageMods, ...supplementalMods].sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
+  const mods = [...packageMods, ...supplementalMods]
+    .map(mod => {
+      const reviewedEffects = reviewedEffectsByUniqueName.get(mod.uniqueName);
+      return reviewedEffects?.length
+        ? { ...mod, maxRankEffectsZh: reviewedEffects, effectEvidenceStatus: 'reviewed-acquisition-effect' }
+        : mod;
+    })
+    .sort((a, b) => a.uniqueName.localeCompare(b.uniqueName));
 
   const officialCategories = [...officialCategoryMap.values()]
     .sort((a, b) => a.id.localeCompare(b.id))

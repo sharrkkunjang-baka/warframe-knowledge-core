@@ -103,7 +103,10 @@ const FRAME_EXCHANGE_METHOD_OVERRIDES = Object.freeze({
   Kullervo: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.acrithis', locationId: 'hub.dormizone', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currency: [{ currencyId: 'currency.kullervos-bane', amount: 42 }], isBuffUseless: true } }],
   Oraxia: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.acrithis', locationId: 'hub.dormizone', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.acrithis', locationId: 'hub.dormizone', currency: [{ currencyId: 'currency.scuttler-husks', amount: 120 }], isBuffUseless: true } }],
   'Sirius & Orion': [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.hunhow', locationId: 'hub.pontis-tower', currency: [{ currencyId: 'currency.emerald-talent', amount: 545 }, { currencyId: 'currency.crimson-talent', amount: 545 }], isBuffUseless: true } }],
-  Baruuk: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' } }],
+  Baruuk: [
+    { type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 2, rankName: '特工', amount: 5000 }, provenance: { source: 'wiki.warframe.com', url: 'https://wiki.warframe.com/w/Baruuk?oldid=2795748', pageTitle: 'Baruuk', revisionId: 2795748, section: 'Acquisition' } },
+    { type: 'vendor-exchange', scope: 'component', variables: { partName: '部件蓝图' }, npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 3, rankName: '刽子手', amount: 5000 }, provenance: { source: 'wiki.warframe.com', url: 'https://wiki.warframe.com/w/Baruuk?oldid=2795748', pageTitle: 'Baruuk', revisionId: 2795748, section: 'Acquisition' } }
+  ],
   Hildryn: [{ type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 2, rankName: 'Agent', amount: 5000 } }],
   Sevagoth: [{ type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', requirements: { type: 'standing', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', amount: 50000 } }],
   Temple: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', currency: [{ currencyId: 'currency.beating-heartstrings', amount: 390 }] } }],
@@ -111,7 +114,7 @@ const FRAME_EXCHANGE_METHOD_OVERRIDES = Object.freeze({
   Voruna: [{ type: 'vendor-exchange', scope: 'all-blueprints', sourceEntityId: 'acquisition-source.archimedean-yonta', locationId: 'hub.zariman', requirements: { type: 'currency', usage: 'exchange', locationId: 'hub.zariman', currency: [{ currencyId: 'currency.lua-thrax-plasm', amount: 350 }], isBuffUseless: true } }]
 })
 const REQUIRE_OVERRIDES = Object.freeze({
-  Baruuk: { type: 'standing', npcId: 'npc.little-duck', rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' },
+  Baruuk: { type: 'none' },
   Citrine: { type: 'currency', npcId: 'npc.otak', locationId: 'hub.necralisk', currency: [{ currencyId: 'currency.belric-crystal-fragment', amount: 1500 }, { currencyId: 'currency.rania-crystal-fragment', amount: 1550 }] },
   Dagath: { type: 'currency', usage: 'crafting', locationId: 'hub.clan-dojo', currency: [{ currencyId: 'currency.vainthorn', amount: 102 }] },
   Dante: { type: 'currency', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.vessel-capillaries', amount: 540 }] },
@@ -150,7 +153,7 @@ const FRAME_VENDOR_ENTITIES = Object.freeze({
   Flare: { npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions' }
 })
 const OFFICIAL_STANDING_RANKS = Object.freeze({
-  'Fresh Slice': '现烤披萨片', 'Hot & Fresh': '新鲜出炉', Researcher: '研究者', Scholar: '学者', Agent: '代理人'
+  'Fresh Slice': '现烤披萨片', 'Hot & Fresh': '新鲜出炉', Researcher: '研究者', Scholar: '学者', Agent: '特工', Hand: '刽子手'
 })
 function standingRequirement(vendor, amount, rank, rankCanonical) {
   return normalizeRequirements({ type: 'standing', npcId: vendor.npcId, locationId: vendor.locationId, amount, rank, rankName: OFFICIAL_STANDING_RANKS[rankCanonical] || null })
@@ -282,7 +285,7 @@ function buildRouting(frame, componentCategory, page) {
     blueprintVariables: blueprint.variables || {},
     blueprintSource: blueprint.source,
     requirements: normalizeRequirements(acquisitionRequirement(frame, componentCategory, variables)),
-    methods: [...frameWikiExchangeMethods(page), ...(FRAME_EXCHANGE_METHOD_OVERRIDES[frame.name] || []).map(method => ({ ...method, reviewStatus: 'approved', provenance: { source: 'audited-current-wiki-acquisition', pageTitle: page?.title || frame.name, section: 'Acquisition' } }))]
+    methods: [...frameWikiExchangeMethods(page), ...(FRAME_EXCHANGE_METHOD_OVERRIDES[frame.name] || []).map(method => ({ ...method, reviewStatus: 'approved', provenance: method.provenance || { source: 'audited-current-wiki-acquisition', pageTitle: page?.title || frame.name, section: 'Acquisition' } }))]
   }
 }
 function applyTemplate(template, variables) {

@@ -83,7 +83,8 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "compiled-simaris-weapon-sources",
-            "sourceCanonical": "Cephalon Simaris, Complete The New War"
+            "sourceCanonical": "Cephalon Simaris, Complete The New War",
+            "amountSource": "local-wiki-sqlite"
           },
           "variables": {},
           "questId": "quest.the-new-war"
@@ -96,15 +97,39 @@
           "requirements": {
             "type": "standing",
             "npcId": "npc.cephalon-simaris",
-            "locationId": "hub.any-relay"
+            "locationId": "hub.any-relay",
+            "amount": 100000
           },
           "scope": "item",
           "partRefs": [],
           "reviewStatus": "approved",
           "provenance": {
             "source": "compiled-simaris-weapon-sources",
-            "sourceCanonical": "Cephalon Simaris, Complete The New War"
+            "sourceCanonical": "Cephalon Simaris, Complete The New War",
+            "amountSource": "local-wiki-sqlite"
           },
+          "variables": {}
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "item",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "sourceCanonical": "Cephalon Simaris",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Nataruk?oldid=2794644",
+            "pageTitle": "Nataruk",
+            "revisionId": 2794644
+          },
+          "partRefs": [],
           "variables": {}
         }
       ]
@@ -152,7 +177,8 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "compiled-simaris-weapon-sources",
-              "sourceCanonical": "Cephalon Simaris, Complete The New War"
+              "sourceCanonical": "Cephalon Simaris, Complete The New War",
+              "amountSource": "local-wiki-sqlite"
             },
             "variables": {},
             "questId": "quest.the-new-war"
@@ -165,15 +191,39 @@
             "requirements": {
               "type": "standing",
               "npcId": "npc.cephalon-simaris",
-              "locationId": "hub.any-relay"
+              "locationId": "hub.any-relay",
+              "amount": 100000
             },
             "scope": "item",
             "partRefs": [],
             "reviewStatus": "approved",
             "provenance": {
               "source": "compiled-simaris-weapon-sources",
-              "sourceCanonical": "Cephalon Simaris, Complete The New War"
+              "sourceCanonical": "Cephalon Simaris, Complete The New War",
+              "amountSource": "local-wiki-sqlite"
             },
+            "variables": {}
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "item",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Cephalon Simaris",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Nataruk?oldid=2794644",
+              "pageTitle": "Nataruk",
+              "revisionId": 2794644
+            },
+            "partRefs": [],
             "variables": {}
           }
         ],
@@ -200,7 +250,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

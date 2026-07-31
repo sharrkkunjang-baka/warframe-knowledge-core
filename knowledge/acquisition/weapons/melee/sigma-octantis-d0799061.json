@@ -46,7 +46,8 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "official-drop"
+      "official-drop",
+      "crafting"
     ],
     "prime": {
       "kind": "standard",
@@ -61,12 +62,37 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Sigma_&_Octantis?oldid=2724064",
             "pageTitle": "Sigma & Octantis",
             "revisionId": 2724064
           },
           "partRefs": [],
           "variables": {},
           "sourceEntityId": "acquisition-source.daily-tribute"
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "sourceCanonical": "Cephalon Simaris",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Sigma_&_Octantis?oldid=2724064",
+            "pageTitle": "Sigma & Octantis",
+            "revisionId": 2724064
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+          ],
+          "variables": {}
         }
       ]
     },
@@ -91,12 +117,88 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Sigma_&_Octantis?oldid=2724064",
               "pageTitle": "Sigma & Octantis",
               "revisionId": 2724064
             },
             "partRefs": [],
             "variables": {},
             "sourceEntityId": "acquisition-source.daily-tribute"
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "blueprint",
+        "category": "official-drop",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+        ],
+        "variables": {
+          "weaponName": "西格玛 & 南极座",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Cephalon Simaris",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Sigma_&_Octantis?oldid=2724064",
+              "pageTitle": "Sigma & Octantis",
+              "revisionId": 2724064
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+            ],
+            "variables": {}
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "scope": "components",
+        "category": "crafting",
+        "partRefs": [
+          "/Lotus/Types/Items/MiscItems/Morphic",
+          "/Lotus/Types/Items/MiscItems/Circuits",
+          "/Lotus/Types/Items/MiscItems/PolymerBundle",
+          "/Lotus/Types/Items/MiscItems/Salvage"
+        ],
+        "variables": {
+          "productName": "西格玛 & 南极座"
+        },
+        "requirements": {
+          "type": "item",
+          "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+        },
+        "methods": [
+          {
+            "type": "recipe",
+            "scope": "components",
+            "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint",
+            "requirements": {
+              "type": "item",
+              "recipeId": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "DE ExportRecipes",
+              "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SundialSwordBoardBlueprint"
+            }
           }
         ],
         "status": "complete"
@@ -173,7 +275,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"
@@ -184,8 +286,8 @@
     "auditedComplete": true,
     "description": true,
     "directItem": true,
-    "blueprint": false,
+    "blueprint": true,
     "components": [],
-    "crafting": false
+    "crafting": true
   }
 }

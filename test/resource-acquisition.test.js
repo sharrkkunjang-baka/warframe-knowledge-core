@@ -155,6 +155,9 @@ test('奥布山谷全量已发布资源按族结构化且仅保留两项证据�
     const methods = core.getResourceAcquisition(canonical).structuredMethods
     assert.ok(methods.some(method => method.type === 'bounty-reward' && method.npcId === 'npc.eudico'), canonical)
     assert.ok(methods.some(method => method.type === 'vendor-purchase' && method.npcId === 'npc.ticker'), canonical)
+    const bountyLines = methods.filter(method => method.type === 'bounty-reward').map(method => core.renderStructuredMethod(method))
+    assert.ok(bountyLines.every(line => /完成奥布山谷.*赏金/.test(line)), canonical)
+    assert.ok(bountyLines.every(line => !/完成尤迪科/.test(line)), canonical)
   }
   for (const canonical of ['Gyromag Systems', 'Atmo Systems', 'Repeller Systems']) {
     const methods = core.getResourceAcquisition(canonical).structuredMethods
@@ -224,18 +227,51 @@ test('全量已发布资源最终文本无原始字段和混合 lore 泄漏', ()
   assert.deepEqual(failures, [])
 })
 
-test('Stela 只发布实体化赏金来源并把数量概率保持在同一行', () => {
+test('Stela 按用户确认文案只显示衰退室、赏金奖励和低语刺杀', () => {
   const core = coreModule.createKnowledgeCore({ approvedOnly: false })
   const result = core.getAcquisition('虚空石块')
   assert.equal(result.entry.reviewStatus, 'approved')
   assert.equal(result.entry.subject.canonical, 'Stela')
-  assert.deepEqual(result.structuredMethods.map(method => [method.type, method.sourceDisplayName, method.quantity, method.chance]), [
-    ['mission-reward', '阿尔布雷希特的实验室 115-120 级赏金 C轮', 15, 0.084],
-    ['mission-reward', '阿尔布雷希特的实验室 95-100 级赏金 C轮', 15, 0.0877]
+  assert.deepEqual(result.structuredMethods.map(method => [method.type, method.sourceDisplayName]), [
+    ['mission-reward', '赏金奖励'],
+    ['mission-reward', '低语刺杀']
   ])
-  assert.match(result.description, /115-120 级赏金 C轮奖励中获得 15个，概率8\.4%/)
-  assert.match(result.description, /95-100 级赏金 C轮奖励中获得 15个，概率8\.77%/)
-  assert.doesNotMatch(result.description, /\(Bounty\)|8\.4% \(8\.4%\)|^15$|^1\.26$|^1\.3155$/m)
+  assert.equal(result.description, '说明：衰退室获取\n\n虚空石块获取方式：赏金奖励、低语刺杀')
+  assert.doesNotMatch(result.description, /阿尔布雷希特|实验室|[ABC]轮|Rotation|概率|\d+(?:\.\d+)?%|15个/i)
+})
+
+test('三位执刑官与颜色别名统一命中对应源力石实体和当前 Wiki', () => {
+  const core = coreModule.createKnowledgeCore({ approvedOnly: false })
+  const groups = [
+    {
+      queries: ['执刑官欺谋狼主的源力石', '红色源力石', '红石头', 'Crimson Archon Shard'],
+      canonical: 'Crimson Archon Shard', displayName: '深红执刑官源力石',
+      uniqueName: '/Lotus/Types/Gameplay/NarmerSorties/ArchonCrystalAmar',
+      wikiUrl: 'https://wiki.warframe.com/w/Crimson_Archon_Shard'
+    },
+    {
+      queries: ['执刑官诡文枭主的源力石', '蓝色源力石', '蓝石头', 'Azure Archon Shard'],
+      canonical: 'Azure Archon Shard', displayName: '蔚蓝执刑官源力石',
+      uniqueName: '/Lotus/Types/Gameplay/NarmerSorties/ArchonCrystalBoreal',
+      wikiUrl: 'https://wiki.warframe.com/w/Azure_Archon_Shard'
+    },
+    {
+      queries: ['执刑官混沌蛇主的源力石', '黄色源力石', '黄石头', 'Amber Archon Shard'],
+      canonical: 'Amber Archon Shard', displayName: '琥珀执刑官源力石',
+      uniqueName: '/Lotus/Types/Gameplay/NarmerSorties/ArchonCrystalNira',
+      wikiUrl: 'https://wiki.warframe.com/w/Amber_Archon_Shard'
+    }
+  ]
+  for (const group of groups) for (const query of group.queries) {
+    const card = core.getAcquisitionCard(query)
+    assert.deepEqual(card.identity, {
+      canonical: group.canonical,
+      displayName: group.displayName,
+      uniqueName: group.uniqueName
+    }, query)
+    assert.equal(card.assetIdentity, null, query)
+    assert.equal(card.wikiUrl, group.wikiUrl, query)
+  }
 })
 
 test('活体纤维用权威节点数据编译具体掉落且隔离原始图表', () => {

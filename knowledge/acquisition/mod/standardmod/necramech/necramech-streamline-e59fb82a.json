@@ -39,7 +39,7 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-26",
     "reviewStatus": "draft",
     "reviewedBy": [],
     "tags": [
@@ -68,10 +68,10 @@
             "pageId": 1527537,
             "revisionId": 2686061,
             "pageTimestamp": "2025-06-22T05:25:01Z",
-            "compiledAt": "2026-07-17T01:48:34.724Z",
+            "compiledAt": "2026-07-26T11:07:24.061Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
@@ -85,9 +85,7 @@
                   "nodeCanonical": "Cambion Drift",
                   "nodeEntityId": "landscape.cambion-drift",
                   "nodeDisplayName": "魔胎之境",
-                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults",
-                  "planetEntityId": "planet.deimos",
-                  "planetDisplayName": "火卫二"
+                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
                 }
               ],
               "availability": "unknown",
@@ -113,9 +111,7 @@
                   "nodeCanonical": "Cambion Drift",
                   "nodeEntityId": "landscape.cambion-drift",
                   "nodeDisplayName": "魔胎之境",
-                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults",
-                  "planetEntityId": "planet.deimos",
-                  "planetDisplayName": "火卫二"
+                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
                 }
               ],
               "availability": "unknown",
@@ -141,9 +137,7 @@
                   "nodeCanonical": "Cambion Drift",
                   "nodeEntityId": "landscape.cambion-drift",
                   "nodeDisplayName": "魔胎之境",
-                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults",
-                  "planetEntityId": "planet.deimos",
-                  "planetDisplayName": "火卫二"
+                  "planetCanonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
                 }
               ],
               "availability": "unknown",
@@ -167,9 +161,10 @@
               "nodes": [
                 {
                   "nodeCanonical": "Cambion Drift / Necralisk",
-                  "planetCanonical": "Deimos ; talk to Mother",
+                  "planetCanonical": "Deimos",
                   "planetEntityId": "planet.deimos",
-                  "planetDisplayName": "火卫二"
+                  "planetDisplayName": "火卫二",
+                  "npcId": "npc.mother"
                 }
               ],
               "availability": "unknown",
@@ -183,7 +178,8 @@
                 "excerpt": "Isolation Vault Bounty | Isolation Vault Lvl 50-60 | A | 4% | 1 | 0.04 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
               },
               "missionTypeCanonical": "Isolation Vault Bounty",
-              "sourceCanonical": "Isolation Vault Lvl 50-60"
+              "sourceCanonical": "Isolation Vault Lvl 50-60",
+              "npcId": "npc.mother"
             },
             {
               "type": "mission-reward",
@@ -193,9 +189,10 @@
               "nodes": [
                 {
                   "nodeCanonical": "Cambion Drift / Necralisk",
-                  "planetCanonical": "Deimos ; talk to Mother",
+                  "planetCanonical": "Deimos",
                   "planetEntityId": "planet.deimos",
-                  "planetDisplayName": "火卫二"
+                  "planetDisplayName": "火卫二",
+                  "npcId": "npc.mother"
                 }
               ],
               "availability": "unknown",
@@ -209,7 +206,8 @@
                 "excerpt": "Isolation Vault Bounty | Isolation Vault Lvl 50-60 | B | 4% | 1 | 0.04 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
               },
               "missionTypeCanonical": "Isolation Vault Bounty",
-              "sourceCanonical": "Isolation Vault Lvl 50-60"
+              "sourceCanonical": "Isolation Vault Lvl 50-60",
+              "npcId": "npc.mother"
             },
             {
               "type": "mission-reward",
@@ -219,9 +217,10 @@
               "nodes": [
                 {
                   "nodeCanonical": "Cambion Drift / Necralisk",
-                  "planetCanonical": "Deimos ; talk to Mother",
+                  "planetCanonical": "Deimos",
                   "planetEntityId": "planet.deimos",
-                  "planetDisplayName": "火卫二"
+                  "planetDisplayName": "火卫二",
+                  "npcId": "npc.mother"
                 }
               ],
               "availability": "unknown",
@@ -235,7 +234,8 @@
                 "excerpt": "Isolation Vault Bounty | Isolation Vault Lvl 50-60 | C | 4% | 1 | 0.04 Cambion Drift / Necralisk , Deimos ; talk to Mother | | Cambion Drift / Necralisk , Deimos ; talk to Mother"
               },
               "missionTypeCanonical": "Isolation Vault Bounty",
-              "sourceCanonical": "Isolation Vault Lvl 50-60"
+              "sourceCanonical": "Isolation Vault Lvl 50-60",
+              "npcId": "npc.mother"
             },
             {
               "type": "enemy-drop",
@@ -305,6 +305,10 @@
             {
               "kind": "missionType",
               "canonical": "Arcana Isolation Vault Bounty"
+            },
+            {
+              "kind": "location",
+              "canonical": "Deimos ; must complete initial Isolation Vault Bounty to unlock access to Arcana Vaults from Mother outside of Vaults"
             },
             {
               "kind": "missionType",

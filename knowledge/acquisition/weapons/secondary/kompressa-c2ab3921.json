@@ -47,6 +47,7 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
+      "unresolved",
       "crafting"
     ],
     "prime": {
@@ -64,6 +65,7 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Kompressa?oldid=2760940",
             "pageTitle": "Kompressa",
             "revisionId": 2760940
           },
@@ -71,50 +73,6 @@
             "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
           ],
           "variables": {},
-          "npcId": "npc.roky"
-        },
-        {
-          "type": "syndicate-exchange",
-          "scope": "component",
-          "requirements": {
-            "type": "standing",
-            "rank": 5,
-            "rankName": "逻辑"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "local-wiki-sqlite",
-            "pageTitle": "Kompressa",
-            "revisionId": 2760940
-          },
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
-          ],
-          "variables": {
-            "partName": "卡帕压力枪 枪管"
-          },
-          "npcId": "npc.roky"
-        },
-        {
-          "type": "syndicate-exchange",
-          "scope": "component",
-          "requirements": {
-            "type": "standing",
-            "rank": 5,
-            "rankName": "逻辑"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "local-wiki-sqlite",
-            "pageTitle": "Kompressa",
-            "revisionId": 2760940
-          },
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
-          ],
-          "variables": {
-            "partName": "卡帕压力枪 枪机"
-          },
           "npcId": "npc.roky"
         }
       ]
@@ -145,6 +103,7 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Kompressa?oldid=2760940",
               "pageTitle": "Kompressa",
               "revisionId": 2760940
             },
@@ -159,7 +118,7 @@
       },
       {
         "scope": "component",
-        "category": "official-drop",
+        "category": "unresolved",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
         ],
@@ -169,35 +128,12 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [
-          {
-            "type": "syndicate-exchange",
-            "scope": "component",
-            "requirements": {
-              "type": "standing",
-              "rank": 5,
-              "rankName": "逻辑"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "local-wiki-sqlite",
-              "pageTitle": "Kompressa",
-              "revisionId": 2760940
-            },
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
-            ],
-            "variables": {
-              "partName": "卡帕压力枪 枪管"
-            },
-            "npcId": "npc.roky"
-          }
-        ],
-        "status": "complete"
+        "methods": [],
+        "status": "review-required"
       },
       {
         "scope": "component",
-        "category": "official-drop",
+        "category": "unresolved",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
         ],
@@ -207,31 +143,8 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [
-          {
-            "type": "syndicate-exchange",
-            "scope": "component",
-            "requirements": {
-              "type": "standing",
-              "rank": 5,
-              "rankName": "逻辑"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "local-wiki-sqlite",
-              "pageTitle": "Kompressa",
-              "revisionId": 2760940
-            },
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
-            ],
-            "variables": {
-              "partName": "卡帕压力枪 枪机"
-            },
-            "npcId": "npc.roky"
-          }
-        ],
-        "status": "complete"
+        "methods": [],
+        "status": "review-required"
       },
       {
         "scope": "components",
@@ -330,26 +243,24 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
-  "reviewStatus": "approved",
-  "reviewedBy": [
-    "official-evidence-closure"
-  ],
-  "status": "complete",
+  "updatedAt": "2026-07-28",
+  "reviewStatus": "review",
+  "reviewedBy": [],
+  "status": "review-required",
   "coverage": {
-    "autoComplete": true,
-    "auditedComplete": true,
+    "autoComplete": false,
+    "auditedComplete": false,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel",
-        "complete": true
+        "complete": false
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver",
-        "complete": true
+        "complete": false
       }
     ],
     "crafting": true

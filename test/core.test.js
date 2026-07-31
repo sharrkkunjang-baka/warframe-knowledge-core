@@ -7,6 +7,23 @@ const { createKnowledgeCore } = require('../src');
 const core = createKnowledgeCore();
 const reviewCore = createKnowledgeCore({ approvedOnly: false });
 
+test('显赫简称按意图区分战甲获取与技能武器配卡身份', () => {
+  const cases = [
+    { aliases: ['瓦喵显赫', 'Valkyr显赫', 'Valkyr之爪'], frame: 'Valkyr', weapon: 'Valkyr Talons', prime: 'Valkyr Prime Talons' },
+    { aliases: ['猫甲显赫', 'Khora显赫'], frame: 'Khora', weapon: 'Whipclaw', prime: 'Whipclaw Prime' },
+    { aliases: ['土爹显赫', '土显赫', 'Atlas显赫'], frame: 'Atlas', weapon: 'Landslide Fists', prime: 'Landslide Fists Prime' },
+    { aliases: ['玻璃显赫', 'Gara显赫'], frame: 'Gara', weapon: 'Shattered Lash', prime: 'Shattered Lash Prime' }
+  ];
+  for (const item of cases) for (const alias of item.aliases) {
+    const resolved = core.resolveExaltedWeaponIntent(alias, { intent: 'build' });
+    assert.equal(resolved.frameCanonical, item.frame, alias);
+    assert.equal(resolved.identity.canonical, item.weapon, alias);
+    assert.deepEqual(resolved.family.members.map(member => member.canonical), [item.weapon, item.prime], alias);
+  }
+  assert.equal(core.resolveExaltedWeaponIntent('Valkyr Prime 之爪').identity.canonical, 'Valkyr Prime Talons');
+  assert.equal(core.resolveExaltedWeaponIntent('完全无关武器'), null);
+});
+
 test('精确社区别名统一解析', () => {
   assert.equal(core.resolveName('蛆爹').canonical, 'Nidus');
   assert.equal(core.resolveName('花甲').canonical, 'Wisp');
@@ -21,6 +38,18 @@ test('加权拼音支持缺失中间音节', () => {
 test('知识检索区分事实与加工知识', () => {
   assert.equal(core.searchFacts('增幅器')[0].id, 'fact.amp.numbering');
   assert.equal(core.searchKnowledge('九重天')[0].id, 'knowledge.railjack.outpost-carry');
+});
+
+test('火续问题命中完整机制事实并保留社区证据等级', () => {
+  const fact = core.searchFacts('火续')[0];
+  assert.equal(fact.id, 'fact.status.heat-mechanics');
+  assert.equal(fact.mechanics.damage.firstTickDelaySeconds, 1);
+  assert.equal(fact.mechanics.damage.stackCap, null);
+  assert.deepEqual(fact.mechanics.armor.stripStages, [0.15, 0.3, 0.4, 0.5]);
+  assert.equal(fact.mechanics.inheritance.termStatus, 'community-created');
+  const context = core.buildWikiContext('副手先上火后近战的派系伤害是否继承');
+  assert.match(context.text, /第一层火焰会锁定其火焰伤害百分比与派系伤害修正/);
+  assert.match(context.text, /社区术语/);
 });
 
 test('获取类知识进入 Wiki 上下文时使用效果与获取描述且禁止 undefined', () => {
@@ -284,6 +313,13 @@ test('统一获取卡片按来源分区并使用审核变种家族', () => {
   assert.equal(braton.materials.length, 3);
   const magnumForce = core.getAcquisitionCard('重装火力');
   assert.deepEqual(magnumForce.detailOptions, [{ id: 'gameplay.deimos-orokin-vault', title: '火卫二奥罗金宝库', query: '4k' }]);
+  const highVoltage = core.getAcquisitionCard('高压电流');
+  assert.deepEqual(highVoltage.sections.acquisition, ['在阋神星/Naeglar的清巢任务中找到 3 个储藏箱概率获得']);
+  assert.doesNotMatch(highVoltage.sections.acquisition.join('\n'), /Eris|Candiru|Lepis|Psoro|Viver|Caches|轮次 C|C轮/);
+  const highVoltageMethods = core.getAcquisition('高压电流').structuredMethods.filter(method => method.type === 'mission-reward');
+  assert.equal(highVoltageMethods.length, 1);
+  assert.equal(highVoltageMethods[0].missionTypeId, 'mission-type.hive');
+  assert.equal(highVoltageMethods[0].variables.objective, '找到 3 个储藏箱');
   const augurAccord = core.getAcquisitionCard('预言 协约');
   assert.deepEqual(augurAccord.sections.acquisition, ['从夜灵平野赏金任务轮换概率获得']);
   assert.deepEqual(augurAccord.detailOptions, [{ id: 'gameplay.cetus-bounty-set-mods', title: '希图斯赏金', query: '希图斯赏金' }]);

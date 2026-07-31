@@ -127,5 +127,67 @@
       "科研",
       "脉冲"
     ]
+  },
+  {
+    "id": "fact.status.heat-mechanics",
+    "kind": "fact",
+    "title": "火焰状态完整机制",
+    "aliases": [
+      "火焰状态",
+      "火焰触发",
+      "火续",
+      "火焰继承",
+      "火焰削甲",
+      "火焰扒皮",
+      "火焰跳伤",
+      "火焰第一跳",
+      "先上火",
+      "副手上火",
+      "近战火焰继承"
+    ],
+    "content": "火焰状态每层的基础每跳伤害为0.5×受基础伤害加成后的基础伤害×火焰伤害修正×派系伤害修正×状态伤害修正×暴击及其他额外乘数；派系伤害还会进入受修正的基础伤害，因此武器火焰状态公式中通常生效两次。首次火焰触发当下不跳伤，第一跳在1秒后，之后每秒一次；基础持续6秒。连续施加火焰会增加层数、把当前所有火焰层合并为同一次每秒跳伤，并刷新整组火焰的持续时间；火焰层数不设10层上限。社区所称“火焰继承”表示：目标身上的第一层火焰会锁定其火焰伤害百分比与派系伤害修正，后续其他武器或技能增加的火焰层沿用这两个首层修正；状态伤害修正属于例外，按产生该层火焰的来源自身计算。因而副手若先用对应派系伤害和火焰伤害触发第一层，后续近战火焰会继承副手锁定的这两项；近战自身再装备相同派系伤害不会替换已锁定的首层修正，但仍需结合该近战火焰自身的基础伤害、状态伤害修正和暴击等计算新增伤害。火焰削甲与跳伤是两条独立时间线：首次触发后每0.5秒依次削除15%、30%、40%、50%护甲，2秒达到上限；追加火焰不会加快削甲。火焰结束后每1.5秒逐步从50%回到40%、30%、15%、0%，共6秒恢复。状态持续时间会同比缩放削甲和回甲间隔；例如+100%状态持续时间时，每1秒推进一档削甲，4秒达到50%。火焰削甲与腐蚀状态等其他护甲削减按乘法叠加。该条目中的“火焰继承”是社区术语，当前 Wiki 同时标注其章节仍在研究完善，不属于DE官方术语；回答与计算必须保留这个证据等级。",
+    "mechanics": {
+      "damage": {
+        "coefficient": 0.5,
+        "firstTickDelaySeconds": 1,
+        "tickIntervalSeconds": 1,
+        "baseDurationSeconds": 6,
+        "stackCap": null,
+        "refreshesWholeStack": true,
+        "consolidatesTicks": true
+      },
+      "inheritance": {
+        "termStatus": "community-created",
+        "chapterStatus": "active-research",
+        "lockedFromFirstProc": ["heatDamageBonus", "factionDamageBonus"],
+        "procLocal": ["moddedBaseDamage", "statusDamageBonus", "criticalMultiplier", "additionalMultipliers"]
+      },
+      "armor": {
+        "rampIntervalSeconds": 0.5,
+        "stripStages": [0.15, 0.3, 0.4, 0.5],
+        "restoreIntervalSeconds": 1.5,
+        "restoreStages": [0.4, 0.3, 0.15, 0],
+        "statusDurationScalesIntervals": true,
+        "additionalHeatProcsAccelerateRamp": false,
+        "combinationWithOtherArmorReduction": "multiplicative"
+      }
+    },
+    "sources": [
+      {
+        "url": "https://wiki.warframe.com/w/Damage/Heat_Damage",
+        "label": "Warframe Wiki - Heat Damage",
+        "retrievedAt": "2026-07-27"
+      },
+      {
+        "url": "https://wiki.warframe.com/w/Status_Effect",
+        "label": "Warframe Wiki - Status Effect",
+        "retrievedAt": "2026-07-27"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-07-27",
+    "reviewStatus": "approved",
+    "reviewedBy": ["12407"],
+    "tags": ["heat", "status", "damage-over-time", "armor-strip", "heat-inherit", "calculation"]
   }
 ]

@@ -40,11 +40,12 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
       "official-sync:syndicate-exchange",
-      "local-wiki-cross-page-sync"
+      "local-wiki-cross-page-sync",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",
@@ -70,34 +71,49 @@
           "wiki": {
             "pageTitle": "Loyal Merulina",
             "pageId": 1583857,
-            "revisionId": 2699529,
-            "pageTimestamp": "2025-10-16T19:18:45Z",
-            "compiledAt": "2026-07-22T18:16:58.523Z",
+            "revisionId": 2795111,
+            "pageTimestamp": "2026-07-23T03:01:00Z",
+            "compiledAt": "2026-07-26T11:07:27.752Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
             {
-              "type": "syndicate-exchange-group",
-              "factionIds": [
-                "faction.cephalon-suda",
-                "faction.new-loka"
-              ],
+              "type": "syndicate-exchange",
+              "factionId": "faction.cephalon-suda",
               "standing": 25000,
-              "rankRequirement": "max",
-              "chance": null,
-              "quantity": 1,
-              "availability": "guaranteed-when-requirements-met",
-              "reviewStatus": "draft",
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.cephalon-suda",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
               "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Loyal Merulina",
-                "pageId": 1583857,
-                "revisionId": 2699529,
-                "section": "Acquisition",
-                "excerpt": "This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of Flawless under the New Loka , and spending 25,000 Standing 25,000 to purchase."
+                "source": "DE ExportSyndicates",
+                "syndicateId": "CephalonSudaSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Yareli/YareliBoardAugmentTwoCard"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.new-loka",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.new-loka",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "NewLokaSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Yareli/YareliBoardAugmentTwoCard"
               }
             }
           ],
@@ -109,7 +125,7 @@
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Loyal Merulina",
                 "pageId": 1583857,
-                "revisionId": 2699529,
+                "revisionId": 2795111,
                 "section": "Acquisition",
                 "excerpt": "This mod can be acquired by attaining the rank of Genius under Cephalon Suda , or the rank of Flawless under the New Loka , and spending 25,000 Standing 25,000 to purchase."
               }
@@ -124,7 +140,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Cannot be equipped alongside Merulina Guardian ."
                 }
@@ -135,7 +151,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Yareli still receives the Damage Redirection as if she was still riding Merulina."
                 }
@@ -146,7 +162,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Merulina's armor no longer affects the redirected damage it takes. This includes armor gained from Azure Archon Shards ."
                 }
@@ -157,7 +173,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Yareli will lose her immunity to stagger status effects from enemy targets (such as Knockdown); however she will still be immune from self-inflicted stagger by weapons she uses. It's unclear if this is intentional or not, as riding Merulina normally provides complete status immunity, including knockdown immunity from enemies."
                 }
@@ -168,7 +184,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Loyal Merulina's Sea Snares inherits the duration, range, damage per second, damage increase per second, and damage vulnerability stats of Yareli's own Sea Snares. This is still the case even if Yareli's Sea Snares ability is overridden by another Helminth ability."
                 }
@@ -179,7 +195,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Sea Snare cooldown is affected by Ability Efficiency , reducing the cooldown to a minimum of 0.5 seconds at 175% efficiency."
                 }
@@ -190,7 +206,29 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
+                  "section": "Notes",
+                  "excerpt": "Ability Snap Shots Ability Efficiency on cast"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Loyal Merulina",
+                  "pageId": 1583857,
+                  "revisionId": 2795111,
+                  "section": "Notes",
+                  "excerpt": "Using Arcane Sculptor activated by Aquablades can provide max 175% efficiency"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Loyal Merulina",
+                  "pageId": 1583857,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Duration of Sea Snares cast by Merulina are shown on Merulina's ability icon."
                 }
@@ -201,7 +239,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Unlike Yareli's version of the ability, Loyal Merulina's Sea Snares are cast one at a time rather than in groups of five."
                 }
@@ -212,7 +250,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Damage vulnerability from the Sea Snares from Loyal Merulina stack with regular Sea Snares from her 1 and is multiplicative like all forms of damage vulnerability."
                 }
@@ -223,7 +261,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Loyal Merulina",
                   "pageId": 1583857,
-                  "revisionId": 2699529,
+                  "revisionId": 2795111,
                   "section": "Notes",
                   "excerpt": "Loyal Merulina's Sea Snares will grant stacks of Arcane Camisado ."
                 }
@@ -243,7 +281,8 @@
         "reviewStatus": "approved",
         "reviewedBy": [
           "official-sync:syndicate-exchange",
-          "local-wiki-cross-page-sync"
+          "local-wiki-cross-page-sync",
+          "structured-wiki-acquisition-audit"
         ]
       }
     }

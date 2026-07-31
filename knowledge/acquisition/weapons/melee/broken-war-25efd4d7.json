@@ -79,31 +79,6 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/BrokenWarBlueprint"
           ],
-          "sourceCanonical": "Shadow Stalker",
-          "sourceLocalizationStatus": "official-zh",
-          "locationId": null,
-          "missionTypeId": null,
-          "chance": 0.05865,
-          "sourceDropChance": 0.5,
-          "conditionalChance": 0.1173,
-          "rotation": null,
-          "stage": null,
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Blueprint/Item Drops by Blueprint/Item"
-          },
-          "sourceEntityId": "enemy.shadow-stalker"
-        },
-        {
-          "type": "enemy-drop",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/BrokenWarBlueprint"
-          ],
           "sourceCanonical": "Protector Stalker",
           "sourceLocalizationStatus": "official-zh",
           "locationId": null,
@@ -119,7 +94,12 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "DE Official Drop Tables",
-            "section": "Blueprint/Item Drops by Blueprint/Item"
+            "section": "Blueprint/Item Drops by Blueprint/Item",
+            "reviewOverride": {
+              "source": "user-provided",
+              "reviewedAt": "2026-07-28",
+              "note": "Broken War blueprint source corrected to Protector Stalker only"
+            }
           },
           "sourceEntityId": "enemy.protector-stalker"
         },
@@ -299,6 +279,32 @@
           "sourceEntityId": "enemy.archimedean-itzam"
         },
         {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "sourceCanonical": "Cephalon Simaris",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 50000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Broken_War?oldid=2785841",
+            "pageTitle": "Broken War",
+            "revisionId": 2785841
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/WarHilt"
+          ],
+          "variables": {
+            "partName": "战争之剑 握柄"
+          }
+        },
+        {
           "type": "enemy-drop",
           "scope": "component",
           "partRefs": [
@@ -472,6 +478,32 @@
             "section": "Blueprint/Item Drops by Blueprint/Item"
           },
           "sourceEntityId": "enemy.archimedean-itzam"
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "sourceCanonical": "Cephalon Simaris",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 50000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Broken_War?oldid=2785841",
+            "pageTitle": "Broken War",
+            "revisionId": 2785841
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/WarBlade"
+          ],
+          "variables": {
+            "partName": "战争之剑 刀片"
+          }
         }
       ]
     },
@@ -529,31 +561,6 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/BrokenWarBlueprint"
             ],
-            "sourceCanonical": "Shadow Stalker",
-            "sourceLocalizationStatus": "official-zh",
-            "locationId": null,
-            "missionTypeId": null,
-            "chance": 0.05865,
-            "sourceDropChance": 0.5,
-            "conditionalChance": 0.1173,
-            "rotation": null,
-            "stage": null,
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Blueprint/Item Drops by Blueprint/Item"
-            },
-            "sourceEntityId": "enemy.shadow-stalker"
-          },
-          {
-            "type": "enemy-drop",
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/BrokenWarBlueprint"
-            ],
             "sourceCanonical": "Protector Stalker",
             "sourceLocalizationStatus": "official-zh",
             "locationId": null,
@@ -569,7 +576,12 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "DE Official Drop Tables",
-              "section": "Blueprint/Item Drops by Blueprint/Item"
+              "section": "Blueprint/Item Drops by Blueprint/Item",
+              "reviewOverride": {
+                "source": "user-provided",
+                "reviewedAt": "2026-07-28",
+                "note": "Broken War blueprint source corrected to Protector Stalker only"
+              }
             },
             "sourceEntityId": "enemy.protector-stalker"
           }
@@ -763,6 +775,32 @@
               "section": "Blueprint/Item Drops by Blueprint/Item"
             },
             "sourceEntityId": "enemy.archimedean-itzam"
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Cephalon Simaris",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 50000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Broken_War?oldid=2785841",
+              "pageTitle": "Broken War",
+              "revisionId": 2785841
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/WarHilt"
+            ],
+            "variables": {
+              "partName": "战争之剑 握柄"
+            }
           }
         ],
         "status": "complete"
@@ -954,6 +992,32 @@
               "section": "Blueprint/Item Drops by Blueprint/Item"
             },
             "sourceEntityId": "enemy.archimedean-itzam"
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Cephalon Simaris",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 50000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Broken_War?oldid=2785841",
+              "pageTitle": "Broken War",
+              "revisionId": 2785841
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/WarBlade"
+            ],
+            "variables": {
+              "partName": "战争之剑 刀片"
+            }
           }
         ],
         "status": "complete"
@@ -1064,7 +1128,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

@@ -40,11 +40,12 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
       "official-sync:syndicate-exchange",
-      "local-wiki-cross-page-sync"
+      "local-wiki-cross-page-sync",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",
@@ -70,34 +71,49 @@
           "wiki": {
             "pageTitle": "Parasitic Vitality",
             "pageId": 1583856,
-            "revisionId": 2794101,
-            "pageTimestamp": "2026-07-16T20:38:39Z",
-            "compiledAt": "2026-07-22T18:16:58.657Z",
+            "revisionId": 2794933,
+            "pageTimestamp": "2026-07-21T12:35:56Z",
+            "compiledAt": "2026-07-26T11:07:27.889Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
             {
-              "type": "syndicate-exchange-group",
-              "factionIds": [
-                "faction.the-perrin-sequence",
-                "faction.steel-meridian"
-              ],
+              "type": "syndicate-exchange",
+              "factionId": "faction.the-perrin-sequence",
               "standing": 25000,
-              "rankRequirement": "max",
-              "chance": null,
-              "quantity": 1,
-              "availability": "guaranteed-when-requirements-met",
-              "reviewStatus": "draft",
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.the-perrin-sequence",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
               "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Parasitic Vitality",
-                "pageId": 1583856,
-                "revisionId": 2794101,
-                "section": "Acquisition",
-                "excerpt": "This mod can be acquired by attaining the rank of General under Steel Meridian , or the rank of Partner under The Perrin Sequence , and spending 25,000 Standing 25,000 to purchase."
+                "source": "DE ExportSyndicates",
+                "syndicateId": "PerrinSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Infestation/InfestLinkAugmentCard"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.steel-meridian",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.steel-meridian",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "SteelMeridianSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Infestation/InfestLinkAugmentCard"
               }
             }
           ],
@@ -109,7 +125,7 @@
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Parasitic Vitality",
                 "pageId": 1583856,
-                "revisionId": 2794101,
+                "revisionId": 2794933,
                 "section": "Acquisition",
                 "excerpt": "This mod can be acquired by attaining the rank of General under Steel Meridian , or the rank of Partner under The Perrin Sequence , and spending 25,000 Standing 25,000 to purchase."
               }
@@ -124,7 +140,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
                   "excerpt": "Bonus Health scales with Mutations stacks, up to 200x at full mutation for +800% Health , and scales with Ability Strength ."
                 }
@@ -135,9 +151,9 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
-                  "excerpt": "This can be further increased by utilizing Abundant Mutation which increases mutation stacks to 500 . This increases unmodded health by up to +2000% ."
+                  "excerpt": "This can be further increased by utilizing Abundant Mutation which increases Mutation stacks up to 500 . This increases unmodded health by up to +2000% ."
                 }
               },
               {
@@ -146,7 +162,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
                   "excerpt": "Bonus is additive to other sources of percentage health increases such as Vigor and Gladiator Resolve ."
                 }
@@ -157,9 +173,9 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
-                  "excerpt": "Bonus scales off of base health, i.e. before any mods or other health bonuses such as Arcane Blessing or Azure Archon Shard 's health bonus."
+                  "excerpt": "Bonus scales off of base Health , i.e. before any mods or other health bonuses such as Arcane Blessing or Azure Archon Shard 's health bonus."
                 }
               },
               {
@@ -168,7 +184,18 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
+                  "section": "Notes",
+                  "excerpt": "The number of Mutation stacks needed to be on par with a maxed Vitality at base Ability Strength is 25 . Increasing Ability Strength will lower this floor ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Parasitic Vitality",
+                  "pageId": 1583856,
+                  "revisionId": 2794933,
                   "section": "Notes",
                   "excerpt": "Counts as a Vitality mod, thus cannot be used in conjunction with Vitality , Archon Vitality , or Umbral Vitality ."
                 }
@@ -179,18 +206,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
-                  "section": "Notes",
-                  "excerpt": "Number of stacks needed to be on par with a maxed Vitality at base Ability Strength is 25 Mutations . Increasing Ability Strength will lower this floor ."
-                }
-              },
-              {
-                "reviewStatus": "draft",
-                "provenance": {
-                  "source": "local-wiki-sqlite",
-                  "pageTitle": "Parasitic Vitality",
-                  "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
                   "excerpt": "The ally linked however, will gain the bonus regardless of his mods ."
                 }
@@ -201,7 +217,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
                   "excerpt": "Nidus will still gain the bonus health even if linked to an enemy."
                 }
@@ -212,7 +228,7 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
                   "excerpt": "When the link breaks, there is a 5 second countdown before Parasitic Vitality's health bonus disappears until Nidus links with a new target."
                 }
@@ -223,9 +239,42 @@
                   "source": "local-wiki-sqlite",
                   "pageTitle": "Parasitic Vitality",
                   "pageId": 1583856,
-                  "revisionId": 2794101,
+                  "revisionId": 2794933,
                   "section": "Notes",
-                  "excerpt": "When Nidus gains a mutation stack, his maximum and current health will be updated to reflect the new value. This functionally grants Nidus a full heal whenever gaining a stack."
+                  "excerpt": "When Nidus gains a mutation stack, his maximum will be updated to reflect the new value and he heals in the process, often enough for a full heal whenever gaining a stack."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Parasitic Vitality",
+                  "pageId": 1583856,
+                  "revisionId": 2794933,
+                  "section": "Notes",
+                  "excerpt": "The healing gained is modified by current health, max health modifiers other than Parasitic Vitality, new stack count, and strength. With a fully ranked augment, gaining a stack heals:"
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Parasitic Vitality",
+                  "pageId": 1583856,
+                  "revisionId": 2794933,
+                  "section": "Notes",
+                  "excerpt": "Healing received = Current Health × 4% × (1 + Ability Strength) × Mutation Stack Count × (Base Health ÷ Max Health without augment) ."
+                }
+              },
+              {
+                "reviewStatus": "draft",
+                "provenance": {
+                  "source": "local-wiki-sqlite",
+                  "pageTitle": "Parasitic Vitality",
+                  "pageId": 1583856,
+                  "revisionId": 2794933,
+                  "section": "Notes",
+                  "excerpt": "This means that modifiers which increase max health, such as Vigor , Arcane Blessing , or Elemental Ward reduce the healing effect (Possible bug)."
                 }
               }
             ],
@@ -243,7 +292,8 @@
         "reviewStatus": "approved",
         "reviewedBy": [
           "official-sync:syndicate-exchange",
-          "local-wiki-cross-page-sync"
+          "local-wiki-cross-page-sync",
+          "structured-wiki-acquisition-audit"
         ]
       }
     }

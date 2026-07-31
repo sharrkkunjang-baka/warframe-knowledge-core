@@ -31,7 +31,7 @@
       "适用限制"
     ],
     "methodRefs": [],
-    "acquisitionStatus": "partial",
+    "acquisitionStatus": "complete",
     "sources": [
       {
         "url": "https://wiki.warframe.com/w/Tempo_Royale",
@@ -39,9 +39,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-31",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "local-wiki-cross-page-sync"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -68,13 +70,46 @@
             "pageId": 664881,
             "revisionId": 2766166,
             "pageTimestamp": "2026-04-16T04:21:37Z",
-            "compiledAt": "2026-07-17T01:48:37.522Z",
+            "compiledAt": "2026-07-26T11:07:26.924Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
+            {
+              "type": "vendor-or-syndicate-exchange",
+              "sourceEntityId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.baro-ki-teer",
+                "locationId": "hub.any-relay",
+                "currency": [
+                  {
+                    "currencyId": "currency.credits",
+                    "amount": 175000
+                  },
+                  {
+                    "currencyId": "currency.orokin-ducats",
+                    "amount": 385
+                  }
+                ]
+              },
+              "chance": null,
+              "quantity": 1,
+              "availability": "rotating",
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "local-wiki-sqlite",
+                "pageTitle": "Tempo Royale",
+                "pageId": 664881,
+                "revisionId": 2766166,
+                "section": "Acquisition",
+                "excerpt": "Tempo Royale is also sold by Baro Ki'Teer as a periodic item for 385 385 and 175,000 Credits 175,000 . Note that Baro Ki'Teer's stock changes with each appearance, and may not have this item on a succeeding appearance."
+              }
+            },
             {
               "type": "mission-reward",
               "rotation": "A",
@@ -218,7 +253,7 @@
             },
             {
               "type": "acquisition-prose",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Tempo Royale",
@@ -350,8 +385,10 @@
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "local-wiki-cross-page-sync"
+        ]
       }
     }
   }

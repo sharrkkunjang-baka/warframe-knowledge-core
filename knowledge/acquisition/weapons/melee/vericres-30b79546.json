@@ -55,19 +55,35 @@
         {
           "type": "vendor-exchange",
           "scope": "item",
+          "npcId": "npc.baro-ki-teer",
+          "locationId": "hub.any-relay",
           "sourceCanonical": "Baro Ki'Teer",
+          "availability": "rotating",
           "requirements": {
-            "type": "none"
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.baro-ki-teer",
+            "locationId": "hub.any-relay",
+            "currency": [
+              {
+                "currencyId": "currency.credits",
+                "amount": 200000
+              },
+              {
+                "currencyId": "currency.orokin-ducats",
+                "amount": 410
+              }
+            ]
           },
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Vericres?oldid=2789923",
             "pageTitle": "Vericres",
             "revisionId": 2789923
           },
           "partRefs": [],
-          "variables": {},
-          "npcId": "npc.baro-ki-teer"
+          "variables": {}
         }
       ]
     },
@@ -86,19 +102,35 @@
           {
             "type": "vendor-exchange",
             "scope": "item",
+            "npcId": "npc.baro-ki-teer",
+            "locationId": "hub.any-relay",
             "sourceCanonical": "Baro Ki'Teer",
+            "availability": "rotating",
             "requirements": {
-              "type": "none"
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.baro-ki-teer",
+              "locationId": "hub.any-relay",
+              "currency": [
+                {
+                  "currencyId": "currency.credits",
+                  "amount": 200000
+                },
+                {
+                  "currencyId": "currency.orokin-ducats",
+                  "amount": 410
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
               "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Vericres?oldid=2789923",
               "pageTitle": "Vericres",
               "revisionId": 2789923
             },
             "partRefs": [],
-            "variables": {},
-            "npcId": "npc.baro-ki-teer"
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,7 +156,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

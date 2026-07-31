@@ -54,24 +54,36 @@
       "status": null,
       "methods": [
         {
+          "type": "vendor-exchange",
           "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
-          ],
-          "sourceCanonical": "Kahl's Garrison (Chipper), Settlement",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
+          "npcId": "npc.chipper",
+          "locationId": "hub.drifters-camp",
+          "sourceCanonical": "Chipper",
           "requirements": {
-            "type": "none"
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.chipper",
+            "locationId": "hub.drifters-camp",
+            "rank": 4,
+            "rankName": "定居地",
+            "currency": [
+              {
+                "currencyId": "currency.stock",
+                "amount": 30
+              }
+            ]
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Aegrit?oldid=2790023",
+            "pageTitle": "Aegrit",
+            "revisionId": 2790023
           },
-          "type": "vendor-exchange",
-          "variables": {},
-          "npcId": "npc.chipper"
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
+          ],
+          "variables": {}
         }
       ]
     },
@@ -91,24 +103,36 @@
         },
         "methods": [
           {
+            "type": "vendor-exchange",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
-            ],
-            "sourceCanonical": "Kahl's Garrison (Chipper), Settlement",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
+            "npcId": "npc.chipper",
+            "locationId": "hub.drifters-camp",
+            "sourceCanonical": "Chipper",
             "requirements": {
-              "type": "none"
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.chipper",
+              "locationId": "hub.drifters-camp",
+              "rank": 4,
+              "rankName": "定居地",
+              "currency": [
+                {
+                  "currencyId": "currency.stock",
+                  "amount": 30
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Aegrit?oldid=2790023",
+              "pageTitle": "Aegrit",
+              "revisionId": 2790023
             },
-            "type": "vendor-exchange",
-            "variables": {},
-            "npcId": "npc.chipper"
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GrnVorStickyBombBlueprint"
+            ],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -219,7 +243,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

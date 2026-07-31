@@ -185,6 +185,75 @@
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/AmmoEfficiencyOnSliding"
             }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.acrithis",
+            "sourceCanonical": "Acrithis daily rotation",
+            "quantity": 1,
+            "availability": "daily-rotation",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "currency": [
+                {
+                  "currencyId": "currency.pathos-clamp",
+                  "amount": 10
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Akimbo Slip Shot is a Secondary Arcane that increases Ammo Efficiency while sliding or aim gliding with Dual Pistols. Effect Rank Ammo Efficiency 0 +15% 1 +25% 2 +35% 3 +45% 4 +55% 5 +65% Acquisition May appear as a Steel Path Circuit Tier 1, 3, 4, 6, or 7 reward on a weekly rotational basis. May be sold by Acrithis for 10 Pathos Clamp on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the Arcanes to appear in her shop. May drop from side Undercroft portals in The Duviri Experience while on The Steel Path. Notes Cannot be equipped on Exalted Weapons like Dex Pixia. Can be equipped on the ( Prisma) Dual Decurion. Additive with Zazvat-Kar for maximum Ammo Efficiency on the Akstiletto Prime. Patch History Hotfix 40.0.3 (2025-10-21) Akbimo Slipshot[sic] Arcane can now be equipped on the (Prisma) Dual Decurions Archguns. Update 33.5 (2023-06-21) Introduced."
+            }
+          },
+          {
+            "type": "circuit-reward",
+            "locationId": "landscape.duviri",
+            "missionTypeId": "mission-type.the-circuit",
+            "sourceCanonical": "Steel Path Circuit weekly progress rewards",
+            "sourceDisplayName": "钢铁之路无尽回廊每周进度奖励",
+            "quantity": 1,
+            "probability": null,
+            "availability": "weekly-rotation",
+            "prerequisite": "steel-path",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Akimbo Slip Shot is a Secondary Arcane that increases Ammo Efficiency while sliding or aim gliding with Dual Pistols. Effect Rank Ammo Efficiency 0 +15% 1 +25% 2 +35% 3 +45% 4 +55% 5 +65% Acquisition May appear as a Steel Path Circuit Tier 1, 3, 4, 6, or 7 reward on a weekly rotational basis. May be sold by Acrithis for 10 Pathos Clamp on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the Arcanes to appear in her shop. May drop from side Undercroft portals in The Duviri Experience while on The Steel Path. Notes Cannot be equipped on Exalted Weapons like Dex Pixia. Can be equipped on the ( Prisma) Dual Decurion. Additive with Zazvat-Kar for maximum Ammo Efficiency on the Akstiletto Prime. Patch History Hotfix 40.0.3 (2025-10-21) Akbimo Slipshot[sic] Arcane can now be equipped on the (Prisma) Dual Decurions Archguns. Update 33.5 (2023-06-21) Introduced."
+            }
+          },
+          {
+            "type": "reward-or-drop",
+            "locationId": "landscape.duviri",
+            "missionTypeId": "mission-type.free-roam",
+            "sourceCanonical": "Optional Undercroft Portals in Duviri on Steel Path",
+            "sourceDisplayName": "钢铁之路双衍王境地下密室传送门奖励",
+            "quantity": 1,
+            "probability": null,
+            "availability": "random-reward",
+            "prerequisite": "steel-path",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Akimbo Slip Shot is a Secondary Arcane that increases Ammo Efficiency while sliding or aim gliding with Dual Pistols. Effect Rank Ammo Efficiency 0 +15% 1 +25% 2 +35% 3 +45% 4 +55% 5 +65% Acquisition May appear as a Steel Path Circuit Tier 1, 3, 4, 6, or 7 reward on a weekly rotational basis. May be sold by Acrithis for 10 Pathos Clamp on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the Arcanes to appear in her shop. May drop from side Undercroft portals in The Duviri Experience while on The Steel Path. Notes Cannot be equipped on Exalted Weapons like Dex Pixia. Can be equipped on the ( Prisma) Dual Decurion. Additive with Zazvat-Kar for maximum Ammo Efficiency on the Akstiletto Prime. Patch History Hotfix 40.0.3 (2025-10-21) Akbimo Slipshot[sic] Arcane can now be equipped on the (Prisma) Dual Decurions Archguns. Update 33.5 (2023-06-21) Introduced."
+            }
           }
         ],
         "requirements": {
@@ -196,12 +265,84 @@
     },
     "manual": {
       "aliases": [],
-      "methods": [],
+      "methods": [
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "sourceEntityId": "npc.acrithis",
+          "sourceCanonical": "Acrithis daily rotation",
+          "quantity": 1,
+          "availability": "daily-rotation",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.acrithis",
+            "locationId": "hub.dormizone",
+            "currency": [
+              {
+                "currencyId": "currency.pathos-clamp",
+                "amount": 10
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Akimbo_Slip_Shot",
+            "revisionId": 2790882,
+            "excerpt": "May be sold by Acrithis for 10 Pathos Clamp on a daily rotational basis; Steel Path Circuit weekly rewards; optional Undercroft Portals in Duviri on Steel Path."
+          }
+        },
+        {
+          "type": "circuit-reward",
+          "locationId": "landscape.duviri",
+          "missionTypeId": "mission-type.the-circuit",
+          "sourceCanonical": "Steel Path Circuit weekly progress rewards",
+          "sourceDisplayName": "钢铁之路无尽回廊每周进度奖励",
+          "quantity": 1,
+          "probability": null,
+          "availability": "weekly-rotation",
+          "prerequisite": "steel-path",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Akimbo_Slip_Shot",
+            "revisionId": 2790882,
+            "excerpt": "May be sold by Acrithis for 10 Pathos Clamp on a daily rotational basis; Steel Path Circuit weekly rewards; optional Undercroft Portals in Duviri on Steel Path."
+          }
+        },
+        {
+          "type": "reward-or-drop",
+          "locationId": "landscape.duviri",
+          "missionTypeId": "mission-type.free-roam",
+          "sourceCanonical": "Optional Undercroft Portals in Duviri on Steel Path",
+          "sourceDisplayName": "钢铁之路双衍王境地下密室传送门奖励",
+          "quantity": 1,
+          "probability": null,
+          "availability": "random-reward",
+          "prerequisite": "steel-path",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Akimbo_Slip_Shot",
+            "revisionId": 2790882,
+            "excerpt": "May be sold by Acrithis for 10 Pathos Clamp on a daily rotational basis; Steel Path Circuit weekly rewards; optional Undercroft Portals in Duviri on Steel Path."
+          }
+        }
+      ],
       "methodRefs": [],
       "notes": [],
       "overrides": {},
-      "reviewStatus": "draft",
-      "reviewedBy": []
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "wiki.warframe.com-current-acquisition-evidence-2026-07-27"
+      ]
     }
   },
   "acquisitionStatus": "complete",
@@ -213,7 +354,7 @@
     }
   ],
   "gameVersion": "warframe-items@1.1269.87",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-27",
   "reviewStatus": "draft",
   "reviewedBy": [],
   "tags": [

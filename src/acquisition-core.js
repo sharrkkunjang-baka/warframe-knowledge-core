@@ -25,20 +25,42 @@ function mergeMethods(...layers) {
   return output
 }
 
+const LEGACY_ENTITY_IDS = Object.freeze({
+  locations: Object.freeze({
+    'location.the-descendia': 'activity.the-descendia'
+  })
+})
+
 function entity(registries, kind, id) {
   const registry = registries?.[kind]
-  return id && registry?.get ? registry.get(id) : null
+  if (!id || !registry?.get) return null
+  const direct = registry.get(id)
+  if (direct) return direct
+  const canonicalId = LEGACY_ENTITY_IDS[kind]?.[id]
+    || (kind === 'locations' && String(id).startsWith('mission-node.') ? String(id).replace(/^mission-node\./, 'mission.') : id)
+  return registry.get(canonicalId)
+}
+
+function displayLocationName(location, registries) {
+  if (!location) return ''
+  const ownName = displayEntityName(location)
+  if (location.kind !== 'mission-node') return ownName
+  const parent = entity(registries, 'locations', location.parentId)
+  if (!parent) return ownName
+  const parentName = displayEntityName(parent)
+  if (ownName === parentName || ownName.startsWith(`${parentName}/`)) return ownName
+  return [parentName, ownName].filter(Boolean).join('/')
 }
 
 function enrichMethod(method, registries) {
   let rawRequirements = method.requirements || { type: 'none' };
   if (rawRequirements.type === 'currency' && Array.isArray(rawRequirements.currency)) {
     const currencyRegistry = registries?.currencies;
-    method = { ...method, requirements: { ...rawRequirements, currency: rawRequirements.currency.map(item => {
+    rawRequirements = { ...rawRequirements, currency: rawRequirements.currency.map(item => {
       if (item.currencyId || !currencyRegistry?.get) return item;
-      const entity = currencyRegistry.get(item.currencyCanonical) || (item.currencyCanonical === 'Nightwave Cred' ? [...currencyRegistry.values].reverse().find(value => /^Nora's Mix Vol\. \d+ Cred$/i.test(value.canonical)) : null);
-      return entity ? { ...item, currencyId: entity.id } : item;
-    }) } };
+      const resolved = currencyRegistry.get(item.currencyCanonical) || (item.currencyCanonical === 'Nightwave Cred' ? [...currencyRegistry.values].reverse().find(value => /^Nora's Mix Vol\. \d+ Cred$/i.test(value.canonical)) : null);
+      return resolved ? { ...item, currencyId: resolved.id } : item;
+    }) };
   }
   if (rawRequirements.type === 'standing') { rawRequirements = { ...rawRequirements, npcId: rawRequirements.npcId || method.npcId || null, locationId: rawRequirements.locationId || method.locationId || null, ...(method.factionId ? { factionId: rawRequirements.factionId || method.factionId } : {}), rank: rawRequirements.rank ?? method.requiredLevel ?? null, rankName: rawRequirements.rankName || method.requiredRankName || null, amount: rawRequirements.amount ?? method.standing ?? null } }
   if (rawRequirements.type === 'currency') { rawRequirements = { ...rawRequirements, npcId: rawRequirements.npcId || method.npcId || method.sourceEntityId || null, locationId: rawRequirements.locationId || method.locationId || null } }
@@ -48,7 +70,7 @@ function enrichMethod(method, registries) {
     entity(registries, 'npcs', sourceId) || entity(registries, 'locations', sourceId)
   )
   const npc = entity(registries, 'npcs', method.npcId || rawRequirements.npcId)
-  const location = entity(registries, 'locations', method.locationId || method.requirements?.locationId || npc?.locationId)
+  const location = entity(registries, 'locations', method.locationId || rawRequirements.locationId || npc?.locationId || source?.locationId || source?.parentId)
   const quest = entity(registries, 'quests', method.questId || method.requirements?.questId)
   const faction = entity(registries, 'factions', method.factionId || method.requirements?.factionId)
   const inferredMissionTypeId = /^Narmer\b/i.test(String(method.sourceCanonical || '')) ? 'mission-type.narmer-bounty' : null
@@ -58,20 +80,34 @@ function enrichMethod(method, registries) {
     ...method,
     requirements,
     requirementLines: renderRequirements(requirements, registries),
-    ...(source ? { sourceDisplayName: (() => { const name = displayEntityName(source); const sourceFaction = source.factionId ? entity(registries, 'factions', source.factionId) : null; return sourceFaction ? name.replace(new RegExp(`^${sourceFaction.canonical}\\s*`, 'i'), displayEntityName(sourceFaction)) : name; })(), sourceKind: source.kind || null, ...(source.bossLocation ? { bossLocation: source.bossLocation } : {}) } : {}),
+    ...(source ? { sourceDisplayName: method.sourceDisplayName || (() => { const name = displayEntityName(source); const sourceFaction = source.factionId ? entity(registries, 'factions', source.factionId) : null; return sourceFaction ? name.replace(new RegExp(`^${sourceFaction.canonical}\\s*`, 'i'), displayEntityName(sourceFaction)) : name; })(), sourceKind: source.kind || null, ...(source.bossLocation ? { bossLocation: source.bossLocation } : {}) } : {}),
     ...(npc ? { npcId: npc.id, npcDisplayName: displayEntityName(npc) } : {}),
-    ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}),
+    ...(location ? { locationId: location.id, locationDisplayName: displayLocationName(location, registries) } : {}),
     ...(quest ? { questId: quest.id, questDisplayName: displayEntityName(quest) } : {}),
     ...(faction ? { factionId: faction.id, factionDisplayName: displayEntityName(faction) } : {}),
     ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {})
   }
 }
 
+function finalizeMethod(method, registries) {
+  const enriched = enrichMethod(method, registries)
+  const protocolIssues = exchangeRequirementIssues(enriched, registries)
+  const reviewIssues = [...new Set([...(enriched.reviewIssues || []), ...protocolIssues])]
+  const reviewStatus = reviewIssues.length
+    ? 'review-required'
+    : (enriched.reviewStatus || 'approved')
+  return {
+    ...enriched,
+    reviewStatus,
+    reviewIssues,
+    requirementLines: reviewStatus === 'review-required'
+      ? []
+      : renderRequirements(enriched.requirements, registries)
+  }
+}
+
 function structuredMethods(methods, registries) {
-  const enriched = mergeMethods(methods).map(method => enrichMethod(method, registries)).map(method => {
-    const issues = exchangeRequirementIssues(method, registries)
-    return issues.length ? { ...method, reviewStatus: 'review-required', reviewIssues: issues, requirementLines: [] } : method
-  })
+  const enriched = mergeMethods(methods).map(method => finalizeMethod(method, registries))
   const output = [], byPublicIdentity = new Map()
   for (const method of enriched) {
     // 上游表格可能把同一奖励池拆成多条内部来源（例如 Nightmare Mode
@@ -131,4 +167,4 @@ function routesToMethods(routes, registries) {
   }), registries)
 }
 
-module.exports = { methodIdentity, mergeMethods, enrichMethod, structuredMethods, normalizeRoute, routesToMethods }
+module.exports = { LEGACY_ENTITY_IDS, methodIdentity, mergeMethods, enrichMethod, finalizeMethod, structuredMethods, normalizeRoute, routesToMethods }

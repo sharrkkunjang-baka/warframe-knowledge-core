@@ -18,12 +18,13 @@ const RESOURCE_KINDS = new Set([
 ])
 const REVIEWED_RESOURCE_ROUTES = Object.freeze({
   'Stela': {
-    description: '在火卫二阿尔布雷希特的实验室赏金 C轮奖励中获得。',
+    description: '衰退室获取',
+    presentationText: '说明：衰退室获取\n\n虚空石块获取方式：赏金奖励、低语刺杀',
     methods: [
-      { type: 'mission-reward', sourceDisplayName: '阿尔布雷希特的实验室 115-120 级赏金 C轮', locationDisplayName: '阿尔布雷希特的实验室（火卫二）', missionTypeDisplayName: '赏金', rotation: 'C', quantity: 15, chance: 0.084, requirements: { type: 'none' }, reviewStatus: 'approved', provenance: { source: 'wiki.warframe.com current acquisition + DE Official Drop Tables', sourceCanonical: "Deimos/Albrecht's Laboratories (Level 115 - 120 Entrati Lab Bounty), Rotation C" } },
-      { type: 'mission-reward', sourceDisplayName: '阿尔布雷希特的实验室 95-100 级赏金 C轮', locationDisplayName: '阿尔布雷希特的实验室（火卫二）', missionTypeDisplayName: '赏金', rotation: 'C', quantity: 15, chance: 0.0877, requirements: { type: 'none' }, reviewStatus: 'approved', provenance: { source: 'wiki.warframe.com current acquisition + DE Official Drop Tables', sourceCanonical: "Deimos/Albrecht's Laboratories (Level 95 - 100 Entrati Lab Bounty), Rotation C" } }
+      { type: 'mission-reward', sourceDisplayName: '赏金奖励', missionTypeDisplayName: '赏金', requirements: { type: 'none' }, reviewStatus: 'approved', provenance: { source: 'user-provided', confirmedAt: '2026-07-27', note: '用户明确要求只显示赏金奖励，不展示档位、轮次、数量或概率。' } },
+      { type: 'mission-reward', sourceDisplayName: '低语刺杀', missionTypeDisplayName: '刺杀', requirements: { type: 'none' }, reviewStatus: 'approved', provenance: { source: 'user-provided', confirmedAt: '2026-07-27' } }
     ],
-    provenance: { source: 'wiki.warframe.com current acquisition + DE Official Drop Tables', fetchedAt: '2026-07-22' }
+    provenance: { source: 'user-provided', confirmedAt: '2026-07-27' }
   },
   'Steel Essence': {
     description: '钢铁之路专属资源，可在中继站的 Teshin「钢铁之路荣誉」商店消费。',
@@ -279,12 +280,12 @@ function buildEntry(item, old) {
   const previousRoutingOverride = previousManual.routingOverride
   const staleReviewedOverride = previousRoutingOverride?.methods?.some(method =>
     ['DE Official Drop Tables reviewed resource route', 'official-localized-description-and-drop-table'].includes(method?.provenance?.source))
-  const preservedRoutingOverride = staleReviewedOverride ? null : previousRoutingOverride
+  const preservedRoutingOverride = reviewedRoute ? null : (staleReviewedOverride ? null : previousRoutingOverride)
   const manual = {
     tips: Array.isArray(previousManual.tips) ? previousManual.tips : [],
     tipKeywords: Array.isArray(previousManual.tipKeywords) ? previousManual.tipKeywords : [],
-    ...(previousManual.presentationText ? { presentationText: previousManual.presentationText } : {}),
-    ...((previousManual.description || reviewedRoute?.description) ? { description: previousManual.description || reviewedRoute.description } : {}),
+    ...((reviewedRoute?.presentationText || previousManual.presentationText) ? { presentationText: reviewedRoute?.presentationText || previousManual.presentationText } : {}),
+    ...((reviewedRoute?.description || previousManual.description) ? { description: reviewedRoute?.description || previousManual.description } : {}),
     // 此表中的审核路由由生成器维护；重建时用最新审核事实替换旧的同源路由。
     // 其他资源仍严格保留人工 routingOverride，不受影响。
     routingOverride: reviewedRouting || preservedRoutingOverride || toroidRouting,

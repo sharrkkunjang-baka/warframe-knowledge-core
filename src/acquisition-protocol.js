@@ -2,6 +2,11 @@
 
 const TYPES = Object.freeze(['none', 'currency', 'standing', 'quest', 'item', 'mode'])
 const EXCHANGE_METHOD_TYPES = Object.freeze(['vendor-exchange', 'vendor-or-syndicate-exchange', 'syndicate-exchange'])
+const EXCHANGE_REQUIREMENT_PROTOCOL = Object.freeze({
+  'vendor-exchange': Object.freeze(['currency', 'standing', 'item']),
+  'vendor-or-syndicate-exchange': Object.freeze(['currency', 'standing', 'item']),
+  'syndicate-exchange': Object.freeze(['standing', 'currency'])
+})
 
 function normalizeRequirements(value) {
   const source = value && typeof value === 'object' ? value : { type: 'none' }
@@ -105,30 +110,51 @@ function currencyAcquisitionSummary(entity, registries) {
   return null
 }
 
+function exchangeActor(registries, id) {
+  if (!id) return null
+  return registries?.npcs?.get(id) || registries?.arcaneSources?.get(id) || registries?.locations?.get(id) || null
+}
+
+function isExchangeActor(entity) {
+  return Boolean(entity && ['npc', 'store', 'acquisition-source'].includes(entity.kind))
+}
+
+function isLocationStoreActor(method, requirement, actor) {
+  if (actor || requirement.npcId || method.npcId || method.sourceEntityId) return false
+  const locationId = requirement.locationId || method.locationId || null
+  return Boolean(locationId && /^(?:interface|store)\./.test(locationId))
+}
+
 function exchangeRequirementIssues(method, registries) {
   if (!EXCHANGE_METHOD_TYPES.includes(method?.type)) return []
   const requirement = normalizeRequirements(method.requirements)
-  const npcId = requirement.npcId || method.npcId || null
-  const npc = npcId ? (registries?.npcs?.get(npcId) || registries?.arcaneSources?.get(npcId) || registries?.locations?.get(npcId)) : null
-  const locationId = requirement.locationId || method.locationId || npc?.locationId || npc?.parentId || null
+  const actorId = requirement.npcId || method.npcId || method.sourceEntityId || null
+  const actor = exchangeActor(registries, actorId)
+  const factionId = requirement.factionId || method.factionId || null
+  const faction = factionId ? registries?.factions?.get(factionId) : null
+  const locationId = requirement.locationId || method.locationId || actor?.locationId || actor?.parentId || null
+  const factionStanding = requirement.type === 'standing' && Boolean(faction)
+  const allowedRequirements = EXCHANGE_REQUIREMENT_PROTOCOL[method.type] || []
   const issues = []
-  if (!npcId || !npc) issues.push('npc')
-  if (!locationId || !registries?.locations?.get(locationId)) issues.push('location')
-  if (!['standing', 'currency'].includes(requirement.type)) issues.push('requirements')
+  if ((!actorId || !isExchangeActor(actor)) && !factionStanding && !isLocationStoreActor(method, requirement, actor)) issues.push('actor')
+  if ((!locationId || !registries?.locations?.get(locationId)) && !factionStanding) issues.push('location')
+  if (!allowedRequirements.includes(requirement.type)) issues.push('requirements')
   if (requirement.type === 'standing') {
     if (!(Number(requirement.amount) > 0)) issues.push('amount')
     if ((requirement.rankName || method.requiredRankName || Number.isInteger(method.requiredLevel)) && !Number.isInteger(requirement.rank)) issues.push('rank')
   }
   if (requirement.type === 'currency') {
-    if (!(requirement.currency || []).length || requirement.currency.some(item => !item.currencyId || !(Number(item.amount) > 0 || Array.isArray(item.amountRange)))) issues.push('currency-amount')
+    if (!(requirement.currency || []).length || requirement.currency.some(item => !item.currencyId || !(Number(item.amount) > 0 || (Array.isArray(item.amountRange) && item.amountRange.length === 2 && item.amountRange.every(value => Number(value) > 0))))) issues.push('currency-amount')
     if ((requirement.rankName || method.requiredRankName || Number.isInteger(method.requiredLevel)) && !Number.isInteger(requirement.rank)) issues.push('rank')
   }
+  if (requirement.type === 'item' && !requirement.itemGroupId) issues.push('item-group')
   return [...new Set(issues)]
 }
 
 function standingRankPrefix(rank, rankName) {
   if (rank == null || rank === 0) return ''
-  return `达到${rank}级${rankName ? `（${rankName}）` : ''}声望后`
+  const localizedRankName = rankName && !/[A-Za-z]/.test(String(rankName)) ? String(rankName).trim() : ''
+  return `达到${rank}级${localizedRankName ? `（${localizedRankName}）` : ''}声望后`
 }
 
 function renderRequirements(value, registries) {
@@ -149,21 +175,29 @@ function renderRequirements(value, registries) {
   const npcName = entityName(registries.npcs, requirement.npcId) || entityName(registries.arcaneSources, requirement.npcId) || entityName(registries.locations, requirement.npcId)
   if (requirement.type === 'item') {
     if (requirement.recipeId) return []
-    if (requirement.itemGroupId) return [`\u5728${locationName || '\u5bf9\u5e94\u5546\u5e97'}\u5151\u6362\uff0c\u6240\u9700\u8d44\u6e90\u6570\u91cf\u7531\u5546\u5e97\u8f6e\u6362\u51b3\u5b9a`]
+    if (requirement.itemGroupId) {
+      const groupName = requirement.itemGroupLabel || (requirement.itemGroupId === 'resource-group.perita' ? '佩里塔资源' : '指定资源')
+      const vendor = npcName ? `${locationName ? `${locationName}的` : ''}${npcName}` : (locationName || '对应商店')
+      return [`在${vendor}处使用随机${groupName}兑换，所需资源种类与数量由商店轮换决定`]
+    }
     const items = (requirement.items || []).map(item => `${Number(item.amount || 1)}个${item.displayName || item.canonical || item.itemId}`).filter(Boolean)
     return [...(items.length ? [`任务入口：使用${items.join('和')}开启对应特殊任务`] : []), ...(requirement.taskRules?.length ? ['特殊任务规则：', ...requirement.taskRules] : [])]
   }
   if (requirement.type === 'standing') {
-    if (!locationName || !npcName || !(Number(requirement.amount) > 0)) return []
-    if (requirement.blueprintRank != null && requirement.blueprintRank !== requirement.rank) return [`${locationName}的${npcName}：总图需要 ${requirement.blueprintRank}级声望，部件蓝图需要 ${requirement.rank}级声望兑换`]
+    if (!(Number(requirement.amount) > 0)) return []
+    const factionName = entityName(registries.factions, requirement.factionId)
     const rank = standingRankPrefix(requirement.rank, requirement.rankName)
+    if (factionName) return [`在${factionName}供奉商店${rank}消耗${requirement.amount.toLocaleString('zh-CN')}声望兑换`]
+    if (!locationName || !npcName) return []
+    if (requirement.blueprintRank != null && requirement.blueprintRank !== requirement.rank) return [`${locationName}的${npcName}：总图需要 ${requirement.blueprintRank}级声望，部件蓝图需要 ${requirement.rank}级声望兑换`]
     return [`在${locationName}的${npcName}处${rank}消耗${requirement.amount.toLocaleString('zh-CN')}声望兑换`]
   }
   if (requirement.type !== 'currency') return []
   const currencies = requirement.currency.map(item => ({ ...item, entity: registries.currencies.get(item.currencyId || item.currencyCanonical) })).filter(item => item.entity)
+  const formatAmount = value => Number(value).toLocaleString('zh-CN')
   const amountText = item => item.amountRange
-    ? `${item.amountRange[0]}-${item.amountRange[1]}个`
-    : `${item.amount}个`
+    ? `${formatAmount(item.amountRange[0])}-${formatAmount(item.amountRange[1])}个`
+    : `${formatAmount(item.amount)}个`
   const currencyText = currencies.map(item => `${amountText(item)}${item.entity.displayName || item.entity.canonical}`).join('、')
   const choiceText = requirement.chooseCount && requirement.chooseCount < currencies.length
     ? `（随机选择其中${requirement.chooseCount}种）`
@@ -277,8 +311,41 @@ function nearDuplicateVisibleLines(lines) {
   return failures
 }
 
+const ACQUISITION_ENTITY_ZH = Object.freeze({
+  'Kuva Fortress': '赤毒要塞', Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一',
+  Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星',
+  Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', Void: '虚空',
+  Assassination: '刺杀', Defense: '防御', Survival: '生存', Capture: '捕获', Rescue: '救援', Spy: '间谍',
+  Disruption: '中断', Exterminate: '歼灭', Interception: '拦截', Excavation: '挖掘', 'Point of Interest': '兴趣点'
+})
+
+function stripBountyRotationTerms(value) {
+  const text = String(value || '')
+  if (!/赏金|\bBount(?:y|ies)\b/i.test(text)) return text
+  return text
+    .replace(/\s*[（(]?\s*(?:Rotation\s*)?[A-C](?:\s*[\/、,，]\s*(?:Rotation\s*)?[A-C])*\s*(?:轮)?\s*[）)]?/gi, '')
+    .replace(/\s*[ABC](?:\s*[\/、,，]\s*[ABC])+\s*轮/gi, '')
+    .replace(/\s*[ABC]轮/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim()
+}
+
 function localizeAcquisitionText(value) {
-  return String(value || '').replace(/Höllvania/g, '霍瓦尼亚').replace(/WF1999 Bounty/g, '1999 赏金').replace(/Nightmare Mode/g, '\u5669\u68a6\u6a21\u5f0f').replace(/\bRotation\s*([A-C])\b/gi, '$1轮').replace(/\bStanding\b/gi, '声望').replace(/\s*[（(](?:Void Armageddon|Void Cascade)[）)]/gi, '')
+  const { granumVoidDisplayName } = require('./granum-void')
+  const granumVoid = granumVoidDisplayName(value)
+  if (granumVoid) return granumVoid
+  let output = String(value || '')
+    .replace(/Höllvania/g, '霍瓦尼亚')
+    .replace(/WF1999 Bounty/g, '1999 赏金')
+    .replace(/\b(Earth|Venus|Saturn|Neptune|Pluto) Proxima\b/gi, (_match, planet) => `${ACQUISITION_ENTITY_ZH[planet[0].toUpperCase() + planet.slice(1).toLowerCase()] || planet}比邻星域`)
+    .replace(/Nightmare Mode/g, '\u5669\u68a6\u6a21\u5f0f')
+    .replace(/\bRotation\s*([A-C])\b/gi, '$1轮')
+    .replace(/\bStanding\b/gi, '声望')
+    .replace(/\s*[（(](?:Void Armageddon|Void Cascade)[）)]/gi, '')
+  for (const [canonical, displayName] of Object.entries(ACQUISITION_ENTITY_ZH).sort((left, right) => right[0].length - left[0].length)) {
+    output = output.replace(new RegExp(`\\b${canonical.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}\\b`, 'gi'), displayName)
+  }
+  return stripBountyRotationTerms(output)
 }
 
 function stripEmbeddedEnglishMissionTypeParenthetical(text, localizedMissionType = '') {
@@ -336,7 +403,7 @@ function renderStructuredMethod(method, options = {}) {
   // 配方属于“合成”查询的数据，不是“刷”查询中的独立获取来源。
   if (method.type === 'recipe' || method.category === 'crafting') return null
   if (method.type === 'market-purchase' || method.category === 'market') return `${prefix}${source ? `在${source}购买` : '在商店购买'}`
-  if (method.type === 'circuit-reward') return `${prefix}普通无尽回廊${variables.week ? `第 ${variables.week} 周` : ''}轮换可获取`
+  if (method.type === 'circuit-reward') return `${prefix}${method.sourceDisplayName || `普通无尽回廊${variables.week ? `第 ${variables.week} 周` : ''}轮换可获取`}`
   if (method.type === 'dojo-research') return `${prefix}${source ? `在氏族道场「${source}」复制蓝图` : '在氏族道场研究并复制蓝图'}`
   if (method.type === 'included-with-equipment') {
     const equipmentOptions = (variables.equipmentOptions || []).filter(Boolean)
@@ -350,7 +417,12 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'resource-processing') return `${prefix}${source ? `在${location || '对应城镇'}找${npc || '对应 NPC'}${source}` : '通过资源加工获得'}`
   if (method.type === 'vendor-processing') return `${prefix}${source ? `在${source}制造获得` : '购买精炼蓝图后制造获得'}`
   if (method.type === 'vendor-purchase') return `${prefix}${exchangeSource ? `从${exchangeSource}购买` : '从指定 NPC 购买'}`
-  if (method.type === 'bounty-reward' || method.type === 'heist-reward') return `${prefix}${source ? `完成${source}获得` : method.type === 'heist-reward' ? '完成利润收割者抢劫获得' : '完成奥布山谷赏金获得'}`
+  if (method.type === 'bounty-reward' || method.type === 'heist-reward') {
+    const bountySource = localizeAcquisitionText(
+      method.sourceDisplayName || method.missionTypeDisplayName || method.sourceCanonical || location || variables.sourceName || ''
+    )
+    return `${prefix}${bountySource ? `完成${bountySource}获得` : method.type === 'heist-reward' ? '完成利润收割者抢劫获得' : '完成奥布山谷赏金获得'}`
+  }
   if (method.type === 'nightwave-offering') return `${prefix}在午夜电波商店轮换购买`
   if (method.type === 'invasion-reward') return `${prefix}完成入侵任务概率获得`
   if (method.type === 'daily-tribute') return `${prefix}从每日献礼里程碑奖励中选择获得`
@@ -387,8 +459,16 @@ function renderStructuredMethod(method, options = {}) {
     return `${prefix}开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`
   }
   if (method.type === 'reward-or-drop' && method.sourceKind === 'relic-reward' && source) return `${prefix}开启${source}概率获得`
-  if (method.type === 'reward-or-drop' && method.sourceKind === 'mission-reward') return `${prefix}${source ? `完成${source}` : '完成指定任务'}概率获得`
+  if (method.type === 'reward-or-drop' && method.sourceKind === 'mission-reward') {
+    const missionRewardSource = stripBountyRotationTerms(source)
+    if (/赏金/.test(missionRewardSource)) return `${prefix}${missionRewardSource ? `${missionRewardSource}${/奖励$/.test(missionRewardSource) ? '' : '奖励'}` : '赏金结算奖励'}（概率）`
+    const chance = Number.isFinite(Number(method.probability)) ? `（${Number((Number(method.probability) * 100).toFixed(4))}%）` : ''
+    if (/^Lua\/Circulus \(Survival\), Rotation C$/i.test(String(method.sourceCanonical || ''))) return `${prefix}月球联结生存每20分钟概率获得${chance}`
+    const normalizedSource = missionRewardSource.replace(/[，,]\s*(?:轮次\s*)?([A-C])(?:轮)?/g, ' $1轮')
+    return `${prefix}${normalizedSource ? `完成${normalizedSource}` : '完成指定任务'}概率获得${chance}`
+  }
   if (method.type === 'reward-or-drop' && method.sourceKind === 'enemy-drop') return `${prefix}${source ? `击败${source}` : '击败指定敌人'}概率获得`
+  if (method.type === 'reward-or-drop' && method.sourceDisplayName) return `${prefix}${source}（概率）`
   if (method.type === 'adversary-drop') {
     const adversary = localizeAcquisitionText(method.sourceDisplayName || method.sourceCanonical || '')
       .replace(/Kuva Lich/gi, '\u8d64\u6bd2\u7384\u9ab8')
@@ -419,6 +499,20 @@ function renderStructuredMethod(method, options = {}) {
   }
   if (method.type === 'mission-reward') {
     const rawSource = String(method.sourceCanonical || '')
+    const { GRANUM_VOID_OBJECTIVE, granumVoidDisplayName } = require('./granum-void')
+    const granumVoid = granumVoidDisplayName(method.missionTypeId || method.sourceEntityId || rawSource)
+    if (granumVoid) return `${prefix}${rewardKind}${granumVoid}（${GRANUM_VOID_OBJECTIVE}）${Number(method.chance) >= 1 ? '获得' : '概率获得'}${rewardSuffix}`
+    if (Array.isArray(variables.spyMissionLocations) && variables.spyMissionLocations.length) {
+      const result = Number(method.chance) >= 1 ? '后获得' : '后概率获得'
+      return `${prefix}完成下列间谍任务的 ${method.rotation} 轮${result}：\n${variables.spyMissionLocations.join('\n')}`
+    }
+    const isCacheReward = /(?:Resource\s+Caches|Caches)/i.test(rawSource) && method.rotation
+    if (isCacheReward) {
+      const { locationName, missionTypeName } = resolveMissionLocationName(method, source, options)
+      const objective = localizeAcquisitionText(variables.objective || (method.rotation === 'C' ? '找到 3 个储藏箱' : `完成资源缓存 ${method.rotation} 轮条件`))
+      const mission = locationName || missionTypeName
+      return `${prefix}${mission ? `在${mission}${missionTypeName && !String(mission).includes(missionTypeName) ? `的${missionTypeName}任务` : '任务'}` : '在对应任务'}中${objective}概率获得${rewardSuffix}`
+    }
     const isSpyMission = /^Spy$/i.test(String(method.missionTypeCanonical || '')) || /\u95f4\u8c0d/.test(String(method.missionTypeDisplayName || '')) || /Spy/i.test(rawSource)
     const spyTier = /^Tier\s*(\d+)\s*Spy$/i.exec(rawSource)?.[1]
     if (isSpyMission && spyTier) {
@@ -429,14 +523,24 @@ function renderStructuredMethod(method, options = {}) {
       const rotation = method.rotation ? ` ${method.rotation}轮` : ''
       return `${prefix}\u6708\u7403\u95f4\u8c0d${rotation}\u6982\u7387\u83b7\u5f97`
     }
+    if (isSpyMission && /^Kuva Fortress Spy$/i.test(rawSource)) {
+      const rotation = method.rotation ? ` ${method.rotation}轮` : ''
+      return `${prefix}赤毒要塞间谍${rotation}概率获得`
+    }
     const { locationName, missionTypeName } = resolveMissionLocationName(method, source, options)
     const isOrokinVault = method.missionTypeId === 'mission-type.orokin-vault' || /^(?:Orokin Vault|奥罗金宝库)$/i.test(missionTypeName)
     if (isOrokinVault) return `${prefix}奥罗金宝库概率获得`
     if (/赏金/.test(missionTypeName)) {
       if (isOpenWorldBountyRotationMethod(method) || Array.isArray(method.chanceRange)) {
-        const rotationLabel = formatOpenWorldBountyRotationLabel(locationName, missionTypeName)
+        if (isStandardOrbVallisBountyMethod(method)) return `${prefix}奥布山谷赏金奖励${rewardSuffix}`
+        const isNarmerBounty = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName)
+        const bountyName = isNarmerBounty
+          ? '合一众赏金任务轮换'
+          : (String(locationName || missionTypeName).replace(/赏金$/, '') + '赏金')
         const probability = formatOpenWorldBountyProbability(method, options)
-        return `${prefix}从${rotationLabel}概率获得${rewardSuffix}${probability}`
+        return isNarmerBounty
+          ? `${prefix}从${bountyName}概率获得${rewardSuffix}${probability}`
+          : `${prefix}从${bountyName}奖励中获得${rewardSuffix}${probability}`
       }
       const bountyName = /合一众赏金/.test(locationName) || /合一众赏金/.test(missionTypeName) ? '合一众赏金' : (missionTypeName || locationName)
       const probability = options.showProbabilities === false || !Number.isFinite(method.chance) ? '' : `，概率${formatBountyChancePercent(method.chance)}%`
@@ -619,6 +723,17 @@ function isOpenWorldBountyRotationMethod(method) {
   return locationId.startsWith('landscape.') || locationId.startsWith('bounty.')
 }
 
+function isStandardOrbVallisBountyMethod(method) {
+  if (!isOpenWorldBountyRotationMethod(method)) return false
+  const missionTypeId = String(method.missionTypeId || method.missionTypeEntityId || '')
+  const missionTypeName = String(method.missionTypeDisplayName || method.missionTypeCanonical || '')
+  const rawSource = String(method.sourceCanonical || '')
+  if (/Narmer|合一众/i.test(`${missionTypeName} ${rawSource}`)) return false
+  return missionTypeId === 'mission-type.orb-vallis-bounty'
+    || method.npcId === 'npc.eudico'
+    || /奥布山谷赏金/.test(missionTypeName)
+}
+
 function openWorldBountyStageKey(method) {
   return JSON.stringify([
     method.scope || 'item',
@@ -761,12 +876,76 @@ function acquisitionCardGroup(method) {
   return 'other'
 }
 
+function collapseConcreteSpyMissionLocations(methods) {
+  const groups = new Map()
+  const passthrough = []
+  for (const method of methods || []) {
+    const locationName = localizeAcquisitionText(method.locationDisplayName || '').replace(/\s*[（(]间谍[）)]\s*$/g, '').trim()
+    if (method.type !== 'mission-reward' || !isSpyMissionMethod(method) || !method.rotation || !locationName || !locationName.includes('/')) {
+      passthrough.push(method)
+      continue
+    }
+    const probabilityKind = Number(method.chance) >= 1 ? 'guaranteed' : 'chance'
+    const key = JSON.stringify([
+      method.scope || 'item', method.rotation, probabilityKind,
+      Number.isFinite(Number(method.chance)) ? Number(method.chance) : null,
+      method.variables?.rewardKind || '', method.requirements || { type: 'none' }
+    ])
+    const group = groups.get(key) || []
+    group.push({ method, locationName })
+    groups.set(key, group)
+  }
+  const collapsed = []
+  for (const group of groups.values()) {
+    const locations = [...new Set(group.map(item => item.locationName))]
+    const first = group[0].method
+    collapsed.push({
+      ...first,
+      locationDisplayName: null,
+      sourceDisplayName: null,
+      variables: { ...(first.variables || {}), spyMissionLocations: locations },
+      provenanceAlternatives: group.flatMap(item => item.method.provenanceAlternatives || [item.method.provenance].filter(Boolean))
+    })
+  }
+  return [...collapsed, ...passthrough]
+}
+
+function mergeAcquisitionCardRoleRows(rows) {
+  const output = []
+  const roleIndexes = new Map()
+  for (const row of rows || []) {
+    const lines = String(row?.text || '').split('\n').filter(Boolean)
+    const match = /^(总图|成品|部件蓝图|整套蓝图|头部神经光元|机体|系统)：(.+)$/.exec(lines[0] || '')
+    if (!match) { output.push(row); continue }
+    const [, role, clause] = match
+    const existingIndex = roleIndexes.get(role)
+    if (existingIndex == null) {
+      roleIndexes.set(role, output.length)
+      output.push(row)
+      continue
+    }
+    const existing = output[existingIndex]
+    const existingLines = String(existing.text || '').split('\n').filter(Boolean)
+    const existingClause = existingLines[0].slice(role.length + 1)
+    const clauses = [...new Set([...existingClause.split('；'), clause].map(value => value.trim()).filter(Boolean))]
+    const tailLines = [...new Set([...existingLines.slice(1), ...lines.slice(1)])]
+    const methods = [...(existing.methods || [existing.method].filter(Boolean)), ...(row.methods || [row.method].filter(Boolean))]
+    output[existingIndex] = {
+      ...existing,
+      text: [`${role}：${clauses.join('；')}`, ...tailLines].join('\n'),
+      methods,
+      method: methods[0] || null
+    }
+  }
+  return output
+}
+
 function acquisitionCardSections(methods, options = {}) {
   const sections = { exchange: [], enemy: [], acquisition: [], other: [] }
   const sectionNotes = { exchange: [], enemy: [], acquisition: [], other: [] }
   const seen = new Set()
   const noteSeen = new Set()
-  const sourceMethods = collapseAscensionSisterDropVariants((methods || []).filter(method => method.reviewStatus !== 'review-required'))
+  const sourceMethods = collapseConcreteSpyMissionLocations(collapseAscensionSisterDropVariants((methods || []).filter(method => method.reviewStatus !== 'review-required')))
   // 图片卡片的敌人栏是一敌人一行；禁止套用文字协议的“替代来源合并”，
   // 否则几十个敌人会重新拼成一个难以阅读的长句。
   for (const method of sourceMethods.filter(method => acquisitionCardGroup(method) === 'enemy')) {
@@ -796,11 +975,13 @@ function acquisitionCardSections(methods, options = {}) {
       ? `${Number((Number(method.chance) * 100).toFixed(4))}%`
       : ''
     const sourceText = context && context !== name ? `${context} · ${name}` : name
-    // 概率掉落统一显示为「名称（X%）」；保底/必定获得来源保持原有「必定获得」措辞不变。
+    const role = method.variables?.presentationLabel || (method.scope === 'blueprint' ? '总图' : method.scope === 'component' ? method.variables?.partName : '')
+    const rolePrefix = role ? `${role}：` : ''
+    // 概率掉落统一显示为「作用域：名称（X%）」；武器总图与部件不能因共用敌人栏而丢失语义。
     const text = Number(method.chance) >= 1
-      ? `- ${sourceText}（必定获得${chance ? `，${chance}` : ''}）`
-      : `- ${sourceText}${chance ? `（${chance}）` : '（概率获得）'}`
-    const identity = method.sourceEntityId || method.sourceCanonical || name
+      ? `- ${rolePrefix}${sourceText}（必定获得${chance ? `，${chance}` : ''}）`
+      : `- ${rolePrefix}${sourceText}${chance ? `（${chance}）` : '（概率获得）'}`
+    const identity = `${method.scope || ''}:${role}:${method.sourceEntityId || method.sourceCanonical || name}`
     if (seen.has(`enemy:${identity}`)) continue
     seen.add(`enemy:${identity}`)
     for (const line of method.requirementLines || []) {
@@ -836,6 +1017,7 @@ function acquisitionCardSections(methods, options = {}) {
     seen.add(identity)
     sections[group].push({ text, method })
   }
+  for (const group of Object.keys(sections)) sections[group] = mergeAcquisitionCardRoleRows(sections[group])
   return Object.assign(sections, { notes: sectionNotes })
 }
 
@@ -878,7 +1060,7 @@ function acquisitionRenderPriority(method) {
 
 function renderAcquisition(methods, options = {}) {
   const renderMethods = collapseSharedPartAcquisitionMethods(
-    mergeAlternativeSources(applyDisplaySummaries((methods || []).filter(method => method.reviewStatus !== 'review-required')), options),
+    mergeAlternativeSources(applyDisplaySummaries(collapseConcreteSpyMissionLocations((methods || []).filter(method => method.reviewStatus !== 'review-required'))), options),
     options
   )
     .map((method, index) => ({ method, index }))
@@ -911,4 +1093,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, EXCHANGE_METHOD_TYPES, ACQUISITION_CARD_GROUPS, normalizeRequirements, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, nearDuplicateVisibleLines, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, isOpenWorldBountyRotationMethod, collapseOpenWorldBountyStageMethods, formatOpenWorldBountyRotationLabel, formatOpenWorldBountyProbability, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionRenderPriority, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, EXCHANGE_REQUIREMENT_PROTOCOL, ACQUISITION_CARD_GROUPS, normalizeRequirements, isLocationStoreActor, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, mergeAcquisitionCardRoleRows, nearDuplicateVisibleLines, stripBountyRotationTerms, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, isOpenWorldBountyRotationMethod, isStandardOrbVallisBountyMethod, collapseOpenWorldBountyStageMethods, formatOpenWorldBountyRotationLabel, formatOpenWorldBountyProbability, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionRenderPriority, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

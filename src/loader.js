@@ -58,19 +58,32 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const officialItemsSupplement = fs.existsSync(officialItemsSupplementPath) ? readJson(officialItemsSupplementPath) : [];
   const fishSupplementPath = path.join(knowledgeDirectory, 'supplemental', 'fish-items.json');
   const fishSupplement = fs.existsSync(fishSupplementPath) ? readJson(fishSupplementPath) : [];
+  const conservationSupplementPath = path.join(knowledgeDirectory, 'supplemental', 'conservation-items.json');
+  const conservationSupplement = fs.existsSync(conservationSupplementPath) ? readJson(conservationSupplementPath).map(item => ({
+    ...item,
+    ecologyInfo: item.ecologyInfo ? {
+      ...item.ecologyInfo,
+      lure: item.ecologyInfo.lure ? { ...item.ecologyInfo.lure, displayName: '回声诱饵（追踪捕获）' } : null
+    } : null
+  })) : [];
+  const supplementsByIdentity = new Map([...officialItemsSupplement, ...fishSupplement, ...conservationSupplement].map(item => [item.uniqueName, item]));
   const officialItems = officialItemsBase ? deepFreeze({
     ...officialItemsBase,
-    items: [...(officialItemsBase.items || []), ...officialItemsSupplement, ...fishSupplement],
-    counts: { ...(officialItemsBase.counts || {}), supplemental: officialItemsSupplement.length, fishSupplemental: fishSupplement.length }
+    items: [...new Map((officialItemsBase.items || []).map(item => [item.uniqueName, supplementsByIdentity.get(item.uniqueName) || item])).values(), ...[...supplementsByIdentity.values()].filter(item => !(officialItemsBase.items || []).some(base => base.uniqueName === item.uniqueName))],
+    counts: { ...(officialItemsBase.counts || {}), supplemental: officialItemsSupplement.length, fishSupplemental: fishSupplement.length, conservationSupplemental: conservationSupplement.length }
   }) : null;
   const officialWeaponsPath = path.join(knowledgeDirectory, 'generated', 'official-weapons.json');
   const officialWeapons = fs.existsSync(officialWeaponsPath) ? deepFreeze(readJson(officialWeaponsPath)) : null;
+  const exaltedWeaponIntentsPath = path.join(knowledgeDirectory, 'supplemental', 'exalted-weapon-intents.json');
+  const exaltedWeaponIntents = fs.existsSync(exaltedWeaponIntentsPath) ? deepFreeze(readJson(exaltedWeaponIntentsPath)) : { schemaVersion: 1, families: [] };
   const rivenMarketWeaponsPath = path.join(knowledgeDirectory, 'supplemental', 'riven-market-weapons.json');
   const rivenMarketWeapons = fs.existsSync(rivenMarketWeaponsPath) ? deepFreeze(readJson(rivenMarketWeaponsPath)) : { schemaVersion: 1, entries: [] };
   const officialAbilitiesPath = path.join(knowledgeDirectory, 'generated', 'official-abilities.json');
   const officialAbilities = fs.existsSync(officialAbilitiesPath) ? deepFreeze(readJson(officialAbilitiesPath)) : { schemaVersion: 1, abilities: [] };
   const modRelationsPath = path.join(root, 'generated', 'mod-relations.json');
   const modRelations = fs.existsSync(modRelationsPath) ? deepFreeze(readJson(modRelationsPath)) : { schemaVersion: 1, syndicateWeaponAugments: [], nightwaveTargetMods: [] };
+  const ecologyRelationsPath = path.join(root, 'generated', 'ecology-relations.json');
+  const ecologyRelations = fs.existsSync(ecologyRelationsPath) ? deepFreeze(readJson(ecologyRelationsPath)) : { schemaVersion: 1, relations: [] };
   const elementModSlangPath = path.join(root, 'generated', 'element-mod-slang.json');
   const elementModSlang = fs.existsSync(elementModSlangPath) ? deepFreeze(readJson(elementModSlangPath)) : { schemaVersion: 1, automatic: [], manual: [], audit: [] };
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
@@ -104,7 +117,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const consumables = deepFreeze(readObjectDirectory(consumableDirectory).filter(item => item.kind === 'knowledge' && item.subject?.category === 'consumable'));
   const { loadEntityRegistries } = require('./entities');
   const registries = loadEntityRegistries(root);
-  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, rivenMarketWeapons, officialAbilities, modRelations, elementModSlang, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMetadataCatalog, arcaneMetadata, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
+  return { facts, knowledge, categories, officialCatalog, officialItems, officialWeapons, exaltedWeaponIntents, rivenMarketWeapons, officialAbilities, modRelations, ecologyRelations, elementModSlang, officialItemSources, aliases, acquisitionVariantFamilies, frameCategories, frameMethods, modMethods, arcaneCatalog, arcaneMetadataCatalog, arcaneMetadata, arcaneMethods, arcanes, weaponCatalog, weapons, consumableCatalog, consumables, ...registries };
 }
 
 module.exports = { loadData, readJson, deepFreeze, readEntryDirectory, readObjectDirectory, readCategoryDirectory };

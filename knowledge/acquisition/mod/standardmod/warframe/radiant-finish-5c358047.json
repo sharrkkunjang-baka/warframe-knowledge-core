@@ -40,10 +40,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
-      "official-sync:syndicate-exchange"
+      "official-sync:syndicate-exchange",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",
@@ -71,13 +72,50 @@
             "pageId": 707256,
             "revisionId": 2770878,
             "pageTimestamp": "2026-04-26T12:19:10Z",
-            "compiledAt": "2026-07-22T18:16:58.740Z",
+            "compiledAt": "2026-07-26T11:07:27.977Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
-          "methods": [],
+          "methods": [
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.arbiters-of-hexis",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.arbiters-of-hexis",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "ArbitersSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Excalibur/RadialBlindAugmentCard"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.steel-meridian",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.steel-meridian",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "SteelMeridianSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Excalibur/RadialBlindAugmentCard"
+              }
+            }
+          ],
           "evidence": [
             {
               "type": "acquisition-prose",
@@ -143,7 +181,7 @@
             "usage": []
           },
           "unresolvedEntities": [],
-          "status": "unresolved"
+          "status": "complete"
         },
         "officialDrops": []
       },
@@ -153,7 +191,8 @@
         "overrides": {},
         "reviewStatus": "approved",
         "reviewedBy": [
-          "official-sync:syndicate-exchange"
+          "official-sync:syndicate-exchange",
+          "structured-wiki-acquisition-audit"
         ]
       }
     }

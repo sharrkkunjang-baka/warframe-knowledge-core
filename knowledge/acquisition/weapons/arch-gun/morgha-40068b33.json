@@ -54,82 +54,118 @@
       "status": null,
       "methods": [
         {
+          "type": "syndicate-exchange",
           "scope": "blueprint",
+          "npcId": "npc.loid",
+          "locationId": "hub.necralisk",
+          "sourceCanonical": "Loid",
+          "standing": 8000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "rank": 3,
+            "rankName": "信任等级：探索者",
+            "amount": 8000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+            "pageTitle": "Morgha",
+            "revisionId": 2704059
+          },
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/ThanotechGrenadeLauncherBlueprint"
           ],
-          "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
+          "variables": {}
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.loid",
+          "locationId": "hub.necralisk",
+          "sourceCanonical": "Loid",
+          "standing": 4000,
           "requirements": {
-            "type": "standing"
+            "type": "standing",
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "rank": 2,
+            "rankName": "信任等级：模仿者",
+            "amount": 4000
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+            "pageTitle": "Morgha",
+            "revisionId": 2704059
           },
-          "type": "syndicate-exchange",
-          "requiredRankName": "Clearance Odima",
-          "variables": {},
-          "npcId": "npc.loid"
-        },
-        {
-          "type": "vendor-exchange",
-          "scope": "component",
           "partRefs": [
             "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem"
           ],
+          "variables": {
+            "partName": "置灵者 枪管"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.loid",
+          "locationId": "hub.necralisk",
+          "sourceCanonical": "Loid",
+          "standing": 4000,
           "requirements": {
-            "type": "standing"
+            "type": "standing",
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "rank": 2,
+            "rankName": "信任等级：模仿者",
+            "amount": 4000
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "DE Languages.bin official route help",
-            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+            "pageTitle": "Morgha",
+            "revisionId": 2704059
           },
-          "variables": {
-            "partName": "置灵者 枪管"
-          },
-          "npcId": "npc.loid"
-        },
-        {
-          "type": "vendor-exchange",
-          "scope": "component",
           "partRefs": [
             "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem"
           ],
+          "variables": {
+            "partName": "置灵者 枪机"
+          }
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.loid",
+          "locationId": "hub.necralisk",
+          "sourceCanonical": "Loid",
+          "standing": 4000,
           "requirements": {
-            "type": "standing"
+            "type": "standing",
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "rank": 2,
+            "rankName": "信任等级：模仿者",
+            "amount": 4000
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "DE Languages.bin official route help",
-            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+            "pageTitle": "Morgha",
+            "revisionId": 2704059
           },
-          "variables": {
-            "partName": "置灵者 枪机"
-          },
-          "npcId": "npc.loid"
-        },
-        {
-          "type": "vendor-exchange",
-          "scope": "component",
           "partRefs": [
             "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem"
           ],
-          "requirements": {
-            "type": "standing"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "DE Languages.bin official route help",
-            "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
-          },
           "variables": {
             "partName": "置灵者 枪托"
-          },
-          "npcId": "npc.loid"
+          }
         }
       ]
     },
@@ -149,25 +185,31 @@
         },
         "methods": [
           {
+            "type": "syndicate-exchange",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/ThanotechGrenadeLauncherBlueprint"
-            ],
-            "sourceCanonical": "NecraLoid (Loid), Clearance Odima",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "sourceCanonical": "Loid",
+            "standing": 8000,
             "requirements": {
-              "type": "standing"
+              "type": "standing",
+              "npcId": "npc.loid",
+              "locationId": "hub.necralisk",
+              "rank": 3,
+              "rankName": "信任等级：探索者",
+              "amount": 8000
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+              "pageTitle": "Morgha",
+              "revisionId": 2704059
             },
-            "type": "syndicate-exchange",
-            "requiredRankName": "Clearance Odima",
-            "variables": {},
-            "npcId": "npc.loid"
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ThanotechGrenadeLauncherBlueprint"
+            ],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -186,23 +228,33 @@
         },
         "methods": [
           {
-            "type": "vendor-exchange",
+            "type": "syndicate-exchange",
             "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem"
-            ],
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "sourceCanonical": "Loid",
+            "standing": 4000,
             "requirements": {
-              "type": "standing"
+              "type": "standing",
+              "npcId": "npc.loid",
+              "locationId": "hub.necralisk",
+              "rank": 2,
+              "rankName": "信任等级：模仿者",
+              "amount": 4000
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE Languages.bin official route help",
-              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+              "pageTitle": "Morgha",
+              "revisionId": 2704059
             },
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherBarrelItem"
+            ],
             "variables": {
               "partName": "置灵者 枪管"
-            },
-            "npcId": "npc.loid"
+            }
           }
         ],
         "status": "complete"
@@ -221,23 +273,33 @@
         },
         "methods": [
           {
-            "type": "vendor-exchange",
+            "type": "syndicate-exchange",
             "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem"
-            ],
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "sourceCanonical": "Loid",
+            "standing": 4000,
             "requirements": {
-              "type": "standing"
+              "type": "standing",
+              "npcId": "npc.loid",
+              "locationId": "hub.necralisk",
+              "rank": 2,
+              "rankName": "信任等级：模仿者",
+              "amount": 4000
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE Languages.bin official route help",
-              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+              "pageTitle": "Morgha",
+              "revisionId": 2704059
             },
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherReceiverItem"
+            ],
             "variables": {
               "partName": "置灵者 枪机"
-            },
-            "npcId": "npc.loid"
+            }
           }
         ],
         "status": "complete"
@@ -256,23 +318,33 @@
         },
         "methods": [
           {
-            "type": "vendor-exchange",
+            "type": "syndicate-exchange",
             "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem"
-            ],
+            "npcId": "npc.loid",
+            "locationId": "hub.necralisk",
+            "sourceCanonical": "Loid",
+            "standing": 4000,
             "requirements": {
-              "type": "standing"
+              "type": "standing",
+              "npcId": "npc.loid",
+              "locationId": "hub.necralisk",
+              "rank": 2,
+              "rankName": "信任等级：模仿者",
+              "amount": 4000
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE Languages.bin official route help",
-              "languageKey": "/Lotus/Language/Necromech/RecipeHelpTextMorghaWeapon"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Morgha?oldid=2704059",
+              "pageTitle": "Morgha",
+              "revisionId": 2704059
             },
+            "partRefs": [
+              "/Lotus/Types/Gameplay/InfestedMicroplanet/Resources/Mechs/ThanotechGrenadeLauncherStockItem"
+            ],
             "variables": {
               "partName": "置灵者 枪托"
-            },
-            "npcId": "npc.loid"
+            }
           }
         ],
         "status": "complete"
@@ -374,7 +446,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

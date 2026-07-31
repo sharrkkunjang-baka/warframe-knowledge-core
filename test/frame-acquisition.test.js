@@ -128,6 +128,20 @@ test('Chroma sources split Simaris purchase from one-time quest rewards', () => 
   assert.doesNotMatch(rendered, /100%|Complete|Junction/);
 });
 
+test('Baruuk 按当前 Wiki 与 DE 身份拆分总图和部件报价', () => {
+  const result = createKnowledgeCore({ approvedOnly: false }).getAcquisition('Baruuk');
+  const exchange = result.structuredMethods.filter(method => method.type === 'vendor-exchange');
+  assert.deepEqual(exchange.map(method => [method.scope, method.requirements.rank, method.requirements.rankName, method.requirements.amount]), [
+    ['blueprint', 2, '特工', 5000],
+    ['component', 3, '刽子手', 5000]
+  ]);
+  assert.ok(exchange.every(method => method.reviewStatus === 'approved' && method.reviewIssues.length === 0));
+  assert.match(result.description, /总图：在福尔图娜的Little Duck处达到2级（特工）声望后消耗5,000声望兑换/);
+  assert.match(result.description, /部件蓝图：在福尔图娜的Little Duck处达到3级（刽子手）声望后消耗5,000声望兑换/);
+  assert.match(result.description, /整套蓝图：普通无尽回廊第 11 周轮换可获取/);
+  assert.doesNotMatch(result.description, /总图需要|部件蓝图需要|20,000声望兑换|Agent|Hand/);
+});
+
 test('Titania merges first quest rewards, distinct Simaris prices, and Circuit set by blueprint role', () => {
   const result = createKnowledgeCore().getAcquisition('Titania');
   const rendered = result.description;

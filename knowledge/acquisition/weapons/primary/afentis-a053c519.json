@@ -54,24 +54,36 @@
       "status": null,
       "methods": [
         {
+          "type": "vendor-exchange",
           "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
-          ],
-          "sourceCanonical": "Kahl's Garrison (Chipper), Home",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
+          "npcId": "npc.chipper",
+          "locationId": "hub.drifters-camp",
+          "sourceCanonical": "Chipper",
           "requirements": {
-            "type": "none"
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.chipper",
+            "locationId": "hub.drifters-camp",
+            "rank": 5,
+            "rankName": "家园",
+            "currency": [
+              {
+                "currencyId": "currency.stock",
+                "amount": 60
+              }
+            ]
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Afentis?oldid=2789983",
+            "pageTitle": "Afentis",
+            "revisionId": 2789983
           },
-          "type": "vendor-exchange",
-          "variables": {},
-          "npcId": "npc.chipper"
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
+          ],
+          "variables": {}
         }
       ]
     },
@@ -91,24 +103,36 @@
         },
         "methods": [
           {
+            "type": "vendor-exchange",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
-            ],
-            "sourceCanonical": "Kahl's Garrison (Chipper), Home",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
+            "npcId": "npc.chipper",
+            "locationId": "hub.drifters-camp",
+            "sourceCanonical": "Chipper",
             "requirements": {
-              "type": "none"
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.chipper",
+              "locationId": "hub.drifters-camp",
+              "rank": 5,
+              "rankName": "家园",
+              "currency": [
+                {
+                  "currencyId": "currency.stock",
+                  "amount": 60
+                }
+              ]
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Afentis?oldid=2789983",
+              "pageTitle": "Afentis",
+              "revisionId": 2789983
             },
-            "type": "vendor-exchange",
-            "variables": {},
-            "npcId": "npc.chipper"
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TnHopliteSpearGunWeaponBlueprint"
+            ],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -219,7 +243,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

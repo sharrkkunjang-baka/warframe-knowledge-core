@@ -66,6 +66,19 @@ function rivenFamilyName(value) {
   return name.toLowerCase();
 }
 
+function localizedRivenFamilyName(value) {
+  let name = String(value || '').normalize('NFKC').trim();
+  let previous = '';
+  while (name && name !== previous) {
+    previous = name;
+    name = name
+      .replace(VARIANT_PREFIX_RE, '')
+      .replace(/[·・‧•\s_-]*(?:Prime|终幕|赤毒|信条|棱晶|亡魂|破坏者|圣洁|绯红|保障|枢议|苦痛|Dex)$/i, '')
+      .trim();
+  }
+  return normalizeName(name);
+}
+
 function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
   const included = officialWeapons?.weapons || [];
   const officialCatalog = [...included, ...(officialWeapons?.excludedWeapons || [])];
@@ -73,6 +86,14 @@ function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
   const marketEntries = rivenMarketWeapons?.entries || [];
   const marketByRef = new Map(marketEntries.map(item => [item.gameRef, item]));
   const marketByFamily = new Map(marketEntries.map(item => [rivenFamilyName(item.canonical), item]));
+  const marketDisplayFamilies = new Map();
+  for (const marketEntry of marketEntries) {
+    const baseItem = officialByRef.get(marketEntry.gameRef);
+    const family = localizedRivenFamilyName(baseItem?.displayName);
+    if (!family) continue;
+    if (!marketDisplayFamilies.has(family)) marketDisplayFamilies.set(family, []);
+    marketDisplayFamilies.get(family).push(marketEntry);
+  }
   const pairs = [];
   for (const marketEntry of marketEntries) {
     const item = officialByRef.get(marketEntry.gameRef);
@@ -80,13 +101,17 @@ function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
   }
   for (const item of included) {
     if (!item?.uniqueName || marketByRef.has(item.uniqueName) || !Number.isFinite(Number(item.omegaAttenuation))) continue;
-    const marketEntry = marketByFamily.get(rivenFamilyName(item.canonical));
-    if (marketEntry) {
-      const familyItem = officialByRef.get(marketEntry.gameRef) || item;
-      pairs.push({ item: familyItem, marketEntry, canonical: marketEntry.canonical });
-    }
+    const canonicalMatch = marketByFamily.get(rivenFamilyName(item.canonical));
+    const localizedMatches = marketDisplayFamilies.get(localizedRivenFamilyName(item.displayName)) || [];
+    const marketEntry = canonicalMatch || (localizedMatches.length === 1 ? localizedMatches[0] : null);
+    if (marketEntry) pairs.push({
+      item,
+      marketEntry,
+      canonical: item.canonical,
+      sharedRivenFamily: true
+    });
   }
-  return [...new Map(pairs.filter(({ item }) => item?.canonical && item?.displayName).map(({ item, marketEntry, canonical }) => [item.uniqueName, {
+  return [...new Map(pairs.filter(({ item }) => item?.canonical && item?.displayName).map(({ item, marketEntry, canonical, sharedRivenFamily = false }) => [item.uniqueName, {
     canonical,
     displayName: item.displayName,
     officialUniqueName: item.uniqueName,
@@ -99,6 +124,7 @@ function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
     marketSlug: marketEntry.slug,
     marketGroup: marketEntry.group,
     rivenType: marketEntry.rivenType,
+    sharedRivenFamily,
     ...modularMetadata(marketEntry)
   }])).values()];
 }
@@ -156,6 +182,7 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}, rivenM
     modularFamily: entry.identity.modularFamily,
     componentRole: entry.identity.componentRole,
     dispositions: entry.identity.dispositions,
+    sharedRivenFamily: entry.identity.sharedRivenFamily,
     category: 'riven-weapon',
     match,
     score,
@@ -187,7 +214,12 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}, rivenM
     if (phoneticQuery && !mixedHanLatin) {
       const matches = [...new Map((pinyinGroups.get(phoneticQuery) || []).map(entry => [entry.identity.officialUniqueName, entry])).values()];
       if (matches.length === 1) return result(matches[0], 'pinyin-exact', 850);
-      if (matches.length > 1) return ambiguity(matches.map(entry => ({ entry, match: 'pinyin-exact', score: 850 })), 'pinyin-collision', 850);
+      if (matches.length > 1) {
+        const marketFamilies = new Set(matches.map(entry => entry.identity.marketSlug).filter(Boolean));
+        const familyBases = matches.filter(entry => entry.source === 'official-zh' && !entry.identity.sharedRivenFamily);
+        if (marketFamilies.size === 1 && familyBases.length === 1) return result(familyBases[0], 'pinyin-exact', 850);
+        return ambiguity(matches.map(entry => ({ entry, match: 'pinyin-exact', score: 850 })), 'pinyin-collision', 850);
+      }
       const initialMatches = phoneticQuery.length >= 2
         ? [...new Map((pinyinInitialGroups.get(phoneticQuery) || []).map(entry => [entry.identity.officialUniqueName, entry])).values()]
         : [];
@@ -270,6 +302,8 @@ function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}, rivenM
 module.exports = {
   createRivenWeaponResolver,
   rivenWeaponIdentities,
+  rivenFamilyName,
+  localizedRivenFamilyName,
   modularMetadata,
   normalizeName,
   pinyinTokens,

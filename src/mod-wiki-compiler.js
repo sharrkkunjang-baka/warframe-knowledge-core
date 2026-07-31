@@ -17,7 +17,16 @@ const MECHANICS_SECTIONS = new Set(['notes', 'usage'])
 const ACQUISITION_SECTIONS = new Set(['acquisition', 'blueprints', 'drop location', 'drop locations', 'mission drop tables', 'enemy drop tables', 'vendor'])
 const MISSION_TYPE_ZH = Object.freeze({ Spy: '间谍', 'The Circuit': '无尽回廊', 'Orokin Vault': '奥罗金宝库', 'Weekly Conclave Challenge Reward': '武形秘仪每周挑战奖励' })
 const LOCATION_ZH = Object.freeze({ Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一', Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', Zariman: '扎里曼号', 'Earth Proxima': '地球比邻星域', 'Venus Proxima': '金星比邻星域', 'Saturn Proxima': '土星比邻星域', 'Neptune Proxima': '海王星比邻星域', 'Pluto Proxima': '冥王星比邻星域', 'Veil Proxima': '面纱比邻星域', 'Kuva Fortress': '赤毒要塞' })
-function baseLocationCanonical(value) { return cleanCell(String(value || '').split(/\s*;\s*/)[0]) }
+const BOUNTY_PROVIDER_NPCS = Object.freeze({ Eudico: 'npc.eudico', Konzu: 'npc.konzu', Mother: 'npc.mother', Quinn: 'npc.quinn' })
+function splitLocationProvider(value) {
+  const raw = cleanCell(value)
+  const match = raw.match(/^(.*?)\s*;\s*talk\s+to\s+(.+)$/i)
+  if (!match) return { canonical: raw, npcId: null, npcCanonical: null }
+  const canonical = cleanCell(match[1])
+  const npcCanonical = cleanCell(match[2])
+  return { canonical, npcId: BOUNTY_PROVIDER_NPCS[npcCanonical] || null, npcCanonical }
+}
+function baseLocationCanonical(value) { return splitLocationProvider(value).canonical }
 
 function normalizeSection(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim() }
 function percentage(value) {
@@ -82,8 +91,15 @@ function compileMissionRows(page, section, unresolved) {
     }
     for (const match of nodes) {
       const node = {}
+      const provider = splitLocationProvider(match[2])
       attachEntity(node, 'node', cleanCell(match[1]), 'node', unresolved)
-      attachEntity(node, 'planet', cleanCell(match[2]), 'location', unresolved)
+      attachEntity(node, 'planet', provider.canonical, 'location', unresolved)
+      if (provider.npcId) {
+        node.npcId = provider.npcId
+        if (!method.npcId) method.npcId = provider.npcId
+      } else if (provider.npcCanonical) {
+        unresolved.push({ kind: 'npc', canonical: provider.npcCanonical })
+      }
       method.nodes.push(node)
     }
     return method
@@ -100,13 +116,40 @@ function compileEnemyRows(page, section, unresolved) {
   }).filter(row => row.sourceCanonical && row.chance !== null)
 }
 
+function exchangeRequirements(sourceEntityId, locationId, currency) {
+  return { type: 'currency', usage: 'exchange', npcId: sourceEntityId, locationId, currency }
+}
+function repeatedPrice(excerpt, label) {
+  const text = String(excerpt || '')
+  if (label === 'credits') {
+    const match = text.match(/([\d,]+)\s+Credits(?:\s+[\d,]+)?/i)
+    return match ? Number(match[1].replace(/,/g, '')) : null
+  }
+  const afterCredits = text.match(/Credits(?:\s+[\d,]+)?\s*(?:and|\+)\s*[^\d]{0,8}([\d,]+)(?:\s+\1)?(?:\s+Ducats?)?/i)
+  if (afterCredits) return Number(afterCredits[1].replace(/,/g, ''))
+  const beforeCredits = text.match(/(?:for|costing)\s+([\d,]+)(?:\s+\1)?(?:\s+Ducats?)?\s+(?:and|\+)\s+[\d,]+\s+Credits/i)
+  return beforeCredits ? Number(beforeCredits[1].replace(/,/g, '')) : null
+}
 function compileAcquisitionProseMethod(excerpt, page, section) {
   let match = excerpt.match(/automatically acquired upon obtaining (?:an? |the )?(.+?)(?:\s*\.|$)/i)
   if (match) return { type: 'companion-included', sourceItemCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/(?:given one copy every time you claim|automatically acquired upon claiming) (?:an? |the )?(.+?) from your Foundry/i)
   if (match) return { type: 'companion-included', sourceItemCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
-  if (/Void Trader|Baro Ki['’]Teer/i.test(excerpt) && /(?:purchased|bought|sale|offered)/i.test(excerpt)) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.baro-ki-teer', locationId: 'hub.any-relay', chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
-  if (/Nightwave Cred Offerings/i.test(excerpt) && /rotational basis/i.test(excerpt)) return { type: 'vendor-or-syndicate-exchange', locationId: 'interface.nightwave', currency: [{ currencyCanonical: 'Nightwave Cred', amount: integer(excerpt) }], chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  if (/Void Trader|Baro Ki['’]Teer/i.test(excerpt) && /(?:purchased|bought|sale|offered|sold)/i.test(excerpt)) {
+    const credits = repeatedPrice(excerpt, 'credits')
+    const ducats = repeatedPrice(excerpt, 'ducats')
+    const currency = [
+      credits ? { currencyId: 'currency.credits', amount: credits } : null,
+      ducats ? { currencyId: 'currency.orokin-ducats', amount: ducats } : null
+    ].filter(Boolean)
+    return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.baro-ki-teer', locationId: 'hub.any-relay', ...(currency.length === 2 ? { requirements: exchangeRequirements('npc.baro-ki-teer', 'hub.any-relay', currency) } : {}), chance: null, quantity: 1, availability: 'rotating', reviewStatus: currency.length === 2 ? 'approved' : 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  }
+  if (/Nightwave Cred Offerings/i.test(excerpt) && /rotational basis/i.test(excerpt)) {
+    const currency = [{ currencyCanonical: 'Nightwave Cred', amount: integer(excerpt) }]
+    return { type: 'vendor-or-syndicate-exchange', locationId: 'interface.nightwave', requirements: exchangeRequirements(null, 'interface.nightwave', currency), chance: null, quantity: 1, availability: 'rotating', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  }
+  match = excerpt.match(/available from Chipper of Kahl['’]s Garrison for\s+([\d,]+)\s+Stock[^.]*?Rank\s+(\d+)\s*-\s*([A-Za-z ]+?)(?:\s+to purchase|[.,]|$)/i)
+  if (match) return { type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.chipper', locationId: 'hub.drifters-camp', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.chipper', locationId: 'hub.drifters-camp', currency: [{ currencyId: 'currency.stock', amount: Number(match[1].replace(/,/g, '')) }], rank: Number(match[2]), rankName: cleanCell(match[3]) }, chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'approved', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/(?:obtained|reaching Rank\s+(\d+))[^.]*?Nightwave[^.]*?(?:Rank\s+(\d+))?/i)
   if (match) return { type: 'legacy-nightwave-reward', locationId: 'interface.nightwave', rank: Number(match[1] || match[2] || 0) || null, chance: null, quantity: 1, availability: 'legacy-or-future-rotation', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/Arbitrations vendor[^.]*?for\s+(\d+)\s+Vitus Essence/i)
@@ -151,9 +194,12 @@ function compileAcquisition(page, section, unresolved) {
       if (!planetCanonical || !nodeCanonical || !missionType) continue
       const tileSet = cleanCell(String(rawTileSet || '').split(/\bOriginally this mod\b/i)[0])
       const method = { type: 'mission-reward', chance: null, quantity: 1, rotation: null, availability: 'unknown', reviewStatus: 'draft', context: `Acquisition 章节列出的任务节点（${level}，${tileSet}）；概率与轮次以掉落表为准`, provenance: evidenceProvenance(page, section, [planetCanonical, nodeCanonical, missionType, level, tileSet].join(' | ')) }
+      const provider = splitLocationProvider(planetCanonical)
       attachEntity(method, 'missionType', missionType, 'missionType', unresolved)
       attachEntity(method, 'node', nodeCanonical, 'node', unresolved)
-      attachEntity(method, 'planet', planetCanonical, 'location', unresolved)
+      attachEntity(method, 'planet', provider.canonical, 'location', unresolved)
+      if (provider.npcId) method.npcId = provider.npcId
+      else if (provider.npcCanonical) unresolved.push({ kind: 'npc', canonical: provider.npcCanonical })
       methods.push(method)
     }
   }
@@ -193,4 +239,4 @@ function compileModWikiPage(page, sourceDatabase, compiledAt = new Date().toISOS
   }
 }
 
-module.exports = { ACQUISITION_SECTIONS, ENEMY_HEADERS, LOCATION_HEADERS, MISSION_HEADERS, compileAcquisitionProseMethod, compileModWikiPage, percentage }
+module.exports = { ACQUISITION_SECTIONS, ENEMY_HEADERS, LOCATION_HEADERS, MISSION_HEADERS, compileAcquisitionProseMethod, compileMissionRows, compileModWikiPage, percentage, splitLocationProvider }

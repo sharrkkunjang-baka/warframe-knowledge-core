@@ -54,24 +54,41 @@
       "status": null,
       "methods": [
         {
+          "type": "vendor-exchange",
           "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
-          ],
-          "sourceCanonical": "Operational Supply, Collaborator",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
+          "npcId": "npc.nakak",
+          "locationId": "hub.cetus",
+          "sourceCanonical": "Nakak",
+          "availability": "event",
           "requirements": {
-            "type": "none"
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.nakak",
+            "locationId": "hub.cetus",
+            "currency": [
+              {
+                "currencyId": "currency.standing.operational-supply",
+                "amount": 3000
+              },
+              {
+                "currencyId": "currency.credits",
+                "amount": 5000
+              }
+            ],
+            "rank": 1,
+            "rankName": "合作者"
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Snipetron?oldid=2785211",
+            "pageTitle": "Snipetron",
+            "revisionId": 2785211
           },
-          "type": "vendor-exchange",
-          "variables": {},
-          "sourceEntityId": "acquisition-source.operational-supply"
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
+          ],
+          "variables": {}
         }
       ]
     },
@@ -91,24 +108,41 @@
         },
         "methods": [
           {
+            "type": "vendor-exchange",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
-            ],
-            "sourceCanonical": "Operational Supply, Collaborator",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
+            "npcId": "npc.nakak",
+            "locationId": "hub.cetus",
+            "sourceCanonical": "Nakak",
+            "availability": "event",
             "requirements": {
-              "type": "none"
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.nakak",
+              "locationId": "hub.cetus",
+              "currency": [
+                {
+                  "currencyId": "currency.standing.operational-supply",
+                  "amount": 3000
+                },
+                {
+                  "currencyId": "currency.credits",
+                  "amount": 5000
+                }
+              ],
+              "rank": 1,
+              "rankName": "合作者"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Snipetron?oldid=2785211",
+              "pageTitle": "Snipetron",
+              "revisionId": 2785211
             },
-            "type": "vendor-exchange",
-            "variables": {},
-            "sourceEntityId": "acquisition-source.operational-supply"
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/SnipetronBlueprint"
+            ],
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -219,7 +253,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

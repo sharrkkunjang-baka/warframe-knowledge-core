@@ -249,8 +249,7 @@ function run(argv = process.argv.slice(2)) {
   printSummary(plan)
   if (check) {
     if (changes.length) {
-      console.error(`mod-stubs-out-of-sync=${changes.length}`)
-      process.exitCode = 1
+      throw new Error(`Mod stubs 已漂移：${changes.length} 个文件`)
     } else {
       console.log('mod-stubs-in-sync')
     }

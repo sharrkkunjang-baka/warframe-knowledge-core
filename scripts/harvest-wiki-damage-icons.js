@@ -22,7 +22,9 @@ const WIKI_FILES = Object.freeze({
   Gas: 'Gas(xWhite).png',
   Corrosive: 'Corrosive(xWhite).png',
   Viral: 'Viral(xWhite).png',
-  Void: 'VoidOutline(xWhite).png'
+  Void: 'DmgVoidSmall64.png',
+  Tau: 'DmgTauSmall64.png',
+  True: 'DmgTrueSmall64.png'
 });
 
 const DISPLAY_ZH = Object.freeze({
@@ -39,7 +41,9 @@ const DISPLAY_ZH = Object.freeze({
   Gas: '毒气',
   Corrosive: '腐蚀',
   Viral: '病毒',
-  Void: '虚空'
+  Void: '虚空',
+  Tau: 'Tau',
+  True: '真实'
 });
 
 function sanitizeFilename(name) {
@@ -72,7 +76,14 @@ async function run() {
       id: `damage.${canonical.toLowerCase()}`,
       canonical,
       displayName: DISPLAY_ZH[canonical] || canonical,
-      aliases: [canonical, ...Object.entries(DAMAGE_TYPE_ALIASES).filter(([, value]) => value === canonical).map(([key]) => key)],
+      aliases: [
+        canonical,
+        DISPLAY_ZH[canonical] || canonical,
+        `${DISPLAY_ZH[canonical] || canonical}伤害`,
+        `${canonical} Damage`,
+        `DT_${canonical === 'Tau' ? 'SENTIENT' : canonical.toUpperCase()}`,
+        ...Object.entries(DAMAGE_TYPE_ALIASES).filter(([, value]) => value === canonical).map(([key]) => key)
+      ],
       imageName,
       sourceFile,
       sourceUrl: imageUrl

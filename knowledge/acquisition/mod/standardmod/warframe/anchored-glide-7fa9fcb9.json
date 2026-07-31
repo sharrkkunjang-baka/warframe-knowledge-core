@@ -40,10 +40,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
-      "official-sync:syndicate-exchange"
+      "official-sync:syndicate-exchange",
+      "structured-wiki-acquisition-audit"
     ],
     "tags": [
       "acquisition",
@@ -67,20 +68,48 @@
         },
         "wiki": {
           "wiki": null,
-          "methods": [],
-          "evidence": [],
-          "mechanicsEvidence": {
-            "status": "draft",
-            "notes": [],
-            "usage": []
-          },
-          "unresolvedEntities": [
+          "methods": [
             {
-              "kind": "wiki-page",
-              "canonical": "Anchored Glide"
+              "type": "syndicate-exchange",
+              "factionId": "faction.new-loka",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.new-loka",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "NewLokaSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Tengu/TenguDisablePassiveMod"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.red-veil",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.red-veil",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "RedVeilSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/Tengu/TenguDisablePassiveMod"
+              }
             }
           ],
-          "status": "unresolved"
+          "evidence": [],
+          "mechanicsEvidence": {},
+          "unresolvedEntities": [],
+          "status": "complete"
         },
         "officialDrops": []
       },
@@ -90,7 +119,8 @@
         "overrides": {},
         "reviewStatus": "approved",
         "reviewedBy": [
-          "official-sync:syndicate-exchange"
+          "official-sync:syndicate-exchange",
+          "structured-wiki-acquisition-audit"
         ]
       }
     }

@@ -4,7 +4,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { createRegistry, loadEntityRegistries } = require('./entities')
 const { structuredMethods } = require('./acquisition-core')
-const { renderAcquisition } = require('./acquisition-protocol')
+const { renderAcquisition, stripBountyRotationTerms } = require('./acquisition-protocol')
 
 const ROOT = path.resolve(__dirname, '..')
 const RESOURCE_ROOT = path.join(ROOT, 'knowledge', 'acquisition', 'resource')
@@ -118,7 +118,7 @@ function getResourceAcquisition(query) {
   const manual = entry.resourceAcquisition?.manual || {}
   const tips = manual.tips || []
   const acquisitionText = renderAcquisition(methods, { displayName: entry.subject.displayName, registries: ENTITIES }) || routeText
-  const usageText = String(manual.description || '').trim()
+  const usageText = stripBountyRotationTerms(String(manual.description || '').trim())
   const presentationText = String(manual.presentationText || '').trim()
   return { entry, routeText, tips, structuredMethods: methods, text: presentationText || [usageText ? `说明：${usageText}` : '', acquisitionText, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }
 }

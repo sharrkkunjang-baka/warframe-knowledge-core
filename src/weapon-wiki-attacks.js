@@ -6,6 +6,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const WIKI_ATTACKS_PATH = path.join(ROOT, 'knowledge', 'generated', 'weapon-wiki-attacks.json');
 const EXPORT_WEAPONS_PATH = path.join(ROOT, 'cache', 'warframe-export-weapons.json');
+const INCARNON_FORMS_PATH = path.join(ROOT, 'knowledge', 'supplemental', 'weapon-incarnon-forms.json');
 
 const TRIGGER_ZH = Object.freeze({
   'Semi-Auto': '半自动',
@@ -85,6 +86,7 @@ const DAMAGE_TYPE_ALIASES = Object.freeze({
 
 let wikiAttacksCache = null;
 let exportWeaponsCache = null;
+let incarnonFormsCache = null;
 
 function readJson(file) {
   if (!fs.existsSync(file)) return null;
@@ -102,6 +104,37 @@ function loadExportWeapons() {
   if (exportWeaponsCache) return exportWeaponsCache;
   exportWeaponsCache = readJson(EXPORT_WEAPONS_PATH) || {};
   return exportWeaponsCache;
+}
+
+function loadIncarnonForms() {
+  if (incarnonFormsCache) return incarnonFormsCache;
+  incarnonFormsCache = readJson(INCARNON_FORMS_PATH)?.entries || {};
+  return incarnonFormsCache;
+}
+
+function getIncarnonFormPanel(entry = {}) {
+  const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName || null;
+  const canonical = entry.subject?.canonical || entry.canonical || null;
+  const sources = Object.values(loadIncarnonForms());
+  const source = (uniqueName ? loadIncarnonForms()[uniqueName] : null)
+    || sources.find(candidate => (candidate.weaponUniqueNames || []).includes(uniqueName))
+    || sources.find(candidate => (candidate.weaponCanonicals || []).includes(canonical))
+    || null;
+  if (!source || source.reviewStatus !== 'approved') return null;
+  return {
+    id: `incarnon-${source.familyCanonical || uniqueName}`,
+    title: source.title || '灵化形态',
+    activation: source.activation || null,
+    durationSeconds: Number.isFinite(Number(source.durationSeconds)) ? Number(source.durationSeconds) : null,
+    damage: [],
+    stats: (source.stats || []).map(stat => ({
+      kind: stat.kind || 'incarnon-effect',
+      label: String(stat.label || '').trim(),
+      value: String(stat.value || '').trim()
+    })).filter(stat => stat.label && stat.value),
+    source: 'wiki.warframe.com',
+    provenance: source.provenance || null
+  };
 }
 
 function normalizeDamageKey(key) {
@@ -280,6 +313,7 @@ function buildWeaponInfo(entry = {}) {
   const exportWeapon = uniqueName ? loadExportWeapons()[uniqueName] : null;
   return {
     panels: buildWeaponAttackPanels(entry),
+    incarnonPanel: getIncarnonFormPanel(entry),
     disposition: weaponIdentity.disposition ?? weaponIdentity.omegaAttenuation ?? wikiPayload?.Disposition ?? exportWeapon?.omegaAttenuation ?? null,
     masteryReq: weaponIdentity.masteryReq ?? wikiPayload?.Mastery ?? exportWeapon?.masteryReq ?? null,
     equipmentType: weaponIdentity.equipmentType || entry.subject?.categoryRefs?.find(ref => /^weapon\./.test(ref))?.replace(/^weapon\./, '') || null
@@ -288,13 +322,34 @@ function buildWeaponInfo(entry = {}) {
 
 function parseWikiWeaponRender(body) {
   const text = String(body || '').trim();
-  const match = text.match(/^(\{[\s\S]*?\})\s*(?:\r?\n|$)/);
-  if (!match) return null;
-  try {
-    return JSON.parse(match[1]);
-  } catch {
-    return null;
+  const candidates = [];
+  for (let start = text.indexOf('{'); start >= 0; start = text.indexOf('{', start + 1)) {
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (let index = start; index < text.length; index += 1) {
+      const char = text[index];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (char === '\\') escaped = true;
+        else if (char === '"') inString = false;
+        continue;
+      }
+      if (char === '"') inString = true;
+      else if (char === '{') depth += 1;
+      else if (char === '}') {
+        depth -= 1;
+        if (depth !== 0) continue;
+        try {
+          const parsed = JSON.parse(text.slice(start, index + 1));
+          if (Array.isArray(parsed?.Attacks) && parsed.Attacks.length) return parsed;
+          candidates.push(parsed);
+        } catch {}
+        break;
+      }
+    }
   }
+  return candidates.find(candidate => Array.isArray(candidate?.Attacks) && candidate.Attacks.length) || null;
 }
 
 module.exports = {
@@ -303,7 +358,9 @@ module.exports = {
   DAMAGE_TYPE_ALIASES,
   DAMAGE_TYPE_ZH,
   WIKI_ATTACKS_PATH,
+  INCARNON_FORMS_PATH,
   buildWeaponAttackPanels,
+  getIncarnonFormPanel,
   buildWeaponInfo,
   buildPanelFromWikiAttack,
   buildSupplementalPanels,

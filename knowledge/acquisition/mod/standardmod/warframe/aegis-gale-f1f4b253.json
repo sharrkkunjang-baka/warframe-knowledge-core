@@ -9,6 +9,7 @@
       "displayName": "神盾之风",
       "category": "mod",
       "categoryRefs": [
+        "syndicatemod",
         "warframemod",
         "standardmod"
       ]
@@ -39,11 +40,12 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
       "local-wiki-cross-page-sync",
-      "structured-wiki-acquisition-audit"
+      "structured-wiki-acquisition-audit",
+      "official-sync:syndicate-exchange"
     ],
     "tags": [
       "acquisition",
@@ -69,28 +71,46 @@
           "status": "complete",
           "methods": [
             {
-              "type": "syndicate-exchange-group",
-              "factionIds": [
-                "faction.cephalon-suda",
-                "faction.the-perrin-sequence"
-              ],
+              "type": "syndicate-exchange",
+              "factionId": "faction.cephalon-suda",
               "standing": 25000,
-              "rankRequirement": "max",
-              "chance": null,
-              "quantity": 1,
-              "availability": "guaranteed-when-requirements-met",
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.cephalon-suda",
+                "amount": 25000,
+                "rank": 5
+              },
               "reviewStatus": "approved",
               "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Cephalon Suda / The Perrin Sequence",
-                "section": "Offerings",
-                "excerpt": "Aegis Gale (Hildryn), Rank 5, 25,000 Standing"
+                "source": "DE ExportSyndicates",
+                "syndicateId": "CephalonSudaSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/IronFrame/IronFrameEruptionAugmentCard"
+              }
+            },
+            {
+              "type": "syndicate-exchange",
+              "factionId": "faction.the-perrin-sequence",
+              "standing": 25000,
+              "requiredLevel": 5,
+              "requirements": {
+                "type": "standing",
+                "factionId": "faction.the-perrin-sequence",
+                "amount": 25000,
+                "rank": 5
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "DE ExportSyndicates",
+                "syndicateId": "PerrinSyndicate",
+                "storeItem": "/Lotus/StoreItems/Powersuits/IronFrame/IronFrameEruptionAugmentCard"
               }
             }
           ],
           "evidence": [],
           "mechanicsEvidence": {},
-          "unresolvedEntities": []
+          "unresolvedEntities": [],
+          "wiki": null
         },
         "officialDrops": []
       },
@@ -101,7 +121,8 @@
         "reviewStatus": "approved",
         "reviewedBy": [
           "local-wiki-cross-page-sync",
-          "structured-wiki-acquisition-audit"
+          "structured-wiki-acquisition-audit",
+          "official-sync:syndicate-exchange"
         ]
       }
     }

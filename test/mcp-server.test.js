@@ -32,11 +32,14 @@ test('MCP 按需发布 NPC、地点与阵营变量并禁止猜译', async () => 
 
 test('MCP 托里德工具自动应用知识库词条', async () => withClient(async client => {
   const riven = [{ stat: 'critical-chance', value: 181.1 }, { stat: 'critical-damage', value: 159.4 }, { stat: 'multishot', value: 107.4 }, { stat: 'faction-grineer', multiplier: 0.54 }];
-  const mods = ['并合 膛线', '关键延迟', '弱点感应', '低温弹头 Prime', '致命火力', '高压电流', '卑劣加速'];
+  const mods = ['并合 膛线', '关键延迟', '弱点感应', '金冰', '致命火力', '高压电流', '卑劣加速'];
   const result = await client.callTool({ name: 'calculate_torid_incarnon_stats', arguments: { mods, riven, stacks: {} } });
   const value = JSON.parse(result.content[0].text);
   assert.equal(value.stats.fireRate, 13.6);
-  assert.equal(value.stats.elements.cold, 1.65);
+  assert.equal(value.resolvedMods[3].canonical, 'Rime Rounds');
+  assert.equal(value.resolvedMods[3].displayName, '白霜弹头');
+  assert.equal(value.stats.elements.cold, 0.6);
+  assert.ok(value.stats.statusChance > 1);
   assert.equal(value.stats.factionMultipliers.grineer, 0.54);
   assert.equal(value.stats.assumptions.some(text => text.includes('0层')), true);
   const simulated = await client.callTool({ name: 'simulate_torid_incarnon', arguments: { mods, riven, composition: ['corrosive', 'cold'], primaryFrostbite: true, target: { level: 200, steelPath: true }, trials: 500, seed: 7 } });

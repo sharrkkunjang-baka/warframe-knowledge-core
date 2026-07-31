@@ -85,14 +85,25 @@ function createElementModSlangResolver(index) {
       add(`${descriptor}${categoryAlias}`, item);
     }
   }
-  function resolve(query) {
-    const values = exact.get(clean(query)) || [];
-    if (!values.length) return { status: 'missing', query: String(query), candidates: [] };
-    if (values.length > 1) return { status: 'ambiguous', query: String(query), candidates: values };
-    return { status: 'resolved', query: String(query), relation: values[0], candidates: values };
+  function resolve(query, options = {}) {
+    const raw = String(query || '').trim();
+    let lookup = raw;
+    let inferredCategory = null;
+    const shorthand = clean(raw).match(/^(金|银|活动)(火|冰|电|毒)$/);
+    if (shorthand && options.categoryId) {
+      const category = CATEGORIES.find(candidate => candidate.id === options.categoryId || candidate.compat === options.categoryId);
+      if (category) {
+        lookup = `${category.displayName}${shorthand[1]}${shorthand[2]}`;
+        inferredCategory = category.id;
+      }
+    }
+    const values = exact.get(clean(lookup)) || [];
+    if (!values.length) return { status: 'missing', query: raw, candidates: [], inferredCategory };
+    if (values.length > 1) return { status: 'ambiguous', query: raw, candidates: values, inferredCategory };
+    return { status: 'resolved', query: raw, relation: values[0], candidates: values, inferredCategory, match: inferredCategory ? 'contextual-slang' : 'exact-slang' };
   }
-  function render(query) {
-    const result = resolve(query);
+  function render(query, options = {}) {
+    const result = resolve(query, options);
     if (result.status === 'missing') return `没有找到元素 Mod 黑话“${String(query).trim()}”`;
     if (result.status === 'ambiguous') return `“${String(query).trim()}”有多个元素 Mod 候选：${result.candidates.map(item => item.displayName).join('、')}`;
     const item = result.relation;

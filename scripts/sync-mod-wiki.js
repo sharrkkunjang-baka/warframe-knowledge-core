@@ -51,36 +51,45 @@ function normalizeEntityReferences(method) {
   return next
 }
 function compileOfficialTemplateEffect(entry, page) {
-  if (!String(entry.effectDetails?.[0] || '').includes('官方效果模板包含')) return null
+  const currentEffect = String(entry.effectDetails?.[0] || '')
+  const unresolvedPlaceholders = /\|[^|]+\|/.test(currentEffect)
+  if (!currentEffect.includes('官方效果模板包含') && !unresolvedPlaceholders) return null
+  const stripGameIcons = value => renderGameText(value).replace(/[⚡🔥❄☠]/g, '')
   const nameKey = String(entry.officialUniqueName || '').replace(/^language:/, '')
   const descriptionKey = nameKey.replace(/Name$/, 'Desc')
-  const stripGameIcons = value => renderGameText(value).replace(/[⚡🔥❄☠]/g, '')
-  const englishTemplate = stripGameIcons(OFFICIAL_EN[descriptionKey] || '')
-  const chineseTemplate = renderGameText(OFFICIAL_ZH[descriptionKey] || '')
-  if (!englishTemplate || !chineseTemplate) return null
+  const englishTemplate = stripGameIcons(OFFICIAL_EN[descriptionKey] || entry.modAcquisition?.generated?.identity?.maxRankEffects?.[0] || '')
+  const chineseTemplate = renderGameText(OFFICIAL_ZH[descriptionKey] || currentEffect)
+  const lead = String((page.sections || []).find(section => String(section.title || '').trim().toLowerCase() === 'lead')?.text || '').replace(/\s+/g, ' ')
+  const description = lead.match(/Max Rank Description\s+(.+?)\s+General Information\b/i)?.[1]?.trim()
+  if (!description || !chineseTemplate) return null
+  if (!englishTemplate || !/\|([A-Z][A-Z0-9_]*)\|/.test(englishTemplate)) {
+    const values = [...description.matchAll(/[+-]?\d+(?:\.\d+)?/g)].map(match => match[0].replace(/^\+/, ''))
+    let cursor = 0
+    const resolved = chineseTemplate.replace(/\|[^|]+\|/g, token => values[cursor++] ?? token)
+    return /\|[^|]+\|/.test(resolved) ? null : resolved
+  }
   const placeholders = [...englishTemplate.matchAll(/\|([A-Z][A-Z0-9_]*)\|/g)].map(match => match[1])
   if (!placeholders.length) return chineseTemplate
   const escape = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const pattern = englishTemplate.split(/\|[A-Z][A-Z0-9_]*\|/).map(escape).join('([+-]?\\d+(?:\\.\\d+)?)').replace(/\\ /g, '\\s+')
-  const lead = String((page.sections || []).find(section => String(section.title || '').trim().toLowerCase() === 'lead')?.text || '').replace(/\s+/g, ' ')
-  const description = lead.match(/Max Rank Description\s+(.+?)\s+General Information\b/i)?.[1]?.trim()
-  const values = description?.match(new RegExp(`^${pattern}$`, 'i'))
+  const values = description.match(new RegExp(`^${pattern}$`, 'i'))
   if (!values) return null
   const variables = new Map(placeholders.map((name, index) => [name, values[index + 1]]))
-  const resolved = chineseTemplate.replace(/\|([A-Z][A-Z0-9_]*)\|/g, (token, name) => variables.get(name) ?? token)
-  return /\|[A-Z][A-Z0-9_]*\|/.test(resolved) ? null : resolved
+  let cursor = 0
+  const resolved = chineseTemplate.replace(/\|([^|]+)\|/g, (token, name) => variables.get(String(name).toUpperCase()) ?? values[++cursor] ?? token)
+  return /\|[^|]+\|/.test(resolved) ? null : resolved
 }
 function sameWikiSource(oldWiki, report, page) {
   return oldWiki?.wiki?.revisionId === page.revisionId && oldWiki?.wiki?.sourceDatabase?.sha256 === report.sha256
 }
 function hasFullyApprovedWikiAcquisition(generatedWiki) {
   const usable = (generatedWiki?.methods || []).filter(method =>
-    method.chance !== null || ['mission-reward', 'companion-included', 'vendor-or-syndicate-exchange', 'syndicate-exchange-group', 'quest-reward'].includes(method.type)
+    method.chance !== null || ['mission-reward', 'companion-included', 'vendor-or-syndicate-exchange', 'syndicate-exchange', 'syndicate-exchange-group', 'quest-reward'].includes(method.type)
   )
   return generatedWiki?.status === 'complete' &&
     !(generatedWiki.unresolvedEntities || []).length &&
     usable.length > 0 &&
-    usable.every(method => method.reviewStatus === 'approved')
+    usable.every(method => method.reviewStatus === 'approved' && method.provenance?.source !== 'warframe-items')
 }
 function buildPlan(options = {}) {
   const filename = resolveWikiDatabase(options.db)

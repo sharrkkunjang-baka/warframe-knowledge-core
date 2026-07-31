@@ -185,6 +185,75 @@
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/MultishotForCombo"
             }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.acrithis",
+            "sourceCanonical": "Acrithis daily rotation",
+            "quantity": 1,
+            "availability": "daily-rotation",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.acrithis",
+              "locationId": "hub.dormizone",
+              "currency": [
+                {
+                  "currencyId": "currency.pathos-clamp",
+                  "amount": 10
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "May be sold by Acrithis for 10 Pathos Clamp s on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the arcanes to appear in her shop."
+            }
+          },
+          {
+            "type": "circuit-reward",
+            "locationId": "landscape.duviri",
+            "missionTypeId": "mission-type.the-circuit",
+            "sourceCanonical": "Steel Path Circuit weekly progress rewards",
+            "sourceDisplayName": "钢铁之路无尽回廊每周进度奖励",
+            "quantity": 1,
+            "probability": null,
+            "availability": "weekly-rotation",
+            "prerequisite": "steel-path",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "May be sold by Acrithis for 10 Pathos Clamp s on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the arcanes to appear in her shop."
+            }
+          },
+          {
+            "type": "reward-or-drop",
+            "locationId": "landscape.duviri",
+            "missionTypeId": "mission-type.free-roam",
+            "sourceCanonical": "Optional Undercroft Portals in Duviri on Steel Path",
+            "sourceDisplayName": "钢铁之路双衍王境地下密室传送门奖励",
+            "quantity": 1,
+            "probability": null,
+            "availability": "random-reward",
+            "prerequisite": "steel-path",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "May be sold by Acrithis for 10 Pathos Clamp s on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the arcanes to appear in her shop."
+            }
           }
         ],
         "requirements": {
@@ -262,12 +331,84 @@
     },
     "manual": {
       "aliases": [],
-      "methods": [],
+      "methods": [
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "sourceEntityId": "npc.acrithis",
+          "sourceCanonical": "Acrithis daily rotation",
+          "quantity": 1,
+          "availability": "daily-rotation",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.acrithis",
+            "locationId": "hub.dormizone",
+            "currency": [
+              {
+                "currencyId": "currency.pathos-clamp",
+                "amount": 10
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Secondary_Outburst",
+            "revisionId": 2768754,
+            "excerpt": "May be sold by Acrithis for 10 Pathos Clamp s on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the arcanes to appear in her shop."
+          }
+        },
+        {
+          "type": "circuit-reward",
+          "locationId": "landscape.duviri",
+          "missionTypeId": "mission-type.the-circuit",
+          "sourceCanonical": "Steel Path Circuit weekly progress rewards",
+          "sourceDisplayName": "钢铁之路无尽回廊每周进度奖励",
+          "quantity": 1,
+          "probability": null,
+          "availability": "weekly-rotation",
+          "prerequisite": "steel-path",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Secondary_Outburst",
+            "revisionId": 2768754,
+            "excerpt": "May be sold by Acrithis for 10 Pathos Clamp s on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the arcanes to appear in her shop."
+          }
+        },
+        {
+          "type": "reward-or-drop",
+          "locationId": "landscape.duviri",
+          "missionTypeId": "mission-type.free-roam",
+          "sourceCanonical": "Optional Undercroft Portals in Duviri on Steel Path",
+          "sourceDisplayName": "钢铁之路双衍王境地下密室传送门奖励",
+          "quantity": 1,
+          "probability": null,
+          "availability": "random-reward",
+          "prerequisite": "steel-path",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "wiki.warframe.com",
+            "url": "https://wiki.warframe.com/w/Secondary_Outburst",
+            "revisionId": 2768754,
+            "excerpt": "May be sold by Acrithis for 10 Pathos Clamp s on a daily rotational basis, requiring Drifter Intrinsics Opportunity Rank 9 for the arcanes to appear in her shop."
+          }
+        }
+      ],
       "methodRefs": [],
       "notes": [],
       "overrides": {},
-      "reviewStatus": "draft",
-      "reviewedBy": []
+      "reviewStatus": "approved",
+      "reviewedBy": [
+        "wiki.warframe.com-current-acquisition-evidence-2026-07-27"
+      ]
     }
   },
   "acquisitionStatus": "complete",
@@ -279,7 +420,7 @@
     }
   ],
   "gameVersion": "warframe-items@1.1269.87",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-27",
   "reviewStatus": "review-required",
   "reviewedBy": [],
   "tags": [

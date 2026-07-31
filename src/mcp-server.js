@@ -31,7 +31,7 @@ function createWarframeMcpServer(options = {}) {
       evolutions: z.array(z.enum(['finalFusillade', 'survivorsEdge'])).default(['finalFusillade', 'survivorsEdge'])
     }
   }, async input => {
-    const resolvedMods = mods.resolveMany(input.mods);
+    const resolvedMods = mods.resolveMany(input.mods, { categoryId: 'rifle' });
     return jsonResult({ resolvedMods, stats: calculateToridIncarnon({ ...input, resolvedMods }) });
   });
   server.registerTool('simulate_torid_incarnon', {
@@ -46,7 +46,7 @@ function createWarframeMcpServer(options = {}) {
       evolutions: z.array(z.enum(['finalFusillade', 'survivorsEdge'])).default(['finalFusillade', 'survivorsEdge'])
     }
   }, async input => {
-    const resolvedMods = mods.resolveMany(input.mods);
+    const resolvedMods = mods.resolveMany(input.mods, { categoryId: 'rifle' });
     const invalid = resolvedMods.filter(mod => !['resolved'].includes(mod.status));
     if (invalid.length) return jsonResult({ status: 'unsupported', invalidMods: invalid, message: '存在无法完整提取的 Mod 词条，已拒绝模拟。' });
     const stats = calculateToridIncarnon({ ...input, resolvedMods });

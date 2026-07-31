@@ -39,9 +39,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-18",
-    "reviewStatus": "draft",
-    "reviewedBy": [],
+    "updatedAt": "2026-07-31",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "local-wiki-cross-page-sync"
+    ],
     "tags": [
       "acquisition",
       "mod",
@@ -68,10 +70,10 @@
             "pageId": 548600,
             "revisionId": 2617494,
             "pageTimestamp": "2024-05-17T13:05:01Z",
-            "compiledAt": "2026-07-17T01:48:36.900Z",
+            "compiledAt": "2026-07-26T11:07:26.268Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
@@ -79,10 +81,26 @@
               "type": "vendor-or-syndicate-exchange",
               "sourceEntityId": "npc.baro-ki-teer",
               "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.baro-ki-teer",
+                "locationId": "hub.any-relay",
+                "currency": [
+                  {
+                    "currencyId": "currency.credits",
+                    "amount": 150000
+                  },
+                  {
+                    "currencyId": "currency.orokin-ducats",
+                    "amount": 375
+                  }
+                ]
+              },
               "chance": null,
               "quantity": 1,
               "availability": "rotating",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Maim",
@@ -140,7 +158,7 @@
             },
             {
               "type": "acquisition-prose",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Maim",
@@ -248,8 +266,10 @@
         "methods": [],
         "methodRefs": [],
         "overrides": {},
-        "reviewStatus": "draft",
-        "reviewedBy": []
+        "reviewStatus": "approved",
+        "reviewedBy": [
+          "local-wiki-cross-page-sync"
+        ]
       }
     }
   }

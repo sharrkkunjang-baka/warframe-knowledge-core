@@ -22,7 +22,9 @@ const { createModRelationQueries } = require('./mod-relation-queries');
 const { getLichPasswordModUsageLines } = require('./requiem-mod-usage');
 const { createSyndicateGroupModResolver, isSyndicateGroupModQuery } = require('./syndicate-group-mod-resolver');
 const { createElementModSlangResolver } = require('./element-mod-slang');
+const { createFactionDamageModSlangResolver } = require('./faction-damage-mod-slang');
 const equipmentAcquisition = require('./equipment-acquisition');
+const ampComponents = require('./amp-components');
 const { buildOfficialTermIndex, findOfficialTermsInText } = require('./official-term-matcher');
 const { resolveModCardFaceLabel, resolveEffectiveModType } = require('./mod-card-face-label');
 const { getTypeDisplayName } = require('./playable-mod-filter');
@@ -138,10 +140,18 @@ function createKnowledgeCore(options = {}) {
   const root = options.root || path.join(__dirname, '..');
   const data = loadData(root, { approvedOnly: options.approvedOnly !== false });
   const allKnowledge = options.approvedOnly === false ? data.knowledge : loadData(root, { approvedOnly: false }).knowledge;
+  const frameRecipeCache = options.frameRecipes || (() => {
+    try { return JSON.parse(fs.readFileSync(path.join(root, 'cache', 'warframe-export-recipes.json'), 'utf8')); }
+    catch (_) { return null; }
+  })();
   const officialMods = data.officialCatalog?.mods || [];
   const excludedOfficialMods = data.officialCatalog?.excludedMods || [];
   const officialItems = data.officialItems?.items || [];
+  const ecologyRelations = require('./ecology-relations').createEcologyRelationIndex(data.ecologyRelations);
+  const ampComponentQueries = ampComponents.createAmpComponentQueries(ampComponents.loadAmpComponents(root));
   const officialWeapons = data.officialWeapons?.weapons || [];
+  // 这些条目不参与普通武器、交易或刷取解析，但仍是图标变量需要的稳定实体身份。
+  const excludedOfficialWeapons = data.officialWeapons?.excludedWeapons || [];
   const officialCategories = data.officialCatalog?.officialCategories || [];
   const localModEntries = allKnowledge.filter(entry => entry.module === 'acquisition' && entry.subject?.category === 'mod');
   const modLookupAliases = new Map();
@@ -336,15 +346,39 @@ function createKnowledgeCore(options = {}) {
   const searchKnowledge = (query, searchOptions) => searchEntries(query, data.knowledge, searchOptions);
   const parseAcquisitionCommand = text => {
     const raw = String(text || '').trim();
-    let match = raw.match(/^\/?(?:刷|查|wk)(?:\s+(.+))?$/i);
-    if (match) return { intent: 'acquisition', query: String(match[1] || '').trim() };
+    let match = raw.match(/^\/?战甲(?:\s+(.+))?$/i);
+    if (match) return { intent: 'acquisition', domain: 'frame', query: String(match[1] || '').trim() };
+    match = raw.match(/^\/?(?:刷|查|wk)(?:\s+(.+))?$/i);
+    if (match) return { intent: 'acquisition', domain: null, query: String(match[1] || '').trim() };
     match = raw.match(/^怎么刷\s*(.+)$/i);
     if (!match) return null;
-    return { intent: 'acquisition', query: match[1].trim() };
+    return { intent: 'acquisition', domain: null, query: match[1].trim() };
   };
   const resolveAcquisitionCommand = text => {
     const parsed = parseAcquisitionCommand(text);
     if (!parsed) return null;
+    if (parsed.domain === 'frame') {
+      return { ...parsed, resolution: parsed.query ? resolveName(parsed.query, { categories: ['frame'], minScore: 50, minLead: 8 }) : null };
+    }
+    if (!parsed.query) return parsed;
+    // “赋能槽连接器”是资源道具，不是赋能。仅凭名称包含“赋能”会把
+    // Amp/Primary/Secondary/Melee Arcane Adapter 等稳定资源错误送进赋能解析器。
+    // 先锁定知识核心中的精确非赋能实体；其余带“赋能”的查询继续保留旧赋能意图。
+    const exactNonArcane = allKnowledge.find(entry => entry.module === 'acquisition'
+      && entry.subject?.category !== 'arcane'
+      && [entry.subject?.canonical, entry.subject?.displayName, entry.subject?.officialUniqueName]
+        .some(value => normalize(value) === normalize(parsed.query)));
+    if (exactNonArcane) return {
+      ...parsed,
+      domain: null,
+      resolution: {
+        canonical: exactNonArcane.subject.canonical,
+        displayName: exactNonArcane.subject.displayName,
+        category: exactNonArcane.subject.category,
+        match: 'exact',
+        score: 400
+      }
+    };
     const arcaneIntent = /赋能/i.test(parsed.query);
     if (!arcaneIntent) return { ...parsed, domain: null, resolution: null };
     return { ...parsed, domain: 'arcane', resolution: resolveArcane(parsed.query) };
@@ -373,23 +407,30 @@ function createKnowledgeCore(options = {}) {
     const raw = String(query || '').trim();
     if (!raw) return null;
     let rewardTier = null;
+    let rewardRound = null;
     let baseQuery = raw;
     const optionMatch = raw.match(/^(.+?)\s+(\S+)$/i);
     if (optionMatch) {
       const resolvedBase = resolveGameplayEntry(optionMatch[1].trim());
-      if (resolvedBase.entry?.rewardGroups) {
+      if (resolvedBase.entry?.rewardGroups || resolvedBase.entry?.rewardRounds) {
         const requestedOption = optionMatch[2].toUpperCase();
-        const option = Object.keys(resolvedBase.entry.rewardGroups).find(key => key.toUpperCase() === requestedOption);
-        if (!option) return null;
-        baseQuery = optionMatch[1].trim(); rewardTier = option;
+        const tier = Object.keys(resolvedBase.entry.rewardGroups || {}).find(key => key.toUpperCase() === requestedOption);
+        const roundMatch = requestedOption.match(/^([ABC])(?:轮)?$/i);
+        const round = roundMatch && Object.keys(resolvedBase.entry.rewardRounds || {}).find(key => key.toUpperCase() === roundMatch[1]);
+        if (!tier && !round) return null;
+        baseQuery = optionMatch[1].trim();
+        rewardTier = tier || null;
+        rewardRound = round || null;
       }
     }
     let { resolution, entry } = resolveGameplayEntry(baseQuery);
-    if (!entry && !rewardTier) ({ resolution, entry } = resolveGameplayEntry(raw));
+    if (!entry && !rewardTier && !rewardRound) ({ resolution, entry } = resolveGameplayEntry(raw));
     if (!entry) return null;
     if (rewardTier && !entry.rewardGroups?.[rewardTier]) return null;
+    if (rewardRound && !entry.rewardRounds?.[rewardRound]) return null;
     const rewardGroup = rewardTier ? entry.rewardGroups[rewardTier] : null;
-    return { query: raw, entry, rewardTier, rewardGroup, resolution, alternatives: [] };
+    const rewardRoundDetail = rewardRound ? entry.rewardRounds[rewardRound] : null;
+    return { query: raw, entry, rewardTier, rewardGroup, rewardRound, rewardRoundDetail, resolution, alternatives: [] };
   };
   const searchCategories = query => {
     const q = normalize(query);
@@ -500,6 +541,42 @@ function createKnowledgeCore(options = {}) {
     if (!q) return null;
     return (data.weapons || []).find(entry => [entry.subject?.officialUniqueName, entry.subject?.canonical, entry.subject?.displayName].some(value => normalize(value) === q)) || null;
   };
+  const listOfficialIconOnlyWeapons = () => excludedOfficialWeapons
+    .filter(weapon => weapon.exclusionReason === 'non-weapon-special-item' && /\/Powersuits\//i.test(weapon.uniqueName || ''))
+    .map(weapon => ({ ...weapon, iconOnly: true }));
+  const getOfficialIconOnlyWeapon = query => {
+    const q = normalize(query);
+    if (!q) return null;
+    return listOfficialIconOnlyWeapons().find(weapon => [weapon.uniqueName, weapon.canonical, weapon.displayName].some(value => normalize(value) === q)) || null;
+  };
+  const exaltedWeaponByUniqueName = new Map(listOfficialIconOnlyWeapons().map(weapon => [weapon.uniqueName, weapon]));
+  const exaltedWeaponFamilies = (data.exaltedWeaponIntents?.families || []).map(family => {
+    const members = (family.members || []).map(uniqueName => exaltedWeaponByUniqueName.get(uniqueName)).filter(Boolean);
+    return { ...family, members };
+  });
+  const resolveExaltedWeaponIntent = (query, options = {}) => {
+    const q = normalize(query);
+    if (!q) return null;
+    for (const family of exaltedWeaponFamilies) {
+      const direct = family.members.find(member => [member.uniqueName, member.canonical, member.displayName].some(value => normalize(value) === q));
+      const aliasMatch = (family.aliases || []).some(alias => normalize(alias) === q);
+      if (!direct && !aliasMatch) continue;
+      const identity = direct || family.members.find(member => !/Prime$/i.test(member.canonical)) || family.members[0];
+      if (!identity) return null;
+      return {
+        intent: options.intent || 'weapon',
+        frameCanonical: family.frameCanonical,
+        family: {
+          id: family.id,
+          identity: { uniqueName: identity.uniqueName, canonical: identity.canonical, displayName: identity.displayName, variantKind: weaponVariantKind(identity.canonical) },
+          members: family.members.map(member => ({ uniqueName: member.uniqueName, canonical: member.canonical, displayName: member.displayName, variantKind: weaponVariantKind(member.canonical) }))
+        },
+        identity: { uniqueName: identity.uniqueName, canonical: identity.canonical, displayName: identity.displayName, category: 'weapon', match: 'exact', score: 300 },
+        source: aliasMatch ? 'reviewed-exalted-alias' : 'official-exalted-identity'
+      };
+    }
+    return null;
+  };
   const resolveOfficialWeaponIdentity = query => {
     const q = normalize(query);
     if (!q) return null;
@@ -509,6 +586,8 @@ function createKnowledgeCore(options = {}) {
     return resolution && !resolution.ambiguous ? officialWeaponByCanonical.get(normalize(resolution.canonical)) || null : null;
   };
   const getWeaponVariantFamily = query => {
+    const exalted = resolveExaltedWeaponIntent(query, { intent: 'family' });
+    if (exalted) return exalted.family;
     const identity = resolveOfficialWeaponIdentity(query);
     if (!identity) return null;
     const members = officialWeaponFamilies.get(weaponFamilyKey(identity.canonical)) || [identity];
@@ -606,6 +685,11 @@ function createKnowledgeCore(options = {}) {
       const mod = getOfficialMod(elementModSlang.relation.canonical);
       if (mod) return { kind: 'mod', item: mod, recipeVariant: null, elementModSlang };
     }
+    const factionDamageModSlang = factionDamageModSlangResolver.resolve(effectiveQuery);
+    if (factionDamageModSlang.status === 'resolved') {
+      const mod = getOfficialMod(factionDamageModSlang.relation.canonical);
+      if (mod) return { kind: 'mod', item: mod, recipeVariant: null, factionDamageModSlang };
+    }
     if (intent.categories.length) {
       const resolution = resolveName(query, { minScore: 50, minLead: 5 });
       if (resolution?.ambiguous) return { kind: 'ambiguous', item: null, recipeVariant: null, candidates: resolution.ambiguous };
@@ -636,9 +720,15 @@ function createKnowledgeCore(options = {}) {
       || (!isSyndicateGroupModQuery(effectiveQuery) ? frameAcquisition.resolveWarframeMention(effectiveQuery)?.frame : null);
     if (frameExact) return { kind: 'warframe', item: frameExact, recipeVariant: null };
     const sharedResolution = resolveName(effectiveQuery, { minScore: 70, minLead: 8 });
-    if (sharedResolution && !sharedResolution.ambiguous && sharedResolution.category === 'official-item') {
-      const resolvedOfficialItem = getOfficialItem(sharedResolution.canonical);
-      if (resolvedOfficialItem) return { kind: 'official-item', item: resolvedOfficialItem, recipeVariant: null, resolution: sharedResolution };
+    if (sharedResolution && !sharedResolution.ambiguous) {
+      if (sharedResolution.category === 'official-item') {
+        const resolvedOfficialItem = getOfficialItem(sharedResolution.canonical);
+        if (resolvedOfficialItem) return { kind: 'official-item', item: resolvedOfficialItem, recipeVariant: null, resolution: sharedResolution };
+      }
+      if (sharedResolution.category === 'consumable') {
+        const resolvedConsumable = getConsumable(sharedResolution.canonical);
+        if (resolvedConsumable) return { kind: 'consumable', item: resolvedConsumable, recipeVariant: null, resolution: sharedResolution };
+      }
     }
     const weaponResolution = resolveWeapon(query);
     if (weaponResolution && !weaponResolution.ambiguous) {
@@ -683,36 +773,63 @@ function createKnowledgeCore(options = {}) {
       .slice(0, searchOptions.limit || 20)
       .map(result => result.mod);
   };
-  const searchOfficialModNameFragments = (query, searchOptions = {}) => {
-    const raw = String(query || '').normalize('NFKC').trim();
-    const q = raw.toLowerCase();
-    if (!q) return [];
+  const scoreOfficialNameFragment = (raw, name) => {
+    const q = String(raw || '').normalize('NFKC').trim().toLowerCase();
+    const value = String(name || '').normalize('NFKC').toLowerCase();
+    if (!q || !value) return 0;
     const latin = /[a-z]/i.test(raw);
-    const scoreName = name => {
-      const value = String(name || '').normalize('NFKC').toLowerCase();
-      if (!value) return 0;
-      if (value === q) return 400;
-      const tokens = value.split(latin ? /[^a-z0-9]+/ : /[\s·・‧•_\-]+/u).filter(Boolean);
-      if (tokens.includes(q)) return 320;
-      if (tokens.some(token => token.startsWith(q))) return 260;
-      if (tokens.some(token => token.endsWith(q))) return 240;
-      // 纯拉丁查询不把另一个完整 token 的内部片段当作名称词片；例如 rime 不能命中 primed。
-      if (latin && /^[a-z0-9]+$/.test(q)) return 0;
-      if (value.includes(q)) return 180;
-      return 0;
-    };
+    if (value === q) return 400;
+    const tokens = value.split(latin ? /[^a-z0-9]+/ : /[\s·・‧•_\-]+/u).filter(Boolean);
+    if (tokens.includes(q)) return 320;
+    if (tokens.some(token => token.startsWith(q))) return 260;
+    if (q.length >= 5 && tokens.some(token => token.endsWith(q))) return 240;
+    // 短拉丁词不做 token 后缀匹配，避免 rime 误命中 prime；augment 仍可命中 augmented。
+    if (latin && /^[a-z0-9]+$/.test(q)) return 0;
+    if (value.includes(q)) return 180;
+    return 0;
+  };
+  const officialTermNameCandidates = [
+    ...officialMods.map(mod => ({ ...mod, category: 'mod', aliases: data.aliases?.mods?.[mod.canonical] || [] })),
+    ...officialItems.map(item => ({ ...item, category: item.semanticKinds?.includes('arcane') ? 'arcane' : 'official-item', aliases: item.aliases || [] })),
+    ...officialWeapons.map(weapon => ({ ...weapon, category: 'weapon', aliases: data.aliases?.weapons?.[weapon.canonical] || [] })),
+    ...allKnowledge.filter(entry => entry.subject?.category === 'frame').map(entry => ({
+      uniqueName: entry.subject.officialUniqueName,
+      canonical: entry.subject.canonical,
+      displayName: entry.subject.displayName,
+      category: 'warframe',
+      aliases: data.aliases?.frames?.[entry.subject.canonical] || []
+    }))
+  ];
+  const arcaneSlugByCanonical = new Map((data.arcaneMetadataCatalog?.entries || []).map(entry => [normalize(entry.canonical), entry.marketSlug]).filter(([, slug]) => slug));
+  const categoryPriority = new Map(['mod', 'weapon', 'warframe', 'arcane', 'official-item'].map((category, index) => [category, index]));
+  const searchOfficialTermNameFragments = (query, searchOptions = {}) => {
+    const raw = String(query || '').normalize('NFKC').trim();
+    if (!raw) return [];
+    const latin = /[a-z]/i.test(raw);
     const dedup = new Map();
-    for (const mod of officialMods) {
-      const score = Math.max(scoreName(latin ? mod.canonical : mod.displayName), scoreName(latin ? '' : mod.canonical));
+    for (const candidate of officialTermNameCandidates) {
+      const forms = latin
+        ? [candidate.canonical, ...(candidate.aliases || []), candidate.category === 'arcane' ? arcaneSlugByCanonical.get(normalize(candidate.canonical)) : null]
+        : [candidate.displayName, candidate.canonical, ...(candidate.aliases || [])];
+      const score = Math.max(0, ...forms.map(name => scoreOfficialNameFragment(raw, name)));
       if (!score) continue;
-      const key = mod.uniqueName || normalize(mod.canonical);
+      const key = normalize(candidate.canonical);
       const current = dedup.get(key);
-      if (!current || score > current.score) dedup.set(key, { ...mod, score });
+      const candidatePriority = categoryPriority.get(candidate.category) ?? 99;
+      const currentPriority = categoryPriority.get(current?.category) ?? 99;
+      if (!current || score > current.score || (score === current.score && candidatePriority < currentPriority)) {
+        dedup.set(key, { ...candidate, score });
+      }
     }
     return [...dedup.values()]
-      .sort((a, b) => b.score - a.score || a.canonical.localeCompare(b.canonical))
+      .sort((a, b) => b.score - a.score
+        || (categoryPriority.get(a.category) ?? 99) - (categoryPriority.get(b.category) ?? 99)
+        || a.canonical.localeCompare(b.canonical))
       .slice(0, searchOptions.limit || 12);
   };
+  const searchOfficialModNameFragments = (query, searchOptions = {}) => searchOfficialTermNameFragments(query, { limit: Number.MAX_SAFE_INTEGER })
+    .filter(item => item.category === 'mod')
+    .slice(0, searchOptions.limit || 12);
   const listOfficialCategories = (filter = {}) => officialCategories.filter(category =>
     (!filter.dimension || category.dimension === filter.dimension)
     && (!filter.status || category.status === filter.status));
@@ -751,19 +868,6 @@ function createKnowledgeCore(options = {}) {
     }
     return appendSteelPathVorArcaneDrop(appendAscensionArcaneVestigialExchange(methods), entry);
   };
-  const enrichArcaneMethod = method => {
-    const arcaneSource = method.sourceEntityId ? data.arcaneSources.get(method.sourceEntityId) : null;
-    if (arcaneSource) method = { ...method, sourceDisplayName: displayEntityName(arcaneSource), sourceKind: arcaneSource.kind };
-    if (method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange') {
-      const npc = method.sourceEntityId ? data.npcs.get(method.sourceEntityId) : null;
-      const location = data.locations.get(method.locationId || npc?.locationId);
-      let requirements = normalizeRequirements(method.requirements);
-      if (requirements.type === 'item' && requirements.itemGroupId === 'resource-group.perita') requirements = { ...requirements, itemGroupLabel: '\u968f\u673a\u4f69\u91cc\u5854\u8d44\u6e90' };
-      if (requirements.type === 'currency' && Array.isArray(requirements.currency)) requirements = { ...requirements, currency: requirements.currency.map(item => item.currencyId ? item : ({ ...item, currencyId: (data.currencies.get(item.currencyCanonical) || (item.currencyCanonical === 'Nightwave Cred' ? [...data.currencies.values].reverse().find(value => /^Nora's Mix Vol\. \d+ Cred$/i.test(value.canonical)) : null))?.id || item.currencyId })) };
-      return { ...method, requirements, requirementLines: renderRequirements(requirements, data), ...(npc ? { sourceDisplayName: displayEntityName(npc) } : {}), ...(location ? { locationId: location.id, locationDisplayName: displayEntityName(location) } : {}) };
-    }
-    return method;
-  };
   const renderArcaneAcquisition = entry => {
     const generated = entry.arcaneAcquisition?.generated || {};
     const category = generated.classification?.category || 'legacy';
@@ -788,8 +892,21 @@ function createKnowledgeCore(options = {}) {
     const rawWikiMethods = entry?.modAcquisition?.generated?.wiki?.methods || [];
     const individualFactions = new Set(rawWikiMethods.filter(method => method.type === 'syndicate-exchange').map(method => method.factionId));
     const rawOfficialDrops = entry?.modAcquisition?.generated?.officialDrops || [];
-    const hasOfficialChance = method => ['mission-reward', 'circuit-reward'].includes(method.type) && Number.isFinite(method.chance) && rawOfficialDrops.some(drop => Number.isFinite(drop.chance) && Math.abs(drop.chance - method.chance) < 1e-8 && /\//.test(drop.sourceCanonical || ''));
-    const wikiMethods = rawWikiMethods.filter(method => (method.type !== 'syndicate-exchange-group' || !(method.factionIds || []).every(id => individualFactions.has(id))) && !hasOfficialChance(method));
+    const isAuthoritativeCacheReward = method => method.type === 'mission-reward'
+      && Number.isFinite(method.chance)
+      && /(?:Resource\s+Caches|Caches)/i.test(String(method.sourceCanonical || ''))
+      && method.rotation
+      && Array.isArray(method.nodes)
+      && method.nodes.length > 0;
+    const hasOfficialChance = method => ['mission-reward', 'circuit-reward'].includes(method.type)
+      && Number.isFinite(method.chance)
+      && rawOfficialDrops.some(drop => Number.isFinite(drop.chance)
+        && Math.abs(drop.chance - method.chance) < 1e-8
+        && /\//.test(drop.sourceCanonical || ''));
+    const wikiMethods = rawWikiMethods.filter(method => (method.type !== 'syndicate-exchange-group'
+      || !(method.factionIds || []).every(id => individualFactions.has(id)))
+      && (isAuthoritativeCacheReward(method) || !hasOfficialChance(method)));
+    const authoritativeCacheRewards = wikiMethods.filter(isAuthoritativeCacheReward);
     const hasSyndicateRoute = wikiMethods.some(method => method.type === 'syndicate-exchange' || method.type === 'syndicate-exchange-group');
     const sourceKey = value => normalize(value).replace(/archwing/g, '').replace(/[^a-z0-9\u3400-\u9fff]/g, '');
     const wikiSourceKeys = new Set(wikiMethods.filter(method => method.sourceCanonical).map(method => `${method.type}:${sourceKey(method.sourceCanonical)}`));
@@ -798,6 +915,10 @@ function createKnowledgeCore(options = {}) {
       .map(method => method.sourceEntityId));
     const officialDrops = rawOfficialDrops.filter(method => {
       if (hasSyndicateRoute && /^(?:Arbiters of Hexis|Red Veil|Steel Meridian|Cephalon Suda|New Loka|The Perrin Sequence),/i.test(method.sourceCanonical || '')) return false;
+      const rawSource = String(method.sourceCanonical || '');
+      const cacheMatch = rawSource.match(/\(Caches\),\s*Rotation\s*([A-Z])/i);
+      if (cacheMatch && authoritativeCacheRewards.some(authoritative => authoritative.rotation === cacheMatch[1].toUpperCase()
+        && Math.abs(Number(authoritative.chance) - Number(method.chance)) < 1e-8)) return false;
       const source = sourceKey(method.sourceCanonical);
       if (!source) return true;
       if (authoritativeEnemySources.size) {
@@ -808,7 +929,12 @@ function createKnowledgeCore(options = {}) {
     });
     return [...wikiMethods, ...officialDrops];
   };
-  const manualAcquisitionMethods = entry => entry?.modAcquisition?.manual?.methods || [];
+  const manualAcquisitionMethods = entry => {
+    const entryRequirements = entry?.modAcquisition?.manual?.requirements;
+    return (entry?.modAcquisition?.manual?.methods || []).map(method => method.requirements || !entryRequirements
+      ? method
+      : { ...method, requirements: entryRequirements });
+  };
   const mergeStructuredMethods = entry => {
     const methods = [...manualAcquisitionMethods(entry)];
     const identities = new Set(methods.map(method => JSON.stringify({ type: method.type, sourceEntityId: method.sourceEntityId, sourceCanonical: method.sourceCanonical, factionId: method.factionId, rotation: method.rotation, chance: method.chance })));
@@ -831,22 +957,33 @@ function createKnowledgeCore(options = {}) {
     const requiemRelic = raw.match(/^Requiem\s+([IVX]+)\s+Relic(?:\s+\([^)]+\))?$/i);
     if (requiemRelic) return { ...method, type: 'reward-or-drop', sourceDisplayName: `安魂遗物 ${requiemRelic[1].toUpperCase()}`, sourceKind: 'relic-reward' };
     const registered = data.arcaneSources.get(raw);
+    const parsedMission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i);
     if (registered && registered.localization?.status !== 'canonical-fallback' && registered.kind !== 'enemy-drop') {
       const relation = registered.relation || {};
       const missionMeta = registered.mission || {};
+      const parsedNodeCanonical = parsedMission?.[2]?.trim() || null;
+      const parsedNode = parsedNodeCanonical ? data.locations.get(parsedNodeCanonical) : null;
+      const parsedPlanet = data.locations.get(parsedNode?.parentId || parsedMission?.[1]);
+      const location = data.locations.get(relation.locationId) || parsedNode;
+      const missionType = data.missionTypes.get(relation.missionTypeId || parsedMission?.[3]);
+      const planetName = parsedPlanet ? displayEntityName(parsedPlanet) : '';
+      const nodeName = location ? displayEntityName(location) : parsedNodeCanonical;
+      const locationDisplayName = [planetName, nodeName].filter(Boolean).join('/');
       const isCircuit = relation.missionTypeId === 'mission-type.the-circuit' || /^Duviri\/Endless:/i.test(raw);
       const isBounty = /Bounty/i.test(raw) || String(relation.missionTypeId || '').includes('bounty');
       return {
         ...method,
         type: isCircuit ? 'circuit-reward' : (registered.kind === 'mission-reward' || isBounty ? 'mission-reward' : 'reward-or-drop'),
         ...(isBounty ? {} : { sourceEntityId: registered.id, sourceKind: registered.kind }),
-        locationId: relation.locationId || null,
-        missionTypeId: relation.missionTypeId || null,
-        rotation: missionMeta.rotation || method.rotation || null,
-        nodeCanonical: missionMeta.nodeCanonical || null
+        locationId: location?.id || relation.locationId || null,
+        ...(locationDisplayName ? { locationDisplayName } : {}),
+        missionTypeId: missionType?.id || relation.missionTypeId || null,
+        ...(missionType ? { missionTypeDisplayName: displayEntityName(missionType) } : {}),
+        rotation: missionMeta.rotation || parsedMission?.[4] || method.rotation || null,
+        nodeCanonical: missionMeta.nodeCanonical || parsedNodeCanonical
       };
     }
-    const mission = raw.match(/^([^/]+)\/([^,(]+?)(?:\s*\(([^)]+)\))?(?:,\s*Rotation\s*([A-Z]))?$/i);
+    const mission = parsedMission;
     if (mission && !/:/.test(mission[2])) {
       const nodeCanonical = mission[2].trim();
       const location = data.locations.get(nodeCanonical) || data.locations.get(mission[1]);
@@ -866,13 +1003,27 @@ function createKnowledgeCore(options = {}) {
   };
   const enrichModMethod = method => {
     if (method.type === 'mission-reward' && method.missionTypeCanonical) {
-      const missionType = data.missionTypes.get(method.missionTypeCanonical);
+      const node = (method.nodes || [])[0];
+      const location = node ? data.locations.get(node.nodeEntityId) || data.locations.get(node.nodeCanonical) : null;
+      const isCacheReward = /(?:Resource\s+Caches|Caches)/i.test(String(method.sourceCanonical || '')) && method.rotation;
+      const isHiveCacheReward = isCacheReward && /Hive\s+Sabotage/i.test(String(method.sourceCanonical || ''));
+      const missionType = data.missionTypes.get(isHiveCacheReward ? 'mission-type.hive' : method.missionTypeCanonical);
       return {
         ...method,
-        missionTypeId: missionType?.id || method.missionTypeEntityId || null,
+        ...(isCacheReward ? {
+          locationId: location?.id || method.locationId || null,
+          locationDisplayName: location ? displayEntityName(location) : (node?.planetDisplayName && node?.nodeCanonical ? `${node.planetDisplayName}/${node.nodeCanonical}` : method.locationDisplayName)
+        } : {}),
+        missionTypeId: missionType?.id || (isHiveCacheReward ? 'mission-type.hive' : method.missionTypeEntityId) || null,
         missionTypeDisplayName: missionType
           ? displayEntityName(missionType)
-          : method.missionTypeDisplayName || method.missionTypeCanonical
+          : method.missionTypeDisplayName || method.missionTypeCanonical,
+        ...(isCacheReward ? {
+          variables: {
+            ...(method.variables || {}),
+            objective: method.rotation === 'C' ? '找到 3 个储藏箱' : `完成资源缓存 ${method.rotation} 轮条件`
+          }
+        } : {})
       };
     }
     if (method.type === 'official-drop') return enrichOfficialDrop(method);
@@ -887,8 +1038,8 @@ function createKnowledgeCore(options = {}) {
     }
     if (method.type === 'companion-included') return method;
     if (method.type === 'vendor-or-syndicate-exchange') {
-      const npc = method.sourceEntityId ? data.npcs.get(method.sourceEntityId) : null;
-      const location = data.locations.get(method.locationId || npc?.locationId);
+      const npc = method.sourceEntityId ? (data.npcs.get(method.sourceEntityId) || data.arcaneSources.get(method.sourceEntityId) || data.locations.get(method.sourceEntityId)) : null;
+      const location = data.locations.get(method.locationId || npc?.locationId || npc?.parentId);
       const excerpt = String(method.provenance?.excerpt || '');
       const standingMatch = excerpt.match(/(?:for\s+)?([\d,]+)\s+Standing/i);
       const rankMatch = excerpt.match(/Rank\s+(\d+)\s*-\s*([A-Za-z ]+?)(?:\s+with\s+|\s+in\s+|[.,]|$)/i);
@@ -1107,6 +1258,10 @@ function createKnowledgeCore(options = {}) {
     if (elementModSlang.status === 'resolved' && normalize(elementModSlang.relation.canonical) !== normalize(raw)) {
       return getAcquisition(elementModSlang.relation.canonical, searchOptions);
     }
+    const factionDamageModSlang = factionDamageModSlangResolver.resolve(resolverIntent.query || resolverIntent.commandStripped);
+    if (factionDamageModSlang.status === 'resolved' && normalize(factionDamageModSlang.relation.canonical) !== normalize(raw)) {
+      return getAcquisition(factionDamageModSlang.relation.canonical, searchOptions);
+    }
     if (resolverIntent.categories.length && !resolverIntent.categories.includes('arcane') && !getOfficialMod(raw)) {
       const typedCollection = getAcquisitionCollection(raw);
       if (typedCollection) return typedCollection;
@@ -1322,8 +1477,9 @@ function createKnowledgeCore(options = {}) {
     const syndicateHeader = hasSyndicateMethods && syndicateDescription ? syndicateDescription.split(/\n\n获取来源：/)[0] : null;
     const exchangeMethods = structuredMethods.filter(method => method.reviewStatus !== 'review-required' && (method.type === 'vendor-or-syndicate-exchange' || method.type === 'vendor-exchange'));
     const hasStructuredExchange = exchangeMethods.length > 0;
+    const hasScopedExchangePricing = exchangeMethods.some(method => ['blueprint', 'component'].includes(method.scope) && Number(method.requirements?.amount) > 0);
     const useStructuredFrameDescription = frameRouting.componentCategory === 'frame-assassination'
-      || (isFrame && hasStructuredExchange && frameRouting.componentCategory === 'frame-quest');
+      || (isFrame && hasStructuredExchange && (frameRouting.componentCategory === 'frame-quest' || hasScopedExchangePricing));
     const framePrimaryDescription = useStructuredFrameDescription && structuredDescription
       ? structuredDescription
       : isFrame && hasStructuredExchange
@@ -1375,6 +1531,43 @@ function createKnowledgeCore(options = {}) {
       alternatives: []
     };
   };
+  const frameComponentMethods = (result, frameComponent) => {
+    const part = frameComponent.component.part;
+    const partName = framePartDisplay[part] || part;
+    return (result?.structuredMethods || []).flatMap(method => {
+      if (method.type === 'route' && method.scope === 'components' && method.variables?.sourceGroups?.length) {
+        const sourceGroup = method.variables.sourceGroups.find(group => group.part === part);
+        if (!sourceGroup) return [];
+        const objective = method.variables.objective ? `\n间谍 C 轮要求：${method.variables.objective}` : '';
+        return [{
+          ...method,
+          scope: 'component',
+          variables: {
+            ...method.variables,
+            part,
+            partName,
+            presentationLabel: partName,
+            sourceGroups: [sourceGroup],
+            text: `${partName}：${sourceGroup.summary}${objective}`
+          }
+        }];
+      }
+      if (method.type === 'circuit-reward' && method.scope === 'all-blueprints') {
+        const tier = method.variables?.rewardTiers?.[part];
+        if (!tier) return [];
+        return [{
+          ...method,
+          scope: 'component',
+          variables: { ...method.variables, part, partName, presentationLabel: partName, rewardTier: tier, fullSet: false }
+        }];
+      }
+      if (method.scope === 'component' && (method.partRefs || []).includes(frameComponent.component.officialUniqueName)) return [method];
+      if (method.scope === 'components' && !method.variables?.sourceGroups?.length) return [
+        { ...method, scope: 'component', variables: { ...method.variables, part, partName, presentationLabel: partName } }
+      ];
+      return [];
+    });
+  };
   const getAcquisitionCard = query => {
     const frameComponent = frameComponents.get(normalize(query));
     const resolvedItem = resolveItem(query);
@@ -1414,7 +1607,10 @@ function createKnowledgeCore(options = {}) {
     let result = frameComponent ? null : getAcquisition(query);
     if (frameComponent) {
       result = getAcquisition(frameComponent.frame.subject.canonical);
-      const sections = acquisitionCardSections(result?.structuredMethods || [], { registries: data });
+      const methods = frameComponentMethods(result, frameComponent);
+      const sections = acquisitionCardSections(methods, { registries: data });
+      const recipe = frameAcquisition.getCraftingRecipes(frameComponent.frame.subject.canonical, frameRecipeCache)
+        .find(item => item.part === frameComponent.component.part);
       return {
         query: String(query),
         kind: 'frame-component',
@@ -1422,6 +1618,13 @@ function createKnowledgeCore(options = {}) {
           canonical: frameComponent.canonical,
           displayName: frameComponent.displayName,
           uniqueName: frameComponent.component.officialUniqueName
+        },
+        assetIdentity: {
+          kind: 'frame-component',
+          canonical: frameComponent.canonical,
+          displayName: frameComponent.displayName,
+          uniqueName: frameComponent.component.officialUniqueName,
+          role: `warframe-${String(frameComponent.component.part).toLowerCase()}-component-icon`
         },
         variants: [],
         sections: {
@@ -1431,9 +1634,14 @@ function createKnowledgeCore(options = {}) {
           other: sections.other.map(item => item.text)
         },
         sectionNotes: sections.notes,
-        materials: [],
+        materials: (recipe?.ingredients || []).map(item => ({
+          uniqueName: item.uniqueName,
+          canonical: item.displayName,
+          displayName: item.displayName,
+          count: item.count
+        })),
         detailOptions: [],
-        credits: null,
+        credits: recipe?.credits || null,
         wikiUrl: frameComponent.frame.sources?.find(source => /wiki\.warframe\.com\/w\//i.test(source.url || ''))?.url || null
       };
     }
@@ -1468,16 +1676,27 @@ function createKnowledgeCore(options = {}) {
       };
     }
     const entry = result?.entry;
+    const ecologyItem = resolvedItem?.kind === 'official-item' ? resolvedItem.item : null;
+    const fishItem = ecologyItem?.semanticKinds?.includes('fish') ? ecologyItem : null;
     const kind = entry?.subject?.category;
     if (!result || !['mod', 'arcane', 'weapon', 'resource', 'material', 'currency', 'item'].includes(kind)) return null;
     const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName;
     const family = acquisitionVariantFamilyByMember.get(uniqueName);
-    const variants = (family?.members || []).map(member => acquisitionIdentityByUniqueName.get(member)).filter(Boolean).map(variant => ({
+    const acquisitionVariants = (family?.members || []).map(member => acquisitionIdentityByUniqueName.get(member)).filter(Boolean).map(variant => ({
       canonical: variant.subject?.canonical,
       displayName: variant.subject?.displayName || variant.title,
       uniqueName: variant.officialUniqueName || variant.subject?.officialUniqueName,
       current: (variant.officialUniqueName || variant.subject?.officialUniqueName) === uniqueName
     }));
+    const weaponFamily = kind === 'weapon' ? getWeaponVariantFamily(uniqueName) : null;
+    const weaponVariants = (weaponFamily?.members || []).map(variant => ({
+      canonical: variant.canonical,
+      displayName: variant.displayName || variant.canonical,
+      uniqueName: variant.uniqueName,
+      variantKind: variant.variantKind,
+      current: variant.uniqueName === uniqueName
+    }));
+    const variants = [...new Map([...acquisitionVariants, ...weaponVariants].map(variant => [variant.uniqueName || variant.canonical, variant])).values()];
     const sections = acquisitionCardSections(result.structuredMethods || [], { registries: data });
     if (kind === 'weapon') {
       const { buildPrimeWeaponCardAcquisitionLines } = require('./prime-acquisition');
@@ -1485,10 +1704,12 @@ function createKnowledgeCore(options = {}) {
       if (primeLines) sections.acquisition = primeLines.map(text => ({ text, method: null }));
     }
     const recipe = kind === 'weapon' ? (result.recipes || entry.recipes || [])[0] : null;
-    const sectionItems = Object.fromEntries(Object.entries(sections).filter(([, items]) => Array.isArray(items)).map(([group, items]) => [group, items.map(item => ({
+    const sectionItems = Object.fromEntries(Object.entries(sections).filter(([, items]) => Array.isArray(items)).map(([group, items]) => [group, items.map(item => {
+      const methods = item.methods || [item.method].filter(Boolean);
+      return {
       text: item.text,
-      methodType: item.method?.type || null,
-      currencies: [...(item.method?.currency || []), ...(item.method?.requirements?.currency || [])]
+      methodType: methods.length === 1 ? methods[0].type || null : 'multiple',
+      currencies: methods.flatMap(method => [...(method.currency || []), ...(method.requirements?.currency || [])])
         .filter((currency, index, list) => list.findIndex(candidate => candidate.currencyId === currency.currencyId && candidate.amount === currency.amount) === index)
         .map(currency => {
           const entity = currency.currencyId ? data.currencies.get(currency.currencyId) : null;
@@ -1500,7 +1721,7 @@ function createKnowledgeCore(options = {}) {
             amount: Number.isFinite(Number(currency.amount)) ? Number(currency.amount) : null
           };
         })
-    }))]));
+    }})]));
     const rarity = entry.rarity || result.officialMod?.rarity || null;
     const maxRank = Number.isInteger(entry.maxRank) ? entry.maxRank : result.officialMod?.maxRank;
     const detailOptions = (result.sourceOptions || []).map(source => ({ id: source.id, title: source.title, query: source.query })).filter(source => source.query);
@@ -1511,6 +1732,7 @@ function createKnowledgeCore(options = {}) {
     return {
       query: String(query), kind,
       identity: { canonical: entry.subject?.canonical, displayName: entry.subject?.displayName || entry.title, uniqueName },
+      assetIdentity: entry.subject?.assetIdentity || null,
       variants: variants.length > 1 ? variants : [],
       sections: {
         exchange: sections.exchange.map(item => item.text),
@@ -1535,6 +1757,8 @@ function createKnowledgeCore(options = {}) {
       } : null,
       arcaneInfo: kind === 'arcane' ? getArcaneMetadata(entry.subject?.canonical) : null,
       weaponInfo: kind === 'weapon' ? require('./weapon-wiki-attacks').buildWeaponInfo(entry) : null,
+      ecologyInfo: kind === 'resource' && ecologyItem?.ecologyInfo ? ecologyItem.ecologyInfo : null,
+      fishInfo: kind === 'resource' && fishItem?.fishInfo ? fishItem.fishInfo : null,
       materials: (recipe?.ingredients || []).map(item => ({ uniqueName: item.uniqueName, canonical: item.canonical, displayName: item.displayName || item.canonical, count: item.quantity })),
       detailOptions,
       relatedItems,
@@ -1594,6 +1818,7 @@ function createKnowledgeCore(options = {}) {
     getFrame: frameAcquisition.resolveWarframe
   });
   const elementModSlangResolver = createElementModSlangResolver(data.elementModSlang);
+  const factionDamageModSlangResolver = createFactionDamageModSlangResolver(officialMods);
   const buildWikiContext = query => {
     const resolution = resolveName(query);
     const facts = searchFacts(query);
@@ -1654,6 +1879,9 @@ function createKnowledgeCore(options = {}) {
     isSyndicateGroupModQuery,
     getWeapon,
     getWeaponGap,
+    listOfficialIconOnlyWeapons,
+    getOfficialIconOnlyWeapon,
+    resolveExaltedWeaponIntent,
     resolveWeapon,
     resolveOfficialWeaponIdentity,
     getWeaponVariantFamily,
@@ -1663,9 +1891,13 @@ function createKnowledgeCore(options = {}) {
     parseModRelationCommand: modRelationQueries.parseRelationCommand,
     queryModRelations: modRelationQueries.query,
     modRelations: data.modRelations,
+    ecologyRelations,
+    queryEcologyRelations: (stableIdentity, type = null) => ecologyRelations.related(stableIdentity, type),
     elementModSlang: data.elementModSlang,
     resolveElementModSlang: elementModSlangResolver.resolve,
     renderElementModSlang: elementModSlangResolver.render,
+    factionDamageModSlang: factionDamageModSlangResolver.index,
+    resolveFactionDamageModSlang: factionDamageModSlangResolver.resolve,
     getRivenWeapon: rivenWeaponResolver.get,
     resolveRivenWeapon: rivenWeaponResolver.resolve,
     resolveRivenWeaponFamilyIntent,
@@ -1683,12 +1915,14 @@ function createKnowledgeCore(options = {}) {
     resolveArcane,
     getItemAcquisition,
     getOfficialMod,
+    officialMods,
     getExcludedOfficialMod,
     getOfficialModAvailability,
     getModTips,
     getModTipKeywords,
     searchOfficialMods,
     searchOfficialModNameFragments,
+    searchOfficialTermNameFragments,
     listOfficialCategories,
     listReviewRequiredOfficialMods,
     listMissingOfficialMods,
@@ -1728,6 +1962,9 @@ function createKnowledgeCore(options = {}) {
     frameCard,
     resourceAcquisition,
     equipmentAcquisition,
+    ampComponents: ampComponentQueries,
+    parseAmpCommand: ampComponentQueries.parseCommand,
+    getAmpCard: ampComponentQueries.query,
     getEquipmentAcquisition: equipmentAcquisition.getEquipmentAcquisition,
     resolveEquipment: equipmentAcquisition.resolveEquipment,
     auditEquipmentAcquisition: equipmentAcquisition.auditEquipmentAcquisition

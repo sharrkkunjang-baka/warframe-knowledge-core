@@ -47,10 +47,10 @@
             "pageId": 1596743,
             "revisionId": 2772053,
             "pageTimestamp": "2026-04-27T00:08:19Z",
-            "compiledAt": "2026-07-22T15:42:06.343Z",
+            "compiledAt": "2026-07-26T11:07:21.167Z",
             "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9",
-              "size": 2322874368
+              "sha256": "3146B0E72AF648442064198BBDE9EB275A0601F087CFF66E8C4798A6CE183F35",
+              "size": 2337439744
             }
           },
           "methods": [
@@ -58,10 +58,26 @@
               "type": "vendor-or-syndicate-exchange",
               "sourceEntityId": "npc.baro-ki-teer",
               "locationId": "hub.any-relay",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.baro-ki-teer",
+                "locationId": "hub.any-relay",
+                "currency": [
+                  {
+                    "currencyId": "currency.credits",
+                    "amount": 220000
+                  },
+                  {
+                    "currencyId": "currency.orokin-ducats",
+                    "amount": 300
+                  }
+                ]
+              },
               "chance": null,
               "quantity": 1,
               "availability": "rotating",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Primed Steady Hands",
@@ -75,7 +91,7 @@
           "evidence": [
             {
               "type": "acquisition-prose",
-              "reviewStatus": "draft",
+              "reviewStatus": "approved",
               "provenance": {
                 "source": "local-wiki-sqlite",
                 "pageTitle": "Primed Steady Hands",
@@ -147,7 +163,8 @@
         "overrides": {},
         "reviewStatus": "approved",
         "reviewedBy": [
-          "category-default:primemod"
+          "structured-wiki-acquisition-audit",
+          "local-wiki-cross-page-sync"
         ]
       }
     },
@@ -159,10 +176,11 @@
       }
     ],
     "gameVersion": "warframe-items@1.1269.87",
-    "updatedAt": "2026-07-22",
+    "updatedAt": "2026-07-31",
     "reviewStatus": "approved",
     "reviewedBy": [
-      "category-default:primemod"
+      "structured-wiki-acquisition-audit",
+      "local-wiki-cross-page-sync"
     ],
     "tags": [
       "acquisition",

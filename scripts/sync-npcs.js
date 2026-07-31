@@ -16,9 +16,9 @@ const CATEGORY_PAGES = Object.freeze({
   'kahl-garrison': { displayName: '卡尔驻军', locationId: 'hub.drifters-camp', names: ['Chipper'] }
 })
 const ROOT_NPCS = Object.freeze(['Lotus','Ordis','Acrithis','Amir'])
-const LOCATION_OVERRIDES = Object.freeze({ Acrithis: 'hub.dormizone', Amir: 'acquisition-source.hollvania-missions', Flare: 'acquisition-source.hollvania-missions', 'Aspirant Zorba': 'hub.any-relay', Hunhow: 'hub.pontis-tower', Ordis: 'hub.drifters-camp' })
+const LOCATION_OVERRIDES = Object.freeze({ Acrithis: 'hub.dormizone', Amir: 'acquisition-source.hollvania-missions', Flare: 'acquisition-source.hollvania-missions', 'Aspirant Zorba': 'hub.any-relay', Cavalero: 'hub.zariman', Hunhow: 'hub.pontis-tower', Ordis: 'hub.drifters-camp' })
 // 无稳定语言键的已审核官方简中；其余 NPC 必须优先从本地 Languages.bin 快照读取。
-const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', Acrithis: '言录使', Amir: '阿米尔', Arthur: '亚瑟', 'Bird 3': '鸟三', 'Cephalon Simaris': '中枢 Simaris', Nightcap: '夜帽', Chipper: '切片哥' })
+const AUDITED_ZH = Object.freeze({ Lotus: 'Lotus', Ordis: 'Ordis', Darvo: 'Darvo', Clem: 'Clem', Maroo: 'Maroo', Teshin: 'Teshin', Konzu: '孔祝', Eudico: '尤迪科', Mother: '母亲', Quinn: '奎因', Loid: '洛德', Acrithis: '言录使', Amir: '阿米尔', Arthur: '亚瑟', 'Bird 3': '鸟三', 'Cephalon Simaris': '中枢 Simaris', "Baro Ki'Teer": '虚空商人', Nightcap: '夜帽', Chipper: '切片哥' })
 const OFFICIAL_LANGUAGE_KEYS = Object.freeze({
   Cavalero: '/Lotus/Language/Zariman/Cavalero',
   'Little Duck': '/Lotus/Language/Npcs/LittleDuck',
@@ -70,7 +70,7 @@ function slug(value) { return String(value).normalize('NFKD').toLowerCase().repl
 function npcId(name) { return `npc.${slug(name)}` }
 function sourceFor(db, name) { const page = db.getPage(name); return page ? { pageTitle: page.title, pageId: page.pageId, revisionId: page.revisionId } : { pageTitle: name, missing: true } }
 const NPC_ROLES = Object.freeze({ Konzu: ['bounty-provider'], Eudico: ['bounty-provider'], Mother: ['bounty-provider'], Nightcap: ['bounty-provider', 'exchange-provider'], Hunhow: ['exchange-provider'], Chipper: ['exchange-provider'] })
-function buildNpc(db, name, category, locationId, chinese, exactOfficial) { const localized = localizedNpc(name, chinese, exactOfficial); return { id: npcId(name), canonical: name, displayName: localized.displayName, kind: 'npc', aliases: [], ...(NPC_ROLES[name] ? { roles: NPC_ROLES[name] } : {}), category, locationId: LOCATION_OVERRIDES[name] || locationId, factionId: null, source: sourceFor(db, name), localization: { status: localized.languageKey ? 'official-zh' : localized.displayName ? 'official-audited' : 'unresolved', ...(localized.languageKey ? { languageKey: localized.languageKey } : {}), rule: 'empty-displayName-falls-back-to-canonical' } } }
+function buildNpc(db, name, category, locationId, chinese, exactOfficial) { const localized = localizedNpc(name, chinese, exactOfficial); return { id: npcId(name), canonical: name, displayName: localized.displayName, kind: 'npc', aliases: [], ...(NPC_ROLES[name] ? { roles: NPC_ROLES[name] } : {}), category, locationId: LOCATION_OVERRIDES[name] || locationId, factionId: null, source: sourceFor(db, name), localization: { status: localized.languageKey ? 'official-zh' : localized.displayName ? 'official-audited' : 'unresolved', ...(localized.languageKey ? { languageKey: localized.languageKey } : {}), rule: localized.displayName && !localized.languageKey ? 'audited-player-term' : 'empty-displayName-falls-back-to-canonical' } } }
 function listCharacterPages(resolved) {
   const raw = new Database(resolved, { readonly: true, fileMustExist: true })
   try { return raw.prepare("SELECT p.title FROM pages p JOIN categories c ON c.page_id=p.page_id WHERE c.category='Characters' ORDER BY p.title COLLATE NOCASE").all().map(row => row.title).filter(title => title !== 'Characters' && !title.includes('/')) }

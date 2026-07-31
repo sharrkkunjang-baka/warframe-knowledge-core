@@ -89,7 +89,8 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "compiled-simaris-weapon-sources",
-            "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+            "sourceCanonical": "Cephalon Simaris, Complete The War Within",
+            "amountSource": "local-wiki-sqlite"
           },
           "variables": {},
           "questId": "quest.the-war-within"
@@ -102,7 +103,8 @@
           "requirements": {
             "type": "standing",
             "npcId": "npc.cephalon-simaris",
-            "locationId": "hub.any-relay"
+            "locationId": "hub.any-relay",
+            "amount": 100000
           },
           "scope": "blueprint",
           "partRefs": [
@@ -111,8 +113,33 @@
           "reviewStatus": "approved",
           "provenance": {
             "source": "compiled-simaris-weapon-sources",
-            "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+            "sourceCanonical": "Cephalon Simaris, Complete The War Within",
+            "amountSource": "local-wiki-sqlite"
           },
+          "variables": {}
+        },
+        {
+          "type": "syndicate-exchange",
+          "scope": "blueprint",
+          "npcId": "npc.cephalon-simaris",
+          "locationId": "hub.any-relay",
+          "sourceCanonical": "Cephalon Simaris",
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "amount": 100000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Orvius?oldid=2786838",
+            "pageTitle": "Orvius",
+            "revisionId": 2786838
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
+          ],
           "variables": {}
         },
         {
@@ -211,7 +238,8 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "compiled-simaris-weapon-sources",
-              "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+              "sourceCanonical": "Cephalon Simaris, Complete The War Within",
+              "amountSource": "local-wiki-sqlite"
             },
             "variables": {},
             "questId": "quest.the-war-within"
@@ -224,7 +252,8 @@
             "requirements": {
               "type": "standing",
               "npcId": "npc.cephalon-simaris",
-              "locationId": "hub.any-relay"
+              "locationId": "hub.any-relay",
+              "amount": 100000
             },
             "scope": "blueprint",
             "partRefs": [
@@ -233,8 +262,33 @@
             "reviewStatus": "approved",
             "provenance": {
               "source": "compiled-simaris-weapon-sources",
-              "sourceCanonical": "Cephalon Simaris, Complete The War Within"
+              "sourceCanonical": "Cephalon Simaris, Complete The War Within",
+              "amountSource": "local-wiki-sqlite"
             },
+            "variables": {}
+          },
+          {
+            "type": "syndicate-exchange",
+            "scope": "blueprint",
+            "npcId": "npc.cephalon-simaris",
+            "locationId": "hub.any-relay",
+            "sourceCanonical": "Cephalon Simaris",
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.cephalon-simaris",
+              "locationId": "hub.any-relay",
+              "amount": 100000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Orvius?oldid=2786838",
+              "pageTitle": "Orvius",
+              "revisionId": 2786838
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TeshinGlaiveBlueprint"
+            ],
             "variables": {}
           }
         ],
@@ -422,7 +476,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

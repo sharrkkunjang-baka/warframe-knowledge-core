@@ -33,6 +33,17 @@ test('全量官方武器 family 成员 identity 唯一且组件不混入', () =>
   assert.equal(seen.size, core.officialWeapons.weapons.length);
 });
 
+test('统一官方术语词片候选覆盖赋能英文词与市场 slug', () => {
+  for (const query of ['molt', 'augment', 'molt_augmented']) {
+    const result = core.searchOfficialTermNameFragments(query);
+    const molt = result.find(item => item.canonical === 'Molt Augmented');
+    assert.ok(molt, query);
+    assert.equal(molt.displayName, '蜕化·升腾', query);
+    assert.equal(molt.category, 'arcane', query);
+    assert.equal(molt.uniqueName, '/Lotus/Upgrades/CosmeticEnhancers/Offensive/PowerStrengthOnKill', query);
+  }
+});
+
 test('1442 Mod 目录词片检索稳定、去重且使用官方简中', () => {
   assert.equal(core.officialCatalog.mods.length, 1442);
   const rime = core.searchOfficialModNameFragments('rime');

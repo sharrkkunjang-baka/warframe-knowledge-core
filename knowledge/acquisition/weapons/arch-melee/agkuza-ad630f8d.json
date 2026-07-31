@@ -57,88 +57,99 @@
         {
           "type": "market-purchase",
           "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/ArchHookSwordBlueprint"
-          ],
           "requirements": {
             "type": "none"
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "bpCost"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+            "pageTitle": "Agkuza",
+            "revisionId": 2791576
           },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/ArchHookSwordBlueprint"
+          ],
           "variables": {},
           "sourceEntityId": "interface.market"
         },
         {
-          "scope": "component",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
-          ],
-          "sourceCanonical": "New Loka, Benevolent",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
-          "requirements": {
-            "type": "standing"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
-          },
           "type": "syndicate-exchange",
-          "requiredRankName": "Benevolent",
+          "scope": "component",
+          "factionId": "faction.new-loka",
+          "sourceCanonical": "New Loka",
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.new-loka",
+            "rank": 3,
+            "rankName": "仁者",
+            "amount": 20000
+          },
           "variables": {
             "partName": "驯象钩刃 刀刃"
           },
-          "factionId": "faction.new-loka"
-        },
-        {
-          "scope": "component",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
-          ],
-          "sourceCanonical": "Red Veil, Esteemed",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
-          "requirements": {
-            "type": "standing"
-          },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+            "pageTitle": "Agkuza",
+            "revisionId": 2791576
           },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
+          ]
+        },
+        {
           "type": "syndicate-exchange",
-          "requiredRankName": "Esteemed",
+          "scope": "component",
+          "factionId": "faction.red-veil",
+          "sourceCanonical": "Red Veil",
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.red-veil",
+            "rank": 3,
+            "rankName": "尊敬的",
+            "amount": 20000
+          },
           "variables": {
             "partName": "驯象钩刃 握柄"
           },
-          "factionId": "faction.red-veil"
-        },
-        {
-          "scope": "component",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
-          ],
-          "sourceCanonical": "Steel Meridian, Defender",
-          "sourceLocalizationStatus": "official-zh",
-          "chance": 1,
-          "requirements": {
-            "type": "standing"
-          },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "components[].drops"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+            "pageTitle": "Agkuza",
+            "revisionId": 2791576
           },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
+          ]
+        },
+        {
           "type": "syndicate-exchange",
-          "requiredRankName": "Defender",
+          "scope": "component",
+          "factionId": "faction.steel-meridian",
+          "sourceCanonical": "Steel Meridian",
+          "requirements": {
+            "type": "standing",
+            "factionId": "faction.steel-meridian",
+            "rank": 3,
+            "rankName": "防御者",
+            "amount": 20000
+          },
           "variables": {
             "partName": "驯象钩刃 护手"
           },
-          "factionId": "faction.steel-meridian"
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+            "pageTitle": "Agkuza",
+            "revisionId": 2791576
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
+          ]
         }
       ]
     },
@@ -160,17 +171,19 @@
           {
             "type": "market-purchase",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/ArchHookSwordBlueprint"
-            ],
             "requirements": {
               "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "installed-warframe-items",
-              "field": "bpCost"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+              "pageTitle": "Agkuza",
+              "revisionId": 2791576
             },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/ArchHookSwordBlueprint"
+            ],
             "variables": {},
             "sourceEntityId": "interface.market"
           }
@@ -191,27 +204,30 @@
         },
         "methods": [
           {
-            "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
-            ],
-            "sourceCanonical": "New Loka, Benevolent",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
-            },
             "type": "syndicate-exchange",
-            "requiredRankName": "Benevolent",
+            "scope": "component",
+            "factionId": "faction.new-loka",
+            "sourceCanonical": "New Loka",
+            "requirements": {
+              "type": "standing",
+              "factionId": "faction.new-loka",
+              "rank": 3,
+              "rankName": "仁者",
+              "amount": 20000
+            },
             "variables": {
               "partName": "驯象钩刃 刀刃"
             },
-            "factionId": "faction.new-loka"
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+              "pageTitle": "Agkuza",
+              "revisionId": 2791576
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordBlade"
+            ]
           }
         ],
         "status": "complete"
@@ -230,27 +246,30 @@
         },
         "methods": [
           {
-            "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
-            ],
-            "sourceCanonical": "Red Veil, Esteemed",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
-            },
             "type": "syndicate-exchange",
-            "requiredRankName": "Esteemed",
+            "scope": "component",
+            "factionId": "faction.red-veil",
+            "sourceCanonical": "Red Veil",
+            "requirements": {
+              "type": "standing",
+              "factionId": "faction.red-veil",
+              "rank": 3,
+              "rankName": "尊敬的",
+              "amount": 20000
+            },
             "variables": {
               "partName": "驯象钩刃 握柄"
             },
-            "factionId": "faction.red-veil"
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+              "pageTitle": "Agkuza",
+              "revisionId": 2791576
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordHandle"
+            ]
           }
         ],
         "status": "complete"
@@ -269,27 +288,30 @@
         },
         "methods": [
           {
-            "scope": "component",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
-            ],
-            "sourceCanonical": "Steel Meridian, Defender",
-            "sourceLocalizationStatus": "official-zh",
-            "chance": 1,
-            "requirements": {
-              "type": "standing"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "components[].drops"
-            },
             "type": "syndicate-exchange",
-            "requiredRankName": "Defender",
+            "scope": "component",
+            "factionId": "faction.steel-meridian",
+            "sourceCanonical": "Steel Meridian",
+            "requirements": {
+              "type": "standing",
+              "factionId": "faction.steel-meridian",
+              "rank": 3,
+              "rankName": "防御者",
+              "amount": 20000
+            },
             "variables": {
               "partName": "驯象钩刃 护手"
             },
-            "factionId": "faction.steel-meridian"
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Agkuza?oldid=2791576",
+              "pageTitle": "Agkuza",
+              "revisionId": 2791576
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/ArchHookSwordGuard"
+            ]
           }
         ],
         "status": "complete"
@@ -391,7 +413,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-28",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"
