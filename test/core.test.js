@@ -28,6 +28,18 @@ test('精确社区别名统一解析', () => {
   assert.equal(core.resolveName('蛆爹').canonical, 'Nidus');
   assert.equal(core.resolveName('花甲').canonical, 'Wisp');
   assert.equal(core.resolveName('吉他哥').canonical, 'Temple');
+  assert.equal(core.resolveName('明神').canonical, 'Limbo');
+  assert.equal(core.resolveName('女工程').canonical, 'Protea');
+  assert.equal(core.resolveName('黑咖喱').canonical, 'Excalibur Umbra');
+  assert.equal(core.resolveName('双子').canonical, 'Sirius & Orion');
+});
+
+test('国服名称与圣装国服名称进入共享战甲解析链', () => {
+  assert.equal(core.resolveName('赤炎龙骑', { categories: ['frame'] }).canonical, 'Chroma');
+  assert.equal(core.resolveName('御魂主宰', { categories: ['frame'] }).canonical, 'Nekros');
+  assert.equal(core.resolveName('圣装赤炎龙骑', { categories: ['frame'] }).canonical, 'Chroma Prime');
+  assert.equal(core.frameAcquisition.resolveWarframe('赤炎龙骑').name, 'Chroma');
+  assert.equal(core.frameAcquisition.resolveWarframe('圣装赤炎龙骑').name, 'Chroma Prime');
 });
 
 test('加权拼音支持缺失中间音节', () => {
@@ -84,6 +96,39 @@ test('统一解析器支持类别过滤与共享黑话', () => {
   assert.equal(core.resolveName('电妹', { categories: ['frame'] }).canonical, 'Gyre');
   assert.equal(core.resolveName('金首发', { categories: ['term'] }).canonical, 'Primed Chamber');
   assert.equal(core.resolveName('玻棍', { categories: ['term'] }).canonical, 'Bo Prime Set');
+});
+
+test('stable ID Prime 变体关系统一覆盖战甲和武器且拒绝名称输入', () => {
+  assert.deepEqual(core.resolveStablePrimeVariant('/Lotus/Powersuits/Berserker/Berserker'), {
+    kind: 'prime',
+    category: 'frame',
+    base: { stableId: '/Lotus/Powersuits/Berserker/Berserker', canonical: 'Valkyr' },
+    variant: { stableId: '/Lotus/Powersuits/Berserker/ValkyrPrime', canonical: 'Valkyr Prime' }
+  });
+  assert.deepEqual(core.resolveStablePrimeVariant('knowledge.acquisition.weapon.burston-14c0cde6'), {
+    kind: 'prime',
+    category: 'weapon',
+    base: { stableId: 'knowledge.acquisition.weapon.burston-14c0cde6', canonical: 'Burston' },
+    variant: { stableId: '/Lotus/Weapons/Tenno/LongGuns/PrimeBurston/PrimeBurston', canonical: 'Burston Prime' }
+  });
+  assert.equal(core.resolveStablePrimeVariant('Valkyr'), null);
+  assert.equal(core.resolveStablePrimeVariant('/Lotus/Powersuits/Oraxia/Oraxia'), null);
+});
+
+test('categoryScope 贯穿精确、别名、拼音与模糊候选且不污染通用歧义', () => {
+  const candidates = [
+    { alias: '同名甲', canonical: 'Frame Same', category: 'frame' },
+    { alias: '同名甲', canonical: 'Weapon Same', category: 'weapon' },
+    { alias: '同伴同名', canonical: 'Companion Same', category: 'official-item' },
+    { alias: '载具同名', canonical: 'Vehicle Same', category: 'official-item' }
+  ];
+  assert.equal(core.resolveName('同名甲', { candidates, categoryScope: ['frame'] }).canonical, 'Frame Same');
+  assert.equal(core.resolveName('同名甲', { candidates, categoryScope: ['weapon'] }).canonical, 'Weapon Same');
+  assert.equal(core.resolveName('tongmingjia', { candidates, categoryScope: ['weapon'] }).canonical, 'Weapon Same');
+  assert.equal(core.resolveName('同名', { candidates, categoryScope: ['frame'] }).canonical, 'Frame Same');
+  assert.ok(core.resolveName('同名甲', { candidates }).ambiguous);
+  assert.equal(core.resolveName('同伴同名', { candidates, categoryScope: ['official-item'] }).canonical, 'Companion Same');
+  assert.equal(core.resolveName('载具同名', { candidates, categoryScope: ['official-item'] }).canonical, 'Vehicle Same');
 });
 
 test('翻译入口对已发布跨类别实体执行大小写无关、去空格与最长完整匹配', () => {

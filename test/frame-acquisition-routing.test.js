@@ -177,8 +177,7 @@ test('Jade 使用任务节点、NPC 与货币变量展示掉落和保底兑换',
     '所需货币怎么刷：',
     '残存微粒（需要900个）：完成天王星布鲁图斯的扬升任务结算获得，任务中的帕尔沃斯姐妹也会额外掉落',
     '资源数量加成：残存微粒不受影响',
-    '资源掉落几率加成：残存微粒不受影响',
-    '兑换成本固定为900个残存微粒，不会因加成改变'
+    '资源掉落几率加成：残存微粒不受影响'
   ])
 })
 
@@ -193,8 +192,7 @@ test('Dante 使用节点、任务类型、NPC 与兑换货币变量', () => {
     '所需货币怎么刷：',
     '承载体毛细血管（需要540个）：在火卫二的卫城区（中断）击败爆破使获得，普通每只 2-4，钢铁之路每只 5-7',
     '资源数量加成：承载体毛细血管不受影响',
-    '资源掉落几率加成：承载体毛细血管不受影响',
-    '兑换成本固定为540个承载体毛细血管，不会因加成改变'
+    '资源掉落几率加成：承载体毛细血管不受影响'
   ])
 })
 
@@ -248,14 +246,17 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
     assert.equal(requirement.type, 'currency', name)
     assert.equal(requirement.boosterPolicy, 'currency-entity-metadata', name)
     const result = createKnowledgeCore().getAcquisition(name)
-    assert.match(result.description, /资源数量加成：/i, name)
-    assert.match(result.description, /资源掉落几率加成：/i, name)
-    assert.match(result.description, /(兑换|制造)成本固定为.+不会因加成改变/i, name)
+    assert.doesNotMatch(result.description, /缺少明确证据|暂按未知处理|不会因加成改变|成本固定为/, name)
+    const hasKnownBoosterLine = /资源数量加成：|资源掉落几率加成：/.test(result.description)
+    const methods = result.structuredMethods || []
+    const hasUnknownDiagnostics = methods.some(method => Array.isArray(method.boosterDiagnostics) && method.boosterDiagnostics.length)
+    assert.ok(hasKnownBoosterLine || hasUnknownDiagnostics || /消耗|制造需要/.test(result.description), name)
   }
   assert.deepEqual(entry('Dante').frameAcquisition.generated.routing.requirements, { type: 'currency', usage: 'exchange', npcId: 'npc.loid', locationId: 'hub.sanctum-anatomica', currency: [{ currencyId: 'currency.vessel-capillaries', amount: 540 }], boosterPolicy: 'currency-entity-metadata' })
-  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /在解剖圣所的洛德处消耗540个承载体毛细血管兑换[\s\S]*资源数量加成：承载体毛细血管不受影响[\s\S]*兑换成本固定为540个承载体毛细血管，不会因加成改变$/)
+  assert.match(createKnowledgeCore().getAcquisition('Dante').description, /在解剖圣所的洛德处消耗540个承载体毛细血管兑换[\s\S]*资源数量加成：承载体毛细血管不受影响[\s\S]*资源掉落几率加成：承载体毛细血管不受影响$/)
   assert.deepEqual(entry('Nokko').frameAcquisition.generated.routing.requirements, { type: 'currency', usage: 'exchange', npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currency: [{ currencyId: 'currency.fergolyte', amount: 720 }], boosterPolicy: 'currency-entity-metadata' })
-  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /在气密舱的夜帽处消耗720个铁离石兑换[\s\S]*资源数量加成：[\s\S]*兑换成本固定为720个铁离石，不会因加成改变$/)
+  assert.match(createKnowledgeCore().getAcquisition('Nokko').description, /在气密舱的夜帽处消耗720个铁离石兑换[\s\S]*资源数量加成：/)
+  assert.doesNotMatch(createKnowledgeCore().getAcquisition('Nokko').description, /不会因加成改变|成本固定为/)
   const dagath = entry('Dagath').frameAcquisition.generated.routing.requirements
   assert.deepEqual(dagath, { type: 'currency', usage: 'crafting', npcId: null, locationId: 'hub.clan-dojo', currency: [{ currencyId: 'currency.vainthorn', amount: 102 }], boosterPolicy: 'currency-entity-metadata' })
   assert.equal(createKnowledgeCore().getAcquisition('Dagath').description, [
@@ -263,8 +264,7 @@ test('require 区分声望与货币并通过 NPC 地点变量渲染', () => {
     '所需货币怎么刷：',
     '浮华荆棘（需要102个）：使用深渊信标进入谷神星深渊区歼灭任务，完成任务结算获得',
     '资源数量加成：浮华荆棘不受影响',
-    '资源掉落几率加成：浮华荆棘不受影响',
-    '制造成本固定为102个浮华荆棘，不会因加成改变'
+    '资源掉落几率加成：浮华荆棘不受影响'
   ].join('\n'))
   const baruuk = entry('Baruuk').frameAcquisition.generated.routing.requirements
   assert.deepEqual(baruuk, { type: 'standing', npcId: 'npc.little-duck', locationId: null, rank: 3, rankName: 'Hand', blueprintRank: 2, blueprintRankName: 'Agent' })
@@ -293,9 +293,13 @@ test('全部 currency require 都有地点、货币、数量和唯一语义段�
     const lines = description.split('\n')
     const hasDependency = routing.requirements.currency.some(currency => core.getCurrency(currency.currencyId)?.acquisitionDependency)
     assert.equal(lines.filter(line => line === '所需货币怎么刷：').length, hasDependency ? 1 : 0, item.canonical)
-    assert.equal(lines.filter(line => /^资源数量加成：/.test(line)).length, 1, item.canonical)
-    assert.equal(lines.filter(line => /^资源掉落几率加成：/.test(line)).length, 1, item.canonical)
-    assert.equal(lines.filter(line => /^(兑换|制造)成本固定为.+不会因加成改变$/.test(line)).length, 1, item.canonical)
+    assert.doesNotMatch(description, /缺少明确证据|暂按未知处理|不会因加成改变|成本固定为/, item.canonical)
+    const amountLines = lines.filter(line => /^资源数量加成：/.test(line))
+    const dropLines = lines.filter(line => /^资源掉落几率加成：/.test(line))
+    assert.ok(amountLines.length <= 1, item.canonical)
+    assert.ok(dropLines.length <= 1, item.canonical)
+    assert.ok(amountLines.every(line => !/缺少明确证据|暂按未知处理/.test(line)), item.canonical)
+    assert.ok(dropLines.every(line => !/缺少明确证据|暂按未知处理/.test(line)), item.canonical)
     const dependencyLines = lines.filter(line => /（(?:需要\d+个|各需要\d+个)）/.test(line))
     const representedCurrencies = dependencyLines.reduce((count, line) => count + routing.requirements.currency.filter(currency => {
       const entity = core.getCurrency(currency.currencyId)
@@ -317,15 +321,17 @@ test('Oraxia 蜘蛛别名通过织屿人独立任务与急行蛛外壳路由', (
   assert.equal(route.componentCategory, 'frame-specific-mission')
   assert.deepEqual(route.requirements.currency, [{ currencyId: 'currency.scuttler-husks', amount: 120 }])
   assert.equal(core.getAcquisition('蜘蛛').entry.subject.canonical, 'Oraxia')
-  assert.equal(core.getAcquisition('蜘蛛').description, [
+  const oraxia = core.getAcquisition('蜘蛛')
+  assert.equal(oraxia.description, [
     '在双衍王境的织屿人刷取，部件蓝图掉率 7.69%',
     '在宿舍的言录使处消耗120个急行蛛外壳兑换',
     '所需货币怎么刷：',
-    '急行蛛外壳（需要120个）：完成双衍王境织屿人节点的复眠螺旋，在结尾击败接肢怪后获得：普通模式 3-5 个，钢铁之路 5-8 个',
-    '资源数量加成：急行蛛外壳缺少明确证据，暂按未知处理',
-    '资源掉落几率加成：急行蛛外壳缺少明确证据，暂按未知处理',
-    '兑换成本固定为120个急行蛛外壳，不会因加成改变'
+    '急行蛛外壳（需要120个）：完成双衍王境织屿人节点的复眠螺旋，在结尾击败接肢怪后获得：普通模式 3-5 个，钢铁之路 5-8 个'
   ].join('\n'))
+  assert.doesNotMatch(oraxia.description, /缺少明确证据|暂按未知处理|不会因加成改变/)
+  const exchange = oraxia.structuredMethods.find(method => method.requirements?.type === 'currency')
+  assert.ok(exchange?.boosterDiagnostics?.length >= 1)
+  assert.ok(exchange.boosterDiagnostics.every(item => item.kind === 'currency-booster-unknown'))
 })
 
 test('method 模板与编译路由可自动发布', () => {

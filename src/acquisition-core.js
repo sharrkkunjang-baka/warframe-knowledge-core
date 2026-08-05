@@ -1,6 +1,6 @@
 'use strict'
 
-const { normalizeRequirements, renderRequirements, exchangeRequirementIssues } = require('./acquisition-protocol')
+const { normalizeRequirements, renderRequirements, exchangeRequirementIssues, collectCurrencyBoosterDiagnostics } = require('./acquisition-protocol')
 const { displayEntityName } = require('./entities')
 
 function methodIdentity(method) {
@@ -76,10 +76,12 @@ function enrichMethod(method, registries) {
   const inferredMissionTypeId = /^Narmer\b/i.test(String(method.sourceCanonical || '')) ? 'mission-type.narmer-bounty' : null
   const missionType = entity(registries, 'missionTypes', inferredMissionTypeId || method.missionTypeId || method.missionTypeEntityId)
   const requirements = normalizeRequirements(rawRequirements)
+  const boosterDiagnostics = collectCurrencyBoosterDiagnostics(requirements, registries)
   return {
     ...method,
     requirements,
     requirementLines: renderRequirements(requirements, registries),
+    ...(boosterDiagnostics.length ? { boosterDiagnostics } : {}),
     ...(source ? { sourceDisplayName: method.sourceDisplayName || (() => { const name = displayEntityName(source); const sourceFaction = source.factionId ? entity(registries, 'factions', source.factionId) : null; return sourceFaction ? name.replace(new RegExp(`^${sourceFaction.canonical}\\s*`, 'i'), displayEntityName(sourceFaction)) : name; })(), sourceKind: source.kind || null, ...(source.bossLocation ? { bossLocation: source.bossLocation } : {}) } : {}),
     ...(npc ? { npcId: npc.id, npcDisplayName: displayEntityName(npc) } : {}),
     ...(location ? { locationId: location.id, locationDisplayName: displayLocationName(location, registries) } : {}),
@@ -96,10 +98,12 @@ function finalizeMethod(method, registries) {
   const reviewStatus = reviewIssues.length
     ? 'review-required'
     : (enriched.reviewStatus || 'approved')
+  const boosterDiagnostics = collectCurrencyBoosterDiagnostics(enriched.requirements, registries)
   return {
     ...enriched,
     reviewStatus,
     reviewIssues,
+    ...(boosterDiagnostics.length ? { boosterDiagnostics } : {}),
     requirementLines: reviewStatus === 'review-required'
       ? []
       : renderRequirements(enriched.requirements, registries)

@@ -2,6 +2,7 @@
 
 const test = require('node:test')
 const assert = require('node:assert/strict')
+const fs = require('node:fs')
 const path = require('node:path')
 const {
   baseFishUniqueName,
@@ -10,6 +11,42 @@ const {
   mineralStage,
   worldFromUniqueName
 } = require('../scripts/build-resource-asset-catalog')
+
+const ROOT = path.resolve(__dirname, '..')
+
+test('审核素材目录绑定 active-current Maphica 的稳定身份与跨角色', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'knowledge/assets/reviewed-resource-assets.json'), 'utf8'))
+  assert.equal(catalog.entries.length, 33)
+  assert.equal(catalog.entries.some(entry => entry.stableEntityId === 'currency.standing.ostron'), false)
+  assert.equal(catalog.entries.some(entry => entry.stableEntityId === 'currency.standing.solaris-united'), false)
+  assert.equal(catalog.entries.every(entry => entry.availability === 'active-current'), true)
+  assert.equal(catalog.entries.every(entry => entry.evidence.source === 'wiki.warframe.com'), true)
+  assert.equal(catalog.entries.every(entry => !/fandom\.com|wikia\.com/i.test(JSON.stringify(entry))), true)
+  const maphica = catalog.entries.find(entry => entry.stableEntityId === 'currency.maphica')
+  assert.ok(maphica)
+  assert.equal(maphica.uniqueName, 'wiki-current:resource:Maphica')
+  assert.equal(maphica.availability, 'active-current')
+  assert.deepEqual(maphica.assetRoles, ['currency-inline-icon', 'crafting-resource-icon', 'inventory-resource-icon'])
+  assert.equal(maphica.evidence.source, 'wiki.warframe.com')
+  assert.equal(maphica.evidence.provenanceType, 'user-provided')
+  assert.match(maphica.evidence.sha256, /^[a-f0-9]{64}$/)
+})
+
+test('生成目录合并 reviewed asset 身份、角色与媒体绑定', () => {
+  const catalog = buildCatalog({ generatedAt: 'test' })
+  const reviewed = catalog.entries.filter(entry => entry.reviewedAsset)
+  assert.equal(reviewed.length, 33)
+  for (const entry of reviewed) {
+    assert.equal(entry.catalogStatus, 'ready', entry.stableIdentity.stableEntityId)
+    assert.equal(entry.reviewReasons.length, 0, entry.stableIdentity.stableEntityId)
+    assert.match(entry.reviewedAsset.evidence.sha256, /^[a-f0-9]{64}$/)
+    assert.ok(entry.reviewedAsset.assetRoles.includes('currency-inline-icon'))
+  }
+  const agnovidisc = reviewed.find(entry => entry.stableIdentity.stableEntityId === 'currency.agnovidisc')
+  assert.ok(agnovidisc)
+  assert.equal(agnovidisc.stableIdentity.uniqueName, '/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceCommonItem')
+  assert.deepEqual(agnovidisc.reviewedAsset.assetRoles, ['currency-inline-icon', 'crafting-resource-icon', 'inventory-resource-icon'])
+})
 
 test('鱼类尺寸变体归并到稳定物种身份', () => {
   assert.equal(

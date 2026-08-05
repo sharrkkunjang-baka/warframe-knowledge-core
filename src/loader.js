@@ -47,7 +47,14 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   // 知识目录同时包含历史数组文件和 supplemental 单对象文件。运行时必须接受
   // 两种格式；否则目录审计能看到单对象，真实查询却会静默漏载。
   const facts = readObjectDirectory(path.join(knowledgeDirectory, 'facts')).filter(entry => entry.kind === 'fact').filter(keep);
-  const knowledge = readObjectDirectory(knowledgeDirectory).filter(entry => entry.kind === 'knowledge').filter(keep);
+  const generatedGameplayDirectory = path.join(root, 'knowledge', 'gameplay-generated');
+  const generatedGameplay = options.includeGeneratedGameplay === true
+    ? readObjectDirectory(generatedGameplayDirectory)
+    : [];
+  const knowledge = [
+    ...readObjectDirectory(knowledgeDirectory).filter(entry => entry.layer !== 'generated'),
+    ...generatedGameplay
+  ].filter(entry => entry.kind === 'knowledge').filter(keep);
   const categoriesDirectory = path.join(knowledgeDirectory, 'categories');
   const categories = readCategoryDirectory(categoriesDirectory);
   const officialPath = path.join(categoriesDirectory, 'official.json');
@@ -89,7 +96,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
   const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
   const aliasesPath = path.join(knowledgeDirectory, 'facts', 'aliases.json');
-  const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, terms: {}, normalization: {} };
+  const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, frameMainlandNames: {}, terms: {}, normalization: {} };
   const acquisitionVariantFamiliesPath = path.join(knowledgeDirectory, 'families', 'acquisition-variants.json');
   const acquisitionVariantFamilies = fs.existsSync(acquisitionVariantFamiliesPath) ? deepFreeze(readJson(acquisitionVariantFamiliesPath)) : { schemaVersion: 1, families: [] };
   const frameDirectory = path.join(knowledgeDirectory, 'acquisition', 'warframe');

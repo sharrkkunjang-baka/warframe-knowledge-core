@@ -26,6 +26,9 @@ test('isSyndicateGroupModQuery 识别中文数字序号', () => {
 
 test('集团N 解析为对应战甲第 N 张集团 Mod', () => {
   const cases = [
+    ['母牛集团四', 'Aegis Gale', '神盾之风', 'Hildryn', 4],
+    ['母牛集团4', 'Aegis Gale', '神盾之风', 'Hildryn', 4],
+    ['母牛 集团 四', 'Aegis Gale', '神盾之风', 'Hildryn', 4],
     ['摸尸集团3', 'Despoil', '掠夺', 'Nekros', 3],
     ['女枪集团1', 'Ballistic Bullseye', '弹道靶心', 'Mesa', 1],
     ['女枪集团4', "Mesa's Waltz", null, 'Mesa', 4],
@@ -59,6 +62,12 @@ test('无集团N 的战甲别名优先于武器模糊匹配', () => {
   const item = core.resolveItem('摸尸');
   assert.equal(item.kind, 'warframe');
   assert.equal(item.item.name, 'Nekros');
+});
+
+test('集团语法诊断区分越界、未知战甲与普通查询', () => {
+  assert.equal(core.inspectSyndicateGroupMod('母牛集团五').status, 'slot-out-of-range');
+  assert.equal(core.inspectSyndicateGroupMod('不存在战甲集团2').status, 'frame-not-found');
+  assert.equal(core.inspectSyndicateGroupMod('神盾之风').status, 'not-syndicate-query');
 });
 
 test('集团卡关键词不触发集团N 解析', () => {

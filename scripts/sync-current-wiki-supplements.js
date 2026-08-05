@@ -13,6 +13,7 @@ const EN_PATH = path.join(ROOT, '.cache', 'official-localization', 'languages.en
 const ZH_PATH = path.join(ROOT, '.cache', 'official-localization', 'languages.zh.json')
 const DROP_INDEX_PATH = path.join(ROOT, 'generated', 'official-drop-table-index.json')
 const IDENTITY_PATH = path.join(ROOT, 'knowledge', 'supplemental', 'current-mod-identities.json')
+const REVIEWED_RESOURCE_ASSETS_PATH = path.join(ROOT, 'knowledge', 'assets', 'reviewed-resource-assets.json')
 const START_UPDATE = 38.5
 const DOMAINS = Object.freeze({ mods: 'Mods', resources: 'Resources' })
 const MOD_PAGE_EXCLUSIONS = Object.freeze([/\bMods$/i])
@@ -35,6 +36,11 @@ function serialize(value) { return `${JSON.stringify(value, null, 2)}\n` }
 function normalize(value) { return String(value || '').normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, '') }
 function slug(value) { return String(value).normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') }
 function hash(value) { return crypto.createHash('sha256').update(String(value)).digest('hex').slice(0, 8) }
+function reviewedResourceIdentities() {
+  if (!fs.existsSync(REVIEWED_RESOURCE_ASSETS_PATH)) return new Map()
+  const entries = JSON.parse(fs.readFileSync(REVIEWED_RESOURCE_ASSETS_PATH, 'utf8')).entries || []
+  return new Map(entries.map(entry => [normalize(entry.canonical), entry.uniqueName]))
+}
 function jsonFiles(directory) {
   if (!fs.existsSync(directory)) return []
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -306,19 +312,21 @@ function modEntry(item, old) {
   const categoryRefs = hasSyndicateExchange ? ['syndicatemod', 'warframemod', 'standardmod'] : ['standardmod']
   return { id: `knowledge.acquisition.mod.${slug(item.canonical)}-${hash(uniqueName)}`, kind: 'knowledge', module: 'acquisition', title: item.displayName, subject: { canonical: item.canonical, displayName: item.displayName, category: 'mod', officialUniqueName: uniqueName, categoryRefs }, officialUniqueName: uniqueName, maxRank: item.maxRank, effectDetails: item.effectDetails, rarity: null, polarity: null, tradable: true, prerequisites: [], tips: old?.tips || [], tipKeywords: old?.tipKeywords || [], methodRefs: [], modAcquisition: { generated: { identity: { officialUniqueName: uniqueName, canonical: item.canonical, displayName: item.displayName, variant: 'standard' }, wiki: { status: wikiMethods.length ? 'complete' : 'unresolved', methods: wikiMethods, evidence: [{ type: 'acquisition-prose', reviewStatus: 'approved', provenance: { source: 'current-wiki-sqlite', pageTitle: item.canonical, revisionId: item.page.revisionId }, excerpt: item.acquisitionEvidence }], mechanicsEvidence: {}, unresolvedEntities: [] }, officialDrops }, manual }, acquisitionStatus: item.methods.length ? 'complete' : 'partial', sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g, '_')}`, label: 'Official Warframe Wiki' }], gameVersion: `Update ${item.introduced}`, updatedAt: old?.updatedAt || new Date().toISOString().slice(0, 10), reviewStatus: item.methods.length ? 'approved' : 'draft', reviewedBy: item.methods.length ? [...new Set([...(old?.reviewedBy || []), 'current-wiki-supplement'])] : (old?.reviewedBy || []), tags: ['acquisition', 'mod', 'current-version-supplement'], generator: { name: 'sync-current-wiki-supplements', version: 1 } }
 }
-function resourceEntry(item, old) {
-  const uniqueName = `wiki-current:resource:${item.canonical}`
+function resourceEntry(item, old, reviewedIdentities = new Map()) {
+  const uniqueName = reviewedIdentities.get(normalize(item.canonical)) || `wiki-current:resource:${item.canonical}`
   const routing = item.methods.length ? { category: 'resource-current-wiki', variables: { resourceName: item.displayName }, methods: item.methods, status: 'compiled' } : { category: 'resource-unresolved', variables: { resourceName: item.displayName }, status: 'review-required' }
   return { id: `knowledge.acquisition.resource.${slug(item.canonical)}`, kind: 'knowledge', module: 'acquisition', title: item.displayName, subject: { canonical: item.canonical, displayName: item.displayName, category: 'resource', officialUniqueName: uniqueName, categoryRefs: [routing.category] }, prerequisites: [], methodRefs: [], resourceAcquisition: { generated: { officialUniqueName: uniqueName, canonical: item.canonical, displayName: item.displayName, localizationStatus: 'official-zh', semanticKinds: ['resource'], evidence: [{ type: 'wiki-acquisition', canonical: item.acquisitionEvidence, reviewStatus: item.methods.length ? 'approved' : 'pending' }], routing }, manual: old?.resourceAcquisition?.manual || { tips: [], tipKeywords: [], routingOverride: null, reviewedBy: [] } }, sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g, '_')}`, label: 'Official Warframe Wiki' }], gameVersion: `Update ${item.introduced}`, updatedAt: old?.updatedAt || new Date().toISOString().slice(0, 10), reviewStatus: item.methods.length ? 'approved' : 'draft', reviewedBy: item.methods.length ? ['current-wiki-supplement'] : [], summary: `${item.displayName}的当前版本资源身份与获取证据。`, tags: ['acquisition', 'resource', 'current-version-supplement'], generator: { name: 'sync-current-wiki-supplements', version: 1 } }
 }
 function run(argv = process.argv.slice(2)) {
   const index = argv.indexOf('--db'), db = index >= 0 ? argv[index + 1] : process.env.WF_WIKI_DB, check = argv.includes('--check')
-  const plan = buildPlan({ db }), changes = [], existingMods = indexExistingMods()
+  const plan = buildPlan({ db }), changes = [], existingMods = indexExistingMods(), reviewedIdentities = reviewedResourceIdentities()
   const compare = (target, value) => { const next = serialize(value), current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null; if (next !== current) changes.push({ target, next }) }
   for (const target of staleCurrentModFiles(existingMods)) changes.push({ target, remove: true })
   for (const item of plan.entries) {
     const dir = item.domain === 'mods' ? path.join(ROOT, 'knowledge', 'acquisition', 'mod', 'current') : path.join(ROOT, 'knowledge', 'acquisition', 'resource', 'entries')
-    const uniqueName = item.domain === 'mods' ? item.officialUniqueName : `wiki-current:resource:${item.canonical}`
+    const uniqueName = item.domain === 'mods'
+      ? item.officialUniqueName
+      : reviewedIdentities.get(normalize(item.canonical)) || `wiki-current:resource:${item.canonical}`
     const existingMod = item.domain === 'mods' ? existingMods.get(normalize(item.canonical)) : null
     const target = item.domain === 'mods'
       ? (existingMod?.file || path.join(dir, `${slug(item.canonical)}-${hash(uniqueName)}.json`))
@@ -349,7 +357,7 @@ function run(argv = process.argv.slice(2)) {
       if (changed) compare(target, mergedValue)
       continue
     }
-    compare(target, item.domain === 'mods' ? [modEntry(item, old)] : resourceEntry(item, old))
+    compare(target, item.domain === 'mods' ? [modEntry(item, old)] : resourceEntry(item, old, reviewedIdentities))
   }
   const oldPlan = fs.existsSync(TARGET) ? JSON.parse(fs.readFileSync(TARGET, 'utf8')) : null
   compare(TARGET, { ...plan, generatedAt: oldPlan?.generatedAt || plan.generatedAt })

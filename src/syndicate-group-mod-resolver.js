@@ -16,6 +16,7 @@ function augmentStem(uniqueName) {
 
 const SYNDICATE_SLOT_CHARS = '1-4一二三四壹贰叁肆';
 const SYNDICATE_SLOT_PATTERN = `[${SYNDICATE_SLOT_CHARS}]`;
+const SYNDICATE_NUMERAL_PATTERN = '[0-9一二三四五六七八九壹贰叁肆伍陆柒捌玖]';
 const CHINESE_SLOT_MAP = Object.freeze({
   一: 1,
   二: 2,
@@ -68,21 +69,22 @@ function createSyndicateGroupModResolver(options = {}) {
     }).filter(Boolean);
   }
 
-  function parse(query) {
+  function inspect(query) {
     const raw = String(query || '').trim();
-    if (!raw) return null;
+    if (!raw) return { status: 'not-syndicate-query', query: raw };
     const compact = compactSyndicateQuery(raw);
-    if (/集团卡|集团·强化/i.test(compact)) return null;
-    const match = compact.match(new RegExp(`^(.+?)集团(${SYNDICATE_SLOT_PATTERN})$`, 'i'));
-    if (!match) return null;
+    if (/集团卡|集团·强化/i.test(compact)) return { status: 'not-syndicate-query', query: raw };
+    const match = compact.match(new RegExp(`^(.+?)集团(${SYNDICATE_NUMERAL_PATTERN})$`, 'i'));
+    if (!match) return { status: 'not-syndicate-query', query: raw };
     const prefix = match[1];
     const slot = parseSyndicateSlot(match[2]);
-    if (!prefix || !slot) return null;
+    if (!slot) return { status: 'slot-out-of-range', query: raw, prefix, slotToken: match[2] };
     const frame = resolveWarframe?.(prefix) || resolveWarframeMention?.(prefix)?.frame;
-    if (!frame) return null;
+    if (!frame) return { status: 'frame-not-found', query: raw, prefix, slot };
     const entry = frameAugmentIndex(frame).find(item => item.index === slot);
-    if (!entry?.mod) return null;
+    if (!entry?.mod) return { status: 'augment-not-found', query: raw, prefix, slot, frame: { canonical: frame.name, displayName: frame.displayName || frame.name } };
     return {
+      status: 'resolved',
       query: raw,
       prefix,
       slot,
@@ -93,6 +95,11 @@ function createSyndicateGroupModResolver(options = {}) {
     };
   }
 
+  function parse(query) {
+    const inspected = inspect(query);
+    return inspected.status === 'resolved' ? inspected : null;
+  }
+
   function resolve(query) {
     const parsed = parse(query);
     if (!parsed) return null;
@@ -100,12 +107,12 @@ function createSyndicateGroupModResolver(options = {}) {
     return { ...parsed, mod, source: 'syndicate-group-index' };
   }
 
-  return { parse, resolve, frameAugmentIndex };
+  return { inspect, parse, resolve, frameAugmentIndex };
 }
 
 function isSyndicateGroupModQuery(query) {
   const compact = compactSyndicateQuery(query);
-  return !/集团卡|集团·强化/i.test(compact) && new RegExp(`^.+集团${SYNDICATE_SLOT_PATTERN}$`, 'i').test(compact);
+  return !/集团卡|集团·强化/i.test(compact) && new RegExp(`^.+集团${SYNDICATE_NUMERAL_PATTERN}$`, 'i').test(compact);
 }
 
 module.exports = {

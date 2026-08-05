@@ -12,6 +12,32 @@ const SOURCE = 'https://browse.wf/warframe-public-export-plus/ExportWarframes.js
 const check = process.argv.includes('--check');
 const refresh = process.argv.includes('--refresh');
 
+// Public Export 的战甲目录不包含 Helminth 自带技能；这 13 项由当前 Wiki 目录提供
+// 稳定页面/图标身份，名称仍严格读取 DE Languages.bin 官方本地化键。
+const HELMINTH_UNIQUE_ABILITIES = [
+  ['HelminthStrength', 'Empower', 'EmpowerIcon%28xWhite%29.png'],
+  ['HelminthSpeed', 'Infested Mobility', 'InfestedMobilityIcon%28xWhite%29.png'],
+  ['HelminthCompanion', "Master\'s Summons", 'Master%27sSummonsIcon%28xWhite%29.png'],
+  ['HelminthShields', 'Rebuild Shields', 'RebuildShieldsIcon%28xWhite%29.png'],
+  ['HelminthHack', 'Perspicacity', 'PerspicacityIcon%28xWhite%29.png'],
+  ['HelminthAmmoEfficiency', 'Energized Munitions', 'EnergizedMunitionsIcon%28xWhite%29.png'],
+  ['HelminthStun', 'Marked For Death', 'MarkedForDeathIcon%28xWhite%29.png'],
+  ['HelminthStatusRush', 'Expedite Suffering', 'ExpediteSufferingIcon%28xWhite%29.png'],
+  ['HelminthShieldArmor', 'Parasitic Armor', 'ParasiticArmorIcon%28xWhite%29.png'],
+  ['HelminthProcBlock', 'Hideous Resistance', 'HideousResistanceIcon%28xWhite%29.png'],
+  ['HelminthEnergyShare', 'Voracious Metastasis', 'VoraciousMetastasisIcon%28xWhite%29.png'],
+  ['HelminthMaxStatus', 'Sickening Pulse', 'SickeningPulseIcon%28xWhite%29.png'],
+  ['HelminthTreasure', 'Golden Instinct', 'GoldenInstinctIcon%28xWhite%29.png']
+].map(([key, wikiPageName, imageFile]) => ({
+  key,
+  wikiPageName,
+  imageFile,
+  nameLanguageKey: `/Lotus/Language/Suits/${key}Name`,
+  descriptionLanguageKey: `/Lotus/Language/Suits/${key}Description`,
+  wikiUrl: `https://wiki.warframe.com/w/${wikiPageName.replace(/ /g, '_').replace("'", '%27')}`,
+  iconSourceUrl: `https://wiki.warframe.com/images/${imageFile}`
+}));
+
 function slug(value) { return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
 function serialize(value) { return `${JSON.stringify(value, null, 2)}\n`; }
 async function ensureExport() {
@@ -66,6 +92,35 @@ function buildCatalog(exported, english, chinese) {
       });
     });
   }
+  for (const spec of HELMINTH_UNIQUE_ABILITIES) {
+    const canonical = english[spec.nameLanguageKey] || spec.wikiPageName;
+    const displayName = chinese[spec.nameLanguageKey] || canonical;
+    const stableIdentity = `helminth-unique:${slug(canonical)}`;
+    byUniqueName.set(stableIdentity, {
+      abilityId: `ability:helminth-${slug(canonical)}`,
+      canonical,
+      displayName,
+      aliases: [...new Set([canonical, displayName, spec.wikiPageName])],
+      owners: [{ kind: 'helminth', frameCanonical: 'Helminth', frameDisplayName: 'Helminth', form: 'Helminth', slot: null }],
+      slot: null,
+      abilityClass: 'helminth-unique',
+      wikiPageName: spec.wikiPageName,
+      wikiUrl: spec.wikiUrl,
+      sourceFileName: decodeURIComponent(spec.imageFile),
+      iconExportPath: null,
+      iconSourceUrl: spec.iconSourceUrl,
+      officialUniqueName: null,
+      nameLanguageKey: spec.nameLanguageKey,
+      descriptionLanguageKey: spec.descriptionLanguageKey,
+      sharedAbilityId: null,
+      review: {
+        status: chinese[spec.nameLanguageKey] ? 'official-zh' : 'canonical-fallback',
+        authority: chinese[spec.nameLanguageKey] ? 'DE Languages.bin + current WARFRAME Wiki icon' : 'current WARFRAME Wiki canonical',
+        source: spec.wikiUrl,
+        reviewedAt: '2026-08-01'
+      }
+    });
+  }
   const abilities = [...byUniqueName.values()].sort((a, b) => a.canonical.localeCompare(b.canonical, 'en'));
   for (const ability of abilities) if (ability.owners.length > 1) ability.sharedAbilityId = ability.abilityId;
   const baseFrames = new Set(suits.map(suit => baseFrameName(suit, english)).filter(name => !/ Prime$/i.test(name)));
@@ -75,8 +130,8 @@ function buildCatalog(exported, english, chinese) {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
     provenance: { publicExport: SOURCE, localization: 'DE Languages.bin official localization snapshot' },
-    counts: { abilities: abilities.length, officialZh: abilities.filter(item => item.review.status === 'official-zh').length, frames: coveredFrames.size, exportedBaseFrames: baseFrames.size },
-    audit: { missingFrames: [...baseFrames].filter(name => !coveredFrames.has(name)), recent, siriusOrionUnique: abilities.filter(item => item.owners.some(owner => ['Sirius','Orion'].includes(owner.form))).length },
+    counts: { abilities: abilities.length, officialZh: abilities.filter(item => item.review.status === 'official-zh').length, frames: coveredFrames.size, exportedBaseFrames: baseFrames.size, helminthUnique: abilities.filter(item => item.abilityClass === 'helminth-unique').length },
+    audit: { missingFrames: [...baseFrames].filter(name => !coveredFrames.has(name)), recent, siriusOrionUnique: abilities.filter(item => item.owners.some(owner => ['Sirius','Orion'].includes(owner.form))).length, helminthUnique: abilities.filter(item => item.abilityClass === 'helminth-unique').length },
     abilities
   };
 }
@@ -86,6 +141,7 @@ async function run() {
   const catalog = buildCatalog(JSON.parse(fs.readFileSync(EXPORT_CACHE)), JSON.parse(fs.readFileSync(LANG_EN)), JSON.parse(fs.readFileSync(LANG_ZH)));
   if (catalog.audit.missingFrames.length) throw new Error(`技能目录缺少战甲：${catalog.audit.missingFrames.join('、')}`);
   if (catalog.audit.recent.Temple !== 4 || catalog.audit.recent.Uriel !== 4 || catalog.audit.recent.Sirius !== 4 || catalog.audit.recent.Orion !== 4 || catalog.audit.siriusOrionUnique !== 7) throw new Error(`近期战甲技能完整性失败：${JSON.stringify(catalog.audit)}`);
+  if (catalog.audit.helminthUnique !== HELMINTH_UNIQUE_ABILITIES.length) throw new Error(`Helminth 独有技能完整性失败：${JSON.stringify(catalog.audit)}`);
   const text = serialize(catalog);
   if (check) {
     if (!fs.existsSync(TARGET)) throw new Error('技能目录不存在，请运行 npm run sync:abilities');
@@ -100,4 +156,4 @@ async function run() {
   return catalog;
 }
 if (require.main === module) run().catch(error => { console.error(error.stack || error); process.exit(1); });
-module.exports = { SOURCE, buildCatalog, run };
+module.exports = { SOURCE, HELMINTH_UNIQUE_ABILITIES, buildCatalog, run };

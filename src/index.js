@@ -28,6 +28,12 @@ const ampComponents = require('./amp-components');
 const { buildOfficialTermIndex, findOfficialTermsInText } = require('./official-term-matcher');
 const { resolveModCardFaceLabel, resolveEffectiveModType } = require('./mod-card-face-label');
 const { getTypeDisplayName } = require('./playable-mod-filter');
+const {
+  TRADABLE_SENTINEL_PRIME_FAMILIES,
+  resolveCompanionVariantIntent,
+  resolveCompanionPrimeVariantIntent,
+  getCompanionVariantFamily
+} = require('./companion-variant-family');
 
 function scoreEntry(query, entry) {
   const q = normalize(query);
@@ -206,9 +212,51 @@ function createKnowledgeCore(options = {}) {
     family.push({ ...weapon, variantKind: weaponVariantKind(weapon.canonical) });
     officialWeaponFamilies.set(key, family);
   }
+  const stablePrimeVariantByBaseId = new Map();
+  const registerStablePrimeRelation = (base, prime, category) => {
+    const baseStableId = base?.uniqueName || base?.subject?.officialUniqueName;
+    const primeStableId = prime?.uniqueName || prime?.subject?.officialUniqueName;
+    const baseCanonical = base?.canonical || base?.subject?.canonical;
+    const primeCanonical = prime?.canonical || prime?.subject?.canonical;
+    if (!baseStableId || !primeStableId || !baseCanonical || !primeCanonical) return;
+    stablePrimeVariantByBaseId.set(baseStableId, Object.freeze({
+      kind: 'prime',
+      category,
+      base: Object.freeze({ stableId: baseStableId, canonical: baseCanonical }),
+      variant: Object.freeze({ stableId: primeStableId, canonical: primeCanonical })
+    }));
+  };
+  for (const members of officialWeaponFamilies.values()) {
+    const base = members.find(member => member.variantKind === 'base');
+    const prime = members.find(member => member.variantKind === 'prime');
+    if (base && prime) registerStablePrimeRelation(base, prime, 'weapon');
+  }
+  const reviewedWeapons = allKnowledge.filter(entry => entry.subject?.category === 'weapon' && entry.id && entry.subject?.canonical);
+  for (const base of reviewedWeapons.filter(entry => !/\sPrime$/i.test(entry.subject.canonical))) {
+    const officialBase = officialWeaponByCanonical.get(normalize(base.subject.canonical));
+    const relation = officialBase && stablePrimeVariantByBaseId.get(officialBase.uniqueName);
+    if (relation) stablePrimeVariantByBaseId.set(base.id, Object.freeze({
+      ...relation,
+      base: Object.freeze({ stableId: base.id, canonical: base.subject.canonical })
+    }));
+  }
+  const frameIdentities = allKnowledge.filter(entry => entry.subject?.category === 'frame' && entry.subject?.officialUniqueName);
+  const frameByCanonical = new Map(frameIdentities.map(entry => [normalize(entry.subject.canonical), entry]));
+  for (const base of frameIdentities.filter(entry => !/\sPrime$/i.test(entry.subject.canonical))) {
+    const prime = frameByCanonical.get(normalize(`${base.subject.canonical} Prime`));
+    if (prime) registerStablePrimeRelation(base, prime, 'frame');
+  }
+  for (const family of TRADABLE_SENTINEL_PRIME_FAMILIES) {
+    registerStablePrimeRelation(
+      { uniqueName: family.base.stableId, canonical: family.base.canonical, subject: family.base },
+      { uniqueName: family.prime.stableId, canonical: family.prime.canonical, subject: family.prime },
+      'companion'
+    );
+  }
+  const resolveStablePrimeVariant = stableId => stablePrimeVariantByBaseId.get(String(stableId || '').trim()) || null;
   const rivenWeaponResolver = createRivenWeaponResolver(data.officialWeapons, data.aliases?.weapons, data.rivenMarketWeapons);
   const frameNameCandidates = allKnowledge.filter(entry => entry.subject?.category === 'frame')
-    .flatMap(frame => [frame.subject?.canonical, frame.subject?.displayName, ...(data.aliases?.frames?.[frame.subject?.canonical] || [])]
+    .flatMap(frame => [frame.subject?.canonical, frame.subject?.displayName, data.aliases?.frameMainlandNames?.[frame.subject?.canonical], ...(data.aliases?.frames?.[frame.subject?.canonical] || [])]
       .filter(Boolean).map(alias => ({ alias, canonical: frame.subject.canonical, category: 'frame', priority: 35 })));
   const weaponCraftingGraph = createCraftingGraph(data.weapons || []);
   const weaponComponents = new Map();
@@ -224,7 +272,7 @@ function createKnowledgeCore(options = {}) {
   const frameComponents = new Map();
   const framePartDisplay = { Blueprint: '蓝图', Neuroptics: '头部神经光元', Chassis: '机体', Systems: '系统' };
   for (const frame of allKnowledge.filter(entry => entry.subject?.category === 'frame')) {
-    const bases = [frame.subject.canonical, frame.subject.displayName, ...(data.aliases?.frames?.[frame.subject.canonical] || [])].filter(Boolean);
+    const bases = [frame.subject.canonical, frame.subject.displayName, data.aliases?.frameMainlandNames?.[frame.subject.canonical], ...(data.aliases?.frames?.[frame.subject.canonical] || [])].filter(Boolean);
     for (const component of frame.frameAcquisition?.generated?.components || []) {
       const suffixes = [component.part, framePartDisplay[component.part], component.part === 'Neuroptics' ? '头' : null].filter(Boolean);
       const identity = {
@@ -254,9 +302,12 @@ function createKnowledgeCore(options = {}) {
   const officialItemNameCandidates = officialItems.filter(item => !item.semanticKinds?.includes('arcane'))
     .flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean)
       .map(alias => ({ alias, canonical: item.canonical, category: 'official-item', priority: 30 })));
-  const equipmentNameCandidates = officialItems.filter(item => item.semanticKinds?.some(kind => ['landing-craft', 'archwing', 'companion', 'sentinel'].includes(kind)))
+  const equipmentCategory = item => item.semanticKinds?.some(kind => ['companion', 'sentinel'].includes(kind))
+    ? 'companion'
+    : item.semanticKinds?.some(kind => ['landing-craft', 'archwing'].includes(kind)) ? 'vehicle' : null;
+  const equipmentNameCandidates = officialItems.filter(item => equipmentCategory(item))
     .flatMap(item => [item.canonical, item.displayName, ...(item.aliases || [])].filter(Boolean)
-      .map(alias => ({ alias, canonical: item.canonical, category: 'official-item', priority: 30 })));
+      .map(alias => ({ alias, canonical: item.canonical, category: equipmentCategory(item), priority: 30 })));
   const officialNameCandidates = [
     ...fishNameCandidates,
     ...officialMods.flatMap(mod => [mod.canonical, mod.displayName, ...(data.aliases?.mods?.[mod.canonical] || [])].filter(Boolean).map(alias => ({ alias, canonical: mod.canonical, category: 'mod' }))),
@@ -291,7 +342,7 @@ function createKnowledgeCore(options = {}) {
     ...allKnowledge.filter(entry => entry.subject?.category === 'frame').map(frame => ({
       canonical: frame.subject.canonical,
       displayName: frame.subject.displayName,
-      aliases: data.aliases?.frames?.[frame.subject.canonical] || [],
+      aliases: [data.aliases?.frameMainlandNames?.[frame.subject.canonical], ...(data.aliases?.frames?.[frame.subject.canonical] || [])].filter(Boolean),
       category: 'frame',
       officialUniqueName: frame.subject.officialUniqueName
     })),
@@ -344,21 +395,35 @@ function createKnowledgeCore(options = {}) {
   const getSlangDomain = domain => JSON.parse(JSON.stringify(data.aliases?.[domain] || {}));
   const searchFacts = (query, searchOptions) => searchEntries(query, data.facts, searchOptions);
   const searchKnowledge = (query, searchOptions) => searchEntries(query, data.knowledge, searchOptions);
+  const ACQUISITION_CATEGORY_COMMANDS = Object.freeze([
+    { domain: 'frame', pattern: /^\/?战甲(?:\s+(.+))?$/i },
+    { domain: 'weapon', pattern: /^\/?武器(?:\s+(.+))?$/i },
+    { domain: 'companion', pattern: /^\/?同伴(?:\s+(.+))?$/i },
+    { domain: 'vehicle', pattern: /^\/?载具(?:\s+(.+))?$/i }
+  ]);
   const parseAcquisitionCommand = text => {
     const raw = String(text || '').trim();
-    let match = raw.match(/^\/?战甲(?:\s+(.+))?$/i);
-    if (match) return { intent: 'acquisition', domain: 'frame', query: String(match[1] || '').trim() };
-    match = raw.match(/^\/?(?:刷|查|wk)(?:\s+(.+))?$/i);
-    if (match) return { intent: 'acquisition', domain: null, query: String(match[1] || '').trim() };
+    for (const command of ACQUISITION_CATEGORY_COMMANDS) {
+      const scoped = raw.match(command.pattern);
+      if (scoped) return { intent: 'acquisition', domain: command.domain, query: String(scoped[1] || '').trim() };
+    }
+    let match = raw.match(/^\/?(?:刷|查|wk)(?:\s+(.+))?$/i);
+    if (match) return { intent: 'acquisition', query: String(match[1] || '').trim() };
     match = raw.match(/^怎么刷\s*(.+)$/i);
     if (!match) return null;
-    return { intent: 'acquisition', domain: null, query: match[1].trim() };
+    return { intent: 'acquisition', query: match[1].trim() };
   };
   const resolveAcquisitionCommand = text => {
     const parsed = parseAcquisitionCommand(text);
     if (!parsed) return null;
-    if (parsed.domain === 'frame') {
-      return { ...parsed, resolution: parsed.query ? resolveName(parsed.query, { categories: ['frame'], minScore: 50, minLead: 8 }) : null };
+    if (parsed.domain) {
+      const scope = [parsed.domain];
+      const resolution = parsed.query ? resolveName(parsed.query, {
+        categoryScope: scope,
+        minScore: 100,
+        minLead: 8
+      }) : null;
+      return { ...parsed, resolution };
     }
     if (!parsed.query) return parsed;
     // “赋能槽连接器”是资源道具，不是赋能。仅凭名称包含“赋能”会把
@@ -454,18 +519,39 @@ function createKnowledgeCore(options = {}) {
       .sort((a, b) => b.score - a.score || a.item.canonical.localeCompare(b.item.canonical))
       .slice(0, searchOptions.limit || 20).map(result => result.item);
   };
+  const pickPreferredOfficialMod = mods => {
+    if (!mods?.length) return null;
+    if (mods.length === 1) return mods[0];
+    const score = mod => {
+      let value = 0;
+      const uniqueName = String(mod.uniqueName || '');
+      if (!/\/Beginner\//i.test(uniqueName)) value += 100;
+      if (!/\/Expert\//i.test(uniqueName)) value += 20;
+      if (mod.status === 'complete') value += 50;
+      if (!mod.reviewRequired) value += 40;
+      if (mod.marketIdentity?.slug || mod.marketSlug) value += 30;
+      if (mod.wiki?.available !== false) value += 5;
+      return value;
+    };
+    return [...mods].sort((a, b) => score(b) - score(a) || String(a.uniqueName).localeCompare(String(b.uniqueName)))[0];
+  };
   const getOfficialMod = query => {
     const q = normalize(query);
     if (!q) return null;
-    const direct = officialMods.find(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q));
-    if (direct) return direct;
+    const direct = officialMods.filter(mod => [mod.uniqueName, mod.canonical, mod.displayName].some(value => normalize(value) === q));
+    if (direct.length) return pickPreferredOfficialMod(direct);
     const reviewedAlias = resolveDomainAlias(data.aliases, 'mods', query);
     if (reviewedAlias && !reviewedAlias.ambiguous && reviewedAlias.match === 'exact') {
       const reviewed = officialMods.find(mod => normalize(mod.canonical) === normalize(reviewedAlias.canonical));
       if (reviewed) return reviewed;
     }
     const targets = [...(modLookupAliases.get(q) || [])];
-    return targets.length === 1 ? officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null : null;
+    if (targets.length === 1) return officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null;
+    if (targets.length > 1) {
+      const candidates = officialMods.filter(mod => targets.some(target => normalize(mod.canonical) === normalize(target)));
+      return pickPreferredOfficialMod(candidates);
+    }
+    return null;
   };
   const getExcludedOfficialMod = query => {
     const q = normalize(query);
@@ -597,10 +683,14 @@ function createKnowledgeCore(options = {}) {
     };
   };
   const resolvePrimeVariantIntent = query => {
-    const family = getWeaponVariantFamily(query);
-    if (!family) return null;
-    const prime = family.members.find(member => member.variantKind === 'prime') || null;
-    return { ...family, prime, alternatives: family.members.filter(member => member.uniqueName !== family.identity.uniqueName && member.variantKind !== 'prime') };
+    const weaponFamily = getWeaponVariantFamily(query);
+    if (weaponFamily) {
+      const prime = weaponFamily.members.find(member => member.variantKind === 'prime') || null;
+      return { ...weaponFamily, prime, alternatives: weaponFamily.members.filter(member => member.uniqueName !== weaponFamily.identity.uniqueName && member.variantKind !== 'prime') };
+    }
+    const companionFamily = getCompanionVariantFamily(query);
+    if (!companionFamily) return null;
+    return { ...companionFamily, alternatives: companionFamily.alternatives || [] };
   };
   const weaponVariantIntentAliases = Object.freeze({
     prime: ['prime', 'p'], vandal: ['破坏者', 'vandal', '莲花'], wraith: ['亡魂', 'wraith'],
@@ -677,6 +767,7 @@ function createKnowledgeCore(options = {}) {
     officialMods
   });
   const resolveSyndicateGroupMod = query => syndicateGroupModResolver.resolve(query);
+  const inspectSyndicateGroupMod = query => syndicateGroupModResolver.inspect(query);
   const resolveItem = query => {
     const intent = parseResolverIntent(query);
     const effectiveQuery = intent.query || intent.commandStripped;
@@ -797,7 +888,7 @@ function createKnowledgeCore(options = {}) {
       canonical: entry.subject.canonical,
       displayName: entry.subject.displayName,
       category: 'warframe',
-      aliases: data.aliases?.frames?.[entry.subject.canonical] || []
+      aliases: [data.aliases?.frameMainlandNames?.[entry.subject.canonical], ...(data.aliases?.frames?.[entry.subject.canonical] || [])].filter(Boolean)
     }))
   ];
   const arcaneSlugByCanonical = new Map((data.arcaneMetadataCatalog?.entries || []).map(entry => [normalize(entry.canonical), entry.marketSlug]).filter(([, slug]) => slug));
@@ -1876,6 +1967,7 @@ function createKnowledgeCore(options = {}) {
     listResources: resourceAcquisition.listResources,
     resolveItem,
     resolveSyndicateGroupMod,
+    inspectSyndicateGroupMod,
     isSyndicateGroupModQuery,
     getWeapon,
     getWeaponGap,
@@ -1885,12 +1977,17 @@ function createKnowledgeCore(options = {}) {
     resolveWeapon,
     resolveOfficialWeaponIdentity,
     getWeaponVariantFamily,
+    resolveStablePrimeVariant,
     resolvePrimeVariantIntent,
+    resolveCompanionVariantIntent,
+    resolveCompanionPrimeVariantIntent,
+    getCompanionVariantFamily,
     resolveWeaponVariantIntent,
     weaponVariantIntentAliases,
     parseModRelationCommand: modRelationQueries.parseRelationCommand,
     queryModRelations: modRelationQueries.query,
     modRelations: data.modRelations,
+    acquisitionVariantFamilies: data.acquisitionVariantFamilies,
     ecologyRelations,
     queryEcologyRelations: (stableIdentity, type = null) => ecologyRelations.related(stableIdentity, type),
     elementModSlang: data.elementModSlang,
@@ -1971,4 +2068,4 @@ function createKnowledgeCore(options = {}) {
   };
 }
 
-module.exports = { createKnowledgeCore, searchEntries, frameAcquisition, frameCard, resourceAcquisition, arcaneFusionMetadata };
+module.exports = { createKnowledgeCore, searchEntries, frameAcquisition, frameCard, resourceAcquisition, arcaneFusionMetadata, resolveModCardFaceLabel, createCompatLocalizer: require('./mod-card-face-label').createCompatLocalizer };

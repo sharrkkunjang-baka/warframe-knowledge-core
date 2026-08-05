@@ -1,0 +1,628 @@
+{
+  "schemaVersion": 1,
+  "type": "mission-type-gameplay-dispositions",
+  "universe": "knowledge/mission-types/categories.json",
+  "count": 73,
+  "allowedDispositions": [
+    "covered",
+    "generated",
+    "manual-required",
+    "variant-of",
+    "non-queryable-shell",
+    "reward-source-only",
+    "event-lifecycle",
+    "review-required"
+  ],
+  "counts": {
+    "covered": 18,
+    "event-lifecycle": 2,
+    "generated": 31,
+    "manual-required": 4,
+    "non-queryable-shell": 4,
+    "review-required": 5,
+    "reward-source-only": 5,
+    "variant-of": 4
+  },
+  "entries": [
+    {
+      "missionTypeId": "mission-type.alchemy",
+      "canonical": "Alchemy",
+      "displayName": "元素转换",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.alchemy"
+    },
+    {
+      "missionTypeId": "mission-type.annihilation",
+      "canonical": "Annihilation",
+      "displayName": "歼夺",
+      "category": "reward-source",
+      "disposition": "reward-source-only"
+    },
+    {
+      "missionTypeId": "mission-type.arbitration",
+      "canonical": "Arbitration",
+      "displayName": "仲裁",
+      "category": "special",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.arbitrations"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.arbitrations",
+      "canonical": "Arbitrations",
+      "displayName": "仲裁",
+      "category": "special",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.arbitrations"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.archimedea",
+      "canonical": "Archimedea",
+      "displayName": "科研任务",
+      "category": "special",
+      "disposition": "manual-required"
+    },
+    {
+      "missionTypeId": "mission-type.arena",
+      "canonical": "ARENA",
+      "displayName": "竞技场",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.arena"
+    },
+    {
+      "missionTypeId": "mission-type.ascension",
+      "canonical": "Ascension",
+      "displayName": "扬升",
+      "category": "endless",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.ascension"
+    },
+    {
+      "missionTypeId": "mission-type.assassination",
+      "canonical": "ASSASSINATION",
+      "displayName": "刺杀",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.assassination"
+    },
+    {
+      "missionTypeId": "mission-type.assault",
+      "canonical": "ASSAULT",
+      "displayName": "强袭",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.assault"
+    },
+    {
+      "missionTypeId": "mission-type.bounty",
+      "canonical": "Bounty",
+      "displayName": "赏金",
+      "category": "bounty",
+      "disposition": "non-queryable-shell"
+    },
+    {
+      "missionTypeId": "mission-type.caches",
+      "canonical": "Caches",
+      "displayName": "任务缓存",
+      "category": "reward-source",
+      "disposition": "reward-source-only"
+    },
+    {
+      "missionTypeId": "mission-type.cambion-drift-bounty",
+      "canonical": "Cambion Drift Bounty",
+      "displayName": "魔胎之境赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.cambion-drift-set-mods"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.capture",
+      "canonical": "CAPTURE",
+      "displayName": "捕获",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.capture"
+    },
+    {
+      "missionTypeId": "mission-type.cephalon-capture",
+      "canonical": "Cephalon Capture",
+      "displayName": "中枢夺取",
+      "category": "reward-source",
+      "disposition": "reward-source-only"
+    },
+    {
+      "missionTypeId": "mission-type.cetus-bounty",
+      "canonical": "Cetus Bounty",
+      "displayName": "夜灵平野赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.cetus-bounty-set-mods"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.conclave",
+      "canonical": "CONCLAVE",
+      "displayName": "武形秘仪",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.conclave"
+    },
+    {
+      "missionTypeId": "mission-type.conjunction-survival",
+      "canonical": "CONJUNCTION SURVIVAL",
+      "displayName": "联结生存",
+      "category": "endless",
+      "disposition": "variant-of",
+      "variantOf": "mission-type.survival"
+    },
+    {
+      "missionTypeId": "mission-type.defection",
+      "canonical": "DEFECTION",
+      "displayName": "叛逃",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.defection"
+    },
+    {
+      "missionTypeId": "mission-type.defense",
+      "canonical": "DEFENSE",
+      "displayName": "防御",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.defense"
+    },
+    {
+      "missionTypeId": "mission-type.disruption",
+      "canonical": "DISRUPTION",
+      "displayName": "中断",
+      "category": "standard",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.jupiter-disruption-amalgam"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.entrati-lab-bounty",
+      "canonical": "Entrati Lab Bounty",
+      "displayName": "阿尔布雷希特的实验室赏金",
+      "category": "bounty",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.entrati-lab-bounty"
+    },
+    {
+      "missionTypeId": "mission-type.excavation",
+      "canonical": "EXCAVATION",
+      "displayName": "挖掘",
+      "category": "endless",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.excavation"
+    },
+    {
+      "missionTypeId": "mission-type.extended-granum-void",
+      "canonical": "Extended Granum Void",
+      "displayName": "中级格拉努虚空",
+      "category": "special",
+      "disposition": "variant-of",
+      "variantOf": "mission-type.granum-void"
+    },
+    {
+      "missionTypeId": "mission-type.exterminate",
+      "canonical": "EXTERMINATE",
+      "displayName": "歼灭",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.exterminate"
+    },
+    {
+      "missionTypeId": "mission-type.faceoff",
+      "canonical": "Faceoff",
+      "displayName": "对战",
+      "category": "standard",
+      "disposition": "review-required"
+    },
+    {
+      "missionTypeId": "mission-type.follie-s-hunt",
+      "canonical": "Follie's Hunt",
+      "displayName": "Follie 的狩猎",
+      "category": "standard",
+      "disposition": "review-required"
+    },
+    {
+      "missionTypeId": "mission-type.free-roam",
+      "canonical": "FREE ROAM",
+      "displayName": "自由漫游",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.free-roam"
+    },
+    {
+      "missionTypeId": "mission-type.ghoul-bounty",
+      "canonical": "Ghoul Bounty",
+      "displayName": "尸鬼赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.ghoul-bounty-set-mods"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.granum-void",
+      "canonical": "Granum Void",
+      "displayName": "初级格拉努虚空",
+      "category": "special",
+      "disposition": "manual-required"
+    },
+    {
+      "missionTypeId": "mission-type.hard",
+      "canonical": "Hard",
+      "displayName": "钢铁之路",
+      "category": "special",
+      "disposition": "non-queryable-shell"
+    },
+    {
+      "missionTypeId": "mission-type.hijack",
+      "canonical": "HIJACK",
+      "displayName": "劫持",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.hijack"
+    },
+    {
+      "missionTypeId": "mission-type.hive",
+      "canonical": "HIVE",
+      "displayName": "清巢",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.hive"
+    },
+    {
+      "missionTypeId": "mission-type.infested-salvage",
+      "canonical": "INFESTED SALVAGE",
+      "displayName": "INFESTED 资源回收",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.infested-salvage"
+    },
+    {
+      "missionTypeId": "mission-type.interception",
+      "canonical": "INTERCEPTION",
+      "displayName": "拦截",
+      "category": "endless",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.interception"
+    },
+    {
+      "missionTypeId": "mission-type.legacyte-harvest",
+      "canonical": "Legacyte Harvest",
+      "displayName": "传承种收割",
+      "category": "standard",
+      "disposition": "review-required"
+    },
+    {
+      "missionTypeId": "mission-type.lunaro",
+      "canonical": "Lunaro",
+      "displayName": "Lunaro",
+      "category": "reward-source",
+      "disposition": "reward-source-only"
+    },
+    {
+      "missionTypeId": "mission-type.mirror-defense",
+      "canonical": "Mirror Defense",
+      "displayName": "镜像防御",
+      "category": "endless",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.mirror-defense"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.mobile-defense",
+      "canonical": "MOBILE DEFENSE",
+      "displayName": "移动防御",
+      "category": "endless",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.mobile-defense"
+    },
+    {
+      "missionTypeId": "mission-type.narmer-bounty",
+      "canonical": "Narmer Bounty",
+      "displayName": "合一众赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.narmer-bounty"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.necralisk-bounty",
+      "canonical": "Necralisk Bounty",
+      "displayName": "殿世幽都赏金",
+      "category": "bounty",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.necralisk-bounty"
+    },
+    {
+      "missionTypeId": "mission-type.netracell",
+      "canonical": "Netracell",
+      "displayName": "衰退室",
+      "category": "standard",
+      "disposition": "manual-required"
+    },
+    {
+      "missionTypeId": "mission-type.nightmare-granum-void",
+      "canonical": "Nightmare Granum Void",
+      "displayName": "高级格拉努虚空",
+      "category": "special",
+      "disposition": "variant-of",
+      "variantOf": "mission-type.granum-void"
+    },
+    {
+      "missionTypeId": "mission-type.nightmare-mode",
+      "canonical": "Nightmare Mode",
+      "displayName": "噩梦模式",
+      "category": "reward-source",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.nightmare-mode"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.normal",
+      "canonical": "Normal",
+      "displayName": "普通任务",
+      "category": "standard",
+      "disposition": "non-queryable-shell"
+    },
+    {
+      "missionTypeId": "mission-type.operation-orphix-venom",
+      "canonical": "Operation: Orphix Venom",
+      "displayName": "行动代号：奥影之毒",
+      "category": "event",
+      "disposition": "event-lifecycle"
+    },
+    {
+      "missionTypeId": "mission-type.orb-vallis-bounty",
+      "canonical": "Orb Vallis Bounty",
+      "displayName": "奥布山谷赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.orb-vallis-bounty-set-mods"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.orokin-vault",
+      "canonical": "Orokin Vault",
+      "displayName": "奥罗金宝库",
+      "category": "reward-source",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.deimos-orokin-vault"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.orphix",
+      "canonical": "Orphix",
+      "displayName": "奥影",
+      "category": "railjack",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.orphix"
+    },
+    {
+      "missionTypeId": "mission-type.plague-star",
+      "canonical": "Plague Star",
+      "displayName": "瘟疫之星",
+      "category": "event",
+      "disposition": "event-lifecycle"
+    },
+    {
+      "missionTypeId": "mission-type.profit-taker-bounty",
+      "canonical": "Profit-Taker Bounty",
+      "displayName": "利润收割者赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.profit-taker-heists"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.pursuit",
+      "canonical": "PURSUIT",
+      "displayName": "追击",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.pursuit"
+    },
+    {
+      "missionTypeId": "mission-type.railjack",
+      "canonical": "Railjack",
+      "displayName": "",
+      "category": "standard",
+      "disposition": "non-queryable-shell"
+    },
+    {
+      "missionTypeId": "mission-type.rescue",
+      "canonical": "RESCUE",
+      "displayName": "救援",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.rescue"
+    },
+    {
+      "missionTypeId": "mission-type.rush",
+      "canonical": "RUSH",
+      "displayName": "突袭",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.rush"
+    },
+    {
+      "missionTypeId": "mission-type.sabotage",
+      "canonical": "SABOTAGE",
+      "displayName": "破坏",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.sabotage"
+    },
+    {
+      "missionTypeId": "mission-type.sanctuary-onslaught",
+      "canonical": "Sanctuary Onslaught",
+      "displayName": "圣殿突袭",
+      "category": "special",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.sanctuary-onslaught"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.shrine-defense",
+      "canonical": "SHRINE DEFENSE",
+      "displayName": "祈运坛防御",
+      "category": "standard",
+      "disposition": "review-required"
+    },
+    {
+      "missionTypeId": "mission-type.skirmish",
+      "canonical": "Skirmish",
+      "displayName": "前哨战",
+      "category": "railjack",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.skirmish"
+    },
+    {
+      "missionTypeId": "mission-type.solar-rail-junction",
+      "canonical": "SOLAR RAIL JUNCTION",
+      "displayName": "星际航道结合点",
+      "category": "standard",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.junction-rewards"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.spy",
+      "canonical": "SPY",
+      "displayName": "间谍",
+      "category": "standard",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.spy-missions"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.survival",
+      "canonical": "SURVIVAL",
+      "displayName": "生存",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.survival"
+    },
+    {
+      "missionTypeId": "mission-type.team-annihilation",
+      "canonical": "Team Annihilation",
+      "displayName": "团队歼夺",
+      "category": "reward-source",
+      "disposition": "variant-of",
+      "variantOf": "mission-type.annihilation"
+    },
+    {
+      "missionTypeId": "mission-type.the-circuit",
+      "canonical": "THE CIRCUIT",
+      "displayName": "无尽回廊",
+      "category": "standard",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.duviri-endless"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.the-descendia",
+      "canonical": "The Descendia",
+      "displayName": "沉沦之地",
+      "category": "standard",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.the-descendia"
+      ]
+    },
+    {
+      "missionTypeId": "mission-type.the-perita-rebellion",
+      "canonical": "The Perita Rebellion",
+      "displayName": "佩里塔叛乱",
+      "category": "standard",
+      "disposition": "review-required"
+    },
+    {
+      "missionTypeId": "mission-type.void-armageddon",
+      "canonical": "VOID ARMAGEDDON",
+      "displayName": "虚空决战",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.void-armageddon"
+    },
+    {
+      "missionTypeId": "mission-type.void-cascade",
+      "canonical": "VOID CASCADE",
+      "displayName": "虚空覆涌",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.void-cascade"
+    },
+    {
+      "missionTypeId": "mission-type.void-flood",
+      "canonical": "VOID FLOOD",
+      "displayName": "虚空洪流",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.void-flood"
+    },
+    {
+      "missionTypeId": "mission-type.void-storm",
+      "canonical": "Void Storm",
+      "displayName": "",
+      "category": "railjack",
+      "disposition": "manual-required"
+    },
+    {
+      "missionTypeId": "mission-type.volatile",
+      "canonical": "VOLATILE",
+      "displayName": "爆发",
+      "category": "standard",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.volatile"
+    },
+    {
+      "missionTypeId": "mission-type.weekly-conclave-challenge-reward",
+      "canonical": "Weekly Conclave Challenge Reward",
+      "displayName": "武形秘仪每周挑战奖励",
+      "category": "reward-source",
+      "disposition": "reward-source-only"
+    },
+    {
+      "missionTypeId": "mission-type.wf1999-bounty",
+      "canonical": "WF1999 Bounty",
+      "displayName": "1999 赏金",
+      "category": "bounty",
+      "disposition": "generated",
+      "generatedGameplayId": "gameplay.generated.wf1999-bounty"
+    },
+    {
+      "missionTypeId": "mission-type.zariman-bounty",
+      "canonical": "Zariman Bounty",
+      "displayName": "扎里曼赏金",
+      "category": "bounty",
+      "disposition": "covered",
+      "primaryGameplayIds": [
+        "gameplay.zariman-bounty"
+      ]
+    }
+  ]
+}

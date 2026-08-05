@@ -64,6 +64,12 @@ test('Wisp exposes four blueprint drops and decimal probabilities', () => {
   assert.equal(acquisition.formatChance(22.56), '22.56%');
 });
 
+test('共享缺失 chance formatter 对任意条目安全输出中文', () => {
+  assert.equal(acquisition.formatChance(undefined), '掉落概率数据暂不可用');
+  assert.equal(acquisition.formatChance(Number.NaN), '掉落概率数据暂不可用');
+  assert.doesNotMatch(acquisition.formatDropSources([{ location: 'Unknown Source' }]), /undefined|null|NaN/i);
+});
+
 test('Ivara screenshot regression keeps component tiers structured and excludes reward-pool noise', () => {
   const core = require('../src').createKnowledgeCore({ approvedOnly: false });
   const result = core.getAcquisition('Ivara');
@@ -282,16 +288,67 @@ test('Uriel audited acquisition and four recipes preserve current exchange total
   assert.deepEqual(materials.missingRecipes, []);
 });
 
+test('frame recipe ingredients preserve shared parent, part, canonical and asset-role identity', () => {
+  const mirage = acquisition.resolveWarframe('Mirage');
+  const components = acquisition.getComponentDrops(mirage).filter(component => component.part !== 'Blueprint');
+  const assembly = Object.fromEntries([
+    ['/Lotus/Types/Recipes/WarframeRecipes/HarlequinBlueprint', {
+      resultType: mirage.uniqueName,
+      ingredients: components.map(component => ({
+        ItemType: component.uniqueName,
+        ItemCount: 1
+      }))
+    }]
+  ]);
+  const recipe = acquisition.getCraftingRecipes(mirage, assembly).find(item => item.part === 'Blueprint');
+  assert.ok(recipe);
+  assert.deepEqual(recipe.ingredients.map(item => ({
+    stableEntityId: item.stableEntityId,
+    parentCanonical: item.parentCanonical,
+    part: item.part,
+    canonical: item.canonical,
+    assetRole: item.assetRole
+  })), [
+    {
+      stableEntityId: '/Lotus/Types/Recipes/WarframeRecipes/HarlequinHelmetComponent',
+      parentCanonical: 'Mirage',
+      part: 'Neuroptics',
+      canonical: 'Mirage Neuroptics',
+      assetRole: 'warframe-neuroptics-component-icon'
+    },
+    {
+      stableEntityId: '/Lotus/Types/Recipes/WarframeRecipes/HarlequinChassisComponent',
+      parentCanonical: 'Mirage',
+      part: 'Chassis',
+      canonical: 'Mirage Chassis',
+      assetRole: 'warframe-chassis-component-icon'
+    },
+    {
+      stableEntityId: '/Lotus/Types/Recipes/WarframeRecipes/HarlequinSystemsComponent',
+      parentCanonical: 'Mirage',
+      part: 'Systems',
+      canonical: 'Mirage Systems',
+      assetRole: 'warframe-systems-component-icon'
+    }
+  ]);
+});
+
 test('Sirius & Orion override is auditable and uses Chinese missing-data text', () => {
   const frame = acquisition.resolveWarframe('双子');
   assert.equal(frame.name, 'Sirius & Orion');
+  assert.equal(frame.uniqueName, '/Lotus/Powersuits/SiriusOrion/SiriusSuit');
+  assert.equal(frame.audit.stableIdentity, frame.uniqueName);
+  assert.equal(frame.audit.reviewStatus, 'approved');
+  assert.deepEqual(frame.audit.missingFields, []);
+  assert.ok(frame.audit.sources.length > 0);
+  assert.ok(frame.audit.provenance);
   assert.equal(frame.components.length, 4);
   assert.ok(frame.components.every(part => part.drops[0].chance === 14.29));
   const rendered = acquisition.renderAcquisition(frame);
   assert.match(rendered, /Hunhow/);
   assert.match(rendered, /总计 545/);
   assert.ok(rendered.includes('材料统计：\n制造材料数据暂不可用'));
-  assert.doesNotMatch(rendered, /unavailable/i);
+  assert.doesNotMatch(rendered, /unavailable|undefined|null/i);
 });
 
 test('ability query resolves number, official Chinese ability and Prime base skills', () => {

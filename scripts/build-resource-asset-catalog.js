@@ -8,6 +8,7 @@ const ROOT = path.resolve(__dirname, '..')
 const OUTPUT = path.join(ROOT, 'generated', 'resource-asset-catalog.json')
 const WIKI_DB = path.join(ROOT, '.cache', 'warframe-wiki.sqlite')
 const OFFICIAL_ITEMS = path.join(ROOT, 'knowledge', 'generated', 'official-items.json')
+const REVIEWED_ASSETS = path.join(ROOT, 'knowledge', 'assets', 'reviewed-resource-assets.json')
 const packageRoot = path.dirname(require.resolve('warframe-items'))
 const dataRoot = path.join(packageRoot, 'data', 'json')
 
@@ -111,9 +112,82 @@ function isAssetEntity(item) {
   return (item.semanticKinds || []).some(kind => ASSET_SEMANTIC_KINDS.has(kind))
 }
 
+function mergeReviewedAssets(entries, reviewedAssets, wiki) {
+  const byUniqueName = new Map(entries.map(entry => [entry.stableIdentity.uniqueName, entry]))
+  for (const asset of reviewedAssets) {
+    if (!asset?.stableEntityId || !asset?.uniqueName || !asset?.canonical || !asset?.displayName) {
+      throw new Error('审核素材缺少 stableEntityId / uniqueName / canonical / displayName')
+    }
+    if (asset.availability !== 'active-current' || asset.reviewStatus !== 'approved-current-wiki') {
+      throw new Error(`审核素材状态无效：${asset.stableEntityId}`)
+    }
+    if (!Array.isArray(asset.assetRoles) || !asset.assetRoles.length || !Array.isArray(asset.semanticKinds) || !asset.semanticKinds.length) {
+      throw new Error(`审核素材缺少语义角色：${asset.stableEntityId}`)
+    }
+    if (asset.evidence?.source !== 'wiki.warframe.com'
+      || !/^https:\/\/wiki\.warframe\.com\//i.test(asset.evidence?.mediaUrl || '')
+      || !/^[a-f0-9]{64}$/i.test(asset.evidence?.sha256 || '')
+      || /fandom\.com|wikia\.com/i.test(JSON.stringify(asset))) {
+      throw new Error(`审核素材 provenance 无效：${asset.stableEntityId}`)
+    }
+    const page = wiki.byTitle?.get(normalize(asset.canonical))
+    const binding = {
+      stableEntityId: asset.stableEntityId,
+      assetRoles: asset.assetRoles,
+      availability: asset.availability,
+      imageName: asset.imageName || asset.evidence.mediaFilename || null,
+      evidence: asset.evidence,
+      reviewStatus: asset.reviewStatus
+    }
+    const existing = byUniqueName.get(asset.uniqueName)
+    if (existing) {
+      existing.stableIdentity.stableEntityId = asset.stableEntityId
+      existing.semanticKinds = [...new Set([...(existing.semanticKinds || []), ...asset.semanticKinds])].sort()
+      existing.expectedMediaFilename = binding.imageName
+      existing.reviewedAsset = binding
+      existing.catalogStatus = 'ready'
+      existing.reviewReasons = []
+      continue
+    }
+    const entry = {
+      stableIdentity: {
+        kind: 'resource',
+        stableEntityId: asset.stableEntityId,
+        uniqueName: asset.uniqueName,
+        canonical: asset.canonical,
+        displayName: asset.displayName
+      },
+      category: categoryFor(asset),
+      semanticKinds: [...asset.semanticKinds],
+      openWorld: worldFromUniqueName(asset.uniqueName),
+      processingStage: null,
+      expectedMediaFilename: binding.imageName,
+      officialType: null,
+      localizationStatus: 'reviewed',
+      officialRelations: null,
+      evidence: {
+        publicExport: null,
+        wikiDirectory: page ? {
+          pageId: page.pageId,
+          title: page.title,
+          revisionId: page.revisionId,
+          categories: wiki.categoriesByPage.get(page.pageId) || []
+        } : null
+      },
+      reviewedAsset: binding,
+      catalogStatus: 'ready',
+      reviewReasons: []
+    }
+    entries.push(entry)
+    byUniqueName.set(asset.uniqueName, entry)
+  }
+  return entries.sort((a, b) => a.stableIdentity.uniqueName.localeCompare(b.stableIdentity.uniqueName))
+}
+
 function buildCatalog(options = {}) {
   const generatedAt = options.generatedAt || new Date().toISOString()
   const official = readJson(OFFICIAL_ITEMS)
+  const reviewedAssets = fs.existsSync(REVIEWED_ASSETS) ? readJson(REVIEWED_ASSETS).entries || [] : []
   const fish = readJson(path.join(dataRoot, 'Fish.json'))
   const i18n = readJson(path.join(dataRoot, 'i18n.json'))
   const rawByUniqueName = rawItemIndex()
@@ -142,7 +216,7 @@ function buildCatalog(options = {}) {
   const candidates = [...official.items.filter(isAssetEntity), ...fishEntities]
   const deduped = new Map(candidates.map(item => [item.uniqueName, item]))
   const fishCanonicals = fishEntities.map(item => item.canonical).sort((a, b) => b.length - a.length)
-  const entries = [...deduped.values()].map(item => {
+  const entries = mergeReviewedAssets([...deduped.values()].map(item => {
     const raw = rawByUniqueName.get(item.uniqueName)
     const page = wiki.byTitle?.get(normalize(item.canonical))
     const world = worldFromUniqueName(item.uniqueName)
@@ -185,7 +259,7 @@ function buildCatalog(options = {}) {
       catalogStatus: reviewReasons.length ? 'review-required' : 'ready',
       reviewReasons
     }
-  }).sort((a, b) => a.stableIdentity.uniqueName.localeCompare(b.stableIdentity.uniqueName))
+  }), reviewedAssets, wiki)
 
   const categories = {}
   for (const entry of entries) {
@@ -219,6 +293,7 @@ function buildCatalog(options = {}) {
       includedSemanticKinds: [...ASSET_SEMANTIC_KINDS].sort(),
       ambiguityPolicy: 'stable uniqueName required; unclassified entities remain review-required'
     },
+    reviewedAssetCatalog: path.relative(ROOT, REVIEWED_ASSETS).replace(/\\/g, '/'),
     sourceMetadata: {
       publicExportVersion: require(path.join(packageRoot, 'package.json')).version,
       wiki: wiki.metadata,
@@ -228,7 +303,8 @@ function buildCatalog(options = {}) {
     totals: {
       entities: entries.length,
       ready: entries.filter(entry => entry.catalogStatus === 'ready').length,
-      reviewRequired: entries.filter(entry => entry.catalogStatus !== 'ready').length
+      reviewRequired: entries.filter(entry => entry.catalogStatus !== 'ready').length,
+      reviewedAssets: reviewedAssets.length
     },
     categories,
     openWorldScope,
@@ -265,6 +341,7 @@ module.exports = {
   buildCatalog,
   categoryFor,
   exactFishRelations,
+  mergeReviewedAssets,
   mineralStage,
   run,
   worldFromUniqueName

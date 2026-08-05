@@ -277,8 +277,11 @@ test('赋能坚定与战甲共用 requirements 协议显示双水晶兑换', () 
   assert.match(text, /殁世幽都/);
   assert.match(text, /贝里克水晶碎片/);
   assert.match(text, /拉尼娅水晶碎片/);
-  assert.match(text, /资源数量加成：贝里克水晶碎片、拉尼娅水晶碎片缺少明确证据，暂按未知处理/);
-  assert.match(text, /兑换成本固定为60个贝里克水晶碎片、60个拉尼娅水晶碎片，不会因加成改变/);
+  assert.doesNotMatch(text, /缺少明确证据|暂按未知处理|不会因加成改变|成本固定为/);
+  assert.ok(Array.isArray(exchange.boosterDiagnostics));
+  assert.ok(exchange.boosterDiagnostics.every(item => item.reviewStatus === 'review-required'));
+  assert.match(text, /60个贝里克水晶碎片/);
+  assert.match(text, /60个拉尼娅水晶碎片/);
 });
 
 test('多货币的相同任务奖励规则合并为一个依赖段落且最终文案不重复', () => {

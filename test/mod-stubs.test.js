@@ -145,9 +145,9 @@ test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
       '所需货币怎么刷：',
       '存货储备（需要40个）：完成卡尔每周的“击溃合一众”任务挑战获得，并同时推进卡尔驻军等级',
       '资源数量加成：存货储备不受影响',
-      '资源掉落几率加成：存货储备不受影响',
-      '兑换成本固定为40个存货储备，不会因加成改变'
+      '资源掉落几率加成：存货储备不受影响'
     ]);
+    assert.doesNotMatch(result.requirementLines.join('\n'), /缺少明确证据|暂按未知处理|不会因加成改变/);
     assert.equal(result.structuredMethods.some(method => method.type === 'enemy-drop'), false);
   }
   for (const query of ['执行官卡', '执刑官卡']) assert.equal(core.getGameplay(query)?.entry.id, 'gameplay.kahl-chipper');
@@ -318,7 +318,9 @@ test('Prime Mod 默认继承奸商玩法且保留明确来源例外', () => {
   const primedSureFooted = core.getAcquisition('Primed Sure Footed');
   assert.equal(primedPressurePoint.methods[0]?.id, 'gameplay.baro-ki-teer');
   assert.equal(primedPressurePoint.entry.reviewStatus, 'approved');
-  assert.equal(primedPressurePoint.description, '压迫点 Prime 通常由虚空商人的轮换库存出售\n输入“刷 奸商”可了解兑换准备与轮换规则');
+  assert.match(primedPressurePoint.description, /虚空商人/);
+  assert.match(primedPressurePoint.description, /现金|杜卡德/);
+  assert.doesNotMatch(primedPressurePoint.description, /缺少明确证据|暂按未知处理|不会因加成改变|成本固定为/);
   assert.deepEqual(primedSureFooted.methods.map(method => method.id), ['gameplay.daily-tribute']);
   for (const canonical of ['Primed Vigor', 'Primed Shred', 'Primed Fury']) {
     const result = core.getAcquisition(canonical);

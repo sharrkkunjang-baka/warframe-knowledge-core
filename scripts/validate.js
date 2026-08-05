@@ -7,7 +7,9 @@ const { buildOfficialCatalog, serialize } = require('./sync-official-mods');
 
 const root = path.join(__dirname, '..');
 const knowledgeRoot = path.join(root, 'knowledge');
-const entries = readEntryDirectory(knowledgeRoot).filter(entry => entry.kind === 'fact' || entry.kind === 'knowledge');
+const entries = readEntryDirectory(knowledgeRoot)
+  .filter(entry => entry.kind === 'fact' || entry.kind === 'knowledge')
+  .filter(entry => entry.type !== 'mission-type-gameplay-dispositions' && entry.layer !== 'generated');
 const categories = readCategoryDirectory(path.join(knowledgeRoot, 'categories'));
 const officialPath = path.join(knowledgeRoot, 'categories', 'official.json');
 const officialCatalog = fs.existsSync(officialPath) ? JSON.parse(fs.readFileSync(officialPath, 'utf8')) : null;
@@ -373,6 +375,9 @@ for (const entry of entries) {
   if (entry.module === 'gameplay') {
     if (entry.kind !== 'knowledge') errors.push(`${entry.id}: gameplay 必须属于 knowledge`);
     if (!Array.isArray(entry.aliases) || !entry.aliases.length || !entry.summary || !Array.isArray(entry.steps) || !Array.isArray(entry.notes)) errors.push(`${entry.id}: gameplay 缺少 aliases/summary/steps/notes`);
+    if (entry.missionTypeIds !== undefined && (!Array.isArray(entry.missionTypeIds) || new Set(entry.missionTypeIds).size !== entry.missionTypeIds.length)) errors.push(`${entry.id}: missionTypeIds 必须是唯一数组`);
+    for (const missionTypeId of entry.missionTypeIds || []) if (!entities.missionTypes.some(item => item.id === missionTypeId)) errors.push(`${entry.id}: missionTypeIds 引用不存在 ${missionTypeId}`);
+    if (entry.layer === 'generated' && (entry.reviewStatus !== 'draft' || entry.qualityStatus !== 'review-required')) errors.push(`${entry.id}: 自动 gameplay 必须保持 draft/review-required`);
     for (const [tier, group] of Object.entries(entry.rewardGroups || {})) {
       if (!/^[A-Z0-9_-]+$/.test(tier) || !Array.isArray(group.planets) || !group.planets.length) errors.push(`${entry.id}: rewardGroups.${tier} 缺少有效星球列表`);
     }

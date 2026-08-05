@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const core = require('../src').createKnowledgeCore({ approvedOnly: false });
 
-test('统一黑话注册表按功能域开放人工维护数据', () => {
+test('统一黑话注册表按功能域开放人工维护数据（笑猫为 user-provided 2026-08-05）', () => {
   for (const domain of ['frames', 'fissures', 'mods', 'weapons', 'resources', 'consumables', 'companions']) {
     const value = core.getSlangDomain(domain);
     assert.equal(typeof value, 'object', domain);
@@ -13,6 +13,8 @@ test('统一黑话注册表按功能域开放人工维护数据', () => {
   assert.equal(core.resolveSlang('mods', 'zhenxiangzhiyan').canonical, "Truth's Flame");
   assert.equal(core.resolveSlang('companions', '铁甲狐').canonical, 'Panzer Vulpaphyla');
   assert.equal(core.resolveSlang('companions', '狐狸').canonical, 'Panzer Vulpaphyla');
+  assert.deepEqual(core.resolveSlang('companions', '笑猫'), { alias: '笑猫', canonical: 'Smeeta Kavat', category: 'companions', match: 'exact', score: 300 });
+  assert.equal(core.resolveSlang('companions', '笑面型库娃').canonical, 'Smeeta Kavat');
 });
 
 test('黑话域返回副本，调用者不能修改核心数据', () => {

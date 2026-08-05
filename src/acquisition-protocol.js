@@ -212,40 +212,77 @@ function renderRequirements(value, registries) {
     const summary = currencyAcquisitionSummary(entity, registries)
     return summary ? `${entity.displayName || entity.canonical}（需要${amountRange ? `${amountRange[0]}-${amountRange[1]}` : amount}个）：${summary}` : null
   }).filter(Boolean)
-  const boosterLines = []
-  const boosterLabel = {
-    resourceAmount: '资源数量加成',
-    resourceDropChance: '资源掉落几率加成'
-  }
-  const boosterEffect = {
-    resourceAmount: {
-      affected: names => `${names}的任务内拾取数量可翻倍`,
-      unaffected: names => `${names}不受影响`,
-      unknown: names => `${names}缺少明确证据，暂按未知处理`
-    },
-    resourceDropChance: {
-      affected: names => `${names}的任务内掉落几率受影响`,
-      unaffected: names => `${names}不受影响`,
-      unknown: names => `${names}缺少明确证据，暂按未知处理`
-    }
-  }
-  for (const field of Object.keys(boosterLabel)) {
-    const groups = new Map()
-    for (const { entity } of currencies) {
-      const status = ['affected', 'unaffected'].includes(entity.boosterEffects?.[field]) ? entity.boosterEffects[field] : 'unknown'
-      const names = groups.get(status) || []
-      names.push(entity.displayName || entity.canonical)
-      groups.set(status, names)
-    }
-    for (const [status, names] of groups) boosterLines.push(`${boosterLabel[field]}：${boosterEffect[field][status](names.join('、'))}`)
-  }
-  const costKind = requirement.usage === 'crafting' ? '制造' : '兑换'
+  const { userLines: boosterLines } = summarizeCurrencyBoosterEffects(currencies)
   return [
     route,
     ...(dependencies.length ? ['所需货币怎么刷：', ...dependencies] : []),
-    ...boosterLines,
-    `${costKind}成本固定为${currencyText}，不会因加成改变`
+    ...boosterLines
   ].filter(Boolean)
+}
+
+const BOOSTER_FIELD_LABELS = Object.freeze({
+  resourceAmount: '资源数量加成',
+  resourceDropChance: '资源掉落几率加成'
+})
+
+const BOOSTER_USER_EFFECTS = Object.freeze({
+  resourceAmount: Object.freeze({
+    affected: names => `${names}的任务内拾取数量可翻倍`,
+    unaffected: names => `${names}不受影响`
+  }),
+  resourceDropChance: Object.freeze({
+    affected: names => `${names}的任务内掉落几率受影响`,
+    unaffected: names => `${names}不受影响`
+  })
+})
+
+function currencyBoosterStatus(entity, field) {
+  return ['affected', 'unaffected'].includes(entity?.boosterEffects?.[field])
+    ? entity.boosterEffects[field]
+    : 'unknown'
+}
+
+function summarizeCurrencyBoosterEffects(currencies) {
+  const userLines = []
+  const diagnostics = []
+  for (const field of Object.keys(BOOSTER_FIELD_LABELS)) {
+    const groups = new Map()
+    for (const { entity } of currencies || []) {
+      if (!entity) continue
+      const status = currencyBoosterStatus(entity, field)
+      const names = groups.get(status) || []
+      names.push({
+        id: entity.id || null,
+        displayName: entity.displayName || entity.canonical || entity.id || ''
+      })
+      groups.set(status, names)
+    }
+    for (const [status, entries] of groups) {
+      const names = entries.map(item => item.displayName).filter(Boolean).join('、')
+      if (status === 'unknown') {
+        diagnostics.push({
+          kind: 'currency-booster-unknown',
+          field,
+          label: BOOSTER_FIELD_LABELS[field],
+          currencyIds: entries.map(item => item.id).filter(Boolean),
+          currencyNames: entries.map(item => item.displayName).filter(Boolean),
+          reviewStatus: 'review-required'
+        })
+        continue
+      }
+      if (names) userLines.push(`${BOOSTER_FIELD_LABELS[field]}：${BOOSTER_USER_EFFECTS[field][status](names)}`)
+    }
+  }
+  return { userLines, diagnostics }
+}
+
+function collectCurrencyBoosterDiagnostics(value, registries) {
+  const requirement = normalizeRequirements(value)
+  if (requirement.type !== 'currency') return []
+  const currencies = requirement.currency
+    .map(item => ({ ...item, entity: registries.currencies.get(item.currencyId || item.currencyCanonical) }))
+    .filter(item => item.entity)
+  return summarizeCurrencyBoosterEffects(currencies).diagnostics
 }
 
 function normalizeVisibleLine(value) {
@@ -1093,4 +1130,4 @@ function renderAcquisition(methods, options = {}) {
   return unique.length ? `${name ? `${name}获取方式：\n` : ''}${unique.join('\n')}` : null
 }
 
-module.exports = { TYPES, EXCHANGE_METHOD_TYPES, EXCHANGE_REQUIREMENT_PROTOCOL, ACQUISITION_CARD_GROUPS, normalizeRequirements, isLocationStoreActor, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, mergeAcquisitionCardRoleRows, nearDuplicateVisibleLines, stripBountyRotationTerms, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, isOpenWorldBountyRotationMethod, isStandardOrbVallisBountyMethod, collapseOpenWorldBountyStageMethods, formatOpenWorldBountyRotationLabel, formatOpenWorldBountyProbability, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionRenderPriority, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }
+module.exports = { TYPES, EXCHANGE_METHOD_TYPES, EXCHANGE_REQUIREMENT_PROTOCOL, ACQUISITION_CARD_GROUPS, normalizeRequirements, isLocationStoreActor, exchangeRequirementIssues, currencyAcquisitionSummary, renderRequirements, collectCurrencyBoosterDiagnostics, summarizeCurrencyBoosterEffects, standingRankPrefix, normalizeVisibleLine, mergeMethodPresentationLines, mergeRolePresentationLines, mergeAcquisitionCardRoleRows, nearDuplicateVisibleLines, stripBountyRotationTerms, localizeAcquisitionText, stripEmbeddedEnglishMissionTypeParenthetical, resolveMissionLocationName, isSpyMissionMethod, spyMissionPresentationKey, suppressRedundantSpyMissionMethods, isOpenWorldBountyRotationMethod, isStandardOrbVallisBountyMethod, collapseOpenWorldBountyStageMethods, formatOpenWorldBountyRotationLabel, formatOpenWorldBountyProbability, renderStructuredMethod, joinPartNames, partAcquisitionSourceKey, resolveMergedPartLabel, collapseSharedPartAcquisitionMethods, mergeAlternativeSources, applyDisplaySummaries, acquisitionRenderPriority, acquisitionCardGroup, acquisitionCardSections, renderAcquisition }

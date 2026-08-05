@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-20T16:39:22.028Z",
+  "generatedAt": "2026-08-03T02:55:15.979Z",
   "scope": {
     "claim": "cross-source released resource asset directory; not the entire Warframe Wiki",
     "sources": [
@@ -26,20 +26,22 @@
     ],
     "ambiguityPolicy": "stable uniqueName required; unclassified entities remain review-required"
   },
+  "reviewedAssetCatalog": "knowledge/assets/reviewed-resource-assets.json",
   "sourceMetadata": {
     "publicExportVersion": "1.1269.87",
     "wiki": {
       "path": ".cache/warframe-wiki.sqlite",
-      "pageCount": 10265,
-      "categoryLinks": 61132
+      "pageCount": 10300,
+      "categoryLinks": 61264
     },
-    "officialItemsGeneratedAt": "2026-07-18T08:34:21.083Z",
+    "officialItemsGeneratedAt": "2026-07-22T14:21:52.108Z",
     "officialDropTableIndexPresent": true
   },
   "totals": {
-    "entities": 579,
-    "ready": 397,
-    "reviewRequired": 182
+    "entities": 592,
+    "ready": 430,
+    "reviewRequired": 162,
+    "reviewedAssets": 33
   },
   "categories": {
     "resource": {
@@ -53,9 +55,9 @@
       "reviewRequired": 0
     },
     "token-or-currency": {
-      "total": 60,
-      "ready": 7,
-      "reviewRequired": 53
+      "total": 73,
+      "ready": 40,
+      "reviewRequired": 33
     },
     "fish-part": {
       "total": 51,
@@ -4377,6 +4379,230 @@
     {
       "stableIdentity": {
         "kind": "resource",
+        "stableEntityId": "currency.atramentum",
+        "uniqueName": "/Lotus/Types/Gameplay/Shadowgrapher/Resources/ShadowgrapherResource",
+        "canonical": "Atramentum",
+        "displayName": "墨痕"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "atramentum-ee44310d07.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1622312,
+          "title": "Atramentum",
+          "revisionId": 2788098,
+          "categories": [
+            "Pages_with_broken_file_links",
+            "Resources",
+            "Untradeable_Resources",
+            "Update_42",
+            "Resources_not_affected_by_Resource_Booster",
+            "Resources_not_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_not_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.atramentum",
+        "assetRoles": [
+          "item-display",
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "atramentum-ee44310d07.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Atramentum",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Atramentum.png",
+          "mediaFilename": "Atramentum.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Atramentum.png?b8db9",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "ee44310d070e4cb1afd08be97933178ae5595e422d608dc6c2965a852f041394"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.agnovidisc",
+        "uniqueName": "/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceCommonItem",
+        "canonical": "Agnovidisc",
+        "displayName": "名盘"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "resource",
+        "currency-token-material"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "agnovidisc-43f9c25457.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": null
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.agnovidisc",
+        "assetRoles": [
+          "currency-inline-icon",
+          "crafting-resource-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "agnovidisc-43f9c25457.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Agnovidisc",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Agnovidisc.png",
+          "mediaFilename": "Agnovidisc.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Agnovidisc.png?9d81e",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "43f9c25457bfb265006993525305baca6dc35f710c5f57b251dbf70528cd3767"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.servoris",
+        "uniqueName": "/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceRareItem",
+        "canonical": "Servoris",
+        "displayName": "军功勋章"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "resource",
+        "currency-token-material"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "servoris-0a5eaccaac.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1604889,
+          "title": "Servoris",
+          "revisionId": 2737444,
+          "categories": [
+            "Resources",
+            "Untradeable_Resources",
+            "Update_41",
+            "Resources_affected_by_Resource_Booster",
+            "Resources_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.servoris",
+        "assetRoles": [
+          "currency-inline-icon",
+          "crafting-resource-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "servoris-0a5eaccaac.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Servoris",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Servoris.png",
+          "mediaFilename": "Servoris.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Servoris.png?255e5",
+          "capturedAt": "2026-08-03T01:56:29.068Z",
+          "sha256": "0a5eaccaac19b6dcf12c27a9c2fb0adc8d78d2ff49638bfd699c6c308028e124"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.laudavi",
+        "uniqueName": "/Lotus/Types/Gameplay/Tau/Resources/TwelveResourceUncommonItem",
+        "canonical": "Laudavi",
+        "displayName": "荣誉勋章"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "resource",
+        "currency-token-material"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "laudavi-ba85aa1f4c.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1604888,
+          "title": "Laudavi",
+          "revisionId": 2737443,
+          "categories": [
+            "Resources",
+            "Untradeable_Resources",
+            "Update_41",
+            "Resources_affected_by_Resource_Booster",
+            "Resources_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.laudavi",
+        "assetRoles": [
+          "currency-inline-icon",
+          "crafting-resource-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "laudavi-ba85aa1f4c.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Laudavi",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Laudavi.png",
+          "mediaFilename": "Laudavi.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Laudavi.png?f2ed8",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "ba85aa1f4c7dd5f40816ae46819e1aeedc6a498750620eded73ce400e48cb89b"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
         "uniqueName": "/Lotus/Types/Gameplay/Venus/Resources/ArachnoidCamperItem",
         "canonical": "Crisma Toroid",
         "displayName": "圣油环型装置"
@@ -4401,7 +4627,7 @@
         "wikiDirectory": {
           "pageId": 1376302,
           "title": "Crisma Toroid",
-          "revisionId": 2711706,
+          "revisionId": 2795378,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -4482,7 +4708,7 @@
         "wikiDirectory": {
           "pageId": 1362957,
           "title": "Calda Toroid",
-          "revisionId": 2711709,
+          "revisionId": 2795380,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -4525,7 +4751,7 @@
         "wikiDirectory": {
           "pageId": 1362956,
           "title": "Vega Toroid",
-          "revisionId": 2711707,
+          "revisionId": 2795379,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -4568,7 +4794,7 @@
         "wikiDirectory": {
           "pageId": 1362955,
           "title": "Sola Toroid",
-          "revisionId": 2715646,
+          "revisionId": 2795381,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -4780,7 +5006,7 @@
         "wikiDirectory": {
           "pageId": 1362783,
           "title": "Mytocardia Spore",
-          "revisionId": 2729088,
+          "revisionId": 2794772,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -4855,7 +5081,7 @@
         "wikiDirectory": {
           "pageId": 1362782,
           "title": "Gorgaricus Spore",
-          "revisionId": 2711716,
+          "revisionId": 2794775,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -5016,7 +5242,7 @@
         "wikiDirectory": {
           "pageId": 1563328,
           "title": "Voidplume Pinion",
-          "revisionId": 2775603,
+          "revisionId": 2795384,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -5098,7 +5324,7 @@
         "wikiDirectory": {
           "pageId": 1563327,
           "title": "Voidplume Quill",
-          "revisionId": 2790327,
+          "revisionId": 2795383,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -10809,7 +11035,7 @@
         "wikiDirectory": {
           "pageId": 1374515,
           "title": "Charamote",
-          "revisionId": 2743344,
+          "revisionId": 2794685,
           "categories": [
             "Pages_with_non-numeric_formatnum_arguments",
             "Rare_Fish",
@@ -12901,7 +13127,7 @@
         "wikiDirectory": {
           "pageId": 1364128,
           "title": "Phasmin",
-          "revisionId": 2737390,
+          "revisionId": 2794501,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -13712,6 +13938,71 @@
     {
       "stableIdentity": {
         "kind": "resource",
+        "uniqueName": "/Lotus/Types/Items/MiscItems/1999ConquestBucks",
+        "canonical": "Pix Chip",
+        "displayName": "贴纸芯片",
+        "stableEntityId": "currency.pix-chip"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "pix-chip-96e1ccd481.png",
+      "officialType": "Misc",
+      "localizationStatus": "official-zh",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": {
+          "sourceFile": "Misc.json",
+          "uniqueName": "/Lotus/Types/Items/MiscItems/1999ConquestBucks",
+          "imageName": "pix-chip-5648e0cec5.png",
+          "variantUniqueNames": null
+        },
+        "wikiDirectory": {
+          "pageId": 1596653,
+          "title": "Pix Chip",
+          "revisionId": 2757834,
+          "categories": [
+            "Updateme",
+            "Article_stubs",
+            "Resources",
+            "Untradeable_Resources",
+            "Currency_Resources",
+            "Update_38",
+            "Resources_not_affected_by_Resource_Booster",
+            "Resources_not_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_not_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.pix-chip",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "pix-chip-96e1ccd481.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Pix_Chip",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:PixChip.png",
+          "mediaFilename": "PixChip.png",
+          "mediaUrl": "https://wiki.warframe.com/images/PixChip.png?4fdba",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "96e1ccd481702ee72e0517ad3a2c0d4291cfff25a0581abf688f8759b790064a"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/MiscItems/Alertium",
         "canonical": "Nitain Extract",
         "displayName": "泥炭萃取物"
@@ -14062,6 +14353,66 @@
             "Corpus"
           ]
         }
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.credits",
+        "uniqueName": "/Lotus/Types/Items/MiscItems/Credits",
+        "canonical": "Credits",
+        "displayName": "现金"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "credits-official.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 2559,
+          "title": "Credits",
+          "revisionId": 2787807,
+          "categories": [
+            "Resources",
+            "Untradeable_Resources",
+            "Currency_Resources",
+            "Vanilla",
+            "Closed_Beta",
+            "Speculation",
+            "Mechanics",
+            "Login_Rewards",
+            "Currencies"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.credits",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "credits-official.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Credits",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Credits.png",
+          "mediaFilename": "Credits.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Credits.png?a6ad7",
+          "capturedAt": "2026-07-22T16:43:01.849Z",
+          "sha256": "858759c2936c0789b2af9e59dcbb8f7cb6ed46cfb36c5ac308ec219e18ae0051"
+        },
+        "reviewStatus": "approved-current-wiki"
       },
       "catalogStatus": "ready",
       "reviewReasons": []
@@ -16038,7 +16389,7 @@
         "wikiDirectory": {
           "pageId": 1577518,
           "title": "Bronco Incarnon Genesis",
-          "revisionId": 2773245,
+          "revisionId": 2794820,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -16303,7 +16654,7 @@
         "wikiDirectory": {
           "pageId": 1577320,
           "title": "Kunai Incarnon Genesis",
-          "revisionId": 2773613,
+          "revisionId": 2795203,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -16859,15 +17210,17 @@
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/MiscItems/LastWishItems/BlueCrystal",
         "canonical": "Belric Crystal Fragment",
-        "displayName": "贝里克水晶碎片"
+        "displayName": "贝里克水晶碎片",
+        "stableEntityId": "currency.belric-crystal-fragment"
       },
       "category": "token-or-currency",
       "semanticKinds": [
-        "currency-token-material"
+        "currency-token-material",
+        "resource"
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "belric-crystal-fragment-c4a7e593af.png",
+      "expectedMediaFilename": "belric-crystal-fragment-17be79741f.png",
       "officialType": "Misc",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -16880,25 +17233,45 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.belric-crystal-fragment",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "belric-crystal-fragment-17be79741f.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Belric_Crystal_Fragment",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:BelricCrystalFragment.png",
+          "mediaFilename": "BelricCrystalFragment.png",
+          "mediaUrl": "https://wiki.warframe.com/images/BelricCrystalFragment.png?a445d",
+          "capturedAt": "2026-08-03T01:56:29.028Z",
+          "sha256": "17be79741f22ac1f5249ca755485fc14cf08f9c9a2686aa7a5cf7fa205187fda"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/MiscItems/LastWishItems/RedCrystal",
         "canonical": "Rania Crystal Fragment",
-        "displayName": "拉尼娅水晶碎片"
+        "displayName": "拉尼娅水晶碎片",
+        "stableEntityId": "currency.rania-crystal-fragment"
       },
       "category": "token-or-currency",
       "semanticKinds": [
-        "currency-token-material"
+        "currency-token-material",
+        "resource"
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "rania-crystal-fragment-440ab06c5c.png",
+      "expectedMediaFilename": "rania-crystal-fragment-430cbed4ef.png",
       "officialType": "Misc",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -16911,10 +17284,28 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.rania-crystal-fragment",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "rania-crystal-fragment-430cbed4ef.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Rania_Crystal_Fragment",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:RaniaCrystalFragment.png",
+          "mediaFilename": "RaniaCrystalFragment.png",
+          "mediaUrl": "https://wiki.warframe.com/images/RaniaCrystalFragment.png?cdf5f",
+          "capturedAt": "2026-08-03T01:56:36.529Z",
+          "sha256": "430cbed4efc63f41372801629b446d40eb26beebbb8bd9b8d6a97e5aadfe8280"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
@@ -17035,6 +17426,37 @@
           "sourceFile": "Misc.json",
           "uniqueName": "/Lotus/Types/Items/MiscItems/LibraryScannerScanSpeedUpgrade",
           "imageName": "vector-thread-widget-e4676fefcd.png",
+          "variantUniqueNames": null
+        },
+        "wikiDirectory": null
+      },
+      "catalogStatus": "review-required",
+      "reviewReasons": [
+        "wiki-page-missing"
+      ]
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "uniqueName": "/Lotus/Types/Items/MiscItems/MechSurvivalEventCreds",
+        "canonical": "Phasic Cells",
+        "displayName": "相位电池"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "phasic-cells-0a8d651a9a.png",
+      "officialType": "Misc",
+      "localizationStatus": "official-zh",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": {
+          "sourceFile": "Misc.json",
+          "uniqueName": "/Lotus/Types/Items/MiscItems/MechSurvivalEventCreds",
+          "imageName": "phasic-cells-0a8d651a9a.png",
           "variantUniqueNames": null
         },
         "wikiDirectory": null
@@ -18183,7 +18605,7 @@
         "wikiDirectory": {
           "pageId": 2584,
           "title": "Plastids",
-          "revisionId": 2791637,
+          "revisionId": 2795363,
           "categories": [
             "Article_with_guides",
             "Resources",
@@ -18594,7 +19016,7 @@
         "wikiDirectory": {
           "pageId": 2582,
           "title": "Salvage",
-          "revisionId": 2791073,
+          "revisionId": 2794383,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -18641,7 +19063,7 @@
         "wikiDirectory": {
           "pageId": 2582,
           "title": "Salvage",
-          "revisionId": 2791073,
+          "revisionId": 2794383,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -18688,7 +19110,7 @@
         "wikiDirectory": {
           "pageId": 2582,
           "title": "Salvage",
-          "revisionId": 2791073,
+          "revisionId": 2794383,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -18735,7 +19157,7 @@
         "wikiDirectory": {
           "pageId": 2582,
           "title": "Salvage",
-          "revisionId": 2791073,
+          "revisionId": 2794383,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -18782,7 +19204,7 @@
         "wikiDirectory": {
           "pageId": 2582,
           "title": "Salvage",
-          "revisionId": 2791073,
+          "revisionId": 2794383,
           "categories": [
             "Resources",
             "Untradeable_Resources",
@@ -19573,6 +19995,56 @@
       },
       "catalogStatus": "ready",
       "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "uniqueName": "/Lotus/Types/Items/MiscItems/WaterFightBucks",
+        "canonical": "Nakak Pearls",
+        "displayName": "娜卡珍珠",
+        "stableEntityId": "currency.nakak-pearls"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "nakak-pearls-c28c7d27a7.png",
+      "officialType": "Misc",
+      "localizationStatus": "official-zh",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": {
+          "sourceFile": "Misc.json",
+          "uniqueName": "/Lotus/Types/Items/MiscItems/WaterFightBucks",
+          "imageName": "nakak-pearls-752f2b57d5.png",
+          "variantUniqueNames": null
+        },
+        "wikiDirectory": null
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.nakak-pearls",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "nakak-pearls-c28c7d27a7.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Nakak_Pearl",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:NakakPearl.png",
+          "mediaFilename": "NakakPearl.png",
+          "mediaUrl": "https://wiki.warframe.com/images/NakakPearl.png?5cd96",
+          "capturedAt": "2026-08-03T01:56:36.524Z",
+          "sha256": "c28c7d27a74ded6fee25dac0ea6283a5b498afe7535c18e43d7f97ad620520dc"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
@@ -22398,7 +22870,8 @@
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/ArbitersDogTag",
         "canonical": "Medallion",
-        "displayName": "勋章"
+        "displayName": "勋章",
+        "stableEntityId": "currency.medallion"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22407,7 +22880,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "medallion-b2e6e30f6a.png",
+      "expectedMediaFilename": "medallion-dec7965c89.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22420,17 +22893,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.medallion",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "medallion-dec7965c89.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Medallion.png",
+          "mediaFilename": "Medallion.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Medallion.png?343c0",
+          "capturedAt": "2026-08-03T01:56:29.057Z",
+          "sha256": "dec7965c895b7303433ecb177b14e6cf4e628abde6c9c8bd78934a02e59a9747"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/ArbitersRareDogTag",
         "canonical": "Maxim Medallion",
-        "displayName": "格言勋章"
+        "displayName": "格言勋章",
+        "stableEntityId": "currency.maxim-medallion"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22438,7 +22929,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "maxim-medallion-00eb892514.png",
+      "expectedMediaFilename": "maxim-medallion-6474076e98.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22451,17 +22942,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.maxim-medallion",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "maxim-medallion-6474076e98.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:MaximMedallion.png",
+          "mediaFilename": "MaximMedallion.png",
+          "mediaUrl": "https://wiki.warframe.com/images/MaximMedallion.png?c2b25",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "6474076e98260342639c21412813a4fe3e3197172d9fdbd064f1aab7ae736320"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/ArbitersUncommonDogTag",
         "canonical": "Lawful Medallion",
-        "displayName": "守序勋章"
+        "displayName": "守序勋章",
+        "stableEntityId": "currency.lawful-medallion"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22469,7 +22978,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "lawful-medallion-32d8733980.png",
+      "expectedMediaFilename": "lawful-medallion-a732c5aaec.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22482,17 +22991,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.lawful-medallion",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "lawful-medallion-a732c5aaec.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:LawfulMedallion.png",
+          "mediaFilename": "LawfulMedallion.png",
+          "mediaUrl": "https://wiki.warframe.com/images/LawfulMedallion.png?55b9a",
+          "capturedAt": "2026-08-03T01:56:29.052Z",
+          "sha256": "a732c5aaec50e659155f54b87e226dd7394f3d699586b67d9e6c20165894eea4"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/CephalonDogTag",
         "canonical": "Datum",
-        "displayName": "论据"
+        "displayName": "论据",
+        "stableEntityId": "currency.datum"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22501,7 +23028,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "datum-73ce1cfb68.png",
+      "expectedMediaFilename": "datum-95f2ce1d7e.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22514,17 +23041,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.datum",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "datum-95f2ce1d7e.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Datum.png",
+          "mediaFilename": "Datum.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Datum.png?3d26f",
+          "capturedAt": "2026-08-03T01:56:29.038Z",
+          "sha256": "95f2ce1d7eb3ed391790d7a6697ea47cdab790d1b7f0f92903693e84452ddc97"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/CephalonRareDogTag",
         "canonical": "Genius Datum",
-        "displayName": "天才论据"
+        "displayName": "天才论据",
+        "stableEntityId": "currency.genius-datum"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22532,7 +23077,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "genius-datum-f84a7d8cb2.png",
+      "expectedMediaFilename": "genius-datum-b95a2f5b0f.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22545,17 +23090,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.genius-datum",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "genius-datum-b95a2f5b0f.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:GeniusDatum.png",
+          "mediaFilename": "GeniusDatum.png",
+          "mediaUrl": "https://wiki.warframe.com/images/GeniusDatum.png?e2ea5",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "b95a2f5b0f2ddde8b8e9a9e0a6ce702207baa2b5e4266d1fd6609d3379c2d069"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/CephalonUncommonDogTag",
         "canonical": "Intriguing Datum",
-        "displayName": "奇妙论据"
+        "displayName": "奇妙论据",
+        "stableEntityId": "currency.intriguing-datum"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22563,7 +23126,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "intriguing-datum-8a201a6788.png",
+      "expectedMediaFilename": "intriguing-datum-38b30044bd.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22576,10 +23139,27 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.intriguing-datum",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "intriguing-datum-38b30044bd.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:IntriguingDatum.png",
+          "mediaFilename": "IntriguingDatum.png",
+          "mediaUrl": "https://wiki.warframe.com/images/IntriguingDatum.png?5b7ed",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "38b30044bdf8ebac8f6d370a1aa47f8155bb9099a39153525e211c6b8fb50d8e"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
@@ -22648,7 +23228,8 @@
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/NewLokaDogTag",
         "canonical": "Seed",
-        "displayName": "种子"
+        "displayName": "种子",
+        "stableEntityId": "currency.seed"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22657,7 +23238,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "seed-4034964cde.png",
+      "expectedMediaFilename": "seed-c01d39a667.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22670,17 +23251,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.seed",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "seed-c01d39a667.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Seed.png",
+          "mediaFilename": "Seed.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Seed.png?7f35b",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "c01d39a6675deb487ae05ec856f15e093a5f0130c5089301d6b230fbd5a639ac"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/NewLokaRareDogTag",
         "canonical": "Flawless Seed",
-        "displayName": "无瑕种子"
+        "displayName": "无瑕种子",
+        "stableEntityId": "currency.flawless-seed"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22688,7 +23287,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "flawless-seed-b40e99bc0a.png",
+      "expectedMediaFilename": "flawless-seed-f263d78d76.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22701,17 +23300,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.flawless-seed",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "flawless-seed-f263d78d76.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:FlawlessSeed.png",
+          "mediaFilename": "FlawlessSeed.png",
+          "mediaUrl": "https://wiki.warframe.com/images/FlawlessSeed.png?92ec3",
+          "capturedAt": "2026-08-03T01:56:36.803Z",
+          "sha256": "f263d78d76e479aae487d1d5499519ec749aad9fd1f51e322cbe239282db7f82"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/NewLokaUncommonDogTag",
         "canonical": "Bountiful Seed",
-        "displayName": "丰富种子"
+        "displayName": "丰富种子",
+        "stableEntityId": "currency.bountiful-seed"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22719,7 +23336,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "bountiful-seed-4cbf2b01af.png",
+      "expectedMediaFilename": "bountiful-seed-652c444b25.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22732,10 +23349,27 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.bountiful-seed",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "bountiful-seed-652c444b25.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:BountifulSeed.png",
+          "mediaFilename": "BountifulSeed.png",
+          "mediaUrl": "https://wiki.warframe.com/images/BountifulSeed.png?a5392",
+          "capturedAt": "2026-08-03T01:56:36.819Z",
+          "sha256": "652c444b2573ecd8342bc87ead0ed8eb064f6176fe6b2c12df8454c2d6aa6571"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
@@ -22835,7 +23469,8 @@
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/PerrinDogTag",
         "canonical": "Quittance",
-        "displayName": "报酬"
+        "displayName": "报酬",
+        "stableEntityId": "currency.quittance"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22844,7 +23479,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "quittance-38e298d52c.png",
+      "expectedMediaFilename": "quittance-efd541dafc.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22857,17 +23492,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.quittance",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "quittance-efd541dafc.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Quittance.png",
+          "mediaFilename": "Quittance.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Quittance.png?19169",
+          "capturedAt": "2026-08-03T01:56:29.063Z",
+          "sha256": "efd541dafc093ffa7e5189c5c62229c5edc04cf473312203ba5a1149811d086e"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/PerrinRareDogTag",
         "canonical": "Partner Quittance",
-        "displayName": "合伙人报酬"
+        "displayName": "合伙人报酬",
+        "stableEntityId": "currency.partner-quittance"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22875,7 +23528,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "partner-quittance-d5d056ea43.png",
+      "expectedMediaFilename": "partner-quittance-c949ea2f33.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22888,17 +23541,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.partner-quittance",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "partner-quittance-c949ea2f33.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:PartnerQuittance.png",
+          "mediaFilename": "PartnerQuittance.png",
+          "mediaUrl": "https://wiki.warframe.com/images/PartnerQuittance.png?d683f",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "c949ea2f335966494f99414a501822485c630bc2bc1cf8246b3b0724a669014f"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/PerrinUncommonDogTag",
         "canonical": "Executive Quittance",
-        "displayName": "高级执行者报酬"
+        "displayName": "高级执行者报酬",
+        "stableEntityId": "currency.executive-quittance"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22906,7 +23577,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "executive-quittance-a7c5f77e68.png",
+      "expectedMediaFilename": "executive-quittance-947df84658.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22919,17 +23590,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.executive-quittance",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "executive-quittance-947df84658.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:ExecutiveQuittance.png",
+          "mediaFilename": "ExecutiveQuittance.png",
+          "mediaUrl": "https://wiki.warframe.com/images/ExecutiveQuittance.png?9143f",
+          "capturedAt": "2026-08-03T01:56:29.041Z",
+          "sha256": "947df84658bddabb3c6309438a9bd45a8597a5663a59edbe2de33b9a7ce82295"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/RedVeilDogTag",
         "canonical": "Mark",
-        "displayName": "印痕"
+        "displayName": "印痕",
+        "stableEntityId": "currency.mark"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22938,7 +23627,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "mark-4dc0d06a96.png",
+      "expectedMediaFilename": "mark-6143f521f5.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22951,17 +23640,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.mark",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "mark-6143f521f5.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Mark.png",
+          "mediaFilename": "Mark.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Mark.png?e57b5",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "6143f521f574987207ff07869e67d2713d5e6ba2dd2d351f7a3cc51be88645e8"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/RedVeilRareDogTag",
         "canonical": "Exalted Mark",
-        "displayName": "崇高印痕"
+        "displayName": "崇高印痕",
+        "stableEntityId": "currency.exalted-mark"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -22969,7 +23676,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "exalted-mark-e088b84714.png",
+      "expectedMediaFilename": "exalted-mark-f1ae54e778.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -22982,17 +23689,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.exalted-mark",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "exalted-mark-f1ae54e778.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:ExaltedMark.png",
+          "mediaFilename": "ExaltedMark.png",
+          "mediaUrl": "https://wiki.warframe.com/images/ExaltedMark.png?0eb60",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "f1ae54e7787c7f01a17a09816752ec5cadec4eecb552ae48506a70b83b9c61d5"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/RedVeilUncommonDogTag",
         "canonical": "Honored Mark",
-        "displayName": "荣耀印痕"
+        "displayName": "荣耀印痕",
+        "stableEntityId": "currency.honored-mark"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -23000,7 +23725,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "honored-mark-d1daf6f99f.png",
+      "expectedMediaFilename": "honored-mark-4c22b8b99e.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -23013,17 +23738,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.honored-mark",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "honored-mark-4c22b8b99e.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:HonoredMark.png",
+          "mediaFilename": "HonoredMark.png",
+          "mediaUrl": "https://wiki.warframe.com/images/HonoredMark.png?2ba5f",
+          "capturedAt": "2026-08-03T01:56:29.046Z",
+          "sha256": "4c22b8b99e07f3f9e1d887f1dd485a36aad4ad4788a7345b1c62916925854220"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/SteelMeridianDogTag",
         "canonical": "Insignia",
-        "displayName": "佩章"
+        "displayName": "佩章",
+        "stableEntityId": "currency.insignia"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -23032,7 +23775,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "insignia-3b425cfdcb.png",
+      "expectedMediaFilename": "insignia-6ebe0da7ff.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -23045,17 +23788,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.insignia",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "insignia-6ebe0da7ff.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:Insignia.png",
+          "mediaFilename": "Insignia.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Insignia.png?7e3cb",
+          "capturedAt": "2026-08-03T01:56:37.054Z",
+          "sha256": "6ebe0da7ff0b5e2ba35f43d406b78f0924087e71d0dcb9719bb2badb2219c104"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/SteelMeridianRareDogTag",
         "canonical": "General Insignia",
-        "displayName": "大将佩章"
+        "displayName": "大将佩章",
+        "stableEntityId": "currency.general-insignia"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -23063,7 +23824,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "general-insignia-faa6ff67ce.png",
+      "expectedMediaFilename": "general-insignia-ae80444cf2.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -23076,17 +23837,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.general-insignia",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "general-insignia-ae80444cf2.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:GeneralInsignia.png",
+          "mediaFilename": "GeneralInsignia.png",
+          "mediaUrl": "https://wiki.warframe.com/images/GeneralInsignia.png?6b91d",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "ae80444cf219ce46afb4d40a79b7c327bf4c4e824b0df97295f0555bcdb10b5a"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/SteelMeridianUncommonDogTag",
         "canonical": "Defender Insignia",
-        "displayName": "防御者佩章"
+        "displayName": "防御者佩章",
+        "stableEntityId": "currency.defender-insignia"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -23094,7 +23873,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "defender-insignia-1cb796582e.png",
+      "expectedMediaFilename": "defender-insignia-98dd5a0f7a.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -23107,17 +23886,35 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.defender-insignia",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "defender-insignia-98dd5a0f7a.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Syndicate_Medallions",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:DefenderInsignia.png",
+          "mediaFilename": "DefenderInsignia.png",
+          "mediaUrl": "https://wiki.warframe.com/images/DefenderInsignia.png?6bcfb",
+          "capturedAt": "2026-08-03T01:56:36.597Z",
+          "sha256": "98dd5a0f7a251f5708b9216b80034d81479e82cdb144c393be7ef86d7232aa06"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
         "kind": "resource",
         "uniqueName": "/Lotus/Types/Items/SyndicateDogTags/UniversalSyndicateDogTag",
         "canonical": "Universal Medallion",
-        "displayName": "万用勋章"
+        "displayName": "万用勋章",
+        "stableEntityId": "currency.universal-medallion"
       },
       "category": "token-or-currency",
       "semanticKinds": [
@@ -23126,7 +23923,7 @@
       ],
       "openWorld": null,
       "processingStage": null,
-      "expectedMediaFilename": "universal-medallion-2dd7ce24ad.png",
+      "expectedMediaFilename": "universal-medallion-b69beb390f.png",
       "officialType": "Medallion",
       "localizationStatus": "official-zh",
       "officialRelations": null,
@@ -23139,10 +23936,27 @@
         },
         "wikiDirectory": null
       },
-      "catalogStatus": "review-required",
-      "reviewReasons": [
-        "wiki-page-missing"
-      ]
+      "catalogStatus": "ready",
+      "reviewReasons": [],
+      "reviewedAsset": {
+        "stableEntityId": "currency.universal-medallion",
+        "assetRoles": [
+          "currency-inline-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "universal-medallion-b69beb390f.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Universal_Medallion",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:UniversalMedallion.png",
+          "mediaFilename": "UniversalMedallion.png",
+          "mediaUrl": "https://wiki.warframe.com/images/UniversalMedallion.png?78dac",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "b69beb390f85e6f1039debc318fbe2f4ad3bad1318ad53fc87f688a793a3c21e"
+        },
+        "reviewStatus": "approved-current-wiki"
+      }
     },
     {
       "stableIdentity": {
@@ -23252,6 +24066,122 @@
       "reviewReasons": [
         "wiki-page-missing"
       ]
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.emerald-talent",
+        "uniqueName": "/Lotus/Types/JadeShadowsPart2Mission/Gameplay/Resources/AshFavor",
+        "canonical": "Emerald Talent",
+        "displayName": "翠绿天赋"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "emerald-talent-6912b482d9.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1640605,
+          "title": "Emerald Talent",
+          "revisionId": 2788531,
+          "categories": [
+            "Updateme",
+            "Resources",
+            "Untradeable_Resources",
+            "Update_43",
+            "Resources_not_affected_by_Resource_Booster",
+            "Resources_not_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_not_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.emerald-talent",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "emerald-talent-6912b482d9.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Emerald_Talent",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:EmeraldTalent.png",
+          "mediaFilename": "EmeraldTalent.png",
+          "mediaUrl": "https://wiki.warframe.com/images/EmeraldTalent.png?2cf0d",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "6912b482d92366336ba9f07c21a2e9848720aaccab29f39b3e7ee5d77d43cf35"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.crimson-talent",
+        "uniqueName": "/Lotus/Types/JadeShadowsPart2Mission/Gameplay/Resources/GarudaFavor",
+        "canonical": "Crimson Talent",
+        "displayName": "猩红天赋"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "crimson-talent-6006d2b9d8.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1640606,
+          "title": "Crimson Talent",
+          "revisionId": 2788469,
+          "categories": [
+            "Updateme",
+            "Resources",
+            "Untradeable_Resources",
+            "Update_43",
+            "Resources_not_affected_by_Resource_Booster",
+            "Resources_not_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_not_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.crimson-talent",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "crimson-talent-6006d2b9d8.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Crimson_Talent",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:CrimsonTalent.png",
+          "mediaFilename": "CrimsonTalent.png",
+          "mediaUrl": "https://wiki.warframe.com/images/CrimsonTalent.png?4053c",
+          "capturedAt": "2026-08-03T01:59:24.568Z",
+          "sha256": "6006d2b9d830ab6d766fb8dfa011c84863d4e607c8a84228bf05c4051a065e73"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
     },
     {
       "stableIdentity": {
@@ -23553,6 +24483,165 @@
             "Update_27"
           ]
         }
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.live-heartcell",
+        "uniqueName": "wiki-current:resource:Live Heartcell",
+        "canonical": "Live Heartcell",
+        "displayName": "活体心肌细胞"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "live-heartcell-db1cbefc97.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1595156,
+          "title": "Live Heartcell",
+          "revisionId": 2788703,
+          "categories": [
+            "Resources",
+            "Untradeable_Resources",
+            "Update_38"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.live-heartcell",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "live-heartcell-db1cbefc97.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Live_Heartcell",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:LiveHeartcell.png",
+          "mediaFilename": "LiveHeartcell.png",
+          "mediaUrl": "https://wiki.warframe.com/images/LiveHeartcell.png?cb3a3",
+          "capturedAt": "2026-08-03T01:56:36.576Z",
+          "sha256": "db1cbefc975d4f0ccf39d2ddabef8e2180261debb3b837f536a64dbc4d1922a8"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.maphica",
+        "uniqueName": "wiki-current:resource:Maphica",
+        "canonical": "Maphica",
+        "displayName": "怒火核"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "resource",
+        "currency-token-material"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "Maphica.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": {
+          "pageId": 1604718,
+          "title": "Maphica",
+          "revisionId": 2728484,
+          "categories": [
+            "Resources",
+            "Untradeable_Resources",
+            "Update_41",
+            "Resources_not_affected_by_Resource_Booster",
+            "Resources_not_affected_by_Resource_Drop_Chance_Booster",
+            "Resources_not_affected_by_Retriever_Mods"
+          ]
+        }
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.maphica",
+        "assetRoles": [
+          "currency-inline-icon",
+          "crafting-resource-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "Maphica.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "user-provided",
+          "pageUrl": "https://wiki.warframe.com/w/Maphica",
+          "mediaPageUrl": "https://wiki.warframe.com/w/Maphica#/media/File:Maphica.png",
+          "mediaFilename": "Maphica.png",
+          "mediaUrl": "https://wiki.warframe.com/images/Maphica.png?01c22&download=1",
+          "capturedAt": "2026-08-03T01:39:43.555Z",
+          "fetchMethod": "playwright-browser-session",
+          "sha256": "daa50df5be3b0c02b380c9f29ef7bb3ad86cc660dd24b4c1a81aede079072d1a"
+        },
+        "reviewStatus": "approved-current-wiki"
+      },
+      "catalogStatus": "ready",
+      "reviewReasons": []
+    },
+    {
+      "stableIdentity": {
+        "kind": "resource",
+        "stableEntityId": "currency.scuttler-husks",
+        "uniqueName": "wiki-current:resource:Scuttler Husks",
+        "canonical": "Scuttler Husks",
+        "displayName": "急行蛛外壳"
+      },
+      "category": "token-or-currency",
+      "semanticKinds": [
+        "currency-token"
+      ],
+      "openWorld": null,
+      "processingStage": null,
+      "expectedMediaFilename": "scuttler-husks-8b5eb43476.png",
+      "officialType": null,
+      "localizationStatus": "reviewed",
+      "officialRelations": null,
+      "evidence": {
+        "publicExport": null,
+        "wikiDirectory": null
+      },
+      "reviewedAsset": {
+        "stableEntityId": "currency.scuttler-husks",
+        "assetRoles": [
+          "currency-inline-icon",
+          "inventory-resource-icon"
+        ],
+        "availability": "active-current",
+        "imageName": "scuttler-husks-8b5eb43476.png",
+        "evidence": {
+          "source": "wiki.warframe.com",
+          "provenanceType": "wiki-current",
+          "pageUrl": "https://wiki.warframe.com/w/Scuttler_Husk",
+          "mediaPageUrl": "https://wiki.warframe.com/w/File:ScuttlerHusk.png",
+          "mediaFilename": "ScuttlerHusk.png",
+          "mediaUrl": "https://wiki.warframe.com/images/ScuttlerHusk.png?8e7c9",
+          "capturedAt": "2026-08-03T02:03:23.269Z",
+          "sha256": "8b5eb434764fde03d1ed5b9b6a9aa43f189995bc1e22417ba50274763f2da4a8"
+        },
+        "reviewStatus": "approved-current-wiki"
       },
       "catalogStatus": "ready",
       "reviewReasons": []

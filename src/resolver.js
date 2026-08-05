@@ -109,6 +109,11 @@ function buildCandidates(aliases) {
   const result = [];
   for (const [canonical, names] of Object.entries(aliases.frames || {})) {
     result.push({ alias: canonical, canonical, category: 'frame' });
+    const mainlandName = aliases.frameMainlandNames?.[canonical];
+    if (mainlandName) {
+      result.push({ alias: mainlandName, canonical, category: 'frame' });
+      result.push({ alias: `圣装${mainlandName}`, canonical: `${canonical} Prime`, category: 'frame' });
+    }
     for (const alias of names) {
       result.push({ alias, canonical, category: 'frame' });
       if (!alias.endsWith('甲') && alias.length > 1) result.push({ alias: `${alias}甲`, canonical, category: 'frame' });
@@ -121,8 +126,12 @@ function buildCandidates(aliases) {
 function domainEntries(aliases, domain) {
   const source = aliases?.[domain] || {};
   if (domain === 'fissures') return [];
-  return Object.entries(source).flatMap(([canonical, names]) => [canonical, ...(Array.isArray(names) ? names : [])]
-    .map(alias => ({ alias, canonical, category: domain })));
+  return Object.entries(source).flatMap(([canonical, names]) => [
+    canonical,
+    ...(domain === 'frames' && aliases.frameMainlandNames?.[canonical] ? [aliases.frameMainlandNames[canonical]] : []),
+    ...(domain === 'companions' && aliases.companionMainlandNames?.[canonical] ? [aliases.companionMainlandNames[canonical]] : []),
+    ...(Array.isArray(names) ? names : [])
+  ].map(alias => ({ alias, canonical, category: domain })));
 }
 
 function resolveDomainAlias(aliases, domain, query) {
@@ -148,19 +157,22 @@ function createResolver(aliases) {
     const stripTerms = [...new Set([...(Array.isArray(options.stripTerms) ? options.stripTerms : []), ...intent.typeTerms])];
     const queryForms = resolverForms(raw, stripTerms);
     const supplied = Array.isArray(options.candidates) ? options.candidates : [];
-    const requestedCategories = options.ignoreIntentCategories
+    const categoryScope = Array.isArray(options.categoryScope) ? options.categoryScope : null;
+    const requestedCategories = categoryScope || (options.ignoreIntentCategories
       ? options.categories
-      : (intent.categories.length ? intent.categories : options.categories);
+      : (intent.categories.length ? intent.categories : options.categories));
     const categoryMatches = category => !requestedCategories || requestedCategories.includes(category)
-      || (requestedCategories.includes('official') && ['mod', 'official-item'].includes(category));
+      || (requestedCategories.includes('official') && ['mod', 'official-item', 'companion', 'vehicle'].includes(category))
+      || (requestedCategories.includes('official-item') && ['companion', 'vehicle'].includes(category));
     const candidates = [...staticCandidates, ...supplied]
       .filter(item => item && item.alias && item.canonical)
       .filter(item => categoryMatches(item.category));
     const trace = payload => { if (typeof options.onTrace === 'function') options.onTrace(payload); };
-    const direct = candidates.find(item => normalize(item.alias) === normalize(raw));
-    if (direct) {
-      const result = { ...direct, match: 'exact', score: 300 };
-      trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: [result], result });
+    const direct = candidates.filter(item => normalize(item.alias) === normalize(raw));
+    if (direct.length) {
+      const exact = [...new Map(direct.map(item => [`${item.category}\0${item.canonical}`, { ...item, match: 'exact', score: 300 }])).values()];
+      const result = exact.length === 1 ? exact[0] : { ambiguous: exact.slice(0, options.limit || 8), score: 300 };
+      trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: exact, result });
       return result;
     }
     const ranked = candidates.map(item => {

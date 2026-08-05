@@ -21,17 +21,20 @@ test('生息精华按实体证据区分拾取加成、掉率加成与固定兑�
   })
   assert.match(method.requirementLines.join('\n'), /任务内拾取数量可翻倍/)
   assert.match(method.requirementLines.join('\n'), /任务内掉落几率受影响/)
-  assert.match(method.requirementLines.join('\n'), /兑换成本固定为20个生息精华，不会因加成改变/)
+  assert.doesNotMatch(method.requirementLines.join('\n'), /缺少明确证据|暂按未知处理|不会因加成改变|成本固定为/)
+  assert.equal(method.boosterDiagnostics, undefined)
   const text = core.getAcquisitionCard('Galvanized Reflex').sections.exchange.join('\n')
   assert.equal((text.match(/仲裁阁下处消耗20个生息精华兑换/g) || []).length, 1)
   assert.deepEqual(nearDuplicateVisibleLines(text.split('\n')), [])
 })
 
 test('真正不受加成的命运之珠不会被默认成未知或有效', () => {
-  const text = core.getAcquisition('Amanata Pressure').structuredMethods[0].requirementLines.join('\n')
+  const method = core.getAcquisition('Amanata Pressure').structuredMethods[0]
+  const text = method.requirementLines.join('\n')
   assert.match(text, /资源数量加成：命运之珠不受影响/)
   assert.match(text, /资源掉落几率加成：命运之珠不受影响/)
-  assert.doesNotMatch(text, /缺少明确证据|可翻倍/)
+  assert.doesNotMatch(text, /缺少明确证据|暂按未知处理|可翻倍|不会因加成改变/)
+  assert.equal(method.boosterDiagnostics, undefined)
 })
 
 test('全量货币加成同步保留 unknown 而不把缺证据武断写成无效', () => {

@@ -27,6 +27,16 @@ test('近期 Temple 与 Uriel 均完整收录四技能', () => {
   assert.equal(core.listAbilities({ frame: 'Uriel' }).every(item => item.review.status === 'official-zh'), true);
 });
 
+test('13 个 Helminth 独有技能使用官方简中并支持中英文解析', () => {
+  const abilities = core.listAbilities({ frame: 'Helminth' });
+  assert.equal(abilities.length, 13);
+  assert.equal(abilities.every(item => item.abilityClass === 'helminth-unique' && item.review.status === 'official-zh'), true);
+  assert.equal(core.resolveAbility('恶疾脉冲').ability.canonical, 'Sickening Pulse');
+  assert.equal(core.resolveAbility('Sickening Pulse').ability.displayName, '恶疾脉冲');
+  assert.equal(core.resolveAbility('黄金本能').ability.canonical, 'Golden Instinct');
+  assert.equal(core.resolveAbility('Golden Instinct').ability.displayName, '黄金本能');
+});
+
 test('同名技能不静默选取并可用战甲和槽位消歧', () => {
   const catalog = core.listAbilities();
   const groups = new Map();
