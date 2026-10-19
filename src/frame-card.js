@@ -26,7 +26,29 @@ function getFrameCardMetadata(frameOrName) {
 
 function buildFrameCardDTO(frameOrName, options = {}) {
   const frame = getFrameCardMetadata(frameOrName);
-  if (!frame) return null;
+  if (!frame) {
+    // 官方数值/技能尚未收录的新战甲（例如 Update 44 的 Narin）：仍返回仅含身份的
+    // DTO，让获取卡片（含部件小卡片）可以渲染。渲染器对空 stats/abilities 会整段跳过，
+    // 因此不会画出空白数值区。
+    const fallbackName = typeof frameOrName === 'string'
+      ? frameOrName
+      : (frameOrName?.name || frameOrName?.displayName || frameOrName?.canonical || '');
+    if (!fallbackName) return null;
+    return {
+      schemaVersion: 1,
+      frameId: null,
+      canonical: fallbackName,
+      displayName: fallbackName,
+      isPrime: false,
+      variantType: null,
+      statPolicy: clone(metadata.statPolicy),
+      stats: [],
+      abilities: [],
+      helminth: null,
+      provenance: clone(metadata.sources),
+      metadataStatus: 'pending-official-stats'
+    };
+  }
   const imagePathForAbility = typeof options.imagePathForAbility === 'function'
     ? options.imagePathForAbility
     : () => '';
@@ -49,6 +71,9 @@ function buildFrameCardDTO(frameOrName, options = {}) {
       ...clone(ability),
       imagePath: imagePathForAbility(ability)
     })),
+    passiveName: frame.passiveName || 'Passive',
+
+    passiveDescription: frame.passiveDescription || '',
     helminth: clone(frame.helminth),
     provenance: clone(metadata.sources)
   };

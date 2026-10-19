@@ -56,3 +56,12 @@ test('用户金卡、银卡、活动元素与功能型例子绑定稳定身份',
   assert.notEqual(core.resolveElementModSlang('手枪银电').relation.displayName, '病原弹头');
   assert.equal(core.resolveElementModSlang('活动').status, 'missing');
 });
+
+test('Prime 元素 Mod 的类别+元素+p 语法直接解析正式身份', () => {
+  for (const query of ['步枪冰p', '冰p步枪', '步枪冰 prime']) {
+    const resolved = core.resolveElementModSlang(query);
+    assert.equal(resolved.status, 'resolved', query);
+    assert.equal(resolved.relation.canonical, 'Primed Cryo Rounds', query);
+    assert.equal(resolved.relation.displayName, '低温弹头 Prime', query);
+  }
+});

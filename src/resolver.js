@@ -2,8 +2,12 @@
 
 const { pinyin } = require('pinyin-pro');
 
+const HAN_RE = /[\u3400-\u9fff]/;
 const normalize = value => {
   let result = String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[‘’`´]/g, "'").replace(/[\s·・‧•_-]+/g, '');
+  // Display-name separators are equivalent across official/localized names.
+  // NFKC already converts full-width punctuation to ASCII punctuation.
+  result = result.replace(/[·・‧•_\/.\-]+/g, '');
   if (/[^a-z]p$/.test(result)) result = `${result.slice(0, -1)}prime`;
   return result;
 };
@@ -11,6 +15,24 @@ const pinyinTokens = value => pinyin(String(value || ''), { toneType: 'none', ty
 const compactPinyin = value => pinyinTokens(value).join('').replace(/[^a-z0-9]/g, '');
 const mixedPinyin = value => String(value || '').normalize('NFKC').toLowerCase().split(/([\u3400-\u9fff]+)/)
   .map(part => /[\u3400-\u9fff]/.test(part) ? compactPinyin(part) : part.replace(/[^a-z0-9]/g, '')).join('');
+
+const WEAPON_VARIANT_INTENT_ALIASES = Object.freeze({
+  prime: ['prime', 'p'], vandal: ['破坏者', 'vandal', '莲花'], wraith: ['亡魂', 'wraith'],
+  prisma: ['棱晶', 'prisma', '奸商'], kuva: ['赤毒', 'kuva'], tenet: ['信条', 'tenet'], coda: ['终幕', 'coda'],
+  sancti: ['圣洁', 'sancti', '集团'], vaykor: ['保障', 'vaykor', '集团'], rakta: ['绯红', 'rakta', '集团'],
+  secura: ['保障', 'secura', '集团'], synoid: ['枢议', 'synoid', '集团'], telos: ['苦痛', 'telos', '集团']
+});
+
+function weaponAliasForms(canonical, aliases = []) {
+  const kind = String(canonical || '').match(/^(?:Dual\s+)?([A-Za-z]+)\s+/iu)?.[1]?.toLowerCase();
+  const prefixes = (WEAPON_VARIANT_INTENT_ALIASES[kind] || []).filter(prefix => !['集团', '奸商'].includes(prefix));
+  return [...new Set(aliases.flatMap(alias => {
+    const text = String(alias || '').trim();
+    if (!text) return [];
+    if (!prefixes.length || prefixes.some(prefix => normalize(text).startsWith(normalize(prefix)))) return [text];
+    return [text, ...prefixes.map(prefix => `${prefix}${text}`)];
+  }))];
+}
 
 const RESOLVER_TYPE_TERMS = [
   { category: 'mod', terms: ['mod', '模组'] },
@@ -116,7 +138,9 @@ function buildCandidates(aliases) {
     }
     for (const alias of names) {
       result.push({ alias, canonical, category: 'frame' });
-      if (!alias.endsWith('甲') && alias.length > 1) result.push({ alias: `${alias}甲`, canonical, category: 'frame' });
+      if (!alias.endsWith('甲') && (alias.length > 1 || HAN_RE.test(alias))) {
+        result.push({ alias: `${alias}甲`, canonical, category: 'frame' });
+      }
     }
   }
   for (const [alias, canonical] of Object.entries(aliases.terms || {})) result.push({ alias, canonical, category: 'term' });
@@ -130,22 +154,78 @@ function domainEntries(aliases, domain) {
     canonical,
     ...(domain === 'frames' && aliases.frameMainlandNames?.[canonical] ? [aliases.frameMainlandNames[canonical]] : []),
     ...(domain === 'companions' && aliases.companionMainlandNames?.[canonical] ? [aliases.companionMainlandNames[canonical]] : []),
-    ...(Array.isArray(names) ? names : [])
+    ...(domain === 'weapons' ? weaponAliasForms(canonical, Array.isArray(names) ? names : []) : Array.isArray(names) ? names : [])
   ].map(alias => ({ alias, canonical, category: domain })));
 }
 
-function resolveDomainAlias(aliases, domain, query) {
+// 域条目索引：同一个 aliases 对象的同一个 domain 只展开一次，并预计算每个别名的 normalize。
+// 之前在 resolveDomainAlias 里每次调用都重建整份条目数组、再对每个别名重新 normalize；
+// 市场身份富集会对每一条清单重复走这条路（上万次调用），是 CPU profile 里的主要热点。
+const DOMAIN_INDEX_CACHE = new WeakMap();
+function domainIndex(aliases, domain) {
+  if (!aliases || typeof aliases !== 'object') {
+    const entries = domainEntries(aliases, domain);
+    return { entries, byAlias: null };
+  }
+  let perDomain = DOMAIN_INDEX_CACHE.get(aliases);
+  if (!perDomain) { perDomain = new Map(); DOMAIN_INDEX_CACHE.set(aliases, perDomain); }
+  const cached = perDomain.get(domain);
+  if (cached) return cached;
+  const entries = domainEntries(aliases, domain).map(item => ({ ...item, normalized: normalize(item.alias) }));
+  const byAlias = new Map();
+  for (const entry of entries) {
+    const list = byAlias.get(entry.normalized);
+    if (list) list.push(entry); else byAlias.set(entry.normalized, [entry]);
+  }
+  const index = Object.freeze({ entries, byAlias });
+  perDomain.set(domain, index);
+  return index;
+}
+
+// 模糊结果按 (aliases 实例, domain, 查询串) 记忆化：同一批清单里同名的条目会重复查询。
+// 用 WeakMap 挂到 aliases 实例上，随知识库重载自然失效，不跨版本串味。
+const FUZZY_MEMO_MAX = 20000;
+const FUZZY_MEMO_CACHE = new WeakMap();
+function fuzzyMemoFor(aliases) {
+  if (!aliases || typeof aliases !== 'object') return null;
+  let memo = FUZZY_MEMO_CACHE.get(aliases);
+  if (!memo) { memo = new Map(); FUZZY_MEMO_CACHE.set(aliases, memo); }
+  return memo;
+}
+function exactForm(entry) {
+  return { alias: entry.alias, canonical: entry.canonical, category: entry.category, match: 'exact', score: 300 };
+}
+
+function resolveDomainAlias(aliases, domain, query, options = {}) {
   const raw = String(query || '').trim();
   if (!raw) return null;
-  const entries = domainEntries(aliases, domain);
-  const direct = entries.find(item => normalize(item.alias) === normalize(raw));
-  if (direct) return { ...direct, match: 'exact', score: 300 };
-  const ranked = entries.map(item => ({ ...item, score: Math.max(textScore(raw, item.alias), phoneticScore(raw, item.alias)) }))
+  const index = domainIndex(aliases, domain);
+  const normalizedQuery = normalize(raw);
+  const direct = index.byAlias
+    ? index.byAlias.get(normalizedQuery)
+    : index.entries.find(item => normalize(item.alias) === normalizedQuery);
+  if (direct && (Array.isArray(direct) ? direct.length : true)) {
+    return exactForm(Array.isArray(direct) ? direct[0] : direct);
+  }
+  // 只要精确命中的调用方（如 getOfficialMod 只接受 match==='exact'）不必为整域
+  // 拼音/LCS 打分买单——那份分数会被调用方直接丢掉。
+  if (options.exactOnly === true) return null;
+  const memo = fuzzyMemoFor(aliases);
+  const memoKey = `${domain}\0${raw}`;
+  if (memo?.has(memoKey)) return memo.get(memoKey);
+  const ranked = index.entries.map(item => ({ alias: item.alias, canonical: item.canonical, category: item.category, score: Math.max(textScore(raw, item.alias), phoneticScore(raw, item.alias)) }))
     .filter(item => item.score >= 50).sort((a, b) => b.score - a.score || b.alias.length - a.alias.length);
-  if (!ranked.length) return null;
-  const second = ranked.find(item => item.canonical !== ranked[0].canonical);
-  if (second && ranked[0].score - second.score < 5) return { ambiguous: ranked.filter(item => ranked[0].score - item.score < 5).slice(0, 8), score: ranked[0].score };
-  return { ...ranked[0], match: 'pinyin-weighted' };
+  const result = (() => {
+    if (!ranked.length) return null;
+    const second = ranked.find(item => item.canonical !== ranked[0].canonical);
+    if (second && ranked[0].score - second.score < 5) return { ambiguous: ranked.filter(item => ranked[0].score - item.score < 5).slice(0, 8), score: ranked[0].score };
+    return { ...ranked[0], match: 'pinyin-weighted' };
+  })();
+  if (memo) {
+    if (memo.size >= FUZZY_MEMO_MAX) memo.clear();
+    memo.set(memoKey, result);
+  }
+  return result;
 }
 
 function createResolver(aliases) {
@@ -175,7 +255,10 @@ function createResolver(aliases) {
       trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: exact, result });
       return result;
     }
-    const ranked = candidates.map(item => {
+    const fuzzyCandidates = options.weaponAliasesExactOnly
+      ? candidates.filter(item => item.category !== 'weapon' || item.nameRole === 'name' || normalize(item.alias) === normalize(item.canonical))
+      : candidates;
+    const ranked = fuzzyCandidates.map(item => {
       const scored = queryForms.flatMap(queryForm => resolverForms(item.alias, stripTerms).map(candidateForm => {
         const literal = textScore(queryForm.text, candidateForm.text);
         const phonetic = phoneticScore(queryForm.text, candidateForm.text);
@@ -223,4 +306,4 @@ function createResolver(aliases) {
   };
 }
 
-module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize, stripResolverTerms, parseResolverIntent, RESOLVER_TYPE_TERMS };
+module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize, stripResolverTerms, parseResolverIntent, RESOLVER_TYPE_TERMS, weaponAliasForms, WEAPON_VARIANT_INTENT_ALIASES };

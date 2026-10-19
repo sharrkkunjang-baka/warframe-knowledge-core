@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-31T05:35:09.971Z",
+  "generatedAt": "2026-09-26T14:51:45.844Z",
   "source": {
     "package": "warframe-items",
     "version": "1.1269.87",
@@ -9,16 +9,16 @@
   },
   "counts": {
     "upstreamRecords": 1733,
-    "mods": 1442,
+    "mods": 1449,
     "excludedMods": 304,
     "officialCategories": 260,
     "localCategories": 77,
-    "completeMods": 651,
-    "reviewRequiredMods": 791,
+    "completeMods": 654,
+    "reviewRequiredMods": 795,
     "coveredOfficialCategories": 26,
     "missingOfficialCategories": 234,
     "missingChineseNames": 9,
-    "syndicateAugmentProducts": 197,
+    "syndicateAugmentProducts": 194,
     "syndicateAugmentOfferRows": 394,
     "unmatchedSyndicateAugmentProducts": 2
   },
@@ -6079,8 +6079,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -6587,8 +6587,8 @@
     },
     {
       "uniqueName": "/Lotus/Powersuits/Banshee/EarthQuakeAugmentCard",
-      "canonical": "Resonating Quake",
-      "displayName": "震地共鸣",
+      "canonical": "Gaseous Quake",
+      "displayName": "气体地震",
       "localizationStatus": "official-zh",
       "type": "Warframe Mod",
       "typeDisplayName": "战甲 Mod",
@@ -6598,10 +6598,10 @@
       "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
-        "Sound Quake Augment: Forgoes channeling to create a shockwave that deals 20x Damage at the epicenter, gradually weakening as it expands out."
+        "Sound Quake Augment: Channel Gas Damage and Status Effect leaks with a 2.75x Damage Multiplier that increases every second on enemies in your sight."
       ],
       "maxRankEffectsZh": [
-        "音波冲击强化：中断技能引导会生成一道震波，并对位于震波中心的敌人造成 20 倍伤害。伤害随震波扩散而递减。"
+        "每秒对视野内的敌人造成毒气伤害，每秒伤害翻2.75倍，至多翻10次。"
       ],
       "traits": {
         "prime": false,
@@ -6622,7 +6622,7 @@
       ],
       "wiki": {
         "available": true,
-        "url": "https://wiki.warframe.com/w/Resonating_Quake"
+        "url": "https://wiki.warframe.com/w/Gaseous_Quake"
       },
       "localEntryIds": [
         "knowledge.acquisition.mod.resonating-quake-c95a1ba1"
@@ -6634,8 +6634,8 @@
     },
     {
       "uniqueName": "/Lotus/Powersuits/Banshee/PushAugmentCard",
-      "canonical": "Sonic Fracture",
-      "displayName": "破碎声波",
+      "canonical": "Sonic Siphon",
+      "displayName": "音波虹吸",
       "localizationStatus": "official-zh",
       "type": "Warframe Mod",
       "typeDisplayName": "战甲 Mod",
@@ -6645,10 +6645,10 @@
       "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
-        "Sonic Boom Augment: Enemy Armor is reduced by 70%."
+        "Sonic Boom Augment: Banshee gains 50 Armor for each enemy hit for 20 seconds, up to 1500 Armor."
       ],
       "maxRankEffectsZh": [
-        "音爆强化：敌人护甲减少 70%。"
+        "音爆强化：音爆每击中一个敌人后获得护甲，持续20秒。"
       ],
       "traits": {
         "prime": false,
@@ -6669,7 +6669,7 @@
       ],
       "wiki": {
         "available": true,
-        "url": "https://wiki.warframe.com/w/Sonic_Fracture"
+        "url": "https://wiki.warframe.com/w/Sonic_Siphon"
       },
       "localEntryIds": [
         "knowledge.acquisition.mod.sonic-fracture-bdece23d"
@@ -7495,8 +7495,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -7677,8 +7677,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -8230,6 +8230,53 @@
       "reviewRequired": false,
       "evidenceStatus": "approved-acquisition",
       "effectEvidenceStatus": "reviewed-acquisition-effect"
+    },
+    {
+      "uniqueName": "/Lotus/Powersuits/Devourer/DevourerPassiveAugmentCard",
+      "canonical": "Gastroparesis",
+      "displayName": "胃无力",
+      "localizationStatus": "wiki-reviewed-zh",
+      "type": "Warframe Mod",
+      "typeDisplayName": "战甲 Mod",
+      "category": "Mods",
+      "compatName": "Grendel",
+      "rarity": "Rare",
+      "polarity": "zenurik",
+      "maxRank": 3,
+      "maxRankEffects": [
+        "Grendel Passive Augment: Each enemy in Grendel's stomach grants Primary and Secondary Weapons 15% Gas Damage, up to 75%."
+      ],
+      "maxRankEffectsZh": [
+        "胃内每存在1个敌人，主副手就获得15%毒气元素弹匣，至多75%。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": true,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.warframe-mod",
+        "compat.grendel",
+        "trait.augment"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Gastroparesis"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.gastroparesis-a2c4304959"
+      ],
+      "status": "complete",
+      "reviewRequired": false,
+      "evidenceStatus": "wiki-reviewed-acquisition",
+      "effectEvidenceStatus": "wiki-reviewed-effect"
     },
     {
       "uniqueName": "/Lotus/Powersuits/Devourer/DevourerRegurgitateAugmentCard",
@@ -9457,6 +9504,57 @@
       "effectEvidenceStatus": "reviewed-acquisition-effect"
     },
     {
+      "uniqueName": "/Lotus/Powersuits/Frost/SnowGlobeAugmentCard",
+      "canonical": "Cold Front",
+      "displayName": "冷锋护罩",
+      "localizationStatus": "wiki-reviewed-zh",
+      "type": "Warframe Mod",
+      "typeDisplayName": "战甲 Mod",
+      "category": "Mods",
+      "compatName": "Frost",
+      "rarity": "Rare",
+      "polarity": "zenurik",
+      "maxRank": 3,
+      "maxRankEffects": [
+        "Snow Globe Augment: Snow Globe is now attached to Frost with a smaller radius while increasing your mobility. Kills on frozen enemies increase the Globe health by 4% per kill."
+      ],
+      "maxRankEffectsZh": [
+        "冰雪护罩强化：冰雪护罩范围缩小并附着在Frost身上，同时提高跑酷速度。每击杀一名被冻结的敌人，护罩生命值提高4%。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": true,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.warframe-mod",
+        "compat.frost",
+        "trait.augment"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Cold_Front"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.cold-front-f8042e32e3"
+      ],
+      "status": "complete",
+      "reviewRequired": false,
+      "evidenceStatus": "wiki-reviewed-acquisition",
+      "effectEvidenceStatus": "wiki-reviewed-effect",
+      "syndicateBinding": {
+        "ability": "Snow Globe",
+        "source": "reviewed-current-wiki-augment-page"
+      }
+    },
+    {
       "uniqueName": "/Lotus/Powersuits/Garuda/GarudaBloodAugmentCard",
       "canonical": "Blood Forge",
       "displayName": "祭血锻造",
@@ -9605,8 +9703,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -9928,8 +10026,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -10345,8 +10443,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -11280,8 +11378,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -13106,6 +13204,57 @@
       "effectEvidenceStatus": "reviewed-acquisition-effect"
     },
     {
+      "uniqueName": "/Lotus/Powersuits/Oraxia/OraxiaSpidersAugmentCard",
+      "canonical": "Brood's Oversurge",
+      "displayName": "毒裔之涌",
+      "localizationStatus": "wiki-reviewed-zh",
+      "type": "Warframe Mod",
+      "typeDisplayName": "战甲 Mod",
+      "category": "Mods",
+      "compatName": "Oraxia",
+      "rarity": "Rare",
+      "polarity": "zenurik",
+      "maxRank": 3,
+      "maxRankEffects": [
+        "Widow's Brood Augment: Active Scuttlers become galvanised with Electricity. Hold to direct them at your target, dealing 2000 Electricity Damage and Status Effects in an area around the target."
+      ],
+      "maxRankEffectsZh": [
+        "蛛心毒裔强化：急行蛛被电击强化。长按可将所有活动中的急行蛛引导至瞄准目标，对目标周围一定范围内的敌人造成2000电击伤害和异常状态效果。"
+      ],
+      "traits": {
+        "prime": false,
+        "augment": true,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.warframe-mod",
+        "compat.oraxia",
+        "trait.augment"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Brood%27s_Oversurge"
+      },
+      "localEntryIds": [
+        "knowledge.acquisition.mod.brood-s-oversurge-be3b8c054c"
+      ],
+      "status": "complete",
+      "reviewRequired": false,
+      "evidenceStatus": "wiki-reviewed-acquisition",
+      "effectEvidenceStatus": "wiki-reviewed-effect",
+      "syndicateBinding": {
+        "ability": "Widow's Brood",
+        "source": "reviewed-current-wiki-augment-page"
+      }
+    },
+    {
       "uniqueName": "/Lotus/Powersuits/Pacifist/PacifistDodgeAugmentCard",
       "canonical": "Elusive Retribution",
       "displayName": "幻形惩戒",
@@ -13254,8 +13403,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -13578,8 +13727,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -15030,8 +15179,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "madurai",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -15118,8 +15267,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -25084,6 +25233,54 @@
       "effectEvidenceStatus": "reviewed-acquisition-effect"
     },
     {
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingRifleAmmoMaxModExpert",
+      "canonical": "Primed Ammo Chain",
+      "displayName": "弹链 Prime",
+      "type": "Arch-Gun Mod",
+      "typeDisplayName": "Archwing 枪械 Mod",
+      "category": "Mods",
+      "compatName": "Archgun",
+      "rarity": "Legendary",
+      "polarity": "naramon",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+200% Ammo Maximum"
+      ],
+      "maxRankEffectsZh": [
+        "+200% 弹药最大值"
+      ],
+      "traits": {
+        "prime": true,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.arch-gun-mod",
+        "compat.archgun",
+        "trait.prime"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Primed_Ammo_Chain"
+      },
+      "localEntryIds": [],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved",
+      "provenance": {
+        "source": "DE Languages.bin + WFM official variant identity",
+        "baseUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRifleAmmoMaxModExpert"
+      },
+      "effectEvidenceStatus": "reviewed-acquisition-effect"
+    },
+    {
       "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingRifleDamageAmountModExpert",
       "canonical": "Primed Rubedo-Lined Barrel",
       "displayName": "红晶枪管 Prime",
@@ -25128,6 +25325,149 @@
       "status": "complete",
       "reviewRequired": false,
       "evidenceStatus": "approved-acquisition",
+      "effectEvidenceStatus": "reviewed-acquisition-effect"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingWeaponFireDamageModExpert",
+      "canonical": "Primed Combustion Rounds",
+      "displayName": "燃烧弹头 Prime",
+      "type": "Arch-Gun Mod",
+      "typeDisplayName": "Archwing 枪械 Mod",
+      "category": "Mods",
+      "compatName": "Archgun",
+      "rarity": "Legendary",
+      "polarity": "madurai",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+187% Heat Damage"
+      ],
+      "maxRankEffectsZh": [
+        "+240% 火焰伤害"
+      ],
+      "traits": {
+        "prime": true,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.arch-gun-mod",
+        "compat.archgun",
+        "trait.prime"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Primed_Combustion_Rounds"
+      },
+      "localEntryIds": [],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved",
+      "provenance": {
+        "source": "current Wiki Prime identity",
+        "baseUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFireDamageMod"
+      },
+      "effectEvidenceStatus": "reviewed-acquisition-effect"
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingWeaponFreezeDamageModExpert",
+      "canonical": "Primed Polar Magazine",
+      "displayName": "极地弹仓 Prime",
+      "type": "Arch-Gun Mod",
+      "typeDisplayName": "Archwing 枪械 Mod",
+      "category": "Mods",
+      "compatName": "Archgun",
+      "rarity": "Legendary",
+      "polarity": "vazarin",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+187% Cold Damage"
+      ],
+      "maxRankEffectsZh": [
+        "+187% 冰冻伤害"
+      ],
+      "traits": {
+        "prime": true,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.arch-gun-mod",
+        "compat.archgun",
+        "trait.prime"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Primed_Polar_Magazine"
+      },
+      "localEntryIds": [],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved",
+      "provenance": {
+        "source": "current Wiki Prime identity",
+        "baseUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFreezeDamageMod"
+      }
+    },
+    {
+      "uniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingWeaponToxinDamageModExpert",
+      "canonical": "Primed Venomous Clip",
+      "displayName": "恶毒弹匣 Prime",
+      "type": "Arch-Gun Mod",
+      "typeDisplayName": "Archwing 枪械 Mod",
+      "category": "Mods",
+      "compatName": "Archgun",
+      "rarity": "Legendary",
+      "polarity": "vazarin",
+      "maxRank": 10,
+      "maxRankEffects": [
+        "+187% Toxin Damage"
+      ],
+      "maxRankEffectsZh": [
+        "+187% 毒素伤害"
+      ],
+      "traits": {
+        "prime": true,
+        "augment": false,
+        "exilus": false,
+        "utility": false,
+        "set": false,
+        "riven": false,
+        "pvp": false,
+        "archon": false,
+        "drift": false
+      },
+      "modSet": null,
+      "officialCategoryIds": [
+        "type.arch-gun-mod",
+        "compat.archgun",
+        "trait.prime"
+      ],
+      "wiki": {
+        "available": true,
+        "url": "https://wiki.warframe.com/w/Primed_Venomous_Clip"
+      },
+      "localEntryIds": [],
+      "status": "review-required",
+      "reviewRequired": true,
+      "evidenceStatus": "identity-present-acquisition-unapproved",
+      "provenance": {
+        "source": "current Wiki Prime identity",
+        "baseUniqueName": "/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponToxinDamageMod"
+      },
       "effectEvidenceStatus": "reviewed-acquisition-effect"
     },
     {
@@ -73740,8 +74080,8 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
-      "polarity": null,
+      "rarity": "Rare",
+      "polarity": "zenurik",
       "maxRank": 3,
       "maxRankEffects": [
         "官方效果模板包含随等级或技能变化的动态数值，当前公开导出未提供可验证的最终数值；具体数值以游戏内 Mod 界面为准。"
@@ -73828,7 +74168,7 @@
       "type": "Warframe Mod",
       "category": "Mods",
       "compatName": null,
-      "rarity": null,
+      "rarity": "Rare",
       "polarity": null,
       "maxRank": 3,
       "maxRankEffects": [

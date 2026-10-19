@@ -72,9 +72,10 @@ test('仅部件来源一致时合并部件名称，总图来源不同则保留�
   ]
   const collapsed = collapseSharedPartAcquisitionMethods(methods, { showProbabilities: false })
   assert.equal(collapsed.length, 2)
-  const text = renderAcquisition(methods, { showProbabilities: false })
+  const text = renderAcquisition(methods, { showProbabilities: false, displayName: '测试' })
   assert.match(text, /总图：/)
-  assert.match(text, /测试 枪管、枪托：/)
+  assert.match(text, /枪管、枪托：/)
+  assert.doesNotMatch(text, /测试 枪管/)
 })
 
 test('部件概率不同时不合并', () => {
@@ -99,4 +100,39 @@ test('部件概率不同时不合并', () => {
     }
   ]
   assert.equal(collapseSharedPartAcquisitionMethods(methods).length, 2)
+})
+
+test('氏族研究来源或条件不同不得误合并为整套蓝图', () => {
+  const methods = [
+    {
+      type: 'dojo-research',
+      scope: 'blueprint',
+      reviewStatus: 'approved',
+      sourceDisplayName: '能源实验室',
+      requirements: { type: 'none' },
+      variables: {}
+    },
+    {
+      type: 'dojo-research',
+      scope: 'component',
+      reviewStatus: 'approved',
+      sourceDisplayName: '能源实验室',
+      requirements: { type: 'none' },
+      variables: { partName: '测试 枪管' }
+    },
+    {
+      type: 'dojo-research',
+      scope: 'component',
+      reviewStatus: 'approved',
+      sourceDisplayName: '能源实验室',
+      requirements: { type: 'standing', rank: 1 },
+      variables: { partName: '测试 枪托' }
+    }
+  ]
+  const collapsed = collapseSharedPartAcquisitionMethods(methods)
+  assert.equal(collapsed.length, 2)
+  const text = renderAcquisition(methods, { displayName: '测试' })
+  assert.match(text, /总图及枪管：在氏族道场「能源实验室」复制蓝图/)
+  assert.match(text, /枪托：在氏族道场「能源实验室」复制蓝图/)
+  assert.doesNotMatch(text, /整套蓝图/)
 })

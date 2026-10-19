@@ -58,13 +58,13 @@
         },
         "routing": {
           "componentCategory": "frame-mixed-missions",
-          "blueprintCategory": null,
+          "blueprintCategory": "market",
           "componentVariables": {
             "sourceGroups": [
               {
                 "part": "Systems",
                 "partName": "系统",
-                "summary": "1-15 级间谍任务 C 轮；或金星比邻星域间谍 C 轮",
+                "summary": "T1 间谍 C 轮；或金星比邻星域间谍 C 轮",
                 "sourceCanonical": [
                   "Tier 1 Spy / C",
                   "Venus Proxima Spy / C"
@@ -73,7 +73,7 @@
               {
                 "part": "Chassis",
                 "partName": "机体",
-                "summary": "16-25 级间谍任务 C 轮；或海王星比邻星域间谍 C 轮",
+                "summary": "T2 间谍 C 轮；或海王星比邻星域间谍 C 轮",
                 "sourceCanonical": [
                   "Tier 2 Spy / C",
                   "Neptune Proxima Spy / C"
@@ -82,7 +82,7 @@
               {
                 "part": "Neuroptics",
                 "partName": "头部神经光元",
-                "summary": "26 级以上间谍任务 C 轮；或冥王星比邻星域间谍 C 轮",
+                "summary": "T3 间谍 C 轮；或冥王星比邻星域间谍 C 轮",
                 "sourceCanonical": [
                   "Tier 3 Spy / C",
                   "Pluto Proxima Spy / C"
@@ -100,12 +100,9 @@
             ]
           },
           "blueprintVariables": {
-            "type": "mission-node",
-            "locationId": "planet.eris",
-            "missionNodeId": "mission-node.cyath",
-            "rotation": "C"
+            "bpCost": 35000
           },
-          "blueprintSource": "official-component-drop",
+          "blueprintSource": "manual-override",
           "requirements": {
             "type": "none"
           },

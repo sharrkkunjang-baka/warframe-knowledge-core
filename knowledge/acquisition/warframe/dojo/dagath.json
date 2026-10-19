@@ -73,6 +73,10 @@
               {
                 "currencyId": "currency.vainthorn",
                 "amount": 102
+              },
+              {
+                "currencyId": "currency.credits",
+                "amount": 60000
               }
             ],
             "boosterPolicy": "currency-entity-metadata"
@@ -81,10 +85,15 @@
         }
       },
       "manual": {
+        "acquisitionText": "全套：于氏族道场——DAGATH的空阁处花费60000现金复制\n制造所需102个浮华荆棘：\n达到任意集团2级声望后可花费5千声望兑换深渊信标，随后前往谷神星左上角的深渊区域结算获得6~8个荆棘（钢铁8~12）\n不吃任何形式的加成\n全队仅需一张门票即可，可蹭车",
         "sources": {
           "all": "在氏族道场建造 Dagath 的空阁后获取蓝图（无需研究）；三个部件共需 102 浮华荆棘"
         },
         "dependencies": [
+          {
+            "currencyId": "currency.credits",
+            "amount": 60000
+          },
           {
             "currencyId": "currency.vainthorn",
             "amount": 102

@@ -1,0 +1,385 @@
+{
+  "id": "knowledge.acquisition.weapon.nunchasa-manual",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "霜冥差",
+  "subject": {
+    "canonical": "Nunchasa",
+    "displayName": "霜冥差",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Bows/Nunchasa/Nunchasa",
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "description": {
+    "canonical": "Narin's signature bow.",
+    "display": "舞霜剑姬的标志性弓。",
+    "localizationStatus": "reviewed-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.primary"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "primary",
+    "omegaAttenuation": null,
+    "disposition": null
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "vendor-exchange",
+      "crafting"
+    ],
+    "prime": {
+      "kind": "standard",
+      "status": null,
+      "methods": [
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "blueprint",
+          "sourceCanonical": "Cephalon Melica, Yuvan Peak (Earth)",
+          "sourceDisplayName": "地球·青春峰顶 中枢梅莉卡处兑换",
+          "currencyCanonical": "Entropic Kuva",
+          "currencyDisplayName": "熵之赤毒",
+          "amount": 200,
+          "quantity": 1,
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.cephalon-melica",
+            "locationId": "hub.yuvan-peak",
+            "currency": [
+              {
+                "currencyId": "currency.entropic-kuva",
+                "amount": 200
+              }
+            ],
+            "currencyCanonical": "Entropic Kuva",
+            "currencyDisplayName": "熵之赤毒",
+            "amount": 200
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "Official WARFRAME Wiki",
+            "url": "https://wiki.warframe.com/w/Nunchasa"
+          },
+          "sourceEntityId": "npc.cephalon-melica",
+          "npcId": "npc.cephalon-melica",
+          "locationId": "hub.yuvan-peak"
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "sourceCanonical": "Cephalon Melica, Yuvan Peak (Earth)",
+          "sourceDisplayName": "地球·青春峰顶 中枢梅莉卡处兑换",
+          "currencyCanonical": "Entropic Kuva",
+          "currencyDisplayName": "熵之赤毒",
+          "amount": 50,
+          "quantity": 1,
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.cephalon-melica",
+            "locationId": "hub.yuvan-peak",
+            "currency": [
+              {
+                "currencyId": "currency.entropic-kuva",
+                "amount": 50
+              }
+            ]
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "Official WARFRAME Wiki",
+            "url": "https://wiki.warframe.com/w/Nunchasa"
+          },
+          "sourceEntityId": "npc.cephalon-melica",
+          "npcId": "npc.cephalon-melica",
+          "locationId": "hub.yuvan-peak"
+        }
+      ]
+    },
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "vendor-exchange",
+        "partRefs": [
+          "Nunchasa Blueprint"
+        ],
+        "variables": {
+          "weaponName": "Nunchasa",
+          "partName": "总图"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "blueprint",
+            "sourceCanonical": "Cephalon Melica, Yuvan Peak (Earth)",
+            "sourceDisplayName": "地球·青春峰顶 中枢梅莉卡处兑换",
+            "currencyCanonical": "Entropic Kuva",
+            "currencyDisplayName": "熵之赤毒",
+            "amount": 200,
+            "quantity": 1,
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.cephalon-melica",
+              "locationId": "hub.yuvan-peak",
+              "currency": [
+                {
+                  "currencyId": "currency.entropic-kuva",
+                  "amount": 200
+                }
+              ],
+              "currencyCanonical": "Entropic Kuva",
+              "currencyDisplayName": "熵之赤毒",
+              "amount": 200
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "Official WARFRAME Wiki",
+              "url": "https://wiki.warframe.com/w/Nunchasa"
+            },
+            "sourceEntityId": "npc.cephalon-melica",
+            "npcId": "npc.cephalon-melica",
+            "locationId": "hub.yuvan-peak"
+          }
+        ]
+      },
+      {
+        "scope": "component",
+        "category": "vendor-exchange",
+        "partRefs": [
+          "Nunchasa Upper Limb",
+          "Nunchasa Lower Limb",
+          "Nunchasa Grip",
+          "Nunchasa String"
+        ],
+        "variables": {
+          "weaponName": "Nunchasa",
+          "partName": "上弦臂/下弦臂/弓弦/弓握"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "sourceCanonical": "Cephalon Melica, Yuvan Peak (Earth)",
+            "sourceDisplayName": "地球·青春峰顶 中枢梅莉卡处兑换",
+            "currencyCanonical": "Entropic Kuva",
+            "currencyDisplayName": "熵之赤毒",
+            "amount": 50,
+            "quantity": 1,
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.cephalon-melica",
+              "locationId": "hub.yuvan-peak",
+              "currency": [
+                {
+                  "currencyId": "currency.entropic-kuva",
+                  "amount": 50
+                }
+              ]
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "Official WARFRAME Wiki",
+              "url": "https://wiki.warframe.com/w/Nunchasa"
+            },
+            "sourceEntityId": "npc.cephalon-melica",
+            "npcId": "npc.cephalon-melica",
+            "locationId": "hub.yuvan-peak"
+          }
+        ]
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "part": "Blueprint",
+      "blueprintUniqueName": "Nunchasa Blueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Bows/Nunchasa/Nunchasa",
+      "credits": 20000,
+      "buildTimeSeconds": 86400,
+      "rushPlatinum": 35,
+      "outputQuantity": 1,
+      "ingredients": [
+        {
+          "uniqueName": "Nunchasa Upper Limb",
+          "displayName": "上弦臂",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "Nunchasa Lower Limb",
+          "displayName": "下弦臂",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "Nunchasa Grip",
+          "displayName": "弓握",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "Nunchasa String",
+          "displayName": "弓弦",
+          "quantity": 1
+        }
+      ],
+      "displayName": "霜冥差"
+    },
+    {
+      "part": "Upper Limb",
+      "blueprintUniqueName": "Nunchasa Upper Limb Blueprint",
+      "resultUniqueName": "Nunchasa Upper Limb",
+      "displayName": "上弦臂",
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "rushPlatinum": 25,
+      "outputQuantity": 1,
+      "ingredients": [
+        {
+          "uniqueName": "Alloy Plate",
+          "displayName": "合金板",
+          "quantity": 1700
+        },
+        {
+          "uniqueName": "Voidgel Orb",
+          "displayName": "虚空胶丸",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "Voidplume Pinion",
+          "displayName": "虚空羽翎",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "Plastids",
+          "displayName": "生物质",
+          "quantity": 800
+        }
+      ]
+    },
+    {
+      "part": "Lower Limb",
+      "blueprintUniqueName": "Nunchasa Lower Limb Blueprint",
+      "resultUniqueName": "Nunchasa Lower Limb",
+      "displayName": "下弦臂",
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "rushPlatinum": 25,
+      "outputQuantity": 1,
+      "ingredients": [
+        {
+          "uniqueName": "Alloy Plate",
+          "displayName": "合金板",
+          "quantity": 1700
+        },
+        {
+          "uniqueName": "Voidgel Orb",
+          "displayName": "虚空胶丸",
+          "quantity": 30
+        },
+        {
+          "uniqueName": "Voidplume Pinion",
+          "displayName": "虚空羽翎",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "Plastids",
+          "displayName": "生物质",
+          "quantity": 800
+        }
+      ]
+    },
+    {
+      "part": "String",
+      "blueprintUniqueName": "Nunchasa String Blueprint",
+      "resultUniqueName": "Nunchasa String",
+      "displayName": "弓弦",
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "rushPlatinum": 25,
+      "outputQuantity": 1,
+      "ingredients": [
+        {
+          "uniqueName": "Polymer Bundle",
+          "displayName": "聚合物束",
+          "quantity": 750
+        },
+        {
+          "uniqueName": "Gallium",
+          "displayName": "镓",
+          "quantity": 4
+        },
+        {
+          "uniqueName": "Oxium",
+          "displayName": "奥席金属",
+          "quantity": 100
+        },
+        {
+          "uniqueName": "Neurodes",
+          "displayName": "神经元",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "part": "Grip",
+      "blueprintUniqueName": "Nunchasa Grip Blueprint",
+      "resultUniqueName": "Nunchasa Grip",
+      "displayName": "弓握",
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "rushPlatinum": 25,
+      "outputQuantity": 1,
+      "ingredients": [
+        {
+          "uniqueName": "Cryotic",
+          "displayName": "永冻晶矿",
+          "quantity": 400
+        },
+        {
+          "uniqueName": "Salvage",
+          "displayName": "回收金属",
+          "quantity": 2500
+        },
+        {
+          "uniqueName": "Entrati Lanthorn",
+          "displayName": "英择谛灯笼",
+          "quantity": 2
+        },
+        {
+          "uniqueName": "Morphics",
+          "displayName": "非晶态合金",
+          "quantity": 5
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Nunchasa",
+      "label": "Official WARFRAME Wiki"
+    }
+  ],
+  "gameVersion": "Update 44.0",
+  "updatedAt": "2026-10-10",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "codex-official-wiki-audit"
+  ],
+  "tags": [
+    "acquisition",
+    "weapon",
+    "narin",
+    "official-wiki-audited"
+  ]
+}

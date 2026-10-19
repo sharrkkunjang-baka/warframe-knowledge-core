@@ -161,8 +161,10 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
     effectDetails: previous?.effectDetails?.length && !String(previous.effectDetails[0]).includes('官方效果模板包含')
       ? previous.effectDetails
       : mod.maxRankEffectsZh,
-    rarity: mod.rarity,
-    polarity: mod.polarity,
+    // Supplemental exports may not carry card metadata. Preserve reviewed
+    // values so a later sync cannot erase them with null placeholders.
+    rarity: mod.rarity || previous?.rarity || null,
+    polarity: mod.polarity || previous?.polarity || null,
     tradable: true,
     prerequisites: [],
     tips: [],
@@ -225,7 +227,7 @@ function compileSupplementalMods(rawItems) {
   const syndicateOffers = compileOfficialSyndicateOffers();
   const descriptionKeysByStem = new Map(Object.keys(en).filter(key => key.endsWith('Desc')).map(key => [augmentStem(key), key]));
   const knownNames = new Set(rawItems.map(item => normalize(item.name)));
-  const currentIdentities = new Map(JSON.parse(fs.readFileSync(currentModIdentitiesPath, 'utf8')).items.map(item => [normalize(item.canonical), item.uniqueName]));
+  const currentIdentities = new Map(JSON.parse(fs.readFileSync(currentModIdentitiesPath, 'utf8')).items.map(item => [normalize(item.canonical), item]));
   const records = [];
   for (const [nameKey, canonical] of Object.entries(en)) {
     if (!nameKey.endsWith('Name') || knownNames.has(normalize(canonical))) continue;
@@ -241,7 +243,9 @@ function compileSupplementalMods(rawItems) {
     const acquisitionMethods = offerMethods;
     const acquisitionComplete = acquisitionMethods.length > 0;
     records.push({
-      uniqueName: currentIdentities.get(normalize(canonical)) || `language:${nameKey}`,
+      uniqueName: currentIdentities.get(normalize(canonical))?.uniqueName || `language:${nameKey}`,
+      rarity: currentIdentities.get(normalize(canonical))?.rarity || null,
+      polarity: currentIdentities.get(normalize(canonical))?.polarity || null,
       canonical,
       displayName,
       localizationStatus: 'official-zh',
@@ -356,7 +360,102 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
         evidenceStatus: hasCompleteEntry ? 'approved-acquisition' : localEntryIds.length ? 'identity-present-acquisition-unapproved' : 'identity-missing'
       };
     });
+  // warframe-items currently omits some official Expert/Prime Mod variants.
+  // Keep their identity in the generated catalog so localization and card
+  // materialization can update automatically when the upstream package lags.
+  const omittedOfficialVariants = [{
+    uniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingRifleAmmoMaxModExpert',
+    canonical: 'Primed Ammo Chain',
+    displayName: '弹链 Prime',
+    type: 'Arch-Gun Mod',
+    typeDisplayName: getTypeDisplayName('Arch-Gun Mod'),
+    category: 'Mods',
+    compatName: 'Archgun',
+    rarity: 'Legendary',
+    polarity: 'naramon',
+    maxRank: 10,
+    maxRankEffects: ['+200% Ammo Maximum'],
+    maxRankEffectsZh: ['+200% 弹药最大值'],
+    traits: { prime: true, augment: false, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
+    modSet: null,
+    officialCategoryIds: ['type.arch-gun-mod', 'compat.archgun', 'trait.prime'],
+    wiki: { available: true, url: 'https://wiki.warframe.com/w/Primed_Ammo_Chain' },
+    localEntryIds: [],
+    status: 'review-required',
+    reviewRequired: true,
+    evidenceStatus: 'identity-present-acquisition-unapproved',
+    provenance: { source: 'DE Languages.bin + WFM official variant identity', baseUniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingRifleAmmoMaxModExpert' }
+  }, {
+    uniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingWeaponFireDamageModExpert',
+    canonical: 'Primed Combustion Rounds',
+    displayName: '燃烧弹头 Prime',
+    type: 'Arch-Gun Mod',
+    typeDisplayName: getTypeDisplayName('Arch-Gun Mod'),
+    category: 'Mods',
+    compatName: 'Archgun',
+    rarity: 'Legendary',
+    polarity: 'madurai',
+    maxRank: 10,
+    maxRankEffects: ['+187% Heat Damage'],
+    maxRankEffectsZh: ['+187% 火焰伤害'],
+    traits: { prime: true, augment: false, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
+    modSet: null,
+    officialCategoryIds: ['type.arch-gun-mod', 'compat.archgun', 'trait.prime'],
+    wiki: { available: true, url: 'https://wiki.warframe.com/w/Primed_Combustion_Rounds' },
+    localEntryIds: [],
+    status: 'review-required',
+    reviewRequired: true,
+    evidenceStatus: 'identity-present-acquisition-unapproved',
+    provenance: { source: 'current Wiki Prime identity', baseUniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFireDamageMod' }
+  }, {
+    uniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingWeaponToxinDamageModExpert',
+    canonical: 'Primed Venomous Clip',
+    displayName: '恶毒弹匣 Prime',
+    type: 'Arch-Gun Mod',
+    typeDisplayName: getTypeDisplayName('Arch-Gun Mod'),
+    category: 'Mods',
+    compatName: 'Archgun',
+    rarity: 'Legendary',
+    polarity: 'vazarin',
+    maxRank: 10,
+    maxRankEffects: ['+187% Toxin Damage'],
+    maxRankEffectsZh: ['+187% 毒素伤害'],
+    traits: { prime: true, augment: false, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
+    modSet: null,
+    officialCategoryIds: ['type.arch-gun-mod', 'compat.archgun', 'trait.prime'],
+    wiki: { available: true, url: 'https://wiki.warframe.com/w/Primed_Venomous_Clip' },
+    localEntryIds: [],
+    status: 'review-required',
+    reviewRequired: true,
+    evidenceStatus: 'identity-present-acquisition-unapproved',
+    provenance: { source: 'current Wiki Prime identity', baseUniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponToxinDamageMod' }
+  }, {
+    uniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/Expert/ArchwingWeaponFreezeDamageModExpert',
+    canonical: 'Primed Polar Magazine',
+    displayName: '极地弹仓 Prime',
+    type: 'Arch-Gun Mod',
+    typeDisplayName: getTypeDisplayName('Arch-Gun Mod'),
+    category: 'Mods',
+    compatName: 'Archgun',
+    rarity: 'Legendary',
+    polarity: 'vazarin',
+    maxRank: 10,
+    maxRankEffects: ['+187% Cold Damage'],
+    maxRankEffectsZh: ['+187% 冰冻伤害'],
+    traits: { prime: true, augment: false, exilus: false, utility: false, set: false, riven: false, pvp: false, archon: false, drift: false },
+    modSet: null,
+    officialCategoryIds: ['type.arch-gun-mod', 'compat.archgun', 'trait.prime'],
+    wiki: { available: true, url: 'https://wiki.warframe.com/w/Primed_Polar_Magazine' },
+    localEntryIds: [],
+    status: 'review-required',
+    reviewRequired: true,
+    evidenceStatus: 'identity-present-acquisition-unapproved',
+    provenance: { source: 'current Wiki Prime identity', baseUniqueName: '/Lotus/Upgrades/Mods/Archwing/Rifle/ArchwingWeaponFreezeDamageMod' }
+  }];
   const packageUniqueNames = new Set(packageMods.map(mod => mod.uniqueName));
+  for (const variant of omittedOfficialVariants) {
+    if (!packageUniqueNames.has(variant.uniqueName)) packageMods.push(variant);
+  }
   const supplementalMods = compileSupplementalMods(rawItems).filter(mod => !packageUniqueNames.has(mod.uniqueName)).map(mod => {
     const localEntryIds = [...new Set([...(acquisitionsByUniqueName.get(mod.uniqueName) || []), ...(acquisitionsByCanonical.get(normalize(mod.canonical)) || [])])].sort();
     const hasCompleteEntry = localEntryIds.some(id => hasApprovedAcquisition(acquisitionById.get(id)));

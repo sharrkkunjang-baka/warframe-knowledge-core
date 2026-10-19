@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "frames": [
+    {
+      "frameId": "/Lotus/Powersuits/Duelist/Duelist",
+      "canonical": "Narin",
+      "displayName": "Narin",
+      "isPrime": false,
+      "variantType": "VT_NORMAL",
+      "stats": {
+        "rank0": {
+          "health": 270,
+          "shield": 550,
+          "armor": 165,
+          "energy": 200,
+          "sprintSpeed": 1.1
+        },
+        "rank30": {
+          "health": 370,
+          "shield": 650,
+          "armor": 165,
+          "energy": 300,
+          "sprintSpeed": 1.1
+        }
+      },
+      "abilities": [
+        {
+          "slot": 1,
+          "abilityId": "/Lotus/Powersuits/Duelist/Abilities/NeoteAbility",
+          "canonical": "Neote",
+          "displayName": "寒霜疾剑",
+          "nameKey": "/Lotus/Language/Suits/NeoteAbilityName",
+          "iconAssetPath": "/Lotus/Interface/Icons/Abilities/Neote.png",
+          "imageName": "neote-3d235d68e2.png",
+          "helminthSubsumable": true,
+          "description": "以迅捷刺击快速叠加冰冻与穿刺异常状态。",
+          "renderStyle": "dark-alpha-mask"
+        },
+        {
+          "slot": 2,
+          "abilityId": "/Lotus/Powersuits/Duelist/Abilities/NaraemagiAbility",
+          "canonical": "Naraemagi",
+          "displayName": "冰翎御盾",
+          "nameKey": "/Lotus/Language/Suits/NaraemagiAbilityName",
+          "iconAssetPath": "/Lotus/Interface/Icons/Abilities/Naraemagi.png",
+          "imageName": "naraemagi-3971c883d1.png",
+          "helminthSubsumable": false,
+          "description": "汲取敌人身上的冰冻效果，以恢复护盾并获得超宏防。",
+          "renderStyle": "dark-alpha-mask"
+        },
+        {
+          "slot": 3,
+          "abilityId": "/Lotus/Powersuits/Duelist/Abilities/HakchumAbility",
+          "canonical": "Hakchum",
+          "displayName": "鹤影舞坠",
+          "nameKey": "/Lotus/Language/Suits/HakchumAbilityName",
+          "iconAssetPath": "/Lotus/Interface/Icons/Abilities/Hakchum.png",
+          "imageName": "hakchum-e4b501d711.png",
+          "helminthSubsumable": false,
+          "description": "腾空后俯冲轰击，形成冰霜穹顶并施加冰冻伤害易伤。",
+          "renderStyle": "dark-alpha-mask"
+        },
+        {
+          "slot": 4,
+          "abilityId": "/Lotus/Powersuits/Duelist/Abilities/NurinarimAbility",
+          "canonical": "Nurinarim",
+          "displayName": "降灵旋刃",
+          "nameKey": "/Lotus/Language/Suits/NurinarimAbilityName",
+          "iconAssetPath": "/Lotus/Interface/Icons/Abilities/Nurinarim.png",
+          "imageName": "nurinarim-0a789df6fb.png",
+          "helminthSubsumable": false,
+          "description": "施展剑舞并形成冰冻光环，同时释放强力的破甲能量波。",
+          "renderStyle": "dark-alpha-mask"
+        }
+      ],
+      "helminth": {
+        "mappedAbilityNames": [
+          "Neote"
+        ],
+        "matchedAbilityIds": [
+          "/Lotus/Powersuits/Duelist/Abilities/NeoteAbility"
+        ],
+        "specialCase": null
+      },
+      "passiveName": "桑戈代（Sangodae）",
+      "passiveDescription": "被冰冻异常影响的敌人被击杀时会掉落冰冻弹药包，为主武器与副武器提供一段时间的冰冻伤害加成。"
+    }
+  ]
+}

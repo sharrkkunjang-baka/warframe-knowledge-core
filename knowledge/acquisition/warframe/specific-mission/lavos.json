@@ -173,11 +173,51 @@
           "requirements": {
             "type": "none"
           },
-          "methods": []
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "blueprint",
+              "npcId": "npc.father",
+              "locationId": "hub.necralisk",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.father",
+                "locationId": "hub.necralisk",
+                "rank": 2,
+                "rankName": "熟人",
+                "amount": 5000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "user-reviewed-current-acquisition"
+              }
+            },
+            {
+              "type": "vendor-exchange",
+              "scope": "component",
+              "variables": {
+                "partName": "部件蓝图"
+              },
+              "npcId": "npc.father",
+              "locationId": "hub.necralisk",
+              "requirements": {
+                "type": "standing",
+                "npcId": "npc.father",
+                "locationId": "hub.necralisk",
+                "rank": 3,
+                "rankName": "同伴",
+                "amount": 5000
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "user-reviewed-current-acquisition"
+              }
+            }
+          ]
         }
       },
       "manual": {
-        "acquisitionText": "总图：Operation: Orphix Venom，C轮 5.56%/5.77%；Operation: Orphix Venom，A轮 11.11%；Entrati (Father), Acquaintance\n部件蓝图：Operation: Orphix Venom，C轮 5.56%/5.77%；Operation: Orphix Venom，A轮 11.11%；Entrati (Father), Associate"
+        "acquisitionText": "总图：奥影轮次奖励\n部件蓝图：奥影轮次奖励"
       }
     },
     "sources": [

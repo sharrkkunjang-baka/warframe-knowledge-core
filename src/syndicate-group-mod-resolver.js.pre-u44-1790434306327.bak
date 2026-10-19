@@ -1,0 +1,169 @@
+'use strict';
+
+const { normalize } = require('./resolver');
+
+function abilityStem(uniqueName) {
+  return String(uniqueName || '').split('/').pop().replace(/Ability$/i, '');
+}
+
+function augmentStem(uniqueName) {
+  return String(uniqueName || '')
+    .split('/')
+    .pop()
+    .replace(/PvPAugmentCard$/i, '')
+    .replace(/Augment\d*Card$/i, '')
+    .replace(/AugmentCard$/i, '');
+}
+
+const SYNDICATE_SLOT_CHARS = '1-4一二三四壹贰叁肆';
+const SYNDICATE_SLOT_PATTERN = `[${SYNDICATE_SLOT_CHARS}]`;
+const SYNDICATE_NUMERAL_PATTERN = '[0-9一二三四五六七八九壹贰叁肆伍陆柒捌玖]';
+const CHINESE_SLOT_MAP = Object.freeze({
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  壹: 1,
+  贰: 2,
+  叁: 3,
+  肆: 4
+});
+
+function parseSyndicateSlot(token) {
+  const raw = String(token || '').trim();
+  if (/^[1-4]$/.test(raw)) return Number(raw);
+  return CHINESE_SLOT_MAP[raw] || null;
+}
+
+function compactSyndicateQuery(query) {
+  return String(query || '').normalize('NFKC').replace(/[\s·・‧•_-]+/g, '');
+}
+
+function normalizeStem(stem) {
+  return String(stem || '').toLowerCase().replace(/armour/g, 'armor');
+}
+
+function isPvpAugment(mod) {
+  const uniqueName = String(mod?.uniqueName || '');
+  // Frame augment cards live under /Lotus/Powersuits/<Frame>/ even when DE internal names contain "PvP".
+  if (/\/Lotus\/Powersuits\/[^/]+\/[^/]*AugmentCard$/i.test(uniqueName)) return false;
+  return /\/PvPMods\//.test(uniqueName);
+}
+
+function frameAugmentPathPrefix(frame) {
+  const uniqueName = String(frame?.uniqueName || frame?.officialUniqueName || '');
+  const matched = uniqueName.match(/^(\/Lotus\/Powersuits\/[^/]+)/i);
+  if (matched) return matched[1];
+  return frame?.name ? `/Lotus/Powersuits/${frame.name}` : null;
+}
+
+function modBelongsToFrame(mod, frame) {
+  if (!mod || !frame) return false;
+  if (mod.compatName === frame.name) return true;
+  const prefix = frameAugmentPathPrefix(frame);
+  return prefix ? String(mod.uniqueName || '').startsWith(`${prefix}/`) : false;
+}
+
+function createSyndicateGroupModResolver(options = {}) {
+  const resolveWarframe = options.resolveWarframe;
+  const resolveWarframeMention = options.resolveWarframeMention;
+  const getOfficialMod = options.getOfficialMod;
+  const officialMods = options.officialMods || [];
+  const officialAbilities = options.officialAbilities || [];
+
+  function frameAbilities(frame) {
+    if (frame?.abilities?.length) return frame.abilities;
+    return officialAbilities
+      .filter(ability => (ability.owners || []).some(owner => owner.frameCanonical === frame?.name))
+      .sort((left, right) => Number(left.slot || 99) - Number(right.slot || 99))
+      .map(ability => ({
+        uniqueName: ability.officialUniqueName,
+        name: ability.canonical,
+        displayName: ability.displayName,
+        slot: ability.slot
+      }));
+  }
+
+  function modMatchesAbility(mod, ability) {
+    const stem = normalizeStem(abilityStem(ability.uniqueName));
+    const modStem = normalizeStem(augmentStem(mod.uniqueName));
+    if (modStem === stem || modStem.endsWith(stem) || stem.endsWith(modStem)) return true;
+    const canonical = normalizeStem(mod.canonical).replace(/[^a-z0-9]/g, '');
+    const abilityCanonical = normalizeStem(ability.name).replace(/[^a-z0-9]/g, '');
+    if (abilityCanonical && canonical.startsWith(abilityCanonical)) return true;
+    const displayName = String(ability.displayName || '').trim();
+    return displayName && (mod.effectDetails || []).some(text => String(text).startsWith(`${displayName}强化`));
+  }
+
+  function frameAugmentIndex(frame) {
+    const abilities = frameAbilities(frame);
+    if (!abilities.length) return [];
+    const augments = officialMods.filter(mod =>
+      mod.traits?.augment &&
+      modBelongsToFrame(mod, frame) &&
+      !isPvpAugment(mod)
+    );
+    return abilities.map((ability, index) => {
+      const slot = Number(ability.slot) || index + 1;
+      const mod = augments.find(candidate => modMatchesAbility(candidate, ability));
+      return mod ? { index: slot, ability, mod } : null;
+    }).filter(Boolean);
+  }
+
+  function inspect(query) {
+    const raw = String(query || '').trim();
+    if (!raw) return { status: 'not-syndicate-query', query: raw };
+    const compact = compactSyndicateQuery(raw);
+    if (/集团卡|集团·强化/i.test(compact)) return { status: 'not-syndicate-query', query: raw };
+    const match = compact.match(new RegExp(`^(.+?)集团(${SYNDICATE_NUMERAL_PATTERN})$`, 'i'));
+    if (!match) return { status: 'not-syndicate-query', query: raw };
+    const prefix = match[1];
+    const slot = parseSyndicateSlot(match[2]);
+    if (!slot) return { status: 'slot-out-of-range', query: raw, prefix, slotToken: match[2] };
+    const frame = resolveWarframe?.(prefix) || resolveWarframeMention?.(prefix)?.frame;
+    if (!frame) return { status: 'frame-not-found', query: raw, prefix, slot };
+    const entry = frameAugmentIndex(frame).find(item => item.index === slot);
+    if (!entry?.mod) return { status: 'augment-not-found', query: raw, prefix, slot, frame: { canonical: frame.name, displayName: frame.displayName || frame.name } };
+    return {
+      status: 'resolved',
+      query: raw,
+      prefix,
+      slot,
+      frame: { canonical: frame.name, displayName: frame.displayName || frame.name },
+      mod: entry.mod,
+      canonical: entry.mod.canonical,
+      displayName: entry.mod.displayName || entry.mod.canonical
+    };
+  }
+
+  function parse(query) {
+    const inspected = inspect(query);
+    return inspected.status === 'resolved' ? inspected : null;
+  }
+
+  function resolve(query) {
+    const parsed = parse(query);
+    if (!parsed) return null;
+    const mod = getOfficialMod?.(parsed.canonical) || parsed.mod;
+    return { ...parsed, mod, source: 'syndicate-group-index' };
+  }
+
+  return { inspect, parse, resolve, frameAugmentIndex };
+}
+
+function isSyndicateGroupModQuery(query) {
+  const compact = compactSyndicateQuery(query);
+  return !/集团卡|集团·强化/i.test(compact) && new RegExp(`^.+集团${SYNDICATE_NUMERAL_PATTERN}$`, 'i').test(compact);
+}
+
+module.exports = {
+  createSyndicateGroupModResolver,
+  abilityStem,
+  augmentStem,
+  normalizeStem,
+  parseSyndicateSlot,
+  compactSyndicateQuery,
+  isSyndicateGroupModQuery,
+  frameAugmentPathPrefix,
+  modBelongsToFrame
+};

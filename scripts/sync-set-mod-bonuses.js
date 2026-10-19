@@ -47,7 +47,7 @@ const FAMILIES = Object.freeze({
   'Hunter Set': {
     languageKey: '/Lotus/Language/Upgrades/WarframeHunterSetDesc',
     officialTemplate: '同伴对受到 <DT_SLASH_COLOR>切割状态影响的敌人造成 +|STAT1|% 伤害。',
-    detail: '同伴对受到切割状态影响的敌人造成 +25% 伤害。',
+    detail: '同伴对有切割异况的敌人额外造成的伤害中，基础伤害额外提升150%。',
     representative: 'Hunter Adrenaline'
   },
   'Jugulus Set': {

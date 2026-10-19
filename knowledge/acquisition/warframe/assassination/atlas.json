@@ -60,44 +60,16 @@
           "componentCategory": "frame-assassination",
           "blueprintCategory": "quest",
           "componentVariables": {
-            "locationId": "planet.eris",
-            "enemyId": "enemy.jordas-golem",
-            "sourceCanonical": "Eris/Jordas Golem (Assassination)"
+            "sourceText": "部件：得到总图后，阋神星刺杀 JORDAS 魔像"
           },
           "blueprintVariables": {
-            "type": "quest-repurchase",
-            "npcId": "npc.cephalon-simaris",
-            "questId": "quest.the-jordas-precept"
+            "questName": "Jordas 枢律",
+            "sourceText": "全套：等待普通无尽回廊轮换，具体查询“灵化表”\n总图：完成系列任务《Jordas 枢律》后赠送（更多总图则需完成后于中枢Simaris处花费5万声望兑换）"
           },
           "blueprintSource": "official-component-drop",
           "requirements": {
             "type": "none"
-          },
-          "methods": [
-            {
-              "type": "vendor-exchange",
-              "scope": "blueprint",
-              "npcId": "npc.cephalon-simaris",
-              "locationId": "hub.any-relay",
-              "requirements": {
-                "type": "standing",
-                "npcId": "npc.cephalon-simaris",
-                "locationId": "hub.any-relay",
-                "rank": null,
-                "rankName": null,
-                "blueprintRank": null,
-                "blueprintRankName": null,
-                "amount": 50000
-              },
-              "reviewStatus": "approved",
-              "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Atlas",
-                "section": "Acquisition",
-                "excerpt": "Atlas's main blueprint is awarded after completing The Jordas Precept Quest. Atlas's component blueprints can be obtained from defeating the Jordas Golem on Jordas Golem Assassinate , Eris , which is unlocked following the aforementioned quest. Additional main blueprints can be bought from Cephalon Simaris for 50,000 Standing 50,000 ."
-              }
-            }
-          ]
+          }
         }
       },
       "manual": {}

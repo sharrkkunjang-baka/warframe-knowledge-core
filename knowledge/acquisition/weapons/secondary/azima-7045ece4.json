@@ -46,7 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "official-drop",
+      "daily-tribute",
       "crafting"
     ],
     "prime": {
@@ -67,7 +67,15 @@
             "revisionId": 2787622
           },
           "partRefs": [],
-          "variables": {},
+          "variables": {
+            "milestoneDays": [
+              100,
+              300,
+              500,
+              700
+            ],
+            "displayPriority": 100
+          },
           "sourceEntityId": "acquisition-source.daily-tribute"
         },
         {
@@ -92,7 +100,10 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
           ],
-          "variables": {}
+          "variables": {
+            "exchangePrefix": "获取后，多余蓝图可",
+            "displayPriority": 10
+          }
         }
       ]
     },
@@ -122,7 +133,15 @@
               "revisionId": 2787622
             },
             "partRefs": [],
-            "variables": {},
+            "variables": {
+              "milestoneDays": [
+                100,
+                300,
+                500,
+                700
+              ],
+              "displayPriority": 100
+            },
             "sourceEntityId": "acquisition-source.daily-tribute"
           }
         ],
@@ -164,7 +183,10 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
             ],
-            "variables": {}
+            "variables": {
+              "exchangePrefix": "获取后，多余蓝图可",
+              "displayPriority": 10
+            }
           }
         ],
         "status": "complete"
@@ -198,7 +220,8 @@
             "provenance": {
               "source": "DE ExportRecipes",
               "recipeUniqueName": "/Lotus/Types/Recipes/Weapons/SundialPistolBlueprint"
-            }
+            },
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -275,7 +298,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-09-19T01:16:01.080Z",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

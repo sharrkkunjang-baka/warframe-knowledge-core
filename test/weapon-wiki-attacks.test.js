@@ -12,6 +12,9 @@ test('wiki 面板标题映射与伤害提取', () => {
   assert.equal(panel, '重型震地');
   const semi = resolvePanelTitle({ AttackName: 'Normal Attack', Trigger: 'Semi-Auto' }, { Trigger: 'Semi-Auto' });
   assert.equal(semi, '半自动');
+  assert.equal(resolvePanelTitle({ AttackName: 'Burst', Trigger: 'Burst' }, {}), '半自动');
+  assert.equal(resolvePanelTitle({ AttackName: 'Auto' }, {}), '全自动');
+  assert.equal(resolvePanelTitle({ AttackName: 'Charge' }, {}), '蓄力');
 });
 
 test('getAcquisitionCard 为武器附带 weaponInfo', () => {
@@ -29,8 +32,10 @@ test('已同步 Wiki 攻击页的普通武器显示完整攻击模式与灵化�
   assert.equal(card.identity.canonical, 'Nami Solo');
   assert.equal(card.weaponInfo.masteryReq, 6);
   assert.equal(card.weaponInfo.disposition, 1.43);
-  assert.equal(card.weaponInfo.panels.length, 4);
-  assert.deepEqual(card.weaponInfo.panels.map(panel => panel.title), ['普通攻击', '震地', '重型震地', '范围攻击']);
+  assert.equal(card.weaponInfo.panels.length, 2);
+  assert.deepEqual(card.weaponInfo.panels.map(panel => panel.title), ['平A', '震地']);
+  assert.deepEqual(card.weaponInfo.panels[0].rows.map(row => row.title), ['重击']);
+  assert.deepEqual(card.weaponInfo.panels[1].rows.map(row => row.title), ['重型震地']);
   assert.deepEqual(card.weaponInfo.incarnonPanel, {
     id: 'incarnon-/Lotus/Weapons/Tenno/Melee/Swords/CutlassAndPoignard/TennoCutlass',
     title: '灵化形态',
@@ -52,7 +57,7 @@ test('已同步 Wiki 攻击页的普通武器显示完整攻击模式与灵化�
     }
   });
   const panel = card.weaponInfo.panels[0];
-  assert.equal(panel.title, '普通攻击');
+  assert.equal(panel.title, '平A');
   assert.ok(panel.damage.some(item => item.canonical === 'Slash' && item.amount === 120.4));
   assert.ok(panel.stats.some(item => item.label === '暴击几率' && item.value === '15%'));
   assert.ok(panel.stats.some(item => item.label === '触发几率' && item.value === '25%'));
@@ -71,4 +76,15 @@ test('已同步 wiki attacks 时信条弧电离子枪含辐射伤害面板', () 
   const radial = info.panels.find(panel => panel.title === '范围攻击');
   assert.ok(radial);
   assert.ok(radial.damage.some(item => item.canonical === 'Radiation' && item.displayName === '辐射' && item.amount === 500));
+});
+
+test('复杂战刃面板压缩为六个不同语义模式', () => {
+  const core = createKnowledgeCore();
+  const card = core.getAcquisitionCard('战刃');
+  assert.equal(card.weaponInfo.panels.length, 5);
+  assert.deepEqual(card.weaponInfo.panels.map(panel => panel.title), [
+    '平A', '投掷', '蓄力投掷', '蓄力', '震地'
+  ]);
+  assert.deepEqual(card.weaponInfo.panels[0].rows.map(row => row.title), ['重击']);
+  assert.equal(card.weaponInfo.panels.filter(panel => panel.title === '范围攻击').length, 0);
 });

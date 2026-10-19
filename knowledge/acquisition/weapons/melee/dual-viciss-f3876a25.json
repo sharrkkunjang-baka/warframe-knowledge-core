@@ -55,10 +55,19 @@
       "status": null,
       "methods": [
         {
-          "type": "syndicate-exchange",
+          "type": "vendor-or-syndicate-exchange",
           "scope": "blueprint",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 15000,
           "requirements": {
-            "type": "standing"
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 15000
           },
           "reviewStatus": "approved",
           "provenance": {
@@ -70,8 +79,65 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
           ],
-          "variables": {},
-          "npcId": "npc.minerva"
+          "variables": {}
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 5000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 5000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Dual_Viciss?oldid=2792912",
+            "pageTitle": "Dual Viciss",
+            "revisionId": 2792912
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
+          ],
+          "variables": {
+            "partName": "双子恶行 刀刃"
+          }
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 5000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 5000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Dual_Viciss?oldid=2792912",
+            "pageTitle": "Dual Viciss",
+            "revisionId": 2792912
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
+          ],
+          "variables": {
+            "partName": "双子恶行 握柄"
+          }
         }
       ]
     },
@@ -91,10 +157,19 @@
         },
         "methods": [
           {
-            "type": "syndicate-exchange",
+            "type": "vendor-or-syndicate-exchange",
             "scope": "blueprint",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 15000,
             "requirements": {
-              "type": "standing"
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 15000
             },
             "reviewStatus": "approved",
             "provenance": {
@@ -106,8 +181,7 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/LasGooSicklesPlayerWeaponBlueprint"
             ],
-            "variables": {},
-            "npcId": "npc.minerva"
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,8 +198,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 5000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Dual_Viciss?oldid=2792912",
+              "pageTitle": "Dual Viciss",
+              "revisionId": 2792912
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade"
+            ],
+            "variables": {
+              "partName": "双子恶行 刀刃"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -139,8 +243,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 5000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Dual_Viciss?oldid=2792912",
+              "pageTitle": "Dual Viciss",
+              "revisionId": 2792912
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt"
+            ],
+            "variables": {
+              "partName": "双子恶行 握柄"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -230,24 +364,24 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-28",
-  "reviewStatus": "review",
+  "updatedAt": "2026-10-10",
+  "reviewStatus": "approved",
   "reviewedBy": [],
-  "status": "review-required",
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponBlade",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasGooSicklesPlayerWeaponHilt",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

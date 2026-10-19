@@ -46,7 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "market",
+      "dojo-research",
       "crafting"
     ],
     "prime": {
@@ -54,28 +54,30 @@
       "status": null,
       "methods": [
         {
-          "type": "market-purchase",
+          "type": "dojo-research",
           "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
-          ],
           "requirements": {
             "type": "none"
           },
           "reviewStatus": "approved",
           "provenance": {
-            "source": "installed-warframe-items",
-            "field": "bpCost"
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Akstiletto?oldid=2791900",
+            "pageTitle": "Akstiletto",
+            "revisionId": 2791900
           },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
+          ],
           "variables": {},
-          "sourceEntityId": "interface.market"
+          "sourceEntityId": "dojo.tenno-lab"
         }
       ]
     },
     "routes": [
       {
         "scope": "blueprint",
-        "category": "market",
+        "category": "dojo-research",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
         ],
@@ -88,21 +90,23 @@
         },
         "methods": [
           {
-            "type": "market-purchase",
+            "type": "dojo-research",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
-            ],
             "requirements": {
               "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "installed-warframe-items",
-              "field": "bpCost"
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Akstiletto?oldid=2791900",
+              "pageTitle": "Akstiletto",
+              "revisionId": 2791900
             },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/TennoUziBlueprint"
+            ],
             "variables": {},
-            "sourceEntityId": "interface.market"
+            "sourceEntityId": "dojo.tenno-lab"
           }
         ],
         "status": "complete"
@@ -213,7 +217,7 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-10-10",
   "reviewStatus": "approved",
   "reviewedBy": [
     "official-evidence-closure"

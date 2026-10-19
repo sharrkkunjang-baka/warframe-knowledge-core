@@ -46,7 +46,6 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "market",
       "official-drop",
       "crafting"
     ],
@@ -54,23 +53,6 @@
       "kind": "standard",
       "status": null,
       "methods": [
-        {
-          "type": "market-purchase",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
-          ],
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "installed-warframe-items",
-            "field": "bpCost"
-          },
-          "variables": {},
-          "sourceEntityId": "interface.market"
-        },
         {
           "type": "dojo-research",
           "scope": "blueprint",
@@ -173,7 +155,7 @@
     "routes": [
       {
         "scope": "blueprint",
-        "category": "market",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
         ],
@@ -185,23 +167,6 @@
           "type": "none"
         },
         "methods": [
-          {
-            "type": "market-purchase",
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/ArchRocketCrossbowBlueprint"
-            ],
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "bpCost"
-            },
-            "variables": {},
-            "sourceEntityId": "interface.market"
-          },
           {
             "type": "dojo-research",
             "scope": "blueprint",

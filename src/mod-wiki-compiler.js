@@ -3,6 +3,7 @@
 const path = require('node:path')
 const { parseMediaWikiTable, cleanCell, extractCells, normalizeHeader } = require('./mediawiki-table')
 const { loadEntityRegistries } = require('./entities')
+const { extractSimarisStandingAmount } = require('./acquisition-protocol')
 
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'))
 const NODES = require(path.join(ITEMS_ROOT, 'data', 'json', 'Node.json'))
@@ -135,6 +136,22 @@ function compileAcquisitionProseMethod(excerpt, page, section) {
   if (match) return { type: 'companion-included', sourceItemCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
   match = excerpt.match(/(?:given one copy every time you claim|automatically acquired upon claiming) (?:an? |the )?(.+?) from your Foundry/i)
   if (match) return { type: 'companion-included', sourceItemCanonical: cleanCell(match[1]), chance: null, quantity: 1, availability: 'guaranteed-when-requirements-met', reviewStatus: 'draft', provenance: evidenceProvenance(page, section, excerpt) }
+  const simarisStanding = extractSimarisStandingAmount(excerpt)
+  if (Number.isFinite(simarisStanding)) {
+    const amount = simarisStanding
+    return {
+      type: 'vendor-or-syndicate-exchange',
+      sourceEntityId: 'npc.cephalon-simaris',
+      locationId: 'hub.any-relay',
+      requirements: { type: 'standing', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', amount },
+      standing: amount,
+      chance: null,
+      quantity: 1,
+      availability: 'guaranteed-when-requirements-met',
+      reviewStatus: 'draft',
+      provenance: evidenceProvenance(page, section, excerpt)
+    }
+  }
   if (/Void Trader|Baro Ki['’]Teer/i.test(excerpt) && /(?:purchased|bought|sale|offered|sold)/i.test(excerpt)) {
     const credits = repeatedPrice(excerpt, 'credits')
     const ducats = repeatedPrice(excerpt, 'ducats')

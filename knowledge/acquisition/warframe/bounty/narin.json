@@ -1,0 +1,572 @@
+[
+  {
+    "id": "knowledge.acquisition.warframe.narin",
+    "kind": "knowledge",
+    "module": "acquisition",
+    "title": "Narin",
+    "subject": {
+      "canonical": "Narin",
+      "displayName": "Narin",
+      "category": "frame",
+      "officialUniqueName": "/Lotus/Powersuits/Duelist/Duelist"
+    },
+    "prerequisites": [],
+    "methodRefs": [],
+    "frameAcquisition": {
+      "generated": {
+        "officialUniqueName": "/Lotus/Powersuits/Duelist/Duelist",
+        "canonical": "Narin",
+        "displayName": "Narin",
+        "isPrime": false,
+        "productCategory": "Suits",
+        "introducedAt": null,
+        "components": [
+          {
+            "part": "Blueprint",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistBlueprint"
+          },
+          {
+            "part": "Neuroptics",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetBlueprint"
+          },
+          {
+            "part": "Chassis",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisBlueprint"
+          },
+          {
+            "part": "Systems",
+            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsBlueprint"
+          }
+        ],
+        "routing": {
+          "componentCategory": "frame-bounty",
+          "blueprintCategory": "mixed-missions",
+          "blueprintSource": "reviewed-update-44",
+          "blueprintVariables": {
+            "sourceText": "总图：歼灭 移动防御"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "componentVariables": {
+            "hubs": [
+              {
+                "locationId": "hub.yuvan-peak",
+                "npcId": "npc.cephalon-melica"
+              }
+            ],
+            "sourceGroups": [
+              {
+                "part": "Neuroptics",
+                "partName": "头部",
+                "summary": "覆涌（C轮概率最高）",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "hub.zariman",
+                    "missionNodeId": "mission.tuvul-commons-solnode232",
+                    "rotation": "C"
+                  }
+                ],
+                "sourceCanonical": [
+                  "Zariman/Tuvul Commons (Void Cascade), Rotation C"
+                ]
+              },
+              {
+                "part": "Systems",
+                "partName": "系统",
+                "summary": "决战（C轮概率最高）",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "hub.zariman",
+                    "missionNodeId": "mission.oro-works-solnode233",
+                    "rotation": "C"
+                  }
+                ],
+                "sourceCanonical": [
+                  "Zariman/Oro Works (Void Armageddon), Rotation C"
+                ]
+              },
+              {
+                "part": "Chassis",
+                "partName": "机体",
+                "summary": "洪流（C轮概率最高）",
+                "sources": [
+                  {
+                    "type": "mission-node",
+                    "locationId": "hub.zariman",
+                    "missionNodeId": "mission.everview-arc-solnode230",
+                    "rotation": "C"
+                  }
+                ],
+                "sourceCanonical": [
+                  "Zariman/Everview Arc (Void Flood), Rotation C"
+                ]
+              }
+            ],
+            "presentation": {
+              "layout": "component-route-cards",
+              "introText": [
+                "全套：地球·青春峰顶——中枢梅莉卡 花费共790熵之赤毒兑换",
+                "熵之赤毒：在扎里曼任务中击杀熵卓越者掉落3~7个 不吃任何资源加成与寻回者！",
+                "或在如下扎里曼任务中作为轮次奖励刷取："
+              ]
+            }
+          },
+          "methods": [
+            {
+              "type": "vendor-exchange",
+              "scope": "all-blueprints",
+              "sourceEntityId": "npc.cephalon-melica",
+              "npcId": "npc.cephalon-melica",
+              "locationId": "hub.yuvan-peak",
+              "requirements": {
+                "type": "currency",
+                "usage": "exchange",
+                "npcId": "npc.cephalon-melica",
+                "locationId": "hub.yuvan-peak",
+                "currency": [
+                  {
+                    "currencyId": "currency.entropic-kuva",
+                    "amount": 790
+                  }
+                ]
+              },
+              "reviewStatus": "approved",
+              "provenance": {
+                "source": "reviewed-update-44",
+                "pageTitle": "Update 44: Iceblade of Narin"
+              }
+            }
+          ]
+        }
+      },
+      "manual": {
+        "recipes": [
+          {
+            "part": "Blueprint",
+            "credits": 25000,
+            "buildTimeSeconds": 259200,
+            "outputQuantity": 1,
+            "ingredients": [
+              {
+                "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetComponent",
+                "displayName": "头部蓝图",
+                "quantity": 1,
+                "canonical": "Narin Neuroptics",
+                "parentCanonical": "Narin",
+                "part": "Neuroptics",
+                "stableEntityId": "frame-component:narin:neuroptics",
+                "assetRole": "warframe-neuroptics-component-icon"
+              },
+              {
+                "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisComponent",
+                "displayName": "机体蓝图",
+                "quantity": 1,
+                "canonical": "Narin Chassis",
+                "parentCanonical": "Narin",
+                "part": "Chassis",
+                "stableEntityId": "frame-component:narin:chassis",
+                "assetRole": "warframe-chassis-component-icon"
+              },
+              {
+                "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsComponent",
+                "displayName": "系统蓝图",
+                "quantity": 1,
+                "canonical": "Narin Systems",
+                "parentCanonical": "Narin",
+                "part": "Systems",
+                "stableEntityId": "frame-component:narin:systems",
+                "assetRole": "warframe-systems-component-icon"
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+                "displayName": "奥罗金电池",
+                "quantity": 1
+              }
+            ],
+            "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistBlueprint",
+            "resultUniqueName": "/Lotus/Powersuits/Duelist/Duelist"
+          },
+          {
+            "part": "Neuroptics",
+            "credits": 15000,
+            "buildTimeSeconds": 43200,
+            "outputQuantity": 1,
+            "ingredients": [
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+                "displayName": "生物质",
+                "quantity": 2900
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+                "displayName": "神经传感器",
+                "quantity": 4
+              },
+              {
+                "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+                "displayName": "英择谛灯笼",
+                "quantity": 6
+              },
+              {
+                "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
+                "displayName": "凶魂浆质",
+                "quantity": 400
+              }
+            ],
+            "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetBlueprint",
+            "resultUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetBlueprint"
+          },
+          {
+            "part": "Chassis",
+            "credits": 15000,
+            "buildTimeSeconds": 43200,
+            "outputQuantity": 1,
+            "ingredients": [
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+                "displayName": "合金板",
+                "quantity": 3300
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+                "displayName": "聚合物束",
+                "quantity": 1200
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+                "displayName": "永冻晶矿",
+                "quantity": 800
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+                "displayName": "非晶态合金",
+                "quantity": 10
+              }
+            ],
+            "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisBlueprint",
+            "resultUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisBlueprint"
+          },
+          {
+            "part": "Systems",
+            "credits": 15000,
+            "buildTimeSeconds": 43200,
+            "outputQuantity": 1,
+            "ingredients": [
+              {
+                "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemA",
+                "displayName": "虚空胶丸",
+                "quantity": 55
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+                "displayName": "氩结晶",
+                "quantity": 2
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+                "displayName": "电路",
+                "quantity": 2100
+              },
+              {
+                "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+                "displayName": "控制模块",
+                "quantity": 10
+              }
+            ],
+            "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsBlueprint",
+            "resultUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsBlueprint"
+          }
+        ]
+      }
+    },
+    "sources": [
+      {
+        "url": "https://browse.wf/warframe-public-export-plus/ExportWarframes.json",
+        "label": "Warframe Public Export - Suits"
+      }
+    ],
+    "gameVersion": "current",
+    "updatedAt": "2026-09-25",
+    "reviewStatus": "approved",
+    "reviewedBy": [
+      "official-sync"
+    ],
+    "tags": [
+      "acquisition",
+      "warframe",
+      "official-generated"
+    ],
+    "summary": "舞霜剑姬的官方战甲获取、制作材料与部件数据。",
+    "crafting": {
+      "recipes": [
+        {
+          "part": "Blueprint",
+          "credits": 25000,
+          "buildTimeSeconds": 259200,
+          "outputQuantity": 1,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetComponent",
+              "displayName": "头部蓝图",
+              "quantity": 1,
+              "canonical": "Narin Neuroptics",
+              "parentCanonical": "Narin",
+              "part": "Neuroptics",
+              "stableEntityId": "frame-component:narin:neuroptics",
+              "assetRole": "warframe-neuroptics-component-icon"
+            },
+            {
+              "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisComponent",
+              "displayName": "机体蓝图",
+              "quantity": 1,
+              "canonical": "Narin Chassis",
+              "parentCanonical": "Narin",
+              "part": "Chassis",
+              "stableEntityId": "frame-component:narin:chassis",
+              "assetRole": "warframe-chassis-component-icon"
+            },
+            {
+              "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsComponent",
+              "displayName": "系统蓝图",
+              "quantity": 1,
+              "canonical": "Narin Systems",
+              "parentCanonical": "Narin",
+              "part": "Systems",
+              "stableEntityId": "frame-component:narin:systems",
+              "assetRole": "warframe-systems-component-icon"
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+              "displayName": "奥罗金电池",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "part": "Neuroptics",
+          "credits": 15000,
+          "buildTimeSeconds": 43200,
+          "outputQuantity": 1,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+              "displayName": "生物质",
+              "quantity": 2900
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+              "displayName": "神经传感器",
+              "quantity": 4
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+              "displayName": "英择谛灯笼",
+              "quantity": 6
+            },
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
+              "displayName": "凶魂浆质",
+              "quantity": 400
+            }
+          ]
+        },
+        {
+          "part": "Chassis",
+          "credits": 15000,
+          "buildTimeSeconds": 43200,
+          "outputQuantity": 1,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+              "displayName": "合金板",
+              "quantity": 3300
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+              "displayName": "聚合物束",
+              "quantity": 1200
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+              "displayName": "永冻晶矿",
+              "quantity": 800
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+              "displayName": "非晶态合金",
+              "quantity": 10
+            }
+          ]
+        },
+        {
+          "part": "Systems",
+          "credits": 15000,
+          "buildTimeSeconds": 43200,
+          "outputQuantity": 1,
+          "ingredients": [
+            {
+              "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemA",
+              "displayName": "虚空胶丸",
+              "quantity": 55
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+              "displayName": "氩结晶",
+              "quantity": 2
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+              "displayName": "电路",
+              "quantity": 2100
+            },
+            {
+              "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+              "displayName": "控制模块",
+              "quantity": 10
+            }
+          ]
+        }
+      ]
+    },
+    "recipes": [
+      {
+        "part": "Blueprint",
+        "credits": 25000,
+        "buildTimeSeconds": 259200,
+        "outputQuantity": 1,
+        "ingredients": [
+          {
+            "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetComponent",
+            "displayName": "头部蓝图",
+            "quantity": 1,
+            "canonical": "Narin Neuroptics",
+            "parentCanonical": "Narin",
+            "part": "Neuroptics",
+            "stableEntityId": "frame-component:narin:neuroptics",
+            "assetRole": "warframe-neuroptics-component-icon"
+          },
+          {
+            "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisComponent",
+            "displayName": "机体蓝图",
+            "quantity": 1,
+            "canonical": "Narin Chassis",
+            "parentCanonical": "Narin",
+            "part": "Chassis",
+            "stableEntityId": "frame-component:narin:chassis",
+            "assetRole": "warframe-chassis-component-icon"
+          },
+          {
+            "uniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsComponent",
+            "displayName": "系统蓝图",
+            "quantity": 1,
+            "canonical": "Narin Systems",
+            "parentCanonical": "Narin",
+            "part": "Systems",
+            "stableEntityId": "frame-component:narin:systems",
+            "assetRole": "warframe-systems-component-icon"
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+            "displayName": "奥罗金电池",
+            "quantity": 1
+          }
+        ],
+        "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistBlueprint",
+        "resultUniqueName": "/Lotus/Powersuits/Duelist/Duelist"
+      },
+      {
+        "part": "Neuroptics",
+        "credits": 15000,
+        "buildTimeSeconds": 43200,
+        "outputQuantity": 1,
+        "ingredients": [
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/Plastids",
+            "displayName": "生物质",
+            "quantity": 2900
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/NeuralSensor",
+            "displayName": "神经传感器",
+            "quantity": 4
+          },
+          {
+            "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemB",
+            "displayName": "英择谛灯笼",
+            "quantity": 6
+          },
+          {
+            "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/VoidWraithItem",
+            "displayName": "凶魂浆质",
+            "quantity": 400
+          }
+        ],
+        "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetBlueprint",
+        "resultUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetBlueprint"
+      },
+      {
+        "part": "Chassis",
+        "credits": 15000,
+        "buildTimeSeconds": 43200,
+        "outputQuantity": 1,
+        "ingredients": [
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/AlloyPlate",
+            "displayName": "合金板",
+            "quantity": 3300
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/PolymerBundle",
+            "displayName": "聚合物束",
+            "quantity": 1200
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/Cryotic",
+            "displayName": "永冻晶矿",
+            "quantity": 800
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/Morphic",
+            "displayName": "非晶态合金",
+            "quantity": 10
+          }
+        ],
+        "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisBlueprint",
+        "resultUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisBlueprint"
+      },
+      {
+        "part": "Systems",
+        "credits": 15000,
+        "buildTimeSeconds": 43200,
+        "outputQuantity": 1,
+        "ingredients": [
+          {
+            "uniqueName": "/Lotus/Types/Gameplay/Zariman/Resources/ZarimanMiscItemA",
+            "displayName": "虚空胶丸",
+            "quantity": 55
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/ArgonCrystal",
+            "displayName": "氩结晶",
+            "quantity": 2
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/Circuits",
+            "displayName": "电路",
+            "quantity": 2100
+          },
+          {
+            "uniqueName": "/Lotus/Types/Items/MiscItems/ControlModule",
+            "displayName": "控制模块",
+            "quantity": 10
+          }
+        ],
+        "blueprintUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsBlueprint",
+        "resultUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsBlueprint"
+      }
+    ]
+  }
+]

@@ -1,240 +1,199 @@
 [
-  {
-    "id": "knowledge.acquisition.warframe.harrow",
-    "kind": "knowledge",
-    "module": "acquisition",
-    "title": "Harrow",
-    "subject": {
-      "canonical": "Harrow",
-      "displayName": "Harrow",
-      "category": "frame",
-      "officialUniqueName": "/Lotus/Powersuits/Priest/Priest",
-      "categoryRefs": [
-        "frame-mixed-missions"
-      ]
-    },
-    "prerequisites": [],
-    "methodRefs": [],
-    "frameAcquisition": {
-      "generated": {
-        "officialUniqueName": "/Lotus/Powersuits/Priest/Priest",
-        "canonical": "Harrow",
-        "displayName": "Harrow",
-        "isPrime": false,
-        "productCategory": "Suits",
-        "introducedAt": 1498705220,
-        "components": [
-          {
-            "part": "Blueprint",
-            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/PriestBlueprint"
-          },
-          {
-            "part": "Neuroptics",
-            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/HarrowHelmetComponent"
-          },
-          {
-            "part": "Chassis",
-            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/HarrowChassisComponent"
-          },
-          {
-            "part": "Systems",
-            "officialUniqueName": "/Lotus/Types/Recipes/WarframeRecipes/HarrowSystemsComponent"
-          }
-        ],
-        "acquisitionCategories": {
-          "categoryRefs": [
-            "frame-mixed-missions"
-          ],
-          "status": "classified",
-          "source": {
-            "type": "wiki-page",
-            "pageTitle": "Harrow",
-            "pageId": 1152644,
-            "revisionId": 2760550,
-            "sourceDatabase": {
-              "sha256": "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
-            }
-          }
-        },
-        "routing": {
-          "componentCategory": "frame-mixed-missions",
-          "blueprintCategory": "quest",
-          "componentVariables": {
-            "sourceGroups": [
-              {
-                "part": "Neuroptics",
-                "partName": "头部神经光元",
-                "sources": [
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.kuva-fortress",
-                    "missionNodeId": "mission-node.taveuni",
-                    "rotation": "C",
-                    "chance": 0.12
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.kuva-fortress",
-                    "missionNodeId": "mission-node.pago",
-                    "rotation": "A",
-                    "chance": 0.1667
-                  }
-                ],
-                "sourceCanonical": [
-                  "Kuva Fortress/Taveuni (Survival), Rotation C",
-                  "Kuva Fortress/Pago (Spy), Rotation A"
-                ],
-                "unresolvedSources": []
-              },
-              {
-                "part": "Chassis",
-                "partName": "机体",
-                "sources": [
-                  {
-                    "type": "acquisition-source",
-                    "sourceId": "source.void-fissure-corrupted-enemy",
-                    "chance": 0.03
-                  }
-                ],
-                "sourceCanonical": [
-                  "Void Fissure Corrupted Enemy"
-                ],
-                "unresolvedSources": []
-              },
-              {
-                "part": "Systems",
-                "partName": "系统",
-                "sources": [
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.saturn",
-                    "missionNodeId": "mission-node.caracol",
-                    "rotation": "B",
-                    "chance": 0.0545
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.neptune",
-                    "missionNodeId": "mission-node.yursa",
-                    "rotation": "B",
-                    "chance": 0.06
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.phobos",
-                    "missionNodeId": "mission-node.memphis",
-                    "rotation": "B",
-                    "chance": 0.06
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.kuva-fortress",
-                    "missionNodeId": "mission-node.taveuni",
-                    "rotation": "C",
-                    "chance": 0.12
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.neptune",
-                    "missionNodeId": "mission-node.yursa",
-                    "rotation": "C",
-                    "chance": 0.15
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.phobos",
-                    "missionNodeId": "mission-node.memphis",
-                    "rotation": "C",
-                    "chance": 0.15
-                  },
-                  {
-                    "type": "mission-node",
-                    "locationId": "planet.saturn",
-                    "missionNodeId": "mission-node.caracol",
-                    "rotation": "C",
-                    "chance": 0.15
-                  }
-                ],
-                "sourceCanonical": [
-                  "Saturn/Caracol (Defection), Rotation B",
-                  "Neptune/Yursa (Defection), Rotation B",
-                  "Phobos/Memphis (Defection), Rotation B",
-                  "Kuva Fortress/Taveuni (Survival), Rotation C",
-                  "Neptune/Yursa (Defection), Rotation C",
-                  "Phobos/Memphis (Defection), Rotation C",
-                  "Saturn/Caracol (Defection), Rotation C"
-                ],
-                "unresolvedSources": []
-              }
-            ],
-            "sourceCanonical": [
-              "Kuva Fortress/Taveuni (Survival), Rotation C",
-              "Kuva Fortress/Pago (Spy), Rotation A",
-              "Void Fissure Corrupted Enemy",
-              "Saturn/Caracol (Defection), Rotation B",
-              "Neptune/Yursa (Defection), Rotation B",
-              "Phobos/Memphis (Defection), Rotation B",
-              "Neptune/Yursa (Defection), Rotation C",
-              "Phobos/Memphis (Defection), Rotation C",
-              "Saturn/Caracol (Defection), Rotation C"
-            ],
-            "unresolvedSources": []
-          },
-          "blueprintVariables": {
-            "type": "quest-repurchase",
-            "npcId": "npc.cephalon-simaris",
-            "questId": "quest.chains-of-harrow"
-          },
-          "blueprintSource": "official-component-drop",
-          "requirements": {
-            "type": "none"
-          },
-          "methods": [
-            {
-              "type": "vendor-exchange",
-              "scope": "blueprint",
-              "npcId": "npc.cephalon-simaris",
-              "locationId": "hub.any-relay",
-              "requirements": {
-                "type": "standing",
-                "npcId": "npc.cephalon-simaris",
-                "locationId": "hub.any-relay",
-                "rank": null,
-                "rankName": null,
-                "blueprintRank": null,
-                "blueprintRankName": null,
-                "amount": 50000
-              },
-              "reviewStatus": "approved",
-              "provenance": {
-                "source": "local-wiki-sqlite",
-                "pageTitle": "Harrow",
-                "section": "Acquisition",
-                "excerpt": "Harrow's main blueprint is awarded upon completion of the Chains of Harrow quest. The Chassis blueprint is acquired from defeating Void Fissure enemies, the Neuroptics blueprint can be found from Rotation A Spy vaults on Pago, Kuva Fortress , and the Systems blueprint is rewarded from Defection missions on Rotations B and C. Both Neuroptics and Systems can also be obtained from Rotation C Kuva Survival on Taveuni , Kuva Fortress. Additional main blueprints can be bought from Cephalon Simaris for 50,000 Standing 50,000 ."
-              }
-            }
-          ]
-        }
-      },
-      "manual": {}
-    },
-    "sources": [
-      {
-        "url": "https://browse.wf/warframe-public-export-plus/ExportWarframes.json",
-        "label": "Warframe Public Export - Suits"
-      }
-    ],
-    "gameVersion": "current",
-    "updatedAt": "2026-07-14",
-    "reviewStatus": "approved",
-    "reviewedBy": [
-      "official-sync"
-    ],
-    "tags": [
-      "acquisition",
-      "warframe",
-      "official-generated"
-    ],
-    "summary": "Harrow 的官方战甲身份与部件数据。"
-  }
+    {
+        "id":  "knowledge.acquisition.warframe.harrow",
+        "kind":  "knowledge",
+        "module":  "acquisition",
+        "title":  "Harrow",
+        "subject":  {
+                        "canonical":  "Harrow",
+                        "displayName":  "Harrow",
+                        "category":  "frame",
+                        "officialUniqueName":  "/Lotus/Powersuits/Priest/Priest",
+                        "categoryRefs":  [
+                                             "frame-mixed-missions"
+                                         ]
+                    },
+        "prerequisites":  [
+
+                          ],
+        "methodRefs":  [
+
+                       ],
+        "frameAcquisition":  {
+                                 "generated":  {
+                                                   "officialUniqueName":  "/Lotus/Powersuits/Priest/Priest",
+                                                   "canonical":  "Harrow",
+                                                   "displayName":  "Harrow",
+                                                   "isPrime":  false,
+                                                   "productCategory":  "Suits",
+                                                   "introducedAt":  1498705220,
+                                                   "components":  [
+                                                                      {
+                                                                          "part":  "Blueprint",
+                                                                          "officialUniqueName":  "/Lotus/Types/Recipes/WarframeRecipes/PriestBlueprint"
+                                                                      },
+                                                                      {
+                                                                          "part":  "Neuroptics",
+                                                                          "officialUniqueName":  "/Lotus/Types/Recipes/WarframeRecipes/HarrowHelmetComponent"
+                                                                      },
+                                                                      {
+                                                                          "part":  "Chassis",
+                                                                          "officialUniqueName":  "/Lotus/Types/Recipes/WarframeRecipes/HarrowChassisComponent"
+                                                                      },
+                                                                      {
+                                                                          "part":  "Systems",
+                                                                          "officialUniqueName":  "/Lotus/Types/Recipes/WarframeRecipes/HarrowSystemsComponent"
+                                                                      }
+                                                                  ],
+                                                   "acquisitionCategories":  {
+                                                                                 "categoryRefs":  [
+                                                                                                      "frame-mixed-missions"
+                                                                                                  ],
+                                                                                 "status":  "classified",
+                                                                                 "source":  {
+                                                                                                "type":  "wiki-page",
+                                                                                                "pageTitle":  "Harrow",
+                                                                                                "pageId":  1152644,
+                                                                                                "revisionId":  2760550,
+                                                                                                "sourceDatabase":  {
+                                                                                                                       "sha256":  "861480127CC518FC3CCA9B28334AEEC16AB8AEA383D08EA5D3B55B701DA475B9"
+                                                                                                                   }
+                                                                                            }
+                                                                             },
+                                                   "routing":  {
+                                                                   "componentCategory":  "frame-mixed-missions",
+                                                                   "blueprintCategory":  "quest",
+                                                                   "componentVariables":  {
+                                                                                              "sourceGroups":  [
+                                                                                                                   {
+                                                                                                                       "part":  "Neuroptics",
+                                                                                                                       "partName":  "头部",
+                                                                                                                       "summary":  "赤毒生存/间谍C轮",
+                                                                                                                       "sources":  [
+                                                                                                                                       {
+                                                                                                                                           "type":  "mission-node",
+                                                                                                                                           "locationId":  "planet.kuva-fortress",
+                                                                                                                                           "missionNodeId":  "mission-node.taveuni",
+                                                                                                                                           "rotation":  "C"
+                                                                                                                                       },
+                                                                                                                                       {
+                                                                                                                                           "type":  "mission-node",
+                                                                                                                                           "locationId":  "planet.kuva-fortress",
+                                                                                                                                           "missionNodeId":  "mission-node.pago",
+                                                                                                                                           "rotation":  "C"
+                                                                                                                                       }
+                                                                                                                                   ],
+                                                                                                                       "sourceCanonical":  [
+                                                                                                                                               "Kuva Fortress/Taveuni (Survival), Rotation C",
+                                                                                                                                               "Kuva Fortress/Pago (Spy), Rotation C"
+                                                                                                                                           ]
+                                                                                                                   },
+                                                                                                                   {
+                                                                                                                       "part":  "Systems",
+                                                                                                                       "partName":  "系统",
+                                                                                                                       "summary":  "土星海王叛逃C轮",
+                                                                                                                       "sources":  [
+                                                                                                                                       {
+                                                                                                                                           "type":  "mission-node",
+                                                                                                                                           "locationId":  "planet.saturn",
+                                                                                                                                           "missionNodeId":  "mission-node.caracol",
+                                                                                                                                           "rotation":  "C"
+                                                                                                                                       },
+                                                                                                                                       {
+                                                                                                                                           "type":  "mission-node",
+                                                                                                                                           "locationId":  "planet.neptune",
+                                                                                                                                           "missionNodeId":  "mission-node.yursa",
+                                                                                                                                           "rotation":  "C"
+                                                                                                                                       }
+                                                                                                                                   ],
+                                                                                                                       "sourceCanonical":  [
+                                                                                                                                               "Saturn/Caracol (Defection), Rotation C",
+                                                                                                                                               "Neptune/Yursa (Defection), Rotation C"
+                                                                                                                                           ]
+                                                                                                                   },
+                                                                                                                   {
+                                                                                                                       "part":  "Chassis",
+                                                                                                                       "partName":  "机体",
+                                                                                                                       "summary":  "开核桃时堕落的敌人",
+                                                                                                                       "sources":  [
+                                                                                                                                       {
+                                                                                                                                           "type":  "acquisition-source",
+                                                                                                                                           "sourceId":  "source.void-fissure-corrupted-enemy"
+                                                                                                                                       }
+                                                                                                                                   ],
+                                                                                                                       "sourceCanonical":  [
+                                                                                                                                               "Void Fissure Corrupted Enemy"
+                                                                                                                                           ]
+                                                                                                                   }
+                                                                                                               ],
+                                                                                              "sourceCanonical":  [
+                                                                                                                      "Kuva Fortress/Taveuni (Survival), Rotation C",
+                                                                                                                      "Kuva Fortress/Pago (Spy), Rotation C",
+                                                                                                                      "Saturn/Caracol (Defection), Rotation C",
+                                                                                                                      "Neptune/Yursa (Defection), Rotation C",
+                                                                                                                      "Void Fissure Corrupted Enemy"
+                                                                                                                  ],
+                                                                                              "unresolvedSources":  [
+
+                                                                                                                    ]
+                                                                                          },
+                                                                   "blueprintVariables":  {
+                                                                                              "type":  "quest-repurchase",
+                                                                                              "npcId":  "npc.cephalon-simaris",
+                                                                                              "questId":  "quest.chains-of-harrow"
+                                                                                          },
+                                                                   "blueprintSource":  "official-component-drop",
+                                                                   "requirements":  {
+                                                                                        "type":  "none"
+                                                                                    },
+                                                                   "methods":  [
+                                                                                   {
+                                                                                       "type":  "vendor-exchange",
+                                                                                       "scope":  "blueprint",
+                                                                                       "npcId":  "npc.cephalon-simaris",
+                                                                                       "locationId":  "hub.any-relay",
+                                                                                       "requirements":  {
+                                                                                                            "type":  "standing",
+                                                                                                            "npcId":  "npc.cephalon-simaris",
+                                                                                                            "locationId":  "hub.any-relay",
+                                                                                                            "rank":  null,
+                                                                                                            "rankName":  null,
+                                                                                                            "blueprintRank":  null,
+                                                                                                            "blueprintRankName":  null,
+                                                                                                            "amount":  50000
+                                                                                                        },
+                                                                                       "reviewStatus":  "approved",
+                                                                                       "provenance":  {
+                                                                                                          "source":  "local-wiki-sqlite",
+                                                                                                          "pageTitle":  "Harrow",
+                                                                                                          "section":  "Acquisition",
+                                                                                                          "excerpt":  "Harrow\u0027s main blueprint is awarded upon completion of the Chains of Harrow quest. The Chassis blueprint is acquired from defeating Void Fissure enemies, the Neuroptics blueprint can be found from Rotation A Spy vaults on Pago, Kuva Fortress , and the Systems blueprint is rewarded from Defection missions on Rotations B and C. Both Neuroptics and Systems can also be obtained from Rotation C Kuva Survival on Taveuni , Kuva Fortress. Additional main blueprints can be bought from Cephalon Simaris for 50,000 Standing 50,000 ."
+                                                                                                      }
+                                                                                   }
+                                                                               ]
+                                                               }
+                                               },
+                                 "manual":  {
+
+                                            }
+                             },
+        "sources":  [
+                        {
+                            "url":  "https://browse.wf/warframe-public-export-plus/ExportWarframes.json",
+                            "label":  "Warframe Public Export - Suits"
+                        }
+                    ],
+        "gameVersion":  "current",
+        "updatedAt":  "2026-07-14",
+        "reviewStatus":  "approved",
+        "reviewedBy":  [
+                           "official-sync"
+                       ],
+        "tags":  [
+                     "acquisition",
+                     "warframe",
+                     "official-generated"
+                 ],
+        "summary":  "Harrow 的官方战甲身份与部件数据。"
+    }
 ]

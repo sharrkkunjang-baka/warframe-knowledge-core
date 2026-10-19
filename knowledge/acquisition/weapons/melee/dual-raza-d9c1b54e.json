@@ -46,30 +46,13 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "market",
+      "official-drop",
       "crafting"
     ],
     "prime": {
       "kind": "standard",
       "status": null,
       "methods": [
-        {
-          "type": "market-purchase",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Types/Recipes/Weapons/DualRazaBlueprint"
-          ],
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "installed-warframe-items",
-            "field": "bpCost"
-          },
-          "variables": {},
-          "sourceEntityId": "interface.market"
-        },
         {
           "type": "dojo-research",
           "scope": "blueprint",
@@ -94,7 +77,7 @@
     "routes": [
       {
         "scope": "blueprint",
-        "category": "market",
+        "category": "official-drop",
         "partRefs": [
           "/Lotus/Types/Recipes/Weapons/DualRazaBlueprint"
         ],
@@ -106,23 +89,6 @@
           "type": "none"
         },
         "methods": [
-          {
-            "type": "market-purchase",
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Types/Recipes/Weapons/DualRazaBlueprint"
-            ],
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "bpCost"
-            },
-            "variables": {},
-            "sourceEntityId": "interface.market"
-          },
           {
             "type": "dojo-research",
             "scope": "blueprint",
@@ -221,7 +187,7 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
           "canonical": "Orokin Cell",
-          "displayName": "Orokin 电池",
+          "displayName": "奥罗金电池",
           "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 1

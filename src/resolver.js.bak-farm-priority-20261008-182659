@@ -1,0 +1,288 @@
+'use strict';
+
+const { pinyin } = require('pinyin-pro');
+
+const HAN_RE = /[\u3400-\u9fff]/;
+const normalize = value => {
+  let result = String(value || '').normalize('NFKC').trim().toLowerCase().replace(/[‘’`´]/g, "'").replace(/[\s·・‧•_-]+/g, '');
+  // Display-name separators are equivalent across official/localized names.
+  // NFKC already converts full-width punctuation to ASCII punctuation.
+  result = result.replace(/[·・‧•_\/.\-]+/g, '');
+  if (/[^a-z]p$/.test(result)) result = `${result.slice(0, -1)}prime`;
+  return result;
+};
+const pinyinTokens = value => pinyin(String(value || ''), { toneType: 'none', type: 'array' }).filter(Boolean);
+const compactPinyin = value => pinyinTokens(value).join('').replace(/[^a-z0-9]/g, '');
+const mixedPinyin = value => String(value || '').normalize('NFKC').toLowerCase().split(/([\u3400-\u9fff]+)/)
+  .map(part => /[\u3400-\u9fff]/.test(part) ? compactPinyin(part) : part.replace(/[^a-z0-9]/g, '')).join('');
+
+const RESOLVER_TYPE_TERMS = [
+  { category: 'mod', terms: ['mod', '模组'] },
+  { category: 'arcane', terms: ['赋能'] },
+  { category: 'frame', terms: ['战甲'] },
+  { category: 'weapon', terms: ['武器'] },
+  { category: 'resource', terms: ['资源'] },
+  { category: 'official-item', terms: ['道具', '物品'] }
+];
+const RESOLVER_COMMAND_PREFIX = /^\s*\/?(?:wf|wk|wfwk|warframe|查|刷)\s*(?:[:：]\s*)?/iu;
+const escapeRegExp = value => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const resolverTermRegExp = (term, flags = 'iu') => /^[a-z]+$/i.test(term)
+  ? new RegExp(`(^|[^a-z])${escapeRegExp(term)}(?=$|[^a-z])`, flags)
+  : new RegExp(escapeRegExp(term), flags);
+
+function parseResolverIntent(value) {
+  const raw = String(value || '').trim();
+  const commandStripped = raw.replace(RESOLVER_COMMAND_PREFIX, '').trim();
+  const detected = RESOLVER_TYPE_TERMS.filter(definition => definition.terms.some(term => resolverTermRegExp(term).test(commandStripped)));
+  // “战甲 Mod”“武器 Mod”描述的是 Mod；更具体的 Mod 类型覆盖装备适用类别词。
+  const constrained = detected.some(definition => definition.category === 'mod')
+    ? ['mod']
+    : [...new Set(detected.map(definition => definition.category))];
+  const terms = detected.flatMap(definition => definition.terms);
+  return {
+    raw,
+    commandStripped,
+    query: stripResolverTerms(commandStripped, terms),
+    categories: constrained,
+    typeTerms: detected.flatMap(definition => definition.terms.filter(term => resolverTermRegExp(term).test(commandStripped)))
+  };
+}
+
+function stripResolverTerms(value, terms = []) {
+  let output = String(value || '');
+  for (const term of [...terms].filter(Boolean).sort((a, b) => String(b).length - String(a).length)) {
+    output = output.replace(resolverTermRegExp(term, 'giu'), /^[a-z]+$/i.test(term) ? '$1' : '');
+  }
+  return output.replace(/[\s·・‧•:：_\-/]+/g, '').trim();
+}
+
+function resolverForms(value, terms = []) {
+  const raw = String(value || '').trim();
+  const stripped = stripResolverTerms(raw, terms);
+  return [...new Set([raw, stripped].filter(Boolean).map(text => ({ text, stripped: normalize(text) !== normalize(raw) }))
+    .map(form => `${form.stripped ? '1' : '0'}\0${form.text}`))]
+    .map(key => {
+      const [flag, text] = key.split('\0');
+      return { text, stripped: flag === '1' };
+    });
+}
+
+function textScore(query, candidate) {
+  const q = normalize(query), c = normalize(candidate);
+  if (!q || !c) return -Infinity;
+  if (q === c) return 300;
+  const qPinyin = mixedPinyin(query), cPinyin = compactPinyin(candidate);
+  if (qPinyin && cPinyin && qPinyin === cPinyin) return 290;
+  if (qPinyin.length >= 3 && cPinyin.startsWith(qPinyin)) return 175 + qPinyin.length / cPinyin.length * 20;
+  if (c.startsWith(q)) return 180 + q.length / c.length * 20;
+  if (q.startsWith(c) && c.length >= 2) return 160 + c.length / q.length * 20;
+  const shared = [...new Set(q)].filter(char => c.includes(char)).length;
+  const coverage = shared / Math.max(new Set(q).size, 1);
+  return q.length >= 2 && coverage >= 0.75
+    ? 100 + coverage * 20 - Math.abs(c.length - q.length) * 2
+    : -Infinity;
+}
+
+function lcsLength(a, b) {
+  const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) {
+    dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+  }
+  return dp[a.length][b.length];
+}
+
+function phoneticScore(query, candidate) {
+  const q = pinyinTokens(query), c = pinyinTokens(candidate);
+  if (!q.length || !c.length) return -Infinity;
+  const matched = lcsLength(q, c);
+  if (!matched) return -Infinity;
+  let prefix = 0;
+  while (prefix < Math.min(q.length, c.length) && q[prefix] === c[prefix]) prefix++;
+  let longest = 0;
+  for (let i = 0; i < q.length; i++) for (let j = 0; j < c.length; j++) {
+    let run = 0;
+    while (i + run < q.length && j + run < c.length && q[i + run] === c[j + run]) run++;
+    longest = Math.max(longest, run);
+  }
+  const coverage = matched / q.length;
+  const targetCoverage = matched / c.length;
+  return matched * 18 + coverage * 28 + targetCoverage * 12 + prefix * 8 + longest * 5 - (q.length - matched) * 16 - (c.length - matched) * 4 - Math.abs(q.length - c.length) * 2;
+}
+
+function buildCandidates(aliases) {
+  const result = [];
+  for (const [canonical, names] of Object.entries(aliases.frames || {})) {
+    result.push({ alias: canonical, canonical, category: 'frame' });
+    const mainlandName = aliases.frameMainlandNames?.[canonical];
+    if (mainlandName) {
+      result.push({ alias: mainlandName, canonical, category: 'frame' });
+      result.push({ alias: `圣装${mainlandName}`, canonical: `${canonical} Prime`, category: 'frame' });
+    }
+    for (const alias of names) {
+      result.push({ alias, canonical, category: 'frame' });
+      if (!alias.endsWith('甲') && (alias.length > 1 || HAN_RE.test(alias))) {
+        result.push({ alias: `${alias}甲`, canonical, category: 'frame' });
+      }
+    }
+  }
+  for (const [alias, canonical] of Object.entries(aliases.terms || {})) result.push({ alias, canonical, category: 'term' });
+  return result;
+}
+
+function domainEntries(aliases, domain) {
+  const source = aliases?.[domain] || {};
+  if (domain === 'fissures') return [];
+  return Object.entries(source).flatMap(([canonical, names]) => [
+    canonical,
+    ...(domain === 'frames' && aliases.frameMainlandNames?.[canonical] ? [aliases.frameMainlandNames[canonical]] : []),
+    ...(domain === 'companions' && aliases.companionMainlandNames?.[canonical] ? [aliases.companionMainlandNames[canonical]] : []),
+    ...(Array.isArray(names) ? names : [])
+  ].map(alias => ({ alias, canonical, category: domain })));
+}
+
+// 域条目索引：同一个 aliases 对象的同一个 domain 只展开一次，并预计算每个别名的 normalize。
+// 之前在 resolveDomainAlias 里每次调用都重建整份条目数组、再对每个别名重新 normalize；
+// 市场身份富集会对每一条清单重复走这条路（上万次调用），是 CPU profile 里的主要热点。
+const DOMAIN_INDEX_CACHE = new WeakMap();
+function domainIndex(aliases, domain) {
+  if (!aliases || typeof aliases !== 'object') {
+    const entries = domainEntries(aliases, domain);
+    return { entries, byAlias: null };
+  }
+  let perDomain = DOMAIN_INDEX_CACHE.get(aliases);
+  if (!perDomain) { perDomain = new Map(); DOMAIN_INDEX_CACHE.set(aliases, perDomain); }
+  const cached = perDomain.get(domain);
+  if (cached) return cached;
+  const entries = domainEntries(aliases, domain).map(item => ({ ...item, normalized: normalize(item.alias) }));
+  const byAlias = new Map();
+  for (const entry of entries) {
+    const list = byAlias.get(entry.normalized);
+    if (list) list.push(entry); else byAlias.set(entry.normalized, [entry]);
+  }
+  const index = Object.freeze({ entries, byAlias });
+  perDomain.set(domain, index);
+  return index;
+}
+
+// 模糊结果按 (aliases 实例, domain, 查询串) 记忆化：同一批清单里同名的条目会重复查询。
+// 用 WeakMap 挂到 aliases 实例上，随知识库重载自然失效，不跨版本串味。
+const FUZZY_MEMO_MAX = 20000;
+const FUZZY_MEMO_CACHE = new WeakMap();
+function fuzzyMemoFor(aliases) {
+  if (!aliases || typeof aliases !== 'object') return null;
+  let memo = FUZZY_MEMO_CACHE.get(aliases);
+  if (!memo) { memo = new Map(); FUZZY_MEMO_CACHE.set(aliases, memo); }
+  return memo;
+}
+function exactForm(entry) {
+  return { alias: entry.alias, canonical: entry.canonical, category: entry.category, match: 'exact', score: 300 };
+}
+
+function resolveDomainAlias(aliases, domain, query, options = {}) {
+  const raw = String(query || '').trim();
+  if (!raw) return null;
+  const index = domainIndex(aliases, domain);
+  const normalizedQuery = normalize(raw);
+  const direct = index.byAlias
+    ? index.byAlias.get(normalizedQuery)
+    : index.entries.find(item => normalize(item.alias) === normalizedQuery);
+  if (direct && (Array.isArray(direct) ? direct.length : true)) {
+    return exactForm(Array.isArray(direct) ? direct[0] : direct);
+  }
+  // 只要精确命中的调用方（如 getOfficialMod 只接受 match==='exact'）不必为整域
+  // 拼音/LCS 打分买单——那份分数会被调用方直接丢掉。
+  if (options.exactOnly === true) return null;
+  const memo = fuzzyMemoFor(aliases);
+  const memoKey = `${domain}\0${raw}`;
+  if (memo?.has(memoKey)) return memo.get(memoKey);
+  const ranked = index.entries.map(item => ({ alias: item.alias, canonical: item.canonical, category: item.category, score: Math.max(textScore(raw, item.alias), phoneticScore(raw, item.alias)) }))
+    .filter(item => item.score >= 50).sort((a, b) => b.score - a.score || b.alias.length - a.alias.length);
+  const result = (() => {
+    if (!ranked.length) return null;
+    const second = ranked.find(item => item.canonical !== ranked[0].canonical);
+    if (second && ranked[0].score - second.score < 5) return { ambiguous: ranked.filter(item => ranked[0].score - item.score < 5).slice(0, 8), score: ranked[0].score };
+    return { ...ranked[0], match: 'pinyin-weighted' };
+  })();
+  if (memo) {
+    if (memo.size >= FUZZY_MEMO_MAX) memo.clear();
+    memo.set(memoKey, result);
+  }
+  return result;
+}
+
+function createResolver(aliases) {
+  const staticCandidates = buildCandidates(aliases);
+  return function resolveName(query, options = {}) {
+    const intent = parseResolverIntent(query);
+    const raw = intent.commandStripped;
+    if (!raw) return null;
+    const stripTerms = [...new Set([...(Array.isArray(options.stripTerms) ? options.stripTerms : []), ...intent.typeTerms])];
+    const queryForms = resolverForms(raw, stripTerms);
+    const supplied = Array.isArray(options.candidates) ? options.candidates : [];
+    const categoryScope = Array.isArray(options.categoryScope) ? options.categoryScope : null;
+    const requestedCategories = categoryScope || (options.ignoreIntentCategories
+      ? options.categories
+      : (intent.categories.length ? intent.categories : options.categories));
+    const categoryMatches = category => !requestedCategories || requestedCategories.includes(category)
+      || (requestedCategories.includes('official') && ['mod', 'official-item', 'companion', 'vehicle'].includes(category))
+      || (requestedCategories.includes('official-item') && ['companion', 'vehicle'].includes(category));
+    const candidates = [...staticCandidates, ...supplied]
+      .filter(item => item && item.alias && item.canonical)
+      .filter(item => categoryMatches(item.category));
+    const trace = payload => { if (typeof options.onTrace === 'function') options.onTrace(payload); };
+    const direct = candidates.filter(item => normalize(item.alias) === normalize(raw));
+    if (direct.length) {
+      const exact = [...new Map(direct.map(item => [`${item.category}\0${item.canonical}`, { ...item, match: 'exact', score: 300 }])).values()];
+      const result = exact.length === 1 ? exact[0] : { ambiguous: exact.slice(0, options.limit || 8), score: 300 };
+      trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: exact, result });
+      return result;
+    }
+    const ranked = candidates.map(item => {
+      const scored = queryForms.flatMap(queryForm => resolverForms(item.alias, stripTerms).map(candidateForm => {
+        const literal = textScore(queryForm.text, candidateForm.text);
+        const phonetic = phoneticScore(queryForm.text, candidateForm.text);
+        const normalizedExact = normalize(queryForm.text) === normalize(candidateForm.text);
+        const baseScore = normalizedExact && (queryForm.stripped || candidateForm.stripped)
+          ? 280
+          : Math.max(literal, phonetic);
+        return {
+          score: baseScore + Number(item.priority || 0),
+          match: normalizedExact && (queryForm.stripped || candidateForm.stripped)
+            ? 'type-stripped-exact'
+            : literal >= phonetic ? 'text-weighted' : 'pinyin-weighted'
+        };
+      })).sort((a, b) => b.score - a.score)[0];
+      return { ...item, score: scored?.score ?? -Infinity, match: scored?.match || 'text-weighted' };
+    })
+      .filter(item => item.score >= (options.minScore ?? 50))
+      .sort((a, b) => b.score - a.score || Number(b.priority || 0) - Number(a.priority || 0) || b.alias.length - a.alias.length);
+    if (!ranked.length) {
+      trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: [], result: null });
+      return null;
+    }
+    const best = ranked[0];
+    const second = ranked.find(item => item.canonical !== best.canonical);
+    const minLead = options.minLead ?? 5;
+    const strippedQuery = normalize(intent.query);
+    const typedFragments = intent.categories.includes('mod') && strippedQuery
+      ? [...new Map(ranked.filter(item => normalize(item.alias).includes(strippedQuery)).map(item => [item.canonical, item])).values()]
+      : [];
+    const untypedFragments = !intent.categories.length && normalize(raw).length >= 2
+      ? [...new Map(ranked.filter(item => normalize(item.alias).startsWith(normalize(raw))).map(item => [item.canonical, item])).values()]
+      : [];
+    const crossCategoryFragments = new Set(untypedFragments.map(item => item.category)).size > 1 ? untypedFragments : [];
+    let result = best;
+    if (typedFragments.length > 1 || crossCategoryFragments.length > 1) {
+      result = { ambiguous: (typedFragments.length ? typedFragments : crossCategoryFragments).slice(0, options.limit || 8), score: best.score };
+    } else if (second && best.score - second.score < minLead) {
+      result = {
+        ambiguous: [...new Map(ranked.filter(item => best.score - item.score < minLead).map(item => [item.canonical, item])).values()].slice(0, options.limit || 8),
+        score: best.score
+      };
+    }
+    trace({ intent, requestedCategories: requestedCategories || null, candidateCount: candidates.length, ranked: ranked.slice(0, options.traceLimit || 20), result });
+    return result;
+  };
+}
+
+module.exports = { createResolver, domainEntries, resolveDomainAlias, phoneticScore, textScore, normalize, stripResolverTerms, parseResolverIntent, RESOLVER_TYPE_TERMS };

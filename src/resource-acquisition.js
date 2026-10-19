@@ -2,6 +2,7 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
+const { normalizeCambionCycleText } = require('./cambion-cycles')
 const { createRegistry, loadEntityRegistries } = require('./entities')
 const { structuredMethods } = require('./acquisition-core')
 const { renderAcquisition, stripBountyRotationTerms } = require('./acquisition-protocol')
@@ -120,7 +121,7 @@ function getResourceAcquisition(query) {
   const acquisitionText = renderAcquisition(methods, { displayName: entry.subject.displayName, registries: ENTITIES }) || routeText
   const usageText = stripBountyRotationTerms(String(manual.description || '').trim())
   const presentationText = String(manual.presentationText || '').trim()
-  return { entry, routeText, tips, structuredMethods: methods, text: presentationText || [usageText ? `说明：${usageText}` : '', acquisitionText, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n') }
+  return { entry, routeText, tips, structuredMethods: methods, text: normalizeCambionCycleText(presentationText || [usageText ? `说明：${usageText}` : '', acquisitionText, tips.length ? `小技巧：\n${tips.map(tip => `- ${tip}`).join('\n')}` : ''].filter(Boolean).join('\n\n')) }
 }
 function listResources() { return ENTRIES.map(entry => ({ canonical: entry.subject.canonical, displayName: entry.subject.displayName, officialUniqueName: entry.subject.officialUniqueName, reviewStatus: entry.reviewStatus, category: entry.subject.categoryRefs[0], roleTags: entry.subject.roleTags || ['resource'] })) }
 

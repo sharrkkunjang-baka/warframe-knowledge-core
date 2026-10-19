@@ -63,3 +63,14 @@ test('同步计划保留 manual 人工字段', () => {
   }, target);
   assert.deepEqual(rebuilt.arcaneAcquisition.manual.notes, ['人工备注']);
 });
+
+test('赋能精确名不会被官方道具层吞掉（中英文、含与不含间隔号都要出卡）', () => {
+  for (const name of ['Primary Merciless', '主要·无情', '主要无情', '赋能·充沛', '赋能 充沛']) {
+    const acquisition = core.getAcquisition(name);
+    assert.equal(acquisition?.entry?.subject?.category, 'arcane', `${name} 应命中赋能条目而不是官方道具桩`);
+    const card = core.getAcquisitionCard(name);
+    assert.equal(card?.kind, 'arcane', `${name} 应给出赋能获取卡而不是 null（运行时守门只在拿不到卡时回「暂时无法用于刷取查询」）`);
+    const lines = Object.values(card?.sections || {}).reduce((total, group) => total + (Array.isArray(group) ? group.length : 0), 0);
+    assert.ok(lines > 0, `${name} 的赋能卡应有掉落/兑换内容`);
+  }
+});

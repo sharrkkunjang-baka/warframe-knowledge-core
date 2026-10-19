@@ -22,11 +22,29 @@ test('显赫简称按意图区分战甲获取与技能武器配卡身份', () =>
   }
   assert.equal(core.resolveExaltedWeaponIntent('Valkyr Prime 之爪').identity.canonical, 'Valkyr Prime Talons');
   assert.equal(core.resolveExaltedWeaponIntent('完全无关武器'), null);
+  const hildryn = core.listExaltedWeaponIntentFamilies().find(family => family.frameCanonical === 'Hildryn');
+  assert.ok(hildryn);
+  assert.ok(hildryn.aliases.includes('野火充能'));
+  assert.ok(hildryn.aliases.includes('野火充能Prime'));
+  assert.deepEqual(hildryn.members.map(member => member.canonical), ['Balefire Charger', 'Balefire Charger Prime']);
+});
+
+test('所有官方显赫武器成员都支持刷查询并回指对应战甲', () => {
+  const families = reviewCore.listExaltedWeaponIntentFamilies();
+  const members = new Set(families.flatMap(family => family.members.map(member => member.uniqueName)));
+  assert.deepEqual(reviewCore.listOfficialIconOnlyWeapons().filter(item => !members.has(item.uniqueName)), []);
+  for (const query of ['Noctua', 'Dex Pixia', 'Dex Pixia Prime', 'Regulators', 'Regulators Prime', 'Neutralizer']) {
+    const card = reviewCore.getAcquisitionCard(query);
+    assert.equal(card.kind, 'weapon', query);
+    assert.match(card.sections.acquisition[0], /^制作 /, query);
+  }
 });
 
 test('精确社区别名统一解析', () => {
   assert.equal(core.resolveName('蛆爹').canonical, 'Nidus');
   assert.equal(core.resolveName('花甲').canonical, 'Wisp');
+  assert.equal(core.resolveName('猫甲').canonical, 'Khora');
+  assert.equal(core.resolveName('猫甲').match, 'exact');
   assert.equal(core.resolveName('吉他哥').canonical, 'Temple');
   assert.equal(core.resolveName('明神').canonical, 'Limbo');
   assert.equal(core.resolveName('女工程').canonical, 'Protea');

@@ -63,7 +63,14 @@ class ReadonlyWikiDatabase {
     this.sections = this.db.prepare('SELECT anchor,title,level,ordinal,text FROM sections WHERE page_id=? ORDER BY ordinal')
   }
   getPage(title) {
-    const page = this.page.get(title) || this.pageByAlias.get(title)
+    // Exact titles win; normalize typographic apostrophes only as a fallback.
+    // Official exports and Wiki titles can use different quote characters.
+    const variants = [...new Set([String(title || ''), String(title || '').normalize('NFKC').replace(/[‘’ʼ＇]/gu, "'")])]
+    let page
+    for (const candidate of variants) {
+      page = this.page.get(candidate) || this.pageByAlias.get(candidate)
+      if (page) break
+    }
     if (!page) return null
     page.sections = this.sections.all(page.pageId)
     return page

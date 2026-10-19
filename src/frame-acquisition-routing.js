@@ -15,7 +15,7 @@ const CATEGORY_DIRS = Object.freeze({
   'frame-vendor': 'vendor'
 })
 
-const BLUEPRINT_CATEGORIES = Object.freeze(['market', 'quest', 'dojo', 'bounty', 'vendor', 'relic', 'specific-mission', 'mixed-missions', 'assassination', 'unresolved'])
+const BLUEPRINT_CATEGORIES = Object.freeze(['market', 'quest', 'circuit', 'dojo', 'bounty', 'vendor', 'relic', 'specific-mission', 'mixed-missions', 'assassination', 'unresolved'])
 const METHOD_ROOT = path.join(__dirname, '..', 'knowledge', 'acquisition', 'warframe', 'method')
 function loadMethodDefinitions(root = METHOD_ROOT) {
   return Object.freeze(Object.fromEntries(['components', 'blueprints'].map(scope => {
@@ -68,15 +68,35 @@ const BLUEPRINT_OVERRIDES = Object.freeze({
   Jade: { category: 'quest', variables: { questName: '翠玉之影' } },
   'Sirius & Orion': { category: 'quest', variables: { questName: '翠玉之影：星座' } },
   'Cyte-09': { category: 'quest', variables: { questId: 'quest.the-hex' } },
-  Qorvex: { category: 'quest', variables: { questId: 'quest.whispers-in-the-walls' } }
+  Qorvex: { category: 'quest', variables: { questId: 'quest.whispers-in-the-walls' } },
+  Baruuk: {
+    category: 'mixed-missions',
+    variables: { sourceText: '全套：等待普通无尽回廊轮换，具体查询“灵化表”\n总图：在福尔图娜——小鸭子处达2级声望后花费5千声望兑换' }
+  },
+  Yareli: {
+    category: 'quest',
+    variables: {
+      questName: '驭浪者',
+      sourceText: '总图：完成系列任务《驭浪者》后赠送（更多总图则需完成后于中枢 Simaris 处花费 5 万声望兑换）'
+    }
+  },
+  Atlas: {
+    category: 'quest',
+    variables: {
+      questName: 'Jordas 枢律',
+      sourceText: '全套：等待普通无尽回廊轮换，具体查询“灵化表”\n总图：完成系列任务《Jordas 枢律》后赠送（更多总图则需完成后于中枢Simaris处花费5万声望兑换）'
+    }
+  }
 })
 const COMPONENT_OVERRIDES = Object.freeze({
-  Baruuk: {},
+  ...require('../knowledge/facts/frame-component-route-overrides.json'),
+  Baruuk: { sourceText: '部件：3级声望才可兑换，所需声望一致' },
   Ivara: {
     sourceGroups: [
-      { part: 'Systems', partName: '系统', summary: '1-15 级间谍任务 C 轮；或金星比邻星域间谍 C 轮', sourceCanonical: ['Tier 1 Spy / C', 'Venus Proxima Spy / C'] },
-      { part: 'Chassis', partName: '机体', summary: '16-25 级间谍任务 C 轮；或海王星比邻星域间谍 C 轮', sourceCanonical: ['Tier 2 Spy / C', 'Neptune Proxima Spy / C'] },
-      { part: 'Neuroptics', partName: '头部神经光元', summary: '26 级以上间谍任务 C 轮；或冥王星比邻星域间谍 C 轮', sourceCanonical: ['Tier 3 Spy / C', 'Pluto Proxima Spy / C'] }
+      // 玩家口径用 T1~T3 指代间谍等级段（1-15/16-25/26+），不要写死等级区间。
+      { part: 'Systems', partName: '系统', summary: 'T1 间谍 C 轮；或金星比邻星域间谍 C 轮', sourceCanonical: ['Tier 1 Spy / C', 'Venus Proxima Spy / C'] },
+      { part: 'Chassis', partName: '机体', summary: 'T2 间谍 C 轮；或海王星比邻星域间谍 C 轮', sourceCanonical: ['Tier 2 Spy / C', 'Neptune Proxima Spy / C'] },
+      { part: 'Neuroptics', partName: '头部', summary: 'T3 间谍 C 轮；或冥王星比邻星域间谍 C 轮', sourceCanonical: ['Tier 3 Spy / C', 'Pluto Proxima Spy / C'] }
     ],
     objective: '成功破解全部 3 个数据库',
     sourceCanonical: ['Tier 1 Spy / C', 'Tier 2 Spy / C', 'Tier 3 Spy / C', 'Venus Proxima Spy / C', 'Neptune Proxima Spy / C', 'Pluto Proxima Spy / C']
@@ -89,7 +109,14 @@ const COMPONENT_OVERRIDES = Object.freeze({
   Nokko: { prerequisiteQuestId: 'quest.the-new-war', hubs: [{ locationId: 'hub.fortuna', subLocationId: 'hub.fortuna-airlock', npcId: 'npc.nightcap' }], bountyName: '深矿赏金', exchange: { npcId: 'npc.nightcap', locationId: 'hub.fortuna-airlock', currencyId: 'currency.fergolyte', componentCost: 160, blueprintCost: 240, totalCost: 720, rankName: '园丁', rank: 4 }, sourceCanonical: ['Deepmines Bounties'] },
   Dante: { sources: [{ type: 'mission-node', locationId: 'planet.deimos', missionNodeId: 'mission-node.armatus', rotation: 'C' }], exchange: { npcId: 'npc.loid', currencyId: 'currency.vessel-capillaries', componentCost: 90, blueprintCost: 270, totalCost: 540 }, sourceCanonical: ['Deimos/Armatus (Disruption), Rotation C'] },
   Jade: { locationId: 'planet.uranus', missionNodeId: 'mission-node.brutus', dropChance: 4.63, exchange: { npcId: 'npc.ordis', currencyId: 'currency.vestigial-motes', componentCost: 150, blueprintCost: 450 }, sourceCanonical: 'Uranus/Brutus (Ascension)' },
-  Oraxia: { prerequisiteQuestId: 'quest.the-hex', locationId: 'landscape.duviri', missionNodeId: 'mission-node.isleweaver', dropChance: 7.69, exchange: { npcId: 'npc.acrithis', locationId: 'hub.dormizone', currencyId: 'currency.scuttler-husks', componentCost: 20, blueprintCost: 60, totalCost: 120 }, sourceCanonical: 'Duviri/Isleweaver' }
+  Oraxia: { prerequisiteQuestId: 'quest.the-hex', locationId: 'landscape.duviri', missionNodeId: 'mission-node.isleweaver', dropChance: 7.69, exchange: { npcId: 'npc.acrithis', locationId: 'hub.dormizone', currencyId: 'currency.scuttler-husks', componentCost: 20, blueprintCost: 60, totalCost: 120 }, sourceCanonical: 'Duviri/Isleweaver' },
+  Yareli: {
+    roomName: '通风小子实验室',
+    sourceText: '部件：ESC → 通讯 → 氏族，进入氏族道场\n移动至通风小子实验室\n与操作台交互并复制蓝图'
+  },
+  Atlas: {
+    sourceText: '部件：得到总图后，阋神星刺杀 JORDAS 魔像'
+  }
 })
 
 // require 是互斥的获取门槛变量。none 为默认值；standing 通过 NPC 变量
@@ -108,6 +135,10 @@ const FRAME_EXCHANGE_METHOD_OVERRIDES = Object.freeze({
     { type: 'vendor-exchange', scope: 'component', variables: { partName: '部件蓝图' }, npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 3, rankName: '刽子手', amount: 5000 }, provenance: { source: 'wiki.warframe.com', url: 'https://wiki.warframe.com/w/Baruuk?oldid=2795748', pageTitle: 'Baruuk', revisionId: 2795748, section: 'Acquisition' } }
   ],
   Hildryn: [{ type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.little-duck', locationId: 'hub.fortuna', requirements: { type: 'standing', npcId: 'npc.little-duck', locationId: 'hub.fortuna', rank: 2, rankName: 'Agent', amount: 5000 } }],
+  Lavos: [
+    { type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.father', locationId: 'hub.necralisk', requirements: { type: 'standing', npcId: 'npc.father', locationId: 'hub.necralisk', rank: 2, rankName: '熟人', amount: 5000 }, reviewStatus: 'approved', provenance: { source: 'user-reviewed-current-acquisition' } },
+    { type: 'vendor-exchange', scope: 'component', variables: { partName: '部件蓝图' }, npcId: 'npc.father', locationId: 'hub.necralisk', requirements: { type: 'standing', npcId: 'npc.father', locationId: 'hub.necralisk', rank: 3, rankName: '同伴', amount: 5000 }, reviewStatus: 'approved', provenance: { source: 'user-reviewed-current-acquisition' } }
+  ],
   Sevagoth: [{ type: 'vendor-exchange', scope: 'blueprint', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', requirements: { type: 'standing', npcId: 'npc.cephalon-simaris', locationId: 'hub.any-relay', amount: 50000 } }],
   Temple: [{ type: 'vendor-exchange', scope: 'all-blueprints', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.flare', locationId: 'acquisition-source.hollvania-missions', currency: [{ currencyId: 'currency.beating-heartstrings', amount: 390 }] } }],
   Koumei: [{ type: 'vendor-exchange', scope: 'all-blueprints', sourceEntityId: 'acquisition-source.koumei-shrine', locationId: 'hub.cetus', requirements: { type: 'currency', usage: 'exchange', locationId: 'hub.cetus', currency: [{ currencyId: 'currency.fate-pearl', amount: 330 }], isBuffUseless: true } }],
@@ -198,7 +229,7 @@ function classifyBlueprint(frame, componentCategory, page) {
   if (override) return { ...override, source: 'manual-override' }
   if (frame.isPrime || / Prime$/i.test(frame.name || '')) return { category: null, source: 'same-as-components' }
   if (componentCategory === 'frame-dojo') return { category: null, source: 'same-as-components' }
-  if (Number(frame.bpCost) > 0) return { category: 'market', variables: {}, source: 'official-bp-cost' }
+  if (Number(frame.bpCost) > 0) return { category: 'market', variables: { bpCost: Number(frame.bpCost) }, source: 'official-bp-cost' }
   const drops = partDrops(frame, 'Blueprint')
   if (drops.length) {
     const category = sourceCategory(drops[0].location)
@@ -247,7 +278,7 @@ function mixedMissionVariables(frame) {
     }).filter(Boolean)
     return {
       part,
-      partName: { Neuroptics: '头部神经光元', Chassis: '机体', Systems: '系统' }[part],
+      partName: { Neuroptics: '头部', Chassis: '机体', Systems: '系统' }[part],
       sources,
       sourceCanonical,
       unresolvedSources: sourceCanonical.filter(source => !sourceEntityVariables(source))

@@ -46,8 +46,7 @@
   },
   "acquisition": {
     "routeCategoryRefs": [
-      "vendor",
-      "market",
+      "dojo-research",
       "crafting"
     ],
     "prime": {
@@ -55,208 +54,32 @@
       "status": null,
       "methods": [
         {
-          "type": "vendor-exchange",
-          "scope": "item",
-          "npcId": "npc.baro-ki-teer",
-          "locationId": "hub.any-relay",
-          "sourceCanonical": "Baro Ki'Teer",
-          "availability": "rotating",
+          "type": "dojo-research",
+          "scope": "blueprint",
           "requirements": {
-            "type": "currency",
-            "usage": "exchange",
-            "npcId": "npc.baro-ki-teer",
-            "locationId": "hub.any-relay",
-            "currency": [
-              {
-                "currencyId": "currency.credits",
-                "amount": 250000
-              },
-              {
-                "currencyId": "currency.orokin-ducats",
-                "amount": 550
-              }
-            ]
+            "type": "none"
           },
           "reviewStatus": "approved",
           "provenance": {
             "source": "local-wiki-sqlite",
-            "url": "https://wiki.warframe.com/w/Ignis_Wraith?oldid=2785426",
-            "pageTitle": "Ignis Wraith",
-            "revisionId": 2785426
+            "url": "https://wiki.warframe.com/w/Ignis?oldid=2785425",
+            "pageTitle": "Ignis",
+            "revisionId": 2785425
           },
-          "partRefs": [],
-          "variables": {}
-        },
-        {
-          "type": "mission-reward",
-          "scope": "blueprint",
           "partRefs": [
             "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
           ],
-          "sourceCanonical": "Veil Proxima/Flexa (Caches)",
-          "sourceDisplayName": "面纱比邻星域/弗雷沙",
-          "sourceLocalizationStatus": "official-zh",
-          "locationId": "mission.flexa-crewbattlenode553",
-          "missionTypeId": "mission-type.caches",
-          "chance": 0.087,
-          "sourceDropChance": null,
-          "conditionalChance": null,
-          "rotation": "B",
-          "stage": null,
-          "requirements": {
-            "type": "none"
+          "variables": {
+            "presentationText": "ESC→氏族→道场→化学实验室复制"
           },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Missions"
-          }
-        },
-        {
-          "type": "mission-reward",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-          ],
-          "sourceCanonical": "Veil Proxima/H-2 Cloud (Caches)",
-          "sourceDisplayName": "面纱比邻星域/H-2 星云",
-          "sourceLocalizationStatus": "official-zh",
-          "locationId": "mission.h-2-cloud-crewbattlenode554",
-          "missionTypeId": "mission-type.caches",
-          "chance": 0.087,
-          "sourceDropChance": null,
-          "conditionalChance": null,
-          "rotation": "B",
-          "stage": null,
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Missions"
-          }
-        },
-        {
-          "type": "mission-reward",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-          ],
-          "sourceCanonical": "Veil Proxima/R-9 Cloud (Caches)",
-          "sourceDisplayName": "面纱比邻星域/R-9 星云",
-          "sourceLocalizationStatus": "official-zh",
-          "locationId": "mission.r-9-cloud-crewbattlenode555",
-          "missionTypeId": "mission-type.caches",
-          "chance": 0.087,
-          "sourceDropChance": null,
-          "conditionalChance": null,
-          "rotation": "B",
-          "stage": null,
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Missions"
-          }
-        },
-        {
-          "type": "mission-reward",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-          ],
-          "sourceCanonical": "Veil Proxima/Nsu Grid (Caches)",
-          "sourceDisplayName": "面纱比邻星域/恩斯尤区格",
-          "sourceLocalizationStatus": "official-zh",
-          "locationId": "mission.nsu-grid-crewbattlenode550",
-          "missionTypeId": "mission-type.caches",
-          "chance": 0.087,
-          "sourceDropChance": null,
-          "conditionalChance": null,
-          "rotation": "B",
-          "stage": null,
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "DE Official Drop Tables",
-            "section": "Missions"
-          }
-        },
-        {
-          "type": "market-purchase",
-          "scope": "blueprint",
-          "partRefs": [
-            "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-          ],
-          "requirements": {
-            "type": "none"
-          },
-          "reviewStatus": "approved",
-          "provenance": {
-            "source": "installed-warframe-items",
-            "field": "bpCost"
-          },
-          "variables": {},
-          "sourceEntityId": "interface.market"
+          "sourceEntityId": "dojo.chem-lab"
         }
       ]
     },
     "routes": [
       {
-        "scope": "item",
-        "category": "vendor",
-        "partRefs": [],
-        "variables": {
-          "weaponName": "伊格尼斯·亡魂"
-        },
-        "requirements": {
-          "type": "none"
-        },
-        "methods": [
-          {
-            "type": "vendor-exchange",
-            "scope": "item",
-            "npcId": "npc.baro-ki-teer",
-            "locationId": "hub.any-relay",
-            "sourceCanonical": "Baro Ki'Teer",
-            "availability": "rotating",
-            "requirements": {
-              "type": "currency",
-              "usage": "exchange",
-              "npcId": "npc.baro-ki-teer",
-              "locationId": "hub.any-relay",
-              "currency": [
-                {
-                  "currencyId": "currency.credits",
-                  "amount": 250000
-                },
-                {
-                  "currencyId": "currency.orokin-ducats",
-                  "amount": 550
-                }
-              ]
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "local-wiki-sqlite",
-              "url": "https://wiki.warframe.com/w/Ignis_Wraith?oldid=2785426",
-              "pageTitle": "Ignis Wraith",
-              "revisionId": 2785426
-            },
-            "partRefs": [],
-            "variables": {}
-          }
-        ],
-        "status": "complete"
-      },
-      {
         "scope": "blueprint",
-        "category": "market",
+        "category": "dojo-research",
         "partRefs": [
           "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
         ],
@@ -269,121 +92,25 @@
         },
         "methods": [
           {
-            "type": "mission-reward",
+            "type": "dojo-research",
             "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-            ],
-            "sourceCanonical": "Veil Proxima/Flexa (Caches)",
-            "sourceDisplayName": "面纱比邻星域/弗雷沙",
-            "sourceLocalizationStatus": "official-zh",
-            "locationId": "mission.flexa-crewbattlenode553",
-            "missionTypeId": "mission-type.caches",
-            "chance": 0.087,
-            "sourceDropChance": null,
-            "conditionalChance": null,
-            "rotation": "B",
-            "stage": null,
             "requirements": {
               "type": "none"
             },
             "reviewStatus": "approved",
             "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Missions"
-            }
-          },
-          {
-            "type": "mission-reward",
-            "scope": "blueprint",
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Ignis?oldid=2785425",
+              "pageTitle": "Ignis",
+              "revisionId": 2785425
+            },
             "partRefs": [
               "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
             ],
-            "sourceCanonical": "Veil Proxima/H-2 Cloud (Caches)",
-            "sourceDisplayName": "面纱比邻星域/H-2 星云",
-            "sourceLocalizationStatus": "official-zh",
-            "locationId": "mission.h-2-cloud-crewbattlenode554",
-            "missionTypeId": "mission-type.caches",
-            "chance": 0.087,
-            "sourceDropChance": null,
-            "conditionalChance": null,
-            "rotation": "B",
-            "stage": null,
-            "requirements": {
-              "type": "none"
+            "variables": {
+              "presentationText": "ESC→氏族→道场→化学实验室复制"
             },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Missions"
-            }
-          },
-          {
-            "type": "mission-reward",
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-            ],
-            "sourceCanonical": "Veil Proxima/R-9 Cloud (Caches)",
-            "sourceDisplayName": "面纱比邻星域/R-9 星云",
-            "sourceLocalizationStatus": "official-zh",
-            "locationId": "mission.r-9-cloud-crewbattlenode555",
-            "missionTypeId": "mission-type.caches",
-            "chance": 0.087,
-            "sourceDropChance": null,
-            "conditionalChance": null,
-            "rotation": "B",
-            "stage": null,
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Missions"
-            }
-          },
-          {
-            "type": "mission-reward",
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-            ],
-            "sourceCanonical": "Veil Proxima/Nsu Grid (Caches)",
-            "sourceDisplayName": "面纱比邻星域/恩斯尤区格",
-            "sourceLocalizationStatus": "official-zh",
-            "locationId": "mission.nsu-grid-crewbattlenode550",
-            "missionTypeId": "mission-type.caches",
-            "chance": 0.087,
-            "sourceDropChance": null,
-            "conditionalChance": null,
-            "rotation": "B",
-            "stage": null,
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "DE Official Drop Tables",
-              "section": "Missions"
-            }
-          },
-          {
-            "type": "market-purchase",
-            "scope": "blueprint",
-            "partRefs": [
-              "/Lotus/Weapons/ClanTech/Chemical/FlamethrowerWraithBlueprint"
-            ],
-            "requirements": {
-              "type": "none"
-            },
-            "reviewStatus": "approved",
-            "provenance": {
-              "source": "installed-warframe-items",
-              "field": "bpCost"
-            },
-            "variables": {},
-            "sourceEntityId": "interface.market"
+            "sourceEntityId": "dojo.chem-lab"
           }
         ],
         "status": "complete"

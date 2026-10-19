@@ -1,0 +1,305 @@
+{
+  "id": "knowledge.acquisition.weapon.corufell-prime-manual",
+  "kind": "knowledge",
+  "module": "acquisition",
+  "title": "Corufell Prime",
+  "subject": {
+    "canonical": "Corufell Prime",
+    "displayName": "闪劫 Prime",
+    "category": "weapon",
+    "officialUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/PrimeCorufell/PrimeCorufellScytheWeapon",
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "description": {
+    "canonical": "The Primed counterpart of Corufell.",
+    "display": "闪劫的 Prime 版本。",
+    "localizationStatus": "reviewed-zh"
+  },
+  "classification": {
+    "categoryRefs": [
+      "weapon.melee"
+    ]
+  },
+  "weaponIdentity": {
+    "equipmentType": "melee",
+    "omegaAttenuation": null,
+    "disposition": null
+  },
+  "acquisition": {
+    "routeCategoryRefs": [
+      "prime-relic",
+      "crafting"
+    ],
+    "prime": {
+      "kind": "prime-relic",
+      "status": "当前出库",
+      "methods": [
+        {
+          "type": "relic-reward",
+          "scope": "blueprint",
+          "partRefs": [
+            "Corufell Prime Blueprint"
+          ],
+          "relicCanonical": "Meso V17",
+          "active": true,
+          "chance": 0.2533,
+          "rarity": "Common",
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "Corufell Prime Handle"
+          ],
+          "relicCanonical": "Axi C12",
+          "active": true,
+          "chance": 0.11,
+          "rarity": "Uncommon",
+          "variables": {
+            "partName": "闪劫 Prime 握柄"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "Corufell Prime Receiver"
+          ],
+          "relicCanonical": "Neo C10",
+          "active": true,
+          "chance": 0.02,
+          "rarity": "Rare",
+          "variables": {
+            "partName": "闪劫 Prime 枪机"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "category": "prime-relic"
+        },
+        {
+          "type": "relic-reward",
+          "scope": "component",
+          "partRefs": [
+            "Corufell Prime Stock"
+          ],
+          "relicCanonical": "Lith C15",
+          "active": true,
+          "chance": 0.2533,
+          "rarity": "Common",
+          "variables": {
+            "partName": "闪劫 Prime 枪托"
+          },
+          "requirements": {
+            "type": "none"
+          },
+          "reviewStatus": "approved",
+          "category": "prime-relic"
+        }
+      ]
+    },
+    "routes": [
+      {
+        "scope": "blueprint",
+        "category": "prime-relic",
+        "partRefs": [
+          "Corufell Prime Blueprint"
+        ],
+        "variables": {
+          "weaponName": "闪劫 Prime",
+          "partName": "总图"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "blueprint",
+            "partRefs": [
+              "Corufell Prime Blueprint"
+            ],
+            "relicCanonical": "Meso V17",
+            "active": true,
+            "chance": 0.2533,
+            "rarity": "Common",
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "category": "prime-relic"
+          }
+        ]
+      },
+      {
+        "scope": "component",
+        "category": "prime-relic",
+        "partRefs": [
+          "Corufell Prime Handle"
+        ],
+        "variables": {
+          "weaponName": "闪劫 Prime",
+          "partName": "闪劫 Prime 握柄"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "Corufell Prime Handle"
+            ],
+            "relicCanonical": "Axi C12",
+            "active": true,
+            "chance": 0.11,
+            "rarity": "Uncommon",
+            "variables": {
+              "partName": "闪劫 Prime 握柄"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "category": "prime-relic"
+          }
+        ]
+      },
+      {
+        "scope": "component",
+        "category": "prime-relic",
+        "partRefs": [
+          "Corufell Prime Receiver"
+        ],
+        "variables": {
+          "weaponName": "闪劫 Prime",
+          "partName": "闪劫 Prime 枪机"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "Corufell Prime Receiver"
+            ],
+            "relicCanonical": "Neo C10",
+            "active": true,
+            "chance": 0.02,
+            "rarity": "Rare",
+            "variables": {
+              "partName": "闪劫 Prime 枪机"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "category": "prime-relic"
+          }
+        ]
+      },
+      {
+        "scope": "component",
+        "category": "prime-relic",
+        "partRefs": [
+          "Corufell Prime Stock"
+        ],
+        "variables": {
+          "weaponName": "闪劫 Prime",
+          "partName": "闪劫 Prime 枪托"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "methods": [
+          {
+            "type": "relic-reward",
+            "scope": "component",
+            "partRefs": [
+              "Corufell Prime Stock"
+            ],
+            "relicCanonical": "Lith C15",
+            "active": true,
+            "chance": 0.2533,
+            "rarity": "Common",
+            "variables": {
+              "partName": "闪劫 Prime 枪托"
+            },
+            "requirements": {
+              "type": "none"
+            },
+            "reviewStatus": "approved",
+            "category": "prime-relic"
+          }
+        ]
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "part": "Blueprint",
+      "blueprintUniqueName": "Corufell Prime Blueprint",
+      "resultUniqueName": "/Lotus/Weapons/Tenno/Archwing/Melee/PrimeCorufell/PrimeCorufellScytheWeapon",
+      "credits": 15000,
+      "buildTimeSeconds": 43200,
+      "rushPlatinum": 50,
+      "outputQuantity": 1,
+      "ingredients": [
+        {
+          "uniqueName": "Corufell Prime Handle",
+          "displayName": "握柄",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "Corufell Prime Receiver",
+          "displayName": "枪机",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "Corufell Prime Stock",
+          "displayName": "枪托",
+          "quantity": 1
+        },
+        {
+          "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
+          "displayName": "奥罗金电池",
+          "quantity": 15
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://wiki.warframe.com/w/Corufell_Prime",
+      "label": "Official WARFRAME Wiki"
+    }
+  ],
+  "gameVersion": "Update 44.0",
+  "updatedAt": "2026-09-24",
+  "reviewStatus": "approved",
+  "reviewedBy": [
+    "codex-official-wiki-audit"
+  ],
+  "tags": [
+    "acquisition",
+    "weapon",
+    "prime-relic",
+    "official-wiki-audited"
+  ]
+}

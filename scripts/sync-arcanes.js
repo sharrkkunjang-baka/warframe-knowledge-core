@@ -83,6 +83,17 @@ function substituteOfficialTemplate(zhTemplate, englishTemplate, englishEffect) 
   }
   return /\|[A-Z0-9_]+\|/i.test(output) ? null : renderGameText(output).trim();
 }
+const REVIEWED_DESCRIPTION_ZH = (() => {
+  try {
+    const file = path.join(ROOT, 'knowledge', 'facts', 'arcane-description-zh.json');
+    return JSON.parse(fs.readFileSync(file, 'utf8'))?.entries || {};
+  } catch (_) { return {}; }
+})();
+function reviewedDescriptionZh(uniqueName) {
+  const entry = REVIEWED_DESCRIPTION_ZH[String(uniqueName || '')];
+  const text = String(entry?.description || '').trim();
+  return text || null;
+}
 function officialSupplementStats(item, languages) {
   const nameKey = item.languageKey || Object.entries(languages.en).find(([key, value]) => /Name$/i.test(key) && normalize(value) === normalize(item.canonical))?.[0];
   if (!nameKey) return null;
@@ -90,7 +101,10 @@ function officialSupplementStats(item, languages) {
   const descKey = Object.keys(languages.en).find(key => key === `${base}Desc`) || (item.canonical === 'Melee Careen' ? '/Lotus/Language/Arcanes/FreezeEnemiesOnRollDesc' : null);
   const zhTemplate = descKey ? languages.zh[descKey] : null;
   const enTemplate = descKey ? languages.en[descKey] : null;
-  const primary = zhTemplate && enTemplate ? substituteOfficialTemplate(zhTemplate, enTemplate, item.maxRankEffectCanonical) : null;
+  let primary = zhTemplate && enTemplate ? substituteOfficialTemplate(zhTemplate, enTemplate, item.maxRankEffectCanonical) : null;
+  // 官方简中模板缺失时用人工复核表；绝不退回英文原文（英文效果只在两者都没有时作为最后手段）。
+  const reviewed = primary ? null : reviewedDescriptionZh(item.officialUniqueName || item.uniqueName);
+  if (reviewed) primary = reviewed;
   if (!primary) return null;
   const extras = [];
   const extraTemplates = [

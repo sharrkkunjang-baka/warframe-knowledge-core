@@ -33,6 +33,43 @@ test('全量官方武器 family 成员 identity 唯一且组件不混入', () =>
   assert.equal(seen.size, core.officialWeapons.weapons.length);
 });
 
+// 回归：DE ExportWeapons 缓存会滞后于新内容发布。武器目录没有和
+// official-items 一样的 supplemental 通道时，新发布的 Prime 武器会永久
+// 解析不到 Prime 变体（市场侧只会回「没有 Prime 版本」）。
+test('官方导出滞后的新 Prime 武器经 supplemental 身份仍可解析', () => {
+  const cases = [
+    ['闪劫', 'Corufell', 'Corufell Prime', '闪劫 Prime', '/Lotus/Weapons/Tenno/Archwing/Melee/PrimeCorufell/PrimeCorufellScytheWeapon'],
+    ['石晶之花', 'Steflos', 'Steflos Prime', '石晶之花 Prime', '/Lotus/Weapons/Tenno/LongGuns/PrimeSteflos/PrimeSteflosShotgun']
+  ];
+  for (const [query, baseCanonical, primeCanonical, displayName, uniqueName] of cases) {
+    const family = core.resolvePrimeVariantIntent(query);
+    assert.ok(family, `${query} 未解析出武器家族`);
+    assert.equal(family.identity.canonical, baseCanonical, query);
+    assert.ok(family.prime, `${query} 缺少 Prime 变体`);
+    assert.equal(family.prime.canonical, primeCanonical, query);
+
+    const resolved = core.resolveName(`${query} Prime`, { minScore: 70, minLead: 8 });
+    assert.equal(resolved.canonical, primeCanonical, query);
+    assert.equal(resolved.ambiguous, undefined, query);
+
+    const byUniqueName = core.officialWeapons.weapons.filter(weapon => weapon.uniqueName === uniqueName);
+    assert.equal(byUniqueName.length, 1, uniqueName);
+    assert.equal(byUniqueName[0].canonical, primeCanonical, uniqueName);
+    assert.equal(byUniqueName[0].displayName, displayName, uniqueName);
+    assert.doesNotMatch(uniqueName, /Types\/Recipes\/Weapons/i);
+  }
+});
+
+test('supplemental 武器身份按 uniqueName 去重且计数可见', () => {
+  const seen = new Set();
+  for (const weapon of core.officialWeapons.weapons) {
+    assert.equal(seen.has(weapon.uniqueName), false, weapon.uniqueName);
+    seen.add(weapon.uniqueName);
+  }
+  assert.equal(seen.size, core.officialWeapons.weapons.length);
+  assert.ok(core.officialWeapons.counts.supplemental >= 2, 'supplement 计数丢失');
+});
+
 test('统一官方术语词片候选覆盖赋能英文词与市场 slug', () => {
   for (const query of ['molt', 'augment', 'molt_augmented']) {
     const result = core.searchOfficialTermNameFragments(query);

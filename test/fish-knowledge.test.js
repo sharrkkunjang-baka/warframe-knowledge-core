@@ -47,10 +47,31 @@ test('鱼类信息契约保留字段级证据和鱼饵未知语义', () => {
   assert.equal(card.ecologyInfo.type, 'fish')
   assert.equal(card.ecologyInfo.stableIdentity, amniophysi.uniqueName)
   assert.equal(card.ecologyInfo.effectiveSpears.status, 'none')
-  assert.deepEqual(card.ecologyInfo.relations, { animalTags: [], processingOutputs: [], baitTargets: [] })
+  assert.deepEqual(card.ecologyInfo.relations.processingOutputs[0], {
+    canonical: 'Benign Infested Tumor', displayName: '良性感染肿瘤',
+    quantities: [{ quality: '小型', quantity: 3 }, { quality: '中型', quantity: 4 }, { quality: '大型', quantity: 8 }]
+  })
+  assert.deepEqual(card.ecologyInfo.relations.animalTags, [])
+  assert.deepEqual(card.ecologyInfo.relations.baitTargets, [])
   const glappidCard = core.getAcquisitionCard('盖拉佩德')
   assert.equal(glappidCard.ecologyInfo.effectiveSpears.status, 'required')
   assert.deepEqual(glappidCard.ecologyInfo.effectiveSpears.displayNames, ['佩拉姆鱼叉'])
+})
+
+test('钓鱼总表、单鱼详情与材料反查共享结构化分解数据', () => {
+  const core = createKnowledgeCore({ approvedOnly: false })
+  const table = core.getFishingCard('钓鱼')
+  assert.deepEqual(table.regions.map(region => region.displayName), ['夜灵平野', '奥布山谷', '魔胎之境'])
+  assert.deepEqual(table.regions.map(region => region.groups.flatMap(group => group.fish).length), [13, 13, 13])
+  assert.ok(table.regions[1].groups.some(group => group.activity === '无限制'))
+  assert.deepEqual(table.regions[2].groups.map(group => group.activity), ['无限制', 'Vome', 'Fass'])
+  const fish = core.getFishingCard('钓鱼 盖拉佩德')
+  assert.equal(fish.kind, 'fishing-fish-detail')
+  assert.deepEqual(fish.fish.processingOutputs.find(row => row.displayName === '鱼油').quantities.map(row => row.quantity), [3, 5, 7])
+  const material = core.getFishingCard('捕鱼 鱼油')
+  assert.equal(material.kind, 'fishing-material-detail')
+  assert.equal(material.material.sources.length, 13)
+  assert.equal(material.material.sources.every(row => row.fish && row.quantities.length === 3), true)
 })
 
 test('保育标签使用共享生态 DTO 且关系接口为空时可双向查询', () => {

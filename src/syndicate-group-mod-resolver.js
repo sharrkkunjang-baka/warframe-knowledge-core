@@ -11,6 +11,7 @@ function augmentStem(uniqueName) {
     .split('/')
     .pop()
     .replace(/PvPAugmentCard$/i, '')
+    .replace(/Augment\d*Card$/i, '')
     .replace(/AugmentCard$/i, '');
 }
 
@@ -49,23 +50,67 @@ function isPvpAugment(mod) {
   return /\/PvPMods\//.test(uniqueName);
 }
 
+function frameAugmentPathPrefix(frame) {
+  const uniqueName = String(frame?.uniqueName || frame?.officialUniqueName || '');
+  const matched = uniqueName.match(/^(\/Lotus\/Powersuits\/[^/]+)/i);
+  if (matched) return matched[1];
+  return frame?.name ? `/Lotus/Powersuits/${frame.name}` : null;
+}
+
+function modBelongsToFrame(mod, frame) {
+  if (!mod || !frame) return false;
+  if (mod.compatName === frame.name) return true;
+  const prefix = frameAugmentPathPrefix(frame);
+  return prefix ? String(mod.uniqueName || '').startsWith(`${prefix}/`) : false;
+}
+
 function createSyndicateGroupModResolver(options = {}) {
   const resolveWarframe = options.resolveWarframe;
   const resolveWarframeMention = options.resolveWarframeMention;
   const getOfficialMod = options.getOfficialMod;
   const officialMods = options.officialMods || [];
+  const officialAbilities = options.officialAbilities || [];
+
+  function frameAbilities(frame) {
+    if (frame?.abilities?.length) return frame.abilities;
+    return officialAbilities
+      .filter(ability => (ability.owners || []).some(owner => owner.frameCanonical === frame?.name))
+      .sort((left, right) => Number(left.slot || 99) - Number(right.slot || 99))
+      .map(ability => ({
+        uniqueName: ability.officialUniqueName,
+        name: ability.canonical,
+        displayName: ability.displayName,
+        slot: ability.slot
+      }));
+  }
+
+  function modMatchesAbility(mod, ability) {
+    const reviewedAbility = String(mod?.syndicateBinding?.ability || '').trim();
+    if (reviewedAbility && normalizeStem(reviewedAbility) === normalizeStem(ability.name)) return true;
+    const stem = normalizeStem(abilityStem(ability.uniqueName));
+    const modStem = normalizeStem(augmentStem(mod.uniqueName));
+    if (modStem === stem || modStem.endsWith(stem) || stem.endsWith(modStem)) return true;
+    const canonical = normalizeStem(mod.canonical).replace(/[^a-z0-9]/g, '');
+    const abilityCanonical = normalizeStem(ability.name).replace(/[^a-z0-9]/g, '');
+    if (abilityCanonical && canonical.startsWith(abilityCanonical)) return true;
+    const displayName = String(ability.displayName || '').trim();
+    return displayName && (mod.effectDetails || []).some(text => String(text).startsWith(`${displayName}强化`));
+  }
 
   function frameAugmentIndex(frame) {
-    if (!frame?.abilities?.length) return [];
+    const abilities = frameAbilities(frame);
+    if (!abilities.length) return [];
     const augments = officialMods.filter(mod =>
       mod.traits?.augment &&
-      mod.compatName === frame.name &&
+      modBelongsToFrame(mod, frame) &&
       !isPvpAugment(mod)
     );
-    return frame.abilities.map((ability, index) => {
-      const stem = normalizeStem(abilityStem(ability.uniqueName));
-      const mod = augments.find(candidate => normalizeStem(augmentStem(candidate.uniqueName)) === stem);
-      return mod ? { index: index + 1, ability, mod } : null;
+    return abilities.map((ability, index) => {
+      const slot = Number(ability.slot) || index + 1;
+      const reviewed = augments.find(candidate =>
+        normalizeStem(candidate.syndicateBinding?.ability || '') === normalizeStem(ability.name));
+      const mod = reviewed || augments.find(candidate => modMatchesAbility(candidate, ability));
+      return mod ? { index: slot, ability, mod } : null;
     }).filter(Boolean);
   }
 
@@ -122,5 +167,7 @@ module.exports = {
   normalizeStem,
   parseSyndicateSlot,
   compactSyndicateQuery,
-  isSyndicateGroupModQuery
+  isSyndicateGroupModQuery,
+  frameAugmentPathPrefix,
+  modBelongsToFrame
 };

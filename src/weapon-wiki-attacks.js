@@ -7,11 +7,12 @@ const ROOT = path.resolve(__dirname, '..');
 const WIKI_ATTACKS_PATH = path.join(ROOT, 'knowledge', 'generated', 'weapon-wiki-attacks.json');
 const EXPORT_WEAPONS_PATH = path.join(ROOT, 'cache', 'warframe-export-weapons.json');
 const INCARNON_FORMS_PATH = path.join(ROOT, 'knowledge', 'supplemental', 'weapon-incarnon-forms.json');
+const ATTACK_OVERRIDES_PATH = path.join(ROOT, 'knowledge', 'supplemental', 'weapon-attack-overrides.json');
 
 const TRIGGER_ZH = Object.freeze({
   'Semi-Auto': '半自动',
   'Auto': '全自动',
-  'Burst': '爆发',
+  'Burst': '半自动',
   'Held': '按住',
   'Auto / Semi': '全自动 / 半自动',
   'Charge': '蓄力',
@@ -19,6 +20,14 @@ const TRIGGER_ZH = Object.freeze({
 });
 
 const ATTACK_NAME_ZH = Object.freeze({
+  'Charged Shot': '蓄力',
+  'Charged Attack': '蓄力',
+  'Charged Shot Explosion': '爆炸',
+  'Alternate Fire': '次要射击',
+  'Auto': '全自动',
+  'Charge': '蓄力',
+  'Throw': '投掷',
+  'Charged Throw': '蓄力投掷',
   'Slam Attack': '震地',
   'Heavy Slam Attack': '重型震地',
   'Incarnon Form': '灵化形态',
@@ -29,8 +38,77 @@ const ATTACK_NAME_ZH = Object.freeze({
   'Detonate': '重击时引爆',
   'Heavy Attack Explosion': '重击时引爆',
   'Alt-Fire Glaive': '副模式',
-  'Grenade Impact': '榴弹撞击'
+  'Grenade Impact': '榴弹撞击',
+  'Charged Shot Laser': '充能开火'
 });
+
+function panelDamageTotal(panel) {
+  return (panel?.damage || []).reduce((sum, row) => sum + Number(row.amount || 0), 0);
+}
+
+function diffPanelStats(stats = [], baseStats = []) {
+  return stats.filter(stat => !baseStats.some(base => (
+    base.kind === stat.kind && base.label === stat.label && base.value === stat.value
+  )));
+}
+
+function compactWeaponPanels(panels, maximum = 6) {
+  // The wiki export can contain multiple records for the same rendered mode.
+  // Keep the strongest radial record and never render the same mode twice.
+  const groupedChildren = new Set();
+  const parentPanels = new Map(panels.map(panel => [Number(panel.attackIndex), panel]));
+  for (const child of panels) {
+    const parentIndex = Number(child.parentAttackIndex);
+    const parent = Number.isFinite(parentIndex) ? parentPanels.get(parentIndex) : null;
+    if (!parent) continue;
+    parent.rows ||= [];
+    if (!parent._hasDirectRow) {
+      parent.rows.unshift({ title: '直接命中', damage: parent.damage, stats: [], attackName: parent.attackName });
+      parent.damage = [];
+      parent._hasDirectRow = true;
+    }
+    parent.rows.push({
+      title: child.shotType === 'AoE' ? '范围伤害' : '直接命中',
+      damage: child.damage,
+      stats: diffPanelStats(child.stats, parent.stats),
+      attackName: child.attackName
+    });
+    groupedChildren.add(child);
+  }
+  const sourcePanels = panels.filter(panel => !groupedChildren.has(panel));
+  const radial = sourcePanels
+    .filter(panel => panel.shotType === 'AoE' && !/Slam Attack/i.test(panel.attackName || ''))
+    .sort((left, right) => panelDamageTotal(right) - panelDamageTotal(left));
+  const primary = sourcePanels.find(panel => panel.attackName === 'Normal Attack') || sourcePanels[0];
+  const signature = panel => JSON.stringify([...(panel.damage || [])].sort((left, right) => String(left.canonical).localeCompare(String(right.canonical))));
+  const radialKeep = radial.find(panel => signature(panel) !== signature(primary)) || null;
+  const normalized = sourcePanels.filter(panel => panel === radialKeep || panel.shotType !== 'AoE' || /Slam Attack/i.test(panel.attackName || ''));
+  for (const panel of normalized) delete panel._hasDirectRow;
+  const normal = normalized.find(panel => panel.attackName === 'Normal Attack') || null;
+  const slam = normalized.filter(panel => /Slam Attack/i.test(panel.attackName || ''));
+  const commonStats = panels => panels.length ? panels[0].stats.filter(stat => panels.every(panel => panel.stats.some(candidate => candidate.kind === stat.kind && candidate.label === stat.label && candidate.value === stat.value))) : [];
+  const diffStats = (panel, common) => panel.stats.filter(stat => !common.some(item => item.kind === stat.kind && item.label === stat.label && item.value === stat.value));
+  if (normal && slam.length) {
+    const normalGroup = { ...normal, id: 'attack-normal-group', title: '普通攻击', rows: [] };
+    normalGroup.title = '平A';
+    const slamCommon = commonStats(slam);
+    const slamGroup = { ...slam[0], id: 'attack-slam-group', title: '震地', stats: slamCommon, rows: slam.slice(1).map(panel => ({ title: '重型震地', damage: panel.damage, stats: diffStats(panel, slamCommon), attackName: panel.attackName })) };
+    const heavy = normalized.find(panel => /^Heavy Attack$/i.test(panel.attackName || ''));
+    if (heavy) normalGroup.rows.push({ title: '重击', damage: heavy.damage, stats: diffStats(heavy, commonStats([normal, heavy])), attackName: heavy.attackName });
+    if (heavy) {
+      normalGroup.rows.at(-1).totalDamage = heavy.totalDamage;
+      normalized.splice(normalized.indexOf(heavy), 1);
+    }
+    const normalIndex = normalized.indexOf(normal);
+    normalized.splice(normalIndex, 1, normalGroup);
+    const slamIndex = normalized.findIndex(panel => panel === slam[0]);
+    if (slamIndex >= 0) normalized.splice(slamIndex, slam.length, slamGroup);
+  }
+  if (normalized.length <= maximum) return normalized;
+  const direct = normalized.filter(panel => panel.shotType !== 'AoE' && !/Slam Attack/i.test(panel.attackName || ''));
+  const selected = [...direct.slice(0, 3), ...(radialKeep ? [radialKeep] : []), ...slam.slice(0, 1)];
+  return selected.slice(0, maximum);
+}
 
 const DAMAGE_TYPE_ZH = Object.freeze({
   Impact: '冲击',
@@ -87,6 +165,7 @@ const DAMAGE_TYPE_ALIASES = Object.freeze({
 let wikiAttacksCache = null;
 let exportWeaponsCache = null;
 let incarnonFormsCache = null;
+let attackOverridesCache = null;
 
 function readJson(file) {
   if (!fs.existsSync(file)) return null;
@@ -110,6 +189,12 @@ function loadIncarnonForms() {
   if (incarnonFormsCache) return incarnonFormsCache;
   incarnonFormsCache = readJson(INCARNON_FORMS_PATH)?.entries || {};
   return incarnonFormsCache;
+}
+
+function loadAttackOverrides() {
+  if (attackOverridesCache) return attackOverridesCache;
+  attackOverridesCache = readJson(ATTACK_OVERRIDES_PATH)?.entries || {};
+  return attackOverridesCache;
 }
 
 function getIncarnonFormPanel(entry = {}) {
@@ -174,7 +259,20 @@ function localizeTrigger(trigger) {
 
 function resolvePanelTitle(attack, weaponMeta = {}) {
   const attackName = String(attack?.AttackName || '').trim();
+  const isPrimary = Number(attack?.AttackIndex) === 1 || attackName === 'Normal Attack';
+  if (/^Uncharged/i.test(attackName)) return '非蓄力（次要射击）';
+  const isCharged = Number(attack?.ChargeTime) > 0 || /^(Charge|Auto Charge)$/i.test(String(attack?.Trigger || '').trim()) || /charged|charge/i.test(attackName)
+    || (weaponMeta.hasAutoPrimary === true && /grenade/i.test(attackName) && Number(attack?.AttackIndex) > 1);
+  const isExplicitSecondary = /alternate|alt[- ]?fire|secondary|laser/i.test(attackName)
+    || (Array.isArray(weaponMeta.secondaryAttackIndices) && weaponMeta.secondaryAttackIndices.includes(Number(attack?.AttackIndex)))
+    || (weaponMeta.hasAutoPrimary === true && /grenade/i.test(attackName) && Number(attack?.AttackIndex) > 1);
+  if (isCharged) return isExplicitSecondary ? '充能开火（次要射击）' : (ATTACK_NAME_ZH[attackName] || '蓄力');
+  if (/^Burst$/i.test(String(attack?.Trigger || '').trim()) || (attack?.BurstCount && Number(attack.BurstCount) > 1)) return '半自动';
+  if (isPrimary && /^(Auto|Auto \/ Burst)$/i.test(String(attack?.Trigger || weaponMeta?.Trigger || ''))) return '全自动';
+  if (isPrimary && weaponMeta?.Trigger) return localizeTrigger(weaponMeta.Trigger);
   if (attackName === 'Normal Attack') {
+    const isMelee = String(weaponMeta?.Slot || '').toLowerCase() === 'melee' || Number.isFinite(Number(weaponMeta?.MeleeRange));
+    if (isMelee) return '平A';
     return localizeTrigger(attack?.Trigger || weaponMeta?.Trigger) || '普通攻击';
   }
   if (ATTACK_NAME_ZH[attackName]) return ATTACK_NAME_ZH[attackName];
@@ -192,7 +290,11 @@ function buildPanelStats(attack, weaponMeta = {}) {
   push('crit-chance', '暴击几率', formatPercent(attack?.CritChance, Number(attack?.CritChance) < 0.1 ? 2 : 0));
   push('crit-multiplier', '暴击倍率', Number.isFinite(Number(attack?.CritMultiplier)) ? `${formatNumber(attack.CritMultiplier, 1)}x` : null);
   push('status-chance', '触发几率', formatPercent(attack?.StatusChance, Number(attack?.StatusChance) < 0.1 ? 2 : 0));
-  push('fire-rate', '射速', Number.isFinite(Number(attack?.FireRate)) ? formatNumber(attack.FireRate, 2) : null);
+  if (Array.isArray(attack?.ForcedProcs) && attack.ForcedProcs.length) push('forced-procs', '必定触发', attack.ForcedProcs.map(proc => DAMAGE_TYPE_ZH[proc] || proc).join('、'));
+  if (Number(attack?.BurstCount) > 1) push('burst-count', '连发数', formatNumber(attack.BurstCount, 0));
+  const isSlam = /slam attack/i.test(String(attack?.AttackName || ''));
+  const isMelee = String(weaponMeta?.Slot || '').toLowerCase() === 'melee' || Number.isFinite(Number(weaponMeta?.MeleeRange));
+  push('fire-rate', isMelee || isSlam ? '攻速' : '射速', Number.isFinite(Number(attack?.FireRate)) ? formatNumber(attack.FireRate, 2) : null);
   if (Number(attack?.Multishot) > 1) push('multishot', '多重射击', formatNumber(attack.Multishot, 1));
   if (isPrimary && Number.isFinite(Number(weaponMeta?.Magazine))) push('magazine', '弹匣容量', formatNumber(weaponMeta.Magazine, 0));
   if (isPrimary && Number.isFinite(Number(weaponMeta?.Reload))) push('reload', '装填速度', `${formatNumber(weaponMeta.Reload, 2)} 秒`);
@@ -205,7 +307,8 @@ function buildPanelStats(attack, weaponMeta = {}) {
   if (Number.isFinite(Number(attack?.PunchThrough)) && Number(attack.PunchThrough) > 0) {
     push('punch-through', '穿透', `${formatNumber(attack.PunchThrough, 1)} 米`);
   }
-  if (Number.isFinite(Number(attack?.Range))) push('range', '射程', `${formatNumber(attack.Range, 1)} 米`);
+  if (Number.isFinite(Number(attack?.Range))) push('range', isMelee || isSlam ? '范围' : '射程', `${formatNumber(attack.Range, 1)} 米`);
+  else if (isMelee && Number.isFinite(Number(weaponMeta?.MeleeRange))) push('range', '范围', `${formatNumber(weaponMeta.MeleeRange, 1)} 米`);
   if (isPrimary && Number.isFinite(Number(weaponMeta?.AmmoMax))) push('ammo-max', '弹药上限', formatNumber(weaponMeta.AmmoMax, 0));
   const falloff = attack?.Falloff;
   if (falloff && Number.isFinite(Number(falloff.StartRange)) && Number.isFinite(Number(falloff.EndRange))) {
@@ -220,6 +323,8 @@ function buildPanelStats(attack, weaponMeta = {}) {
 function buildPanelFromWikiAttack(attack, weaponMeta = {}) {
   return {
     id: `attack-${attack.AttackIndex || attack.AttackName || 'unknown'}`,
+    attackIndex: Number(attack.AttackIndex),
+    parentAttackIndex: Number(attack.AttackParentIndex),
     title: resolvePanelTitle(attack, weaponMeta),
     attackName: attack.AttackName || null,
     shotType: attack.ShotType || null,
@@ -227,6 +332,11 @@ function buildPanelFromWikiAttack(attack, weaponMeta = {}) {
     stats: buildPanelStats(attack, weaponMeta),
     source: 'wiki.warframe.com'
   };
+}
+
+function buildHeavyAttackPanel(weaponMeta = {}) {
+  if (!Number.isFinite(Number(weaponMeta?.HeavyAttack))) return null;
+  return { id: 'attack-heavy', title: '重击', attackName: 'Heavy Attack', shotType: null, damage: [], totalDamage: formatNumber(weaponMeta.HeavyAttack, 0), stats: [], source: 'wiki.warframe.com' };
 }
 
 function buildSupplementalPanels(attacks = []) {
@@ -250,6 +360,12 @@ function buildSupplementalPanelsFromExport(weapon = {}) {
     Damage: behaviour?.impact || {},
     source: 'DE ExportWeapons'
   })));
+}
+
+function damageSignature(panel) {
+  return JSON.stringify([...(panel?.damage || [])]
+    .map(row => [row.canonical, Number(row.amount)])
+    .sort((left, right) => String(left[0]).localeCompare(String(right[0]))));
 }
 
 function buildFallbackPanelFromExport(weapon) {
@@ -291,15 +407,35 @@ function buildWeaponAttackPanels(entry = {}) {
   const wikiEntry = uniqueName
     ? loadWikiAttacks()[uniqueName]
     : (canonical ? Object.values(loadWikiAttacks()).find(item => item.canonical === canonical) : null);
-  const wikiPayload = wikiEntry?.payload || null;
+  const attackOverride = uniqueName ? loadAttackOverrides()[uniqueName] : null;
+  const wikiPayload = wikiEntry?.payload || attackOverride?.payload || null;
   const resolvedUniqueName = uniqueName || wikiEntry?.uniqueName || null;
   const exportWeapon = resolvedUniqueName ? loadExportWeapons()[resolvedUniqueName] : null;
   if (wikiPayload?.Attacks?.length) {
-    const persistedSupplemental = buildSupplementalPanels(wikiEntry?.supplementalAttacks || []);
-    return [
-      ...wikiPayload.Attacks.map(attack => buildPanelFromWikiAttack(attack, wikiPayload)),
-      ...(persistedSupplemental.length ? persistedSupplemental : buildSupplementalPanelsFromExport(exportWeapon))
+    const hasAutoPrimary = wikiPayload.Attacks.some(attack => Number(attack.AttackIndex) === 1 && /^auto$/i.test(String(attack.AttackName || '')));
+    const secondaryAttackIndices = wikiPayload.Attacks
+      .filter(attack => /alternate|alt[- ]?fire|secondary|laser/i.test(String(attack?.AttackName || '')))
+      .flatMap(attack => [Number(attack.AttackIndex), ...wikiPayload.Attacks.filter(child => Number(child.AttackParentIndex) === Number(attack.AttackIndex)).map(child => Number(child.AttackIndex))])
+      .concat(hasAutoPrimary ? wikiPayload.Attacks.filter(attack => /grenade/i.test(String(attack.AttackName || ''))).map(attack => Number(attack.AttackIndex)) : [])
+      .filter(Number.isFinite);
+    const weaponMeta = { ...wikiPayload, secondaryAttackIndices, hasAutoPrimary };
+    const wikiPanels = wikiPayload.Attacks.map(attack => buildPanelFromWikiAttack(attack, weaponMeta));
+    const secondaryPanels = wikiPanels.filter(panel => secondaryAttackIndices.includes(panel.attackIndex) && !Number.isFinite(panel.parentAttackIndex));
+    if (secondaryPanels.length > 1) for (const child of secondaryPanels.slice(1)) child.parentAttackIndex = secondaryPanels[0].attackIndex;
+    const wikiDamage = new Set(wikiPanels.map(damageSignature));
+    const persistedSupplemental = buildSupplementalPanels(wikiEntry?.supplementalAttacks || [])
+      .filter(panel => !wikiDamage.has(damageSignature(panel)));
+    const supplementalFallback = buildSupplementalPanelsFromExport(exportWeapon)
+      .filter(panel => !wikiDamage.has(damageSignature(panel)));
+    const supplemental = persistedSupplemental.length
+      ? persistedSupplemental
+      : (wikiEntry?.supplementalAttacks?.length ? [] : supplementalFallback);
+    const panels = [
+      ...wikiPanels,
+      ...(buildHeavyAttackPanel(wikiPayload) ? [buildHeavyAttackPanel(wikiPayload)] : []),
+      ...supplemental
     ];
+    return compactWeaponPanels(panels);
   }
   if (exportWeapon) return [buildFallbackPanelFromExport(exportWeapon)];
   return [];
@@ -309,7 +445,8 @@ function buildWeaponInfo(entry = {}) {
   const weaponIdentity = entry.weaponIdentity || {};
   const uniqueName = entry.officialUniqueName || entry.subject?.officialUniqueName || null;
   const wikiEntry = uniqueName ? loadWikiAttacks()[uniqueName] : null;
-  const wikiPayload = wikiEntry?.payload || null;
+  const attackOverride = uniqueName ? loadAttackOverrides()[uniqueName] : null;
+  const wikiPayload = wikiEntry?.payload || attackOverride?.payload || null;
   const exportWeapon = uniqueName ? loadExportWeapons()[uniqueName] : null;
   return {
     panels: buildWeaponAttackPanels(entry),
@@ -367,5 +504,6 @@ module.exports = {
   buildSupplementalPanelsFromExport,
   extractDamageRows,
   parseWikiWeaponRender,
-  resolvePanelTitle
+  resolvePanelTitle,
+  compactWeaponPanels
 };

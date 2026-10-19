@@ -2,6 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { officialMissionNode, assassinationLocation } = require('./mission-node-localization');
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 function deepFreeze(value) {
@@ -44,12 +45,18 @@ function readIndexedEntries(root, directory) {
 function displayEntityName(entry) { return entry ? (typeof entry.displayName === 'string' && entry.displayName.trim() ? entry.displayName : entry.canonical) : ''; }
 function loadEntityRegistries(root = path.join(__dirname, '..')) {
   const load = directory => createRegistry(readIndexedEntries(root, directory));
+  const rawLocations = load('locations');
+  const locations = createRegistry(rawLocations.values.map(entry => officialMissionNode(entry, rawLocations)));
+  const enemies = createRegistry(load('enemies').values.map(entry => {
+    const bossLocation = assassinationLocation(entry);
+    return bossLocation ? { ...entry, bossLocation } : entry;
+  }));
   return deepFreeze({
-    locations: load('locations'),
+    locations,
     currencies: load('curreicies'),
     quests: load('quests'),
     factions: load('factions'),
-    enemies: load('enemies'),
+    enemies,
     missionTypes: load('mission-types'),
     arcaneSources: load('arcane-sources'),
     npcs: load('npc')

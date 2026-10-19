@@ -34,7 +34,10 @@ test('集团N 解析为对应战甲第 N 张集团 Mod', () => {
     ['女枪集团4', "Mesa's Waltz", null, 'Mesa', 4],
     ['电男集团1', 'Shock Trooper', '电击奇兵', 'Volt', 1],
     ['wukong集团二', 'Enveloping Cloud', '包覆游云', 'Wukong', 2],
-    ['猴哥集团2', 'Enveloping Cloud', '包覆游云', 'Wukong', 2]
+    ['猴哥集团2', 'Enveloping Cloud', '包覆游云', 'Wukong', 2],
+    ['电妹集团4', 'Reverse Rotorswell', '反弹链波', 'Gyre', 4],
+    ['dante集团1', 'Noctua Swarm', '夜枭群袭', 'Dante', 1],
+    ['蘑菇集团3', 'Reroot Rampage', '菌丝暴动', 'Nokko', 3]
   ];
   for (const [query, canonical, displayName, frame, slot] of cases) {
     const resolved = core.resolveSyndicateGroupMod(query);
@@ -68,6 +71,7 @@ test('集团语法诊断区分越界、未知战甲与普通查询', () => {
   assert.equal(core.inspectSyndicateGroupMod('母牛集团五').status, 'slot-out-of-range');
   assert.equal(core.inspectSyndicateGroupMod('不存在战甲集团2').status, 'frame-not-found');
   assert.equal(core.inspectSyndicateGroupMod('神盾之风').status, 'not-syndicate-query');
+  assert.equal(core.inspectSyndicateGroupMod('蘑菇集团4').status, 'augment-not-found');
 });
 
 test('集团卡关键词不触发集团N 解析', () => {
@@ -76,6 +80,10 @@ test('集团卡关键词不触发集团N 解析', () => {
 });
 
 test('刷命令解析保持 query 原样供上层路由', () => {
-  assert.equal(core.resolveAcquisitionCommand('刷 摸尸集团3').query, '摸尸集团3');
+  const nekros = core.resolveAcquisitionCommand('刷 摸尸集团3');
+  assert.equal(nekros.query, '摸尸集团3');
+  assert.equal(nekros.resolution.canonical, 'Despoil');
+  assert.equal(core.resolveAcquisitionCommand('刷 dante集团1').resolution.canonical, 'Noctua Swarm');
+  assert.equal(core.resolveAcquisitionCommand('刷 蘑菇集团3').resolution.canonical, 'Reroot Rampage');
   assert.equal(core.resolveAcquisitionCommand('刷 摸尸').query, '摸尸');
 });

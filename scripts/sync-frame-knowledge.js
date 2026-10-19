@@ -10,7 +10,69 @@ const KNOWLEDGE_DIR = path.join(KNOWLEDGE_ROOT, 'acquisition', 'warframe');
 const ITEMS_ROOT = path.dirname(require.resolve('warframe-items'));
 const I18N = require(path.join(ITEMS_ROOT, 'data', 'json', 'i18n.json'));
 const EXCLUDED = Object.freeze({});
+const COMPONENT_ROUTE_OVERRIDES = require('../knowledge/facts/frame-component-route-overrides.json');
 const CURRENT_FRAME_ACQUISITION_OVERRIDES = Object.freeze({
+  Narin: {
+    routing: {
+      componentCategory: 'frame-bounty',
+      blueprintCategory: 'mixed-missions',
+      blueprintSource: 'reviewed-update-44',
+      blueprintVariables: { sourceText: '总图：歼灭 移动防御' },
+      requirements: { type: 'none' },
+      componentVariables: {
+        hubs: [{ locationId: 'hub.yuvan-peak', npcId: 'npc.cephalon-melica' }],
+        sourceGroups: [
+          {
+            part: 'Neuroptics',
+            partName: '头部',
+            summary: '覆涌（C轮概率最高）',
+            sources: [{ type: 'mission-node', locationId: 'hub.zariman', missionNodeId: 'mission.tuvul-commons-solnode232', rotation: 'C' }],
+            sourceCanonical: ['Zariman/Tuvul Commons (Void Cascade), Rotation C']
+          },
+          {
+            part: 'Systems',
+            partName: '系统',
+            summary: '决战（C轮概率最高）',
+            sources: [{ type: 'mission-node', locationId: 'hub.zariman', missionNodeId: 'mission.oro-works-solnode233', rotation: 'C' }],
+            sourceCanonical: ['Zariman/Oro Works (Void Armageddon), Rotation C']
+          },
+          {
+            part: 'Chassis',
+            partName: '机体',
+            summary: '洪流（C轮概率最高）',
+            sources: [{ type: 'mission-node', locationId: 'hub.zariman', missionNodeId: 'mission.everview-arc-solnode230', rotation: 'C' }],
+            sourceCanonical: ['Zariman/Everview Arc (Void Flood), Rotation C']
+          }
+        ],
+        presentation: {
+          layout: 'component-route-cards',
+          introText: [
+            '全套：地球·青春峰顶——中枢梅莉卡 花费共790熵之赤毒兑换',
+            '熵之赤毒：在扎里曼任务中击杀熵卓越者掉落3~7个 不吃任何资源加成与寻回者！',
+            '或在如下扎里曼任务中作为轮次奖励刷取：'
+          ]
+        }
+      },
+      methods: [
+        {
+          type: 'vendor-exchange',
+          scope: 'all-blueprints',
+          sourceEntityId: 'npc.cephalon-melica',
+          npcId: 'npc.cephalon-melica',
+          locationId: 'hub.yuvan-peak',
+          requirements: {
+            type: 'currency',
+            usage: 'exchange',
+            npcId: 'npc.cephalon-melica',
+            locationId: 'hub.yuvan-peak',
+            currency: [{ currencyId: 'currency.entropic-kuva', amount: 790 }]
+          },
+          reviewStatus: 'approved',
+          provenance: { source: 'reviewed-update-44', pageTitle: 'Update 44: Iceblade of Narin' }
+        }
+      ]
+    }
+  },
   Khora: {
     routing: {
       componentCategory: 'frame-specific-mission', blueprintCategory: 'market', blueprintVariables: {}, blueprintSource: 'official-wiki-current', requirements: { type: 'none' },
@@ -22,6 +84,20 @@ const CURRENT_FRAME_ACQUISITION_OVERRIDES = Object.freeze({
     }
   }
 });
+// 官方导出尚未收录、但已复核的新战甲（与 src/frame-acquisition.js 的
+// EARLY_FRAME_IDENTITIES 对应）。没有这条通道时，路由生成器只遍历官方导出，
+// 新战甲既拿不到获取知识，手写文件还会被生成器的“删除未登记文件”清掉。
+const EARLY_FRAMES = Object.freeze([
+  Object.freeze({
+    name: 'Narin',
+    uniqueName: '/Lotus/Powersuits/Duelist/Duelist',
+    isPrime: false,
+    productCategory: 'Suits',
+    introducedAt: null,
+    components: [{ part: 'Blueprint', uniqueName: '/Lotus/Types/Recipes/WarframeRecipes/DuelistBlueprint' }, { part: 'Neuroptics', uniqueName: '/Lotus/Types/Recipes/WarframeRecipes/DuelistHelmetBlueprint' }, { part: 'Chassis', uniqueName: '/Lotus/Types/Recipes/WarframeRecipes/DuelistChassisBlueprint' }, { part: 'Systems', uniqueName: '/Lotus/Types/Recipes/WarframeRecipes/DuelistSystemsBlueprint' }],
+    earlyIdentity: true
+  })
+]);
 const CANONICAL_OVERRIDES = Object.freeze({
   '/Lotus/Powersuits/SiriusOrion/SiriusSuit': 'Sirius & Orion',
   '/Lotus/Powersuits/Inkblot/Inkblot': 'Follie',
@@ -70,6 +146,7 @@ function buildEntry(frame, existing) {
   const generated = { ...(existing?.frameAcquisition?.generated || {}), ...generatedData(frame) };
   if (canonical === 'Sirius & Orion' && generated.routing?.requirements?.type === 'currency') generated.routing = { ...generated.routing, requirements: { ...generated.routing.requirements, currency: (generated.routing.requirements.currency || []).map(item => item.currencyId === 'currency.jade-talent' ? { ...item, currencyId: 'currency.emerald-talent' } : item) } };
   if (CURRENT_FRAME_ACQUISITION_OVERRIDES[canonical]?.routing) generated.routing = CURRENT_FRAME_ACQUISITION_OVERRIDES[canonical].routing;
+  if (COMPONENT_ROUTE_OVERRIDES[canonical] && generated.routing) generated.routing = { ...generated.routing, componentVariables: COMPONENT_ROUTE_OVERRIDES[canonical] };
   if (canonical === 'Uriel') {
     const identity = {
       frame: '/Lotus/Powersuits/DemonFrame/DemonFrame',
@@ -168,6 +245,12 @@ function buildPlan() {
     const old = byUnique.get(frame.uniqueName) || byCanonical.get(canonical) || (frame.uniqueName === '/Lotus/Powersuits/SiriusOrion/SiriusSuit' ? siriusLegacy : null);
     included.push({ frame, entry: buildEntry(frame, old) });
   }
+  const officialNames = new Set(included.map(item => item.entry.subject.canonical));
+  const officialUniques = new Set(included.map(item => item.frame.uniqueName).filter(Boolean));
+  for (const frame of EARLY_FRAMES) {
+    if (officialNames.has(frame.name) || (frame.uniqueName && officialUniques.has(frame.uniqueName))) continue;
+    included.push({ frame, entry: buildEntry(frame, byCanonical.get(frame.name) || null) });
+  }
   return { official, included, excluded };
 }
 function run(argv = process.argv.slice(2)) {
@@ -178,10 +261,13 @@ function run(argv = process.argv.slice(2)) {
   const indexPath = path.join(KNOWLEDGE_DIR, 'categories.json');
   const routingIndex = fs.existsSync(indexPath) ? JSON.parse(fs.readFileSync(indexPath, 'utf8')) : { frames: [] };
   const routes = new Map((routingIndex.frames || []).map(item => [item.officialUniqueName, item.file]));
+  // 官方导出尚未收录的新战甲没有 officialUniqueName，按 canonical 兜底，
+  // 这样它们也能落到索引里指定的分类目录（例如 bounty/narin.json）。
+  const routesByCanonical = new Map((routingIndex.frames || []).map(item => [item.canonical, item.file]));
   const expectedFiles = new Set();
   const changes = [];
   for (const { entry } of plan.included) {
-    const file = routes.get(entry.subject.officialUniqueName) || `${slugify(entry.subject.canonical)}.json`;
+    const file = routes.get(entry.subject.officialUniqueName) || routesByCanonical.get(entry.subject.canonical) || `${slugify(entry.subject.canonical)}.json`;
     expectedFiles.add(path.normalize(file).toLowerCase());
     const target = path.join(KNOWLEDGE_DIR, file);
     const next = comparable([entry]);

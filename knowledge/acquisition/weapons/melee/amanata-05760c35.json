@@ -47,7 +47,8 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "crafting"
+      "crafting",
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
@@ -168,7 +169,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/Melee/Polearms/Naginata/ShrineMaidenNaginataWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -209,7 +212,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/Melee/Polearms/Naginata/ShrineMaidenNaginataWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -250,7 +255,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/Melee/Polearms/Naginata/ShrineMaidenNaginataWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -287,6 +294,55 @@
           }
         ],
         "status": "complete"
+      },
+      {
+        "scope": "blueprint-and-components",
+        "category": "vendor",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/NaginataBlueprint",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataBlade",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataHandle"
+        ],
+        "variables": {
+          "weaponName": "天薙刀"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "status": "complete",
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint-and-components",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/NaginataBlueprint",
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataBlade",
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/NaginataHandle"
+            ],
+            "sourceEntityId": "acquisition-source.koumei-shrine",
+            "locationId": "hub.cetus",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "acquisition-source.koumei-shrine",
+              "locationId": "hub.cetus",
+              "currency": [
+                {
+                  "currencyId": "currency.fate-pearl",
+                  "amount": 270
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "user-reviewed-acquisition",
+              "reviewedAt": "2026-10-07"
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/Melee/Polearms/Naginata/ShrineMaidenNaginataWeapon:exchange-full-set",
+            "displaySummary": "兑换：地球——希图斯——Koumei——\"献上命定之珠\"处 花费270命运之珠兑换"
+          }
+        ]
       }
     ]
   },

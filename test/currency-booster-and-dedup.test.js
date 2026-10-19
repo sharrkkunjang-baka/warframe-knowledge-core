@@ -19,8 +19,8 @@ test('生息精华按实体证据区分拾取加成、掉率加成与固定兑�
     currency: [{ currencyId: 'currency.vitus-essence', amount: 20 }],
     boosterPolicy: 'currency-entity-metadata'
   })
-  assert.match(method.requirementLines.join('\n'), /任务内拾取数量可翻倍/)
-  assert.match(method.requirementLines.join('\n'), /任务内掉落几率受影响/)
+  assert.match(method.requirementLines.join('\n'), /资源数量加成：吃/)
+  assert.match(method.requirementLines.join('\n'), /资源掉落几率加成：吃/)
   assert.doesNotMatch(method.requirementLines.join('\n'), /缺少明确证据|暂按未知处理|不会因加成改变|成本固定为/)
   assert.equal(method.boosterDiagnostics, undefined)
   const text = core.getAcquisitionCard('Galvanized Reflex').sections.exchange.join('\n')
@@ -31,8 +31,8 @@ test('生息精华按实体证据区分拾取加成、掉率加成与固定兑�
 test('真正不受加成的命运之珠不会被默认成未知或有效', () => {
   const method = core.getAcquisition('Amanata Pressure').structuredMethods[0]
   const text = method.requirementLines.join('\n')
-  assert.match(text, /资源数量加成：命运之珠不受影响/)
-  assert.match(text, /资源掉落几率加成：命运之珠不受影响/)
+  assert.match(text, /资源数量加成：不吃/)
+  assert.match(text, /资源掉落几率加成：不吃/)
   assert.doesNotMatch(text, /缺少明确证据|暂按未知处理|可翻倍|不会因加成改变/)
   assert.equal(method.boosterDiagnostics, undefined)
 })

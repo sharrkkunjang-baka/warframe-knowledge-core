@@ -84,6 +84,16 @@ function createElementModSlangResolver(index) {
       add(`${categoryAlias}${descriptor}`, item);
       add(`${descriptor}${categoryAlias}`, item);
     }
+    // A trailing/leading p is the established shorthand for a primed
+    // single-element Mod (for example 步枪冰p -> Primed Cryo Rounds).
+    if (item.kind === 'single-element' && /^Primed\s/i.test(item.canonical || '')) {
+      for (const categoryAlias of category.aliases) {
+        add(`${categoryAlias}${elementName}p`, item);
+        add(`${elementName}p${categoryAlias}`, item);
+        add(`${categoryAlias}${elementName}prime`, item);
+        add(`${elementName}prime${categoryAlias}`, item);
+      }
+    }
   }
   function resolve(query, options = {}) {
     const raw = String(query || '').trim();

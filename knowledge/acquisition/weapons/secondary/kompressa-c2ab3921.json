@@ -55,12 +55,19 @@
       "status": null,
       "methods": [
         {
-          "type": "syndicate-exchange",
+          "type": "vendor-or-syndicate-exchange",
           "scope": "blueprint",
+          "npcId": "npc.roky",
+          "locationId": "hub.fortuna",
+          "sourceCanonical": "Roky",
+          "standing": 25000,
           "requirements": {
             "type": "standing",
+            "npcId": "npc.roky",
+            "locationId": "hub.fortuna",
             "rank": 5,
-            "rankName": "逻辑"
+            "rankName": "义亲",
+            "amount": 25000
           },
           "reviewStatus": "approved",
           "provenance": {
@@ -72,8 +79,65 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
           ],
-          "variables": {},
-          "npcId": "npc.roky"
+          "variables": {}
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.roky",
+          "locationId": "hub.fortuna",
+          "sourceCanonical": "Roky",
+          "standing": 25000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.roky",
+            "locationId": "hub.fortuna",
+            "rank": 5,
+            "rankName": "义亲",
+            "amount": 25000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Kompressa?oldid=2760940",
+            "pageTitle": "Kompressa",
+            "revisionId": 2760940
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
+          ],
+          "variables": {
+            "partName": "卡帕压力枪 枪管"
+          }
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.roky",
+          "locationId": "hub.fortuna",
+          "sourceCanonical": "Roky",
+          "standing": 25000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.roky",
+            "locationId": "hub.fortuna",
+            "rank": 5,
+            "rankName": "义亲",
+            "amount": 25000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Kompressa?oldid=2760940",
+            "pageTitle": "Kompressa",
+            "revisionId": 2760940
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
+          ],
+          "variables": {
+            "partName": "卡帕压力枪 枪机"
+          }
         }
       ]
     },
@@ -93,12 +157,19 @@
         },
         "methods": [
           {
-            "type": "syndicate-exchange",
+            "type": "vendor-or-syndicate-exchange",
             "scope": "blueprint",
+            "npcId": "npc.roky",
+            "locationId": "hub.fortuna",
+            "sourceCanonical": "Roky",
+            "standing": 25000,
             "requirements": {
               "type": "standing",
+              "npcId": "npc.roky",
+              "locationId": "hub.fortuna",
               "rank": 5,
-              "rankName": "逻辑"
+              "rankName": "义亲",
+              "amount": 25000
             },
             "reviewStatus": "approved",
             "provenance": {
@@ -110,8 +181,7 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/TnYareliPistolBlueprint"
             ],
-            "variables": {},
-            "npcId": "npc.roky"
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -128,8 +198,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.roky",
+            "locationId": "hub.fortuna",
+            "sourceCanonical": "Roky",
+            "standing": 25000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.roky",
+              "locationId": "hub.fortuna",
+              "rank": 5,
+              "rankName": "义亲",
+              "amount": 25000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Kompressa?oldid=2760940",
+              "pageTitle": "Kompressa",
+              "revisionId": 2760940
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel"
+            ],
+            "variables": {
+              "partName": "卡帕压力枪 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -143,8 +243,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.roky",
+            "locationId": "hub.fortuna",
+            "sourceCanonical": "Roky",
+            "standing": 25000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.roky",
+              "locationId": "hub.fortuna",
+              "rank": 5,
+              "rankName": "义亲",
+              "amount": 25000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Kompressa?oldid=2760940",
+              "pageTitle": "Kompressa",
+              "revisionId": 2760940
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver"
+            ],
+            "variables": {
+              "partName": "卡帕压力枪 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -213,7 +343,7 @@
         {
           "uniqueName": "/Lotus/Types/Items/MiscItems/OrokinCell",
           "canonical": "Orokin Cell",
-          "displayName": "Orokin 电池",
+          "displayName": "奥罗金电池",
           "languageKey": null,
           "localizationStatus": "official-zh",
           "quantity": 3
@@ -243,24 +373,24 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-28",
-  "reviewStatus": "review",
+  "updatedAt": "2026-10-10",
+  "reviewStatus": "approved",
   "reviewedBy": [],
-  "status": "review-required",
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/TnYareliPistolReceiver",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

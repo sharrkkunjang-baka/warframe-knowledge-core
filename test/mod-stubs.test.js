@@ -144,8 +144,8 @@ test('执刑官 Mod 使用切片哥和存货储备统一兑换协议', () => {
       '在漂泊者营地的切片哥处消耗40个存货储备兑换',
       '所需货币怎么刷：',
       '存货储备（需要40个）：完成卡尔每周的“击溃合一众”任务挑战获得，并同时推进卡尔驻军等级',
-      '资源数量加成：存货储备不受影响',
-      '资源掉落几率加成：存货储备不受影响'
+      '资源数量加成：不吃',
+      '资源掉落几率加成：不吃'
     ]);
     assert.doesNotMatch(result.requirementLines.join('\n'), /缺少明确证据|暂按未知处理|不会因加成改变/);
     assert.equal(result.structuredMethods.some(method => method.type === 'enemy-drop'), false);

@@ -105,44 +105,16 @@
           {
             "type": "reward-or-drop",
             "sourceEntityId": "arcane-source.8f0bc4be7ae3",
-            "sourceCanonical": "Temporal Archimedea Gold Rewards",
-            "probability": 0.0851,
-            "chancePercent": 8.51,
+            "sourceCanonical": "Temporal Archimedea",
+            "sourceDisplayName": "时光科研奖励",
             "quantity": 1,
-            "rarity": "Rare",
             "provenance": {
               "source": "warframe-items",
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityRadiationProcsCreateUniversalOrbsOnKill"
-            }
-          },
-          {
-            "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.7e92e7b01ab1",
-            "sourceCanonical": "Temporal Archimedea Silver Rewards",
-            "probability": 0.0876,
-            "chancePercent": 8.76,
-            "quantity": 1,
-            "rarity": "Rare",
-            "provenance": {
-              "source": "warframe-items",
-              "input": "Arcanes.json",
-              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityRadiationProcsCreateUniversalOrbsOnKill"
-            }
-          },
-          {
-            "type": "reward-or-drop",
-            "sourceEntityId": "arcane-source.f5873e2c0067",
-            "sourceCanonical": "Temporal Archimedea Arcane Rewards",
-            "probability": 0.1366,
-            "chancePercent": 13.66,
-            "quantity": 1,
-            "rarity": "Uncommon",
-            "provenance": {
-              "source": "warframe-items",
-              "input": "Arcanes.json",
-              "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Utility/AbilityRadiationProcsCreateUniversalOrbsOnKill"
-            }
+            },
+            "displayGroupId": "temporal-archimedea-arcane-reward",
+            "displaySummary": "时光科研奖励（概率）"
           }
         ],
         "requirements": {
@@ -154,11 +126,39 @@
     },
     "manual": {
       "aliases": [],
-      "methods": [],
+      "methods": [
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "sourceEntityId": "npc.kaya",
+          "sourceCanonical": "Kaya Velasco, Höllvania Central Mall",
+          "quantity": 1,
+          "availability": "guaranteed-when-requirements-met",
+          "locationId": "hub.hollvania-central-mall",
+          "requirements": {
+            "type": "currency",
+            "usage": "exchange",
+            "npcId": "npc.kaya",
+            "locationId": "hub.hollvania-central-mall",
+            "currency": [
+              {
+                "currencyId": "currency.pix-chip"
+              }
+            ],
+            "isBuffUseless": true
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "user-provided",
+            "url": null,
+            "revisionId": null,
+            "excerpt": "Temporal Archimedea arcanes are also sold by Kaya Velasco in the Höllvania Central Mall in exchange for Pix Chips; no standing requirement."
+          }
+        }
+      ],
       "methodRefs": [],
       "notes": [],
       "overrides": {},
-      "reviewStatus": "draft",
+      "reviewStatus": "approved",
       "reviewedBy": []
     }
   },

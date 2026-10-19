@@ -1,6 +1,21 @@
 'use strict';
 
+const fs = require('node:fs');
+const path = require('node:path');
 const { normalize } = require('./resolver');
+
+// 复核俗称以 knowledge/facts/aliases.json 为权威（与战甲、武器共用同一张表）。
+// 俗称只登记数据，不在代码里逐个守护开特例：这里把 companions / companionMainlandNames
+// 合并进别名索引，新增俗称不需要改代码。
+const KNOWLEDGE_ROOT = path.resolve(__dirname, '..', 'knowledge');
+const ALIAS_FACTS_PATH = path.join(KNOWLEDGE_ROOT, 'facts', 'aliases.json');
+const ALIAS_FACTS = (() => {
+  try { return JSON.parse(fs.readFileSync(ALIAS_FACTS_PATH, 'utf8')); } catch (_) { return {}; }
+})();
+function sharedCompanionAliases(canonical) {
+  const list = ALIAS_FACTS?.companions?.[canonical];
+  return Array.isArray(list) ? list : [];
+}
 
 const COMPANION_VARIANT_KIND = value => (/\sPrime$/i.test(String(value || '')) ? 'prime' : 'base');
 
@@ -44,6 +59,12 @@ for (const family of TRADABLE_SENTINEL_PRIME_FAMILIES) {
   aliasIndex.set(normalize(family.prime.canonical), family);
   if (family.base.displayName) aliasIndex.set(normalize(family.base.displayName), family);
   if (family.prime.displayName) aliasIndex.set(normalize(family.prime.displayName), family);
+  // 共享复核表里的俗称（如 Helios 的「照相机」「摄像头」「拍照」）与国服正式名。
+  for (const key of [family.base.canonical, family.prime.canonical]) {
+    for (const alias of sharedCompanionAliases(key)) aliasIndex.set(normalize(alias), family);
+  }
+  const mainlandName = ALIAS_FACTS?.companionMainlandNames?.[family.base.canonical];
+  if (mainlandName) aliasIndex.set(normalize(mainlandName), family);
 }
 
 function companionFamilyKey(canonical) {

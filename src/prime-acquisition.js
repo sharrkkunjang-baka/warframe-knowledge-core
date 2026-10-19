@@ -1,5 +1,8 @@
 'use strict'
 
+const FOUNDER_PRIME_CANONICALS = Object.freeze(new Set(['Excalibur Prime', 'Lato Prime', 'Skana Prime']))
+function isFounderPrime(canonical) { return FOUNDER_PRIME_CANONICALS.has(String(canonical || '').trim()) }
+
 const RELIC_ERA_ZH=Object.freeze({Lith:'古纪',Meso:'前纪',Neo:'中纪',Axi:'后纪'})
 const TIER_ZH=Object.freeze({Rare:'金',Uncommon:'银',Common:'铜'})
 function localizeRelicName(name){return String(name||'').replace(/^(Lith|Meso|Neo|Axi)\b/i,era=>RELIC_ERA_ZH[era[0].toUpperCase()+era.slice(1).toLowerCase()]||era)}
@@ -8,6 +11,7 @@ function classifyPrimeAcquisition({isPrime,relicMethods=[],nonRelicMethods=[]}={
 function renderPrimePartMethods(methods,partName){return(methods||[]).map(method=>`${partName}：开启${localizeRelicName(method.relicCanonical)}遗物（${relicRewardTier(method)}）获得`)}
 function renderPrimePartGroups(methods,{blueprintLabel='总图',componentNames=[]}={}){const byScope=new Map();for(const method of methods||[]){const variables=method.variables||{},label=method.scope==='blueprint'?blueprintLabel:(variables.partName||'部件'),relic=`${localizeRelicName(method.relicCanonical)}（${relicRewardTier(method)}）`;const values=byScope.get(label)||[];if(!values.includes(relic))values.push(relic);byScope.set(label,values)}const byRelics=new Map();for(const [label,relics] of byScope){const text=relics.join('；');const labels=byRelics.get(text)||[];labels.push(label);byRelics.set(text,labels)}return[...byRelics].map(([relics,labels])=>{const set=new Set(labels),allComponents=componentNames.length&&componentNames.every(name=>set.has(name));let label;if(set.has(blueprintLabel)&&allComponents)label='总图与部件';else if(allComponents&&set.size===componentNames.length)label='部件';else label=labels.map(name=>name.replace(/^.+?\s+(?=[^\s]+$)/,'')).join('、');return`${label}：${relics}`})}
 function buildPrimeWeaponCardAcquisitionLines(weaponEntry, structuredMethods = []) {
+  if (isFounderPrime(weaponEntry?.subject?.canonical)) return ['已绝版']
   const prime = weaponEntry?.acquisition?.prime
   if (prime?.kind !== 'prime-relic') return null
   const displayName = weaponEntry.subject?.displayName || weaponEntry.subject?.canonical
@@ -21,4 +25,4 @@ function buildPrimeWeaponCardAcquisitionLines(weaponEntry, structuredMethods = [
     ...renderPrimePartGroups(structuredMethods, { componentNames })
   ]
 }
-module.exports={RELIC_ERA_ZH,TIER_ZH,localizeRelicName,relicRewardTier,classifyPrimeAcquisition,renderPrimePartMethods,renderPrimePartGroups,buildPrimeWeaponCardAcquisitionLines}
+module.exports={RELIC_ERA_ZH,TIER_ZH,localizeRelicName,relicRewardTier,classifyPrimeAcquisition,renderPrimePartMethods,renderPrimePartGroups,buildPrimeWeaponCardAcquisitionLines,isFounderPrime}

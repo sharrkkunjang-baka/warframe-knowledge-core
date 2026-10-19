@@ -47,7 +47,8 @@
   "acquisition": {
     "routeCategoryRefs": [
       "official-drop",
-      "crafting"
+      "crafting",
+      "vendor"
     ],
     "prime": {
       "kind": "standard",
@@ -193,7 +194,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -234,7 +237,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -275,7 +280,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -316,7 +323,9 @@
             "provenance": {
               "source": "DE Official Drop Tables",
               "section": "Missions"
-            }
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon:mission-full-set",
+            "displaySummary": "全套：地球——萨娅的异象结算概率获得"
           }
         ],
         "status": "complete"
@@ -354,6 +363,57 @@
           }
         ],
         "status": "complete"
+      },
+      {
+        "scope": "blueprint-and-components",
+        "category": "vendor",
+        "partRefs": [
+          "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaBarrel",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaReceiver",
+          "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaStock"
+        ],
+        "variables": {
+          "weaponName": "晴日伞"
+        },
+        "requirements": {
+          "type": "none"
+        },
+        "status": "complete",
+        "methods": [
+          {
+            "type": "vendor-exchange",
+            "scope": "blueprint-and-components",
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/GunbrellaBlueprint",
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaBarrel",
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaReceiver",
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/GunbrellaStock"
+            ],
+            "sourceEntityId": "acquisition-source.koumei-shrine",
+            "locationId": "hub.cetus",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "acquisition-source.koumei-shrine",
+              "locationId": "hub.cetus",
+              "currency": [
+                {
+                  "currencyId": "currency.fate-pearl",
+                  "amount": 225
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "user-reviewed-acquisition",
+              "reviewedAt": "2026-10-07"
+            },
+            "displayGroupId": "/Lotus/Weapons/Tenno/LongGuns/Gunbrella/ShrineMaidenGunbrellaWeapon:exchange-full-set",
+            "displaySummary": "兑换：地球——希图斯——Koumei——\"献上命定之珠\"处 花费225命运之珠兑换"
+          }
+        ]
       }
     ]
   },

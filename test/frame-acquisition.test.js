@@ -29,6 +29,9 @@ test('resolves official names and audited aliases without guessing', () => {
   assert.equal(acquisition.resolveWarframe('卡利班 Prime').name, 'Caliban Prime');
   assert.equal(acquisition.resolveWarframe('卡利班p').name, 'Caliban Prime');
   assert.equal(acquisition.resolveWarframe('calibanp').name, 'Caliban Prime');
+  for (const alias of ['加速娃', '诺娃']) {
+    assert.equal(acquisition.resolveWarframe(alias).name, 'Nova', alias);
+  }
 });
 
 test('sentence-level resolver locks the frame before intent and related entries', () => {
@@ -100,6 +103,13 @@ test('Oberon summarizes audited Proxima outpost rewards without node or cache mi
   assert.match(rendered, /机体：完成土星比邻星域任务中的前哨站额外目标：10%/);
   assert.match(rendered, /系统：完成地球比邻星域任务中的前哨站额外目标：10%/);
   assert.doesNotMatch(rendered, /Bendar|Kasio|Iota Temple|Caches|白色储藏箱|虚空风暴/);
+});
+test('Ash keeps independent Proxima node probabilities instead of adding different missions together', () => {
+  const rendered = createKnowledgeCore({ approvedOnly: false }).getAcquisition('Ash').description;
+  assert.match(rendered, /头部神经光元：海王星比邻星域：女娲之矿\/星主之握 任务结算 4\.71%；时空坐标\/初裔冰渍区 A轮 12\.5%/);
+  assert.match(rendered, /机体：冥王星比邻星域：利益外缘\/七魅之息 任务结算 4\.82%；芬顿之地\/冥渡 A轮 13\.33%/);
+  assert.match(rendered, /系统：金星比邻星域：卫标星环\/虹桥回声 任务结算 4\.88%；落没之耀\/无垠华盖 A轮 13\.33%/);
+  assert.doesNotMatch(rendered, /前哨战 A轮 25%|前哨战 A轮 26\.66%/);
 });
 test('Caliban explains Narmer bounty rotation without backend letters or probabilities', () => {
   const rendered = acquisition.renderAcquisition({ frame: acquisition.resolveWarframe('Caliban'), materials: { available: false } });
@@ -213,6 +223,19 @@ test('Caliban Prime uses audited current relics when npm data lags', () => {
   const rendered = acquisition.renderAcquisition({ frame, prime, materials: frame.materials });
   assert.match(rendered, /头部神经光元：中纪 C7（金）/);
   assert.doesNotMatch(rendered, /2%|11%|25\.33%/);
+});
+
+test('Citrine Prime uses audited launch relics and mainland alias', () => {
+  const frame = acquisition.resolveWarframe('水晶 Prime');
+  assert.equal(frame.name, 'Citrine Prime');
+  const prime = acquisition.getPrimeRelics(frame, null, null);
+  assert.equal(prime.status, '当前出库');
+  const rendered = acquisition.renderAcquisition({ frame, prime, materials: frame.materials });
+  assert.match(rendered, /总图：前纪 C11（金）/);
+  assert.match(rendered, /头部：后纪 C12（金）/);
+  assert.match(rendered, /机体：中纪 C11（铜）/);
+  assert.match(rendered, /系统：古纪 S19（银）/);
+  assert.doesNotMatch(rendered, /暂无可靠掉落数据/);
 });
 
 test('Prime state selects current, resurgence, or vaulted category only', () => {
@@ -366,7 +389,7 @@ test('ability query resolves number, official Chinese ability and Prime base ski
 
 test('frame knowledge covers public official suits and excludes internal placeholders', () => {
   const frames = acquisition.listWarframes();
-  assert.equal(frames.length, 117);
+  assert.equal(frames.length, 118);
   assert.ok(frames.some(frame => frame.canonical === 'Sirius & Orion' && frame.officialUniqueName.endsWith('/SiriusSuit')));
   assert.ok(!frames.some(frame => /Demon Frame|Inkblot/.test(frame.canonical)));
   assert.ok(frames.some(frame => frame.canonical === 'Follie' && frame.officialUniqueName.endsWith('/Inkblot')));
@@ -399,7 +422,7 @@ test('manual overrides and recursive exchange dependencies render before generic
 
 test('frame maintenance report exposes exclusions without publishing them', () => {
   const report = acquisition.getWarframeMaintenanceReport();
-  assert.equal(report.publicCount, 117);
+  assert.equal(report.publicCount, 118);
   assert.deepEqual(report.excluded, []);
   assert.equal(acquisition.getWarframeKnowledge('Dagath').frameAcquisition.manual.dependencies[0].currencyId, 'currency.vainthorn');
 });

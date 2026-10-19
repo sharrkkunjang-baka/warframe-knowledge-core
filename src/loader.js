@@ -1,10 +1,12 @@
 'use strict';
+const { applyDucatOverrides } = require('./ducat-values');
 
 const fs = require('fs');
 const path = require('path');
+const { normalizeAliasFacts } = require('./alias-facts');
 
 function readJson(file) {
-  return JSON.parse(fs.readFileSync(file, 'utf8'));
+  return applyDucatOverrides(JSON.parse(fs.readFileSync(file, 'utf8')));
 }
 
 function deepFreeze(value) {
@@ -80,7 +82,33 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
     counts: { ...(officialItemsBase.counts || {}), supplemental: officialItemsSupplement.length, fishSupplemental: fishSupplement.length, conservationSupplemental: conservationSupplement.length }
   }) : null;
   const officialWeaponsPath = path.join(knowledgeDirectory, 'generated', 'official-weapons.json');
-  const officialWeapons = fs.existsSync(officialWeaponsPath) ? deepFreeze(readJson(officialWeaponsPath)) : null;
+  const officialWeaponsBase = fs.existsSync(officialWeaponsPath) ? readJson(officialWeaponsPath) : null;
+  // 与 official-items 一致：官方导出（DE ExportWeapons）会滞后于新内容发布。
+  // 武器目录是身份解析（resolvePrimeVariantIntent / 家族归并）的唯一来源，
+  // 缺少补丁通道时新发布的 Prime 武器会永久解析不了。这里合并已复核的补充身份，
+  // 同 uniqueName 以补充条目为准；generated 文件本身保持官方导出的原样。
+  const officialWeaponsSupplementPath = path.join(knowledgeDirectory, 'supplemental', 'official-weapons.json');
+  const officialWeaponsSupplementRaw = fs.existsSync(officialWeaponsSupplementPath) ? readJson(officialWeaponsSupplementPath) : [];
+  const officialWeaponsSupplement = Array.isArray(officialWeaponsSupplementRaw)
+    ? officialWeaponsSupplementRaw
+    : (Array.isArray(officialWeaponsSupplementRaw.weapons) ? officialWeaponsSupplementRaw.weapons : []);
+  const weaponSupplementsByUniqueName = new Map(officialWeaponsSupplement
+    .filter(weapon => weapon && weapon.uniqueName && weapon.canonical)
+    .map(weapon => [weapon.uniqueName, weapon]));
+  const officialWeapons = officialWeaponsBase ? deepFreeze({
+    ...officialWeaponsBase,
+    weapons: [
+      ...new Map((officialWeaponsBase.weapons || []).map(weapon => [weapon.uniqueName, weaponSupplementsByUniqueName.get(weapon.uniqueName) || weapon])).values(),
+      ...[...weaponSupplementsByUniqueName.values()].filter(weapon => !(officialWeaponsBase.weapons || []).some(base => base.uniqueName === weapon.uniqueName))
+    ],
+    counts: { ...(officialWeaponsBase.counts || {}), supplemental: weaponSupplementsByUniqueName.size }
+  }) : (weaponSupplementsByUniqueName.size ? deepFreeze({
+    schemaVersion: 1,
+    counts: { included: weaponSupplementsByUniqueName.size, excluded: 0, reviewRequired: weaponSupplementsByUniqueName.size, languageOnly: 0, supplemental: weaponSupplementsByUniqueName.size },
+    weapons: [...weaponSupplementsByUniqueName.values()],
+    languageOnlyWeapons: [],
+    excludedWeapons: []
+  }) : null);
   const exaltedWeaponIntentsPath = path.join(knowledgeDirectory, 'supplemental', 'exalted-weapon-intents.json');
   const exaltedWeaponIntents = fs.existsSync(exaltedWeaponIntentsPath) ? deepFreeze(readJson(exaltedWeaponIntentsPath)) : { schemaVersion: 1, families: [] };
   const rivenMarketWeaponsPath = path.join(knowledgeDirectory, 'supplemental', 'riven-market-weapons.json');
@@ -96,7 +124,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const officialItemSourcesPath = path.join(root, 'generated', 'official-item-sources.json');
   const officialItemSources = fs.existsSync(officialItemSourcesPath) ? deepFreeze(readJson(officialItemSourcesPath)) : null;
   const aliasesPath = path.join(knowledgeDirectory, 'facts', 'aliases.json');
-  const aliases = fs.existsSync(aliasesPath) ? readJson(aliasesPath) : { frames: {}, frameMainlandNames: {}, terms: {}, normalization: {} };
+  const aliases = fs.existsSync(aliasesPath) ? normalizeAliasFacts(readJson(aliasesPath)) : { frames: {}, frameMainlandNames: {}, terms: {}, normalization: {} };
   const acquisitionVariantFamiliesPath = path.join(knowledgeDirectory, 'families', 'acquisition-variants.json');
   const acquisitionVariantFamilies = fs.existsSync(acquisitionVariantFamiliesPath) ? deepFreeze(readJson(acquisitionVariantFamiliesPath)) : { schemaVersion: 1, families: [] };
   const frameDirectory = path.join(knowledgeDirectory, 'acquisition', 'warframe');

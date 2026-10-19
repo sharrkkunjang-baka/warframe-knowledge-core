@@ -55,10 +55,19 @@
       "status": null,
       "methods": [
         {
-          "type": "syndicate-exchange",
+          "type": "vendor-or-syndicate-exchange",
           "scope": "blueprint",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 15000,
           "requirements": {
-            "type": "standing"
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 15000
           },
           "reviewStatus": "approved",
           "provenance": {
@@ -70,8 +79,94 @@
           "partRefs": [
             "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
           ],
-          "variables": {},
-          "npcId": "npc.minerva"
+          "variables": {}
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 5000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 5000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Purgator_1?oldid=2790049",
+            "pageTitle": "Purgator 1",
+            "revisionId": 2790049
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponBarrel"
+          ],
+          "variables": {
+            "partName": "净化者 1 枪管"
+          }
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 5000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 5000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Purgator_1?oldid=2790049",
+            "pageTitle": "Purgator 1",
+            "revisionId": 2790049
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponReceiver"
+          ],
+          "variables": {
+            "partName": "净化者 1 枪机"
+          }
+        },
+        {
+          "type": "vendor-or-syndicate-exchange",
+          "scope": "component",
+          "npcId": "npc.minerva",
+          "locationId": "hub.hollvania-central-mall",
+          "sourceCanonical": "Minerva",
+          "standing": 5000,
+          "requirements": {
+            "type": "standing",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "rank": 5,
+            "rankName": "披萨派对",
+            "amount": 5000
+          },
+          "reviewStatus": "approved",
+          "provenance": {
+            "source": "local-wiki-sqlite",
+            "url": "https://wiki.warframe.com/w/Purgator_1?oldid=2790049",
+            "pageTitle": "Purgator 1",
+            "revisionId": 2790049
+          },
+          "partRefs": [
+            "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponStock"
+          ],
+          "variables": {
+            "partName": "净化者 1 枪托"
+          }
         }
       ]
     },
@@ -91,10 +186,19 @@
         },
         "methods": [
           {
-            "type": "syndicate-exchange",
+            "type": "vendor-or-syndicate-exchange",
             "scope": "blueprint",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 15000,
             "requirements": {
-              "type": "standing"
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 15000
             },
             "reviewStatus": "approved",
             "provenance": {
@@ -106,8 +210,7 @@
             "partRefs": [
               "/Lotus/Types/Recipes/Weapons/LasrianNoxPlayerWeaponBlueprint"
             ],
-            "variables": {},
-            "npcId": "npc.minerva"
+            "variables": {}
           }
         ],
         "status": "complete"
@@ -124,8 +227,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 5000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Purgator_1?oldid=2790049",
+              "pageTitle": "Purgator 1",
+              "revisionId": 2790049
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponBarrel"
+            ],
+            "variables": {
+              "partName": "净化者 1 枪管"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -139,8 +272,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 5000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Purgator_1?oldid=2790049",
+              "pageTitle": "Purgator 1",
+              "revisionId": 2790049
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponReceiver"
+            ],
+            "variables": {
+              "partName": "净化者 1 枪机"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "component",
@@ -154,8 +317,38 @@
         "requirements": {
           "type": "none"
         },
-        "methods": [],
-        "status": "review-required"
+        "methods": [
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "scope": "component",
+            "npcId": "npc.minerva",
+            "locationId": "hub.hollvania-central-mall",
+            "sourceCanonical": "Minerva",
+            "standing": 5000,
+            "requirements": {
+              "type": "standing",
+              "npcId": "npc.minerva",
+              "locationId": "hub.hollvania-central-mall",
+              "rank": 5,
+              "rankName": "披萨派对",
+              "amount": 5000
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "local-wiki-sqlite",
+              "url": "https://wiki.warframe.com/w/Purgator_1?oldid=2790049",
+              "pageTitle": "Purgator 1",
+              "revisionId": 2790049
+            },
+            "partRefs": [
+              "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponStock"
+            ],
+            "variables": {
+              "partName": "净化者 1 枪托"
+            }
+          }
+        ],
+        "status": "complete"
       },
       {
         "scope": "components",
@@ -254,28 +447,28 @@
     }
   ],
   "gameVersion": "current",
-  "updatedAt": "2026-07-28",
-  "reviewStatus": "review",
+  "updatedAt": "2026-10-10",
+  "reviewStatus": "approved",
   "reviewedBy": [],
-  "status": "review-required",
+  "status": "complete",
   "coverage": {
-    "autoComplete": false,
-    "auditedComplete": false,
+    "autoComplete": true,
+    "auditedComplete": true,
     "description": true,
     "directItem": false,
     "blueprint": true,
     "components": [
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponBarrel",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponReceiver",
-        "complete": false
+        "complete": true
       },
       {
         "partRef": "/Lotus/Types/Recipes/Weapons/WeaponParts/LasrianNoxPlayerWeaponStock",
-        "complete": false
+        "complete": true
       }
     ],
     "crafting": true

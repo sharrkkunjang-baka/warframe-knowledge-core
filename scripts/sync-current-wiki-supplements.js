@@ -110,14 +110,18 @@ function officialLocalization(canonical, en, zh) {
   }
 }
 function officialModDetails(localized, pageText, zh, en = {}) {
-  if (!localized?.officialUniqueName) return { maxRank: null, effectDetails: [] }
+  if (!localized?.officialUniqueName) return { maxRank: null, effectDetails: [], rarity: null, polarity: null }
   const maxRank = Number(pageText.match(/Max Rank\s+(\d+)/i)?.[1])
+  const polarity = pageText.match(/Polarity\s+(Madurai|Naramon|Vazarin|Zenurik|Unairu|Umbra|Precept|Universal)/i)?.[1]?.toLowerCase() || null
+  const rarity = pageText.match(/Rarity\s+(Common|Uncommon|Rare|Legendary|Amalgam)/i)?.[1]?.toLowerCase() || null
   const description = pageText.match(/Max Rank Description\s+([\s\S]+?)\s+General Information/i)?.[1] || ''
   let values = [...description.matchAll(/[+-]?\d+(?:\.\d+)?%?/g)].map(match => match[0].replace(/^[+]/, '').replace(/%$/, ''))
   if (/NightwaveTnJetTurbinePistolAugmentModName$/.test(localized.languageKey) && values.length >= 3) {
     return {
       maxRank: Number.isInteger(maxRank) ? maxRank : null,
-      effectDetails: [`主要射击命中弱点时：弱点伤害 +${values[0]}%，持续 ${values[1]} 秒，最多叠加 ${values[2]} 次。`]
+      effectDetails: [`主要射击命中弱点时：弱点伤害 +${values[0]}%，持续 ${values[1]} 秒，最多叠加 ${values[2]} 次。`],
+      rarity,
+      polarity
     }
   }
   let cursor = 0
@@ -146,7 +150,7 @@ function officialModDetails(localized, pageText, zh, en = {}) {
     const value = values[cursor++] || token
     return token.startsWith('|') && String(template).includes(`+${token}`) ? value.replace(/^\+/, '') : value
   })).trim()).filter(value => value && !/\|[^|]+\|/.test(value))
-  return { maxRank: Number.isInteger(maxRank) ? maxRank : null, effectDetails }
+  return { maxRank: Number.isInteger(maxRank) ? maxRank : null, effectDetails, rarity, polarity }
 }
 function section(db, pageId, names) { return db.prepare(`SELECT title,text FROM sections WHERE page_id=? AND lower(title) IN (${names.map(() => '?').join(',')}) ORDER BY ordinal`).all(pageId, ...names.map(value => value.toLowerCase())).map(item => item.text).join('\n') }
 const SYNDICATES = Object.freeze({ 'Arbiters of Hexis': 'faction.arbiters-of-hexis', 'New Loka': 'faction.new-loka', 'Red Veil': 'faction.red-veil', 'Cephalon Suda': 'faction.cephalon-suda', 'The Perrin Sequence': 'faction.the-perrin-sequence', 'Steel Meridian': 'faction.steel-meridian' })
@@ -310,7 +314,7 @@ function modEntry(item, old) {
   const manual = { methods: oldManual.methods || [], methodRefs: oldManual.methodRefs || [], overrides: oldManual.overrides || {}, reviewStatus: item.methods.length ? 'approved' : (oldManual.reviewStatus || 'draft'), reviewedBy: item.methods.length ? [...new Set([...(oldManual.reviewedBy || []), 'current-wiki-supplement'])] : (oldManual.reviewedBy || []) }
   const hasSyndicateExchange = item.methods.some(method => method.type === 'syndicate-exchange')
   const categoryRefs = hasSyndicateExchange ? ['syndicatemod', 'warframemod', 'standardmod'] : ['standardmod']
-  return { id: `knowledge.acquisition.mod.${slug(item.canonical)}-${hash(uniqueName)}`, kind: 'knowledge', module: 'acquisition', title: item.displayName, subject: { canonical: item.canonical, displayName: item.displayName, category: 'mod', officialUniqueName: uniqueName, categoryRefs }, officialUniqueName: uniqueName, maxRank: item.maxRank, effectDetails: item.effectDetails, rarity: null, polarity: null, tradable: true, prerequisites: [], tips: old?.tips || [], tipKeywords: old?.tipKeywords || [], methodRefs: [], modAcquisition: { generated: { identity: { officialUniqueName: uniqueName, canonical: item.canonical, displayName: item.displayName, variant: 'standard' }, wiki: { status: wikiMethods.length ? 'complete' : 'unresolved', methods: wikiMethods, evidence: [{ type: 'acquisition-prose', reviewStatus: 'approved', provenance: { source: 'current-wiki-sqlite', pageTitle: item.canonical, revisionId: item.page.revisionId }, excerpt: item.acquisitionEvidence }], mechanicsEvidence: {}, unresolvedEntities: [] }, officialDrops }, manual }, acquisitionStatus: item.methods.length ? 'complete' : 'partial', sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g, '_')}`, label: 'Official Warframe Wiki' }], gameVersion: `Update ${item.introduced}`, updatedAt: old?.updatedAt || new Date().toISOString().slice(0, 10), reviewStatus: item.methods.length ? 'approved' : 'draft', reviewedBy: item.methods.length ? [...new Set([...(old?.reviewedBy || []), 'current-wiki-supplement'])] : (old?.reviewedBy || []), tags: ['acquisition', 'mod', 'current-version-supplement'], generator: { name: 'sync-current-wiki-supplements', version: 1 } }
+  return { id: `knowledge.acquisition.mod.${slug(item.canonical)}-${hash(uniqueName)}`, kind: 'knowledge', module: 'acquisition', title: item.displayName, subject: { canonical: item.canonical, displayName: item.displayName, category: 'mod', officialUniqueName: uniqueName, categoryRefs }, officialUniqueName: uniqueName, maxRank: item.maxRank, effectDetails: item.effectDetails, rarity: item.rarity || old?.rarity || null, polarity: item.polarity || old?.polarity || null, tradable: true, prerequisites: [], tips: old?.tips || [], tipKeywords: old?.tipKeywords || [], methodRefs: [], modAcquisition: { generated: { identity: { officialUniqueName: uniqueName, canonical: item.canonical, displayName: item.displayName, variant: 'standard' }, wiki: { status: wikiMethods.length ? 'complete' : 'unresolved', methods: wikiMethods, evidence: [{ type: 'acquisition-prose', reviewStatus: 'approved', provenance: { source: 'current-wiki-sqlite', pageTitle: item.canonical, revisionId: item.page.revisionId }, excerpt: item.acquisitionEvidence }], mechanicsEvidence: {}, unresolvedEntities: [] }, officialDrops }, manual }, acquisitionStatus: item.methods.length ? 'complete' : 'partial', sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g, '_')}`, label: 'Official Warframe Wiki' }], gameVersion: `Update ${item.introduced}`, updatedAt: old?.updatedAt || new Date().toISOString().slice(0, 10), reviewStatus: item.methods.length ? 'approved' : 'draft', reviewedBy: item.methods.length ? [...new Set([...(old?.reviewedBy || []), 'current-wiki-supplement'])] : (old?.reviewedBy || []), tags: ['acquisition', 'mod', 'current-version-supplement'], generator: { name: 'sync-current-wiki-supplements', version: 1 } }
 }
 function resourceEntry(item, old, reviewedIdentities = new Map()) {
   const uniqueName = reviewedIdentities.get(normalize(item.canonical)) || `wiki-current:resource:${item.canonical}`

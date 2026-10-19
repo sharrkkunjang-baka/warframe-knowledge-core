@@ -10,20 +10,24 @@ const BLUEPRINT_VENDOR_REQUIREMENTS=Object.freeze({
   Father:{npcId:'npc.father',locationId:'hub.necralisk'},
   Loid:{npcId:'npc.loid',locationId:'hub.necralisk'},
   Chipper:{npcId:'npc.chipper',locationId:'hub.drifters-camp'},
-  Amir:{npcId:'npc.amir',locationId:'acquisition-source.hollvania-missions'}
+  Amir:{npcId:'npc.amir',locationId:'hub.hollvania-central-mall'},
+  Minerva:{npcId:'npc.minerva',locationId:'hub.hollvania-central-mall'},
+  Roky:{npcId:'npc.roky',locationId:'hub.fortuna'}
 })
 const CURRENT_WIKI_ACQUISITION_SUPPLEMENTS=Object.freeze({
   Afentis:Object.freeze({revisionId:2789983,text:"Afentis's blueprint is available from Chipper of Kahl's Garrison for 60 Stock, requiring players to be at Rank 5 - Home to purchase."}),
   Aegrit:Object.freeze({revisionId:2790023,text:"Aegrit's blueprint is available from Chipper of Kahl's Garrison for 30 Stock, requiring players to be at Rank 4 - Settlement to purchase."}),
   Slaytra:Object.freeze({revisionId:2789906,text:"Slaytra's blueprint is available from Chipper of Kahl's Garrison for 30 Stock, requiring players to be at Rank 2 - Encampment to purchase."}),
   Agkuza:Object.freeze({revisionId:2791576,text:"The Agkuza's blueprint can be purchased from the Market. Its parts can be purchased from various Syndicates. | Blueprint Market | Blade New Loka Offering 3 - Benevolent 20,000 Standing | Handle Red Veil Offering 3 - Esteemed 20,000 Standing | Guard Steel Meridian Offering 3 - Defender 20,000 Standing |"}),
+  Akstiletto:Object.freeze({revisionId:2791900,text:"The Akstiletto's blueprint can be researched from the Tenno Lab in the dojo."}),
   'AX-52':Object.freeze({revisionId:2789952,text:"AX-52's blueprint can be purchased from Amir in the Höllvania Central Mall for 30,000 Standing at Rank 4 - Hot & Fresh, requiring completion of The Hex to access."})
 })
 const OFFICIAL_RANK_KEYS=Object.freeze({
   Entrati:Object.freeze({prefix:'/Lotus/Language/InfestedMicroplanet/EntratiTitle',ranks:Object.freeze({Stranger:1,Acquaintance:2,Associate:3,Friend:4,Family:5})}),
   Necraloid:Object.freeze({prefix:'/Lotus/Language/InfestedMicroplanet/NecraloidTitle',ranks:Object.freeze({'Clearance: Agnesis':1,'Clearance: Modus':2,'Clearance: Odima':3})}),
   "Kahl's Garrison":Object.freeze({prefix:'/Lotus/Language/Syndicates/KahlSyndicateTitle',ranks:Object.freeze({Shelter:1,Encampment:2,Fort:3,Settlement:4,Home:5})}),
-  'The Hex':Object.freeze({prefix:'/Lotus/Language/1999/HexSyndTitle',ranks:Object.freeze({'Leftovers':1,'Fresh Slice':2,'2-for-1':3,'Hot & Fresh':4,'Pizza Party':5})})
+  'The Hex':Object.freeze({prefix:'/Lotus/Language/1999/HexSyndTitle',ranks:Object.freeze({'Leftovers':1,'Fresh Slice':2,'2-for-1':3,'Hot & Fresh':4,'Pizza Party':5})}),
+  Ventkids:Object.freeze({prefix:'/Lotus/Language/Syndicates/VentkidsTitle',ranks:Object.freeze({Glinty:1,Whozit:2,'Proper Felon':3,Primo:4,Logical:5})})
 })
 function argument(argv,name){const i=argv.indexOf(name);return i<0?null:argv[i+1]}
 function clean(text){return String(text||'').replace(/^\s*\[ edit \| edit source \]\s*/i,'').replace(/\s+/g,' ').trim()}
@@ -71,7 +75,17 @@ function compileMethods(text,page,localization,standingRanks,en={},zh={}){const 
   const cave=text.match(/Blueprint for [^.]+? can be purchased in Teshin's Cave for ([\d,]+) Pathos Clamp/i)
   if(cave)methods.push({type:'vendor-exchange',scope:'blueprint',sourceDisplayName:'Teshin 的洞穴',requirements:{type:'currency',currency:[{currencyId:'currency.pathos-clamp',amount:Number(cave[1].replace(/,/g,''))}]},reviewStatus:'approved',provenance:provenance(page)})
   const hexBlueprints=/blueprints can be purchased from Minerva of The Hex/i.test(text)
-  if(hexBlueprints)for(const scope of ['blueprint','component'])methods.push({type:'syndicate-exchange',scope,sourceDisplayName:'六人组的 Minerva',factionDisplayName:'六人组',requirements:{type:'standing'},reviewStatus:'approved',provenance:provenance(page)})
+  if(hexBlueprints){
+    const vendor=BLUEPRINT_VENDOR_REQUIREMENTS.Minerva;
+    const costs={blueprint:text.match(/main blueprint for ([\d,]+) Standing/i)?.[1],component:text.match(/component blueprints for ([\d,]+) Standing/i)?.[1]};
+    const rankMatch=text.match(/requiring Rank (\d+)\s*-\s*([^.|]+?)(?:\s*\.|$)/i);
+    const rank=rankMatch?officialRank('The Hex',rankMatch[2],en,zh):null;
+    for(const scope of ['blueprint','component']){
+      const amount=Number(String(costs[scope]||'').replace(/,/g,''));
+      if(!(amount>0)||!rank||rank.rank!==Number(rankMatch[1]))continue;
+      methods.push({type:'vendor-or-syndicate-exchange',scope,npcId:vendor.npcId,locationId:vendor.locationId,sourceCanonical:'Minerva',standing:amount,requirements:standingRequirement(vendor,rank.rank,rank.displayName,amount),reviewStatus:'approved',provenance:provenance(page)});
+    }
+  }
   const lab=text.match(/research(?:ed)? from the (Tenno|Chem|Energy|Bio|Orokin) Lab/i),bashLab=/Research inside the Ventkids' Bash Lab/i.test(text),hollow=/Dagath's Hollow/i.test(text),allBlueprints=/main and component blueprints|blueprints? for .+? and (?:all |its )?components?|main and component blueprints are now available through Research/i.test(text)
   if(lab||bashLab||hollow||/Clan Dojo Room/i.test(text)){const sourceDisplayName=hollow?'Dagath 的空阁':bashLab?'通风小子打击实验室':lab?LAB_NAMES[lab[1]]:'氏族道场',scopes=allBlueprints?['blueprint','component']:['blueprint'];for(const scope of scopes)methods.push({type:'dojo-research',scope,sourceDisplayName,requirements:{type:'none'},reviewStatus:'approved',provenance:provenance(page)})}
   const included=text.match(/automatically (?:acquired|obtained)(?: upon| by)? (?:obtaining|claiming|acquiring|purchasing)?\s*([^.,]+?)(?:\s+from\s+the\s+Foundry)?\s*[.,]/i)
@@ -116,7 +130,12 @@ function compileMethods(text,page,localization,standingRanks,en={},zh={}){const 
   if(/(?:can |be )?purchased from the Market for [\d,]+ Credits/i.test(text)||/built Mk1-Furis can be bought in the Market/i.test(text))methods.push({type:'market-purchase',scope:'item',sourceDisplayName:'商店',requirements:{type:'none'},reviewStatus:'approved',provenance:provenance(page)})
   if(/awarded during The Teacher quest/i.test(text))methods.push({type:'quest-reward',scope:'item',questCanonical:'The Teacher',questDisplayName:'导师',requirements:{type:'quest',questName:'导师'},reviewStatus:'approved',provenance:provenance(page)})
   if(/main and component blueprints are obtained from Roathe's Oblivion/i.test(text))for(const scope of ['blueprint','component'])methods.push({type:'mission-reward',scope,sourceDisplayName:'The Descendia 的 Roathe 遗忘之境',requirements:{type:'quest',questName:'旧日和平'},reviewStatus:'approved',provenance:provenance(page)})
-  if(/Roky sells the main blueprint and component blueprints/i.test(text))for(const scope of ['blueprint','component'])methods.push({type:'syndicate-exchange',scope,sourceDisplayName:'通风小子的 Roky',factionDisplayName:'通风小子',requirements:{type:'standing',rank:5,rankName:'逻辑'},reviewStatus:'approved',provenance:provenance(page)})
+  if(/Roky sells the main blueprint and component blueprints/i.test(text)){
+    const amountMatch=text.match(/sell the blueprints for ([\d,]+) Standing/i),rankMatch=text.match(/Rank (\d+)\s*-\s*([^.,]+?) with Ventkids/i);
+    const amount=Number(String(amountMatch?.[1]||'').replace(/,/g,'')),vendor=BLUEPRINT_VENDOR_REQUIREMENTS.Roky;
+    const rank=rankMatch?officialRank('Ventkids',rankMatch[2],en,zh):null;
+    if(amount>0&&rank)for(const scope of ['blueprint','component'])methods.push({type:'vendor-or-syndicate-exchange',scope,npcId:vendor.npcId,locationId:vendor.locationId,sourceCanonical:'Roky',standing:amount,requirements:standingRequirement(vendor,rank.rank,rank.displayName,amount),reviewStatus:'approved',provenance:provenance(page)});
+  }
   return methods}
 const SYNDICATE_IDS=Object.freeze({'Arbiters of Hexis':'faction.arbiters-of-hexis','Cephalon Suda':'faction.cephalon-suda','New Loka':'faction.new-loka','The Perrin Sequence':'faction.the-perrin-sequence','Red Veil':'faction.red-veil','Steel Meridian':'faction.steel-meridian'})
 function compileTableMethods(rows,page,localization,standingRanks){
