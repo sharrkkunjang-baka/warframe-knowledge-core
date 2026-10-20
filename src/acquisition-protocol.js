@@ -376,6 +376,7 @@ function nearDuplicateVisibleLines(lines) {
 }
 
 const ACQUISITION_ENTITY_ZH = Object.freeze({
+  "Saya's Visions": '萨娅的异象', 'Shrine Defense': '祈运坛防御',
   'Kuva Fortress': '赤毒要塞', Earth: '地球', Venus: '金星', Mercury: '水星', Mars: '火星', Phobos: '火卫一',
   Ceres: '谷神星', Jupiter: '木星', Europa: '欧罗巴', Saturn: '土星', Uranus: '天王星', Neptune: '海王星',
   Pluto: '冥王星', Sedna: '赛德娜', Eris: '阋神星', Lua: '月球', Deimos: '火卫二', Void: '虚空',
@@ -399,6 +400,8 @@ function localizeAcquisitionText(value) {
   const granumVoid = granumVoidDisplayName(value)
   if (granumVoid) return granumVoid
   let output = String(value || '')
+    .replace(/^(?:全部蓝图|整套蓝图|总图及全部部件)(?=\s*[：:])/gm, '全套')
+    .replace(/Shrine\s*防御/gi, '祈运坛防御')
     .replace(/Höllvania/g, '霍瓦尼亚')
     .replace(/WF1999 Bounty/g, '1999 赏金')
     .replace(/\b(Earth|Venus|Saturn|Neptune|Pluto) Proxima\b/gi, (_match, planet) => `${ACQUISITION_ENTITY_ZH[planet[0].toUpperCase() + planet.slice(1).toLowerCase()] || planet}比邻星域`)
@@ -819,12 +822,12 @@ function componentScopeLabel(method, options = {}) {
     || (method.scope === 'blueprint' ? '总图'
       : method.scope === 'component' || method.scope === 'components' ? (variables.partName === '部件蓝图' ? '部件' : (variables.partName || '部件'))
         : method.scope === 'component-access' ? (variables.grantsItemDisplayName || '任务定位装置')
-          : method.scope === 'all-blueprints' ? '整套蓝图'
+          : method.scope === 'all-blueprints' ? '全套'
             : method.scope === 'item' ? '成品' : '')
   if (!raw || !options.displayName) return raw
   if (!['component', 'components'].includes(method.scope) && !variables.presentationLabel) return raw
   if (/^总图及/.test(raw)) {
-    if (raw === '总图及全部部件') return raw
+    if (raw === '全套') return raw
     return `总图及${ownedEntityPartLabel(raw.slice(3), options.displayName)}`
   }
   return ownedEntityPartLabel(raw, options.displayName)
@@ -913,7 +916,7 @@ function resolveMergedPartLabel(group, totalComponentCount) {
   const componentCount = new Set(group.partNames).size
   if (group.hasBlueprint && componentCount > 0) {
     if (totalComponentCount > 0 && componentCount >= totalComponentCount) {
-      return group.methods.every(method => method.type === 'dojo-research') ? '整套蓝图' : '总图及全部部件'
+      return group.methods.every(method => method.type === 'dojo-research') ? '全套' : '总图及全部部件'
     }
     if (componentCount === 1) return `总图及${partNamesWithoutWeaponPrefix(group.partNames)}`
     return `总图及${partNamesWithoutWeaponPrefix(group.partNames)}`
@@ -1215,7 +1218,7 @@ function mergeAcquisitionCardRoleRows(rows) {
   const roleIndexes = new Map()
   for (const row of rows || []) {
     const lines = String(row?.text || '').split('\n').filter(Boolean)
-    const match = /^(总图|成品|部件蓝图|整套蓝图|头部神经光元|头部|机体|系统)：(.+)$/.exec(lines[0] || '')
+    const match = /^(总图|成品|全套|部件蓝图|整套蓝图|头部神经光元|头部|机体|系统)：(.+)$/.exec(lines[0] || '')
     if (!match) { output.push(row); continue }
     const [, role, clause] = match
     const existingIndex = roleIndexes.get(role)
@@ -1363,7 +1366,7 @@ function mergeRolePresentationLines(lines) {
   const roleIndexes = new Map()
   for (const rawLine of lines || []) {
     const line = String(rawLine || '').trim()
-    const match = /^(总图|部件蓝图|整套蓝图|头部神经光元|头部|机体|系统)：(.+)$/.exec(line)
+    const match = /^(总图|全套|部件蓝图|整套蓝图|头部神经光元|头部|机体|系统)：(.+)$/.exec(line)
     if (!match) { output.push(line); continue }
     const [, role, clause] = match
     const existingIndex = roleIndexes.get(role)

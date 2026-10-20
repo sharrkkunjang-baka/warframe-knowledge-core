@@ -1137,7 +1137,7 @@ function groupedPartSourceLines(partSources) {
   return [...groups].map(([text, parts]) => {
     const partSet = new Set(parts);
     let label;
-    if (parts.length === PARTS.length) label = '全部蓝图';
+    if (parts.length === PARTS.length) label = '全套';
     else if (parts.length === 3 && ['Neuroptics', 'Chassis', 'Systems'].every(part => partSet.has(part))) label = '部件';
     else label = parts.map(part => PART_ZH[part]).join('、');
     return `${label}：${text}`;
