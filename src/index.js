@@ -1656,6 +1656,10 @@ function createKnowledgeCore(options = {}) {
     searchOptions = { ...searchOptions, resolveOptions: { ...searchOptions.resolveOptions, weaponAliasesExactOnly: true } };
     const raw = String(query || '').trim();
     if (!raw) return null;
+    // Indexed skill augments are a typed Mod intent; resolve them before fuzzy frame names.
+    const syndicateGroup = syndicateGroupModResolver.inspect(raw);
+    if (syndicateGroup.status === 'resolved') return getAcquisition(syndicateGroup.canonical, searchOptions);
+    if (syndicateGroup.status !== 'not-syndicate-query') return null;
     const resolverIntent = parseResolverIntent(raw);
     // Locations are authoritative entities too.  `wk` should be able to
     // resolve a hub/mission location and return its Wiki links even when it

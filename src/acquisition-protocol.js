@@ -106,7 +106,7 @@ function currencyAcquisitionSummary(entity, registries) {
   }
   if (dependency.type === 'bounty-completion-or-compost') return `完成${dependency.bountyName}获得：普通难度 ${dependency.normalAmount.min}-${dependency.normalAmount.max} 个，钢铁之路 ${dependency.steelPathAmount.min}-${dependency.steelPathAmount.max} 个；多余蘑菇样本每个可堆肥获得 ${dependency.compostAmount} 个`
   if (dependency.type === 'mission-completion-or-container') return `完成${name(registries.locations, dependency.locationId)}获得：普通难度 ${dependency.normalAmount} 个，钢铁之路 ${dependency.steelPathAmount} 个；破坏${dependency.containerName}可额外获得，普通每个 ${dependency.normalContainerAmount.min}-${dependency.normalContainerAmount.max} 个，钢铁之路每个 ${dependency.steelPathContainerAmount.min}-${dependency.steelPathContainerAmount.max} 个`
-  if (dependency.type === 'mission-reward-or-container') return `在${name(registries.locations, dependency.locationId)}通过层级结算或储存容器获得：普通结算 ${dependency.normalAmount} 个，钢铁之路结算 ${dependency.steelPathAmount} 个`
+  if (dependency.type === 'mission-reward-or-container') return `完成${name(registries.locations, dependency.locationId)}层级结算获得${dependency.normalAmount}个（钢铁${dependency.steelPathAmount}）或破坏储存容器`
   if (dependency.type === 'mission-completion') {
     const location = name(registries.locations, dependency.locationId)
     const missionType = name(registries.missionTypes, dependency.missionTypeId)
@@ -656,7 +656,7 @@ function renderStructuredMethod(method, options = {}) {
   if (method.type === 'reward-or-drop' && method.sourceKind === 'mission-reward') {
     const missionRewardSource = stripBountyRotationTerms(source)
     if (/赏金/.test(missionRewardSource)) return `${prefix}${missionRewardSource ? `${missionRewardSource}${/奖励$/.test(missionRewardSource) ? '' : '奖励'}` : '赏金结算奖励'}（概率）`
-    const chance = Number.isFinite(Number(method.probability)) ? `（${Number((Number(method.probability) * 100).toFixed(4))}%）` : ''
+    const chance = method.probability != null && method.probability !== '' && Number.isFinite(Number(method.probability)) && Number(method.probability) > 0 && Number(method.probability) <= 1 ? `（${Number((Number(method.probability) * 100).toFixed(4))}%）` : ''
     if (/^Lua\/Circulus \(Survival\), Rotation C$/i.test(String(method.sourceCanonical || ''))) return `${prefix}月球联结生存每20分钟概率获得${chance}`
     const normalizedSource = missionRewardSource.replace(/[，,]\s*(?:轮次\s*)?([A-C])(?:轮)?/g, ' $1轮')
     return `${prefix}${normalizedSource ? `完成${normalizedSource}` : '完成指定任务'}概率获得${chance}`
