@@ -195,10 +195,30 @@ function mergeIdentityRecords(records) {
   }));
 }
 
+// Reviewed companion families (for example modular companion categories) may
+// have no finished-item row in warframe-items. Keep their identity and aliases
+// in this shared registry without inventing an official uniqueName or acquisition.
+function reviewedCompanionIdentities(options = {}) {
+  return Object.entries(options.companionAliases || {}).map(([canonical, aliases]) => Object.freeze({
+    stableId: 'companion:' + canonical,
+    canonical,
+    displayName: options.companionMainlandNames?.[canonical] || canonical,
+    uniqueName: null,
+    category: 'companion',
+    loaderType: 'companion',
+    aliases: Object.freeze([...new Set([canonical, options.companionMainlandNames?.[canonical], ...(Array.isArray(aliases) ? aliases : [])].filter(Boolean))]),
+    domains: Object.freeze(['companions']),
+    source: 'reviewed-companion'
+  }));
+}
+
 function listEquipmentIdentities(options = {}) {
   const vehicleAliases = options.vehicleAliases || {};
+  const companions = loadWarframeItemsCompanions(options);
+  const knownCompanions = new Set(companions.map(identity => normalize(identity.canonical)));
   const records = mergeIdentityRecords([
-    ...loadWarframeItemsCompanions(options),
+    ...companions,
+    ...reviewedCompanionIdentities(options).filter(identity => !knownCompanions.has(normalize(identity.canonical))),
     ...officialEquipmentIdentities(options.officialItems || []),
     ...catalogEquipmentIdentities(),
     ...VEHICLES
