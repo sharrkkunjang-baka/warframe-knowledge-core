@@ -141,9 +141,9 @@ function audit() {
 
 function run(argv = process.argv.slice(2)) {
   const report = audit()
-  if (!argv.includes('--check')) fs.writeFileSync(OUTPUT, `${JSON.stringify(report, null, 2)}\n`)
+  if (argv.includes('--report')) fs.writeFileSync(OUTPUT, `${JSON.stringify(report, null, 2)}\n`)
   console.log(JSON.stringify(report.totals, null, 2))
-  if (argv.includes('--strict') && report.publishedIssues.length) throw new Error(`已发布获取条目存在 ${report.publishedIssues.length} 个质量问题；详见 generated/acquisition-quality-audit.json`)
+  if (argv.includes('--strict') && report.publishedIssues.length) throw new Error(`已发布获取条目存在 ${report.publishedIssues.length} 个质量问题；需要完整报告时加 --report 重新运行`)
   return report
 }
 

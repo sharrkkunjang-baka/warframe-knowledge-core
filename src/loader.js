@@ -16,13 +16,16 @@ function deepFreeze(value) {
   return value;
 }
 
-function readJsonDirectory(dir, acceptObject = false) {
+function readJsonDirectory(dir, acceptObject = false, visited = new Set()) {
   if (!fs.existsSync(dir)) return [];
+  const realDirectory = fs.realpathSync(dir);
+  if (visited.has(realDirectory)) return [];
+  visited.add(realDirectory);
   return fs.readdirSync(dir, { withFileTypes: true })
     .sort((a, b) => a.name.localeCompare(b.name))
     .flatMap(entry => {
       const target = path.join(dir, entry.name);
-      if (entry.isDirectory()) return readJsonDirectory(target, acceptObject);
+      if (entry.isDirectory() || entry.isSymbolicLink() && fs.statSync(target).isDirectory()) return readJsonDirectory(target, acceptObject, visited);
       if (!entry.isFile() || !entry.name.endsWith('.json')) return [];
       const value = readJson(target);
       if (Array.isArray(value)) return value;
@@ -60,7 +63,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const categoriesDirectory = path.join(knowledgeDirectory, 'categories');
   const categories = readCategoryDirectory(categoriesDirectory);
   const officialPath = path.join(categoriesDirectory, 'official.json');
-  const officialCatalog = fs.existsSync(officialPath) ? deepFreeze(readJson(officialPath)) : null;
+  const officialCatalog = fs.existsSync(officialPath) ? deepFreeze(require('./mod-content').hydrateModCatalog(readJson(officialPath), root)) : null;
   const officialItemsPath = path.join(knowledgeDirectory, 'generated', 'official-items.json');
   const officialItemsSupplementPath = path.join(knowledgeDirectory, 'supplemental', 'official-items.json');
   const officialItemsBase = fs.existsSync(officialItemsPath) ? readJson(officialItemsPath) : null;

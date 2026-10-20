@@ -11,11 +11,12 @@ const dist = path.join(root, 'dist');
 fs.mkdirSync(dist, { recursive: true });
 const data = loadData(root, { approvedOnly: true });
 const coverageManifest = JSON.parse(fs.readFileSync(path.join(root, 'generated', 'official-coverage-manifest.json'), 'utf8'));
+const modContentDocuments = require('../src/mod-content').modDocuments(root);
 const outputs = {
   'facts.json': data.facts,
-  'knowledge.json': data.knowledge,
+  'knowledge.json': require('../src/mod-content').externalizeModKnowledge(data.knowledge, root, modContentDocuments),
   'categories.json': data.categories,
-  'official.json': data.officialCatalog,
+  'official.json': require('../src/mod-content').externalizeModCatalog(data.officialCatalog, root),
   'official-items.json': data.officialItems,
   'official-item-sources.json': data.officialItemSources,
   'official-coverage-manifest.json': coverageManifest,

@@ -151,6 +151,7 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
       }
     : { status: 'complete', methods: approvedMethods, evidence: [], mechanicsEvidence: {}, unresolvedEntities: [] };
   return [{
+    ...previous,
     id: previous?.id || identity.id,
     kind: 'knowledge',
     module: 'acquisition',
@@ -161,15 +162,16 @@ function buildSupplementalEntry(mod, updatedAt = new Date().toISOString().slice(
     effectDetails: previous?.effectDetails?.length && !String(previous.effectDetails[0]).includes('官方效果模板包含')
       ? previous.effectDetails
       : mod.maxRankEffectsZh,
+    effectDetailsEn: previous?.effectDetailsEn || mod.maxRankEffects || [],
     // Supplemental exports may not carry card metadata. Preserve reviewed
     // values so a later sync cannot erase them with null placeholders.
     rarity: mod.rarity || previous?.rarity || null,
     polarity: mod.polarity || previous?.polarity || null,
     tradable: true,
-    prerequisites: [],
-    tips: [],
+    prerequisites: previous?.prerequisites || [],
+    tips: previous?.tips || [],
     tipKeywords: ['本质机制', '具体计算公式', '加成层级', '与同类效果的叠加方式', '适用限制'],
-    methodRefs: [],
+    methodRefs: previous?.methodRefs || [],
     modAcquisition: {
       generated: {
         identity: { officialUniqueName: mod.uniqueName, canonical: mod.canonical, displayName: mod.displayName, maxRank: mod.maxRank, variant: 'standard', typeFolder: 'warframe' },
@@ -570,7 +572,7 @@ function buildOfficialCatalog(generatedAt = new Date().toISOString()) {
 }
 
 function serialize(value) {
-  return `${JSON.stringify(value, null, 2)}\n`;
+  return `${JSON.stringify(require('../src/mod-content').externalizeModCatalog(value, root), null, 2)}\n`;
 }
 
 function summarizeDiff(current, next) {
@@ -604,6 +606,7 @@ function main() {
     console.log(`official.json 已同步：${next.counts.mods} 个 Mod，${next.counts.officialCategories} 个官方分类`);
     return;
   }
+  require('../src/mod-content').seedModContent(next, root);
   fs.writeFileSync(outputPath, serialize(next));
   console.log(`已生成 official.json：${next.counts.mods} 个 Mod，${next.counts.officialCategories} 个官方分类`);
 }

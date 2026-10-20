@@ -62,11 +62,9 @@ function serialize(value) {
 }
 
 function run(argv = process.argv.slice(2)) {
-  const check = argv.includes('--check')
-  const current = fs.existsSync(OUTPUT) ? JSON.parse(fs.readFileSync(OUTPUT, 'utf8')) : null
-  const report = build(check && current?.generatedAt ? current.generatedAt : undefined)
-  if (check && serialize(current) !== serialize(report)) throw new Error('Mod 获取卡语义去重审计已漂移')
-  if (!check) fs.writeFileSync(OUTPUT, serialize(report), 'utf8')
+  // Evaluate current source data; a historical report is not a quality gate.
+  const report = build()
+  if (argv.includes('--report')) fs.writeFileSync(OUTPUT, serialize(report), 'utf8')
   if (report.failed) throw new Error(`Mod 获取卡语义去重质量门失败：${report.failed}/${report.reviewedMods}`)
   console.log(JSON.stringify({ reviewedMods: report.reviewedMods, deduplicatedCards: report.deduplicatedCards, deduplicatedLines: report.deduplicatedLines, failed: report.failed }))
   return report
