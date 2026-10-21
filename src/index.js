@@ -756,21 +756,26 @@ function createKnowledgeCore(options = {}) {
     };
     return [...mods].sort((a, b) => score(b) - score(a) || String(a.uniqueName).localeCompare(String(b.uniqueName)))[0];
   };
+  const refreshOfficialModContent = mod => {
+    if (!mod?.contentRef) return mod;
+    const entry = require('./mod-content').resolveModContent(mod.contentRef, root);
+    return { ...mod, maxRankEffectsZh: entry.effectDetails || [], maxRankEffects: entry.effectDetailsEn || [] };
+  };
   const getOfficialMod = query => {
     const q = normalize(query);
     if (!q) return null;
     const direct = officialModIndex.get(q);
-    if (direct?.length) return pickPreferredOfficialMod(direct);
+    if (direct?.length) return refreshOfficialModContent(pickPreferredOfficialMod(direct));
     const reviewedAlias = resolveDomainAlias(data.aliases, 'mods', query, { exactOnly: true });
     if (reviewedAlias && !reviewedAlias.ambiguous && reviewedAlias.match === 'exact') {
       const reviewed = officialMods.find(mod => normalize(mod.canonical) === normalize(reviewedAlias.canonical));
-      if (reviewed) return reviewed;
+      if (reviewed) return refreshOfficialModContent(reviewed);
     }
     const targets = [...(modLookupAliases.get(q) || [])];
-    if (targets.length === 1) return officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null;
+    if (targets.length === 1) return refreshOfficialModContent(officialMods.find(mod => normalize(mod.canonical) === normalize(targets[0])) || null);
     if (targets.length > 1) {
       const candidates = officialMods.filter(mod => targets.some(target => normalize(mod.canonical) === normalize(target)));
-      return pickPreferredOfficialMod(candidates);
+      return refreshOfficialModContent(pickPreferredOfficialMod(candidates));
     }
     return null;
   };
@@ -812,7 +817,7 @@ function createKnowledgeCore(options = {}) {
     const sharedRankRule = (data.arcaneMethods || []).find(method => method.category === 'authoritative')?.rankCopyRule || {};
     const entityRankRule = entry.arcaneAcquisition?.manual?.rankCopyRule || generated.stats?.rankCopyRule || entry.rankCopyRule || {};
     const rankFusion = arcaneFusionMetadata(maxRank, { ...sharedRankRule, ...entityRankRule });
-    const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
+    const topStats = entry.levelStats?.[maxRank]?.stats || [];
     const descriptionLines = normalizeArcaneEffectLines(topStats);
     return {
       canonical: entry.subject.canonical,
@@ -1255,7 +1260,7 @@ function createKnowledgeCore(options = {}) {
       maxRank,
       requiredCopies: rankFusion.requiredCopies ?? '数据暂缺'
     });
-    const topStats = generated.stats?.levelStats?.[maxRank]?.stats || entry.levelStats?.[maxRank]?.stats || [];
+    const topStats = entry.levelStats?.[maxRank]?.stats || [];
     const effectLines = normalizeArcaneEffectLines(topStats);
     const statsLocalized = generated.stats?.localizationStatus === 'official-zh';
     const effect = statsLocalized && effectLines.length ? `满级效果：\n${effectLines.map(line => `- ${line}`).join('\n')}` : effectLines.length ? `满级效果：官方简中数据暂缺（英文证据已保存，禁止猜译）` : '满级效果：官方中文数据暂缺，等待审核';
@@ -1715,6 +1720,8 @@ function createKnowledgeCore(options = {}) {
       if (rawArcaneExact && normalize(rawArcaneHit.canonical || '') !== normalize(raw)) {
         return getAcquisition(rawArcaneHit.canonical, searchOptions);
       }
+      const resourceHit = resolveDomainAlias(data.aliases, 'resources', raw, { exactOnly: true });
+      if (resourceHit?.canonical && normalize(resourceHit.canonical) !== normalize(raw)) return getAcquisition(resourceHit.canonical, searchOptions);
       const modHit = resolveDomainAlias(data.aliases, 'mods', raw, { exactOnly: true });
       if (modHit?.canonical && normalize(modHit.canonical) !== normalize(raw)) return getAcquisition(modHit.canonical, searchOptions);
       const miningHit = miningQueries.resolve(raw);

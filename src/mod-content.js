@@ -3,6 +3,7 @@
 // Catalogs and image manifests persist references; callers hydrate only in memory.
 const fs = require('node:fs');
 const path = require('node:path');
+const { EFFECTS_TOKEN, modEffectLines, hydrateModEntry } = require('./mod-effect-template');
 function files(directory) {
   if (!fs.existsSync(directory)) return [];
   return fs.readdirSync(directory, {withFileTypes:true}).flatMap(item => item.isDirectory()
@@ -30,14 +31,14 @@ function resolveModContent(ref, root = path.resolve(__dirname,'..')) {
   const raw=JSON.parse(fs.readFileSync(file,'utf8'));
   const entry=(Array.isArray(raw)?raw:[raw]).find(row=>row.id===id && row.subject?.category==='mod');
   if(!entry)throw new Error('Unresolved Mod content reference: '+ref);
-  return entry;
+  return hydrateModEntry(entry);
 }
 function hydrateModCatalog(catalog,root=path.resolve(__dirname,'..')) {
   if(!catalog?.mods)return catalog;
   return {...catalog,mods:catalog.mods.map(mod=>{
     if(!mod.contentRef)return mod;
     const entry=resolveModContent(mod.contentRef,root);
-    return {...mod,maxRankEffectsZh:entry.effectDetails||[],maxRankEffects:entry.effectDetailsEn||[]};
+    return {...mod,maxRankEffectsZh:modEffectLines(entry),maxRankEffects:entry.effectDetailsEn||[]};
   })};
 }
 function externalizeModCatalog(catalog,root=path.resolve(__dirname,'..'),documents) {
@@ -67,7 +68,7 @@ function externalizeModKnowledge(rows,root=path.resolve(__dirname,'..'),document
 function seedModContent(catalog,root=path.resolve(__dirname,'..')) {
   const documents=modDocuments(root);let written=0;
   for(const mod of catalog.mods||[]){const doc=documents.get(mod.uniqueName);if(!doc)throw new Error('Missing Mod source '+mod.uniqueName);const raw=JSON.parse(fs.readFileSync(doc.file,'utf8'));const entry=(Array.isArray(raw)?raw:[raw]).find(row=>row.id===doc.entry.id);let changed=false;
-    if(!Array.isArray(entry.effectDetails)){entry.effectDetails=mod.maxRankEffectsZh||[];changed=true;}
+    if(!Array.isArray(entry.effectDetails)){entry.effectDetails=entry.effects?.length ? [EFFECTS_TOKEN] : mod.maxRankEffectsZh||[];changed=true;}
     if(!Array.isArray(entry.effectDetailsEn)){entry.effectDetailsEn=mod.maxRankEffects||[];changed=true;}
     if(changed){const temporary=doc.file+'.mod-content-tmp';fs.writeFileSync(temporary,JSON.stringify(raw,null,2)+'\n');fs.renameSync(temporary,doc.file);written++;}
   }

@@ -19,15 +19,15 @@
     "effects": [
       {
         "stat": "weapon-damage",
-        "displayName": "武器伤害",
+        "displayName": "枪械基伤",
         "value": 60,
         "unit": "%"
       },
       {
         "stat": "effect-duration",
-        "displayName": "效果持续时间",
+        "displayName": "效果持续",
         "value": 3,
-        "unit": "s"
+        "unit": "秒"
       }
     ],
     "prerequisites": [],
@@ -299,7 +299,8 @@
       }
     },
     "effectDetails": [
-      "装备时：\n小队获得 60% 武器伤害，持续 3 秒"
+      "切换武器后 {effects.0}（独立乘区） 持续 {effects.1.value}{effects.1.unit}",
+      "对近战无效但对神威·触染投射物有效"
     ],
     "effectDetailsEn": [
       "On Equip:\nSquad gains 60% Weapon Damage for 3s"

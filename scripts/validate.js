@@ -299,6 +299,7 @@ for (const entry of entries) {
     if (entry.subject?.category === 'arcane') {
       const generated = entry.arcaneAcquisition?.generated;
       const manual = entry.arcaneAcquisition?.manual;
+      if (Object.prototype.hasOwnProperty.call(generated?.stats || {}, 'levelStats')) errors.push(`${entry.id}: 赋能描述只能维护顶层 levelStats，禁止 generated.stats.levelStats 副本`);
       if (!generated || !manual) errors.push(`${entry.id}: 赋能必须分离 arcaneAcquisition.generated/manual`);
       if (!entry.officialUniqueName || entry.officialUniqueName !== entry.subject?.officialUniqueName || generated?.identity?.officialUniqueName !== entry.officialUniqueName) errors.push(`${entry.id}: 赋能 officialUniqueName 主键不一致`);
       if (!['warframe', 'primary', 'bow', 'shotgun', 'secondary', 'melee', 'operator', 'amp', 'kitgun', 'zaw', 'legacy'].includes(generated?.classification?.category)) errors.push(`${entry.id}: 赋能互斥分类无效`);
@@ -328,6 +329,8 @@ for (const entry of entries) {
     if (entry.subject?.category === 'mod') {
       const hasStructuredEffects = Array.isArray(entry.effects) && entry.effects.length > 0;
       const hasEffectDetails = Array.isArray(entry.effectDetails) && entry.effectDetails.length > 0;
+      try { require('../src/mod-effect-template').modEffectLines(entry); }
+      catch (error) { errors.push(`${entry.id}: ${error.message}`); }
       const isRequiemMod = Array.isArray(entry.subject?.categoryRefs) && entry.subject.categoryRefs.includes('requiemmod');
       if (!Number.isInteger(entry.maxRank) || (!isRequiemMod && !hasStructuredEffects && !hasEffectDetails)) errors.push(`${entry.id}: Mod 条目缺少 maxRank 或有效效果`);
       if (!entry.modAcquisition?.generated || !entry.modAcquisition?.manual) errors.push(`${entry.id}: Mod 必须分离 modAcquisition.generated/manual`);

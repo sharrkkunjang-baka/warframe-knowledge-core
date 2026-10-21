@@ -17,32 +17,32 @@
   "levelStats": [
     {
       "stats": [
-        "每次闪避，二段跳或旋身飞跃时，获得 +5% 伤害抗性，持续 4 秒。最多叠加 3 层。"
+        "闪避，二段跳或与子弹跳后 +5% 减伤 至多 15% 持续 4 秒"
       ]
     },
     {
       "stats": [
-        "每次闪避，二段跳或旋身飞跃时，获得 +9% 伤害抗性，持续 4 秒。最多叠加 3 层。"
+        "闪避，二段跳或与子弹跳后 +9% 减伤 至多 27% 持续 4 秒"
       ]
     },
     {
       "stats": [
-        "每次闪避，二段跳或旋身飞跃时，获得 +13% 伤害抗性，持续 4 秒。最多叠加 3 层。"
+        "闪避，二段跳或与子弹跳后 +13% 减伤 至多 39% 持续 4 秒"
       ]
     },
     {
       "stats": [
-        "每次闪避，二段跳或旋身飞跃时，获得 +17% 伤害抗性，持续 4 秒。最多叠加 3 层。"
+        "闪避，二段跳或与子弹跳后 +17% 减伤 至多 51% 持续 4 秒"
       ]
     },
     {
       "stats": [
-        "每次闪避，二段跳或旋身飞跃时，获得 +21% 伤害抗性，持续 4 秒。最多叠加 3 层。"
+        "闪避，二段跳或与子弹跳后 +21% 减伤 至多 63% 持续 4 秒"
       ]
     },
     {
       "stats": [
-        "每次闪避，二段跳或旋身飞跃时，获得 +25% 伤害抗性，持续 4 秒。最多叠加 3 层。"
+        "闪避，二段跳或与子弹跳后 +25% 减伤 至多 75% 持续 4 秒"
       ]
     }
   ],
@@ -65,38 +65,6 @@
       "stats": {
         "rarity": "Rare",
         "maxRank": 5,
-        "levelStats": [
-          {
-            "stats": [
-              "每次闪避，二段跳或旋身飞跃时，获得 +5% 伤害抗性，持续 4 秒。最多叠加 3 层。"
-            ]
-          },
-          {
-            "stats": [
-              "每次闪避，二段跳或旋身飞跃时，获得 +9% 伤害抗性，持续 4 秒。最多叠加 3 层。"
-            ]
-          },
-          {
-            "stats": [
-              "每次闪避，二段跳或旋身飞跃时，获得 +13% 伤害抗性，持续 4 秒。最多叠加 3 层。"
-            ]
-          },
-          {
-            "stats": [
-              "每次闪避，二段跳或旋身飞跃时，获得 +17% 伤害抗性，持续 4 秒。最多叠加 3 层。"
-            ]
-          },
-          {
-            "stats": [
-              "每次闪避，二段跳或旋身飞跃时，获得 +21% 伤害抗性，持续 4 秒。最多叠加 3 层。"
-            ]
-          },
-          {
-            "stats": [
-              "每次闪避，二段跳或旋身飞跃时，获得 +25% 伤害抗性，持续 4 秒。最多叠加 3 层。"
-            ]
-          }
-        ],
         "localizationStatus": "official-zh"
       },
       "acquisition": {
@@ -114,6 +82,37 @@
               "source": "warframe-items",
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Defensive/DamageResistanceStacksOverTime"
+            }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.otak",
+            "sourceCanonical": "Otak at Necralisk",
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.otak",
+              "locationId": "hub.necralisk",
+              "currency": [
+                {
+                  "currencyId": "currency.belric-crystal-fragment",
+                  "amount": 60
+                },
+                {
+                  "currencyId": "currency.rania-crystal-fragment",
+                  "amount": 60
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Arcane Double Back is an Arcane Enhancement for Warframes that increases Damage Reduction on performing Maneuvers. Effect Rank Damage Reduction Per Stack Max Stacks Duration 0 +5% 3 4s 1 +9% 3 4s 2 +13% 3 4s 3 +17% 3 4s 4 +21% 3 4s 5 +25% 3 4s Acquisition Arcane Double Back can be obtained from Mirror Defense as a Rotation C reward. Alternatively it can be purchased from Otak for 60 Belric Crystal Fragment and Rania Crystal Fragment each, for a total of 1,260 of each for max rank. Item Source Chance Expected Nearly Guaranteed Mirror Defense / C 5.70% ~ 17 C Rotations 117 ± 39 C Rotations All drop rates data is obtained from DE's official drop tables stored on Module:DropTables/data. See Mission Rewards#Standard Missions for definitions on reward table rotations. For more detailed definitions and information, visit here. Notes To get full stacks, player must perform all 3 actions: Dodge, Double Jump, and Bullet Jump, but they can be in any order. For example, two Bullet Jumps in a row will only provide one stack of the buff while a Bullet Jump + Dodge roll will provide two stacks. Each stack is additive with each other (e.g. +75% DR at 3 stacks), but multiplicative with other sources of Damage Reduction. Each stack has an independent timer. Patch History Hotfix 32.3.4 (2023-02-23) Fixed issue of Arcane Double Back sometimes activating while out of mission and in your Liset, Relays, and Towns. Fixed script error related to Arcane Doubleback. Update 32.3 (2023-02-15) Introduced."
             }
           }
         ],

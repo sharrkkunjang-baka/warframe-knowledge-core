@@ -19,15 +19,15 @@
     "effects": [
       {
         "stat": "self-health-on-kill",
-        "displayName": "自身击杀时失去生命值",
-        "value": -10,
-        "unit": ""
+        "displayName": "自身击杀后自己失去",
+        "value": 10,
+        "unit": "点生命"
       },
       {
         "stat": "ally-health-on-kill",
-        "displayName": "队友击杀时获得生命值",
+        "displayName": "同时为友军恢复",
         "value": 20,
-        "unit": ""
+        "unit": "点生命"
       }
     ],
     "prerequisites": [],
@@ -453,7 +453,9 @@
       }
     },
     "effectDetails": [
-      "击杀时自身失去 10 生命值\n击杀时队友获得 20 生命值"
+      "{effects.0.displayName} {effects.0.absValue}{effects.0.unit}",
+      "{effects.1.displayName} {effects.1.value}{effects.1.unit}",
+      "可触发掉血赋能如复仇者"
     ],
     "effectDetailsEn": [
       "You lose 10 Health on kill\nSquadmates gain 20 Health on kill"

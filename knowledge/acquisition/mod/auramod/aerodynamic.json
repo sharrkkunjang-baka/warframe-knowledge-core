@@ -19,15 +19,15 @@
     "effects": [
       {
         "stat": "airborne-damage-reduction",
-        "displayName": "空中伤害减免",
+        "displayName": "空中减伤",
         "value": 24,
         "unit": "%"
       },
       {
         "stat": "aim-glide-wall-latch-duration",
-        "displayName": "飞身瞄准/壁面攀附持续时间",
+        "displayName": "空中瞄准/攀墙持续时间",
         "value": 6,
-        "unit": "s"
+        "unit": "秒"
       }
     ],
     "prerequisites": [],
@@ -102,7 +102,8 @@
       }
     },
     "effectDetails": [
-      "小队在空中时受到的伤害降低 24% 并获得 +6 秒飞身瞄准/壁面攀附持续时间"
+      "空中：{effects.0}；{effects.1}",
+      "多个减伤之间为乘算而非加算"
     ],
     "effectDetailsEn": [
       "Squad takes 24% reduced damage while airborne and gains +6s Aim Glide/Wall Latch Duration"

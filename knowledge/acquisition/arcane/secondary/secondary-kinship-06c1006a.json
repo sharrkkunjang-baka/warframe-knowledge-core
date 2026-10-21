@@ -17,32 +17,33 @@
   "levelStats": [
     {
       "stats": [
-        "为友军战甲提供增益时：每个增益 +3% 暴击率。"
+        "自己与友军身上每有1种来自自身的增益 便 +3% 暴率"
       ]
     },
     {
       "stats": [
-        "为友军战甲提供增益时：每个增益 +6% 暴击率。"
+        "自己与友军身上每有1种来自自身的增益 便 +6% 暴率"
       ]
     },
     {
       "stats": [
-        "为友军战甲提供增益时：每个增益 +10% 暴击率。"
+        "自己与友军身上每有1种来自自身的增益 便 +10% 暴率"
       ]
     },
     {
       "stats": [
-        "为友军战甲提供增益时：每个增益 +13% 暴击率。"
+        "自己与友军身上每有1种来自自身的增益 便 +13% 暴率"
       ]
     },
     {
       "stats": [
-        "为友军战甲提供增益时：每个增益 +17% 暴击率。"
+        "自己与友军身上每有1种来自自身的增益 便 +17% 暴率"
       ]
     },
     {
       "stats": [
-        "为友军战甲提供增益时：每个增益 +20% 暴击率。"
+        "自己与友军身上每有1种来自自身的增益 便 +20% 暴率",
+        "例：Mirage给自身与4个分身各提供3种增益 暴率提升总量为 3×(1+4)×20%=300%"
       ]
     }
   ],
@@ -65,38 +66,6 @@
       "stats": {
         "rarity": "Rare",
         "maxRank": 5,
-        "levelStats": [
-          {
-            "stats": [
-              "为友军战甲提供增益时：每个增益 +3% 暴击率。"
-            ]
-          },
-          {
-            "stats": [
-              "为友军战甲提供增益时：每个增益 +6% 暴击率。"
-            ]
-          },
-          {
-            "stats": [
-              "为友军战甲提供增益时：每个增益 +10% 暴击率。"
-            ]
-          },
-          {
-            "stats": [
-              "为友军战甲提供增益时：每个增益 +13% 暴击率。"
-            ]
-          },
-          {
-            "stats": [
-              "为友军战甲提供增益时：每个增益 +17% 暴击率。"
-            ]
-          },
-          {
-            "stats": [
-              "为友军战甲提供增益时：每个增益 +20% 暴击率。"
-            ]
-          }
-        ],
         "localizationStatus": "official-zh"
       },
       "acquisition": {
@@ -114,6 +83,37 @@
               "source": "warframe-items",
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/SecondaryCritChancePerBuff"
+            }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.otak",
+            "sourceCanonical": "Otak at Necralisk",
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.otak",
+              "locationId": "hub.necralisk",
+              "currency": [
+                {
+                  "currencyId": "currency.belric-crystal-fragment",
+                  "amount": 60
+                },
+                {
+                  "currencyId": "currency.rania-crystal-fragment",
+                  "amount": 60
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Secondary Kinship can be obtained from Mirror Defense as a Rotation B reward. Alternatively it can be purchased from Otak for 60 Belric Crystal Fragment and Rania Crystal Fragment each, for a total of 1,260 of each for max rank."
             }
           }
         ],

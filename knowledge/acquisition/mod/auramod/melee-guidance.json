@@ -19,15 +19,15 @@
     "effects": [
       {
         "stat": "self-melee-combo-duration",
-        "displayName": "自身近战连击持续时间",
+        "displayName": "自身连击时间",
         "value": -6,
-        "unit": "s"
+        "unit": "秒"
       },
       {
         "stat": "ally-melee-combo-duration",
-        "displayName": "队友近战连击持续时间",
+        "displayName": "队友连击时间",
         "value": 12,
-        "unit": "s"
+        "unit": "秒"
       }
     ],
     "prerequisites": [],
@@ -203,7 +203,8 @@
       }
     },
     "effectDetails": [
-      "自身失去 6 秒近战连击持续时间\n队友获得 12 秒近战连击持续时间"
+      "{effects.0}",
+      "但{effects.1}"
     ],
     "effectDetailsEn": [
       "You lose 6s Melee Combo Duration\nSquadmates gain 12s Melee Combo Duration"

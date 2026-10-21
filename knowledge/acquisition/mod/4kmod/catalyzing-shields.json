@@ -20,13 +20,13 @@
     "effects": [
       {
         "stat": "max-shield-capacity",
-        "displayName": "最大护盾容量",
+        "displayName": "最大护盾",
         "value": 0.2,
         "unit": "x"
       },
       {
         "stat": "full-shield-gate-duration",
-        "displayName": "完整护盾保险无敌时间",
+        "displayName": "盾保无敌时间",
         "value": 1.33,
         "unit": "秒"
       }
@@ -159,8 +159,8 @@
       }
     },
     "effectDetails": [
-      "x0.20 最大护盾容量",
-      "1.33 秒满护盾保险免疫时间"
+      "{effects.0}",
+      "满护盾时 {effects.1.displayName} {effects.1.value}{effects.1.unit}"
     ],
     "effectDetailsEn": [
       "x0.20 Max Shield Capacity",

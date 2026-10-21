@@ -19,21 +19,21 @@
     "effects": [
       {
         "stat": "heavy-attack-status-chance",
-        "displayName": "重击触发几率",
+        "displayName": "重击时的触率",
         "value": 60,
         "unit": "%"
       },
       {
         "stat": "heavy-attack-status-damage",
-        "displayName": "重击异常状态伤害",
+        "displayName": "重击时的异况伤害",
         "value": 60,
         "unit": "%"
       },
       {
         "stat": "shields-per-hit",
-        "displayName": "每次命中消耗护盾",
-        "value": -90,
-        "unit": ""
+        "displayName": "成功命中所消耗的护盾",
+        "value": 90,
+        "unit": "点"
       }
     ],
     "prerequisites": [],
@@ -258,7 +258,8 @@
       }
     },
     "effectDetails": [
-      "小队在重击时获得 +60% 触发几率和异常状态伤害，但每次命中会消耗 90 护盾。"
+      "有护盾且未耗尽时：{effects.0}、{effects.1}",
+      "{effects.2.displayName} {effects.2.value}{effects.2.unit}"
     ],
     "effectDetailsEn": [
       "Squad receives +60% Status Chance and Status Damage on Heavy Attacks, but lose 90 Shields per hit."

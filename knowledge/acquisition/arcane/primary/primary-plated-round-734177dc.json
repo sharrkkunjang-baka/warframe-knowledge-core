@@ -17,32 +17,38 @@
   "levelStats": [
     {
       "stats": [
-        "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 3 秒。"
+        "装填时每装填1发 便增加基伤 持续3秒 下次装填时重新计算",
+        "每发基伤加成随最大弹匣容量变化：30发约6.1% / 60发约4.3% / 100发约3.4%"
       ]
     },
     {
       "stats": [
-        "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 4 秒。"
+        "装填时每装填1发 便增加基伤 持续4秒 下次装填时重新计算",
+        "每发基伤加成随最大弹匣容量变化：30发约6.1% / 60发约4.3% / 100发约3.4%"
       ]
     },
     {
       "stats": [
-        "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 5 秒。"
+        "装填时每装填1发 便增加基伤 持续5秒 下次装填时重新计算",
+        "每发基伤加成随最大弹匣容量变化：30发约6.1% / 60发约4.3% / 100发约3.4%"
       ]
     },
     {
       "stats": [
-        "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 6 秒。"
+        "装填时每装填1发 便增加基伤 持续6秒 下次装填时重新计算",
+        "每发基伤加成随最大弹匣容量变化：30发约6.1% / 60发约4.3% / 100发约3.4%"
       ]
     },
     {
       "stats": [
-        "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 8 秒。"
+        "装填时每装填1发 便增加基伤 持续8秒 下次装填时重新计算",
+        "每发基伤加成随最大弹匣容量变化：30发约6.1% / 60发约4.3% / 100发约3.4%"
       ]
     },
     {
       "stats": [
-        "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 10 秒。"
+        "装填时每装填1发 便增加基伤 持续10秒 下次装填时重新计算",
+        "每发基伤加成随最大弹匣容量变化：30发约6.1% / 60发约4.3% / 100发约3.4%"
       ]
     }
   ],
@@ -65,38 +71,6 @@
       "stats": {
         "rarity": "Rare",
         "maxRank": 5,
-        "levelStats": [
-          {
-            "stats": [
-              "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 3 秒。"
-            ]
-          },
-          {
-            "stats": [
-              "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 4 秒。"
-            ]
-          },
-          {
-            "stats": [
-              "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 5 秒。"
-            ]
-          },
-          {
-            "stats": [
-              "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 6 秒。"
-            ]
-          },
-          {
-            "stats": [
-              "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 8 秒。"
-            ]
-          },
-          {
-            "stats": [
-              "装填时：每装填一发子弹可根据最大弹匣容量增加伤害。持续 10 秒。"
-            ]
-          }
-        ],
         "localizationStatus": "official-zh"
       },
       "acquisition": {
@@ -114,6 +88,37 @@
               "source": "warframe-items",
               "input": "Arcanes.json",
               "officialUniqueName": "/Lotus/Upgrades/CosmeticEnhancers/Offensive/PrimaryDamagePerAmmoOnReload"
+            }
+          },
+          {
+            "type": "vendor-or-syndicate-exchange",
+            "sourceEntityId": "npc.otak",
+            "sourceCanonical": "Otak at Necralisk",
+            "quantity": 1,
+            "availability": "guaranteed-when-requirements-met",
+            "requirements": {
+              "type": "currency",
+              "usage": "exchange",
+              "npcId": "npc.otak",
+              "locationId": "hub.necralisk",
+              "currency": [
+                {
+                  "currencyId": "currency.belric-crystal-fragment",
+                  "amount": 60
+                },
+                {
+                  "currencyId": "currency.rania-crystal-fragment",
+                  "amount": 60
+                }
+              ],
+              "isBuffUseless": true
+            },
+            "reviewStatus": "approved",
+            "provenance": {
+              "source": "wiki.warframe.com",
+              "url": null,
+              "revisionId": null,
+              "excerpt": "Primary Plated Round can be obtained from Mirror Defense as a Rotation B reward. Alternatively it can be purchased from Otak for 60 Belric Crystal Fragment and Rania Crystal Fragment each, for a total of 1,260 of each for max rank."
             }
           }
         ],
@@ -218,7 +223,7 @@
     }
   },
   "acquisitionStatus": "complete",
-  "summary": "主要·镀金弹头的官方赋能身份与结构化获取来源。",
+  "summary": "主要·镀金弹头的官方赋能身份与结构化获取来源 ",
   "sources": [
     {
       "url": "https://github.com/WFCD/warframe-items",

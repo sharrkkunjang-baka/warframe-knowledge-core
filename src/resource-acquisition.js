@@ -13,7 +13,9 @@ const INDEX_PATH = path.join(RESOURCE_ROOT, 'categories.json')
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')) }
 const INDEX = fs.existsSync(INDEX_PATH) ? readJson(INDEX_PATH) : { resources: [] }
 const ENTRIES = INDEX.resources.map(item => readJson(path.join(RESOURCE_ROOT, ...item.file.split('/'))))
-const REGISTRY = createRegistry(ENTRIES.map(entry => ({ id: entry.id, canonical: entry.subject.canonical, displayName: entry.subject.displayName, aliases: entry.aliases || [], entry })))
+const RESOURCE_ALIASES = readJson(path.join(ROOT, 'knowledge', 'facts', 'aliases.json')).resources || {}
+function resourceAliases(entry) { return [...new Set([...(entry.aliases || []), ...(RESOURCE_ALIASES[entry.subject.canonical] || [])])] }
+const REGISTRY = createRegistry(ENTRIES.map(entry => ({ id: entry.id, canonical: entry.subject.canonical, displayName: entry.subject.displayName, aliases: resourceAliases(entry), entry })))
 const COLLECTIONS = Object.freeze({
   '环形装置': entry => / Toroid$/i.test(entry.subject.canonical),
   '环型装置': entry => / Toroid$/i.test(entry.subject.canonical),
@@ -86,7 +88,7 @@ function resolveResource(query) {
   const direct = REGISTRY.get(query)?.entry || null
   if (direct?.reviewStatus === 'approved') return direct
   const normalized = String(query || '').normalize('NFKC').trim().toLowerCase()
-  return ENTRIES.find(entry => entry.reviewStatus === 'approved' && [entry.id, entry.subject.officialUniqueName, entry.subject.canonical, entry.subject.displayName, ...(entry.aliases || [])].some(value => String(value || '').normalize('NFKC').trim().toLowerCase() === normalized)) || direct
+  return ENTRIES.find(entry => entry.reviewStatus === 'approved' && [entry.id, entry.subject.officialUniqueName, entry.subject.canonical, entry.subject.displayName, ...resourceAliases(entry)].some(value => String(value || '').normalize('NFKC').trim().toLowerCase() === normalized)) || direct
 }
 function getResourceCollection(query) {
   const predicate = COLLECTIONS[String(query || '').normalize('NFKC').trim().toLowerCase()]

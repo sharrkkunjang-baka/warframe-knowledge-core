@@ -18,6 +18,7 @@ const { sourceId, displaySource } = require('../src/arcane-source');
 const { normalizeArcaneEffectLine, ARCANE_REVIVE_LINE } = require('../src/arcane-effect-text');
 const { appendAscensionArcaneVestigialExchange, collapseAscensionSisterDropVariants } = require('../src/ascension-arcane-acquisition');
 const { renderGameText } = require('../src/game-text');
+const { finalizeArcaneContent } = require('../src/arcane-content');
 const WARFRAME_ITEMS_DROP_LOCATION_FIXES = Object.freeze({
   'H-09 Apex': '1999 Exterminate Cache'
 });
@@ -394,6 +395,18 @@ function appendCurrentWikiVendorMethods(methods, previous) {
   const deepminesBounty = excerpts.find(text => WIKI_ACQUISITION_SOURCES.nightcap.bountyPattern.test(text))
   const acrithisExchange = excerpts.find(text => WIKI_ACQUISITION_SOURCES.acrithis.exchangePattern.test(text))
   const additions = []
+  for (const excerpt of excerpts) {
+    const match = excerpt.match(/purchased from Otak for ([\d,]+) Belric Crystal Fragment and Rania Crystal Fragment each/i)
+    if (!match) continue
+    const amount = Number(match[1].replace(/,/g, ''))
+    if (!(amount > 0)) continue
+    additions.push({
+      type: 'vendor-or-syndicate-exchange', sourceEntityId: 'npc.otak', sourceCanonical: 'Otak at Necralisk', quantity: 1,
+      availability: 'guaranteed-when-requirements-met',
+      requirements: { type: 'currency', usage: 'exchange', npcId: 'npc.otak', locationId: 'hub.necralisk', currency: [{ currencyId: 'currency.belric-crystal-fragment', amount }, { currencyId: 'currency.rania-crystal-fragment', amount }], isBuffUseless: true },
+      reviewStatus: 'approved', provenance: wikiProvenance(previous, excerpt)
+    })
+  }
   if (yontaExchange) {
     const amount = Number(yontaExchange.match(WIKI_ACQUISITION_SOURCES.yonta.exchangePattern)?.[1])
     if (amount) additions.push({
@@ -514,7 +527,7 @@ function buildSupplementEntry(item, previous, languages = loadLanguages()) {
   const levelStats = officialStats?.levelStats || Array.from({ length: item.maxRank + 1 }, (_, rank) => ({ stats: rank === item.maxRank ? [item.maxRankEffectCanonical] : [] }))
   const displayName = item.displayName || item.canonical
   const generated = { identity: { officialUniqueName: item.officialUniqueName, canonical: item.canonical, displayName, localizationStatus: item.localizationStatus }, classification: { category: item.category, arcaneType: item.arcaneType, equipmentClass: item.equipmentClass }, stats: { rarity: item.rarity, maxRank: item.maxRank, levelStats, localizationStatus: officialStats ? 'official-zh' : 'official-zh-unavailable', ...(officialStats?.languageKey ? { languageKey: officialStats.languageKey } : {}) }, acquisition: { status: methods.length ? 'structured' : 'review-required', methods }, tradable: true, sourceFile: 'official-arcane-supplements.json', ...(previous?.arcaneAcquisition?.generated?.wiki ? { wiki: previous.arcaneAcquisition.generated.wiki } : {}) }
-  return { id: `knowledge.acquisition.arcane.${hashName(item.officialUniqueName)}`, kind: 'knowledge', module: 'acquisition', title: displayName, subject: { canonical: item.canonical, displayName, category: 'arcane', officialUniqueName: item.officialUniqueName }, officialUniqueName: item.officialUniqueName, arcaneType: item.arcaneType, equipmentClass: item.equipmentClass, rarity: item.rarity, maxRank: item.maxRank, levelStats, tradable: true, prerequisites: [], methodRefs: [], arcaneAcquisition: { generated, manual }, acquisitionStatus: methods.length ? 'complete' : 'partial', summary: `${item.canonical} 的官方 Wiki 补充身份；官方简中名称和效果暂未进入 Public Export。`, sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g,'_')}`, label: 'Official Warframe Wiki' }, ...(item.source.patchNotesUrl ? [{ url: item.source.patchNotesUrl, label: 'Warframe official patch notes' }] : [])], gameVersion: `Wiki revision ${item.source.wiki.revisionId}`, updatedAt: previous?.updatedAt || new Date().toISOString().slice(0,10), reviewStatus: 'approved', reviewedBy: Array.isArray(previous?.reviewedBy) ? previous.reviewedBy : [], tags: ['acquisition','arcane',item.category,'official-wiki-supplement'], generator: { name: 'sync-arcanes', version: 2 } }
+  return finalizeArcaneContent({ id: `knowledge.acquisition.arcane.${hashName(item.officialUniqueName)}`, kind: 'knowledge', module: 'acquisition', title: displayName, subject: { canonical: item.canonical, displayName, category: 'arcane', officialUniqueName: item.officialUniqueName }, officialUniqueName: item.officialUniqueName, arcaneType: item.arcaneType, equipmentClass: item.equipmentClass, rarity: item.rarity, maxRank: item.maxRank, levelStats, tradable: true, prerequisites: [], methodRefs: [], arcaneAcquisition: { generated, manual }, acquisitionStatus: methods.length ? 'complete' : 'partial', summary: `${item.canonical} 的官方 Wiki 补充身份；官方简中名称和效果暂未进入 Public Export。`, sources: [{ url: `https://wiki.warframe.com/w/${item.canonical.replace(/ /g,'_')}`, label: 'Official Warframe Wiki' }, ...(item.source.patchNotesUrl ? [{ url: item.source.patchNotesUrl, label: 'Warframe official patch notes' }] : [])], gameVersion: `Wiki revision ${item.source.wiki.revisionId}`, updatedAt: previous?.updatedAt || new Date().toISOString().slice(0,10), reviewStatus: 'approved', reviewedBy: Array.isArray(previous?.reviewedBy) ? previous.reviewedBy : [], tags: ['acquisition','arcane',item.category,'official-wiki-supplement'], generator: { name: 'sync-arcanes', version: 2 } }, previous);
 }
 
 function buildEntry(item, previous, languages = loadLanguages()) {
@@ -540,7 +553,7 @@ function buildEntry(item, previous, languages = loadLanguages()) {
     acquisition: { status, methods, requirements }, tradable: Boolean(item.tradable), sourceFile: 'Arcanes.json',
     ...(previous?.arcaneAcquisition?.generated?.wiki ? { wiki: previous.arcaneAcquisition.generated.wiki } : {})
   };
-  return {
+  return finalizeArcaneContent({
     id: `knowledge.acquisition.arcane.${hashName(item.uniqueName)}`, kind: 'knowledge', module: 'acquisition',
     title: localized.name || item.name,
     subject: { canonical: item.name, displayName: localized.name || item.name, category: 'arcane', officialUniqueName: item.uniqueName },
@@ -552,7 +565,7 @@ function buildEntry(item, previous, languages = loadLanguages()) {
     gameVersion: `warframe-items@${PACKAGE.version}`, updatedAt: previous?.updatedAt || new Date().toISOString().slice(0, 10),
     reviewStatus: previous?.reviewStatus || 'draft', reviewedBy: Array.isArray(previous?.reviewedBy) ? previous.reviewedBy : [],
     tags: ['acquisition', 'arcane', category, 'official-generated'], generator: { name: 'sync-arcanes', version: 1 }
-  };
+  }, previous);
 }
 
 function buildPlan(generatedAt = new Date().toISOString()) {

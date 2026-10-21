@@ -19,13 +19,13 @@
     "effects": [
       {
         "stat": "self-ability-strength",
-        "displayName": "自身技能强度",
+        "displayName": "自身强度",
         "value": -30,
         "unit": "%"
       },
       {
         "stat": "ally-ability-strength",
-        "displayName": "队友技能强度",
+        "displayName": "队友强度",
         "value": 30,
         "unit": "%"
       }
@@ -202,7 +202,9 @@
       }
     },
     "effectDetails": [
-      "自身失去 30% 技能强度\n队友获得 30% 技能强度"
+      "{effects.0}",
+      "但{effects.1}",
+      "全队均配备时 每人获得另外3人的强度加成，同时仍承受自身的强度降低"
     ],
     "effectDetailsEn": [
       "You lose 30% Ability Strength\nSquadmates gain 30% Ability Strength"

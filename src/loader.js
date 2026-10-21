@@ -59,7 +59,7 @@ function loadData(root = path.join(__dirname, '..'), options = {}) {
   const knowledge = [
     ...readObjectDirectory(knowledgeDirectory).filter(entry => entry.layer !== 'generated'),
     ...generatedGameplay
-  ].filter(entry => entry.kind === 'knowledge').filter(keep);
+  ].filter(entry => entry.kind === 'knowledge').filter(keep).map(require('./mod-effect-template').hydrateModEntry);
   const categoriesDirectory = path.join(knowledgeDirectory, 'categories');
   const categories = readCategoryDirectory(categoriesDirectory);
   const officialPath = path.join(categoriesDirectory, 'official.json');

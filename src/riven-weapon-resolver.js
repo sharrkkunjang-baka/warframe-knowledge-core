@@ -1,4 +1,5 @@
 'use strict';
+const { applyRivenDispositionPolicy } = require('./riven-disposition-policy');
 
 const { pinyin } = require('pinyin-pro');
 
@@ -133,7 +134,7 @@ function rivenWeaponIdentities(officialWeapons, rivenMarketWeapons) {
     rivenType: marketEntry.rivenType,
     sharedRivenFamily,
     ...modularMetadata(marketEntry)
-  }])).values()];
+  }])).values()].map(applyRivenDispositionPolicy);
 }
 
 function createRivenWeaponResolver(officialWeapons, reviewedAliases = {}, rivenMarketWeapons = { entries: [] }) {

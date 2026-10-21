@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const https = require('node:https');
 
+const { policy, applyRivenDispositionPolicy } = require('../src/riven-disposition-policy');
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'knowledge', 'supplemental', 'riven-market-weapons.json');
 const SOURCE_URL = 'https://api.warframe.market/v2/riven/weapons';
@@ -36,9 +37,9 @@ function normalize(payload, fetchedAt, deExport = {}) {
       if (Number.isFinite(Number(official.primeOmegaAttenuation))) forms.primary = Number(official.primeOmegaAttenuation);
       return forms;
     })() } : {})
-  })).filter(item => item.slug && item.canonical && item.gameRef && item.group).sort((a, b) => a.slug.localeCompare(b.slug));
+  })).map(applyRivenDispositionPolicy).filter(item => item.slug && item.canonical && item.gameRef && item.group).sort((a, b) => a.slug.localeCompare(b.slug));
   if (new Set(entries.map(item => item.gameRef)).size !== entries.length) throw new Error('WFM Riven catalog contains duplicate gameRef identities');
-  return { schemaVersion: 2, fetchedAt, sourceUrl: SOURCE_URL, dispositionSourceUrl: DE_EXPORT_URL, authority: 'warframe.market identity catalog + DE Public Export disposition fields', counts: Object.fromEntries([...new Set(entries.map(item => item.group))].sort().map(group => [group, entries.filter(item => item.group === group).length])), entries };
+  return { schemaVersion: 2, dispositionPolicy: policy, fetchedAt, sourceUrl: SOURCE_URL, dispositionSourceUrl: DE_EXPORT_URL, authority: 'warframe.market identity catalog + DE Public Export disposition fields', counts: Object.fromEntries([...new Set(entries.map(item => item.group))].sort().map(group => [group, entries.filter(item => item.group === group).length])), entries };
 }
 async function run(argv = process.argv.slice(2)) {
   const check = argv.includes('--check');
